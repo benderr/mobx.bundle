@@ -91,15 +91,15 @@ if (isProduction) {
   );
 
   // Production rules
-  rules.push(
-    {
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader!postcss-loader!sass-loader',
-      }),
-    }
-  );
+  // rules.push(
+  //   {
+  //     test: /\.scss$/,
+  //     loader: ExtractTextPlugin.extract({
+  //       fallback: 'style-loader',
+  //       use: 'css-loader!postcss-loader!sass-loader',
+  //     }),
+  //   }
+  // );
 } else {
   // Development plugins
   plugins.push(
@@ -108,23 +108,23 @@ if (isProduction) {
   );
 
   // Development rules
-  rules.push(
-    {
-      test: /\.scss$/,
-      exclude: /node_modules/,
-      use: [
-        'style-loader',
-        // Using source maps breaks urls in the CSS loader
-        // https://github.com/webpack/css-loader/issues/232
-        // This comment solves it, but breaks testing from a local network
-        // https://github.com/webpack/css-loader/issues/232#issuecomment-240449998
-        // 'css-loader?sourceMap',
-        'css-loader',
-        'postcss-loader',
-        'sass-loader?sourceMap',
-      ],
-    }
-  );
+  // rules.push(
+  //   {
+  //     test: /\.scss$/,
+  //     exclude: /node_modules/,
+  //     use: [
+  //       'style-loader',
+  //       // Using source maps breaks urls in the CSS loader
+  //       // https://github.com/webpack/css-loader/issues/232
+  //       // This comment solves it, but breaks testing from a local network
+  //       // https://github.com/webpack/css-loader/issues/232#issuecomment-240449998
+  //       // 'css-loader?sourceMap',
+  //       'css-loader',
+  //       'postcss-loader',
+  //       'sass-loader?sourceMap',
+  //     ],
+  //   }
+  // );
 }
 
 module.exports = {

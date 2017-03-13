@@ -37,14 +37,11 @@
     "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.24.1",
-    "node-sass": "^3.13.0",
-    "postcss-loader": "^1.1.1",
     "prepush": "^3.1.11",
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.1.1",
     "redux-logger": "^2.7.4",
-    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
@@ -66,7 +63,7 @@
   "description": "Starter boilerplate for React and Redux, using Webpack 2",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/Stanko/react-redux-webpack2-boilerplate.git"
+    "url": "git+ssh://git@github.com/brcportal2/ModulBank.FrontArchitecture2.git"
   },
   "keywords": [
     "react",
@@ -76,8 +73,8 @@
   ],
   "author": "Stanko",
   "bugs": {
-    "url": "https://github.com/Stanko/react-redux-webpack2-boilerplate/issues"
+    "url": "https://github.com/brcportal2/ModulBank.FrontArchitecture2/issues"
   },
-  "homepage": "https://github.com/Stanko/react-redux-webpack2-boilerplate#readme",
+  "homepage": "https://github.com/brcportal2/ModulBank.FrontArchitecture2#readme",
   "prepush" : [ "npm run lint-break-on-errors --silent" ]
 }
