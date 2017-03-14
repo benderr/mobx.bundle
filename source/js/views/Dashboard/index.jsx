@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { testAction, testAsync } from 'actions/app';
-import bookImg from '../../../assets/img/book2.jpg';
 
 @connect(state => ({
   asyncData: state.app.get('asyncData'),
@@ -9,6 +8,7 @@ import bookImg from '../../../assets/img/book2.jpg';
   asyncLoading: state.app.get('asyncLoading'),
   counter: state.app.get('counter'),
 }))
+
 export default class Dashboard extends Component {
   static propTypes = {
     asyncData: PropTypes.string,
@@ -75,8 +75,6 @@ export default class Dashboard extends Component {
           <h3>Background image</h3>
           <div className='BackgroundImgExample' />
 
-          <h3>Image imported to the component</h3>
-          <img src={ bookImg } alt='' className='ImgExample' />
         </div>
       </div>
     );

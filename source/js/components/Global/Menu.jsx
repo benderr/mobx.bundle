@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
-import { IndexLink, Link } from 'react-router';
-import { routeCodes } from '../../routes';
+import React from 'react';
+import {IndexLink, Link} from 'react-router';
+import {routeCodes} from 'routes/routeCodes';
 
-export default class Menu extends Component {
-
-  render() {
+export  default () => {
     return (
-      <div className='Menu'>
-        <IndexLink to={ routeCodes.DASHBOARD }>
-          Dashboard
-        </IndexLink>
-        <Link to={ routeCodes.ABOUT }>
-          About
-        </Link>
-        <Link to='404'>
-          404
-        </Link>
-      </div>
+        <div className='Menu'>
+            <IndexLink to={ routeCodes.DASHBOARD }>
+                Главная
+            </IndexLink>
+            <Link to={ routeCodes.SIGN_IN }>
+                Войти
+            </Link>
+        </div>
     );
-  }
-}
+};
+
