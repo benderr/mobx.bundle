@@ -15,6 +15,7 @@ const initialState = Map({
 });
 console.log('1');
 console.log('1');
+console.log('1');
 
 
 const actionsMap = {

@@ -21,7 +21,6 @@ const sourcePath = path.join(__dirname, './source');
 const plugins = [
 	new WebpackChunkHash(),
 	new webpack.optimize.CommonsChunkPlugin({
-		//names: ['vendor', 'manifest'],
 		name: ["vendor", "manifest"],
 		minChunks: Infinity,
 		filename: '[name]-[hash].js'
