@@ -1,0 +1,180 @@
+@import 'variables.styl'
+
+.contragents_widgets, .top_area_widgets
+	display flex
+	&.choosed
+		.top_area_widget_item, .contragents_widget_money
+			transform scale(.9)
+			&:hover
+				transform scale(1)
+	clearfix()
+	.top_area_widget_item, .contragents_widget_money
+		padding 0
+		margin 0
+		display flex
+		justify-content flex-start
+		cursor pointer
+		transition .2s
+		box-sizing border-box
+		transform scale(1)
+		margin 0 2% 0 0
+		background-size auto 70%
+		background-repeat no-repeat
+		background-position center
+		max-width 48%
+		&[class*="soon"]
+			pointer-events none
+			cursor default
+			&:hover
+				transform none
+		// @media (min-width:600px) and (max-width:1170px)
+		// 	width 32.33%
+		// 	&:nth-child(3n)
+		// 		margin-right 0
+		// 	&.soon2
+		// 		display none
+
+		// @media (min-width:1170px) and (max-width:1400px)
+		// 	width 23.875%
+		// 	&:nth-child(4n)
+		// 		margin-right 0
+		// @media (min-width:1400px) and (max-width:1700px)
+		// 	width 18.8%
+		// 	&:nth-child(5n)
+		// 		margin-right 0
+		// @media (min-width:1700px)
+		// 	width 15.46%
+		// 	&:nth-child(6n)
+		// 		margin-right 0
+
+		&:hover
+			transform translateY(-3px)
+			box-shadow 0px 2px 3px 0px rgba(0,0,0,0.12)
+			.desc
+				.name:after
+					opacity .8
+
+		// активный счет
+		&.active
+			transform scale(1)
+
+			.desc
+				color #fff
+				background cl3
+				border-right-color transparent
+				&:before
+					display none
+				&:after
+					top 100%
+					left 50%
+					border solid transparent
+					content " "
+					height 0
+					width 0
+					position absolute
+					pointer-events none
+					border-color rgba(255, 255, 255, 0)
+					border-top-color cl3
+					border-width 8px
+					margin-left -8px
+					margin-top 0
+
+				.num, .num:hover
+					color #fff
+				.name
+					&:after
+						background-color #fff!important
+
+		&.paid, &.month
+			.desc
+				.name:after
+					background-color cl3
+			&.active
+				.desc
+					background cl3
+
+		&.payable, &.year
+
+			.desc
+				.name:after
+					background-color ctextwarning
+			&.active
+				.desc
+					background ctextwarning - 3%
+					&:after
+						border-top-color ctextwarning - 3%
+
+		.desc
+			padding 15px 35px
+			font-size fzn - 2px
+			display flex
+			flex-direction column
+			justify-content center
+			border-right 1px solid cbdlight
+
+
+			&:after, &:before
+				left 100%
+				top 50%
+				border solid transparent
+				content " "
+				height 0
+				width 0
+				position absolute
+				pointer-events none
+
+			&:after
+				border-color rgba(255, 255, 255, 0)
+				border-left-color #fff
+				border-width 6px
+				margin-top -6px
+			&:before
+				border-color rgba(cbdlight, 0)
+				border-left-color cbdlight
+				border-width 7px
+				margin-top -7px
+
+
+			.name
+				text-transform uppercase
+				padding-bottom 7px
+				margin-bottom 7px
+				font-weight normal
+				&:after
+					content ''
+					display block
+					position absolute
+					left 0
+					bottom 0
+					height 3px
+					width 100%
+					background cl3
+					opacity .5
+					transition .2s
+			.num
+				color ctextlight
+				font-size fzn - 4px
+
+		.values
+			display flex
+			flex-direction column
+			justify-content center
+			align-items center
+			padding 10px 35px
+		.value_item
+			padding 0 40px 0 0
+			&:last-child
+				padding-right 0
+		.subtitle
+			font-size fzn - 2px
+			color ctextlight
+		.value
+			font-size fzn + 2px
+			padding 2px 0 4px
+			&:last-child
+				border-right none
+
+.payroll_widgets
+	.payroll_widget_money
+		.values
+			flex-direction row

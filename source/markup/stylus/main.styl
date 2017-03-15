@@ -1,0 +1,4950 @@
+@import 'nib'
+@import 'variables.styl'
+
+html, body
+
+	background cbglight
+	min-width 980px
+	animation-name fadeIn
+	animation-duration .8s
+
+
+body
+	overflow auto
+	-webkit-overflow-scrolling touch
+
+
+
+header
+	position absolute
+	top 0
+	right 0
+	left 0
+	height 60px
+	background saturate(cbglight - 5%, 10%)
+	background-image linear-gradient(left, #00417B 0%, #2072A3 50%, #3AB0AB 100%)
+	z-index 300
+	transition box-shadow .5s
+	box-shadow 0 5px 20px rgba(cl1,0.13)
+
+	&.shadow
+		box-shadow 0 12px 20px -8px rgba(cl1,0.13)
+		transition box-shadow 1s
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+	header
+		&.shadow
+			box-shadow 0 15px 25px -8px rgba(cl1,0.13)
+
+	_::-webkit-full-page-media, _:future, :root  .page_header
+		&.shadow
+			box-shadow 0 12px 20px -8px rgba(cl1,0.13)
+
+// лого в шапке
+.header_logo
+	width 60px
+	height 60px
+	background #fff
+	padding 18px 0 0 18px
+	box-sizing border-box
+	float left
+	a
+		display block
+		width 24px
+		height 24px
+		background url(../images/header_logo.svg) no-repeat 0 0
+		background-size 100%
+		text-indent -10000em
+
+// поиск в шапке
+
+.header_search
+
+	height 100%
+	display inline-block
+	z-index 1
+	background #fff
+	padding-left 10px
+	background #fff url(../images/icon_search.svg) no-repeat 10px center
+	background-size 18px auto
+	&:after
+		left 100%
+		top 50%
+		border solid transparent
+		content " "
+		height 0
+		width 0
+		position absolute
+		pointer-events none
+		border-color rgba(0, 0, 0, 0)
+		border-left-color #fff
+		border-width 13px
+		border-top-width 30px
+		border-bottom-width 30px
+		margin-top -30px
+
+	.name
+		color ctext
+		position absolute
+		top 0
+		left 38px
+		padding 21px 0 0 0
+		width 92px
+		height 100%
+		box-sizing border-box
+		z-index 0
+		text-transform uppercase
+		font-size fzn - 2px
+		font-weight fwr
+
+
+	input
+		position relative
+		height 100%
+		width 92px
+		border none
+		cursor pointer
+		padding-left 0px
+		padding-right 20px
+		opacity 0
+		box-sizing border-box
+		z-index 10
+		font-size fzn + 2px
+		transition .2s opacity, .3s width, .1s margin .2s
+
+		&::-webkit-input-placeholder
+			color ctext
+		&::-moz-placeholder
+			color ctext
+		&:-ms-input-placeholder
+			color ctext!important
+
+
+		&:focus, &.active
+			width calc(50vw - 180px)
+			margin-left 28px
+			opacity 1
+			transition .2s opacity, .3s width, 0s margin
+			&::-webkit-input-placeholder
+				color ctextholder
+			&::-moz-placeholder
+				color ctextholder
+			&:-ms-input-placeholder
+				color ctextholder!important
+
+		// &:valid
+		// 	opacity 1
+		// 	width 250px
+		// 	& ~ .name
+		// 		opacity 0
+
+// меню в шапке
+.header_menu
+	position absolute
+	left 180px
+	top 0
+	width calc(50% - 180px - 30px)
+	// width 28%
+	box-sizing border-box
+	// padding 0 10px
+	// display flex
+	// justify-content center
+	text-align center
+	&.four_items
+		@media screen and (max-width:1090px)
+			li
+				margin 0 2%
+		@media screen and (max-width:1020px)
+			li
+				a
+					font-size fzn - 3px
+
+	.header_menu_inner
+		display inline-block
+		width 100%
+		// max-width 370px
+	ul
+		// display flex
+		// justify-content space-around
+		width 100%
+	li
+		margin 0 3%
+		display inline-block
+	li.active
+		a
+			color #fff
+		span
+			border-bottom-color cl3
+	a
+		display block
+		line-height 63px
+		font-weight fwr
+		font-size fzn - 2px
+		color rgba(#fff,0.8)
+		text-transform uppercase
+		text-decoration none
+		span
+			display block
+			height 55px
+			border-bottom 5px solid transparent
+		&:hover
+			color #fff
+	.icon-down-big
+		&:before
+			float right
+			margin 26px 0 0 6px
+			font-size 10px
+
+// быстрое добавление в шапке
+
+.header_add
+	position absolute
+	top 9px
+	left calc(50% - 21px)
+	a.add
+		display block
+		width 42px
+		height 42px
+		background #fff
+		transition background-color .2s, opacity .2s
+		border-radius 42px
+		&:before, &:after
+			content ''
+			width 2px
+			height 20px
+			background #2072A3
+			position absolute
+			top 11px
+			left 20px
+			transition transform .35s
+		&:after
+			height 2px
+			width 20px
+			top 20px
+			left 11px
+
+		&.drop-enabled
+			opacity .7
+			&:before, &:after
+				transform rotate(135deg)
+
+
+
+
+.drop.header_add_submenu
+	top 60px!important
+	// left 0!important
+	// right 0!important
+	left 50%!important
+	transform translateX(-50%)!important
+	margin-right -2000px
+	text-align center
+	.drop-content
+		display inline-block!important
+		text-align left
+
+
+.header_add_drop.drop-content-inner
+	padding 25px 35px
+	max-height 100vh
+	overflow visible
+	&:after, &:before
+		bottom 100%
+		left 50%
+		border solid transparent
+		content " "
+		height 0
+		width 0
+		position absolute
+		pointer-events none
+	&:after
+		border-color rgba(255, 255, 255, 0)
+		border-bottom-color #fff
+		border-width 8px
+		margin-left -8px
+	&:before
+		border-color rgba(0, 0, 0, 0)
+		border-bottom-color rgba(0,0,0,0.1)
+		border-width 9px
+		margin-left -9px
+	h3
+		font-size fzn - 4px
+		font-weight fwm
+		text-transform uppercase
+		margin 0 0 12px
+	.col
+		width 270px!important
+		margin 0
+	[class*="col"]
+		width auto
+		float left
+	.col2
+		margin-left 65px
+	.col3
+		margin-left 35px
+	.drop-menu
+		margin-bottom 20px
+
+	.quick_add
+		margin 0px 0px 0 10px!important
+		width auto!important
+		max-width 260px
+		.drop-menu
+			margin-bottom 10px
+			margin-right 10px
+		a
+			white-space nowrap
+			overflow hidden
+			text-overflow ellipsis
+
+		.favorites-menu
+			border-top 1px solid cbdlight
+			padding-top 10px
+			margin-right 0
+			margin-bottom 20px
+			li
+				margin-left -23px
+				a:before
+					color ctextwarning
+					font-size fzn + 2px
+					margin-right 7px
+					vertical-align -3px
+
+	li
+		border-bottom none
+		a
+			padding-left 0
+			padding-right 0
+			padding-top 6px
+			padding-bottom 6px
+			color clink
+			&:hover
+				background none
+				color cl2
+
+			.new
+				display inline-block
+				border-radius 10px
+				text-transform uppercase
+				color #fff
+				font-weight fwb
+				background-color #CF5353
+				background-image linear-gradient(50deg, #DE4646 0%, #E96243 100%)
+				font-size fzn - 8px
+				line-height 14px
+				padding 0 4px
+				top -6px
+				position relative
+				margin-left 5px
+
+	.more
+		clear both
+		padding 0px 0 0
+		margin 0
+		text-align center
+		a
+			text-decoration none
+			color ctextlight
+			font-size fzn - 3px
+			display inline-block
+			&:hover
+				color ctext
+			&:before
+				float right
+				margin 1px 0 0 6px
+
+
+
+
+
+// Кнопка чата внизу справа
+
+.button_chat
+	position fixed
+	right 15px
+	bottom 15px
+	width 60px
+	height 60px
+	z-index 4000
+	a
+		display block
+		height 100%
+		width 100%
+		background cl3 url(../images/icon_chat.svg)no-repeat center 55%
+		border-radius 60px
+		transition background .2s
+		box-shadow 0 4px 20px rgba(0,0,0,0.1)
+		&:hover
+			background-color cl3 + 3%
+	label
+		padding 0 4px
+		box-sizing border-box
+		height 26px
+		min-width 26px
+		line-height 26px
+		text-align center
+		border-radius 20px
+		color #fff
+		background cerror
+		font-size fzn
+		position absolute
+		top -3px
+		right -3px
+		cursor pointer
+		font-weight fwn
+// профиль и выход в шапке
+
+.header_profile
+	float right
+	height 100%
+	padding-right 10px
+	.header_profile_settigs,
+	.header_profile_help,
+	.header_profile_logout,
+	.header_profile_name,
+	.header_profile_referral,
+	.header_profile_news
+		height 100%
+		float left
+
+		// border-right 1px solid saturate(cbglight - 12%, 10%)
+
+		a
+			text-decoration none
+			display block
+			height 60px
+			width 40px
+			text-align center
+			line-height 62px
+			font-size 21px
+			color #fff
+			&:hover
+				background rgba(#fff,0.05)
+			// &:hover:before
+			// 	color cl2
+		&>span
+			text-decoration none
+			display block
+			height 60px
+			width 40px
+			text-align center
+			line-height 62px
+			font-size 21px
+			color #fff
+	.header_profile_settigs,
+	.header_profile_help,
+	.header_profile_logout,
+	.header_profile_referral,
+	.header_profile_news
+		[class*='icon-']:before
+			margin-right 0
+
+	// выход
+	.header_profile_logout a
+		font-size 19px
+		line-height 64px
+
+	.header_profile_settigs a
+		font-size 20px
+		line-height 63px
+
+	.header_profile_news
+		a
+			font-size 20px
+			line-height 64px
+		.count
+			position absolute
+			top 10px
+			left 19px
+			background cerror
+			color #fff
+			font-weight fwm
+			font-size fzn - 4px
+			padding 1px 5px 3px
+			border-radius 20px
+			line-height 1
+			border 2px solid #35A4AA
+	// ссылка акции месяц бесплатно
+	.header_profile_referral a
+		font-size 23px
+		color #fff
+		line-height 64px
+		&:before
+			animation heartFlash .5s
+			animation-delay 5s
+			animation-iteration-count 3
+		// &:after
+		// 	display none
+		// 	position absolute
+		// 	top 0
+		// 	left 0
+		// 	width 40px
+		// 	height 60px
+		// 	text-align center
+		// 	line-height 58px
+		// 	content "\6b"
+		// 	color #fff
+		// 	font-family: "mb-icon-font-3" !important;
+		// 	font-style: normal !important;
+		// 	font-weight: normal !important;
+		// 	font-variant: normal !important;
+		// 	text-transform: none !important;
+		// 	-webkit-font-smoothing: antialiased;
+		// 	animation heartFlash .5s
+		// 	animation-delay 5s
+		// 	animation-iteration-count 3
+			// animation-play-state: running, paused, running;
+		// &.red
+		// 	color #fff
+		// 	&:after
+		// 		display block
+
+
+	.header_profile_name
+
+		text-transform uppercase
+		font-weight 400
+		max-width 250px
+		line-height 60px
+		color clinklight
+		font-size fzn - 2px
+		a, span.icon-profile
+			color #fff
+			overflow hidden
+			text-overflow ellipsis
+			white-space nowrap
+			width auto
+			max-width 100%
+			font-weight fwr
+			font-size fzn - 2px
+			padding 0 15px
+			&:before
+				font-size 17px
+				vertical-align -3px
+				margin 0 10px 0 0
+
+
+// выпадушка выбора компании
+.drop_profile
+	.drop-content
+		&:after, &:before
+			bottom 100%
+			left 50px
+			border solid transparent
+			content " "
+			height 0
+			width 0
+			position absolute
+			pointer-events none
+		&:after
+			border-color rgba(255, 255, 255, 0)
+			border-bottom-color #fff
+			border-width 8px
+			margin-left -8px
+		&:before
+			border-color rgba(0, 0, 0, 0)
+			border-bottom-color rgba(0,0,0,0.1)
+			border-width 9px
+			margin-left -9px
+		.add_company
+			color clink
+		.pdb_info
+
+			padding 15px 15px 15px 65px
+			border-top 1px solid cbdlight
+			color ctextlight
+			font-size fzn - 2px
+			font-style italic
+			background url(../images/icon_gift_bank.svg) no-repeat 16px 18px
+			white-space wrap
+			.link
+				color ctextlight
+
+
+
+// окно реферральной акции
+.drop.drop_referral
+	right 25px!important
+	left auto!important
+	transform translateX(0) translateY(60px)!important
+	.drop-content
+		&:after
+			bottom 100%
+			right 77px
+			border solid transparent
+			content " "
+			height 0
+			width 0
+			position absolute
+			pointer-events none
+			border-color rgba(136, 183, 213, 0)
+			border-bottom-color cbginfo
+			border-width 8px
+	.drop-content-inner
+		max-width 300px
+		max-height 500px!important
+		padding 20px 25px
+		box-sizing border-box
+	.drop_referral_quote
+		background cbginfo
+		margin -20px -25px 20px
+		padding 20px 25px
+		.img
+			float left
+			display inline-block
+			width 45px
+			height 45px
+			border-radius 50%
+			margin 0 15px 10px 0
+			overflow hidden
+			img
+				background #eee
+				border none
+		.text
+			font-style italic
+			font-size 13px
+			color ctextlight
+	.drop_referral_banner
+		color ctextlight
+		overflow hidden
+		margin 0 0 20px
+		.big
+			font-size 46px
+			font-weight fwl
+			float left
+			line-height 40px
+			margin 0 5px 0 10px
+		.light
+			font-size 17.5px
+			font-weight fwl
+			text-transform uppercase
+		.mid
+			font-size 14px
+			font-weight fwm
+			text-transform uppercase
+	.drop_referral_text
+		font-size fzn - 3px
+
+// меню слева
+.menu
+	margin 10px 0 0
+	li
+		margin 0 0 2px
+		box-sizing border-box
+
+		&.active a
+			border-color cl3
+			background cl1 + 10%
+		&.active_parent>a
+			border-color cl3
+			background none
+
+
+	a
+		display block
+		padding 14px 3px 14px 0
+		font-size fzn - 3px
+		color #fff
+		text-decoration none
+		border-left 3px solid transparent
+		text-align center
+
+		&:hover
+			background cl1 + 10%
+		&:before
+			margin 0 0 5px
+			display block
+			text-align center
+			font-size 24px
+			height 26px
+			transition none
+
+		&.icon-menu-dashboard
+			&:before
+				font-size 27px
+		&.icon-menu-transaction
+			&:before
+				font-size 26px
+		&.icon_menu_post
+			&:before
+				font-size 17px
+
+		&.icon-menu-clients2
+			&:before
+				font-size 38px
+				line-height 28px
+
+		&.title_submenu
+			&:hover
+				background none
+				cursor default
+
+	// подменю слева
+	.submenu
+		li
+			margin 0
+			&.active a
+				border-color cl3
+		a
+			font-size fzn - 3px
+			padding-left 10px
+			text-transform none
+
+
+		li.active a, a.active
+			&:before
+				background cl5
+
+// меню справа
+aside.right_menu
+	position absolute
+	z-index 200
+	right 0
+	top 0px
+	bottom 0
+	width 265px
+	background: #35414C;
+	background-image: linear-gradient(200deg, rgba(45,157,157,0.25) 0%, rgba(44,157,157,0.0) 50%);
+	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.1), 0px 0px 1px 0px rgba(0,0,0,0.22);
+	padding-top 25px
+	overflow auto
+
+	&::-webkit-scrollbar
+		height 0px
+		width 0px
+	&::-webkit-scrollbar-thumb
+		width 0px
+		border 0px
+
+
+	// кнопка сделать выписку
+	.right_menu_button
+		padding 0 12px 25px
+		.button
+			width 100%
+			padding 0
+
+
+
+// каркас
+section.main
+	position absolute
+	top 60px
+	left 0px
+	right 0px
+	bottom 0
+	z-index 100
+
+	&.section_areas
+		background #fff
+		padding 0
+
+.section_top_area
+	background cbglight
+	padding 25px
+	border-bottom 3px solid cseparator
+
+.section_content
+	padding 30px 15px 30px 25px
+	overflow-x hidden
+	overflow-y scroll
+	// overflow-y overlay
+	-webkit-overflow-scrolling touch
+	position absolute
+	top 0
+	right 265px
+	bottom 0
+	left 0
+	&.full_width
+		right 0
+
+	.side_right_fixed
+		padding-top 30px
+
+
+.flex_row
+	display flex
+
+
+.content
+	box-sizing border-box
+	flex 1 1
+	width 70%
+
+	.content_notice
+		padding 100px 0
+		.notice_center
+			width 400px
+			margin 0 auto
+			text-align center
+			color ctextlight
+
+
+
+.side
+	min-width 270px
+	max-width 350px
+	width 26%
+	flex 0 0 auto
+	margin-left 20px
+
+	&.side_small
+		min-width 220px
+		max-width 350px
+		width 23%
+	&.side_small_fixed
+		width 255px
+
+	&.side_border
+		padding-left 25px
+		margin-left 25px
+		margin-top -25px
+		padding-top 25px
+		border-left 1px solid cbdlight
+.side_padding
+	padding-left 20px
+
+
+
+
+article.page
+	position fixed
+	z-index 500
+	right 0px
+	left auto!important
+	bottom 0
+	top 60px
+	width 66%
+	min-width 900px
+	max-width 1000px
+	background #fff
+	box-shadow -4px 10px 30px rgba(cl1,0.25)
+	box-sizing border-box
+	transition width .4s ease, max-width .4s ease, opacity .1s cubic-bezier(.33,.13,.32,1), transform .3s cubic-bezier(.33,.13,.32,1)
+	will-change width, max-width
+	opacity 0
+	transform translateX(150px) translateZ(0)
+
+	@media (max-width: 980px)
+		// max-width calc(100% - 45px)
+		// min-width calc(100% - 45px)
+		left 80px!important
+		right auto!important
+		position absolute
+
+	&.hide
+		// animation pageHide .5s ease both
+		opacity 0
+		transform translateX(150px) translateZ(0)
+		transition width .4s ease, max-width .4s ease, opacity .3s cubic-bezier(.69,.08,.72,.59), transform .3s cubic-bezier(.69,.08,.72,.59)
+		// right -150px
+		// animation pageHide .4s ease both
+		pointer-events none
+	&.open
+		// animation pageOpen .4s ease both
+		opacity 1
+		transform translateX(0px) translateZ(0)
+		// right 0
+
+	&.fullsize
+		width 100%!important
+		max-width 2000px
+
+	&.normalsize
+		width 66%
+
+	.page_left
+		position absolute
+		right 0px
+		left 0
+		top 0
+		bottom 0
+
+		.page_header
+			margin-right 0
+		.page_content
+			right 0
+
+	&.side_right
+		.page_left
+			position absolute
+			right 270px
+			left 0
+			top 0
+			bottom 0
+			.page_header
+				margin-right 0
+			.page_content
+				right 0
+		.page_header
+			margin-right 270px
+		.page_content
+			right 270px
+
+	&.side_right_wide
+		.page_left
+			right 340px
+			.page_header
+				margin-right 0
+			.page_content
+				right 0
+		.page_header
+			margin-right 340px
+		.page_content
+			right 340px
+
+
+
+	&.open ~ .page.open
+		transform translateX(-12px)
+		// margin-right 12px
+		z-index 499
+		.page_expand
+			opacity 0
+		& ~ .page.open
+			transform translateX(-24px)
+			// margin-right 24px
+			z-index 498
+			& ~ .page.open
+				transform translateX(-36px)
+				// margin-right 36px
+				z-index 497
+				& ~ .page.open
+					transform translateX(-48px)
+					// margin-right 48px
+					z-index 496
+
+	&.hide ~ .page.open
+		z-index 499
+		& ~ .page.open
+			z-index 498
+			& ~ .page.open
+				z-index 497
+				& ~ .page.open
+					z-index 496
+
+	// промо страницы
+	&.page_promo
+		overflow auto
+		overflow overlay
+		overflow-x hidden
+		.page_header
+			height 354px
+			background cbgsky
+			padding 60px 280px 0 75px
+			box-shadow none
+			h1
+				font-size 50px
+				font-weight fwxl
+				margin 0 0 20px
+				max-width 100%
+			h3
+				font-size 20px
+				font-weight fwl
+				margin 0 0 30px
+			p
+				font-size fzn
+				font-weight fwl
+		.page_content
+			position relative
+			top auto
+			left auto
+			right auto
+			bottom auto
+			padding-top 50px
+			padding-left 70px
+			padding-right 70px
+		.page_promo_title
+			font-size 30px
+			font-weight fwl
+			margin 0 0 30px
+			text-align center
+	&.page_payment_new
+		.page_header
+			h1
+				margin-right 0
+				padding-right 0
+				max-width 100%
+
+	// слой на котором есть визард в шапке
+	&.page_with_wizard
+		.page_header
+			background #F5F5F5
+			height 166px
+			box-shadow none
+			&:after
+				content ''
+				height 25px
+				position absolute
+				top 100%
+				left 0
+				width 100%
+				background linear-gradient(top, rgba(#fff,0.9), rgba(#fff,0))
+		.page_wizard
+			margin 20px 0 0
+			padding 0
+
+		.page_content
+			top 166px
+
+
+
+
+// шапка слоя
+.page_header
+	height 80px
+	background #fff
+	padding 24px 30px 0
+	box-sizing border-box
+	z-index 100
+	box-shadow 0 6px 5px -7px rgba(cl1,0.3)
+	// transition box-shadow .2s
+
+	&.clean
+		border-bottom none
+		box-shadow none!important
+		& + .page_content
+			padding-top 10px
+
+	&.header_forward
+		z-index 2100
+		background transparent
+
+	&.shadow
+		box-shadow 0 6px 17px -7px rgba(cl1,0.2)
+		transition box-shadow .5s
+	&.header_height_auto
+		height auto
+		padding-bottom 23px
+
+	h1
+		display inline-block
+		margin 0 30px 0 40px
+		color ctext
+		max-width calc(100% - 100px)
+		vertical-align top
+		&.f_small
+			font-size 22px!important
+		.link_dashed
+			max-width 100%
+			display inline-block
+			white-space nowrap
+			color ctext
+
+			span
+				display inline-block
+				overflow ellipsis
+				max-width 100%
+				border-bottom-color transparent
+				vertical-align top
+			.icon-pencil
+				display inline-block
+				margin-left 10px
+				font-size fzn + 2px
+				vertical-align middle
+				color clinklight
+	.import_1c
+		display inline-block
+		height 16px
+		width 30px
+		background url(../images/1c_icon.png) no-repeat 0 0
+		background-size contain
+		vertical-align -10px
+	.payment_count, .payroll_count
+		height 40px
+		width 110px
+		font-size 24px
+		padding 0 7px
+		font-weight fwl
+		vertical-align 0
+		margin-top -5px
+	.payroll_count
+		width 65px
+	.payment_date
+		height 40px
+		width 140px
+		font-size 24px
+		padding 0 7px
+		font-weight fwl
+		vertical-align 0
+		margin-top -5px
+		background-image none
+		padding 0 10px!important
+
+	.page_close
+		position absolute
+		top 31px
+		left 30px
+		width 18px
+		height 18px
+		display inline-block
+		color ctext
+		font-size 18px
+		text-decoration none
+		transition color .2s
+		&:hover
+			color rgba(ctext,0.7)
+		&:before
+			width 18px
+			height 18px
+			margin 0
+			vertical-align 0
+
+
+	// .page_expand
+	// 	&.rotate
+	// 		transition 0
+	// 		&:before
+	// 			transform rotate(180deg)
+	// 			transition 0
+
+	.page_expand
+		position absolute
+		top calc(50vh - 40px)
+		left -16px
+		width 16px
+		height 50px
+		line-height 48px
+		text-align center
+		font-size 12px
+		color ctextlight
+		border-top-left-radius 90px 50px
+		border-bottom-left-radius 90px 50px
+		background #fff
+		box-shadow -4px 0 5px rgba(49,68,93,0.08)
+		text-align center
+		transition transform .3s, left .3s, box-shadow .3s
+		&:before
+			width auto
+			margin 0
+			transition transform .2s
+			transform translateX(2px)
+		&:hover
+			&:before
+				transform translateX(0px)
+		&.rotate
+			transform scaleX(-1)
+			left 0
+			box-shadow -1px 0 3px rgba(49,68,93,0.2)
+
+	.header_action
+		float right
+		margin-top 5px
+		padding-left 1px
+		a
+			font-size fzn
+			line-height 22px
+			vertical-align middle
+			display inline-block
+			color ctext
+			// margin 0 0 0 5px
+
+			text-decoration none
+			&:before
+				font-size 22px
+				vertical-align -4px
+				margin-right 10px
+			&:hover, &:hover:before
+				color clink
+
+			&.icon-chat
+				&:hover
+					&:before
+						color ctextsuccess
+			&.icon-favorites
+				margin-top -4px
+				&:before
+					font-size 26px
+	.header_button
+		display inline-block
+		margin-top -3px
+		vertical-align -5px
+
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0)
+	.page_header
+		box-shadow 0 6px 7px -7px rgba(cl1,0.3)
+		&.shadow
+			box-shadow 0 8px 20px -7px rgba(cl1,0.2)
+
+	_::-webkit-full-page-media, _:future, :root  .page_header
+		box-shadow 0 6px 5px -7px rgba(cl1,0.3)
+		&.shadow
+			box-shadow 0 6px 17px -7px rgba(cl1,0.2)
+
+
+
+// контент слоя
+.page_content
+	position absolute
+	top 80px
+	left 0
+	bottom 0
+	right 0
+	overflow-x hidden
+	overflow-y auto
+	padding 30px
+	-webkit-overflow-scrolling touch
+	&:after
+		content ' '
+		display block
+		height 30px
+		width 100%
+		bottom 0
+	&.with_bottom_panel
+		bottom 65px
+		padding-bottom 0
+
+// панель с кнопками в слое
+.page_bottom_panel
+	position absolute
+	bottom 0
+	left 0
+	right 0
+	height 65px
+	z-index 40
+	padding 10px 30px 11px
+	background #fff
+	box-shadow 0px 3px 20px 0px rgba(0,0,0,0.2), 0px 0px 1px 0px rgba(0,0,0,0.22)
+	box-sizing border-box
+	.form_button_right
+		float right
+		&.button_clean
+			margin-top 13px
+
+// сайдбар слоя
+.page_side
+	position absolute
+	z-index 100
+	top 0
+	right 0
+	width 270px
+	bottom 0
+	background cbgsky
+	background-clip border-box
+	overflow-x hidden
+	overflow-y auto
+	padding 25px 20px
+	box-sizing border-box
+	font-size fzn
+	box-shadow inset 4px 0 0 -2px cseparator
+	-webkit-overflow-scrolling touch
+	&.page_side_wide
+		width 340px
+		padding 25px 30px
+	.side_sep
+		background cbdlight
+
+
+.side_title
+	text-transform uppercase
+	font-weight fwm
+	text-transform uppercase
+	color ctextlight
+	margin 0 0 25px
+	font-size fzn - 2px
+
+.side_block
+	margin 20px 0
+	.side_block_title
+		font-size fzn - 2px
+		font-weight fwm
+		text-transform uppercase
+		color ctext
+		margin 0 0 12px
+		a
+			text-transform none
+	p
+		margin 0 0 5px
+
+.side_parameter
+	margin 30px 0
+	clearfix()
+
+	.side_parameter_name
+		color ctextlight
+		margin-bottom 10px
+		font-size fzn - 2px
+	.side_parameter_value
+		max-width 100%
+		.ms-parent
+			.ms-choice
+				// font-size fzn - 2px
+		.select2-container
+			max-width 100%
+			.select2-choice
+				// font-size fzn - 2px
+				overflow ellipsis
+				max-width 100%
+
+	&.parameter_inline
+		.side_parameter_name
+			display inline-block
+			padding-right 4px
+			margin-bottom 0
+			font-size fzn
+		.side_parameter_value
+			display inline-block
+
+
+
+.side_sep
+	height 1px
+	margin 20px 0
+	overflow hidden
+	background cbdlight
+
+.side_filter
+	margin 30px 0
+
+	.side_filter_name
+		color cgrey36
+		margin-bottom 10px
+		font-size fzn - 2px
+		font-weight fwl
+
+	ul + ul
+		margin-right 10px
+	li
+		margin 0
+
+	.label_check
+		padding 6px 0
+		display block7
+
+	.label_filter
+		color cl2
+		display inline-block
+		padding 3px 10px 4px
+		border-radius 30px
+		box-shadow 0 0 0 1px cl2, inset 0 0 0 15px #fff, inset 0 0 0 15px rgba(cl2,0)
+		transition box-shadow .15s, color .15s
+
+	.input_filter:checked + label
+		box-shadow 0 0 0 1px cl2, inset 0 0 0 0 #fff, inset 0 0 0 15px cl2
+		color #fff
+
+
+
+
+
+// виджет
+.widget_block
+	background #fff
+	box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.09), 0px 0px 1px 0px rgba(0,0,0,0.22);
+	padding 20px
+	box-sizing border-box
+	margin-bottom 25px
+	border-radius: 2px;
+
+	.title
+		margin 0 0 15px
+		padding 0 0 15px
+		border-bottom 2px solid cseparator
+		font-weight normal
+
+		.buttons_group_filter
+			margin -6px 0 0
+			float right
+
+		.title_filter
+			float right
+			font-weight fwn
+			.ms-choice
+				font-size fzn - 2px
+
+	.widget_settings_drop
+		position absolute
+		right 10px
+		top 10px
+		color clinklight
+		font-size fzn
+		z-index 100
+
+.light_block
+	background cbgsky
+	padding 20px
+	border 1px solid cbdlightsky
+	box-shadow 0px 9px 6px -5px rgba(0,0,0,0.05)
+	margin-bottom 20px
+
+.border_block
+	padding 20px
+	border 2px solid cseparator
+	margin-bottom 20px
+
+// уведомления
+
+.notice_block
+	font-size fzn - 2px
+	padding 15px
+	margin 0 0 7px
+	border-left 3px solid cl2
+	padding-right 25px
+	&:before
+		color cl2
+	.close
+		position absolute
+		right 10px
+		top 10px
+		color ctextlight + 60%
+		font-size 12px
+		&:before
+			min-width 0
+			margin 0
+		&:hover
+			color ctext
+
+
+	&.warning
+		background cbginfo + 30%
+		border-left 3px solid ctextwarning
+		&:before
+			color ctextwarning
+	&.danger
+		background cbgerror + 30%
+		border-left 3px solid cerror
+		&:before
+			color ctexterror
+	&.success
+		background cbgsuccess + 20%
+		border-left-color cl3
+		&:before
+			color ctextsuccess
+
+	&[class*="icon-"]
+		padding-left 50px
+		&:before
+			position absolute
+			left 15px
+			top 12px
+			font-size 24px
+
+
+	p
+		margin 0 0 10px
+		&:last-child
+			margin-bottom 0
+
+.notice_sep
+	height 25px
+
+
+
+// виджет открытия счета на dashboard
+.account_widget
+	font-size fzn
+	margin-bottom 40px
+	padding 30px 40px 40px
+	background: #D9F3B8;
+	background-image: linear-gradient(135deg, #FFFBDB 0%, #FFE6A4 100%);
+	border: 1px solid #ECD591;
+
+	&.success
+		background-image linear-gradient(135deg, #D5FBC4 0%, #E8F9C5 100%);
+		border-color cl3
+	&.error
+		background-image: linear-gradient(135deg, #FFD4CA 0%, #FFB9BA 100%);
+		border-color #D74961
+	h3
+		font-weight fwl
+		font-size 24px
+		margin-bottom 15px
+		text-transform uppercase
+
+	h4
+		font-weight normal
+		margin 0 0 12px
+		font-size fzn
+		font-weight fwm
+	p
+		margin 12px 0
+		line-height 1.4
+		&:last-child
+			margin-bottom 0
+	a:not(.button)
+		color ctext
+
+
+	[class*='info']
+		margin-left 0px
+		margin-right 0px
+		padding-left 0px
+		padding-right 0px
+		border none
+		// background-color rgba(#fff,0.4)
+		background-color transparent
+		font-size fzn
+
+	.found_company
+		background-size 50px auto
+		background-position 15px 15px
+		padding-left 90px
+		border-top 3px solid rgba(#000,0.1)
+		border-bottom 3px solid rgba(#000,0.1)
+		h3
+			font-size fzn + 2px
+			text-align left
+			font-weight normal
+			margin 0 0 10px
+		p
+			font-size fzn
+	.form_buttons
+		margin 20px 0 0
+
+		.links
+			font-size fzn
+			margin 15px 0 0 30px
+			a
+				margin 0 10px
+				display inline-block
+				text-transform uppercase
+				font-weight fwn
+				text-decoration underline
+				&:last-child
+					margin-bottom 0
+	.info.status
+		margin-bottom 20px
+		border-top none
+		padding-bottom 20px
+		padding-top 0
+		font-size fzn
+		background-image url(../images/account_widget_status.svg)
+		background-repeat no-repeat
+		background-position 0px 0px
+		background-size 50px auto
+		padding-left 90px
+		&:after
+			content ''
+			position absolute
+			bottom 0
+			left 90px
+			width 200px
+			height 3px
+			background rgba(#000,0.1)
+		&.success
+			background-image url(../images/account_widget_status_success.svg)
+			// background-color cbgsuccess + 30%
+			// border-bottom-color cbgsuccess - 10%
+
+		&.error
+			background-image url(../images/account_widget_status_error.svg)
+			background-size 45px auto
+			background-position 5px 0
+			// background-color cbgerror + 40%
+			// border-bottom-color cbgerror - 5%
+		& ~ *
+			padding-left 90px
+		p
+			color ctext
+			&:last-child
+				margin-bottom 0
+
+// виджет открытия счета на dashboard
+// .account_widget
+// 	font-size fzn
+// 	margin-bottom 40px
+// 	padding 30px 40px
+
+// 	h3
+// 		font-weight fwl
+// 		font-size 24px
+// 		margin-bottom 15px
+
+// 	h4
+// 		font-weight normal
+// 		margin 0 0 12px
+// 		font-size fzn
+// 		font-weight fwm
+// 	p
+// 		margin 12px 0
+// 		line-height 1.4
+// 		&:last-child
+// 			margin-bottom 0
+// 	a:not(.button)
+// 		color ctext
+
+
+// 	[class*='info']
+// 		margin-left 0px
+// 		margin-right 0px
+// 		padding-left 0px
+// 		padding-right 0px
+// 		border none
+// 		// background-color rgba(#fff,0.4)
+// 		background-color transparent
+// 		font-size fzn
+
+// 	.found_company
+// 		background-size 50px auto
+// 		background-position 15px 15px
+// 		padding-left 90px
+// 		border-top 3px solid rgba(#000,0.1)
+// 		border-bottom 3px solid rgba(#000,0.1)
+// 		h3
+// 			font-size fzn + 2px
+// 			text-align left
+// 			font-weight normal
+// 			margin 0 0 10px
+// 		p
+// 			font-size fzn
+// 	.form_buttons
+// 		margin 20px 0 0
+
+// 		.links
+// 			font-size fzn
+// 			margin 15px 0 0 30px
+// 			a
+// 				margin 0 10px
+// 				display inline-block
+// 				text-transform uppercase
+// 				font-weight fwm
+// 				&:last-child
+// 					margin-bottom 0
+// 	.info.status
+// 		margin -30px -40px 20px
+// 		border-top none
+// 		padding 30px 40px
+// 		font-size fzn
+// 		background: #FFFBDB;
+// 		background-image: url(../images/account_widget_status.svg), linear-gradient(135deg, #FFFBDB 0%, #FFD7A4 100%);
+// 		background-repeat no-repeat
+// 		background-position 40px 30px, 0 0
+// 		background-size 50px auto, 100%
+// 		padding-left 130px
+// 		// &:after
+// 		// 	content ''
+// 		// 	position absolute
+// 		// 	bottom 0
+// 		// 	left 90px
+// 		// 	width 200px
+// 		// 	height 3px
+// 		// 	background rgba(#000,0.1)
+// 		&.success
+// 			background-color: #D9F3B8;
+// 			background-image: url(../images/account_widget_status_success.svg), linear-gradient(135deg, #E1FFD5 0%, #E9F3A7 100%);
+
+
+// 		&.error
+// 			background-color: #FFBEBB;
+// 			background-image: url(../images/account_widget_status_error.svg), linear-gradient(135deg, rgba(255,190,162,1.00) 0%, #FF9292 100%);
+// 			background-size 45px auto, 100%
+// 			background-position 40px 30px, 0 0
+
+// 		& ~ *
+// 			padding-left 90px
+// 		p
+// 			color ctext
+// 			&:last-child
+// 				margin-bottom 0
+
+
+
+
+// открытие счета виджет на дашборде
+.account_widget_dashboard
+	background linear-gradient(left, cl2 0, cl3 - 10% 150%)
+	background: #D9F3B8;
+	background-image: linear-gradient(left, #F6FAA2 0%, #8DC540 100%);
+	color #fff
+	padding 30px 40px
+	overflow hidden
+	min-height 240px
+	margin-bottom 30px
+	&.error
+		background linear-gradient(left, #DA6A43 0, #ED5865 100%)
+		.active, .done
+			.label
+				border-color #DA6A43
+		.active
+			.label
+				color #da6a43
+		.done
+			.label
+				background-image url(../images/check_r.svg)
+	.wizard_steps
+		position absolute
+		top 30px
+		bottom 30px
+		display flex
+		flex-direction column
+
+		.step
+			height 100%
+			padding-bottom 0
+			&:last-child
+				height 34px
+
+	.desc
+		margin-left 80px
+		padding-top 5px
+		h3
+			text-transform uppercase
+			font-weight fwm
+		h4
+			font-weight fwm
+			margin 0 0 10px
+		p
+			font-size fzn
+			margin 0 0 15px
+
+		a
+			color #fff
+		.light_text
+			color rgba(#fff,0.7)
+
+		.info, .info_error
+			background none
+			color #fff
+			padding 0 0 20px
+			border none
+			border-bottom 1px solid rgba(#fff,0.5)
+			.desc
+				margin-left 0
+				padding-top 0
+		.button
+			background transparent
+			box-shadow 0 0 0 2px #fff
+
+		.found_company
+			padding 20px
+			background rgba(cl1,0.3)
+
+		.info_error
+			padding 20px
+			background rgba(#000,0.1)
+
+
+
+
+// виджет остатка на счетах
+.account_balance_widget
+
+	.icon-info
+		position absolute
+		right 15px
+		top 70px
+		z-index 10
+	.item
+		font-size fzn + 2px
+		margin 0 0 15px
+		.light_text
+			font-size fzn - 2px
+			@media screen and (max-width:1210px)
+				font-size fzn - 3px
+
+	.balance
+		.value
+			font-size 30px
+			text-decoration none
+			color ctext
+			font-weight fwl
+
+	.balance_available,
+	.balance_reserved,
+	.balance_overdraft
+		padding-left 26px
+
+	.balance_reserved,
+	.balance_overdraft
+		&:before
+			position absolute
+			top 11px
+			left 0
+			font-size fzn + 1px
+	.balance_reserved:before
+		color ctextdanger
+	.balance_overdraft:before
+		color ctextsuccess
+
+	.balance_deposit, .balance_usn
+		border-top 1px solid cbdlight
+		padding-top 15px
+		margin-bottom 0
+		margin-top 15px
+
+	.account_balance_widget_empty
+		text-align center
+		padding 20px 0
+		p
+			font-style italic
+			font-size fzn - 2px
+			color ctextlight
+			margin 0 0 15px
+	.blocked_money
+		background cbgerror + 30%
+		margin 20px -20px -20px
+		padding 20px
+		border-top 2px solid cbgerror - 10%
+		cursor pointer
+		&:hover
+			.light_text
+				color ctext
+		.value
+			font-size 30px
+			font-weight fwl
+			color cerror
+		.icon-info
+			top 20px
+			color ctextlight
+
+
+// ------------- Блокировка активности ----------------
+
+.security_lock
+	text-align center
+	width 400px
+	background-size 95px auto
+	padding 0 45px 40px
+	overflow hidden
+	box-shadow none
+	border-radius 4px
+	.security_lock_header
+		height 210px
+		box-sizing border-box
+		padding 44px 0 0
+		margin 0 -50px 0px
+		text-align center
+		font-weight fwl
+		color #fff
+		font-size 34px
+		line-height 1.25
+		background: #0A8DE2;
+		background-image: linear-gradient(210deg, rgba(115,255,86,0.43) 0%, rgba(138,195,174,0.00) 100%);
+		.light_text
+			color rgba(#fff,0.5)
+			font-size 24px
+			display block
+			font-family ffn
+
+		.icon
+			position absolute
+			top 20px
+			left 20px
+			width 24px
+			height 24px
+			font-size 24px
+			background-size 100%
+			color rgba(#fff,0.5)
+		.logout
+			position absolute
+			right 20px
+			top 20px
+			color rgba(#fff,0.7)
+			font-size fzn
+			&:hover
+				color #fff
+		&.timer
+			padding 35px 0 0
+			line-height 1.1
+			font-size 100px
+			background: #E54D4D;
+			font-family Tahoma, 'Trebuchet MS'
+			background-image: linear-gradient(45deg, rgba(225,41,41,0.00) 0%, rgba(255,213,14,0.26) 100%);
+			.icon
+				background url(../images/icon_timer_lock.svg) no-repeat 0 0
+
+	.security_lock_text
+		font-size fzn - 1px
+		margin 0
+		line-height 1.5
+		height 140px
+		display flex
+		justify-content center
+		align-items center
+	.form_buttons
+		margin 0
+	.links
+		display block
+		margin 15px 0 0
+		a
+			margin 0
+	.sms_confirm
+		margin 0 -45px -40px
+		box-sizing border-box
+		border none
+		background #fff
+		padding-top 39px
+		padding-bottom 39px
+
+
+
+// ---------- фильтры --------------
+
+.widget_filters
+	margin-top -20px
+	margin-bottom -10px
+	a
+		color ctext
+		&:hover
+			color cl2
+	.side_filter
+		.label_check
+			// font-size fzn
+			// color ctextlight
+			display block
+			text-decoration none
+			position relative
+			// margin 0 -20px 1px
+			// padding 8px 20px 8px 20px
+			transition none
+			z-index 2
+			&:hover
+				color ctext
+		.sub_label_check
+			margin-left 12px
+			padding-top 6px
+			padding-bottom 6px
+			color cgrey50
+
+
+		.input_check:checked
+			& + .label_check
+				color ctext
+		.count
+			float right
+			color ctextlight
+			font-size fzn - 4px
+	.side_sep
+		margin 10px 0
+
+
+
+
+
+
+//------------------- выпадающий блок -------------------
+.accordion_block
+	padding 25px 60px 25px 25px
+	margin 0 0 20px
+	background #fafafa
+	box-shadow 0 2px 1px 1px rgba(0,0,0,0.1)
+	border-top 2px solid cbdlight
+	&:after, &:before
+		display none
+		bottom 100%
+		border solid transparent
+		content " "
+		height 0
+		width 0
+		position absolute
+		pointer-events none
+	&:after
+		border-color rgba(255, 255, 255, 0)
+		border-bottom-color #fafafa
+		border-width 10px
+	&:before
+		border-color rgba(203, 220, 231, 0)
+		border-bottom-color cbdlight
+		border-width 13px
+		margin-right -3px
+
+	&.r200
+		&:after, &:before
+			display block
+			right 200px
+	&.r100
+		&:after, &:before
+			display block
+			right 100px
+	&.r50
+		&:after, &:before
+			display block
+			right 50px
+
+// ------------------- панель с действиями над списком -------------------
+.title_panel
+	padding 0 0 25px
+	clearfix()
+
+	h1
+		display inline-block
+		margin-bottom 0
+		& ~ .title_buttons
+			margin-left 35px
+	.title_buttons
+		vertical-align 4px
+		display inline-block
+	.title_actions
+		float right
+		.button
+			margin-left 10px
+		.action_item
+			margin-left 20px
+			display inline-block
+		.icon-submenu
+			background url(../images/action_arrow.svg) no-repeat right bottom
+			padding-right 20px
+			margin-right 18px
+			&:before
+				font-size fzn - 2px
+		.title_actions_search
+			input
+				background-color rgba(0,0,0,0.05)
+				border-style none
+				box-shadow none
+				&:focus
+					background-color #fff
+
+
+// ------------------- лента событий --------------------
+.drop.drop_timeline
+	right 25px!important
+	left auto!important
+	transform translateX(0) translateY(60px)!important
+	.drop-content
+		&:after
+			// display none
+			bottom 100%
+			right 117px
+			border solid transparent
+			content " "
+			height 0
+			width 0
+			position absolute
+			pointer-events none
+			border-color rgba(136, 183, 213, 0)
+			border-bottom-color #fff
+			border-width 8px
+	.drop-content-inner
+		max-height 70vh
+		width 400px
+		div
+			position relative
+
+.timeline_widget
+	position relative
+
+	.timeline_more
+		padding 0 20px 20px
+
+.timeline
+	font-size fzn - 2px
+	padding 20px 20px 0
+	-webkit-overflow-scrolling touch
+	.timeline_block
+		margin 0 0 20px
+		padding 0 0 20px
+		border-bottom 1px solid cbdlight
+		&:last-of-type
+			border none
+			padding-bottom 0
+
+	.timeline_clean
+		text-align center
+		color ctextdis
+		padding 80px 0 50px
+		background url(../images/icon_timeline.svg) no-repeat center 30px
+
+	// блок важно
+	.timeline_important
+		background cbginfo
+		margin -20px -20px 20px
+		padding 20px
+		.timeline_line_block
+			margin-bottom 0
+			[class*="icon-"]
+				box-shadow 0 0 0 3px cbginfo
+				background cbginfo
+		.line_block_title
+			.icon
+				box-shadow 0 0 0 2px cbginfo, 0 0 0 4px clinklight
+
+
+
+	// заголовок
+	.line_block_title
+		font-weight fwm
+		font-size fzn - 1px
+		.icon
+			position absolute
+			left 8px
+			top 9px
+			width 3px
+			height 3px
+			box-shadow 0 0 0 2px #fff, 0 0 0 4px clinklight
+			background clinklight
+			border-radius 50%
+
+	// блок дня
+	.line_block_item
+		padding 0 20px 20px 28px
+		line-height 1.35
+		word-break break-word
+		&:before
+			content ''
+			width 1px
+			position absolute
+			left 9px
+			top 7px
+			bottom 0
+			background cbdlight
+			z-index 0
+		&.last_child, &:last-child
+			padding-bottom 0
+			&:before
+				display none
+		.item_icon
+			width 19px
+			height 19px
+			border-radius 50%
+			background #fff
+			z-index 10
+			position absolute
+			left 0
+			top 1px
+			text-align center
+			display block
+			line-height 15px
+			box-shadow 0 0 0 3px #fff
+
+			&:before
+				margin 0
+				width auto
+				font-size fzn + 1px
+		.item_message
+			margin 10px 0 0
+			padding 7px 10px
+			background cbgsky
+			border 1px solid cbdlightsky
+			&:after, &:before
+				bottom 100%
+				left 20px
+				border solid transparent
+				content " "
+				height 0
+				width 0
+				position absolute
+				pointer-events none
+			&:after
+				border-color rgba(cbgsky, 0)
+				border-bottom-color cbgsky
+				border-left-color cbgsky
+				border-width 5px
+				margin-left -5px
+			&:before
+				border-color rgba(cbdlightsky, 0)
+				border-bottom-color cbdlightsky
+				border-left-color cbdlightsky
+				border-width 6px
+				margin-left -6px
+		.item_delete
+			position absolute
+			top 1px
+			right 0px
+			width 18px
+			height 14px
+			font-size 14px
+			color ctextlight
+			text-align right
+			opacity 0
+			transition color .3s
+			&:before
+				vertical-align 0
+				margin 0
+				width auto
+			&:hover
+				color ctexterror
+		&:hover
+			.item_delete
+				opacity 1
+
+// список компаний
+.list_company
+	.company_item
+		background cbgsky
+		padding 20px
+		border 1px solid cbdlightsky
+		box-shadow 0px 4px 8px 0px rgba(0,0,0,0.07)
+		margin-bottom 10px
+		.select_company
+			position absolute
+			right 15px
+			bottom 15px
+			opacity 0
+		&:hover
+			.select_company
+				opacity 1
+	.company_item_name
+		font-weight fwm
+		margin 0 0 15px
+		font-size fzn - 3px
+		text-transform uppercase
+
+	.company_item_info
+		font-size fzn - 3px
+		.form_group
+			margin-bottom 5px
+		.property_label
+			text-align right
+
+// блоки слоя
+
+.page_content_area_solid
+	margin-left -30px
+	margin-right -30px
+	padding 20px 30px
+	background cl2
+	color #fff
+	font-weight normal
+	a
+		color #fff
+		&:hover
+			color #fff
+			text-decoration underline
+	.top_area_desc
+		overflow hidden
+		h1
+			font-weight fwm
+			margin 0 0 10px
+			font-size 22px
+		p
+			font-size fzn - 2px
+.page_content_area_light
+	margin-left -30px
+	margin-right -30px
+	padding 30px
+	background cbglight
+
+.page_content_area_top
+	margin-top -30px
+	& ~ .page_content_area_bot
+		margin-top 0
+
+.page_content_area_bot
+	padding-bottom 50px
+	margin-bottom -42px
+	margin-top -30px
+
+
+// контрагент
+.contragent_contacts
+	p
+		margin 0 0 12px
+	.address
+		margin-bottom 15px
+	.contact
+		font-weight normal
+	.contact, .email, .phone, .address
+		position relative
+		padding-left 30px
+		&:before
+			position absolute
+			top 3px
+			left 0
+			width 20px
+			text-align center
+			margin 0
+			color ctextlight
+			font-size fzn
+
+	.address
+		&:before
+			font-size fzn + 3px
+	// .phone
+	// 	&:before
+	// 		font-size fzn + 4px
+
+	.rating
+		.icon_user_rating
+			margin-left -3px
+			margin-right 3px
+
+.contragent_money
+	overflow hidden
+	margin 5px 0 0
+	.item
+		display inline-block
+		margin 0 0 0 40px
+		&:first-child
+			margin-left 0
+		&>.c_light
+			vertical-align middle
+		.values
+			display inline-block
+			vertical-align top
+			margin 0 0 4px
+		.value
+			font-size fzn + 2px
+			margin 0 5px
+			display block
+.contragent_actions
+	margin-top 20px
+
+
+
+
+// список своих счетов в выпадушке
+.drop_account_list
+	li
+		a
+			clearfix()
+	.account_value
+		float right
+		font-weight 400
+		font-size fzn
+		color ctext
+	.account_name
+		padding 0 20px 0 0
+		display inline-block
+		overflow ellipsis
+		max-width 330px
+		min-width 142px
+		float left
+	.account_num
+		color ctextlight
+		font-size fzn - 5px
+		display block
+		clear both
+
+	.account_target_value
+		font-weight fwm
+		font-size fzn
+		display inline-block
+		vertical-align top
+		flex 100 1 auto
+		text-align right
+	.account_target_name
+		padding 0 5px 0 0
+		display inline-block
+		overflow ellipsis
+		max-width calc(100% - 192px)
+		vertical-align top
+	.account_target_num
+		color ctextlight
+		display inline-block
+		vertical-align top
+		font-size fzn - 2px
+span.drop_account_list
+	display flex
+// список счетов контрагентов в выпадушке
+.drop_bank_account
+	.bank_name
+		display block
+		padding 0 0 2px
+	.bank_account_num
+		color ctextlight
+		font-weight fzn - 5px
+
+
+// автозаполенение реквизитов
+.payment_autocompelete_details
+	margin-bottom 50px
+
+	&:after, &:before
+		left -32px
+		top 30px
+		border solid transparent
+		content " "
+		height 0
+		width 0
+		position absolute
+		pointer-events none
+	&:after
+		border-color rgba(255, 255, 255, 0)
+		border-left-color #fff
+		border-top-color #fff
+		border-width 9px
+	&:before
+		border-color rgba(0, 0, 0, 0)
+		border-left-color cbdlightsky
+		border-top-color cbdlightsky
+		border-width 11px
+		margin-top -2px
+
+
+
+	.title
+		padding 12px 0 35px 50px
+		background url(../images/icon_eva.svg) no-repeat 0 0
+		font-size fzn
+		color ctextlight
+	.autocompelete_details_textarea
+		font-size fzn - 2px
+		min-height 220px
+		max-height 350px
+	.form_buttons
+		margin-top 10px
+
+	.file_upload_block
+		position absolute
+		top 0
+		left 0
+		width 100%
+		height 100%
+		.uploaded
+			border-radius 0
+		.file_delete
+			right 10px
+			top 10px
+		.file_icon
+			width 60px
+			height 81px
+			background-size 100%
+			margin-bottom 15px
+		.file_name
+			font-size fzn - 2px
+
+// список избранных платежей
+.payment_favorites_list
+
+	.title
+		font-size fzn - 4px
+		font-weight fwm
+		text-transform uppercase
+		margin 0 0 10px
+		color ctextlight
+	.item
+		position relative
+		display block
+		margin 0 0 6px
+		padding 10px 10px 10px 38px
+		text-decoration none
+		color ctext
+		font-size fzn - 2px
+		background #fff
+		transition box-shadow .2s
+		box-shadow 0 1px 1px rgba(#000,0.1)
+		overflow hidden
+		&:before
+			position absolute
+			top 9px
+			left 10px
+			font-size fzn + 2px
+			transition .35s
+			z-index 0
+		&:after
+			// content ''
+			height 1px
+			position absolute
+			bottom 0
+			left 38px
+			right 10px
+			background cbdlight
+		&:hover
+			z-index 10
+			box-shadow 0 4px 16px rgba(#000,0.1)
+			&:before
+				// left 60px
+				transform scale(1.2)
+			// .light_text
+			// 	color rgba(#fff,0.7)
+			// 	.money_expense, .money_income
+			// 		color rgba(#fff,0.7)
+		.d_b
+			z-index 10
+			position relative
+		.light_text
+			font-size fzn - 2px
+			transition color .2s
+			margin-top 4px
+			z-index 10
+			position relative
+			font-weight fwl
+			.money_expense, .money_income
+				color ctextlight
+				transition color .2s
+
+
+
+// новый платеж, выбор типа платежа
+.payment_new_type_popup
+	width 360px
+	padding 0
+	a
+		display block
+		height 65px
+		line-height 62px
+		background cl2
+		color #fff
+		font-weight normal
+		padding 0 0 0 24px
+		margin 0 0 3px
+		&:before
+			font-size 24px
+			width 35px
+			vertical-align -5px
+		&:hover
+			background cl2 + 5%
+			font-size fzn + 1px
+		&:first-child
+			border-top-right-radius brbut
+			border-top-left-radius brbut
+		&:last-child
+			border-bottom-right-radius brbut
+			border-bottom-left-radius brbut
+		&.icon-building
+			&:before
+				font-size 22px
+
+// дашборд
+.dashboard
+	.dashboard_title
+		display block
+		float left
+		margin-right 30px
+		margin-bottom 20px
+
+
+.dashboard_content_filter
+	display inline-block
+	.drop-target
+		margin-right 5px
+	.dashboard_content_filter_account
+		max-width 270px
+		overflow ellipsis
+
+	.dashboard_content_filter_settings
+		font-size fzn + 4px
+		color ctext
+		margin 5px 0 0 10px
+		&:hover
+			color cl2
+
+
+// график денежного потока
+.cashflow_graph
+	padding 0
+	transition height .3s
+	display flex
+	align-items stretch
+	&.graph_hidden
+		.cashflow_widget
+			width calc(100% - 140px)
+			padding-left 20px
+			padding-right 20px
+
+			@media (max-width:1200px)
+				width calc(100% - 110px)
+				padding-right 10px
+				padding-left 10px
+			.list
+
+				.item
+					width auto
+					margin-bottom 0
+					flex 0 0 20%
+			.value
+				font-size fzn + 2px
+				@media (min-width:1050px)
+					font-size fzn + 4px
+				@media (min-width:1200px)
+					font-size fzn + 6px
+				@media (min-width:1300px)
+					font-size fzn + 8px
+				@media (min-width:1400px)
+					font-size fzn + 10px
+				@media (min-width:1600px)
+					font-size fzn + 12px
+			.cashflow_widget_info_text
+				text-align center
+				margin 7px 0 -7px
+		.graph_widget
+			width 140px
+			@media (max-width:1200px)
+				width 110px
+			#chart
+				display none
+
+.cashflow_widget
+	width 30%
+	border-right 1px solid cbdlight
+	padding 22px 40px
+	box-sizing border-box
+	// transition .3s
+	@media (max-width:1200px)
+		padding-left 30px
+		padding-right 30px
+	&.light_block
+		.list
+			margin 20px -20px -20px
+			padding 20px
+			background #fff
+			border-top 1px solid cseparator
+			justify-content space-between
+	.list
+		display flex
+		justify-content space-around
+		flex-wrap wrap
+		max-width 1100px
+		.item
+			width 100%
+			margin 0 0 24px
+			&:last-child
+				margin-bottom 0
+	.cashflow_widget_title
+		margin -5px 0
+		strong
+			font-weight 400
+	.cashflow_filter
+		padding 2px 0 0
+		float right
+		font-size fzn - 2px
+		color ctextlight
+	.name
+		font-size fzn - 3px
+		color ctextlight
+
+	.value
+		font-size fzn + 4px
+		white-space nowrap
+		font-weight fwl
+
+		@media (min-width:1000px)
+			font-size fzn + 6px
+		@media (min-width:1100px)
+			font-size fzn + 8px
+		@media (min-width:1250px)
+			font-size fzn + 10px
+		@media (min-width:1600px)
+			font-size fzn + 12px
+
+	.cashflow_widget_info_text
+		font-size fzn - 4px
+		color ctextlight
+		margin 15px 0 -5px
+		line-height 1.2
+
+
+.cashflow_widget_side
+	margin-bottom 30px
+	// margin-left -10px
+	background cbginfo
+	border-color desaturate(cbginfo - 15%,20%)
+	&.light_block
+		.list
+			margin 20px -20px -20px
+			padding 20px
+			border-top 1px solid desaturate(cbginfo - 15%,20%)
+
+	.cashflow_widget_title
+		margin -5px 0
+		strong
+			font-weight 400
+	.cashflow_filter
+		padding 10px 0 0
+		font-size fzn - 4px
+		color ctextlight
+	.list
+		background-color cbginfo
+	.item
+		margin-bottom 15px
+		overflow hidden
+		line-height 1
+
+	.name
+		font-size fzn - 3px
+		color ctextlight
+		padding 3px 0 0
+		display inline-block
+		@media (min-width:1430px)
+			padding-top 4px
+		@media (min-width:1470px)
+			padding-top 7px
+		@media (min-width:1520px)
+			padding-top 7px
+		@media (min-width:1600px)
+			padding-top 10px
+	.value
+		font-size fzn - 2px
+		white-space nowrap
+		float right
+		@media (max-width:1340px)
+			display block
+			float none
+			padding-top 3px
+			font-size fzn + 2px
+		@media (min-width:1430px)
+			font-size fzn
+		@media (min-width:1470px)
+			font-size fzn + 2px
+		@media (min-width:1520px)
+			font-size fzn + 3px
+		@media (min-width:1600px)
+			font-size fzn + 5px
+
+.graph_widget
+	width 70%
+	text-align center
+	display flex
+	align-items center
+	#chart
+		width 100%
+		svg
+			width 90%
+	.graph_hide
+		display none
+		position absolute
+		top 5px
+		right 5px
+		background cgrey05
+		width 24px
+		height 24px
+		line-height 26px
+		border-radius brbut
+		text-align center
+		color cgrey36
+		&:before
+			margin 0
+		&:hover
+			background cgrey09
+		&.visible
+			display block
+	.graph_show
+		display none
+		position absolute
+		left 0
+		bottom 0
+		top 0
+		right 0
+		background url(../images/icon_graph.svg) no-repeat center
+		&.visible
+			display block
+
+.dashboard_transaction
+	.tabs_content
+		.table_list
+			margin -10px -20px -21px
+			width auto
+			.table_list_header
+				background #fff
+
+
+// поиск в выпадушке MagicSearch
+.drop-search
+	max-width 800px
+	min-width 500px
+	max-height calc(100vh - 60px)
+
+	.no_found
+		padding 15px
+		color ctextlight
+		text-align center
+		font-size fzn - 2px
+		&:before
+			font-size 30px
+			display block
+			text-align center
+			margin 0 0 10px
+	.drop_search_list
+		white-space nowrap
+		.group
+			border-bottom 1px solid cbd
+			&:last-child
+				border-bottom none
+
+		.group_name
+			width 100px
+			display inline-block
+			padding 12px 15px 0
+			text-transform uppercase
+			font-size fzn - 5px
+			font-weight normal
+			color ctextlight
+			letter-spacing 1px
+			box-sizing border-box
+		.group_list
+			display inline-block
+			vertical-align top
+			width calc(100% - 110px)
+			max-width calc(100% - 110px)
+			margin-left -4px
+
+			li
+				clearfix()
+				a
+					overflow ellipsis
+					max-width 480px
+			.show_more
+				padding-top 0
+				a
+					color clink
+					font-size fzn - 3px
+
+			.value
+				float right
+				font-weight 400
+				font-size fzn
+				color ctext
+				text-align right
+				& ~ .name
+					padding 2px 20px 2px 0
+					display inline-block
+					max-width 300px
+				& ~ .desc
+					max-width 300px
+			.name
+				display block
+				overflow ellipsis
+			.desc
+				color ctextlight
+				font-size fzn - 4px
+				display block
+				clear left
+				overflow ellipsis
+			.actions
+				display block
+				margin 5px 0 0
+				font-size fzn - 2px
+				span
+					opacity 0.5
+					color ctextlight
+					&:hover
+						color cl2
+			li:hover
+				.actions
+					span
+						opacity 1
+
+
+// Настройки
+
+.personal_settings
+	.avatar
+		margin-bottom 20px
+
+
+
+// подсказки к графику
+.tooltip_graph
+	position absolute
+	pointer-events none
+	z-index 3000
+	display inline-block
+	background #35414C
+	padding 10px 10px 7px
+	border-radius 2px
+	color #fff
+	.date
+		font-weight normal
+		font-size fzn - 3px
+		margin 0 0 10px
+		text-align center
+	.money
+		overflow hidden
+		font-size fzn - 4px
+		margin-bottom 4px
+		.money_expense
+			color ctexterror + 40%
+		.money_income
+			color ctextsuccess + 30%
+
+		.name
+			display inline-block
+			margin-right 15px
+		.value
+			float right
+			font-weight normal
+
+
+
+
+
+// Графики
+#chart
+	circle
+		stroke-width 2px
+		fill #fff
+		&.debet
+			stroke cl2
+			transform translateY(-5px)
+			&.debet_select
+				fill cl2
+		&.credit
+			stroke cerror
+			transform translateY(-5px)
+			&.credit_select
+				fill cerror
+
+	path
+		&.credit
+			stroke cerror
+			stroke-width 2px
+			fill none
+			transform translateY(-5px)
+		&.debet
+			stroke cl2
+			stroke-width 2px
+			fill none
+			transform translateY(-5px)
+	rect
+		&.bar
+			fill saturate(cbglight - 5%, 10%)
+			transform translateY(-5px)
+		&.bar_select
+			fill saturate(cbglight - 10%, 20%)
+
+	.graph_disabled
+		opacity 0
+	.legend_disabled
+		fill-opacity 0
+
+	.legend
+		circle
+			stroke-width 1px
+		.debet
+			fill cl2
+			circle
+				fill cl2
+				stroke cl2
+		.credit
+			fill cerror
+			circle
+				fill cerror
+				stroke cerror
+		.bar
+			fill ctextlight
+			circle
+				fill saturate(cbglight - 5%, 10%)
+				stroke saturate(cbglight - 5%, 10%)
+		text
+			font-size 11px
+			text-transform none
+
+	.legend circle,
+	.legend text
+		cursor pointer
+
+	.axis
+		path,line
+			fill none
+			stroke #E4E8EA
+			shape-rendering crispEdges
+		path
+			// stroke-width 2px
+		// &.y, &.y2
+		// 	path, line
+		// 		stroke #EAF1F5
+		text
+			font-size 10px
+			font-weight fwm
+			fill ctextlight + 30%
+
+	.overlayGraph
+		fill none
+		pointer-events all
+	.svg-container
+		position relative
+		width 100%
+		vertical-align top
+		overflow hidden
+	.svg-content-responsive
+		display inline-block
+	@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+		.svg-content-responsive
+			height 300px
+
+
+// сертификат
+.certificate_block
+	width 550px
+	margin 0 auto 30px
+	height 330px
+	background url(../images/cert.jpg) no-repeat 0 0
+	background-size 100% 100%
+	box-sizing border-box
+	padding 80px 30px 30px 40px
+	font-size fzn - 1px
+
+	.title
+		text-align center
+		font-size fzn + 4px
+		font-weight fwm
+		margin-bottom 50px
+		text-transform uppercase
+	.property_label
+		text-align right
+
+
+// настройки тарифы
+.tarif_info
+	padding-bottom 20px
+	border-bottom 1px solid cbdlight
+	overflow hidden
+	.price
+		float right
+		text-align right
+		line-height 1.1
+		p
+			font-weight normal
+			font-size fzn
+		a
+			font-size fzn - 4px
+		.small_text
+			font-size fzn - 4px
+			padding 3px 0 0
+		.old_price
+			text-decoration line-through
+			display inline-block
+			color ctextlight
+			font-size fzn - 2px
+			margin-left 10px
+	.status
+		color ctextsuccess
+		font-weight fwm
+		overflow hidden
+.tarif_serv_row
+	padding-top 15px
+	padding-bottom 15px
+	border-top 1px solid cbdlight
+	overflow hidden
+	.name
+		// float left
+		// width 50%
+
+		.title
+			font-weight normal
+			margin-bottom 5px
+		.desc
+			font-size fzn - 2px
+			color ctextlight
+			line-height 1.5
+	.value
+		float right
+		width 50%
+		text-align right
+		.title
+			font-size fzn - 4px
+			color ctextlight
+			margin-bottom 5px
+		.price
+			color cl2
+			font-weight normal
+
+.tarif_balance
+	border-top 2px solid cl3
+	margin-top 10px
+	padding 20px 0
+	.title
+		font-weight normal
+		margin 0 0 20px
+	.balance_list
+		display flex
+
+		.list
+			flex 0 1 80%
+			padding-right 15px
+			box-sizing border-box
+			.item
+				margin-bottom 10px
+				.name
+					font-size fzn - 4px
+					color ctextlight
+				.price
+					float right
+					font-weight normal
+
+		.total
+			flex 0 0 auto
+			font-weight normal
+			float right
+			text-align right
+			padding 20px 0 0 20px
+			background url(../images/summ.svg) no-repeat 0 center
+			box-sizing border-box
+			min-height 42px
+
+.tarif_dop_serv
+	font-size fzn - 4px
+	margin-left 20px
+	overflow hidden
+	background cgrey03
+	padding 20px 15px
+	box-sizing border-box
+	border-radius brbut
+	transition background .3s, box-shadow .3s
+	&:hover
+		background #fff
+		box-shadow 0 10px 35px rgba(0,0,0,0.15)
+	&.dop_serv_connect
+		background #fff
+		box-shadow 0 0 0 1px cbd
+
+	.title
+		font-size fzn + 2px
+		font-weight normal
+		margin 0 0 8px
+	.more
+		display block
+		margin 10px 0 0
+	.desc
+		color ctextlight
+		margin-bottom 12px
+	.add
+		margin 25px 0 15px
+		.connect
+			color ctextsuccess
+			font-weight fwm
+		.button
+			margin-top -5px
+			&.connect
+				background cgrey09!important
+				color ctext
+				box-shadow none!important
+	.price
+		font-weight fwm
+		font-size fzn
+		color ctext
+		overflow hidden
+
+.banner_other_tarif
+	background-image url(../images/banner_other_tarif.png)
+	background-repeat no-repeat
+	background-position right 0
+	background-size auto 100%
+	margin-bottom 30px
+	.title
+		font-weight normal
+		margin 0 0 12px
+	.desc
+		font-size fzn - 4px
+		margin 0 0 15px
+
+.tarif_noactiv
+	overflow hidden
+	.price
+		float right
+		font-size 27px
+		font-weight normal
+		text-align right
+		line-height 18px
+		div
+			margin-top -5px
+		.price_free
+			font-size 20px
+			margin 0
+		a
+			font-size fzn - 4px
+	.tarif_noactiv_info
+		clear both
+		background #fff
+		margin 20px -20px -20px
+		padding 20px
+		border-top 1px solid cseparator
+		overflow hidden
+		.item
+			margin 0 0 15px
+			.title
+				font-weight normal
+				margin-bottom 5px
+			p
+				font-size fzn - 3px
+				color ctextlight
+				line-height 1.5
+
+
+// курсы валют
+.currencies_table
+	.item_currency
+		margin 0 0 10px
+		padding 12px 15px 10px
+		background #FFF
+		font-size fzn - 1px
+		.currency_name
+			font-weight fwm
+			margin 0 0 12px
+			padding 0 0 0 26px
+			line-height 24px
+			background-position 0 3px
+			background-size 20px
+			background-repeat no-repeat
+			&.dollar, &.usd
+				background-image url(../images/dollar_color.svg)
+			&.euro, &.eur
+				background-image url(../images/euro_color.svg)
+			&.yuan, &.cny
+				background-image url(../images/yuan_color.svg)
+			.icon-info
+				float right
+				&:before
+					margin-right 0
+		.item_cost
+			margin 0 0 6px
+			border-bottom 1px dotted cbd
+			clearfix()
+		.cost_name
+			display inline-block
+			float left
+			color ctextlight
+			background #fff
+			bottom -2px
+		.cost_value
+			display inline-block
+			font-weight normal
+			float right
+			bottom -2px
+			background #fff
+			&:after
+				font-size 7px
+				display inline-block
+				margin-left 3px
+				vertical-align 3px
+			&.up
+				color ctextsuccess
+				&:after
+					content '▲'
+			&.down
+				color ctexterror
+				&:after
+					content '▼'
+		.cost_value_per
+			font-size fzn - 3px
+			color ctextlight
+			vertical-align 2px
+		.item_currency_info
+			font-size fzn - 6px
+			color ctextlight
+			padding 5px 0
+
+
+// список кодов валют в дропе
+.drop_code_currency_list
+	.drop-title
+		font-style normal
+	.code
+		display inline-block
+		vertical-align top
+		color ctextlight
+		width 60px
+	.value
+		display inline-block
+		vertical-align top
+		max-width calc(100% - 65px)
+
+// цена предложения другого тарифа
+.popup_other_tarif_price
+	margin-top 20px
+	float right
+	background cbginfo
+	border-radius 10px
+	border 1px solid cbginfo - 20%
+	padding 10px 20px
+	font-size 24px
+	.small
+		font-size 13px
+
+// анимация загрузки
+.header_load
+	position absolute
+	height 2px
+	position absolute
+	top 40px
+	z-index 1000
+	left 110px
+	right 0
+	div
+		height 2px
+		width 100%
+		background linear-gradient(left, rgba(cl2,0.3), cl2)
+		animation headerLoad 2s both
+		animation-timing-function cubic-bezier(0.7,0,0.9,0.2)
+@keyframes headerLoad {
+	0% {
+		width 0
+	}
+	99% {
+		width 100%
+		opacity 1
+	}
+	100% {
+		opacity 0
+	}
+}
+
+
+
+// заявление открытия УСН 6%
+.apply_form, .apply_form_usn
+	box-shadow 10px 10px 15px -5px rgba(#000,0.1)
+	padding 30px 30px 30px 50px
+	background #FBFAF6
+	font-size fzn - 2px
+	&:before
+		content ''
+		position absolute
+		left 0
+		top 0
+		background transparent
+		border 25px solid transparent
+		border-left-color #fff
+		border-top-color #fff
+	&:after
+		content ''
+		position absolute
+		left 0
+		top 0
+		background transparent
+		border 25px solid transparent
+		border-right-color #F1EFE9
+		border-bottom-color #F1EFE9
+	h1
+		font-size fzn
+		text-align center
+		font-weight fwm
+		margin 5px 0 40px
+	p
+		margin 0 0 10px
+
+.apply_form_table, .apply_form_usn_table
+	width 100%
+	border 1px solid cbd - 10%
+	border-collapse collapse
+	margin 0 0 20px
+	td, th
+		padding 5px 8px
+		border 1px solid cbd - 10%
+	th
+		font-weight fwm
+		text-transform uppercase
+		font-size fzn - 4px
+		padding 8px
+.apply_form_desc, .apply_form_usn_desc
+	margin 0 0 20px
+	overflow hidden
+	.more
+		float right
+		font-size fzn - 2px
+		margin 5px 0 2px
+	p
+		text-indent 30px
+		font-size fzn - 2px
+	ul.abc
+		list-style lower-alpha
+		margin-left 70px
+		li
+			margin-bottom 8px
+
+.apply_form_stamp.status_stamp,
+.apply_form_usn_stamp.status_stamp
+	bottom 30px
+	right 40px
+	left auto
+	top auto
+
+// ожидание выписки
+.bank_statement_loading
+	color ctextlight
+	text-align center
+	margin 0 120px
+	padding  0 0 300px
+	background url(../images/bank_statement_loading.jpg) no-repeat center bottom
+	background-size 351px 271px
+	font-size fzn - 2px
+
+// список пользователей с выбором одного
+.user_list
+
+	.item
+		padding 15px 20px
+		margin-bottom 10px
+		&:hover
+			.item_button, .item_button_sign
+				display block
+		&.user_deleted
+			color ctextlight
+			.item_button
+				display block
+
+		.item_button
+			position absolute
+			top 20px
+			right 15px
+			display none
+		.item_button_sign
+			position absolute
+			bottom 15px
+			right 15px
+			display none
+
+		.form_group_list
+			width 100%
+			margin 0 0 5px
+			font-size fzn - 2px
+		.name
+			font-weight fwm
+			margin 0 0 10px
+			font-size fzn
+
+
+	label.light_block
+		width 100%
+		padding 15px 15px 10px 50px
+		font-size fzn - 2px
+		margin 0
+
+		.icon
+			position absolute!important
+			top 20px
+			left 20px
+		.form_group_list
+			width 100%
+			margin 0 0 5px
+			display block
+			color ctext
+		span.name
+			font-weight fwm
+			font-size fzn
+			margin 0 0 10px!important
+	.user_deleted
+
+		.light_block
+			background #f9f9f9
+			border-color #ddd
+			cursor default
+			.icon
+				display none
+			.form_group_list
+				color ctextlight
+
+
+// закрытие счета
+.tabs_menu_footer_link
+.close_account_link
+	position absolute
+	bottom 30px
+	left 25px
+	display block
+	width 100%
+	font-size fzn - 2px
+	color ctext
+	text-decoration none
+
+
+// проверка статуса/рейтинга клиентов
+.payment_field_user_rating
+	position absolute
+	right 50px
+	top 7px
+.input_group_title
+	.payment_field_user_rating
+		top 28px
+
+input.field_contragent
+	padding-right 40px
+
+.icon_user_rating
+	display inline-block
+	vertical-align middle
+	width 26px
+	height 26px
+	text-align center
+	color #fff
+	font-size 10px
+	font-weight fwb
+	line-height 25px
+	background url(../images/icon_user_rating.svg) no-repeat center
+	background-size 100% 100%
+	cursor pointer
+	color transparent
+	z-index 20
+	&.green
+		background-image url(../images/icon_user_rating_green.svg)
+		color #fff
+	&.yel
+		background-image url(../images/icon_user_rating_yel.svg)
+		color #fff
+	&.red
+		background-image url(../images/icon_user_rating_red.svg)
+		color #fff
+
+// окно добавления в избранное
+.drop.drop_add_favorites
+	.drop-content-inner
+		padding 15px
+		width 250px
+		.title
+			font-size fzn - 2px
+			margin 0 0 10px
+			color ctextlight
+		.form_buttons
+			margin-top 15px
+			.button_clean
+				float right
+				margin-top 6px
+
+// загрузка из 1С payment_page_new.html
+.import_1c_button
+	margin 0 0 35px
+
+.import_1c_success
+	background url(../images/account_widget_status_success.svg) no-repeat 0 0
+	background-size 50px auto
+	padding 10px 0 0 70px
+	h3
+		margin-bottom 15px
+	ul.circ
+		min-height 100px
+		max-height calc(100vh - 410px)
+		overflow auto
+
+
+
+
+// зарплатный проект html/payroll/payroll_page_connect.html
+// блок заяки
+.payroll_connect
+	margin 40px 0 0
+	padding 30px 100px 30px
+	.payroll_connect_title
+		font-size 26px
+		font-weight fwl
+		text-align center
+		margin 0 0 40px
+	&>.form
+		width 80%
+		margin 0 auto
+	.form_buttons
+		text-align center
+	.info_sms
+		max-width 100%
+		text-align center
+		border 2px solid #F6EBB4
+
+.payroll_connect_success
+	background-image url(../images/account_widget_status_success.svg)
+	background-repeat no-repeat
+	background-position center 20px
+	background-size 70px auto
+	padding 120px 100px 30px
+	margin 40px 0 0
+	text-align center
+
+.payroll_steps
+	width 700px
+	margin 0 auto
+	text-align center
+	padding 40px
+
+// итог таблицы зарплатного списка в создании ведомости
+.payroll_new_staff_total
+	margin 10px 0 25px
+	text-align right
+	font-size fzn - 2px
+	line-height 1.8
+	.value
+		display inline-block
+		width 15%
+		text-align center
+
+// панель фильтров
+.filter_panel
+	position fixed
+	z-index 150
+	right 0px
+	top 60px
+	bottom 0
+	overflow auto
+	width 300px
+	padding 30px 20px 25px 25px
+	box-sizing border-box
+	background #fff
+	box-shadow 0px 0 15px rgba(0,0,0,0.1), 0px 0px 1px rgba(0,0,0,0.22)
+	visibility hidden
+	opacity 0
+	// transform translateX(285px)
+
+	transition right .7s .3s, opacity .3s .3s, visibility 0s .6s
+
+	&.visible
+		visibility visible
+		// animation showFilter .3s both
+		// transform translateX(0px)
+		right 265px
+		transition right .3s, opacity .2s
+		opacity 1
+	&:hover
+		visibility visible
+		// transform translateX(0px)
+		right 265px
+		opacity 1
+
+// кнопка показа фильтров
+.show_filter_panel
+	position relative
+	&.float
+		border-radius 50px
+		padding 0 16px
+		position fixed
+		top 0px
+		right 280px
+		box-shadow: 0px 6px 20px 0px rgba(0,0,0,0.15), 0px 0px 1px 0px rgba(0,0,0,0.22);
+		transition transform .4s
+		transform scale(.7)
+		line-height 52px
+
+		&:before
+			margin 0!important
+
+		.filter_count
+			top 13px
+			left 28px
+			border-color #fff
+	&.fixed
+		transform scale(1) translateY(82px)
+		transition transform .5s
+
+	.filter_count
+		width 9px
+		height 9px
+		border-radius 10px
+		background cerror
+		position absolute
+		top 5px
+		left 30px
+		border 1px solid cbglight
+
+// панель с действиями для списка операций
+.section_action_panel
+	position fixed
+	bottom 0
+	left 0
+	right 265px
+	z-index 40
+	padding 10px 25px 11px
+	background #fff
+	box-shadow 0px 3px 20px 0px rgba(0,0,0,0.2), 0px 0px 1px 0px rgba(0,0,0,0.22)
+	visibility hidden
+	opacity 0
+	transform translateY(65px)
+	transition transform .5s 0s, opacity .3s 0s, visibility 0s .5s
+	box-sizing border-box
+	&.visible
+		visibility visible
+		transform translateY(0px)
+		transition transform .3s, opacity .2s
+		opacity 1
+	.selected
+		float left
+		margin-top 12px
+		@media screen and (max-width: 1150px)
+			float none
+		@media screen and (max-width: 1200px)
+			margin-top 8px
+		.link
+			margin-left 15px
+
+	.action_panel_buttons
+		float right
+		@media screen and (max-width: 1150px)
+			float none
+			margin-top 10px
+		a
+			color ctext
+			text-decoration none
+			display inline-block
+			margin-left 10px
+			font-size fzn - 2px
+			padding 10px 12px
+			border-radius brbut
+			@media screen and (max-width: 1200px)
+				margin-left 0
+				padding 7px 9px
+
+			&:before
+				font-size fzn + 2px
+				vertical-align -4px
+				margin-right 10px
+			&:hover
+				background cgrey05
+			&.icon-payment
+				&:before
+					font-size fzn + 6px
+					vertical-align -6px
+// панель с действиями в слое
+article.page
+	.section_action_panel
+		left auto
+		right 0
+		width 66%
+		min-width 900px
+		max-width 1000px
+		padding-right 140px
+
+
+// выбор фильтра в правом меню
+
+.right_menu_filter
+	padding 0 0 100px
+	width auto
+	margin 0 12px
+	border-top none
+
+	.right_menu_blocked_money
+
+		cursor pointer
+		background-color: #CF5353
+		background-image: linear-gradient(50deg, #DE4646 0%, #E96243 100%);
+		color #fff
+		border-radius brbut
+		margin-bottom 12px
+		padding 16px 15px 10px
+
+		&:hover
+			background-image: linear-gradient(50deg, #E85151 0%, #EF6A4B 100%);
+		.value
+			font-size 26px
+			font-weight fwl
+			color #fff
+			margin-top 2px
+		.icon-info
+			position absolute
+			right 7px
+			top 7px
+			z-index 10
+			color #fff
+			&:before
+				margin-right 0
+		.light_text
+			font-size fzn - 3px
+			color #fff
+
+	// счет в выборе счетов
+	.filter_item
+		padding 0
+		margin 0
+		display block
+		cursor pointer
+		transition background-color .2s, color .2s
+		box-sizing border-box
+		color #fff
+		padding 14px 15px 10px
+		background rgba(#fff,0.07)
+		border-radius 1px
+		margin-bottom 7px
+		&:after
+			top 50%
+			right 99%
+			border solid transparent
+			content " "
+			height 0
+			width 0
+			position absolute
+			pointer-events none
+			border-color rgba(255, 255, 255, 0)
+			border-width 6px
+			margin-top -6px
+			transition border-color .2s, right .2s
+
+		&:hover
+			background rgba(#fff,0.15)
+
+		// активный счет
+		&.active
+			background #fff
+			color ctext
+			&:after
+				right 100%
+				border-right-color #fff
+
+
+			.desc
+				.num, .num:hover
+					color ctext
+					span
+						border-bottom-color rgba(#000,0.5)
+			.values
+				.value_item
+					.subtitle
+						color ctextlight
+			.filter_item_dop
+				border-color cgrey09
+				.light_text
+					color ctextlight
+			.value_desc
+				color ctextlight
+
+
+		&.item_all
+			.desc
+				&:after
+					background-color clsub2
+				.name
+					font-weight fwm
+					font-size fzn + 2px
+				.num
+					margin-top 3px
+
+			.value ~ .value
+				font-size fzn + 4px
+				margin-top 5px
+		// долларовый счет
+		&.account_dollar
+			.desc:after
+				background-color clsub5
+
+
+
+		// евровый счет
+		&.account_euro
+			.desc:after
+				background-color clsub4
+
+
+
+		// юаньский счет
+		&.account_cny
+			.desc:after
+				background-color cCNY
+
+
+		// закрытый счет
+		&.account_closed
+			.desc, .value, .num
+				color rgba(#fff,.5)
+			.desc:after
+				background rgba(#fff,.5)
+			&:hover
+				.hide_account
+					opacity 1
+			.value
+				font-size fzn + 6px
+
+		// нам платили
+		&.they_paid
+			.desc:after
+				background cl3
+
+		// мы платили
+		&.we_paid
+			.desc:after
+				background cerror
+
+		// нам платили
+		&.success
+			.desc:after
+				background cl3
+
+
+		.desc
+			margin 0 0 8px
+			padding-bottom 12px
+			overflow hidden
+			font-size fzn - 2px
+			&:after
+				content ''
+				display block
+				width 50px
+				height 2px
+				background clsub3
+				position absolute
+				bottom 0
+				left 0
+				transition .3s
+				opacity 1
+
+			.name
+				float left
+				font-weight fwn
+				text-align left
+				overflow ellipsis
+				max-width calc(100% - 50px)
+			.num
+				float right
+				color #fff
+				transition none
+				font-size fzn - 4px
+				text-decoration none
+				margin-top 2px
+				transition color .2s
+
+				span
+					border-bottom 1px solid rgba(#fff,0.5)
+				&:hover
+					color rgba(#fff,0.8)
+
+		// .light_text
+		// 	font-size fzn - 2px
+		// 	font-weight fwl
+		// 	padding 0 15px 2px
+
+		.values
+			padding 10px 0 0
+			.value_item
+				margin 0 0 10px
+				&:last-child
+					margin-bottom 0
+
+				.value
+					font-size 24px
+		.value
+			font-size 26px
+			text-align left
+			padding 0
+			white-space nowrap
+			overflow hidden
+			font-weight fwl
+			.cur
+				font-weight fwl
+		.value_desc
+			font-size fzn - 5px
+			color rgba(#fff, 0.6)
+			line-height 1
+			margin-top 4px
+			transition color .2s
+		.subtitle
+			font-size fzn - 5px
+			color rgba(#fff, 0.6)
+			line-height 1
+			margin-bottom 4px
+			transition color .2s
+		.hide_account
+			position absolute
+			right 15px
+			bottom 15px
+			opacity 0
+			font-size fzn - 3px
+			transition opacity .3s
+			color #fff
+		.filter_item_dop
+			border-top 1px solid rgba(#fff,0.1)
+			margin-top 10px
+			padding-top 10px
+			.light_text
+				font-size fzn - 5px
+				font-weight fwr
+				color rgba(#fff,0.6)
+			.value
+				font-size fzn + 4px
+
+	.add_account
+		color transparent
+
+		&.disable_block
+			&:hover
+				background rgba(#fff,0.07)
+				.link
+					cursor no-drop
+
+		.desc
+			&:after
+				background-color transparent
+			.num
+				color transparent
+				span
+					border none
+
+		.link
+			font-size 20px
+			font-weight fwl
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
+			text-align center
+			padding-right 10px
+			line-height 90px
+			color #fff
+			text-decoration none
+			&:before
+				color rgba(#fff,0.5)
+				margin-right 10px
+				vertical-align -3px
+
+// код токена API
+.api_token_code
+	margin 20px 0 10px
+	background cbgsuccess
+	border 1px solid cl3
+	padding 15px 15px 16px
+	border-radius brbut
+	overflow hidden
+	line-height 1
+	&:before
+		color ctextsuccess
+		line-height 0
+	&.icon-stop
+		background cbgerror
+		border 1px solid ctexterror
+		&:before
+			color ctexterror
+	.token_code
+		width 75%
+		display inline-block
+		word-break break-all
+		line-height 1.3
+		vertical-align top
+	.icon-clipboard
+		margin-left 5px
+		font-size fzn + 2px
+		height 16px
+		vertical-align -1px
+		&:before
+			line-height 0
+	.token_revoke
+		float right
+		margin-top -8px
+		margin-bottom -20px
+
+// информация по овердрафту
+.overdraft_info
+	overflow hidden
+	.overdraft_info_date
+		padding 15px 0
+		float left
+		width 60%
+		box-sizing border-box
+	.overdraft_info_order
+		padding 15px 0
+		float right
+		width 40%
+		box-sizing border-box
+		text-align right
+
+
+// Показ чата справа на больших экранах
+// @media screen and (min-width:1700px)
+// 	section.main
+// 		right 400px
+// 	.filter_panel
+// 		right 665px
+// 	.show_filter_panel.float
+// 		right 680px
+// 	.messenger
+// 		display block!important
+// 		animation none
+// 		pointer-events all
+// 		border-left 3px solid cbgdark
+// 		box-shadow none!important
+
+
+// акция Подари Другу Банк
+article.page.page_pdb
+	.page_header
+		background-image url(../images/promo/girl1.png), linear-gradient(135deg, #E1FFD5 0%, #E9F3A7 100%)
+		background-position 94% 20px, 0 0
+		background-repeat no-repeat
+		background-size auto 120%, auto
+		height 300px
+
+
+	.page_pdb_steps
+		display flex
+		justify-content space-around
+		font-size fzn
+		text-align center
+		margin 0 0 50px
+		background url(../images/promo/pdb_step_back.png) no-repeat center 0
+		background-size 600px auto
+		li
+			padding-top 80px
+			flex 0 0 33%
+		// .item1
+		// 	background url(../images/promo/pdb_step1.svg) no-repeat 75% 0
+		// .item2
+		// 	background url(../images/promo/pdb_step2.svg) no-repeat 75% 0
+		// .item3
+		// 	background url(../images/promo/pdb_step3.svg) no-repeat 50% 0
+	.page_pdb_share
+		background cbglight
+		border-radius brbut
+		margin 0 0px 50px
+		padding 30px 30px 5px
+		text-align center
+		.form_group
+			margin 0 -25px 25px
+		.button
+			padding-left 15px
+			padding-right 15px
+			margin 0
+			&:before
+				font-size  fzn + 2px
+				vertical-align -4px
+			&.icon-mail
+				&:before
+					color #E08F12
+			&.icon-chat
+				&:before
+					color ctextsuccess
+			&.icon-fb
+				&:before
+					color #3A579A
+			&.icon-vk
+				&:before
+					color #4F719B
+			&.icon-tw
+				&:before
+					color #159FF5
+	.page_pdb_share_url
+		border none
+		box-shadow none
+		width 410px
+		margin-left 15px
+		cursor pointer
+
+
+	.page_pdb_stat
+		margin 0 0 50px
+	.page_pdb_stat_chart
+		background cbglight
+		height 44px
+		line-height 43px
+		&:after
+			content ''
+			position absolute
+			left 100%
+			top 0
+			height 0
+			width 0
+			border 22px solid transparent
+			border-left 10px solid cbglight
+
+		li
+			float left
+			width 20%
+			box-sizing border-box
+			padding 0 10px
+			text-align right
+			color rgba(0,0,0,0.3)
+	.page_pdb_stat_progress
+		position absolute
+		top 0
+		left 0
+		height 44px
+		box-sizing border-box
+		padding 0 10px
+		line-height 43px
+		font-weight fwm
+		text-align right
+		background-image linear-gradient(left, #C3F1AE 0%, #E2F372 100%)
+		transition width .5s, color .3s
+		color transparent
+		white-space nowrap
+		&:after
+			content ''
+			position absolute
+			left 100%
+			top 0
+			height 0
+			width 0
+			border 22px solid transparent
+			border-left 10px solid #E2F372
+		&.fr1
+			width 20%!important
+			color ctext
+		&.fr2
+			width 40%!important
+			color ctext
+		&.fr3
+			width 60%!important
+			color ctext
+		&.fr4
+			width 80%!important
+			color ctext
+		&.fr5
+			width 98%!important
+			color ctext
+
+	.page_pdb_stat_chart_axis
+		margin-top 8px
+		overflow hidden
+		li
+			float left
+			width 20%
+			box-sizing border-box
+			padding 14px 10px 0
+			text-align right
+			font-size fzn - 2px
+			color ctextlight
+			position relative
+			&:after
+				content ''
+				height 12px
+				width 1px
+				background cbd
+				position absolute
+				right 0
+				top 0
+
+// страница частых вопросов
+article.page.page_faq
+
+	.page_content
+		// background cbgsky
+	.page_faq_title
+		font-size 18px
+		font-weight fwm
+		text-transform uppercase
+		color ctext
+		margin 30px 0 15px
+		letter-spacing .5px
+
+	.page_faq_list
+
+		// border 1px solid cbd
+		border-radius brbut
+		margin 0 0 40px
+
+
+		.item
+			border 1px solid cbd
+			overflow hidden
+			border-radius brbut
+			background cbgsky
+			margin 0 0 5px
+			border-radius brbut
+			// &:last-child
+			// 	border-bottom none
+			&:hover
+				background #fff
+			&.active
+				background #fff
+				box-shadow 0 3px 10px rgba(0,0,0,0.12)
+				.ques
+					background #fff
+					font-weight fwb
+					// &:after
+					// 	content ''
+					// 	position absolute
+					// 	top 100%
+					// 	left 15px
+					// 	height 2px
+					// 	width 70px
+					// 	background clsub2
+				.ans
+					display block
+			.ques
+				padding 12px 15px
+				color ctext
+				text-decoration none
+				display block
+				position relative
+			.ans
+				font-size fzn
+				padding 10px 15px 10px
+				overflow hidden
+				display none
+				p
+					margin 0 0 15px
+					line-height 1.4
+				img
+					max-width 100%
+					height auto
+				h4
+					color cl2
+					margin-bottom 15px
+				.ans_img
+					text-align center
+					margin 30px 0
+					img
+						width 90%
+						margin-bottom 15px
+						&[src*="gif"]
+							width 80%
+							box-shadow 0 5px 15px rgba(0,0,0,0.1)
+
+
+// баннер банкоматов
+.banner_map
+	padding 20px 40px
+	background url(../images/banner_map.jpg) no-repeat right 0
+	background-size cover
+	h1
+		font-size 30px
+		font-weight fwl
+		margin 0 0 8px
+	.desc
+		font-size fzn - 4px
+	.form_buttons
+		margin-top 15px
+
+// карта банкоматов
+.page_map_iframe
+	position absolute
+	top 0
+	bottom 0
+	right 0
+	left 0
+	overflow hidden
+.iframe_map
+	width 100%
+	height 100%
+	margin 0
+	padding 0
+
+// маленький заголовок
+.title_small
+	font-size fzn - 4px
+	color ctextlight
+	text-transform uppercase
+	letter-spacing .5px
+	margin-bottom 15px
+.title_middle
+	font-size fzn - 2px
+	color ctext
+	text-transform uppercase
+	letter-spacing .5px
+	margin-bottom 15px
+
+// кнопка "Расстаться с модульбанком"
+.delete_account
+	margin 40px 0 0
+	a
+		color ctextlight
+		font-size fzn - 2px
+
+// смена номера телефона
+.popup_change_tel
+	width 600px
+	min-height 277px
+	text-align center
+	h1
+		margin-bottom 15px
+	.sms_confirm
+		margin-top 30px
+	.change_tel_sms_confirm_new
+		background cbgsuccess
+	.loading
+		margin-top 70px
+		margin-bottom 70px
+		div
+			font-size fzn
+	.change_tel_success
+		background cbgsuccess url("../images/account_widget_status_success.svg") no-repeat center 30px
+		background-size 70px auto
+		margin -35px -40px 0
+		padding 110px 0 30px
+		text-align center
+
+
+
+
+
+// НОВЫЕ ТАРИФЫ --------------------------------------------------
+
+
+.tarif_page
+	.form_sep
+		margin 35px 0
+	.tarif_block_title
+		font-weight fwl
+		color ctextlight
+		margin 0 0 20px
+		text-transform uppercase
+		text-align center
+
+// блок с названием тарифа
+.tarif_block_current
+	margin-bottom 30px
+	&.reserve
+		background cbginfo
+		border-top 3px solid #F6EBB4
+		padding 25px 100px
+		text-align center
+		&:before
+			font-size fzn + 16px
+			margin-bottom 15px
+
+		.tarif_block_current_name
+			font-size 18px
+			font-weight fwn
+
+.tarif_block_current_name
+	text-align center
+	font-size fzn + 10px
+	font-weight fwl
+	margin-bottom 25px
+.tarif_block_current_desc
+	text-align center
+	color ctextlight
+	font-size fzn - 2px
+	margin 15px 35px 0
+.tarif_block_buttons
+	text-align center
+	margin-top 15px
+
+.tarif_block_current_action
+	text-align center
+	padding 20px 25px
+	margin-top 25px
+	background cbgsuccess
+	border-radius brbut
+	.tarif_action_title
+		font-weight fwm
+		margin 0 0 10px
+	ul
+		display inline-block
+		text-align left
+		line-height 1.5
+
+
+// блок с лимитами
+.tarif_block_limits
+	text-align center
+	margin-bottom 30px
+	&.limits_three
+		.tarif_limit_item
+			width 32%
+		.tarif_limit_value
+			font-size fzn - 1px
+		.tarif_limit_desc
+			font-size fzn - 4px
+
+	.tarif_limit_item
+		text-align center
+		display inline-block
+		width 45%
+
+		&.overrun
+			.tarif_limit_value, .tarif_limit_name
+				color ctexterror
+			.pie
+				stroke cerror!important
+
+	.tarif_limit_svg
+		background cbglight
+		border-radius 50%
+		transform rotate(-90deg)
+		margin-bottom 15px
+
+		.pie
+			stroke clsub3
+			stroke-width 30
+			fill cbglight
+			transition stroke-dasharray .5s
+			stroke-dasharray 0, 358
+			&.color2
+				stroke clsub4
+			&.color3
+				stroke clsub2
+
+	.tarif_limit_name
+		font-size fzn - 4px
+		color ctextlight
+		text-transform uppercase
+		margin 0 0 5px
+
+	.tarif_limit_value
+		font-size fzn + 2px
+		margin 0 0 5px
+	.tarif_limit_desc
+		font-size fzn - 2px
+
+// блок со всеми тарифами
+.tarif_block_all
+	margin-bottom 30px
+
+	.tarif_all_list
+		display flex
+		justify-content space-between
+	.tarif_all_item
+		text-align center
+		flex 0 0 32.5%
+		background cgrey03
+		padding 30px 15px
+		box-sizing border-box
+		border-radius brbut
+		transition background .3s, box-shadow .3s
+		&:hover
+			background #fff
+			box-shadow 0 10px 35px rgba(0,0,0,0.15)
+
+		&.color1
+			.tarif_all_item_price
+				color clsub1
+			.tarif_all_item_but
+				.button
+					background clsub1
+		&.color2
+			.tarif_all_item_price
+				color clsub3
+			.tarif_all_item_but
+				.button
+					background clsub3
+		&.color3
+			.tarif_all_item_price
+				color clsub4
+			.tarif_all_item_but
+				.button
+					background clsub4
+
+		&.active
+			background #fff
+			box-shadow 0 0 0 1px cbd
+			.tarif_all_item_price
+				color ctext
+	.tarif_all_item_name
+		text-transform uppercase
+		font-size fzn - 2px
+		font-weight fwm
+		margin 0 0 10px
+	.tarif_all_item_price
+		font-size 26px
+		text-transform uppercase
+		font-weight fwm
+		margin 0 0 20px
+		.cur
+			text-transform none
+		.price_free
+			font-size 22px
+		.price_small
+			font-size fzn + 2px
+	.tarif_all_item_but
+		margin 0 0 30px
+		.button
+			padding-left 35px
+			padding-right 35px
+			&.selected
+				background cgrey09!important
+				padding-right 20px
+				padding-left 20px
+				color ctext
+				box-shadow none!important
+			&.disabled
+				background cgrey09!important
+				color ctextdis
+	.tarif_all_item_desc
+		p
+			margin 0 0 15px
+			font-size fzn - 2px
+			line-height 1.3
+
+// блок тарифа информация по ограничению
+.tarif_block_blocked
+	margin-bottom 30px
+	text-align center
+	padding-top 20px
+	padding-bottom 20px
+	.form_buttons
+		margin-top 20px
+
+// расстаться с модульбанком
+.tarif_close_account
+	margin 40px 0 0
+	text-align center
+	a
+		color ctextlight
+		font-size fzn - 4px
+		text-transform uppercase
+
+.tarif_block_services
+
+	.dop_serv_cols
+		display flex
+		justify-content space-between
+	.tarif_dop_serv
+		flex 0 0 32.5%
+		margin 0
+		box-sizing border-box
+		text-align center
+// пополнение счет - выбор способа
+.account_income_money_choose
+	display flex
+	justify-content center
+	padding-top 4vh
+	a
+		display block
+		background-color cgrey05
+		background-repeat no-repeat
+		background-position 18px center
+		background-size auto 64px
+		color ctext
+		padding 23px 0px 25px 104px
+		width 400px
+		box-sizing border-box
+		border-radius brbut
+		margin 0 0 4px
+		text-decoration none
+		font-size fzn + 2px
+		font-weight fwm
+		transition background-color .2s, box-shadow .2s
+		span
+			text-transform none
+			font-size fzn - 3px
+			display block
+			font-weight fwn
+			margin-top 4px
+		&.my_card
+			background-image url(../images/icon_my_card.svg)
+		&.other_card
+			background-image url(../images/icon_other_card.svg)
+		&.invoicing
+			background-image url(../images/icon_invoicing.svg)
+		&.cash
+			background-image url(../images/icon_cash.svg)
+		&:hover
+			background-color clsub6
+
+		&.disabled
+			opacity .5
+			cursor default
+			&:hover
+				background-color cgrey05
+
+// пополнение счета со своей карты
+.account_income_mycard
+	.property_label
+		width 30%
+		text-align right
+	.property_value
+		width 66%
+		margin-left 3%
+	.total_summ
+		background cbghighlight
+		font-size fzn + 4px
+		display inline-block
+		padding 7px 12px
+		margin-top -11px
+
+.account_income_mycard_info_list
+	li
+		padding-left 15px
+		margin-bottom 40px!important
+		&:last-child
+			margin-bottom 0!important
+	h3
+		font-weight fwm
+		font-size fzn
+		margin-bottom 5px
+	p
+		font-size fzn - 2px
+		margin-bottom 10px
+	.example
+		padding 10px 15px 12px
+		display inline-block
+		font-size fzn - 2px
+		font-weight fwm
+		background clsub6
+		border-left 3px solid clsub5
+
+// выставление счета
+.page_invoicing
+	.page_header
+	.page_content
+		background cbglight
+		box-shadow 0 5px 15px cbglight
+	.page_content
+		padding-top 10px
+		padding-left 65px
+		padding-right 65px
+	.page_bottom_panel
+		padding-left 65px
+		padding-right 75px
+// -- страница со счетом
+.document_invoicing
+	background #fff
+	padding 40px 40px 20px
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.09), 0px 0px 1px 0px rgba(0,0,0,0.22);
+	margin 0 0 20px
+	&:before
+		content ''
+		position absolute
+		right -3px
+		top -3px
+		border 23px solid cbglight
+		border-left-color transparent
+		border-bottom-color transparent
+	&:after
+		content ''
+		position absolute
+		right 0px
+		top 0px
+		border 20px solid cgrey03
+		border-right-color transparent
+		border-top-color transparent
+	.document_invoicing_sep
+		margin 40px -40px
+		border-bottom 3px dashed cgrey09
+
+.document_invoicing_client
+	margin-right 100px
+
+// -- таблица товаров
+.document_invoicing_products
+	margin-bottom 40px
+	table
+		table-layout fixed
+		margin-bottom 30px
+		.delete_row
+			color ctextlight
+			font-size fzn - 3px
+			display inline-block
+			&:hover
+				color cerror
+	.nds
+	.total
+		margin-bottom 20px
+		clearfix()
+		.left
+			width 77%
+			float left
+			text-align right
+		.right
+			width 22%
+			float right
+			text-align right
+	.total
+		font-size 20px
+		font-weight fwm
+
+// -- загрузка подписей
+.document_invoicing_upload_sign
+	// margin-right 130px
+	margin-bottom 50px
+	td
+		border none
+		padding 0
+	input
+	.button
+		vertical-align middle
+	.button.light
+		border 1px dashed cl2
+		color cl2
+		letter-spacing 0
+	.img_sign
+		vertical-align middle
+		display inline-block
+		margin -10px 0
+		text-align center
+		width 150px
+		img
+			max-width 160px
+			max-height 50px
+			width auto
+			height auto
+		.delete
+			position absolute
+			right 0
+			top 0
+			border-radius 0
+// -- загрузка печати
+.document_invoicing_upload_seal
+	width 120px
+	height 120px
+	margin-top -15px
+	display inline-block
+	vertical-align top
+	label.button_file_upload
+		display block
+		width 120px
+		height 120px
+		border 1px dashed cl2
+		border-radius 50%
+		text-align center
+		text-transform uppercase
+		color cl2
+		text-decoration none
+		padding 45px 0 0
+		font-weight fwm
+		box-sizing border-box
+
+		&.replace
+			border none
+			padding 0
+			img
+				max-width 100%
+				max-height 100%
+				width auto
+				height auto
+				text-align center
+	.delete
+		position absolute
+		right 0
+		top 0
+		border-radius 0
+
+// отправка выставления счета
+.invoicing_send
+	background #fff url(../images/letter_border.svg) repeat-x 4px 4px
+	padding 40px 40px 20px
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.09), 0px 0px 1px 0px rgba(0,0,0,0.22);
+	.property_label
+		color ctext
+		font-size 20px
+		padding-top 8px
+
+
+// перевод между счетами
+.exchange_money
+
+	.property_label
+		width 27%
+		text-align right
+	.property_value
+		width 69%
+		margin-left 3%
+	.total_summ
+		background cbghighlight
+		font-size fzn + 4px
+		display inline-block
+		padding 7px 12px
+		margin-top -11px
+	.exchange_money_confirm
+		text-align center
+		font-size fzn
+		margin-top 30px
+		margin-bottom 0
+		border-top none
+		padding-top 20px
+		.title
+			font-weight fwm
+			font-size fzn + 2px
+		.form_buttons
+			margin-top 20px
+		.light_text
+			font-size fzn - 2px
+		.button
+			position relative
+	.exchange_money_confirm_loader
+		position absolute
+		top 0
+		height 4px
+		right 0
+		animation exchange_money_confirm 20s linear
+		background cbgsuccess - 30%
+
+
+
+// подсказка капслок
+.capslock_notice
+	position fixed
+	background rgba(cl1,0.7)
+	padding 14px 25px 15px 20px
+	border-radius brbut
+	left 3%
+	bottom 40px
+	color #fff
+	font-size fzn - 2px
+	&:before
+		content ''
+		height 8px
+		width 8px
+		display inline-block
+		vertical-align 1px
+		border-radius 50%
+		background cl3
+		margin-right 12px
+
+// выпадушка с услугами
+.drop.header_service_menu
+	transform translateX(0px) translateY(60px) translateZ(0px)!important
+	right 0
+	.drop-content-inner
+		overflow visible
+		text-align center
+		max-height 600px
+		display flex
+		justify-content space-around
+		align-items center
+		padding 25px
+
+		&:after, &:before
+			bottom 100%
+			left calc(180px + (55% - 180px - 40px)*0.5 + 60px)
+			border solid transparent
+			content " "
+			height 0
+			width 0
+			position absolute
+			pointer-events none
+		&:after
+			border-color rgba(255, 255, 255, 0)
+			border-bottom-color #fff
+			border-width 8px
+			margin-left -8px
+		&:before
+			border-color rgba(0, 0, 0, 0)
+			border-bottom-color rgba(0,0,0,0.1)
+			border-width 9px
+			margin-left -9px
+.header_services_list
+	display inline
+	width auto
+	max-width 1400px
+	text-align left
+	display flex
+	flex-wrap wrap
+	justify-content center
+	li
+		width 20%
+		min-width 200px
+		text-align center
+		a
+			display block
+			padding 125px 0 15px
+			color ctext
+			text-decoration none
+			line-height .9
+			background-position center 10px
+			background-repeat no-repeat
+			position relative
+			&:hover
+				background-color cgrey05
+			@media screen and (max-width 1100px)
+				padding-top 100px
+				background-size 75px auto
+				padding-bottom 5px
+				&.active:after
+					top 63px!important
+			&.active
+				&:after
+					content ''
+					height 19px
+					width 73px
+					background url(../images/serv_connect_label.svg) no-repeat 0 0
+					position absolute
+					top 87px
+					left 50%
+		.name
+			text-transform uppercase
+			display block
+			margin 0 0 6px
+		.desc
+			color ctextlight
+			font-size fzn - 4px
+			line-height 1
+		.buh
+			background-image url(../images/icon_serv_buh.svg)
+			// &:hover
+			// 	background-image url(../images/icon_serv_buh_hover.svg)
+		.b365
+			background-image url(../images/icon_serv_b365.svg)
+			background-position center 2px
+		.payroll
+			background-image url(../images/icon_serv_payroll.svg)
+			// &:hover
+			// 	background-image url(../images/icon_serv_payroll_hover.svg)
+		.control
+			background-image url(../images/icon_serv_control.svg)
+			// &:hover
+			// 	background-image url(../images/icon_serv_control_hover.svg)
+		.deposit
+			background-image url(../images/icon_serv_deposit.svg)
+		.kassa
+			background-image url(../images/icon_serv_kassa.svg)
+			background-position 53% 10px
+			@media screen and (max-width 1100px)
+				background-size auto 75px
+		.torg_acquire
+			background-image url(../images/icon_serv_torg_acquire.svg)
+		.inet_acquire
+			background-image url(../images/icon_serv_inet_acquire.svg)
+		.overdraft
+			background-image url(../images/icon_serv_overdraft.png)
+			background-size 111px auto
+			@media screen and (max-width 1100px)
+				background-size auto 75px
+		.insurance
+			background-image url(../images/icon_serv_insurance_hover.svg)
+			background-image url(../images/icon_serv_insurance.svg)
+			// &:hover
+			// 	background-image url(../images/icon_serv_insurance_hover.svg)
+		.other
+
+			background-image url(../images/icon_serv_other.svg)
+			// &:hover
+			// 	background-image url(../images/icon_serv_other_hover.svg)
+
+
+// попап с лимитом по тарифу для зерегистрированных не в начале месяца
+.tarif_limit_middle_month
+	table
+		td
+			border-bottom 1px solid cbdlight
+			padding-top 15px
+			padding-bottom 15px
+		tr:last-child
+			td
+				border-bottom none
+				padding-bottom 0

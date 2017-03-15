@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>help</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Открытие-счета" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="открытие-счета-1" sketch:type="MSArtboardGroup" transform="translate(-1030.000000, -10.000000)" fill="#2D4668">
+            <g id="header" sketch:type="MSLayerGroup" transform="translate(137.000000, 0.000000)">
+                <g id="help" transform="translate(893.000000, 10.000000)" sketch:type="MSShapeGroup">
+                    <path d="M9.35,12.75 L7.65,12.75 L7.65,11.05 L9.35,11.05 L9.35,12.75 L9.35,12.75 Z" id="Shape"></path>
+                    <path d="M8.5,1.7 C12.24,1.7 15.3,4.76 15.3,8.5 C15.3,12.24 12.24,15.3 8.5,15.3 C4.76,15.3 1.7,12.24 1.7,8.5 C1.7,4.76 4.76,1.7 8.5,1.7 L8.5,1.7 Z M8.5,0 C3.825,0 0,3.825 0,8.5 C0,13.175 3.825,17 8.5,17 C13.175,17 17,13.175 17,8.5 C17,3.825 13.175,0 8.5,0 L8.5,0 L8.5,0 Z" id="Shape"></path>
+                    <path d="M7.65,10.2 C7.65,9.01 8.16,8.585 8.585,8.16 C8.84,7.99 9.01,7.735 9.095,7.48 C9.265,7.225 9.265,6.97 9.265,6.63 C9.265,6.29 9.18,6.035 9.01,5.78 C8.84,5.61 8.67,5.44 8.33,5.44 C8.075,5.44 7.48,5.525 7.48,6.715 L5.95,6.715 L5.95,6.375 C5.95,5.61 6.205,5.1 6.63,4.675 C7.14,4.42 7.735,4.25 8.415,4.25 C9.265,4.25 9.86,4.42 10.285,4.93 C10.71,5.44 10.965,5.95 10.965,6.63 C10.965,8.67 9.265,8.755 9.265,10.2 L7.65,10.2 L7.65,10.2 Z" id="Shape"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
