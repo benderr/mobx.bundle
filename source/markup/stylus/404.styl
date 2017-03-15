@@ -1,0 +1,108 @@
+@charset "utf-8"
+
+@import 'nib'
+@import 'variables.styl'
+.page404, .page_clear
+	position absolute
+	width 100%
+	height 100%
+	background url(../images/404_back.png) no-repeat center, radial-gradient(65% 100%, cbglight 45%, cbglight - 20% 100%)
+	background-size auto 95%
+	overflow auto
+	.logo
+		width 270px
+		height 50px
+		position absolute
+		top 40px
+		left calc(50% - 135px)
+		background url('../images/logo_full_d.svg') no-repeat 0 0
+		text-indent -10000em
+	.content_wrap
+		display table
+		width 100%
+		height 100%
+	.content_cell
+		display table-cell
+		width 100%
+		vertical-align middle
+	.content
+		width 400px
+		margin 0 auto
+		text-align center
+		p
+			margin 0 0 15px
+
+	&.old_browser
+		.content_cell
+			padding-top 120px
+			padding-bottom 30px
+		.content
+			width 600px
+			text-align justify
+			font-size fzn - 2px
+		.browser_list
+			overflow hidden
+			margin 50px 0 0
+			li
+				float left
+				width 25%
+				text-align center
+				box-sizing border-box
+				padding 0 5px
+				font-size fzn - 3px
+				a
+					display block
+					background-size 50% auto
+					background-repeat no-repeat
+					background-position center 15px
+					padding 110px 0 25px
+					border-radius 5px
+					background-color rgba(#fff,0.5)
+					text-decoration none
+					&:hover
+						background-color #fff
+					&.chrome
+						background-image url(../images/browser_chrome.png)
+					&.firefox
+						background-image url(../images/browser_firefox.png)
+					&.ie
+						background-image url(../images/browser_ie.png)
+					&.safari
+						background-image url(../images/browser_safari.png)
+	&.page_system_update
+		background url(../images/404_back.png) no-repeat center
+		background-size auto 95%
+		.logo
+			top 20px
+			left 20px
+			width 200px
+			background-size 100% auto
+		.contact
+			position absolute
+			right 20px
+			top 20px
+			color ctext
+			font-size 14px
+			z-index 100
+			a
+				text-decoration none
+				color ctext
+				font-size 18px
+				display inline-block
+				margin 0 5px
+				vertical-align middle
+				&:hover
+					color clink
+		.content
+			width 80%
+		h1
+			font-size fzn + 25px
+		p
+			font-size fzn + 4px
+		form
+			display inline-block
+			margin-top 50px
+			padding 30px
+			background rgba(#fff,0.5)
+			p
+				font-size fzn
