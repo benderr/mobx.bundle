@@ -43,6 +43,8 @@
     "redux-devtools-log-monitor": "^1.1.1",
     "redux-logger": "^2.7.4",
     "style-loader": "^0.13.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
     "webpack-dashboard": "^0.2.0",
@@ -76,5 +78,7 @@
     "url": "https://github.com/brcportal2/ModulBank.FrontArchitecture2/issues"
   },
   "homepage": "https://github.com/brcportal2/ModulBank.FrontArchitecture2#readme",
-  "prepush" : [ "npm run lint-break-on-errors --silent" ]
+  "prepush": [
+    "npm run lint-break-on-errors --silent"
+  ]
 }
