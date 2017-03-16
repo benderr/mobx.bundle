@@ -4,13 +4,9 @@ import Menu from 'components/Global/Menu';
 
 const App = ({children}) => {
     return (
-        <div className='App'>
-            <Menu />
-
-            <div className='Page'>
+            <div>
                 { children }
             </div>
-        </div>
     );
 };
 
