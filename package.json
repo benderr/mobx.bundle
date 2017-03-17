@@ -28,6 +28,7 @@
     "babel-preset-react-hmre": "^1.1.1",
     "babel-preset-stage-0": "^6.16.0",
     "babel-runtime": "^6.6.1",
+    "chunk-manifest-webpack-plugin": "^1.0.0",
     "css-loader": "0.14.5",
     "eslint": "^3.10.1",
     "eslint-config-airbnb": "^13.0.0",
@@ -49,6 +50,7 @@
     "stylus-loader": "^3.0.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1",
+    "webpack-chunk-hash": "^0.4.0",
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^2.2.1"
   },

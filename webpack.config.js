@@ -1,10 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
-//const stylus_plugin = require('stylus_plugin');
 
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
+var WebpackChunkHash = require('webpack-chunk-hash');
+
 const autoprefixer = require('autoprefixer');
 
 const nodeEnv = process.env.NODE_ENV || 'development';
@@ -21,11 +23,16 @@ const paths = {
 
 // Common plugins
 const plugins = [
-    new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: Infinity,
-        filename: 'vendor-[hash].js',
-    }),
+	new WebpackChunkHash(),
+	new webpack.optimize.CommonsChunkPlugin({
+		name: ["vendor", "manifest"],
+		minChunks: Infinity,
+		filename: '[name]-[hash].js'
+	}),
+	new ChunkManifestPlugin({
+		filename: "chunk-manifest.json",
+		manifestVariable: "webpackManifest"
+	}),
     new webpack.DefinePlugin({
         'process.env': {
             NODE_ENV: JSON.stringify(nodeEnv),
@@ -89,7 +96,7 @@ const rules = [
     {
         test: /\.styl$/,
         //include: imgPath,
-        loader: 'style-loader!css-loader!postcss-loader!stylus-loader',
+        loader: 'style-loader!css-loader!stylus-loader',
     }
 ];
 
@@ -178,7 +185,7 @@ module.exports = {
     output: {
         path: buildPath,
         publicPath: '/',
-        filename: 'app-[hash].js',
+        filename: '[name]-[hash].js',
     },
     module: {
         rules,

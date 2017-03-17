@@ -13,6 +13,10 @@ const initialState = Map({
   asyncError: null,
   asyncData: null,
 });
+console.log('1');
+console.log('1');
+console.log('1');
+
 
 const actionsMap = {
   [TEST_ACTION]: (state) => {
