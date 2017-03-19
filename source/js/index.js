@@ -9,7 +9,7 @@ import logger from 'dev/logger';
 import rootReducer from 'reducers';
 import Routes from './routes';
 import DevTools from 'dev/redux-dev-tools';
-
+import '../markup/stylus/style.styl';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
