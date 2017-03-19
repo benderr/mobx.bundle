@@ -11,6 +11,9 @@ export  default () => {
             <Link to={ routeCodes.SIGN_IN }>
                 Войти
             </Link>
+            <Link to={ routeCodes.LIST_EXAMPLE }>
+                Пример списка
+            </Link>
         </div>
     );
 };

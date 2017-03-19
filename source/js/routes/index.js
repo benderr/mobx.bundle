@@ -5,6 +5,7 @@ import {routeCodes} from './routeCodes'
 import App from 'views/App';
 import Dashboard from 'views/Dashboard';
 import SignIn from 'views/SignIn';
+import ListExample from 'views/ListExample';
 
 export default () => {
     return (
@@ -13,6 +14,7 @@ export default () => {
                 <IndexRoute component={ Dashboard }/>
                 <Route path={ routeCodes.DASHBOARD } component={ Dashboard }/>
                 <Route path={ routeCodes.SIGN_IN } component={ SignIn }/>
+                <Route path={ routeCodes.LIST_EXAMPLE } component={ ListExample }/>
                 <Route path='*' component={ Dashboard }/>
             </Route>
         </Router>
