@@ -21,9 +21,6 @@ export default class Dashboard extends Component {
 
   constructor() {
     super();
-
-    this.handleAsyncButtonClick = this.handleAsyncButtonClick.bind(this);
-    this.handleTestButtonClick = this.handleTestButtonClick.bind(this);
   }
 
   handleAsyncButtonClick() {
@@ -53,7 +50,7 @@ export default class Dashboard extends Component {
         <div>
           <h3>Synchronous action</h3>
           <p>{ counter }</p>
-          <button onClick={ this.handleTestButtonClick }>
+          <button onClick={ ::this.handleTestButtonClick }>
             Increase counter
           </button>
         </div>
@@ -65,7 +62,7 @@ export default class Dashboard extends Component {
           { asyncError && <p>Error: { asyncError }</p> }
           <button
             disabled={ asyncLoading }
-            onClick={ this.handleAsyncButtonClick }
+            onClick={ ::this.handleAsyncButtonClick }
           >
             Get async data
           </button>
