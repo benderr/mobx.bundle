@@ -1,11 +1,11 @@
 import React from 'react';
-import Menu from 'components/Global/Menu';
+import SiteHeader from 'components/siteHeader';
 
 //Шаблон для анонимных страниц
 const InternalLayout = props => {
     return (
         <div className="poss">
-            <Menu/>
+            <SiteHeader/>
             <section className="main">
                 <div className="section_content">
                     {props.children}
