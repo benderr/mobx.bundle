@@ -1,5 +1,5 @@
 import createStore from './store'
-import getRoutes, {makeRouteHooksSafe} from '../routes' //TODO
+import getRoutes, {makeRouteHooksSafe} from './routes' //TODO
 import getReducers from './reducer'
 import getMiddlewares from './middlewares'
 

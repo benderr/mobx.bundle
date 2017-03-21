@@ -1,12 +1,11 @@
 import React from 'react';
 import {IndexLink, Link} from 'react-router';
-import {routeCodes} from 'routes/routeCodes';
 
 export  default () => {
     return (
         <header>
             <div className="header_logo">
-                <IndexLink to={ routeCodes.HOME }>
+                <IndexLink to="/">
                     Модульбанк
                 </IndexLink>
             </div>
@@ -21,8 +20,8 @@ export  default () => {
             <div className="header_menu free_items">
                 <div className="header_menu_inner">
                     <ul>
-                        <li className="active"><IndexLink to={ routeCodes.HOME }><span>Деньги</span></IndexLink></li>
-                        <li><Link to={ routeCodes.SECTION_2 }><span>Контакты</span></Link></li>
+                        <li className="active"><IndexLink to="/"><span>Деньги</span></IndexLink></li>
+                        <li><Link to="/list-example">Пример списка</Link></li>
                     </ul>
                 </div>
             </div>
@@ -48,7 +47,7 @@ export  default () => {
                 </div>
 
                 <div className="header_profile_logout">
-                    <Link to={ routeCodes.SIGN_IN } className="icon-logout"></Link>
+                    <Link to="/signin"  className="icon-logout"></Link>
                 </div>
             </div>
         </header>

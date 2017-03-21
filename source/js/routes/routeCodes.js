@@ -1,7 +1,0 @@
-
-
-const routeCodes = {
-
-};
-
-export {routeCodes}
