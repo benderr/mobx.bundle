@@ -1,6 +1,7 @@
 import {createHistory} from 'history';
 import {reduxReactRouter, routerStateReducer} from 'redux-router';
 import {createStore as _createStore, combineReducers, compose} from 'redux';
+import DevTools from 'dev/DevTools.jsx';
 
 export default function createStore(middleware, reducers, routes, initionalState) {
 
@@ -22,17 +23,15 @@ export default function createStore(middleware, reducers, routes, initionalState
 	//finalCreateStore = compose(middleware)(finalCreateStore);
 
 
-	//const store = finalCreateStore(combineReducers(reducers), initionalState);
-
-
-	const store = compose(
+	let finalCreateStore = compose(
 		middleware,
 		reduxReactRouter({
 			createHistory
-		})
-	)(_createStore)(allReducers, initionalState);
+		}),
+		DevTools.instrument()
+	)(_createStore);
 
-
+	const store = finalCreateStore(allReducers, initionalState);
 	return store;
 }
 

@@ -4,14 +4,14 @@ import {Route, Link} from 'react-router';
 // import {routeCodes} from './routeCodes'
 // import SignInContainer from 'containers/SignInContainer';
 // import InternalLayout from 'components/InternalLayout';
-// import ExternalLayout from 'components/externalLayout'
+import ExternalLayout from 'components/ExternalLayout'
 import {createRoutes} from 'react-router/lib/RouteUtils';
 const loginStatus = {};
 
 
 export default function getRoutes(modules) {
 	return (
-		<Route>
+		<Route path="/" component={ExternalLayout}>
 			{modules.filter((m)=>isFunc(m.getRoutes)).map((m)=>m.getRoutes())}
 			{/*<Route path="*" component={NotFound} status={404}/>*/}
 		</Route>
