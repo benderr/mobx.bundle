@@ -9,6 +9,12 @@ export function testAction() {
 	};
 }
 
+export function testSetter() {
+	return {
+		type: enums.ACTIONS.TEST_ACTION2,
+	};
+}
+
 // Async action example
 
 function testAsyncStart() {

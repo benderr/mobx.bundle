@@ -1,3 +1,5 @@
+import { createReducer } from 'redux-immutablejs'
+
 export default function getReducers(modules) {
 	return modules
 		.filter((m) => isFunc(m.getReducers))
@@ -15,7 +17,7 @@ function defaultHandler(state, action) {
 	return state;
 }
 
-function createReducer(initialState, actionHandlers) {
+function _createReducer(initialState, actionHandlers) {
 	return function reducer(state = initialState, action) {
 		const handler = actionHandlers[action.type] || actionHandlers['default'] || defaultHandler;
 		return handler(state, action);

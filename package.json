@@ -66,8 +66,10 @@
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
     "redux": "^3.3.1",
+    "redux-immutablejs": "0.0.8",
     "redux-router": "^2.1.2",
-    "redux-thunk": "^2.0.1"
+    "redux-thunk": "^2.0.1",
+    "reselect": "^3.0.0"
   },
   "description": "Starter boilerplate for React and Redux, using Webpack 2",
   "repository": {

@@ -1,7 +1,7 @@
 import {Map} from 'immutable';
 import enums from '../enums/enums'
 
-const initialState = Map({
+export const initialState = Map({
 	counter: 0,
 	asyncLoading: false,
 	asyncError: null,
@@ -9,7 +9,7 @@ const initialState = Map({
 });
 
 
-const actionHandlers = {
+export const actionHandlers = {
 	[enums.ACTIONS.TEST_ACTION]: (state) => {
 		const counter = state.get('counter') + 1;
 
