@@ -176,6 +176,7 @@
 			</li>
 
 
+
 		</ul>
 
 
@@ -209,9 +210,10 @@
 				</div>
 			</li>
 
-			<li class="item active">
+
+			<li class="item">
 				<a class="ques" ng-click="toggleQuestion($event, '???')">Как сэкономить на обслуживании?</a>
-				<div class="ans"  style="display: ;" id="">
+				<div class="ans"  style="display: none;" id="">
 					<p>Чтобы сэкономить на&nbsp;банке, участвуйте в&nbsp;акции &laquo;Подари другу банк&raquo;. Если ваш друг откроет счет в&nbsp;Модульбанке, мы&nbsp;подарим месяц без абонентской платы и&nbsp;комиссий за&nbsp;платежки вам обоим. Представьте, двенадцать друзей открывают счет и&nbsp;вы&nbsp;не&nbsp;платите за&nbsp;банк весь год.</p>
 					<p>Если у&nbsp;вас несколько компаний, вы&nbsp;можете для каждой открыть счет в&nbsp;Модульбанке и&nbsp;тоже сэкономить на&nbsp;обслуживании. Для каждой компании будет подарок&nbsp;&mdash; месяц без абонентской платы и&nbsp;комиссий за&nbsp;переводы.</p>
 					<p>Пригласить друзей занимает минуту. <span class="highlighted">Зайдите на&nbsp;страницу акции и&nbsp;отправьте ссылку другу по&nbsp;почте, смс или опубликуйте ее&nbsp;в&nbsp;соцсетях. </span>По&nbsp;этой ссылке друг откроет счет, и&nbsp;вы&nbsp;оба получите подарок.</p>
@@ -244,7 +246,7 @@
 			<li class="item ">
 				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_PerevodRepeat')" >Как повторить перевод?</a>
 				<div class="ans"  style="display: none;" id="">
-					<p>Чтобы повторить перевод, выберите нужный перевод на&nbsp;главной странице и&nbsp;нажмите на&nbsp;круглую стрелку справа:</p>
+					<p>Чтобы повторить перевод, выберите нужный перевод и&nbsp;нажмите на&nbsp;круглую стрелку справа:</p>
 					<div class="ans_img">
 						<img src="../images/faq/faq9.jpg" alt="">
 					</div>
@@ -259,6 +261,19 @@
 					</div>
 				</div>
 			</li>
+
+			<li class="item active">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >Как перевести деньги физлицу?</a>
+				<div class="ans"  style="display: ;" id="">
+					<p>Чтобы перевести деньги физлицу, нажмите белую кнопку с&nbsp;плюсом и&nbsp;выберите &laquo;Новый платеж&raquo; и&nbsp;перевод &laquo;Контрагенту&raquo;:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq10.jpg" alt="">
+					</div>
+					<p>Для перевода понадобится заполнить все реквизиты карточного счета, номера карты недостаточно. Исключение&nbsp;&mdash; ИНН и&nbsp;КПП, их&nbsp;писать не&nbsp;надо</p>
+
+				</div>
+			</li>
+
 			<li class="item ">
 				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_SkorostPlatescha')" >Как быстро вы отправляете платежи?</a>
 				<div class="ans"  style="display: none;" id="">
