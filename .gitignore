@@ -1,1 +1,2 @@
-markup/css/*.*
+**/css
+.DS_Store
