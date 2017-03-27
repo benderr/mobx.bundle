@@ -1,0 +1,449 @@
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Выплата НДФЛ по дивидендам</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+
+		<!-- шапка слоя -->
+		<div class="page_header">
+			<a class="page_close icon-close"></a>
+			<a class="page_expand icon-fullsize"></a>
+			<h1>
+			Выплата НДФЛ
+			</h1>
+
+		</div>
+
+		<!-- контент слоя  -->
+		<div class="page_content">
+			<div class="info">
+				<p>При выплате дивидендов удерживается НДФЛ в размере 13% (15% для нерезидентов). </p>
+				<p>Мы автоматически рассчитали сумму налога к уплате. Вы можете незначительно отредактировать сумму, если по вашим расчетам она должна быть иной. Без уплаты НДФЛ мы не сможем провести операцию по выплате дивидендов.</p>
+
+			</div>
+
+			<div class="w70">
+
+				<!-- <div class="form_sep"></div> -->
+
+				<div class="form_group">
+					<div class="input_group_title w100">
+						<div class="input_group w100">
+							<input type="search" name="" id="" class="w100 drop-target field_contragent" placeholder="Наименование или ИНН получателя">
+							<div class="drop-content">
+								<div class="drop-content-inner">
+									<ul class="drop-menu max_w_400">
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+									</ul>
+								</div>
+				            </div>
+							<a class="button middle field icon-search button_notext input_group_button"></a>
+						</div>
+						<span class="payment_field_user_rating icon_user_rating green" b365-tooltip title="Нажмите, чтобы проверить контрагента">15</span>
+
+
+			            <div class="input_title">Получатель</div>
+			        </div>
+				</div>
+				<div class="form_group row">
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon">ИНН</div>
+
+							<input type="text" name="" placeholder="ИНН получателя" id="" class="">
+						</div>
+					</div>
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon">КПП</div>
+							<input type="text" name="" placeholder="КПП получателя" id="" class="drop-target input_loading">
+							<div class="drop-content">
+								<div class="drop-content-inner">
+									<div class="loading">
+										<div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="input_group w100">
+						<div class="input_group_addon">Банк</div>
+						<input type="text" name="" placeholder="БИК или наименование банка получателя" id="" class="drop-target input_search_focus">
+						<div class="drop-content">
+							<div class="drop-content-inner">
+								<div class="drop-title">Счета получателя</div>
+									<ul class="drop-menu max_w_600 drop_bank_account">
+										<li>
+											<a>
+												<span class="bank_name">044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ</span>
+												<span class="bank_account_num">Счет 12345678901234567890</span>
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="bank_name">049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ" </span>
+												<span class="bank_account_num">Счет 12345678901234567890</span>
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="bank_name">044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</span>
+												<span class="bank_account_num">Счет 12345678901234567890</span>
+											</a>
+										</li>
+									</ul>
+									<div class="drop-title m_top_30">Найденные в справочнике</div>
+									<ul class="drop-menu max_w_600">
+										<li> <a>044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ </a> </li>
+										<li> <a> 049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ"</a> </li>
+										<li> <a> 044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</a> </li>
+									</ul>
+								</div>
+			            </div>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="input_group w100">
+						<div class="input_group_addon">р/с</div>
+						<input type="text" name="" placeholder="Счет получателя" id="" class="drop-target input_search_focus">
+						<div class="drop-content">
+							<div class="drop-title">Счета получателя</div>
+							<ul class="drop-menu max_w_600 drop_bank_account">
+								<li>
+									<a>
+										<span class="bank_name">044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ</span>
+										<span class="bank_account_num">Счет 12345678901234567890</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="bank_name">049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ" </span>
+										<span class="bank_account_num">Счет 12345678901234567890</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="bank_name">044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</span>
+										<span class="bank_account_num">Счет 12345678901234567890</span>
+									</a>
+								</li>
+							</ul>
+
+			            </div>
+					</div>
+				</div>
+
+				<div class="form_sep"></div>
+
+				<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">Статус плательщика (101)</div>
+
+					<div class="jsRadSelect2 ws_n" data-placeholder="Селект">
+						<div class="jsRadSelect2Options" value="1">01 - Юридическое лицо</div>
+						<div class="jsRadSelect2Options" value="2" selected>02 - Налоговый агент</div>
+						<div class="jsRadSelect2Options" value="3">03 - Организация федеральной почтовой связи</div>
+						<div class="jsRadSelect2Options" value="4">04 - Налоговый орган</div>
+						<div class="jsRadSelect2Options" value="5" selected>05 - Территориальные органы Федеральной службы судебных приставов</div>
+						<div class="jsRadSelect2Options" value="6">06 - Участник внешнеэкономической деятельности</div>
+						<div class="jsRadSelect2Options" value="7">07 - Таможенный орган</div>
+						<div class="jsRadSelect2Options" value="8">08 - Плательщик - юридическое лицо (индивидуальный предприниматель), осуществляющее перевод денежных средств в уплату страховых взносов и иных платежей в бюджетную систему Российской Федерации</div>
+						<div class="jsRadSelect2Options" value="9">09 - Налогоплательщик (плательщик сборов) - индивидуальный предприниматель </div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">КБК (104)</div>
+					<input type="text" name="" placeholder="" id="" class="drop-target" value="182 1 01 02010 01 1000 110">
+					<div class="drop-content">
+						<ul class="drop-menu max_w_500">
+							<li>
+								<a>
+									000101000000000000000000
+									<span class="f_xsmall light_text d_b">НАЛОГИ  НА ПРИБЫЛЬ, ДОХОДЫ</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									000101000000000000000000
+									<span class="f_xsmall light_text d_b">Налоги на прибыль организаций</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									000101000000000000000000
+									<span class="f_xsmall light_text d_b">Налоги на прибыль организаций, зачисляемый в бюджеты бюджетной системы</span>
+								</a>
+							</li>
+
+						</ul>
+		            </div>
+				</div>
+			</div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">ОКТМО (105)</div>
+					<input type="text" name="" placeholder="" id="" class="">
+				</div>
+			</div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">Основание платежа (106)</div>
+					<div class="jsRadSelect2 ws_n" data-filter="true">
+						<div value="" class="jsRadSelect2Options">00 - иные случаи</div>
+						<div value="" class="jsRadSelect2Options">АП - погашение задолженности по акту проверки  </div>
+						<div value="" class="jsRadSelect2Options">АР - погашение задолженности по исполнительному документу</div>
+						<div value="" class="jsRadSelect2Options">БД - документы финансово-хозяйственной деятельности таможенных органов</div>
+						<div value="" class="jsRadSelect2Options">БФ - текущий платеж физического лица - клиента банка (владельца счета), уплачиваемый со своего банковского счета</div>
+						<div value="" class="jsRadSelect2Options">ВУ - погашение отсроченной задолженности в связи с введением внешнего управления</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form_group row">
+				<div class="input_group_title col half">
+					<div class="jsRadSelect2 ws_n w100">
+						<div value="" class="jsRadSelect2Options">00 - Не указано</div>
+						<div value="" class="jsRadSelect2Options">МС - Месячный платеж</div>
+						<div value="" class="jsRadSelect2Options">КВ - Квартальный платеж</div>
+						<div value="" class="jsRadSelect2Options">ПЛ - Полугодовой платеж</div>
+						<div value="" class="jsRadSelect2Options">ГД - Годовой платеж</div>
+					</div>
+					<div class="input_title">Налоговый период (107)</div>
+				</div>
+				<div class="input_group_title col three">
+					<div class="jsRadSelect2 ws_n w100">
+						<div value="" class="jsRadSelect2Options">01</div>
+						<div value="" class="jsRadSelect2Options">02</div>
+						<div value="" class="jsRadSelect2Options">03</div>
+						<div value="" class="jsRadSelect2Options">04</div>
+						<div value="" class="jsRadSelect2Options">05</div>
+						<div value="" class="jsRadSelect2Options">06</div>
+						<div value="" class="jsRadSelect2Options">07</div>
+						<div value="" class="jsRadSelect2Options">08</div>
+						<div value="" class="jsRadSelect2Options">09</div>
+						<div value="" class="jsRadSelect2Options">10</div>
+						<div value="" class="jsRadSelect2Options">11</div>
+						<div value="" class="jsRadSelect2Options">12</div>
+					</div>
+					<div class="input_title">Месяц</div>
+				</div>
+				<div class="input_group_title col three">
+					<div class="jsRadSelect2 ws_n w100">
+						<div value="" class="jsRadSelect2Options">2015</div>
+						<div value="" class="jsRadSelect2Options">2014</div>
+						<div value="" class="jsRadSelect2Options">2013</div>
+					</div>
+					<div class="input_title">Год</div>
+				</div>
+			</div>
+
+			<div class="form_group row">
+				<div class="input_group_title col seven">
+					<input type="text" name="" id="" class="w100">
+					<div class="input_title">Номер документа (108)</div>
+				</div>
+				<div class="input_group_title col five">
+					<input type="text" name="" id="" class="datetimepicker filter_date_input w100">
+					<div class="input_title">Дата документа (109)</div>
+				</div>
+
+			</div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">УИН (22)</div>
+					<input type="text" name="" placeholder="Уникальный идентификатор платежа" id="" class="drop-target">
+					<div class="drop-content">
+						<div class="drop-content-inner inner_pad">
+							<div class="small_text fs_i">Проверьте данные, такого названия банка или номера БИК нет в нашем справочнике.</div>
+						</div>
+		            </div>
+				</div>
+			</div>
+
+				<div class="form_group">
+
+					<div class="input_group  w100">
+						<div class="input_group_addon w70px ">Со счета</div>
+						<a class="w100 drop-input drop-target">
+							<span class="drop_account_list">
+								<span class="account_target_name">Расчетный счет</span>
+								<span class="account_target_num">(*****4590)</span>
+								<span class="account_target_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+							</span>
+						</a>
+						<div class="drop-content">
+							<div class="drop-content-inner drop_account_list">
+								<ul class="drop-menu max_w_600">
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+
+								</ul>
+							</div>
+			            </div>
+
+					</div>
+				</div>
+
+				<div class="form_group row">
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon w70px">Сумма</div>
+							<input type="text" name="" placeholder="0,00" id="" class="">
+						</div>
+					</div>
+					<div class="col half">
+						<div class="jsRadSelect2 w100" data-placeholder="Селект" name="adfasd" id="adsf">
+							<option class="jsRadSelect2Options" value="111" selected>Без НДС</option>
+							<option class="jsRadSelect2Options" value="">18% включен в сумму</option>
+							<option class="jsRadSelect2Options" value="">18% сверх суммы</option>
+							<option class="jsRadSelect2Options" value="">10% включен в сумму</option>
+							<option class="jsRadSelect2Options" value="">10% сверх суммы</option>
+							<option class="jsRadSelect2Options" value="">18% включен в сумму</option>
+							<option class="jsRadSelect2Options" value="">Не указывать</option>
+						</div>
+					</div>
+
+				</div>
+				<!-- <div class="form_group a_right m_bot_30">
+					<p class="d_ib c_light f_small m_right_15">Комиссия банка: 70 <span class="cur ruble"><span>р.</span></span>*</p>
+					<p class="d_ib info_label big">Итого: <strong>4 424,00 <span class="cur ruble"><span>р.</span></span></strong></p>
+				</div> -->
+				<div class="form_group">
+					<div class="input_group_title w100">
+						<div class="textarea_block">
+							<textarea name="" id="" placeholder="" class="w100 js_autosize textarea_middle">Уплата НДФЛ с дивидендов за {ФИО получателя Шага 1}</textarea>
+							<div class="textarea_border"></div>
+							<div class="textarea_text characters_left">Осталось символов: 28</div>
+							<div class="textarea_text">Без НДС</div>
+						</div>
+						<div class="input_title">Назначение платежа</div>
+					</div>
+				</div>
+
+
+				<div class="form_buttons">
+					<button class="button">Далее</button>
+					<a class="button_clean">Назад</a>
+				</div>
+
+				<!-- <div class="info_error">asfaf</div> -->
+
+				<div class="small_text border">
+					<p class="f_small">Комиссия банка: 70 <span class="cur ruble"><span>р.</span></span></p>
+					<p>Размер комиссии рассчитан автоматически согласно тарифу вашей компании и является ознакомительным. Точный размер комиссии определяется после передачи платежного документа на обработку в банк.</p>
+				</div>
+
+			</div>
+		</div>
+
+
+
+</article>
+
+</body>
+</html>

@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Table</title>
+	<base href="../"/>
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+
+<include data-file="header.html"></include>
+
+<section class="main">
+
+	<div class="row" style="background: #fff; padding: 30px;">
+		<div class="col half">
+
+			<!-- таблица на белом фоне -->
+			<div class="table_list transaction_list">
+
+				<!-- шапка таблицы -->
+				<div class="table_list_header">
+					<div class="table_list_cell check"><input type="checkbox" name="" id="a1"><label for="a1" class="label_check"><i class="icon"></i></label></div>
+					<div class="table_list_cell action">&nbsp;</div>
+					<div class="table_list_cell desc">Назначение платежа</div>
+					<div class="table_list_cell summ"><a>Сумма</a></div>
+					<div class="table_list_cell date"><a>Дата</a></div>
+					<div class="table_list_cell contragent"><a>Контрагент</a></div>
+
+				</div>
+				<div class="table_list_body">
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="income">125 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="expense">42 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_checked">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1" checked></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="expense">35 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="income">105 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end таблица -->
+		</div>
+
+		<div class="col half">
+
+			<!-- таблица на белом фоне -->
+			<div class="table_list table_list_small transaction_list">
+
+				<!-- шапка таблицы -->
+				<div class="table_list_header">
+					<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+					<div class="table_list_cell action">&nbsp;</div>
+					<div class="table_list_cell desc">Назначение платежа</div>
+					<div class="table_list_cell summ"><a>Сумма</a></div>
+					<div class="table_list_cell date"><a>Дата</a></div>
+					<div class="table_list_cell contragent"><a>Контрагент</a></div>
+
+				</div>
+				<div class="table_list_body">
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="income">125 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="expense">42 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_checked">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1" checked></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="expense">35 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="income">105 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end таблица -->
+		</div>
+
+	</div>
+
+	<div class="row" style="background: #fff; padding: 30px;">
+		<div class="col half">
+
+			<!-- таблица на белом фоне -->
+			<div class="table_list table_list_light transaction_list">
+
+				<!-- шапка таблицы -->
+				<div class="table_list_header">
+					<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+					<div class="table_list_cell action">&nbsp;</div>
+					<div class="table_list_cell desc">Назначение платежа</div>
+					<div class="table_list_cell summ"><a>Сумма</a></div>
+					<div class="table_list_cell date"><a>Дата</a></div>
+					<div class="table_list_cell contragent"><a>Контрагент</a></div>
+
+				</div>
+				<div class="table_list_body">
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="income">125 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="expense">42 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_checked">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1" checked></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="expense">35 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="income">105 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end таблица -->
+		</div>
+
+		<div class="col half">
+
+			<!-- таблица на белом фоне -->
+			<div class="table_list table_list_light table_list_border transaction_list">
+
+				<!-- шапка таблицы -->
+				<div class="table_list_header">
+					<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+					<div class="table_list_cell action">&nbsp;</div>
+					<div class="table_list_cell desc">Назначение платежа</div>
+					<div class="table_list_cell summ"><a>Сумма</a></div>
+					<div class="table_list_cell date"><a>Дата</a></div>
+					<div class="table_list_cell contragent"><a>Контрагент</a></div>
+
+				</div>
+				<div class="table_list_body">
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="income">125 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="expense">42 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_checked">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1" checked></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Доход от продажи товара</div>
+						<div class="table_list_cell summ">
+							<span class="expense">35 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row">
+						<div class="table_list_cell check"><input type="checkbox" name="" id="a1"></div>
+						<div class="table_list_cell action"><a class="icon-reload"></a></div>
+						<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						<div class="table_list_cell summ">
+							<span class="income">105 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+						<div class="table_list_cell date">17.03</div>
+						<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end таблица -->
+		</div>
+
+	</div>
+
+	<div class="row" style="padding: 30px">
+		<div class="col eight">
+
+			<!-- таблица на сером фоне -->
+			<div class="table_list table_list_white">
+				<div class="table_list_header">
+					<div class="table_list_cell deadline">
+						Срок
+					</div>
+
+					<div class="table_list_cell performer">
+						Исполнитель
+					</div>
+					<div class="table_list_cell status">
+						Статус
+					</div>
+					<div class="table_list_cell name name_search">
+						<input type="search" class="small input_search second" value="" placeholder="Поиск ...">
+					</div>
+				</div>
+				<div class="table_list_body">
+
+					<div class="table_list_row new">
+
+						<div class="table_list_cell deadline">
+							<span class="icon-clock">03:45</span>
+						</div>
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Выбрать" data-filter="true">
+								<option value="" selected>Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="">Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							Новая
+						</div>
+
+						<div class="table_list_cell name name_link">
+							<div class="name_title">ООО «Ромашка»</div>
+							<div class="name_desc">Мне срочно необходимо снять помещение внутри Садового срочно необходимо снять помещение внутри Садового</div>
+						</div>
+
+					</div>
+
+					<div class="table_list_row new">
+						<div class="table_list_cell deadline">
+							<span class="icon-clock error_text">-02:37</span>
+						</div>
+
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Не задан" data-filter="true">
+								<option value="">Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="">Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							Новая
+						</div>
+						<div class="table_list_cell name name_link">
+							<div class="name_title">ИП “Сидоров А.Н”</div>
+							<div class="name_desc"><strong>Иванов Саша:</strong> Найдите мне нормального бухгалтера<div class="write_now">
+								<span class="icon-pencil"></span>
+							</div></div>
+
+						</div>
+					</div>
+
+					<div class="table_list_row">
+						<div class="table_list_cell deadline">
+							<span class="icon-clock error_text">-03:15</span>
+						</div>
+
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Не задан" data-filter="true">
+								<option value="">Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="">Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							В работе
+						</div>
+						<div class="table_list_cell name name_link">
+							<div class="name_title">СП “Лига”</div>
+							<div class="name_desc">Нужен счет в Замбийских квачах...</div>
+						</div>
+					</div>
+
+					<div class="table_list_row">
+						<div class="table_list_cell deadline">
+							28 марта
+						</div>
+
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Не задан" data-filter="true">
+								<option value="">Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="" selected>Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							Ждем клиента
+						</div>
+						<div class="table_list_cell name name_link">
+							<div class="name_title">СП “Лига”</div>
+							<div class="name_desc">Нужен счет в Замбийских квачах...</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end таблица -->
+
+		</div>
+	</div>
+
+	<div class="row" style="padding: 30px">
+		<div class="col eight">
+
+			<!-- таблица на сером фоне -->
+			<div class="table_list table_list_white table_list_small">
+				<div class="table_list_header">
+					<div class="table_list_cell deadline">
+						Срок
+					</div>
+
+					<div class="table_list_cell performer">
+						Исполнитель
+					</div>
+					<div class="table_list_cell status">
+						Статус
+					</div>
+					<div class="table_list_cell name name_search">
+						<input type="search" class="small input_search second" value="" placeholder="Поиск ...">
+					</div>
+				</div>
+				<div class="table_list_body">
+
+					<div class="table_list_row new">
+
+						<div class="table_list_cell deadline">
+							<span class="icon-clock">03:45</span>
+						</div>
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Выбрать" data-filter="true">
+								<option value="" selected>Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="">Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							Новая
+						</div>
+
+						<div class="table_list_cell name name_link">
+							<div class="name_title">ООО «Ромашка»</div>
+							<div class="name_desc">Мне срочно необходимо снять помещение внутри Садового срочно необходимо снять помещение внутри Садового</div>
+						</div>
+
+					</div>
+
+					<div class="table_list_row new">
+						<div class="table_list_cell deadline">
+							<span class="icon-clock error_text">-02:37</span>
+						</div>
+
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Не задан" data-filter="true">
+								<option value="">Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="">Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							Новая
+						</div>
+						<div class="table_list_cell name name_link">
+							<div class="name_title">ИП “Сидоров А.Н”</div>
+							<div class="name_desc"><strong>Иванов Саша:</strong> Найдите мне нормального бухгалтера<div class="write_now">
+								<span class="icon-pencil"></span>
+							</div></div>
+
+						</div>
+					</div>
+
+					<div class="table_list_row">
+						<div class="table_list_cell deadline">
+							<span class="icon-clock error_text">-03:15</span>
+						</div>
+
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Не задан" data-filter="true">
+								<option value="">Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="">Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							В работе
+						</div>
+						<div class="table_list_cell name name_link">
+							<div class="name_title">СП “Лига”</div>
+							<div class="name_desc">Нужен счет в Замбийских квачах...</div>
+						</div>
+					</div>
+
+					<div class="table_list_row">
+						<div class="table_list_cell deadline">
+							28 марта
+						</div>
+
+						<div class="table_list_cell performer">
+							<select multiple="multiple" class="select_inline" data-placeholder="Не задан" data-filter="true">
+								<option value="">Азат Халилов</option>
+								<option value="">Алия Арсланова</option>
+								<option value="" selected>Андрей Вариков</option>
+								<option value="">Дамир Амиров</option>
+								<option value="">Денис Маслов</option>
+								<option value="">Динар Галимов</option>
+								<option value="">Нур Ибрагимов</option>
+								<option value="">Роберт Сабирьянов</option>
+							</select>
+						</div>
+						<div class="table_list_cell status">
+							Ждем клиента
+						</div>
+						<div class="table_list_cell name name_link">
+							<div class="name_title">СП “Лига”</div>
+							<div class="name_desc">Нужен счет в Замбийских квачах...</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<!-- end таблица -->
+
+		</div>
+	</div>
+
+</section>
+
+
+</body>
+</html>

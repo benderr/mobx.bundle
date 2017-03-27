@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>PayRoll</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+
+<include data-file="header.html"></include>
+
+<section class="main">
+
+	<include data-file="aside_payroll.html"></include>
+
+	<div class="section_content">
+
+
+
+		<div class="title_panel">
+			<h1>Зарплатные ведомости</h1>
+			<div class="title_actions"><a class="button small light">Зарплатный список (13)</a></div>
+		</div>
+
+
+		<!-- таблица -->
+		<div class="table_list payroll_list table_list_big widget_block">
+
+			<!-- шапка таблицы -->
+			<div class="table_list_header">
+
+				<div class="table_list_cell name">Тип платежа</div>
+				<div class="table_list_cell payments">Выплата сотрудникам</div>
+				<div class="table_list_cell ndfl">Выплаты НДФЛ</div>
+				<div class="table_list_cell action">&nbsp;</div>
+
+			</div>
+
+			<div class="table_list_body">
+
+
+				<div class="table_list_row row_link">
+					<div class="table_list_cell name">
+						<div class="name_title">Аванс за март 2106</div>
+						<div class="status info_label">отправлен в банк</div>
+						<div class="name_desc">15 июля</div>
+					</div>
+					<div class="table_list_cell summ payments">50 000,00<span class="cur rur"><span>р.</span></span></div>
+					<div class="table_list_cell summ ndfl ">0,00</div>
+					<div class="table_list_cell action"><a class="icon-trash-bin" b365-tooltip title="Удалить ведомость"></a></div>
+				</div>
+
+
+
+				<div class="table_list_row row_link">
+					<div class="table_list_cell name">
+						<div class="name_title">Заработная плата за февраль 2106</div>
+						<div class="status info_label">в обработке</div>
+						<div class="name_desc">1 июля</div>
+					</div>
+					<div class="table_list_cell summ payments">50 000,00 <span class="cur rur"><span>р.</span></span></div>
+					<div class="table_list_cell summ ndfl ">2 500,00 <span class="cur rur"><span>р.</span></span></div>
+					<div class="table_list_cell action">&nbsp;</div>
+				</div>
+
+
+
+				<div class="table_list_row row_link">
+					<div class="table_list_cell name">
+						<div class="name_title">Аванс за февраль 2106</div>
+						<div class="status info_label_success">исполнен</div>
+						<div class="name_desc">17 июня</div>
+					</div>
+					<div class="table_list_cell summ payments">12 000,00 <span class="cur rur"><span>р.</span></span></div>
+					<div class="table_list_cell summ ndfl ">0,00</div>
+					<div class="table_list_cell action"><a class="icon-reload" b365-tooltip title="Повторить выплату"></a></div>
+				</div>
+
+
+
+				<div class="table_list_row row_link">
+					<div class="table_list_cell name">
+						<div class="name_title">Заработная плата за февраль 2106</div>
+						<div class="status info_label_error">отказано</div>
+						<div class="name_desc">2 июня</div>
+					</div>
+					<div class="table_list_cell summ payments">50 000,00 <span class="cur rur"><span>р.</span></span></div>
+					<div class="table_list_cell summ ndfl ">2 500,00 <span class="cur rur"><span>р.</span></span></div>
+					<div class="table_list_cell action">&nbsp;</div>
+				</div>
+
+
+
+			</div>
+		</div>
+
+		<div class="table_list_more show_more">
+			<a class="button small light icon-more-small">Показать еще</a>
+		</div>
+		<!-- end таблица -->
+	</div></section>
+</body>
+</html>

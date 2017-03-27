@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" >
+	<title>Регистрация</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/registration.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+
+
+<div class="reg">
+	<div class="wrap">
+		<div class="reg_header">
+			<a href="/" class="logo">МодульБанк</a>
+			<div class="header_links"><a href="#" class="login">Войти в систему</a></div>
+		</div>
+		<div class="reg_section">
+			<div class="reg_side">
+				<div class="title">Регистрация компании</div>
+				<p class="fw_m c_sky">Тариф «Оптимальный»</p>
+				<ul class="point f_small">
+					<li>За один платеж 19 <span class="cur ruble"><span>р.</span></span></li>
+					<li>До 3% на остаток по расчетному счету</li>
+					<li>Беспроцентное снятие наличных до 50 000 <span class="cur ruble"><span>р.</span></span> в месяц</li>
+				</ul>
+				<p class="f_big fw_m">490 <span class="cur ruble"><span>р.</span></span>/месяц</p>
+				<div class="copyright">
+					<p>Для получения дополнительной информации позвоните по телефону 8 (800) 333 79 96 с 09:00 до 21:00</p>
+					<p>Банковские услуги представляются ОАО КБ «Региональный Кредит». Лицензия ЦБ РФ №1927 от 07.08.2012 г.</p>
+				</div>
+			</div>
+			<div class="reg_article" ng-controller="selectController">
+
+				<div class="wizard_steps steps3 active1">
+					<div class="step active">
+						<div class="label">1</div>
+						<div class="name">Контакты</div>
+					</div>
+					<div class="step">
+						<div class="label">2</div>
+						<div class="name">Реквизиты</div>
+					</div>
+					<div class="step">
+						<div class="label">3</div>
+						<div class="name">Пароль</div>
+					</div>
+
+				</div>
+
+				<p>Пожалуйста, укажите контакты для связи.</p>
+
+				<div class="form">
+					<form action="" id="form">
+						<div class="w80">
+							<div class="form_group">
+								<input type="text" name="fam" placeholder="Фамилия *" id="fam" class="column half" b365-tooltip="" title="Пожалуйста представьтесь" >
+								<input type="text" name="name" placeholder="Имя *" id="name" class="column half" b365-tooltip="" title="Пожалуйста представьтесь fadsfasdfasdfas dfasd fasd fasdfasdfasdf asdfas dfa" >
+							</div>
+							<div class="form_group">
+								<div class="input_group column full">
+									<div class="input_group_addon addon_code" >+7</div>
+									<input type="tel" name="phone" placeholder="Телефон *" id="phone" class="" rad-tooltip="asdfasdf"  data-trigger="focus" data-placement="right">
+								</div>
+							</div>
+							<div class="form_group">
+								<input type="email" name="email" placeholder="E-mail *" id="email" class="column full" >
+							</div>
+
+							<div class="form_group">
+								<select class="w100" data-placeholder="Выбрать город обслуживания">
+									<option value="">Уфа</option>
+									<option value="">Москва</option>
+									<option value="">Уфа</option>
+									<option value="">Москва</option>
+									<option value="">Уфа</option>
+									<option value="">Москва</option>
+									<option value="">Уфа</option>
+									<option value="">Москва</option>
+									<option value="">Уфа</option>
+									<option value="">Москва</option>
+									<option value="">Уфа</option>
+									<option value="">Москва</option>
+								</select>
+							</div>
+
+						</div>
+						<div class="small_text">
+							<p>Нажимая на кнопку «Далее», вы принимаете <a href="#">соглашение об оказании услуг</a> и соглашаетесь на обработку своих персональных данных.</p>
+						</div>
+						<div class="form_buttons">
+							<button type="submit" class="button second">Далее</button>
+						</div>
+
+						<div class="copyright small_text border">
+							<p>Для получения дополнительной информации позвоните по телефону 8 (800) 333 79 96 с 09:00 до 21:00</p>
+							<p>Банковские услуги представляются ОАО КБ «Региональный Кредит». Лицензия ЦБ РФ №1927 от 07.08.2012 г.</p>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+
+			<!-- если просматривают на андроиде, то класс android вместо ios !!!!!!!!!!-->
+			<div class="popup_layer popup_mobile_download ios">
+				<a href="" class="popup_close icon-close"></a>
+				<div class="logo"></div>
+				<p>Используйте мобильное<br>приложение для работы</p>
+				<a class="button big">Установить</a><br/>
+				<a class="button_clean">Больше не предлагать</a>
+			</div>
+			<div class="popup_backdrop"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Платежные требования</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+	<link href="https://file.myfontastic.com/5AmvWjxEBA28yH8sLbdyeN/icons.css" rel="stylesheet">
+
+
+	<include data-file="header.html"></include>
+
+
+	<section class="main">
+
+		<include data-file="aside_payment_request.html"></include>
+
+		<div class="section_content">
+
+			<div class="title_panel">
+
+				<h1>Платежные требования</h1>
+
+				<div class="title_actions">
+
+					<a class="drop-target icon-date button light small">с 12 апреля по 19 марта</a>
+					<div class="drop-content">
+						<div class="drop-content-inner dashboard-period-choose">
+							<ul class="drop-menu">
+								<li><a>Последние 30 дней</a></li>
+								<li><a>Текущая неделя</a></li>
+								<li><a>Текущий месяц</a></li>
+								<li><a>Текущий квартал</a></li>
+								<li><a>Весь год</a></li>
+							</ul>
+							<div class="drop-date-choose">
+								<div class="filter_date_value">
+									<input type="text" name="" id="" class="datetimepicker filter_date_input small date_from">
+									<input type="text" name="" id="" class="datetimepicker filter_date_input small date_to">
+									<button class="button small">Ок</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<a class="button small light icon-filter show_filter_panel">
+						Фильтры
+						<span class="filter_count"></span>
+					</a>
+					<a class="button white icon-filter show_filter_panel float">
+						<span class="filter_count"></span>
+					</a>
+				</div>
+
+			</div>
+
+			<!-- панель фильтров -->
+			<div class="filter_panel">
+
+
+				<div class="side_parameter">
+
+
+					<div class="side_parameter_name">Услуга</div>
+					<div class="side_parameter_value">
+						<div class="jsRadSelect2 select_multi select_inline select_multi_column select_full " data-placeholder="выбрать" data-filter="true"  >
+							<div class="jsRadSelect2Options" value="1">Все услуги</div>
+							<div class="jsRadSelect2Options" value="2">Произвольное назначение</div>
+							<div class="jsRadSelect2Options" value="3">Бизнес-ассистент</div>
+							<div class="jsRadSelect2Options" value="4">Бухгалтер для ИП на УСН 6%</div>
+							<div class="jsRadSelect2Options" value="4">Бухгалтер ИП</div>
+							<div class="jsRadSelect2Options" value="5">Юрист 5000</div>
+
+						</div>
+
+					</div>
+
+
+				</div>
+
+
+				<div class="side_filter">
+					<div class="side_filter_name">Статус поручения</div>
+					<ul>
+						<li>
+							<input type="checkbox" name="tfilter" id="ff11" class="input_check">
+							<label for="ff11" class="label_check"><i class="icon"></i><span>Черновик</span></label>
+						</li>
+						<li>
+							<input type="checkbox" name="tfilter" id="ff2" class="input_check">
+							<label for="ff2" class="label_check"><i class="icon"></i><span>На подписи</span></label>
+						</li>
+						<li>
+							<input type="checkbox" name="tfilter" id="ff3" class="input_check">
+							<label for="ff3" class="label_check"><i class="icon"></i><span>Выставлен</span></label>
+						</li>
+						<li>
+							<input type="checkbox" name="tfilter" id="ff4" class="input_check">
+							<label for="ff4" class="label_check"><i class="icon"></i><span>Оплачен</span></label>
+						</li>
+						<li>
+							<input type="checkbox" name="tfilter" id="ff5" class="input_check">
+							<label for="ff5" class="label_check"><i class="icon"></i><span>Аннулирован</span></label>
+						</li>
+
+
+					</ul>
+				</div>
+
+				<div class="side_parameter">
+					<div class="side_parameter_name">Клиент</div>
+					<div class="side_parameter_value">
+						<div class="jsRadSelect2 select_multi select_inline select_multi_column select_full " data-placeholder="выбрать" data-filter="true" data-rd-is-multy-select="true" >
+							<div class="jsRadSelect2Options" value="2">
+								<span>ООО Ромашка
+									<span class="select_item_info">ИНН: 28248240821</span></span>
+								</div>
+								<div class="jsRadSelect2Options" value="3">
+									<span>ООО Башкирнефтепродукт
+										<span class="select_item_info">ИНН: 28248240821</span></span>
+									</div>
+									<div class="jsRadSelect2Options" value="4">
+										ООО Пенсионный фонд развития
+										<span class="select_item_info">ИНН: 28248240821</span>
+									</div>
+									<div class="jsRadSelect2Options" value="4">Андрей Вариков</div>
+									<div class="jsRadSelect2Options" value="5">Дамир Амиров</div>
+									<div class="jsRadSelect2Options" value="6">Денис Маслов</div>
+									<div class="jsRadSelect2Options" value="7">Динар Галимов</div>
+									<div class="jsRadSelect2Options" value="8">Нур Ибрагимов</div>
+									<div class="jsRadSelect2Options" value="9">Роберт Сабирьянов</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+			<!-- таблица -->
+			<div class="table_list table_list_big transaction_list transaction_list_usn widget_block">
+
+
+				<div class="table_list_body">
+
+					<!-- строка дата -->
+					<div class="table_list_row row_date">
+						<div class="table_list_cell name">12 марта 2016</div>
+						<div class="table_list_cell summ">Остаток: 423 125 000,00 <span class="cur rur"><span>р.</span></span></div>
+						<div class="table_list_cell action"></div>
+						<div class="table_list_cell check"></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">ООО «Рога и Копыта»</div>
+							<div class="status info_label_success">оплачен</div>
+							<div class="purpose">Доход от продажи товара</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_expense">423 125 000,00 <span class="cur rur"><span>р.</span></span></span>
+							<div class="account">Расчетный счет</div>
+						</div>
+
+
+
+						<div class="table_list_cell check">
+							<input type="checkbox" name="1" id="a2" class="input_check"><label class="label_check circle" for="a2"><i class="icon"></i></label>
+						</div>
+
+						<div class="section_action_panel">
+							<div class="selected">
+								<span class="light_text">Выбрано требований:</span>
+								<strong>2</strong> на сумму <strong>34 847,00 <span class="cur rur">р.</span></strong>
+								<a class="link">Выбрать все</a>
+							</div>
+							<div class="action_panel_buttons">
+								<a class="icon-payment">Оплатить</a>
+								<a class="icon-pencil">Редактировать</a>
+								<a class="icon-trash-bin">Удалить</a>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+						<div class="table_list_cell name">
+							<div class="contragent">ОАО «Башкирский Нефтегазовый холдинг Башкирский Нефтегазовый холдинг»</div>
+							<div class="status info_label">черновик</div>
+							<div class="purpose">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						</div>
+						<div class="table_list_cell summ">
+							<span class="money_expense">42 000,00 <span class="cur dollar"><span>$</span></span></span>
+							<div class="account">Текущий счет</div>
+						</div>
+
+
+
+						<div class="table_list_cell check">
+							<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+						</div>
+
+					</div>
+
+					<!-- строка дата -->
+					<div class="table_list_row row_date">
+						<div class="table_list_cell name">9 марта 2016</div>
+						<div class="table_list_cell summ">Остаток: 423 125 000,00 <span class="cur rur"><span>р.</span></span></div>
+						<div class="table_list_cell action"></div>
+						<div class="table_list_cell check"></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+						<div class="table_list_cell name">
+							<div class="contragent">ООО «Рога и Копыта»</div>
+							<div class="status info_label_error">ошибка оплаты</div>
+							<div class="purpose">Доход от продажи товара</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_expense">35 000,00 <span class="cur dollar"><span>$</span></span></span>
+							<div class="account">Зарплатный счет</div>
+						</div>
+
+
+
+						<div class="table_list_cell check">
+							<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+						</div>
+
+					</div>
+
+					<!-- строка дата -->
+					<div class="table_list_row row_date">
+						<div class="table_list_cell name">1 марта 2016</div>
+						<div class="table_list_cell summ">Остаток: 423 125 000,00 <span class="cur rur"><span>р.</span></span></div>
+
+						<div class="table_list_cell check"></div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">ОАО «Башкирский Нефтегазовый холдинг»</div>
+							<div class="purpose">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_income">105 000,00 <span class="cur dollar"><span>$</span></span></span>
+						</div>
+
+
+
+
+						<div class="table_list_cell check">
+							<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+						</div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+						<div class="table_list_cell name">
+							<div class="contragent">ООО «Вкусные булочки»</div>
+							<div class="purpose">Оплата по договору №7345 от 17.02.2016. Без НДС</div>
+						</div>
+						<div class="table_list_cell summ">
+							<span class="money_income">55 600,00 <span class="cur rur"><span>р.</span></span></span>
+							<span class="summ_small">За вычетом УСН: 52&nbsp;264,00&nbsp;<span class="cur rur"><span>р.</span></span></span>
+						</div>
+
+
+						<div class="table_list_cell check"></div>
+						<div class="show_all"><a class="icon-down-big"></a></div>
+
+					</div>
+
+
+					<!-- строка -->
+					<div class="table_list_row row_link table_list_subrow hidden">
+
+						<div class="table_list_cell name">
+							<div class="contragent">Налог УСН</div>
+							<div class="status info_label_error">в обработке</div>
+							<div class="purpose">Перевод собственных средств</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_expense">3 336,00 <span class="cur rur"><span>р.</span></span></span>
+							<div class="account">Налоговый счет</div>
+						</div>
+
+
+
+						<div class="table_list_cell check">
+							<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+						</div>
+					</div>
+
+
+
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">Перевод между счетами</div>
+							<div class="status info_label_error">в обработке</div>
+							<div class="purpose">Расчетный счет (***0023)<span class="c_light m_left_10 m_right_10 f_small icon-arrow-right-long"></span>Карточный счет (***3528)</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							10 000,00 <span class="cur rur"><span>р.</span></span>
+							<div class="account">Карточный счет</div>
+						</div>
+
+
+
+						<div class="table_list_cell check">
+							<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+						</div>
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">Покупка валюты</div>
+							<div class="status info_label_success">оплачен</div>
+							<div class="purpose">Расчетный счет (***0023)<span class="c_light m_left_10 m_right_10 f_small icon-arrow-right-long"></span>Валютный счет (***3528)</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<div class="money_expense">10 000,00 <span class="cur rur"><span>р.</span></span></div>
+							<div class="money_income">132,00 <span class="cur usd"><span>$</span></span></div>
+						</div>
+
+
+
+						<div class="table_list_cell check">
+							<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+						</div>
+					</div>
+
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">Заработная плата за май 2016</div>
+							<div class="status info_label_success">оплачен</div>
+							<div class="purpose">Перевод собственных средств</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_expense">270 000,20 <span class="cur rur"><span>р.</span></span></span>
+							<div class="summ_small">вкл. НДФЛ: - 27 000,20 <span class="cur rur"><span>р.</span></span></div>
+						</div>
+
+
+						<div class="table_list_cell check"></div>
+
+						<div class="show_all"><a class="icon-down-big"></a></div>
+
+					</div>
+
+
+
+					<!-- строка -->
+					<div class="table_list_row table_list_subrow row_link hidden">
+
+						<div class="table_list_cell name">
+							<div class="contragent">Иванов Иван Иванович</div>
+							<div class="status info_label_success">оплачен</div>
+							<div class="purpose">ЗПМодульБанк. Перечисление зарплаты за март 2016 ФИО_сотрудника. Без НДС</div>
+						</div>
+						<div class="table_list_cell summ">
+							<span class="money_expense">120 000,00 <span class="cur rur"><span>р.</span></span></span>
+						</div>
+
+
+						<div class="table_list_cell check"></div>
+
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row table_list_subrow row_link hidden">
+
+						<div class="table_list_cell name">
+							<div class="contragent">Сидоров Антон Владимирович</div>
+							<div class="status info_label_success">оплачен</div>
+							<div class="purpose">ЗПМодульБанк. Перечисление зарплаты за март 2016 ФИО_сотрудника. Без НДС</div>
+						</div>
+						<div class="table_list_cell summ">
+							<span class="money_expense">80 000,00 <span class="cur rur"><span>р.</span></span></span>
+						</div>
+
+
+						<div class="table_list_cell check"></div>
+
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row table_list_subrow row_link hidden">
+
+						<div class="table_list_cell name">
+							<div class="contragent">Налог НДФЛ</div>
+							<div class="status info_label_success">оплачен</div>
+							<div class="purpose">Перевод собственных средств</div>
+						</div>
+						<div class="table_list_cell summ">
+							<span class="money_expense">12 000,00 <span class="cur rur"><span>р.</span></span></span>
+						</div>
+
+
+						<div class="table_list_cell check"></div>
+
+					</div>
+
+
+
+					<div class="table_row_info">
+						<div class="info_center">
+							<p>Отображены все операции, соответствующие установленным фильтрам.</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="table_list_more show_more">
+				<a class="button small light icon-more">Показать еще</a>
+			</div>
+			<!-- end таблица -->
+
+			<!-- таблица -->
+			<div class="table_list transaction_list m_top_50 widget_block">
+
+			<div class="table_list_body">
+
+				<div class="table_row_info">
+					<div class="info_center">
+						<p>Нет операций, соотвествующих установленным фильтрам.
+							<a>Сбросить все фильтры</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end таблица -->
+
+
+
+
+
+
+
+
+
+
+		</div></section>
+	</body>
+	</html>

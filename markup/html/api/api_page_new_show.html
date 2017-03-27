@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Подключение к API</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Подключение к API</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<p class="m_bot_15">Чтобы приложения могли получать ваши данные из Модульбанка, сгенерируйте <span class="fw_m">токен авторизации</span>.</p>
+		<p class="m_bot_30"><span class="fw_m">Токен авторизации</span> – это секретный ключ, по которому ваше приложение сможет получать данные от API Модульбанка. Подробнее об этом – в <a>документации</a>.</p>
+
+
+		<!-- если токен сгенерирован скрывать предыдущий блок "новые токен"-->
+		<div class="legend"><span>Генерация токена авторизации</span></div>
+		<p>Вы сгенерировали токен для доступа к <a>API Модульбанка</a>.</p>
+		<div class="api_token_code icon-check">
+			<div class="token_code">
+			cHJpdmF0ZW9mZmljZTdhNzk0ODJiLTk0MDgtNDBjOS1hZjU5LWE1NjYwMTdhNmU2OWE0OTdmZTZmLTM2MDctNGM0OS1iOTNjLTAwN2Y2OTg2NGRlMw
+			</div>
+			<a class="icon-clipboard" b365-tooltip title="Скопировать в буфер обмена"></a>
+			<a class="button small dark token_revoke">Отозвать</a>
+		</div>
+		<p class="light_text">Убедитесь, что вы скопировали его, токен не будет показан повторно!</p>
+
+	</div>
+
+</article>
+
+</body>
+</html>

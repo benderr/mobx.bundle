@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Подключение payroll</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Зарплатный список</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="title_panel">
+			<a class="button middle icon-user-full-add">Добавить сотрудника</a>
+			<a class="button_clean">Выплатить зарплату</a>
+		</div>
+
+
+		<!-- таблица -->
+		<div class="table_list  payroll_staff_list">
+
+			<!-- шапка таблицы -->
+			<div class="table_list_header">
+				<div class="table_list_cell action">&nbsp;</div>
+				<div class="table_list_cell account">Номер счета</div>
+				<div class="table_list_cell bank">Банк</div>
+				<div class="table_list_cell otch">Отчество</div>
+				<div class="table_list_cell im">Имя</div>
+				<div class="table_list_cell fam">Фамилия</div>
+			</div>
+
+			<div class="table_list_body">
+
+				<!-- строка -->
+				<div class="table_list_row row_link">
+					<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+					<div class="table_list_cell account">12345678901234567890</div>
+					<div class="table_list_cell bank">АО "Альфабанк"</div>
+					<div class="table_list_cell otch">Геннадьевна</div>
+					<div class="table_list_cell im">Тамара</div>
+					<div class="table_list_cell fam">Иванова</div>
+				</div>
+
+				<!-- строка -->
+				<div class="table_list_row row_link">
+					<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+					<div class="table_list_cell account">12345678901234567890</div>
+					<div class="table_list_cell bank">АО "Альфабанк"</div>
+					<div class="table_list_cell otch">Александрович</div>
+					<div class="table_list_cell im">Святослав</div>
+					<div class="table_list_cell fam">Александров</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+	</div>
+
+</article>
+
+</body>
+</html>

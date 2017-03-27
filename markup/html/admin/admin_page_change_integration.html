@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Интеграция с другими системами</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Интеграция с другими системами</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<p class="m_bot_20">В данном разделе вы можете подключить или отключить другую систему к компании.</p>
+		<div class="form_group m_bot_40">
+			<div class="input_group_title">
+				<input type="text" class="big" name="" id="" value="1231231231" size="30" placeholder="">
+				<div class="input_title">Введите ОГРН юридического лица:</div>
+			</div>
+			<button class="button">Найти</button>
+		</div>
+
+		<div class="light_block found_company m_bot_30">
+			<h3>Общество с ограниченной ответственностью «Пример»</h3>
+			<p>ИНН: 0212345678, КПП: 123456789</p>
+			<h4 class="m_top_20 m_bot_15">Интеграция с системами:</h4>
+			<div class="form_group">
+				<input type="checkbox" name="a1" id="a1">
+				<label for="a1" class="label_check switcher"><i class="icon"></i><span>Моё дело <span class="c_light">(логин: test@moedelo.org)</span></span></label>
+				<div class="c_light f_small m_left_35 m_top_5">Дата отключения: 09.03.2017 10:38<br/>
+Подключил: Ваничев Андрей</div>
+			</div>
+			<!-- <div class="form_group">
+				<input type="checkbox" name="a1" id="a2" checked>
+				<label for="a2" class="label_check switcher"><i class="icon"></i><span>Эльба</span></label>
+				<div class="c_light f_small m_left_35">Дата подключения: 09.03.2017 10:38<br/>
+Подключил: Ваничев Андрей</div>
+			</div> -->
+		</div>
+
+
+
+
+
+
+	</div>
+
+
+</article>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

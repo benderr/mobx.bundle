@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Шаг 2 - Ошибка документов. Заявка на гарантию</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style_garant.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+
+<include data-file="garant/garant_header.html"></include>
+
+
+<section class="main">
+	<div class="wrap">
+
+	<include data-file="garant/garant_aside.html"></include>
+	<include data-file="garant/garant.html .section_content"></include>
+
+	</div>
+</section>
+
+<article class="page open page_with_wizard page_garant_order">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Заявка на банковскую гарантию</h1>
+		<div class="header_button">
+			<a class="button xsmall grey icon-file">Все документы по заявке</a>
+		</div>
+		<div class="page_wizard ">
+			<div class="wizard_steps steps4">
+				<div class="step done">
+					<div class="label">1</div>
+					<div class="name">Заявка одобрена</div>
+				</div>
+				<div class="step error">
+					<div class="label">2</div>
+					<div class="name">Ошибка в документах</div>
+				</div>
+				<div class="step">
+					<div class="label">3</div>
+					<div class="name">Согласование проекта и оплата</div>
+				</div>
+				<div class="step">
+					<div class="label">4</div>
+					<div class="name">Выдача гарантии</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="page_garant_left">
+			<h3>Укажите форму налогообложения</h3>
+			<div class="form_group">
+				<div class="input_group_title w100">
+					<div class="jsRadSelect2 w100 disabled" data-placeholder="" disabled>
+						<option class="jsRadSelect2Options" value="1" selected>Общая система налогообложения (ОСН)</option>
+						<option class="jsRadSelect2Options" value="2">Единый налог на вменённый доход (ЕНВД)</option>
+						<option class="jsRadSelect2Options" value="3">Упрощенная система налогообложения (УСН 6%)</option>
+						<option class="jsRadSelect2Options" value="4">Упрощенная система налогообложения (УСН 15%)</option>
+
+						<option class="jsRadSelect2Options" value="2">На исполнение контракта</option>
+					</div>
+					<div class="input_title">Форма налогообложения компании</div>
+				</div>
+			</div>
+
+			<h3 class="m_top_35">Загрузите документы еще раз</h3>
+
+			<div class="text_block f_small">
+			<p>Загрузите электронные документы или сканы (отчетливые фотографии). Страницы могут быть цветные или черно-белые, но без обрезания краев и с отчетливыми цифрами и буквами.</p>
+			<p>Все документы должны быть подписаны усиленной электронной подписью получателя гарантии и загружены в отдельные архивы (*rar, *.zip, *.7z) вместе с подписями</p>
+			</div>
+
+
+
+			<!-- Форма №1 -->
+			<div class="docs_block m_top_35">
+				<div class="title">Форма №1 — Бухгалтерский баланс</div>
+				<div class="file_upload_list">
+
+					<!-- файл -->
+					<div class="file_upload_block col half">
+						<div class="file_title"><strong>За последний завершенный год</strong> с отметкой о приеме налоговой</div>
+						<div class="file_button">
+							<label class="button light icon-upload small button_file_upload">
+								Загрузить
+								<input type="file" name="" id=""></label>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+
+
+			<!-- Форма №2 -->
+			<div class="docs_block m_top_35">
+				<div class="title">Форма №2 — Отчет о финансовых результатах</div>
+				<div class="file_upload_list">
+
+					<!-- файл -->
+					<div class="file_upload_block col half">
+						<div class="file_title"><strong>За последний завершенный год</strong> с отметкой о приеме налоговой</div>
+						<div class="file_button">
+							<label class="button light icon-upload small button_file_upload">
+								Загрузить
+								<input type="file" name="" id=""></label>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+
+			<div class="form_buttons">
+				<a class="button middle wide" >Отправить документы</a>
+			</div>
+
+
+
+		</div>
+		<div class="page_garant_right">
+			<div class="info info_error info_icon_error icon_top">
+				<p><strong>Загрузите документы еще раз</strong></p>
+				<p>Мы не смогли распознать  некоторые документы. Проверьте, что  страницы документов целые, цифры и слова не расплываются.</p>
+				<q>Пожалуйста, загрузите отчетливый скан бухгалтерского баланса за последний год</q>
+			</div>
+		</div>
+	</div>
+
+</article>
+
+</body>
+</html>

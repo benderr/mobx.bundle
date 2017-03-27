@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" >
+	<title>Регистрация</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/registration.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+
+
+<div class="reg">
+
+
+	<div class="wrap">
+		<div class="reg_header">
+			<div class="logo">МодульБанк</div>
+			<div class="slogan">Онлайн банк для вашего бизнеса</div>
+			<!-- <div class="header_links"><a href="#" class="login">Войти в систему</a></div> -->
+		</div>
+		<div class="reg_section">
+			<div class="reg_side">
+				<!-- <div class="title">Регистрация компании</div> -->
+				<p class="fw_m c_sky f_big">Тариф «Оптимальный»</p>
+				<ul class="point f_small">
+					<li>За один платеж 19 <span class="cur ruble"><span>р.</span></span></li>
+					<li>До 3% на остаток по расчетному счету</li>
+					<li>Бесплатное снятие наличных до 50 000 <span class="cur ruble"><span>р.</span></span> в месяц</li>
+				</ul>
+				<p class="fw_m f_big">490 <span class="cur ruble"><span>р.</span></span>/месяц</p>
+				<div class="copyright">
+					<p>Круглосуточная поддержка:<span class="phone">8 800 333-79-96</span></p>
+				</div>
+			</div>
+			<div class="reg_article" ng-controller="selectController">
+
+				<div class="wizard_steps steps3 active1">
+					<div class="step active">
+						<div class="label">1</div>
+						<div class="name">Контакты</div>
+					</div>
+					<div class="step">
+						<div class="label">2</div>
+						<div class="name">Реквизиты</div>
+					</div>
+					<div class="step">
+						<div class="label">3</div>
+						<div class="name">Пароль</div>
+					</div>
+
+				</div>
+
+				<p class="m_bot_20">Пожалуйста, укажите контакты для связи.</p>
+
+				<div class="form">
+					<form action="" id="form">
+						<div class="w100">
+							<div class="form_group">
+								<input type="text" name="fam" placeholder="Фамилия" id="fam" class="column half" b365-tooltip="" title="Пожалуйста представьтесь" >
+								<input type="text" name="name" placeholder="Имя" id="name" class="column half" b365-tooltip="" title="Пожалуйста представьтесь fadsfasdfasdfas dfasd fasd fasdfasdfasdf asdfas dfa" >
+							</div>
+							<div class="form_group">
+								<div class="input_group column full">
+									<div class="input_group_addon addon_code" >+7</div>
+									<input type="tel" name="phone" placeholder="Телефон" id="phone" class="" rad-tooltip="asdfasdf"  data-trigger="focus" data-placement="right">
+								</div>
+							</div>
+							<div class="form_group">
+								<input type="email" name="email" placeholder="E-mail" id="email" class="column full" >
+							</div>
+
+							<div class="form_group">
+								<div class="jsRadSelect2 w100" data-placeholder="Выбрать город обслуживания">
+									<option class="jsRadSelect2Options" value="">Уфа</option>
+									<option class="jsRadSelect2Options" value="">Москва</option>
+									<option class="jsRadSelect2Options" value="">Уфа</option>
+									<option class="jsRadSelect2Options" value="">Москва</option>
+									<option class="jsRadSelect2Options" value="">Уфа</option>
+									<option class="jsRadSelect2Options" value="">Москва</option>
+									<option class="jsRadSelect2Options" value="">Уфа</option>
+									<option class="jsRadSelect2Options" value="">Москва</option>
+									<option class="jsRadSelect2Options" value="">Уфа</option>
+									<option class="jsRadSelect2Options" value="">Москва</option>
+									<option class="jsRadSelect2Options" value="">Уфа</option>
+									<option class="jsRadSelect2Options" value="">Москва</option>
+								</div>
+							</div>
+
+						</div>
+						<!-- <div class="small_text">
+							<p>Нажимая на кнопку «Далее», вы принимаете <a href="#">соглашение об оказании услуг</a> и соглашаетесь на обработку своих персональных данных.</p>
+						</div> -->
+						<div class="form_buttons">
+							<button type="submit" class="button second wide">Далее</button>
+						</div>
+
+						<div class="copyright small_text border">
+							<p>Регистрируясь в системе, вы принимаете <a>соглашение об оказании услуг</a> и соглашаетесь на обработку своих персональных данных.</p>
+							<p>Круглосуточная поддержка: <a class="phone">8 800 333-79-96</a></p>
+							<p>Услуги банка ОАО КБ «Региональный Кредит». Лицензия ЦБ РФ №1927 от 07.08.2012 г.</p>
+						</div>
+
+					</form>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="reg_footer">
+			<p>Регистрируясь в системе, вы принимаете <a>соглашение об оказании услуг</a> и соглашаетесь на обработку своих персональных данных.</p>
+			<p>Услуги банка ОАО КБ «Региональный Кредит». Лицензия ЦБ РФ №1927 от 07.08.2012 г.</p>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

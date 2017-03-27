@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Новый платеж</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page side_right_wide open">
+
+	<!-- шапка слоя -->
+	<div class="page_header clean header_forward">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Новый платеж
+		</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<form class="form">
+			<div class="form_group">
+				<select class="w100" data-placeholder="Тип платежа">
+					<option value="111" selected>Перевод между своими счетами</option>
+					<option value="">Платеж контрагенту</option>
+					<option value="">Платеж физическому лицу</option>
+					<option value="">Оплата страховых взносов</option>
+					<option value="">Налоги или бюджетный платеж</option>
+					<option value="">Таможенный платеж</option>
+					<option value="">Валютный перевод</option>
+				</select>
+			</div>
+
+			<div class="form_sep"></div>
+
+			<div class="form_group">
+				<input type="text" name="" id="" class="w100 drop-target input_search_focus" placeholder="Получатель">
+				<div class="drop-content">
+					<div class="drop-content-inner">
+						<ul class="drop-menu max_w_400">
+							<li><a>ЗАО «Азбука»</a></li>
+							<li><a>ООО «Ромашка»</a></li>
+							<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+							<li><a>Сергеева Алла Николаевна</a></li>
+							<li><a>ЗАО «Азбука»</a></li>
+							<li><a>ООО «Ромашка»</a></li>
+							<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+							<li><a>Сергеева Алла Николаевна</a></li>
+							<li><a>ЗАО «Азбука»</a></li>
+							<li><a>ООО «Ромашка»</a></li>
+							<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+							<li><a>Сергеева Алла Николаевна</a></li>
+							<li><a>ЗАО «Азбука»</a></li>
+							<li><a>ООО «Ромашка»</a></li>
+							<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+							<li><a>Сергеева Алла Николаевна</a></li>
+							<li><a>ЗАО «Азбука»</a></li>
+							<li><a>ООО «Ромашка»</a></li>
+							<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+							<li><a>Сергеева Алла Николаевна</a></li>
+						</ul>
+					</div>
+	            </div>
+			</div>
+			<div class="form_group row">
+				<div class="col half">
+					<div class="input_group w100">
+						<div class="input_group_addon">ИНН</div>
+						<input type="text" name="" placeholder="ИНН получателя" id="" class="input_loading">
+					</div>
+				</div>
+				<div class="col half">
+					<div class="input_group w100">
+						<div class="input_group_addon">КПП</div>
+						<input type="text" name="" placeholder="КПП получателя" id="" class="">
+					</div>
+				</div>
+			</div>
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">Банк</div>
+					<input type="text" name="" placeholder="БИК или наименование банка получателя" id="" class="drop-target input_search_focus">
+					<div class="drop-content">
+						<div class="drop-content-inner">
+							<div class="drop-title">Счета получателя</div>
+								<ul class="drop-menu max_w_600 drop_bank_account">
+									<li>
+										<a>
+											<span class="bank_name">044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ</span>
+											<span class="bank_account_num">Счет 12345678901234567890</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="bank_name">049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ" </span>
+											<span class="bank_account_num">Счет 12345678901234567890</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="bank_name">044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</span>
+											<span class="bank_account_num">Счет 12345678901234567890</span>
+										</a>
+									</li>
+								</ul>
+								<div class="drop-title m_top_30">Найденные в справочнике</div>
+								<ul class="drop-menu max_w_600">
+									<li> <a>044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ </a> </li>
+									<li> <a> 049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ"</a> </li>
+									<li> <a> 044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</a> </li>
+								</ul>
+							</div>
+		            </div>
+				</div>
+			</div>
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">р/с</div>
+					<input type="text" name="" placeholder="Счет получателя" id="" class="drop-target input_search_focus">
+					<div class="drop-content">
+						<div class="drop-title">Счета получателя</div>
+						<ul class="drop-menu max_w_600 drop_bank_account">
+							<li>
+								<a>
+									<span class="bank_name">044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ</span>
+									<span class="bank_account_num">Счет 12345678901234567890</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="bank_name">049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ" </span>
+									<span class="bank_account_num">Счет 12345678901234567890</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="bank_name">044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</span>
+									<span class="bank_account_num">Счет 12345678901234567890</span>
+								</a>
+							</li>
+						</ul>
+
+		            </div>
+				</div>
+			</div>
+
+			<div class="form_sep"></div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">УИП</div>
+					<input type="text" name="" placeholder="Уникальный идентификатор платежа" id="" class="drop-target">
+					<div class="drop-content">
+						<div class="drop-content-inner inner_pad">
+							<div class="small_text fs_i">Проверьте данные, такого названия банка или номера БИК нет в нашем справочнике.</div>
+						</div>
+		            </div>
+				</div>
+			</div>
+			<div class="form_group">
+
+				<div class="input_group w100">
+					<div class="input_group_addon">Со счета</div>
+
+
+						<a class="w100 drop-input drop-target">
+							<span>
+								Расчетный счет
+								<span class="light_text">(*****4590)</span>
+								–
+								<span class="fw_m">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+							</span>
+						</a>
+						<div class="drop-content">
+							<div class="drop-content-inner drop_account_list">
+								<ul class="drop-menu max_w_600">
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+
+								</ul>
+							</div>
+			            </div>
+
+				</div>
+			</div>
+
+			<div class="form_group row">
+				<div class="col half">
+					<div class="input_group w100">
+						<div class="input_group_addon">Сумма</div>
+						<input type="text" name="" placeholder="0,00" id="" class="">
+					</div>
+				</div>
+				<div class="col half">
+					<select class="w100" data-placeholder="НДС">
+						<option value="111" selected>Без НДС</option>
+						<option value="">18% включен в сумму</option>
+						<option value="">18% сверх суммы</option>
+						<option value="">10% включен в сумму</option>
+						<option value="">10% сверх суммы</option>
+						<option value="">18% включен в сумму</option>
+						<option value="">Не указывать</option>
+					</select>
+				</div>
+				<div class="small_text clear">НДС 18% - 18,00 Р сверх суммы</div>
+			</div>
+			<div class="form_group">
+				<textarea name="" id="" placeholder="Назначение платежа" class="w100 js_autosize textarea_middle"></textarea>
+			</div>
+			<div class="form_group">
+				<input type="checkbox" name="name" id="a1">
+				<label for="a1" class="check label_check"><i class="icon"></i><span>Отправить уведомление получателю</span></label>
+			</div>
+			<!-- отправка уведомлений -->
+			<!-- <div class="form_group_list">
+				<input type="email" name="" id="" class="small w60" placeholder="E-mail получателя">
+			</div>
+			<div class="form_group">
+				<textarea name="" id="" placeholder="Введите сообщение" class="small w60 js_autosize textarea_middle"></textarea>
+			</div> -->
+
+			<div class="form_buttons">
+				<button class="button second icon-check">Создать</button>
+				<a class="button_clean">Сохранить черновик</a>
+			</div>
+
+		</form>
+	</div>
+
+	<!-- сайдбар -->
+	<div class="page_side page_side_wide">
+
+		<!-- автозаполнение реквизитов -->
+		<div class="payment_autocompelete_details">
+			<div class="title">Автозаполнение реквизитов</div>
+			<div class="form_group">
+				<div class="textarea_with_attach">
+					<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+или загрузите в виде файла реквизиты получателя или платежного поручения."></textarea>
+					<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+				</div>
+			</div>
+			<div class="form_buttons">
+				<button class="button middle w100">Заполнить реквизиты</button>
+			</div>
+		</div>
+
+		<!-- проверка реквизитов -->
+		<!-- <div class="payment_autocompelete_details">
+			<div class="title">Автозаполнение реквизитов</div>
+			<div class="form_group">
+				<div class="textarea_with_attach">
+					<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+или загрузите в виде файла реквизиты получателя или платежного поручения." disabled>ИП Ибрагимов Нур Фанурович
+ИНН: 020504154524
+Наименование Банка: МОСКОВСКИЙ ФИЛИАЛ ОАО КБ «Региональный кредит» МОСКОВСКИЙ ФИЛИАЛ ОАО
+</textarea>
+					<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+				</div>
+			</div>
+			<div class="form_buttons">
+				<button class="button middle w100 loader">Распознование реквизитов</button>
+			</div>
+		</div> -->
+
+		<!-- реквизиты заполнены -->
+		<!-- <div class="payment_autocompelete_details">
+			<div class="title">Автозаполнение реквизитов</div>
+			<div class="form_group">
+				<div class="textarea_with_attach">
+					<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+или загрузите в виде файла реквизиты получателя или платежного поручения." >ИП Ибрагимов Нур Фанурович
+ИНН: 020504154524
+Наименование Банка: МОСКОВСКИЙ ФИЛИАЛ ОАО КБ «Региональный кредит» МОСКОВСКИЙ ФИЛИАЛ ОАО
+</textarea>
+					<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+				</div>
+			</div>
+			<div class="form_buttons">
+				<button class="button middle w100 second icon-check noclick">Реквизиты заполнены</button>
+			</div>
+		</div> -->
+
+		<!-- загрузка файлов -->
+		<!-- <div class="payment_autocompelete_details">
+			<div class="title">Автозаполнение реквизитов</div>
+			<div class="form_group">
+				<div class="textarea_with_attach">
+					<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+или загрузите в виде файла реквизиты получателя или платежного поручения." ></textarea>
+					<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+				</div>
+
+				<div class="file_upload_block">
+					<div class="uploaded">
+						<a class="file_delete"></a>
+						<div class="file_center">
+							<div class="file_icon pdf"></div>
+							<div class="file_name">Фото отсканированных реквизитов.pdf</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="form_buttons">
+				<button class="button middle w100 second icon-check noclick">Реквизиты заполнены</button>
+			</div>
+		</div> -->
+
+		<!-- избранные платежи -->
+		<div class="payment_favorites_list">
+			<div class="title">Избранные платежи</div>
+			<a class="item icon-favorites-solid">
+				<span class="d_b">ОАО СБЕРБАНК РОССИИ</span>
+				<span class="light_text d_ib fw_n">20 000 <span class="cur ruble"><span>р.</span></span></span>
+				<span class="light_text d_ib">от 10.07.2015</span>
+			</a>
+			<a class="item icon-favorites-solid">
+				<span class="d_b">УФК по Калужской области (ОПФР по Калужской области)</span>
+				<span class="light_text d_ib fw_n">20 000 <span class="cur dollar"><span>$</span></span></span>
+				<span class="light_text d_ib">от 10.07.2015</span>
+			</a>
+			<a class="item icon-favorites-solid">
+				<span class="d_b">ОАО СБЕРБАНК РОССИИ</span>
+				<span class="light_text d_ib fw_n">20 000 <span class="cur ruble"><span>р.</span></span></span>
+				<span class="light_text d_ib">от 10.07.2015</span>
+			</a>
+
+		</div>
+	</div>
+
+
+	<div class="popup_overlay" >
+		<div class="popup_table">
+			<div class="popup_cell">
+				<div class="popup_layer clean payment_new_type_popup">
+					<a class="icon-change">Перевод между своими счетами</a>
+					<a class="icon-building">Платеж контрагенту</a>
+					<a class="icon-user">Платеж физическому лицу</a>
+					<a class="icon-insurance">Оплата страховых взносов</a>
+					<a class="icon-government">Налоги или бюджетный платеж</a>
+					<a class="icon-customs">Таможенный платеж</a>
+					<a class="icon-currency-change">Валютный перевод</a>
+				</div>
+				<div class="popup_backdrop"></div>
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+
+</body>
+</html>

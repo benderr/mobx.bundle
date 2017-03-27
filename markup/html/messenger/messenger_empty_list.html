@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Чат</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main"></section>
+<article class="page"></article>
+
+<!-- ЧАТ  -->
+
+<div class="messenger">
+	<div class="">
+		<div class="messenger_header">
+			<div class="messenger_header_action">
+				<a class="icon-close"></a>
+				<a class="icon-arrow-up"></a>
+			</div>
+			<div class="messenger_header_title">
+				<a class="icon-plus">Новый вопрос</a>
+			</div>
+		</div>
+
+		<div class="messenger_main">
+			<div class="messenger_theme_list">
+				<div class="messenger_theme_empty">
+					<div class="title">Мы здесь, чтобы помочь вам.</div>
+					<p>Задайте вопрос, поставьте задачу или просто поделитесь хорошим настроением с нами.</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+</section>
+</body>
+</html>

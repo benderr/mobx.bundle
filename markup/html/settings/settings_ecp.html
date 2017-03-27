@@ -1,0 +1,145 @@
+css<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Настройки</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<article class="page open">
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+
+	</div>
+	<div class="page_content">
+		<div class="tabs tabs_vertical">
+			<div class="tabs_menu">
+				<ul>
+					<li class="title">Мои настройки</li>
+					<li><a href="">Мой профиль</a></li>
+					<li><a href="">Уведомления</a></li>
+					<li class="active"><a href="">Электронная подпись</a></li>
+					<li class="title">Настройки компании</li>
+					<li><a href="">Профиль компании</a></li>
+					<li><a href="">Представители</a></li>
+					<li><a href="">Тарифы и услуги</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+				<div class="legend"><span>Ваша электронная подпись</span></div>
+				<div class="info info_icon_warning">
+					<p>Для того, чтобы иметь возможность подписывать документы (например, платежи) в системе, вам необходимо получить электронную подпись. </p>
+				</div>
+				<div class="info_error info_icon_error">
+					<a class="block_close icon-close"></a>
+					Заявка на выпуск электронной подписи была отклонена руководителем вашей компании. Чтобы получить электронную подпись, отправьте заявку на выпуск повторно.
+				</div>
+				<div class="info_error info_icon_error">
+					К сожалению, мы не можем выпустить вам электронную подпись. Если у вас есть вопросы, можете задать их <a>ассистенту</a>.
+				</div>
+				<div class="info_success info_icon_success">
+					Электронная подпись для работы в системе выпущена. Вам осталось только посетить наш ближайший офис и активировать электронную подпись. Ознакомьтесь с инструкцией и перечнем необходимых документов перейдя по <a>этой&nbsp;ссылке</a>.
+				</div>
+
+
+				<div><a class="button small">Запросить выпуск электронной подписи</a></div>
+
+				<div class="certificate_block">
+					<p class="title">Сведения о сертификате</p>
+					<div class="form_group_list">
+						<div class="property_label col four">ФИО:</div>
+						<div class="property_value col eight">Сидоров Сидор Сидорович</div>
+					</div>
+					<div class="form_group_list">
+						<div class="property_label col four">Серийный номер:</div>
+						<div class="property_value col eight">fffffhhhh444038368hh</div>
+					</div>
+
+				</div>
+
+				<div class="docs_block">
+						<div class="title">
+							Выпуск электронной подписи
+							<span class="icon-info" title="#"></span>
+						</div>
+						<div class="small_text">
+							<p>
+								Заполните форму и загрузите сканы или фотографии необходимых документов.
+							</p>
+						</div>
+
+
+						<div class="form_group">
+							<input type="text" name="" id="" placeholder="Фамилия" class="column four">
+							<input type="text" name="" id="" placeholder="Имя" class="column four">
+							<input type="text" name="" id="" placeholder="Отчество" class="column four"></div>
+						<div class="form_group">
+							<input type="text" name="" id="" placeholder="Должность" class="column half">
+							<input type="text" name="" id="" placeholder="СНИЛС" class="column half">
+						</div>
+
+
+						<div class="file_upload_list">
+							<div class="file_upload_block column three">
+								<div class="file_title">Первый разворот паспорта</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+							<div class="file_upload_block column three">
+								<div class="file_title">Страница со штампом о регистрации</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+							<div class="file_upload_block column three">
+								<div class="file_title">
+									СНИЛС
+									<br/>
+									руководителя
+								</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+						</div>
+
+						<div class="form_buttons">
+							<a class="button second">Отправить заявку</a>
+						</div>
+
+						<div class="small_text ">После того как ваш руководитель компании подтвердит вашу заявку мы сразу же выпустим вам новую ЭЦП.</div>
+
+
+					</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Пополнение счета с карты</title>
+	<base href="../../"/>
+
+	<meta name="viewport" content="width=device-width, initial-scale=2.0">
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Пополнить счет</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="account_income_mycard">
+
+			<div class="form_group form_horizontal">
+				<div class="property_label col">Пополнить счет:</div>
+				<div class="property_value col">
+					<a class="w75 drop-input drop-target">
+						<span class="drop_account_list">
+							<span class="account_target_name">Расчетный счет</span>
+							<span class="account_target_num">(*****4590)</span>
+							<span class="account_target_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+						</span>
+					</a>
+					<div class="drop-content">
+						<div class="drop-content-inner drop_account_list">
+							<ul class="drop-menu max_w_600">
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Расчетный счет</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<span class="account_name">Расчетный счет липовый</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Заначка на черный день</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Расчетный счет</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<span class="account_name">Расчетный счет липовый</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Заначка на черный день</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Расчетный счет</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<span class="account_name">Расчетный счет липовый</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Заначка на черный день</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+
+							</ul>
+						</div>
+		            </div>
+				</div>
+			</div>
+
+			<div class="form_group">
+				<div class="property_label col">Основание для <br/>пополнения счета:</div>
+				<div class="property_value col">
+					<div class="jsRadSelect2 w75" data-placeholder="Селект" name="adfasd" id="adsf">
+						<option class="jsRadSelect2Options" value="111" selected>Взнос в уставный капитал</option>
+						<option class="jsRadSelect2Options" value="">Перечисление средств по договору займа</option>
+						<option class="jsRadSelect2Options" value="">Возврат неиспользованной подотчетной суммы</option>
+						<option class="jsRadSelect2Options" value="">Безвозмездная помощь</option>
+					</div>
+					<span class="value_info icon-info" b365-tooltip title="Подробное описание"></span>
+				</div>
+			</div>
+
+			<div class="form_group">
+				<div class="property_label col">Сумма: <span class="field_desc">максимум 75 000 <span class="cur rur"><span>р.</span></span></span></div>
+				<div class="property_value col">
+					<div class="input_group w30">
+						<input type="text" placeholder="0.00" class="a_center">
+						<div class="input_group_addon"><span class="cur rur"><span>р.</span></span></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form_group m_top_25">
+				<div class="property_label col">Комиссия:</div>
+				<div class="property_value col">
+					0 <span class="cur rur"><span>р.</span></span>
+				</div>
+			</div>
+
+			<div class="form_group m_top_35">
+				<div class="property_label col">Способ пополнения:</div>
+				<div class="property_value col">
+					Visa, Mastercard
+				</div>
+			</div>
+
+			<div class="form_group m_top_35">
+				<div class="property_label col">Будет списано с карты:</div>
+				<div class="property_value col">
+					<div class="total_summ">0 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+			</div>
+
+
+			<div class="form_buttons">
+				<div class="property_label col">&nbsp;</div>
+				<div class="property_value col">
+					<a class="button middle wide">Далее</a>
+					<div class="small_text m_top_30 w90">
+						<p>После нажатия кнопки «Далее» вы будете перенаправлены на сайт платежной системы.</p>
+						<p>Перевод и списание комиссии осуществляет ОАО «МИнБ». Генеральная лицензия Банка России №912 от 14.10.2002г.</p>
+
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+</article>
+
+</body>
+</html>

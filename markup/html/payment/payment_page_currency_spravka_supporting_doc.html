@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Справка о подтверждающих документах</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Справка о подтверждающих документах
+		</h1>
+
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+
+				<div class="info">Внимательно проверьте данные и подпишите документ. Если у вас возникли вопросы, <a>задайте их нам</a>.</div>
+				<form class="form">
+					<div class="form_group_list">
+						<div class="col three property_label">Номер:</div>
+						<div class="col nine property_value">{Номер справки}</div>
+					</div>
+					<div class="form_group_list">
+						<div class="col three property_label">Дата:</div>
+						<div class="col nine property_value">22.11.2015</div>
+					</div>
+					<div class="form_group_list">
+						<div class="col three property_label">В:</div>
+						<div class="col nine property_value">Московский филиал ОАО КБ “Региональный кредит”</div>
+					</div>
+					<div class="form_group_list">
+						<div class="col three property_label">От:</div>
+						<div class="col nine property_value">{Полное наименование клиента на русском языке}</div>
+					</div>
+					<div class="form_group_list">
+						<div class="col three property_label">Исполнитель:</div>
+						<div class="col nine property_value">Иванов Иван Иванович</div>
+					</div>
+					<div class="form_group m_bot_25">
+						<div class="col three property_label">Телефон:</div>
+						<div class="col nine property_value">+7(923)23-44-239</div>
+					</div>
+					<div class="form_sep_full"><div class="transaction_status_stamp">На подписи <span class="date">18.06.2015</span></div></div>
+
+					<div class="form_group_list">
+						<div class="col three property_label">Паспорт сделки №:</div>
+						<div class="col nine property_value">123412</div>
+					</div>
+
+
+					<div class="legend m_top_40"><span>Подтверждающие документы</span></div>
+					<div class="form_group_list">
+						<div class="col three property_label">Номер ПД:</div>
+						<div class="col nine property_value">{Номер подтверждающего документа}</div>
+					</div>
+					<div class="form_group_list">
+						<div class="col three property_label">Дата ПД:</div>
+						<div class="col nine property_value">{Дата подтверждающего документа}</div>
+					</div>
+
+					<div class="m_top_40">
+						Предпросмотр в формате: <a class="icon-file m_left_10">HTML</a> <a class="icon-file m_left_10">PDF</a>
+					</div>
+
+					<div class="form_buttons">
+						<button class="button second icon-sign">Подписать</button>
+					</div>
+				</form>
+
+
+	</div>
+
+
+</article>
+
+</body>
+</html>

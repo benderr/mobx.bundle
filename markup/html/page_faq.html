@@ -1,0 +1,509 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>FAQ</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open page_faq">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+
+		<h1>Частые вопросы клиентов</h1>
+
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<h1>Здравствуйте, {{username}}!</h1>
+		<p>Если вы&nbsp;не&nbsp;нашли ответ на&nbsp;свой вопрос, пишите в&nbsp;чат, и&nbsp;мы&nbsp;поможем.</p>
+		<p>Мы&nbsp;постоянно обновляем личный кабинет и&nbsp;услуги банка. Чтобы вы&nbsp;не&nbsp;потерялись в&nbsp;изменениях, мы&nbsp;подготовили ответы на&nbsp;часто задаваемые вопросы.</p>
+
+
+		<div class="page_faq_title">Личный кабинет</div>
+		<ul class="page_faq_list">
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_Schet')">Где посмотреть реквизиты счета?</a>
+				<div class="ans"  style="display: none;" >
+					<p>Есть два способа увидеть реквизиты счета. Первый: нажмите &laquo;шестеренку&raquo;, она в&nbsp;правом верхнем углу, и&nbsp;выберите &laquo;Реквизиты компании&raquo;. Второй: нажмите последние цифры счета на&nbsp;главной странице.</p>
+
+					<div class="ans_img">
+						<p class="a_center f_small fw_m">Первый способ</p>
+						<img src="../images/faq/faq1.jpg" alt="">
+						<p class="a_center f_small fw_m">Второй способ</p>
+						<img src="../images/faq/faq2.jpg" alt="">
+					</div>
+
+
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_SMS')">Как подключить смс-уведомления?</a>
+				<div class="ans"  style="display: none;">
+					<p>Мы&nbsp;сами подключаем смс-уведомления при открытии счета. Если по&nbsp;какой-то причине смс не&nbsp;приходят, вы&nbsp;можете подключить их&nbsp;сами.</p>
+					<p>Чтобы это сделать, нажмите &laquo;шестеренку&raquo;&nbsp;&mdash; она в&nbsp;правом верхнем углу, и&nbsp;зайдите в&nbsp;раздел &laquo;Уведомления&raquo;. В&nbsp;разделе можно настроить уведомления на&nbsp;разные события:</p>
+
+					<div class="ans_img">
+					<img src="../images/faq/faq3.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_Vypiska')">Как получить выписку?</a>
+				<div class="ans"  style="display: none;">
+					<p>Чтобы получить выписку, нажмите синюю кнопку &laquo;Сделать выписку&raquo;. Кнопку видно со&nbsp;страницы &laquo;Деньги&raquo;.</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq4.jpg" alt="">
+					</div>
+
+					<p>Еще можно настроить подписку, и тогда не придется заходить в личный кабинет, чтобы скачать выписку. Достаточно один раз подписаться, и выписка будет приходить на почту по расписанию:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq4_1.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_PP')">Как получить платежное поручение?</a>
+				<div class="ans"  style="display: none;">
+					<p>Все платежи видны на&nbsp;главной странице. Чтобы получить платежное поручение, выберите перевод, к&nbsp;которому нужно поручение, и&nbsp;нажмите стрелку в&nbsp;правом верхнем углу.</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq5.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_MailChange')">Как поменять почту?</a>
+				<div class="ans"  >
+					<p>Чтобы поменять почту, нажмите &laquo;шестеренку&raquo;&nbsp;&mdash; она в&nbsp;правом верхнем углу, и&nbsp;зайдите в&nbsp;раздел &laquo;Мой профиль&raquo;. В&nbsp;разделе можно поменять адрес почты:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq6.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_PhoneChange')">Как поменять телефон?</a>
+				<div class="ans"  style="display: none;">
+					<p>Чтобы поменять телефон, нажмите &laquo;шестеренку&raquo;&nbsp;&mdash; она в&nbsp;правом верхнем углу, и&nbsp;зайдите в&nbsp;раздел &laquo;Мой профиль&raquo;. В&nbsp;разделе можно поменять телефон:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq7.jpg" alt="">
+					</div>
+				</div>
+			</li>
+
+			<li class="item">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_Tarif')">Как поменять тариф?</a>
+				<div class="ans"  style="display: none;">
+					<p>Если тариф не&nbsp;нравится, и&nbsp;вы&nbsp;хотите выбрать другой, вы&nbsp;можете поменять его сами. Зайдите в&nbsp;личный кабинет, нажмите &laquo;шестеренку&raquo;, выберите раздел &laquo;Тарифы&raquo; и&nbsp;нужный тариф:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq12.jpg" alt="">
+					</div>
+					<p>После этого останется подтвердить смену тарифа кодом из&nbsp;смс, и&nbsp;всё. Новый тариф начнет действовать с&nbsp;первого числа следующего месяца: если вы&nbsp;поменяли тариф 22&nbsp;апреля, новый тариф будет с&nbsp;1&nbsp;мая.</p>
+				</div>
+			</li>
+
+			<li class="item">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_BuySellCur')">Как купить или продать валюту?</a>
+				<div class="ans"  style="display: none;">
+					<p>Чтобы купить или продать валюту, нажмите белую кнопку с&nbsp;плюсом и&nbsp;выберите &laquo;Покупка-продажа валюты&raquo;.</p>
+					<p>Покупать и&nbsp;продавать валюту можно круглосуточно. Мы&nbsp;обновляем курс четыре раза в&nbsp;день, чтобы он&nbsp;был максимально приближен к&nbsp;биржевому. Лучше всего покупать валюту во&nbsp;время рабочего дня, когда на&nbsp;бирже идут торги.</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq11.jpg" alt="">
+					</div>
+				</div>
+			</li>
+
+			<li class="item">
+				<a class="ques" ng-click="toggleQuestion($event, '???')">У меня есть еще одна компания. Как открыть для нее счет?</a>
+				<div class="ans"  style="display: none;">
+					<p>Счет для другой компании открывается также, как вы&nbsp;открывали первый счет: вы&nbsp;загружаете документы о&nbsp;компании, мы&nbsp;их&nbsp;проверяем и&nbsp;встречаемся, чтобы подписать договор. Если у&nbsp;вас несколько компаний, за&nbsp;одну встречу мы&nbsp;откроем счета для всех.</p>
+					<p>Загрузить документы можно двумя способами. Первый: нажать белую кнопку с&nbsp;плюсом и&nbsp;выбрать &laquo;Добавить новую компанию&raquo;. Второй: нажать на&nbsp;название компании и&nbsp;выбрать &laquo;Подключить компанию&raquo;.</p>
+					<div class="ans_img">
+						<div class="ans_img_title">Первый способ</div>
+						<img src="../images/faq/faq13.jpg" alt="">
+					</div>
+					<div class="ans_img">
+						<div class="ans_img_title">Второй способ</div>
+						<img src="../images/faq/faq14.jpg" alt="">
+					</div>
+
+					<p>Появится страница для проверки реквизитов и&nbsp;загрузки документов о&nbsp;компании. Какие документы потребуются, мы&nbsp;покажем в&nbsp;личном кабинете. Через десять минут после загрузки вы&nbsp;увидите вот такое сообщение:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq15.jpg" alt="">
+					</div>
+
+					<p>Это значит, что мы&nbsp;проверили ваши документы и&nbsp;приглашаем вас на&nbsp;подписание договора. Время и&nbsp;место встречи вы&nbsp;выбираете сами.</p>
+					<p>Мы&nbsp;предлагаем единый личный кабинет на&nbsp;все компании. Если у&nbsp;вас несколько ООО и&nbsp;ИП, все счета будут в&nbsp;одном кабинете, переключиться между ними&nbsp;&mdash; один клик.</p>
+					<p><span class="highlighted">Чтобы получить единый личный кабинет, сделайте вот что: при открытии новых счетов, указывайте тот&nbsp;же телефон, что и&nbsp;для первого счета.</span> На&nbsp;этот номер вы&nbsp;будете получать смс о&nbsp;поступлении и&nbsp;списании денег, код для входа в&nbsp;личный кабинет и&nbsp;подписи платежек.</p>
+					<p>Если зарегистрировать компании на&nbsp;разные телефоны, для каждой компании будет свой личный кабинет.</p>
+
+				</div>
+			</li>
+
+			<li class="item">
+				<a class="ques" ng-click="toggleQuestion($event, '???')">Как подписать несколько платежей одновременно? </a>
+				<div class="ans"  style="display: none ;">
+					<p>Подписать несколько платежей занимает минуту. Выберите нужные платежи из&nbsp;списка и&nbsp;нажмите &laquo;Подписать&raquo;:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq16.jpg" alt="">
+					</div>
+					<p>Останется подписать платежи кодом из&nbsp;смс, и&nbsp;деньги уйдут.</p>
+					<p>Ограничений по&nbsp;количеству платежей нет: подписывайте одновременно столько, сколько хотите.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')">Где посмотреть договор обслуживания в банке?</a>
+				<div class="ans"  style="display: none ;">
+					<p>Договор комплексного обслуживания (ДКО) смотрите на&nbsp;сайте банка&nbsp;&mdash; в&nbsp;конце страниц, или <a href="https://modulbank.ru/files/Obanke/dko.zip">скачивайте по&nbsp;ссылке</a>.</p>
+				</div>
+			</li>
+
+
+		</ul>
+
+
+		<div class="page_faq_title">Деньги и счет</div>
+		<ul class="page_faq_list">
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_Procent')" >Какой процент на остаток по счету?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>На&nbsp;Оптимальном и&nbsp;Безлимитном тарифах мы&nbsp;начисляем процент на&nbsp;остаток по&nbsp;счету. </p>
+					<p>Главное, чтобы на&nbsp;расчетном счете лежало 30&nbsp;000 рублей или больше. На&nbsp;Оптимальном тарифе доходность&nbsp;&mdash; 3%, на&nbsp;Безлимитном&nbsp;&mdash; 5%.</p>
+					<p>С&nbsp;помощью доходности счетом можно пользоваться бесплатно. Оптимальный тариф стоит 5880 рублей в&nbsp;год. Эти расходы можно компенсировать, если хранить на&nbsp;счете 196&nbsp;000&nbsp;рублей.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_KomObslus')" >Когда списывается абонентская плата за счет?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Мы&nbsp;списываем деньги за&nbsp;обслуживание авансом, в&nbsp;последний рабочий день месяца. Например, абонентскую плату за&nbsp;сентябрь спишем 31&nbsp;августа.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')">Где посмотреть лимит на перевод и снятие наличных?</a>
+				<div class="ans"  style="display:none ;" id="">
+					<p>На&nbsp;каждом тарифе есть комиссия за&nbsp;перевод и&nbsp;снятие наличных: одна&nbsp;&mdash; до&nbsp;установленного лимита, и&nbsp;другая&nbsp;&mdash; за&nbsp;его превышение. Например, ИП&nbsp;на&nbsp;Безлимитном тарифе платит так: за&nbsp;переводы физлицам до&nbsp;миллиона рублей в&nbsp;месяц&nbsp;&mdash; 0&nbsp;рублей, за&nbsp;переводы свыше миллиона&nbsp;&mdash; 1%-3% от&nbsp;суммы перевода.</p>
+					<p>Установленный лимит на&nbsp;перевод и&nbsp;снятие наличных показываем в&nbsp;личном кабинете. Чтобы его отслеживать, нажмите шестеренку и&nbsp;откройте раздел &laquo;Тарифы&raquo;:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq17.jpg" alt="">
+					</div>
+				</div>
+			</li>
+
+			<li class="item active">
+				<a class="ques" ng-click="toggleQuestion($event, '???')">Как сэкономить на обслуживании?</a>
+				<div class="ans"  style="display: ;" id="">
+					<p>Чтобы сэкономить на&nbsp;банке, участвуйте в&nbsp;акции &laquo;Подари другу банк&raquo;. Если ваш друг откроет счет в&nbsp;Модульбанке, мы&nbsp;подарим месяц без абонентской платы и&nbsp;комиссий за&nbsp;платежки вам обоим. Представьте, двенадцать друзей открывают счет и&nbsp;вы&nbsp;не&nbsp;платите за&nbsp;банк весь год.</p>
+					<p>Если у&nbsp;вас несколько компаний, вы&nbsp;можете для каждой открыть счет в&nbsp;Модульбанке и&nbsp;тоже сэкономить на&nbsp;обслуживании. Для каждой компании будет подарок&nbsp;&mdash; месяц без абонентской платы и&nbsp;комиссий за&nbsp;переводы.</p>
+					<p>Пригласить друзей занимает минуту. <span class="highlighted">Зайдите на&nbsp;страницу акции и&nbsp;отправьте ссылку другу по&nbsp;почте, смс или опубликуйте ее&nbsp;в&nbsp;соцсетях. </span>По&nbsp;этой ссылке друг откроет счет, и&nbsp;вы&nbsp;оба получите подарок.</p>
+					<p>Чтобы пригласить друзей, зайдите в&nbsp;личный кабинет и&nbsp;нажмите сердечко в&nbsp;правом верхнем углу.</p>
+
+					<div class="ans_img">
+						<img src="../images/faq/faq18.jpg" alt="">
+					</div>
+
+					<p>В мобильном приложении для айфона зайдите в раздел «Контакты»: </p>
+					<div class="ans_img">
+						<img src="../images/faq/faq19.jpg" alt="">
+					</div>
+				</div>
+			</li>
+
+		</ul>
+
+		<div class="page_faq_title">Переводы</div>
+		<ul class="page_faq_list">
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_Perevod')" >Как перевести деньги с расчетного счета на карточный?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Чтобы перевести деньги с&nbsp;расчетного счета на&nbsp;карточный, нажмите белую кнопку с&nbsp;плюсом и&nbsp;выберите &laquo;Перевод между счетами&raquo;:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq8.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_PerevodRepeat')" >Как повторить перевод?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Чтобы повторить перевод, выберите нужный перевод на&nbsp;главной странице и&nbsp;нажмите на&nbsp;круглую стрелку справа:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq9.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_PerevodVDrugoyBank')" >Как перевести деньги в другой банк?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Чтобы перевести деньги в&nbsp;другой банк, нажмите белую кнопку с&nbsp;плюсом и&nbsp;выберите &laquo;Новый платеж&raquo;:</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq10.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_SkorostPlatescha')" >Как быстро вы отправляете платежи?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Мы&nbsp;отправляем деньги почти каждый час с&nbsp;4:00 и&nbsp;до&nbsp;20:30 по&nbsp;московскому времени, но&nbsp;как быстро они дойдут, зависит от&nbsp;банка-получателя.</p>
+					<p>Моментально уходят переводы внутри банка: например, если вы&nbsp;отправляете деньги со&nbsp;счета в&nbsp;Модульбанке, а&nbsp;у&nbsp;партнера счет тоже в&nbsp;Модульбанке. Еще один способ отправить моментально&nbsp;&mdash; перевести с&nbsp;карты на&nbsp;карту.</p>
+					<p>В&nbsp;выходные отправить перевод в&nbsp;другой банк не&nbsp;сможем, потому что не&nbsp;работают межбанковские платежи. Это правило Центрального банка.</p>
+				</div>
+			</li>
+		</ul>
+
+		<div class="page_faq_title">Переводы в валюте</div>
+		<ul class="page_faq_list">
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_ValutOpen')" >Как открыть валютный счет?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Чтобы открыть валютный счет, напишите нам в&nbsp;чат. Откроем валютный счет за&nbsp;час и&nbsp;без поездки в&nbsp;банк.</p>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_Schet')" >Сколько стоит валютный счет?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Валютный счет в&nbsp;Модульбанке&nbsp;&mdash; это бесплатно. Вы&nbsp;платите за&nbsp;свой тариф, и&nbsp;обслуживание валютного счета входит в&nbsp;тариф. Поэтому вы&nbsp;можете открыть счет в&nbsp;рублях, валюте, евро и&nbsp;юанях и&nbsp;не&nbsp;платить дополнительно.</p>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_KomCarta')" >Какая комиссия при оплате картой в валюте?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Комиссия за оплату картой в валюте — 1% от суммы покупки.</p>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_BuySellCur')" >Как купить или продать валюту?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Чтобы купить или продать валюту, нажмите белую кнопку с&nbsp;плюсом и&nbsp;выберите &laquo;Покупка-продажа валюты&raquo;.</p>
+					<p>Покупать и&nbsp;продавать валюту можно круглосуточно. Мы&nbsp;обновляем курс четыре раза в&nbsp;день, чтобы он&nbsp;был максимально приближен к&nbsp;биржевому. Лучше всего покупать валюту во&nbsp;время рабочего дня, когда на&nbsp;бирже идут торги.</p>
+					<div class="ans_img">
+						<img src="../images/faq/faq11.jpg" alt="">
+					</div>
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_VK')" >Что такое валютный контроль?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Валютный контроль в&nbsp;банке&nbsp;&mdash; это процедура, которую проходят клиенты банка, если отправляют или получают деньги из-за границы.</p>
+					<p>Валютный контроль придумали чиновники и&nbsp;Центральный банк. Так они проверяют, что предприниматели не&nbsp;отмывают деньги, не&nbsp;продают запрещенные товары, не&nbsp;работают с&nbsp;мошенниками и&nbsp;террористами за&nbsp;границей.</p>
+					<p>Чтобы пройти валютный контроль, клиент передает банку договор с&nbsp;иностранцем и&nbsp;заполняет документы. В&nbsp;обычном банке клиент заполняет документы сам, например, справку о&nbsp;валютных операциях и&nbsp;распоряжение о&nbsp;списании валюты.</p>
+					<p>Мы&nbsp;проводим валютный контроль почти без участия клиента. От&nbsp;вас ждем скан договора, остальные документы заполняем сами и&nbsp;отправляем на&nbsp;подпись. Вам остается их&nbsp;подписать.</p>
+				</div>
+			</li>
+		</ul>
+
+
+
+		<div class="page_faq_title">Карта</div>
+		<ul class="page_faq_list">
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_2Scheta')" >Почему у меня два счета: расчетный и карточный?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Когда клиент открывает расчетный счет, мы&nbsp;предлагаем открыть еще карточный счет. Если клиент соглашается, он&nbsp;получает два счета.</p>
+					<p>Расчетный счет&nbsp;&mdash; основной счет предпринимателя: на&nbsp;этот счет можно получать оплату за&nbsp;работу, оплачивать с&nbsp;него расходы компании и&nbsp;налоги.</p>
+					<p>Карточный счет&nbsp;&mdash; дополнительный, он&nbsp;нужен для карты. Карту удобно давать сотрудникам, чтобы они покупали офисную бумагу, оплачивали контекстную рекламу или ужин с&nbsp;партнерами.</p>
+
+				</div>
+			</li>
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_DlyaChegoCarta')" >Для чего нужна карта?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Корпоративная банковская карта&nbsp;&mdash; то&nbsp;же самое, что обычная, только для компании, а&nbsp;не&nbsp;человека. Компания оплачивает картой расходы на&nbsp;командировки, закупку бумаги для принтера, рекламу в&nbsp;интернете.</p>
+					<p><strong>Картой можно оплачивать регулярные покупки</strong>. Если ваша компания пользуется сервисом с&nbsp;ежемесячной оплатой, укажите в&nbsp;нем карту Модульбанка. Оплата будет списываться автоматически в&nbsp;нужную дату, и&nbsp;вам не&nbsp;придется запоминать самому или ставить напоминания об&nbsp;оплате.</p>
+					<p><strong>Карта подходит для сбора выручки</strong>. Если у&nbsp;вас несколько розничных точек, продавцы смогут вносить выручку сами с&nbsp;помощью карты: раздайте карты продавцам, и&nbsp;они внесут внесут выручку через банкоматы. А&nbsp;вы&nbsp;будете только следить за&nbsp;поступлением на&nbsp;счет.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >Сколько стоит обслуживание карты?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Первый год мы&nbsp;обслуживаем банковскую карту бесплатно, а&nbsp;потом карта стоит 300 рублей в&nbsp;год. Плановый перевыпуск бесплатный, но&nbsp;после перевыпуска бесплатного года нет.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_VnestyNal')" >Как внести наличные на карту?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Вносить наличные можно через наши банкоматы в&nbsp;Москве-сити и&nbsp;партнеров: кассы Юнистрима, терминалы Московского кредитного банка, терминалы и&nbsp;банкоматы Бинбанка.</p>
+					<p>На&nbsp;внесение наличных есть ограничения:</p>
+					<ul class="point">
+						<li>Через терминал Московского кредитного банка за раз можно внести максимум 40 000 рублей, а за сутки — 80 000 рублей; через терминалы Бинбанка — за раз 85 000 рублей, за месяц — 599 000 рублей. На карте деньги появятся моментально, на счете — через час.</li>
+						<li>Чтобы внести деньги в кассах Юнистрима, нужно сказать операционисту номер карточного счета и карты и показать паспорт. Внести деньги может только владелец карты. Минимум можно внести 150 рублей, а максимум 900 000 рублей. Деньги дойдут на следующий рабочий день.</li>
+					</ul>
+					<p>Карта точек приема наличных — в приложении для Айфона и Андроида и <a class="link">в личном кабинете</a>.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >Где снять наличные с карты?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Снять наличные с карты можно бесплатно в любом банкомате в России. Комиссия за снятие будет только по тарифу в Модульбанке. Банк, который выдает деньги, комиссию не возьмет.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >Какая комиссия за внесение наличных на карту?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>На Безлимитном и Оптимальном тарифах взнос наличных бесплатный. На «Стартовом» — 0,5%.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_KomCarta')" >Какая комиссия при оплате картой в валюте?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Комиссия за оплату картой в валюте — 1% от суммы покупки.</p>
+				</div>
+			</li>
+
+		</ul>
+
+
+		<div class="page_faq_title">Проверка банка</div>
+		<ul class="page_faq_list">
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_ZaprosDocs')" >Почему банк запрашивает документы?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Банк запрашивает документы в двух случаях: во время ежегодной проверки и если у банка появились вопросы об источнике денег на счете клиента, налогах и переводах. В этих случаях банк обязан запрашивать документы по федеральному закону № 115.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >Как избежать проверки?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Вот несколько советов, как не&nbsp;вызывать вопросы банка:</p>
+					<ul class="point">
+						<li>платите налоги не&nbsp;меньше 0,5% от&nbsp;оборота по&nbsp;счету;</li>
+						<li>не&nbsp;снимайте наличные с&nbsp;расчетного счета и&nbsp;карты, а&nbsp;если снимаете&nbsp;&mdash; сохраняйте подтверждающие документы;</li>
+						<li>пишите в&nbsp;платежках по&nbsp;какому договору и&nbsp;за&nbsp;какие услуги переводите деньги;</li>
+						<li>не&nbsp;работайте с&nbsp;однодневками.</li>
+					</ul>
+					<p>Подробнее — <a class="link" href="https://delo.modulbank.ru/manage/finmonitoring" target="_blank">в статье «Что делать, чтобы банк не закрыл счет»</a>. </p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_SchetBlok')" >Почему вы заблокировали мой счет?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Мы&nbsp;не&nbsp;блокировали счет: если ваши клиенты или партнеры переведут деньги, вы&nbsp;их&nbsp;получите.</p>
+					<p>Мы&nbsp;временно заблокировали платежи из&nbsp;личного кабинета, потому что у&nbsp;нас появились вопросы об&nbsp;источнике денег на&nbsp;вашем счете, платежах и&nbsp;налогах. <a target="_blank" href="http://www.consultant.ru/document/cons_doc_LAW_32834/">По&nbsp;закону &#8470;&nbsp;115</a>&nbsp;мы должны убедиться, что всё в&nbsp;порядке, и&nbsp;только потом снимать блокировку.</p>
+					<p>Чтобы убедиться, что всё в&nbsp;порядке, мы&nbsp;запрашиваем документы. Документы проверим за&nbsp;три дня или раньше: отсчет времени начнется, когда вы&nbsp;пришлете полный список документов. По&nbsp;итогам проверки напишем в&nbsp;чат.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >По какому праву вы меня проверяете?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Банк обязан проверять каждый перевод клиента и&nbsp;поступление на&nbsp;счет. Эти обязанности прописаны <a class="link" href="http://www.consultant.ru/document/cons_doc_LAW_32834/" target="_blank" >в&nbsp;федеральном законе &#8470;&nbsp;115</a>, который рассказывает о&nbsp;правилах борьбы с&nbsp;отмыванием денег.</p>
+					<p>Как проверять клиентов и&nbsp;что оценивать, Центробанк описал в&nbsp;рекомендациях <a class="link" href="https://my.modulbank.ru/api/redirect/to?url=http%3A//cbr.ru/today/anti_legalisation/236-T.pdf" target="_blank">за&nbsp;2014&nbsp;г.</a> и&nbsp;<a class="link" href="https://my.modulbank.ru/api/redirect/to?url=http%3A//www.cbr.ru/other/10-MR_2016.pdf" target="_blank">за&nbsp;2016&nbsp;г.</a></p>
+					<p>Клиент соглашается на&nbsp;проверку, когда подписывает договор на&nbsp;счет. Условия проверки&nbsp;&mdash; <a class="link" href="https://my.modulbank.ru/api/redirect/to?url=https%3A//modulbank.ru/Files/Pravila_obsluzhivanija_schetov_klientov.pdf%3FdownloadLink%3D1" target="_blank">в&nbsp;приложении &#8470;&nbsp;4&nbsp;к договору</a>, пункт 3.37.</p>
+
+				</div>
+			</li>
+
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >Какие документы нужны для проверки?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Во&nbsp;время проверки мы&nbsp;просим прислать обычные документы&nbsp;&mdash; они есть у&nbsp;каждой компании. Например, договор с&nbsp;партнером, налоговую декларацию, подтверждение оплаты налогов. Мы&nbsp;принимаем документы по&nbsp;чату, поэтому для проверки не&nbsp;надо приезжать в&nbsp;банк.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_OficZapros')" >Мне нужен официальный запрос!</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Всё, что мы&nbsp;пишем в&nbsp;чате&nbsp;&mdash; это официально. Об&nbsp;этом написали&nbsp;в<a target="_blank" href="https://my.modulbank.ru/api/redirect/to?url=https%3A//modulbank.ru/Files/Dogovor_kompleksnogo_obsluzhivanija.pdf">договоре на обслуживание счета</a>, пункты 1.10 и 2.13.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_DlitProverky')" >Как долго идет проверка?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Документы проверяем за&nbsp;три дня или раньше, чаще всего&nbsp;&mdash; за&nbsp;день. По&nbsp;итогам проверки мы&nbsp;звоним или пишем в&nbsp;чат.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_SendDocs')" >Куда присылать документы?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Документы присылайте в&nbsp;чат, нам хватит сканов или фото.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_ViewDocs')" >В каком формате присылать документы?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Мы&nbsp;ждем сканы или фото документов, подходит любой формат&nbsp;&mdash; .jpeg, .pdf, .tif, .zip, .rar. На&nbsp;всех документах должна быть синяя печать и&nbsp;подпись: ваша, клиентов, налоговой или фондов&nbsp;&mdash; это зависит от&nbsp;типа документов. Каждый файл должен быть не&nbsp;больше 10&nbsp;Мб.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, '???')" >Что будет, если я не пришлю документы и закрою счет?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Если не&nbsp;хотите присылать документы и&nbsp;пользоваться счетом, вы&nbsp;можете закрыть счет и&nbsp;перевести деньги в&nbsp;другой банк. Неустойка за&nbsp;перевод денег без документов&nbsp;&mdash; 10%. </p>
+					<p>Если пришлете документы, вы&nbsp;можете пользоваться счетом как обычно или закрыть счет и&nbsp;перевести деньги. Неустойки в&nbsp;этом случае не&nbsp;будет. </p>
+
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_NeMoguPrislat')" >Не могу прислать выписку со счета в другом банке, потому что закрыл счет. Что делать?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>В&nbsp;любом банке можно получить выписку по&nbsp;счету, даже если счет уже закрыт. Чтобы получить выписку, позвоните в&nbsp;банк и&nbsp;попросите ее&nbsp;подготовить. Если банк откажет, требуйте письменный отказ, как получите&nbsp;&mdash; присылайте скан отказа нам.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_BlokPartner')" >Я&nbsp;должен оплатить счет партнера, а&nbsp;вы&nbsp;заблокировали счет. Что делать?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Мы&nbsp;не&nbsp;блокировали счет: если ваши клиенты или партнеры переведут деньги, вы&nbsp;их&nbsp;получите. На&nbsp;время проверки мы&nbsp;заблокировали только переводы из&nbsp;личного кабинета.</p>
+					<p>Чтобы оплачивать счета партнеров, пришлите документы на&nbsp;проверку. Мы&nbsp;проверяем документы за&nbsp;три дня или быстрее.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_BlokPerevodNalog')" >Как оплатить налоги, если вы заблокировали переводы?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Вы&nbsp;можете оплачивать налоги и&nbsp;взносы из&nbsp;личного кабинета, мы&nbsp;заблокировали только переводы себе и&nbsp;партнерам.</p>
+				</div>
+			</li>
+
+			<li class="item ">
+				<a class="ques" ng-click="toggleQuestion($event, 'FAQ_CloseHow')" >Как закрыть счет?</a>
+				<div class="ans"  style="display: none;" id="">
+					<p>Закрыть счет можно из&nbsp;личного кабинета, приезжать в&nbsp;банк не&nbsp;надо. Заявление на&nbsp;перевод денег в&nbsp;другой банк тоже можно отправить из&nbsp;личного кабинета.</p>
+					<p>Чтобы закрыть счет, зайдите в&nbsp;раздел &laquo;Тарифы&raquo;, прокрутите страницу до&nbsp;конца и&nbsp;нажмите &laquo;Расстаться с&nbsp;Модульбанком&raquo;.</p>
+				</div>
+			</li>
+
+
+
+
+
+
+		</ul>
+
+	</div>
+
+
+</article>
+
+</body>
+</html>

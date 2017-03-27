@@ -1,0 +1,11 @@
+.transaction_currency_filter {
+  padding: 10px;
+}
+.transaction_currency_filter .currency_filter {
+  color: clink;
+}
+.transaction_currency_filter .currency_filter span {
+  display: inline-block;
+  border-bottom: 1px dashed clink;
+}
+/*# sourceMappingURL=transaction.css.map */

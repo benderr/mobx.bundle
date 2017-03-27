@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Просмотр клиента</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Компания</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="page_content_area_solid page_content_area_top">
+
+			<div class="top_area_desc">
+				<h1>ООО «Ромашка» <span class="m_client light" b365-tooltip="Клиент Modulbank" title="Клиент Modulbank"></span></h1>
+				<p>Общество с ограниченной ответственностью “Ромашка”</p>
+			</div>
+		</div>
+		<div class="page_client_blocked" ng-show="showSuspensions || showDebts"><div class="page_client_blocked_money" ng-show="showDebts"><div class="title">Текущие требования в картотеке:</div><div class="summ ng-binding">0<rad-currency currency="'RUR'" class="ng-isolate-scope"><span ng-class="currencyHtml[currency].cssPrefix" class="cur ruble"><span class="ng-binding">&nbsp;р.</span></span></rad-currency></div><a class="link" ng-click="companyDebtsDetails()">Документы в картотеке</a></div><div class="page_client_blocked_account ng-hide" ng-show="showSuspensions"></div></div>
+		<div class="page_content_area_light page_content_area_bot">
+			<div class="row equalize_height">
+
+				<div class="col half  widget_block">
+					<a class="button xsmall light show_crm">CRM</a>
+					<div class="form_group_list">
+						<div class="column three property_label a_left">ИНН:</div>
+						<div class="column nine property_value">020504154524</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column three property_label a_left">КПП:</div>
+						<div class="column nine property_value">0205041524</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column three property_label a_left">ОГРН:</div>
+						<div class="column nine property_value">02050415234524</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column three property_label a_left">PortalID:</div>
+						<div class="column nine property_value f_small">bd7dec2b-b862-4dc9-8cac-a5df02dec611</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column three property_label a_left">CRMID:</div>
+						<div class="column nine property_value f_small">< ID компании в CRM></div>
+					</div>
+					<div class="form_group_list">
+						<div class="column three property_label a_left">ABSID:</div>
+						<div class="column nine property_value f_small">< ID компании в АБС></div>
+					</div>
+					<div class="form_group_list">
+						<div class="column three property_label a_left">CRM:</div>
+						<div class="column nine property_value"><a>Счет открыт</a></div>
+					</div>
+					<div class="form_group_list m_top_20">
+						<div class="column three property_label a_left">В системе:</div>
+						<div class="column nine property_value">с 12.10.2015</div>
+					</div>
+
+
+				</div>
+
+				<div class="col half widget_block">
+					<div class="form_group">
+						<span class="light_text">Город обсуживания: </span>
+						<span>Нижний Новгород</span>
+					</div>
+					<div class="form_group">
+						<span class="light_text">Тариф: </span>
+						<span>Старт Новогодний</span>
+					</div>
+					<div class="form_group ">
+						<div class="light_text m_bot_5">Подключенные услуги: </div>
+						<ul class="point m_bot_0">
+							<li>Бизнес-ассистент</li>
+							<li>Бухгалтер</li>
+						</ul>
+					</div>
+					<div class="form_group">
+						<div class="light_text m_bot_5">Промоакции: </div>
+						<ul class="point m_bot_0">
+							<li>Подари другу банк (до 31.08.2016)</li>
+						</ul>
+					</div>
+					<div class="form_group">
+						<div class="light_text m_bot_5">Интеграции: </div>
+						<ul class="point m_bot_0">
+							<li>Моё дело <span class="small_text">(логин: test@moedelo.org)</span></li>
+
+						</ul>
+					</div>
+				</div>
+
+			</div>
+			<div class="widget_block">
+				<div class="admin_company_balance">
+					<span class="light_text">Остатки на счетах:</span>
+					<span class="value rur">100 240,00 <span class="cur rur"><span>р.</span></span></span>
+					<span class="value usd">39 500,00 <span class="cur usd"><span>$</span></span></span>
+					<span class="value eur">100,00 <span class="cur eur"><span>€</span></span></span>
+					<span class="value cny">5,00 <span class="cur cny"><span>¥</span></span></span>
+				</div>
+
+				<div class="admin_company_card">
+					<span class="light_text">Корпоративные карты (9 и 10 цифры):</span>
+					<span class="value">**21**</span>
+					<span class="value">**53**</span>
+					<span class="value">**92**</span>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- вкладка РЕКВИЗИТЫ -->
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu">
+				<ul>
+					<li class="active"><a href="">Реквизиты</a></li>
+					<li><a href="">Счета</a></li>
+					<li><a href="">Транзакции</a></li>
+					<li><a href="">Представители</a></li>
+					<li><a href="">Задачи</a></li>
+					<li><a href="">Заметки</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+
+				<div class="w85 ov_h">
+					<div class="form_group">
+						<div class="col three property_label">&nbsp;</div>
+						<div class="col nine property_value">ИП ИБРАГИМОВ НУР ФАНУРОВИЧ</div>
+					</div>
+					<div class="form_group">
+						<div class="col three property_label a_right">ИНН:</div>
+						<div class="col nine property_value">020504154524</div>
+					</div>
+					<div class="form_group">
+						<div class="col three property_label a_right">Банка:</div>
+						<div class="col nine property_value">МОСКОВСКИЙ ФИЛИАЛ ОАО КБ «Региональный кредит»</div>
+					</div>
+					<div class="form_group">
+						<div class="col three property_label a_right">БИК:</div>
+						<div class="col nine property_value">044583340</div>
+					</div>
+					<div class="form_group">
+						<div class="col three property_label a_right">КПП:</div>
+						<div class="col nine property_value">775043001</div>
+					</div>
+					<div class="form_group">
+						<div class="col three property_label a_right">к/с №:</div>
+						<div class="col nine property_value">30101810000000000340 в Отделении 1 Москва</div>
+					</div>
+					<div class="form_group">
+						<div class="col three property_label a_right">р/с №:</div>
+						<div class="col nine property_value">40802810970010000395</div>
+					</div>
+
+					<div class="form_buttons">
+						<div class="property_label col three">&nbsp;</div>
+						<div class="property_value col nine">
+							<a class="button light small icon-print">Напечатать</a>
+							<a class="button light small icon-save">Скачать</a>
+							<a class="button light small icon-mail-sent">Отправить</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<!-- вкладка СЧЕТА -->
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Реквизиты</a></li>
+					<li class="active"><a href="">Счета</a></li>
+					<li><a href="">Транзакции</a></li>
+					<li><a href="">Представители</a></li>
+					<li><a href="">Задачи</a></li>
+					<li><a href="">Заметки</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+
+				<!-- ТАБЛИЦА -->
+				<div class="table_list accounts_list">
+
+					<!-- шапка таблицы -->
+					<div class="table_list_header">
+						<div class="table_list_cell balance">Баланс</div>
+						<div class="table_list_cell status">Статус</div>
+						<div class="table_list_cell type">Тип счета</div>
+						<div class="table_list_cell number">№ счета</div>
+
+					</div>
+					<div class="table_list_body">
+
+						<!-- строка -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell balance">150,00 <span class="cur rur"><span>р.</span></span></div>
+							<div class="table_list_cell status">Открыт</div>
+							<div class="table_list_cell type">Расчетный счет - RUR</div>
+							<div class="table_list_cell number">40702810270010003121</div>
+						</div>
+
+						<!-- строка -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell balance">
+								<p class="c_error">150,00 <span class="cur rur"><span>р.</span></span><span class="c_light m_left_10">(Портал)</span></p>
+								<p class="c_error">140,00 <span class="cur rur"><span>р.</span></span><span class="c_light m_left_10">(ДБО)</span></p>
+								<p class="c_error">150,00 <span class="cur rur"><span>р.</span></span><span class="c_light m_left_10">(АБС)</span></p>
+							</div>
+							<div class="table_list_cell status">Открыт</div>
+							<div class="table_list_cell type">Расчетный счет - RUR</div>
+							<div class="table_list_cell number">40702810270010003122</div>
+						</div>
+
+						<!-- строка -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell balance">
+								<p class="c_error">Отсутствует <span class="c_light m_left_10">(Портал)</span></p>
+								<p class="c_error">140,00 <span class="cur rur"><span>р.</span></span><span class="c_light m_left_10">(ДБО)</span></p>
+								<p class="c_error">150,00 <span class="cur rur"><span>р.</span></span><span class="c_light m_left_10">(АБС)</span></p>
+							</div>
+							<div class="table_list_cell status">Открыт</div>
+							<div class="table_list_cell type">Расчетный счет - RUR</div>
+							<div class="table_list_cell number">40702810270010003123</div>
+						</div>
+
+						<!-- строка -->
+						<div class="table_list_row account_close row_link">
+							<div class="table_list_cell balance"></div>
+							<div class="table_list_cell status">Закрыт</div>
+							<div class="table_list_cell type">Расчетный счет - RUR</div>
+							<div class="table_list_cell number">40702810270010003123</div>
+						</div>
+
+					</div>
+				</div>
+
+				<!-- /  ТАБЛИЦА -->
+
+			</div>
+		</div>
+
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<!-- вкладка Транзакции -->
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Реквизиты</a></li>
+					<li><a href="">Счета</a></li>
+					<li class="active"><a href="">Транзакции</a></li>
+					<li><a href="">Представители</a></li>
+					<li><a href="">Задачи</a></li>
+					<li><a href="">Заметки</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+
+				<div class="form_group m_bot_25">
+
+					<div class="d_ib m_right_15">
+						<a class="drop-target icon-date drop-input">с 12 апреля по 19 марта</a>
+						<div class="drop-content">
+							<div class="drop-content-inner dashboard-period-choose">
+								<ul class="drop-menu">
+									<li><a>Последние 30 дней</a></li>
+									<li><a>Текущая неделя</a></li>
+									<li><a>Текущий месяц</a></li>
+									<li><a>Текущий квартал</a></li>
+									<li><a>Весь год</a></li>
+								</ul>
+								<div class="drop-date-choose">
+									<div class="filter_date_value">
+										<input type="text" name="" id="" class="datetimepicker filter_date_input small date_from">
+										<input type="text" name="" id="" class="datetimepicker filter_date_input small date_to">
+										<button class="button small">Ок</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="d_ib m_right_15">
+						<div class="jsRadSelect2 drop_account_list" data-rd-search="false" data-rd-placeholder="Выбор счета" data-filter="true">
+							<div class="jsRadSelect2Options" >
+								<span class="account_value">403 597,25 <span class="cur ruble"><span>р.</span></span></span>
+								<span class="account_name">Все счета</span>
+								<span class="account_num"></span>
+							</div>
+							<div class="jsRadSelect2Options" value="t1">
+								<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+								<span class="account_name">Расчетный счет</span>
+								<span class="account_num">40101234560000000000</span>
+							</div>
+							<div class="jsRadSelect2Options" value="t2">
+
+								<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+								<span class="account_name">Расчетный счет</span>
+
+								<span class="account_num">40101234560000000000</span>
+							</div>
+						</div>
+					</div>
+
+					<div class="d_ib m_right_15">
+						<div class="jsRadSelect2" data-rd-search="false" data-rd-placeholder="Выбор статуса" data-rd-is-multy-select="true" data-filter="true">
+							<span class="jsRadSelect2Options">Черновик</span>
+							<span class="jsRadSelect2Options">На подписи</span>
+							<span class="jsRadSelect2Options">Отправлен в банк</span>
+							<span class="jsRadSelect2Options">Выставлен счет</span>
+							<span class="jsRadSelect2Options">Исполнен</span>
+							<span class="jsRadSelect2Options">Отменен</span>
+							<span class="jsRadSelect2Options">Отклонен банком</span>
+							<span class="jsRadSelect2Options">Получен</span>
+							<span class="jsRadSelect2Options">Отложен</span>
+							<span class="jsRadSelect2Options">Ожидание зачисления</span>
+							<span class="jsRadSelect2Options">Ожидание списания</span>
+						</div>
+					</div>
+
+
+				</div>
+
+				<!-- ТАБЛИЦА -->
+				<div class="table_list transaction_list_small">
+
+					<!-- шапка таблицы -->
+					<div class="table_list_header">
+						<div class="table_list_cell action"></div>
+						<div class="table_list_cell summ">Сумма</div>
+						<div class="table_list_cell status">Статус</div>
+						<div class="table_list_cell date">№ / Дата</div>
+						<div class="table_list_cell name">Контрагент</div>
+
+
+					</div>
+					<div class="table_list_body">
+
+						<!-- строка -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell action">
+								<a class="icon-share drop-target" data-position="bottom right"></a>
+								<div class="drop-content">
+									<div class="drop-content-inner">
+										<ul class="drop-menu">
+											<li><a>Скачать</a></li>
+											<li><a>На печать</a></li>
+											<li><a>Отправить на e-mail</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="table_list_cell summ">150,00 <span class="cur rur"><span>р.</span></span></div>
+							<div class="table_list_cell status">Исполнен</div>
+							<div class="table_list_cell date">5025 / 10.03.2017 10:54</div>
+							<div class="table_list_cell name">ИП Иваненко Антон Владимирович </div>
+						</div>
+
+						<!-- строка -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell action">
+								<a class="icon-share drop-target" data-position="bottom right"></a>
+								<div class="drop-content">
+									<div class="drop-content-inner">
+										<ul class="drop-menu">
+											<li><a>Скачать</a></li>
+											<li><a>На печать</a></li>
+											<li><a>Отправить на e-mail</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="table_list_cell summ">134 150,00 <span class="cur rur"><span>р.</span></span></div>
+							<div class="table_list_cell status">На обработке банком</div>
+							<div class="table_list_cell date">5024 / 10.03.2017 15:02</div>
+							<div class="table_list_cell name">ИП Иваненко Антон Владимирович </div>
+						</div>
+
+
+
+					</div>
+				</div>
+
+				<!-- /  ТАБЛИЦА -->
+
+			</div>
+		</div>
+
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+
+		<!-- вкладка ПРЕДСТАВИТЕЛИ -->
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Реквизиты</a></li>
+					<li><a href="">Счета</a></li>
+					<li><a href="">Транзакции</a></li>
+					<li class="active"><a href="">Представители</a></li>
+					<li><a href="">Задачи</a></li>
+					<li><a href="">Заметки</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+
+
+				<!-- таблица -->
+				<div class="table_list table_list_small representatives_list">
+
+					<!-- шапка таблицы -->
+					<div class="table_list_header">
+
+						<div class="table_list_cell sign">Подпись</div>
+						<div class="table_list_cell post">Должность</div>
+						<div class="table_list_cell name">Имя</div>
+					</div>
+					<div class="table_list_body">
+
+						<!-- строка -->
+						<div class="table_list_row">
+							<div class="table_list_cell sign">+</div>
+							<div class="table_list_cell post">
+								<p>Директор</p>
+							</div>
+							<div class="table_list_cell name">
+								<div class="name_title me">Крикунов Владислав</div>
+								<div class="name_desc">
+									<p>Телефон: +7-965-120 01 02</p>
+									<p>E-mail: <a href="mailto:user@user.com">user@user.com</a></p>
+									<p>Паспорт: № 8010 0238923</p>
+									<p>Выдан: 12.10.2014</p>
+									<p>Код подразделения: 020-006</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- строка -->
+						<div class="table_list_row">
+							<div class="table_list_cell sign">+</div>
+							<div class="table_list_cell post">
+								<p>Бухгалтер</p>
+							</div>
+							<div class="table_list_cell name">
+								<div class="name_title me">Виноградова Анастасия</div>
+								<div class="name_desc">
+									<p>Телефон: +7-965-120 01 02</p>
+									<p>E-mail: <a href="mailto:user@user.com">user@user.com</a></p>
+									<p>Паспорт: № 8010 0238923</p>
+									<p>Выдан: 12.10.2014</p>
+									<p>Код подразделения: 020-006</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- строка -->
+						<div class="table_list_row">
+							<div class="table_list_cell sign">–</div>
+							<div class="table_list_cell post">
+								<p>Зам директора</p>
+							</div>
+							<div class="table_list_cell name">
+								<div class="name_title me">Петров Николай</div>
+								<div class="name_desc">
+									<p>Телефон: +7-965-120 01 02</p>
+									<p>E-mail: <a href="mailto:user@user.com">user@user.com</a></p>
+									<p>Паспорт: № 8010 0238923</p>
+									<p>Выдан: 12.10.2014</p>
+									<p>Код подразделения: 020-006</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<!-- вкладка ЗАДАЧИ -->
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Реквизиты</a></li>
+					<li><a href="">Счета</a></li>
+					<li><a href="">Транзакции</a></li>
+					<li><a href="">Представители</a></li>
+					<li class="active"><a href="">Задачи</a></li>
+					<li><a href="">Заметки</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+				<div class="w30">
+					<ul class="stat_list">
+						<li>
+							<span class="name">Всего:</span>
+							<span class="value">
+								<span class="total">15</span>
+							</span>
+						</li>
+						<li>
+							<ul class="stat_list sub_list">
+								<li>
+									<span class="name">От клиента</span>
+									<span class="value">
+										<span class="total">14</span>
+									</span>
+								</li>
+								<li>
+									<span class="name">От банка</span>
+									<span class="value">
+										<span class="total">1</span>
+									</span>
+								</li>
+
+							</ul>
+						</li>
+						<li>
+							<span class="name">Закрыто:</span>
+							<span class="value">
+								<span class="total">12</span>
+							</span>
+						</li>
+						<li>
+							<ul class="stat_list sub_list">
+								<li class="c_success">
+									<span class="name">Положительно</span>
+									<span class="value">
+										<span class="total">12</span>
+									</span>
+								</li>
+								<li class="c_error">
+									<span class="name">Отрицательно</span>
+									<span class="value">
+										<span class="total">1</span>
+									</span>
+								</li>
+
+							</ul>
+						</li>
+						<li>
+							<span class="name">Открыто:</span>
+							<span class="value">
+								<span class="total">3</span>
+							</span>
+						</li>
+
+					</ul>
+				</div>
+
+			</div>
+		</div>
+
+
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<!-- вкладка ЗАМЕТКИ -->
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Реквизиты</a></li>
+					<li><a href="">Счета</a></li>
+					<li><a href="">Представители</a></li>
+					<li><a href="">Задачи</a></li>
+					<li class="active"><a href="">Заметки</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+
+				<div class="form_group">
+					<textarea name="" id="" class="textarea_big w100" placeholder="Заметки о компании"></textarea>
+				</div>
+				<div class="form_group">
+					<button class="button middle">Сохранить</button>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+</article>
+
+</body>
+</html>

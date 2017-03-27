@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Задачи</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<header>
+	<div class="header_profile">
+		<div class="header_profile_name">
+			<figure class="avatar" style="background-color: rgb(225,90,75)">C</figure>
+			<a class="profile_name_link drop-target" data-theme="drop_profile_name_ba">
+				<span class="name">Константин Александров</span>
+				<span class="status">
+					<span class="info_label_success">Готов</span>
+					<!-- <span class="info_label_error">Занят</span> -->
+					<!-- <span class="info_label_grey">Отсутствую</span> -->
+
+				</span>
+			</a>
+			<div class="drop-content">
+				<div class="drop-content-inner">
+					<ul class="drop-menu">
+						<li class="active"><a class="online ">Готов</a></li>
+						<li><a class="busy">Занят</a></li>
+						<li><a class="offline">Отсутствую</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="header_profile_settigs">
+			<a href="#" class="icon-settings"></a>
+		</div>
+
+		<div class="header_profile_logout">
+			<a href="#" class="icon-logout"></a>
+		</div>
+	</div>
+
+	<div class="profile_progress">
+		<!-- <span class="hide_1200a">Мои закрытые:</span> -->
+		<strong class="m_left_10">250</strong>
+		<span class="icon-thumbs-up success_text m_left_5">200</span><span class="icon-thumbs-down error_text m_left_5">50</span>
+	</div>
+
+	<div class="header_admin_menu">
+		<ul>
+			<li><a class="icon-check">Задачи</a></li>
+			<li><a class="icon-menu-clients">Клиенты</a></li>
+			<li class="active"><a class="icon-notes drop-target" data-theme="drop_report_menu">Отчеты</a>
+				<div class="drop-content">
+					<div class="drop-content-inner">
+						<div class="col">
+							<h3>Агенты</h3>
+							<ul class="drop-menu">
+								<li><a>Статистика по агентам</a></li>
+								<li><a>Статистика по статусам агентов</a></li>
+								<li><a>Текущие статусы агентов</a></li>
+								<li><a>Cреднее время ожидания клиента</a></li>
+								<li><a>Аналитика лайков</a></li>
+							</ul>
+
+							<h3>Клиенты</h3>
+							<ul class="drop-menu">
+								<li><a>Статистика по клиентам</a></li>
+								<li><a>Настроение клиентов</a></li>
+							</ul>
+
+							<h3>Метки</h3>
+							<ul class="drop-menu">
+								<li><a>Статистика по меткам</a></li>
+								<li><a>NPS по меткам</a></li>
+							</ul>
+						</div>
+						<div class="col">
+							<h3>Задачи</h3>
+							<ul class="drop-menu">
+								<li><a>Статистика по задачам</a></li>
+								<li><a>Статистика чатов</a></li>
+								<li><a>Статистика диалогов</a></li>
+								<li><a>Статистика количества ответов</a></li>
+							</ul>
+
+							<h3>Логи</h3>
+							<ul class="drop-menu">
+								<li><a>Логи DBO</a></li>
+								<li><a>Логи входа в систему</a></li>
+								<li><a>Системные логи</a></li>
+								<li><a>Логи отправки смс</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</li>
+			<li>
+				<a class="icon-news drop-target">Новости</a>
+				<div class="drop-content">
+					<div class="drop-content-inner">
+						<ul class="drop-menu">
+							<li><a>На e-mail клиентам</a></li>
+							<li><a>На главную страницу клиентам</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			<li>
+				<a class="icon-submenu drop-target" data-theme="drop_tall drop_wide">Действия</a>
+				<div class="drop-content">
+					<div class="drop-content-inner">
+						<ul class="drop-menu">
+							<li><a>Смена телефона и e-mail</a></li>
+							<li><a>Смена генерального директора</a></li>
+							<li><a>Удаление пользователя</a></li>
+							<li><a>Управление правами подписи в компании</a></li>
+							<li><a>Синхронизация инфо клиента с АБС</a></li>
+
+							<li><a>Смена телефона и e-mail</a></li>
+							<li><a>Смена генерального директора</a></li>
+							<li><a>Удаление пользователя</a></li>
+							<li><a>Управление правами подписи в компании</a></li>
+							<li><a>Синхронизация инфо клиента с АБС</a></li>
+						</ul>
+					</div>
+				</div>
+			</li>
+
+		</ul>
+	</div>
+
+</header>
+
+<section class="main">
+
+
+ 	<div class="flex_row">
+
+		<div class="content">
+
+			<!-- <div class="notice_block widget_block icon-warning">
+				<p>Поступили новые задачи, требующие вашего внимания. Чтобы просмотреть их, <a>обновите список</a>.<br/>Убедитесь, что у вас установлены соответствующие фильтры.</p>
+			</div> -->
+
+			<!-- <div class="notices">
+				<div class="notice_anim notice_in" style="height: 78px;">
+					<div class="notice_block widget_block icon-smile-bubble" >
+						<a class="close icon-close"></a>
+						<p>Поступили новые задачи, требующие вашего внимания. Чтобы просмотреть их, <a>обновите список</a>.<br/>Убедитесь, что у вас установлены соответствующие фильтры.</p>
+					</div>
+				</div>
+				<div class="notice_sep"></div>
+			</div> -->
+
+			<h1>Задачи</h1>
+
+			<!-- таблица -->
+				<div class="table_list table_list_white tasks_list">
+
+					<!-- шапка таблицы -->
+					<div class="table_list_header">
+						<div class="table_list_cell deadline">
+							<a class="icon-sort-down">Last</a>
+						</div>
+						<div class="table_list_cell deadline">
+							SLA
+						</div>
+
+						<div class="table_list_cell performer">
+							Исполнитель
+						</div>
+						<div class="table_list_cell group">
+							Группа
+						</div>
+						<div class="table_list_cell status">
+							Статус
+						</div>
+						<div class="table_list_cell name name_search">
+							<input type="search" class="small input_search second" value="" placeholder="Поиск ...">
+						</div>
+					</div>
+
+					<!-- контент таблицы -->
+					<div class="table_list_body">
+
+						<!-- строка таблицы -->
+						<div class="table_list_row new row_link" >
+							<div class="table_list_cell deadline ">
+								11:45
+							</div>
+							<div class="table_list_cell deadline">
+								<span class="paused icon-pause">03:45</span>
+							</div>
+
+							<div class="table_list_cell performer">
+								<a class="button xsmall">Взять в работу</a>
+							</div>
+							<div class="table_list_cell group">
+								<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+									<option class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+									<option class="jsRadSelect2Options" value="">Бригада</option>
+									<option class="jsRadSelect2Options" value="">Колхозники и колхозницы</option>
+									<option class="jsRadSelect2Options" value="">Юристы</option>
+								</div>
+							</div>
+							<div class="table_list_cell status">
+								Новая <a class="views">(22)</a>
+							</div>
+
+							<div class="table_list_cell number">
+								1427231
+
+								<ul class="table_cell_tags_list">
+									<li>
+										<div class="tag_item" style="background-color: #E54D4D;">
+											<span>Блокировка</span>
+										</div>
+									</li>
+									<li>
+										<div class="tag_item" style="background-color: #464DD7;">
+											<span>Бухгалтерия</span>
+										</div>
+									</li>
+								</ul>
+
+							</div>
+
+							<div class="table_list_cell name name_link">
+								<div class="name_title">ООО «Ромашка» </div>
+								<div class="name_desc">Мне срочно необходимо снять помещение внутри Садового срочно необходимо снять помещение внутри Садового</div>
+							</div>
+
+						</div>
+						<!-- строка таблицы -->
+						<div class="table_list_row new row_link">
+							<div class="table_list_cell deadline f_xsmall">
+								<span class="light_text">вчера</span> 15:04
+							</div>
+							<div class="table_list_cell deadline ">
+								<span class="icon-clock">03:45</span>
+							</div>
+
+							<div class="table_list_cell performer">
+								<a class="button xsmall">Взять в работу</a>
+							</div>
+							<div class="table_list_cell group">
+								<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+									<option class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+									<option class="jsRadSelect2Options" value="">Бригада</option>
+									<option class="jsRadSelect2Options" value="">Колхозники и колхозницы</option>
+									<option class="jsRadSelect2Options" value="">Юристы</option>
+								</div>
+							</div>
+							<div class="table_list_cell status">
+								Новая <span class="views">(0)</span>
+							</div>
+
+							<div class="table_list_cell number">
+								142722
+
+								<ul class="table_cell_tags_list">
+									<li>
+										<div class="tag_item" style="background-color: #2883F8;">
+											<span>Депозиты</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+
+							<div class="table_list_cell name name_link">
+								<div class="name_title"><span class="online">ООО «Ромашка»</span></div>
+								<div class="name_desc">Мне срочно необходимо снять помещение внутри Садового срочно необходимо снять помещение внутри Садового</div>
+							</div>
+
+						</div>
+
+						<!-- строка таблицы -->
+						<div class="table_list_row new row_link">
+							<div class="table_list_cell deadline f_xsmall">
+								<span class="light_text">27.04</span> 20:21
+							</div>
+							<div class="table_list_cell deadline ">
+								<span class="icon-clock error_text">-02:37</span>
+							</div>
+
+
+							<div class="table_list_cell performer">
+								<div multiple="multiple" class="jsRadSelect2 select_inline" data-placeholder="Не задан" data-filter="true">
+									<div class="jsRadSelect2Options" value=""><span class="agent_status busy"></span>Азат Халилов</div>
+									<div class="jsRadSelect2Options" value=""><span class="agent_status online"></span>Алия Арсланова</div>
+									<div class="jsRadSelect2Options" value=""><span class="agent_status online"></span>Андрей Вариков</div>
+									<div class="jsRadSelect2Options" value=""><span class="agent_status offline"></span>Дамир Амиров</div>
+									<div class="jsRadSelect2Options" value=""><span class="agent_status online"></span>Денис Маслов</div>
+									<div class="jsRadSelect2Options" value=""><span class="agent_status offline"></span>Динар Галимов</div>
+									<div class="jsRadSelect2Options" value=""><span class="agent_status online"></span>Нур Ибрагимов</div>
+									<div class="jsRadSelect2Options" value=""><span class="agent_status online"></span>Роберт Сабирьянов</div>
+								</div>
+							</div>
+							<div class="table_list_cell group">
+								<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+									<option  class="jsRadSelect2Options"value="" selected>Чемпионы</option>
+									<option  class="jsRadSelect2Options"value="">Бригада</option>
+									<option  class="jsRadSelect2Options"value="">Колхозники</option>
+									<option  class="jsRadSelect2Options"value="">Юристы</option>
+								</div>
+							</div>
+							<div class="table_list_cell status">
+								Завершена <span class="thumbs_up icon-thumbs-up"></span>
+							</div>
+
+							<div class="table_list_cell number">
+								142721
+								<ul class="table_cell_tags_list">
+									<li>
+										<div class="tag_item" style="background-color: #6690B0;">
+											<span>Эквайринг</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+
+							<div class="table_list_cell name name_link">
+								<div class="name_title"><span class="online">ИП “Сидоров А.Н”</span> <span class="info_label_error small">Блокировка ПОД/ФТ</span></div>
+								<div class="name_desc"><strong>Иванов Саша:</strong> Найдите мне нормального бухгалтера
+									<!-- <div class="write_now">
+									<span class="icon-pencil"></span>
+									</div> -->
+								</div>
+
+							</div>
+						</div>
+
+						<!-- строка таблицы -->
+						<div class="table_list_row new row_link">
+							<div class="table_list_cell deadline f_xsmall">
+								23.02.2015
+							</div>
+							<div class="table_list_cell deadline ">
+								<span class="icon-clock error_text">-02:37</span>
+							</div>
+
+
+							<div class="table_list_cell performer">
+								<div multiple="multiple" class="jsRadSelect2 select_inline" data-placeholder="Не задан" data-filter="true">
+									<option  class="jsRadSelect2Options" value="a">Азат Халилов</option>
+									<option  class="jsRadSelect2Options" value="">Алия Арсланова</option>
+									<option  class="jsRadSelect2Options" value="">Андрей Вариков</option>
+									<option  class="jsRadSelect2Options" value="">Дамир Амиров</option>
+									<option  class="jsRadSelect2Options" value="">Денис Маслов</option>
+									<option  class="jsRadSelect2Options" value="">Динар Галимов</option>
+									<option  class="jsRadSelect2Options" value="">Нур Ибрагимов</option>
+									<option  class="jsRadSelect2Options" value="">Роберт Сабирьянов</option>
+								</div>
+							</div>
+							<div class="table_list_cell group">
+								<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+									<option  class="jsRadSelect2Options"value="">Чемпионы</option>
+									<option  class="jsRadSelect2Options"value="">Бригада</option>
+									<option  class="jsRadSelect2Options"value="">Колхозники</option>
+									<option  class="jsRadSelect2Options"value="">Юристы</option>
+								</div>
+							</div>
+							<div class="table_list_cell status">
+								Завершена <span class="thumbs_down icon-thumbs-down"></span>
+							</div>
+							<div class="table_list_cell number">
+								142720
+							</div>
+							<div class="table_list_cell name name_link">
+								<div class="name_title">ИП “Сидоров А.Н”</div>
+								<div class="name_desc"><strong>Иванов Саша:</strong> Найдите мне нормального бухгалтера
+									<!-- <div class="write_now">
+										<span class="icon-pencil"></span>
+									</div> -->
+								</div>
+
+							</div>
+						</div>
+
+						<!-- строка таблицы -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell deadline ">
+								07:50
+							</div>
+							<div class="table_list_cell deadline ">
+								<span class="icon-clock error_text">-03:15</span>
+							</div>
+
+
+							<div class="table_list_cell performer">
+								<div multiple="multiple" class="jsRadSelect2 select_inline" data-placeholder="Не задан" data-filter="true">
+									<option  class="jsRadSelect2Options" value="">Азат Халилов</option>
+									<option  class="jsRadSelect2Options" value="">Алия Арсланова</option>
+									<option  class="jsRadSelect2Options" value="">Андрей Вариков</option>
+									<option  class="jsRadSelect2Options" value="">Дамир Амиров</option>
+									<option  class="jsRadSelect2Options" value="">Денис Маслов</option>
+									<option  class="jsRadSelect2Options" value="">Динар Галимов</option>
+									<option  class="jsRadSelect2Options" value="">Нур Ибрагимов</option>
+									<option  class="jsRadSelect2Options" value="">Роберт Сабирьянов</option>
+								</div>
+							</div>
+							<div class="table_list_cell group">
+								<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+									<option  class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+									<option  class="jsRadSelect2Options" value="">Бригада</option>
+									<option  class="jsRadSelect2Options" value="">Колхозники</option>
+									<option  class="jsRadSelect2Options" value="">Юристы</option>
+								</div>
+							</div>
+							<div class="table_list_cell status">
+								В работе
+							</div>
+							<div class="table_list_cell number">
+								142719
+							</div>
+							<div class="table_list_cell name name_link">
+								<div class="name_title">СП “Лига”</div>
+								<div class="name_desc">Нужен счет в Замбийских квачах...</div>
+							</div>
+						</div>
+
+						<!-- строка таблицы -->
+						<div class="table_list_row row_link disable_block">
+							<div class="table_list_cell deadline ">
+								19:20
+							</div>
+							<div class="table_list_cell deadline ">
+								28 марта
+							</div>
+
+
+							<div class="table_list_cell performer">
+								<div multiple="multiple" class="jsRadSelect2 select_inline" data-placeholder="Не задан" data-filter="true">
+									<div  class="jsRadSelect2Options" value="">Азат Халилов</div>
+									<div  class="jsRadSelect2Options" value="">Алия Арсланова</div>
+									<div  class="jsRadSelect2Options" value=""><span class="agent_status busy"></span>Андрей Вариков</div>
+									<div  class="jsRadSelect2Options" value="">Дамир Амиров</div>
+									<div  class="jsRadSelect2Options" value="">Денис Маслов</div>
+									<div  class="jsRadSelect2Options" value="">Динар Галимов</div>
+									<div  class="jsRadSelect2Options" value="">Нур Ибрагимов</div>
+									<div  class="jsRadSelect2Options" value="">Роберт Сабирьянов</div>
+								</div>
+							</div>
+							<div class="table_list_cell group">
+								<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+									<option  class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+									<option  class="jsRadSelect2Options" value="">Бригада</option>
+									<option  class="jsRadSelect2Options" value="">Колхозники</option>
+									<option  class="jsRadSelect2Options" value="">Юристы</option>
+								</div>
+							</div>
+							<div class="table_list_cell status">
+								Ждем клиента
+							</div>
+							<div class="table_list_cell number">
+								142718
+							</div>
+							<div class="table_list_cell name name_link">
+								<div class="name_title">СП “Лига”
+								<span class="info_label_error small">Компания закрыла счет</span></div>
+								<div class="name_desc">Нужен счет в Замбийских квачах...</div>
+							</div>
+						</div>
+
+
+
+						<div class="table_row_info">
+							<div class="info_center">
+								<p>Нет данных, удовлетворящих фильтрам</p>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- end таблица -->
+		</div>
+
+
+
+		<!-- сайдбар -->
+		<div class="side  side_small">
+			<div class="widget_block">
+				<div class="widget_filters">
+
+					<div class="side_parameter parameter_inline">
+						<div class="side_parameter_name">Группа:</div>
+						<div class="side_parameter_value">
+							<div class="jsRadSelect2 select_inline" data-placeholder="выбрать">
+								<option class="jsRadSelect2Options" value="t1" selected>Бригада</option>
+								<option class="jsRadSelect2Options" value="t2">Телемаркетинг</option>
+								<option class="jsRadSelect2Options" value="t3">Аналитики</option>
+							</div>
+						</div>
+					</div>
+					<div class="side_parameter parameter_inline">
+						<div class="side_parameter_name">Агент:</div>
+						<div class="side_parameter_value">
+							<div class="jsRadSelect2 select_inline" data-placeholder="выбрать">
+								<option class="jsRadSelect2Options" value="t1" selected>Иванов Александр</option>
+								<option class="jsRadSelect2Options" value="t2">Петров Николай</option>
+								<option class="jsRadSelect2Options" value="t3">Сидоров Афанасий</option>
+							</div>
+						</div>
+					</div>
+
+					<div class="side_filter">
+						<ul>
+
+							<li><input type="checkbox" name="1"  id="12" class="input_check"><label for="12" class="label_check"><i class="icon"></i><span>Сначала клиенты онлайн </span></label></li>
+						</ul>
+					</div>
+
+					<div class="side_sep"></div>
+
+					<div class="side_filter">
+						<ul>
+							<li><input type="radio" name="1"  id="1" class="input_check"><label for="1" class="label_check"><i class="icon"></i><span>Нераспределенные </span><span class="count">55</span></label></li>
+							<li><input type="radio" name="1"  id="1" class="input_check"><label for="1" class="label_check"><i class="icon"></i><span>Наблюдаю </span><span class="count">55</span></label></li>
+						</ul>
+					</div>
+
+					<div class="side_sep"></div>
+
+					<div class="side_filter">
+						<ul>
+							<li><input type="radio" name="2"  id="2" class="input_check"><label for="2" class="label_check"><i class="icon"></i><span>Без исполнителя</span><span class="count">21</span></label></li>
+
+							<li><input type="radio" name="2"  id="3" class="input_check"><label for="3" class="label_check"><i class="icon"></i><span>В работе</span></label></li>
+							<li><input type="radio" name="2"  id="31" class="input_check"><label for="31" class="label_check sub_label_check"><i class="icon"></i><span>Все</span><span class="count">29</span></label></li>
+							<li><input type="radio" name="2"  id="32" class="input_check"><label for="32" class="label_check sub_label_check"><i class="icon"></i><span>Просроченные</span><span class="count">26</span></label></li>
+
+							<li><input type="radio" name="2"  id="4" class="input_check"><label for="4" class="label_check"><i class="icon"></i><span>Ждут ответа клиента</span><span class="count">40</span></label></li>
+
+							<li><input type="radio" name="2"  id="5" class="input_check"><label for="5" class="label_check"><i class="icon"></i><span>Закрытые (агентом)</span><span class="count">20</span></label></li>
+							<li><input type="radio" name="2"  id="51" class="input_check"><label for="51" class="label_check sub_label_check"><i class="icon"></i><span>Все</span><span class="count">29</span></label></li>
+							<li><input type="radio" name="2"  id="52" class="input_check"><label for="52" class="label_check sub_label_check"><i class="icon"></i><span>Вручную</span><span class="count">11</span></label></li>
+							<li><input type="radio" name="2"  id="53" class="input_check"><label for="53" class="label_check sub_label_check"><i class="icon"></i><span>Автоматически через 72ч</span><span class="count">21</span></label></li>
+
+
+							<li><input type="radio" name="2"  id="6" class="input_check"><label for="6" class="label_check"><i class="icon"></i><span>Завершенные (клиентом)</span></label></li>
+							<li><input type="radio" name="2"  id="61" class="input_check"><label for="61" class="label_check sub_label_check"><i class="icon"></i><span>Все</span><span class="count">29</span></label></li>
+							<li><input type="radio" name="2"  id="62" class="input_check"><label for="62" class="label_check sub_label_check"><i class="icon"></i><span>Позитивные</span><span class="count">18</span></label></li>
+							<li><input type="radio" name="2"  id="63" class="input_check"><label for="63" class="label_check sub_label_check"><i class="icon"></i><span>Негативные</span><span class="count">11</span></label></li>
+
+							<li><input type="radio" name="2"  id="5" class="input_check"><label for="5" class="label_check"><i class="icon"></i><span>Все задачи</span><span class="count">421</span></label></li>
+						</ul>
+					</div>
+
+
+				</div>
+			</div>
+
+			<div class="widget_block">
+				<a class="link_dashed f_right f_xsmall"><span>Снять все метки</span></a>
+				<span class="c_light m_bot_15 d_ib">Метки</span>
+
+				<ul class="tags_inline_list">
+					<li>
+						<div class="tag_item" style="background-color: #E54D4D;">
+							<input type="checkbox" name="1" id="t1" class="input_check">
+							<label for="t1" class="label_check"><span>Блокировка</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #41C75E;">
+							<input type="checkbox" name="1" id="t2" class="input_check">
+							<label for="t2" class="label_check"><span>Деньги</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #464DD7;">
+							<input type="checkbox" name="1" id="t3" class="input_check" >
+							<label for="t3" class="label_check"><span>Карты</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #7ED2F6;">
+							<input type="checkbox" name="1" id="t4" class="input_check">
+							<label for="t4" class="label_check"><span>Эквайринг</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #9C1BC9;">
+							<input type="checkbox" name="1" id="t5" class="input_check">
+							<label for="t5" class="label_check"><span>Реквизиты</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #6690B0;">
+							<input type="checkbox" name="1" id="t6" class="input_check">
+							<label for="t6" class="label_check"><span>Бухгалтерия</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #E54D4D;">
+							<input type="checkbox" name="1" id="t7" class="input_check" >
+							<label for="t7" class="label_check"><span>Блокировка</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #41C75E;">
+							<input type="checkbox" name="1" id="t8" class="input_check" >
+							<label for="t8" class="label_check"><span>Деньги</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #464DD7;">
+							<input type="checkbox" name="1" id="t9" class="input_check" >
+							<label for="t9" class="label_check"><span>Депозиты</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #7ED2F6;">
+							<input type="checkbox" name="1" id="t10" class="input_check">
+							<label for="t10" class="label_check"><span>Карты</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #9C1BC9;">
+							<input type="checkbox" name="1" id="t11" class="input_check">
+							<label for="t11" class="label_check"><span>Реквизиты</span></label>
+						</div>
+					</li>
+					<li>
+						<div class="tag_item" style="background-color: #6690B0;">
+							<input type="checkbox" name="1" id="t12" class="input_check">
+							<label for="t12" class="label_check"><span>Бухгалтерия</span></label>
+						</div>
+					</li>
+
+				</ul>
+			</div>
+		</div>
+
+	</div>
+
+</section>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/init.js"></script>
+
+
+</body>
+</html>

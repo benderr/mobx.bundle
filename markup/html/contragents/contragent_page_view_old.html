@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Просмотр контрагента</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="contacts/contacts.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Контрагент</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="page_content_area_solid page_content_area_top">
+			<!-- <div class="f_right">
+				<a class="icon-pencil f_small">Изменить реквизиты</a>
+			</div> -->
+			<div class="top_area_desc">
+				<h1>ООО «Ромашка» <span class="m_client light" b365-tooltip="Клиент Modulbank" title="Клиент Modulbank"></span></h1>
+				<p>Общество с ограниченной ответственностью “Ромашка”</p>
+			</div>
+		</div>
+		<div class="page_content_area_light page_content_area_bot">
+			<div class="row equalize_height">
+				<div class="col half widget_block">
+					<div class="form_group_list">
+						<div class="column two property_label a_left">ИНН:</div>
+						<div class="column ten property_value">020504154524</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column two property_label a_left">КПП:</div>
+						<div class="column ten property_value">0205041524</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column two property_label a_left">ОГРН:</div>
+						<div class="column ten property_value">02050415234524</div>
+					</div>
+					<div class="form_group_list m_top_20">
+						<div class="column two property_label a_left">Банк:</div>
+						<div class="column ten property_value">
+
+
+
+							<div class="jsRadSelect2 select_inline choise_wrap drop_item_wrap" data-rd-search="false" data-rd-placeholder="Банк по умолчанию" >
+								<span class="jsRadSelect2Options">Сбербанк <span class="d_b light_text f_xsmall">23904823048234023</span></span>
+								<span class="jsRadSelect2Options">Альфа-банк <span class="d_b light_text f_xsmall">23904823048234023</span></span>
+								<span class="jsRadSelect2Options">Райфайзенбанк Райфайзенбанк Райфайзенбанк Райфайзенбанк<span class="d_b light_text f_xsmall">23904823048234023</span></span>
+							</div>
+
+						</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column two property_label a_left">р/с:</div>
+						<div class="column ten property_value">39257019847501394875103</div>
+					</div>
+
+					<!-- <div class="contragent_actions">
+						<button class="button middle" b365-tooltip="Клиент Modulbank" title="Клиент Modulbank">Новый платеж</button>
+						<button class="button middle ">Выставить счет</button>
+					</div>
+ -->
+				</div>
+
+
+				<div class="col half widget_block contragent_contacts">
+					<p class="rating"><span class="icon_user_rating yel" b365-tooltip title="Нажмите, чтобы проверить контрагента">56</span> <a>Индекс доверия</a></p>
+					<p class="icon-marker address">Москва, ул. Карла Маркса, д. 17</p>
+					<p class="icon-user contact">Генеральный директор Иванов Александр</p>
+					<p class="icon-mail email"><a mailto="info@romashka.net">info@romashka.net</a></p>
+					<p class="icon-phone phone">+7 (095) 332-42-50</p>
+				</div>
+
+			</div>
+			<div class="widget_block ov_h">
+
+				<div class="contragent_money">
+					<div class="item">
+						<span class="c_light">Приход:</span>
+						<span class="values">
+							<span class="value c_success">20 400,00 <span class="cur ruble"><span>р.</span></span></span>
+							<!-- <span class="value c_success">530 000 <span class="cur dollar"><span>$</span></span></span> -->
+						</span>
+					</div>
+					<div class="item">
+						<span class="c_light">Расход:</span>
+						<span class="values"><span class="value c_error">9 270 100 <span class="cur ruble"><span>р.</span></span></span></span>
+					</div>
+					<div class="item">
+						<span class="c_light">К оплате:</span>
+						<span class="values"><span class="value c_warning">270 100 <span class="cur ruble"><span>р.</span></span></span></span>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu">
+				<ul>
+					<li class="active"><a href="">Операции</a></li>
+					<li><a href="">Документы</a></li>
+					<li><a href="">Заметки</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+
+				<div class="flex_row">
+
+					<div class="content side_right_small">
+						<!-- таблица -->
+						<div class="table_list table_list_big transaction_list transaction_list_contragent transaction_list_usn widget_block">
+
+
+							<div class="table_list_body">
+
+								<!-- строка дата -->
+								<div class="table_list_row row_date">
+									<div class="table_list_cell name">12 марта 2016</div>
+									<div class="table_list_cell summ">Остаток: 423 125 000,00 <span class="cur rur"><span>р.</span></span></div>
+									<div class="table_list_cell action"></div>
+									<div class="table_list_cell check"></div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+
+									<div class="table_list_cell name">
+										<div class="contragent">ООО «Рога и Копыта»</div>
+										<div class="status info_label_success">оплачен</div>
+										<div class="purpose">Доход от продажи товара</div>
+									</div>
+
+									<div class="table_list_cell summ">
+										<span class="money_expense">423 125 000,00 <span class="cur rur"><span>р.</span></span></span>
+										<div class="account">Расчетный счет</div>
+									</div>
+
+									<div class="table_list_cell action">
+										<a class="icon-reload" b365-tooltip title="Повторить платеж"></a>
+									</div>
+
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="a2" class="input_check"><label class="label_check circle" for="a2"><i class="icon"></i></label>
+									</div>
+
+									<div class="section_action_panel">
+										<div class="selected">
+											<span class="light_text">Выбрано платежей:</span>
+											<strong>2</strong> на сумму <strong>34 847,00 <span class="cur rur">р.</span></strong>
+										</div>
+										<div class="action_panel_buttons">
+											<a class="icon-payment">Оплатить</a>
+											<a class="icon-pencil">Редактировать</a>
+											<a class="icon-trash-bin">Удалить</a>
+										</div>
+									</div>
+
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+									<div class="table_list_cell name">
+										<div class="contragent">ОАО «Башкирский Нефтегазовый холдинг Башкирский Нефтегазовый холдинг»</div>
+										<div class="status info_label">черновик</div>
+										<div class="purpose">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+									</div>
+									<div class="table_list_cell summ">
+										<span class="money_expense">42 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<div class="account">Текущий счет</div>
+									</div>
+
+									<div class="table_list_cell action">
+										<a class="icon-reload"></a>
+									</div>
+
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+									</div>
+
+								</div>
+
+								<!-- строка дата -->
+								<div class="table_list_row row_date">
+									<div class="table_list_cell name">9 марта 2016</div>
+									<div class="table_list_cell summ">Остаток: 423 125 000,00 <span class="cur rur"><span>р.</span></span></div>
+									<div class="table_list_cell action"></div>
+									<div class="table_list_cell check"></div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+									<div class="table_list_cell name">
+										<div class="contragent">ООО «Рога и Копыта»</div>
+										<div class="status info_label_error">ошибка оплаты</div>
+										<div class="purpose">Доход от продажи товара</div>
+									</div>
+
+									<div class="table_list_cell summ">
+										<span class="money_expense">35 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<div class="account">Зарплатный счет</div>
+									</div>
+
+									<div class="table_list_cell action">
+										<a class="icon-reload"></a>
+
+									</div>
+
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+									</div>
+
+								</div>
+
+								<!-- строка дата -->
+								<div class="table_list_row row_date">
+									<div class="table_list_cell name">1 марта 2016</div>
+									<div class="table_list_cell summ">Остаток: 423 125 000,00 <span class="cur rur"><span>р.</span></span></div>
+									<div class="table_list_cell action"></div>
+									<div class="table_list_cell check"></div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+
+									<div class="table_list_cell name">
+										<div class="contragent">ОАО «Башкирский Нефтегазовый холдинг»</div>
+										<div class="purpose">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+									</div>
+
+									<div class="table_list_cell summ">
+										<span class="money_income">105 000,00 <span class="cur dollar"><span>$</span></span></span>
+									</div>
+
+									<div class="table_list_cell action"></div>
+
+
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+									</div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+									<div class="table_list_cell name">
+										<div class="contragent">ООО «Вкусные булочки»</div>
+										<div class="purpose">Оплата по договору №7345 от 17.02.2016. Без НДС</div>
+									</div>
+									<div class="table_list_cell summ">
+										<span class="money_income">55 600,00 <span class="cur rur"><span>р.</span></span></span>
+										<span class="summ_small">За вычетом УСН: 52&nbsp;264,00&nbsp;<span class="cur rur"><span>р.</span></span></span>
+									</div>
+
+									<div class="table_list_cell action"></div>
+									<div class="table_list_cell check"></div>
+									<div class="show_all"><a class="icon-down-big"></a></div>
+
+								</div>
+
+
+									<!-- строка -->
+									<div class="table_list_row row_link table_list_subrow hidden">
+
+										<div class="table_list_cell name">
+											<div class="contragent">Налог УСН</div>
+											<div class="status info_label_error">в обработке</div>
+											<div class="purpose">Перевод собственных средств</div>
+										</div>
+
+										<div class="table_list_cell summ">
+											<span class="money_expense">3 336,00 <span class="cur rur"><span>р.</span></span></span>
+											<div class="account">Налоговый счет</div>
+										</div>
+
+										<div class="table_list_cell action"></div>
+
+										<div class="table_list_cell check">
+											<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+										</div>
+									</div>
+
+
+
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+
+									<div class="table_list_cell name">
+										<div class="contragent">Перевод между счетами</div>
+										<div class="status info_label_error">в обработке</div>
+										<div class="purpose">Расчетный счет (***0023)<span class="c_light m_left_10 m_right_10 f_small icon-arrow-right-long"></span>Карточный счет (***3528)</div>
+									</div>
+
+									<div class="table_list_cell summ">
+										10 000,00 <span class="cur rur"><span>р.</span></span>
+										<div class="account">Карточный счет</div>
+									</div>
+
+									<div class="table_list_cell action">
+										<a class="icon-reload"></a>
+									</div>
+
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+									</div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+
+									<div class="table_list_cell name">
+										<div class="contragent">Покупка валюты</div>
+										<div class="status info_label_success">оплачен</div>
+										<div class="purpose">Расчетный счет (***0023)<span class="c_light m_left_10 m_right_10 f_small icon-arrow-right-long"></span>Валютный счет (***3528)</div>
+									</div>
+
+									<div class="table_list_cell summ">
+										<div class="money_expense">10 000,00 <span class="cur rur"><span>р.</span></span></div>
+										<div class="money_income">132,00 <span class="cur usd"><span>$</span></span></div>
+									</div>
+
+									<div class="table_list_cell action">
+										<a class="icon-reload"></a>
+									</div>
+
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check circle" for="2"><i class="icon"></i></label>
+									</div>
+								</div>
+
+
+								<!-- строка -->
+								<div class="table_list_row row_link">
+
+									<div class="table_list_cell name">
+										<div class="contragent">Заработная плата за май 2016</div>
+										<div class="status info_label_success">оплачен</div>
+										<div class="purpose">Перевод собственных средств</div>
+									</div>
+
+									<div class="table_list_cell summ">
+										<span class="money_expense">270 000,20 <span class="cur rur"><span>р.</span></span></span>
+										<div class="summ_small">вкл. НДФЛ: - 27 000,20 <span class="cur rur"><span>р.</span></span></div>
+									</div>
+
+									<div class="table_list_cell action"></div>
+									<div class="table_list_cell check"></div>
+
+									<div class="show_all"><a class="icon-down-big"></a></div>
+
+								</div>
+
+
+
+									<!-- строка -->
+									<div class="table_list_row table_list_subrow row_link hidden">
+
+										<div class="table_list_cell name">
+											<div class="contragent">Иванов Иван Иванович</div>
+											<div class="status info_label_success">оплачен</div>
+											<div class="purpose">ЗПМодульБанк. Перечисление зарплаты за март 2016 ФИО_сотрудника. Без НДС</div>
+										</div>
+										<div class="table_list_cell summ">
+											<span class="money_expense">120 000,00 <span class="cur rur"><span>р.</span></span></span>
+										</div>
+
+										<div class="table_list_cell action"></div>
+										<div class="table_list_cell check"></div>
+
+									</div>
+
+									<!-- строка -->
+									<div class="table_list_row table_list_subrow row_link hidden">
+
+										<div class="table_list_cell name">
+											<div class="contragent">Сидоров Антон Владимирович</div>
+											<div class="status info_label_success">оплачен</div>
+											<div class="purpose">ЗПМодульБанк. Перечисление зарплаты за март 2016 ФИО_сотрудника. Без НДС</div>
+										</div>
+										<div class="table_list_cell summ">
+											<span class="money_expense">80 000,00 <span class="cur rur"><span>р.</span></span></span>
+										</div>
+
+										<div class="table_list_cell action"></div>
+										<div class="table_list_cell check"></div>
+
+									</div>
+
+									<!-- строка -->
+									<div class="table_list_row table_list_subrow row_link hidden">
+
+										<div class="table_list_cell name">
+											<div class="contragent">Налог НДФЛ</div>
+											<div class="status info_label_success">оплачен</div>
+											<div class="purpose">Перевод собственных средств</div>
+										</div>
+										<div class="table_list_cell summ">
+											<span class="money_expense">12 000,00 <span class="cur rur"><span>р.</span></span></span>
+										</div>
+
+										<div class="table_list_cell action"></div>
+										<div class="table_list_cell check"></div>
+
+									</div>
+
+
+
+								<div class="table_row_info">
+									<div class="info_center">
+										<p>Отображены все операции, соответствующие установленным фильтрам.</p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<!-- фильтры -->
+					<div class="side side_small">
+						<div class="side_title">Фильтры</div>
+						<div class="side_parameter parameter_inline">
+							<div class="side_parameter_name">Транзакции:</div>
+							<div class="side_parameter_value">
+								<select class="select_inline" data-placeholder="выбрать">
+									<option value="t1" selected>все транзакции</option>
+									<option value="t2">списания</option>
+									<option value="t3">поступления</option>
+								</select>
+							</div>
+						</div>
+						<div class="side_sep"></div>
+						<div class="side_filter">
+							<ul>
+								<li>
+									<input type="checkbox" name="tfilter" id="ff1" class="input_check">
+									<label for="ff1" class="label_check"><i class="icon"></i><span>Черновик</span></label>
+								</li>
+								<li>
+									<input type="checkbox" name="tfilter" id="ff2" class="input_check">
+									<label for="ff2" class="label_check"><i class="icon"></i><span>На подписи</span></label>
+								</li>
+								<li>
+									<input type="checkbox" name="tfilter" id="ff3" class="input_check">
+									<label for="ff3" class="label_check"><i class="icon"></i><span>Отправлен в банк</span></label>
+								</li>
+								<li>
+									<input type="checkbox" name="tfilter" id="ff4" class="input_check">
+									<label for="ff4" class="label_check"><i class="icon"></i><span>Исполнен</span></label>
+								</li>
+								<li>
+									<input type="checkbox" name="tfilter" id="ff5" class="input_check">
+									<label for="ff5" class="label_check"><i class="icon"></i><span>Отменен</span></label>
+								</li>
+								<li>
+									<input type="checkbox" name="tfilter" id="ff6" class="input_check">
+									<label for="ff6" class="label_check"><i class="icon"></i><span>Получен</span></label>
+								</li>
+
+							</ul>
+						</div>
+
+						<div class="side_sep"></div>
+
+						<div class="side_parameter parameter_inline">
+							<div class="side_parameter_name">Период:</div>
+							<div class="side_parameter_value">
+								<select class="select_inline" data-placeholder="выбрать">
+									<option value="d1" selected>за текущий день</option>
+									<option value="d2">за текущую неделю</option>
+									<option value="d3">за месяц</option>
+									<option value="d4">за квартал</option>
+									<option value="d5" disabled>произвольный</option>
+								</select>
+							</div>
+							<div class="filter_date_value">
+								<input type="text" name="" id="" class="datetimepicker filter_date_input small date_from">
+								<input type="text" name="" id="" class="datetimepicker filter_date_input small date_to">
+							</div>
+						</div>
+
+						<div class="side_sep"></div>
+
+						<div class="side_parameter">
+							<div class="side_parameter_name">Контрагент:</div>
+							<div class="side_parameter_value">
+								<div class="select_multi select_inline select_multi_column select_full " data-placeholder="выбрать" data-filter="true" >
+									<div value="2">
+										ООО Ромашка
+										<span class="select_item_info">ИНН: 28248240821</span>
+									</div>
+									<div value="3">
+										ООО Башкирнефтепродукт
+										<span class="select_item_info">ИНН: 28248240821</span>
+									</div>
+									<div value="4">
+										ООО Пенсионный фонд развития
+										<span class="select_item_info">ИНН: 28248240821</span>
+									</div>
+									<div value="4">Андрей Вариков</div>
+									<div value="5">Дамир Амиров</div>
+									<div value="6">Денис Маслов</div>
+									<div value="7">Динар Галимов</div>
+									<div value="8">Нур Ибрагимов</div>
+									<div value="9">Роберт Сабирьянов</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+</article>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!-- Заголовок слоя -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Инструкция</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+
+	<script src="js/bootstrap.dropdown.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+	<script>
+		angular.module('app',['ui.bootstrap']).controller('DropdownCtrl', function ($scope, $log) {});
+	</script>
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main"></section>
+
+<article class="page open">
+
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Инструкция</h1>
+		<div class="header_action">&nbsp</div>
+	</div>
+	<div class="page_content">
+		<div class="account_instruction">
+			<div class="manager_photo">
+				<img src="images/assistant_photo.png" height="150" width="150" alt="">
+				<div class="manager_name">Эльмира Андреева</div>
+				<div class="manager_post">ассистент</div>
+			</div>
+			<div class="manager_text text_block">
+				<p>
+					Мы не можем открыть расчетный счет, потому что у вашей компании имеются заблокированные счета в других банках:
+				</p>
+				<ul class="circ">
+					<li>Альфа-банк</li>
+					<li>Сбербанк</li>
+					<li>Barclays Bank</li>
+				</ul>
+				<p>
+					Чтобы решить эту проблему, вам необходимо выполнить следующие действия:
+				</p>
+				<p>
+					Если у вас остались какие-либо вопросы, вы можете
+					<a href="#">задать их мне</a>.
+				</p>
+			</div>
+		</div>
+
+	</div>
+</article>
+
+</body>
+</html>

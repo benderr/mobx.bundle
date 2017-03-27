@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Инфо о клиенте (попап)</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+<include data-file="admin/admin_page_task.html article"></include>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Инфо о клиенте</h1>
+
+				<div class="legend"><span>Компания</span></div>
+
+				<!-- таблица -->
+				<table class="f_small even no_border m_bot_40">
+					<tr>
+						<td class="fw_m">Наименование:</td>
+						<td><полное наименование компании на русском языке></td>
+					</tr>
+					<tr>
+						<td class="fw_m">ОГРН:</td>
+						<td><или ОГРНИП компании></td>
+					</tr>
+					<tr>
+						<td class="fw_m">ИНН:</td>
+						<td><ИНН компании></td>
+					</tr>
+					<tr>
+						<td class="fw_m">PortalID:</td>
+						<td>< ID компании на портале></td>
+					</tr>
+					<tr>
+						<td class="fw_m">CRMID:</td>
+						<td>< ID компании в CRM></td>
+					</tr>
+					<tr>
+						<td class="fw_m">ABSID:</td>
+						<td>< ID компании в АБС></td>
+					</tr>
+					<tr>
+						<td class="fw_m">Статус регистрации:</td>
+						<td>Счет открыт</td>
+					</tr>
+				</table>
+				<!-- end таблица -->
+
+				<div class="legend"><span>ИНФОРМАЦИЯ О ПОЛЬЗОВАТЕЛЯХ КОМПАНИИ НА ПОРТАЛЕ (USERS)</span></div>
+				<div class="client_info_crm_list">
+					<div class="item">
+
+						<!-- таблица -->
+						<table class="f_small even no_border m_bot_40">
+							<tr class="row_title">
+								<td colspan="2">Данные пользователя</td>
+							</tr>
+							<tr>
+								<td class="fw_m">ФИО:</td>
+								<td><Фамилия Имя Отчество></td>
+							</tr>
+							<tr>
+								<td class="fw_m">Телефон на портале:</td>
+								<td><Номер телефона></td>
+							</tr>
+							<tr class="c_error">
+								<td class="fw_m">E-mail на портале:</td>
+								<td><Адрес электронной почты></td>
+							</tr>
+							<tr>
+								<td class="fw_m">PortalID:</td>
+								<td>< ID пользователя на портале></td>
+							</tr>
+							<tr>
+								<td class="fw_m">DBOID:</td>
+								<td>< ID пользователя в ДБО></td>
+							</tr>
+
+
+							<tr class="row_title">
+								<td colspan="2">Статус регистрации</td>
+							</tr>
+							<tr>
+								<td class="fw_m">Завершил регистрацию:</td>
+								<td><Да/Нет></td>
+							</tr>
+							<tr>
+								<td class="fw_m">Ссылка для завершения регистрации:</td>
+								<td><Ссылка с токеном></td>
+							</tr>
+							<tr>
+								<td class="fw_m">Пользователь удален:</td>
+								<td><Да/Нет></td>
+							</tr>
+
+
+							<tr class="row_title">
+								<td colspan="2">Соответствующий представитель в CRM</td>
+							</tr>
+							<tr>
+								<td class="fw_m">Представитель имеется:</td>
+								<td><Да/Нет></td>
+							</tr>
+							<tr>
+								<td class="fw_m">ФИО:</td>
+								<td><Фамилия Имя Отчество></td>
+							</tr>
+							<tr>
+								<td class="fw_m">CRMID:</td>
+								<td>< ID пользователя в CRM></td>
+							</tr>
+
+							<tr>
+								<td class="fw_m">Заявка на сертификат ЭП:</td>
+								<td><Да/Нет></td>
+							</tr>
+							<tr>
+								<td>Статус заявки:</td>
+								<td><Статус заявки на сертификат></td>
+							</tr>
+
+							<tr>
+								<td class="fw_m">Наличие сертификата ЭП:</td>
+								<td><Да/Нет></td>
+							</tr>
+							<tr>
+								<td>ФИО в сертификате:</td>
+								<td><Фамилия Имя Отчество></td>
+							</tr>
+							<tr>
+								<td>Дата истечения:</td>
+								<td>< DD.MM.YYYY HH:MM:SS></td>
+							</tr>
+							<tr>
+								<td>Возможность использования ЭП:</td>
+								<td><Да/Нет></td>
+							</tr>
+
+						</table>
+						<!-- end таблица -->
+
+					</div>
+				</div>
+
+				<div class="legend"><span>ИНФОРМАЦИЯ О ПРЕДСТАВИТЕЛЯХ КОМПАНИИ В CRM (beneficiarysignerinfor)</span></div>
+				<div class="client_info_crm_list">
+					<div class="item">
+						<!-- таблица -->
+						<table class="f_small even no_border m_bot_40">
+
+							<tr>
+								<td class="fw_m">ФИО:</td>
+								<td><Фамилия Имя Отчество></td>
+							</tr>
+							<tr>
+								<td class="fw_m">CRMID:</td>
+								<td>< ID пользователя в CRM></td>
+							</tr>
+							<tr>
+								<td class="fw_m">PortalID:</td>
+								<td><Соответствующий CRMID ID пользователя на портале></td>
+							</tr>
+							<tr>
+								<td class="fw_m">Телефон в CRM:</td>
+								<td><Номер телефона></td>
+							</tr>
+							<tr>
+								<td class="fw_m">E-mail в CRM:</td>
+								<td><Адрес электронной почты></td>
+							</tr>
+						</table>
+					</div>
+					<div class="item">
+						<!-- таблица -->
+						<table class="f_small even no_border m_bot_40">
+
+							<tr>
+								<td class="fw_m">ФИО:</td>
+								<td><Фамилия Имя Отчество></td>
+							</tr>
+							<tr>
+								<td class="fw_m">CRMID:</td>
+								<td>< ID пользователя в CRM></td>
+							</tr>
+							<tr>
+								<td class="fw_m">PortalID:</td>
+								<td><Соответствующий CRMID ID пользователя на портале></td>
+							</tr>
+							<tr>
+								<td class="fw_m">Телефон в CRM:</td>
+								<td><Номер телефона></td>
+							</tr>
+							<tr>
+								<td class="fw_m">E-mail в CRM:</td>
+								<td><Адрес электронной почты></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+
+			</div>
+			<div class="popup_backdrop"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+.select2-container {
+  display: inline-block;
+  vertical-align: middle;
+}
+.select2-container .select2-selection--single {
+  display: block;
+  height: 42px;
+  line-height: 41px;
+  border: 1px solid #d0d3d7;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+  font-family: 'Roboto', Arial;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 0 45px 0 15px;
+  color: #2d4668;
+  text-decoration: none;
+  background: #fff url("../images/select_arrow.svg") no-repeat calc(100% - 15px) center;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0px 2px 2px -2px rgba(0,0,0,0.18);
+  box-shadow: inset 0px 2px 2px -2px rgba(0,0,0,0.18);
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: block;
+}
+.select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #aaa;
+}
+.select2-dropdown {
+  position: absolute;
+  z-index: 1000;
+  background: #fff;
+  -webkit-box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+  min-width: 100%;
+  color: #828a96;
+}
+.select2-close-mask {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  min-height: 100%;
+  min-width: 100%;
+  height: auto;
+  width: auto;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  z-index: 99;
+  background-color: #fff;
+}
+.select2-hidden-accessible {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+.select2-search {
+  display: block;
+  border-bottom: 1px solid #e8e9eb;
+}
+.select2-search input {
+  border: none;
+  width: 100%;
+  background: url("../images/icon_search_input.svg") no-repeat 10px center;
+  -webkit-background-size: 16px auto;
+  -moz-background-size: 16px auto;
+  background-size: 16px auto;
+  padding-left: 34px;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  font-size: 15px;
+}
+.select2-results__options {
+  padding: 5px 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.select2-results__option {
+  border-bottom: 1px solid #e8e9eb;
+  margin: 0;
+  padding: 8px 15px;
+  cursor: pointer;
+  white-space: nowrap;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+/*# sourceMappingURL=select2.css.map */

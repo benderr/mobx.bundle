@@ -1,0 +1,285 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Контрагенты</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main section_areas">
+
+		<div class="section_top_area">
+
+			<!-- добавить класс choosed если выбран хотя бы один из блоков -->
+			<div class="contragents_widgets choosed">
+
+				<!-- добавить класс active если блок выбран -->
+				<div class="contragents_widget_money widget_block paid active">
+					<div class="desc">
+						<div class="name">Оплачено</div>
+						<span class="num">15 платежей</span>
+					</div>
+					<div class="values">
+						<div class="value">210 500,00 <span class="cur ruble"><span>р.</span></span></div>
+						<div class="value">210 500,00 <span class="cur dollar"><span>$</span></span></div>
+					</div>
+				</div>
+
+				<!-- добавить класс active если блок выбран -->
+				<div class="contragents_widget_money widget_block payable ">
+					<div class="desc">
+						<div class="name">К оплате</div>
+						<span class="num">15 платежей</span>
+					</div>
+					<div class="values">
+						<div class="value">210 500,00 <span class="cur ruble"><span>р.</span></span></div>
+						<div class="value">210 500,00 <span class="cur dollar"><span>$</span></span></div>
+					</div>
+				</div>
+
+				<!-- добавить класс active если блок выбран -->
+				<!-- <div class="contragents_widget_money widget_block paid">
+					<div class="desc">
+						<div class="name">Оплачено</div>
+						<span class="num">15 платежей</span>
+					</div>
+					<div class="value">210 500,00 <span class="cur ruble"><span>р.</span></span></div>
+					<div class="value small">210 500,00 <span class="cur dollar"><span>$</span></span></div>
+				</div>
+
+				<div class="contragents_widget_money widget_block payable">
+					<div class="desc">
+						<div class="name">К оплате</div>
+						<span class="num">10 платежей</span>
+					</div>
+					<div class="value">20 030,00 <span class="cur ruble"><span>р.</span></span></div>
+				</div>
+
+				<div class="contragents_widget_money widget_block soon1" style="background-image:url(images/chart1.jpg);">
+				</div>
+
+				<div class="contragents_widget_money widget_block soon2" style="background-image:url(images/chart2.jpg);">
+				</div> -->
+
+			</div>
+
+
+
+		</div>
+
+
+
+		<div class="section_content">
+
+			<div class="flex_row">
+
+				<!-- контент транзакций -->
+				<div class="content">
+
+					<div class="title_panel">
+						<h1>Поставщики</h1>
+						<div class="title_buttons">
+							<a class="button middle icon-plus">Добавить поставщика</a>
+						</div>
+					</div>
+
+
+					<!-- таблица -->
+					<div class="table_list contragents_list">
+
+						<!-- шапка таблицы -->
+						<div class="table_list_header">
+
+							<div class="table_list_cell action">&nbsp;</div>
+							<div class="table_list_cell to_pay"><a class="icon-sort-up">К оплате</a></div>
+							<div class="table_list_cell last_paid"><a class="icon-sort-up">Последняя оплата</a></div>
+							<div class="table_list_cell paid_period"><a class="icon-sort-up">Оплата за период</a></div>
+							<div class="table_list_cell contact hide_1800a">Телефон</div>
+							<div class="table_list_cell contact hide_1800a">E-mail</div>
+							<div class="table_list_cell name name_search">
+								<a class="icon-sort-down">Имя</a>
+								<input type="search" class="small input_search white" value="" placeholder="Имя, ИНН, ОГРН">
+							</div>
+
+						</div>
+						<div class="table_list_body">
+
+							<!-- строка -->
+							<div class="table_list_row">
+
+								<div class="table_list_cell action">
+									<a class="icon-payment" b356-tooltip="Новый платеж" title="Новый платеж"></a>
+								</div>
+								<div class="table_list_cell to_pay">0,00 <span class="ruble"><span>р</span></span></div>
+								<div class="table_list_cell last_paid">10.06.2015</div>
+								<div class="table_list_cell paid_period"><a>23 500,00 <span class="ruble"><span>р</span></span></a></div>
+								<div class="table_list_cell contact hide_1800a"><span class="ov_ell">+7 (048) 232-42-56</span></div>
+								<div class="table_list_cell contact hide_1800a"><a class="ov_ell">info@romashka.ru</a></div>
+								<div class="table_list_cell name name_link">
+									<div class="name_title">ООО «Ромашка» <span class="m_client" title="Клиент Modulbank"></span></div>
+									<div class="name_desc">ИНН: 123141421341243</div>
+								</div>
+
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+
+								<div class="table_list_cell action">
+									<a class="icon-payment" b356-tooltip="Новый платеж" title="Новый платеж"></a>
+								</div>
+								<div class="table_list_cell to_pay"><a>100 000 000,00 <span class="ruble"><span>р</span></span></a></div>
+								<div class="table_list_cell last_paid">10.06.2015</div>
+								<div class="table_list_cell paid_period">0,00 <span class="ruble"><span>р</span></span></div>
+								<div class="table_list_cell contact hide_1800a"><span class="ov_ell">+7 (048) 232-42-56</span></div>
+								<div class="table_list_cell contact hide_1800a"><a class="ov_ell">info@romashka.ru</a></div>
+								<div class="table_list_cell name name_link">
+									<div class="name_title">ООО «Московский мясоконсервный комбинат»</div>
+									<div class="name_desc">ИНН: 123141421341243</div>
+								</div>
+
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+
+								<div class="table_list_cell action">
+									<a class="icon-payment" b356-tooltip="Новый платеж" title="Новый платеж"></a>
+								</div>
+								<div class="table_list_cell to_pay">
+									<p><a>57 000,00 <span class="ruble"><span>р</span></span></a></p>
+									<p><a>17 000,00 <span class="dollar"><span>$</span></span></a></p>
+									<p><a>1 000,00 <span class="euro"><span>€</span></span></a></p>
+								</div>
+								<div class="table_list_cell last_paid">
+									<p>10.06.2015</p>
+									<p>10.06.2015</p>
+									<p>05.06.2015</p>
+								</div>
+								<div class="table_list_cell paid_period">
+									<p><a>20 000,00 <span class="ruble"><span>р</span></span></a></p>
+									<p><a>17 000,00 <span class="dollar"><span>$</span></span></a></p>
+									<p><a>1 000,00 <span class="euro"><span>€</span></span></a></p>
+								</div>
+								<div class="table_list_cell contact hide_1800a"><span class="ov_ell">+7 (048) 232-42-56</span></div>
+								<div class="table_list_cell contact hide_1800a"><a class="ov_ell">info@romashka.ru</a></div>
+								<div class="table_list_cell name name_link">
+									<div class="name_title">ООО «Башенефтехим»</div>
+									<div class="name_desc">ИНН: 123141421341243</div>
+								</div>
+
+							</div>
+
+
+
+						</div>
+					</div>
+
+					<div class="table_list_more show_more">
+						<a class="button small light icon-more-small">Показать еще</a>
+					</div>
+					<!-- end таблица -->
+
+					<!-- таблица -->
+					<div class="table_list transaction_list m_top_50">
+
+						<!-- шапка таблицы -->
+						<div class="table_list_header">
+
+							<div class="table_list_cell action">&nbsp;</div>
+							<div class="table_list_cell to_pay">К оплате</div>
+							<div class="table_list_cell last_paid"><a class="icon-sort-up">Последняя оплата</a></div>
+							<div class="table_list_cell paid_period">Оплата за период</div>
+							<div class="table_list_cell contact hide_1800a"><span class="ov_ell">+7 (048) 232-42-56</span></div>
+								<div class="table_list_cell contact hide_1800a"><a class="ov_ell">info@romashka.ru</a></div>
+							<div class="table_list_cell name name_search">
+								<input type="search" class="small input_search white" value="" placeholder="Имя, ИНН, ОГРН">
+							</div>
+
+						</div>
+						<div class="table_list_body">
+
+							<div class="table_row_info">
+								<div class="info_center">
+									<p>Нет операций, соотвествующих установленным фильтрам.
+										<a>Сбросить все фильтры</a></p>
+								</div>
+							</div>
+
+						</div>
+					</div>
+					<!-- end таблица -->
+
+				</div>
+
+				<!-- фильтры -->
+				<div class="side side_border side_small">
+					<div class="side_title">Фильтры</div>
+
+					<div class="side_filter">
+						<ul>
+							<li>
+								<input type="radio" name="tfilter" id="ff1" class="input_check" checked>
+								<label for="ff1" class="label_check"><i class="icon"></i><span>Все</span></label>
+							</li>
+							<li>
+								<input type="radio" name="tfilter" id="ff2" class="input_check">
+								<label for="ff2" class="label_check"><i class="icon"></i><span>Юридические лица</span></label>
+							</li>
+							<li>
+								<input type="radio" name="tfilter" id="ff3" class="input_check">
+								<label for="ff3" class="label_check"><i class="icon"></i><span>Индив. предприниматели</span></label>
+							</li>
+							<li>
+								<input type="radio" name="tfilter" id="ff4" class="input_check">
+								<label for="ff4" class="label_check"><i class="icon"></i><span>Физические лица</span></label>
+							</li>
+							<li>
+								<input type="radio" name="tfilter" id="ff5" class="input_check">
+								<label for="ff5" class="label_check"><i class="icon"></i><span>Не указан ИНН</span></label>
+							</li>
+						</ul>
+					</div>
+
+					<div class="side_sep"></div>
+
+					<div class="side_parameter parameter_inline">
+						<div class="side_parameter_name">Период:</div>
+						<div class="side_parameter_value">
+							<select class="select_inline" data-placeholder="выбрать">
+								<option value="d1" selected>за текущий день</option>
+								<option value="d2">за текущую неделю</option>
+								<option value="d3">за месяц</option>
+								<option value="d4">за квартал</option>
+								<option value="d5" disabled>произвольный</option>
+							</select>
+						</div>
+						<div class="filter_date_value">
+							<input type="text" name="" id="" class="datetimepicker filter_date_input small date_from">
+							<input type="text" name="" id="" class="datetimepicker filter_date_input small date_to">
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+
+</section>
+</body>
+</html>

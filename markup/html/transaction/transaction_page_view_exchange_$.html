@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Покупка иностранной валюты</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Покупка иностранной валюты</h1>
+		<div class="header_action">
+			<a href="#" class="icon-print"></a>
+			<a href="#" class="icon-favorites"></a>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="w80">
+
+			<div class="transaction_view_info transaction_view_exchange">
+
+				<div class="row">
+					<div class="transaction_view_info_account from_account col">
+						<div class="light_text">Со счета:</div>
+						Зарплатный счет (***1234)
+					</div>
+					<div class="transaction_view_info_account col">
+						<div class="light_text">На счета:</div>
+						Основной, 40802810970010000391 (***1234)
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="transaction_view_info_money col">
+						<div class="money_expense">61 000,00 <span class="cur ruble"><span>р.</span></span></div>
+					</div>
+					<div class="transaction_view_info_money col">
+						<div class="">1 050,00 <span class="cur dollar"><span>$</span></span></div>
+					</div>
+				</div>
+
+			</div>
+
+
+
+
+
+
+			<div class="light_block transaction_view_contragent">
+
+				<!-- <div class="transaction_status_stamp">В обработке <span class="date">18.06.2015</span></div> -->
+				<div class="transaction_status_stamp success">Получен <span class="date">18.06.2015</span></div>
+				<!-- <div class="transaction_status_stamp error">Отклонен банком <span class="date">18.06.2015</span></div> -->
+				<!-- <div class="transaction_status_stamp warning">Отложен <span class="date">18.06.2015</span></div> -->
+
+				<div class="stamp_padding">
+					<p>Покупка иностранной валюты Покупка иностранной валюты Покупка иностранной валюты Покупка иностранной валюты</p>
+				</div>
+
+			</div>
+
+
+			<div class="form_buttons">
+				<button class="button second icon-sign">Подписать</button>
+			</div>
+		</div>
+
+
+	</div>
+
+</article>
+
+</body>
+</html>

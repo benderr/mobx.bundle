@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Открытие счета</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main"></section>
+
+<article class="page open">
+
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Открытие счета</h1>
+		<div class="header_action">&nbsp;</div>
+	</div>
+	<div class="page_content">
+		<div class="page_wizard">
+			<div class="wizard_steps steps4 active2">
+				<div class="step done">
+					<div class="label">1</div>
+					<div class="name">Проверка реквизитов</div>
+				</div>
+				<div class="step active">
+					<div class="label">2</div>
+					<div class="name">Загрузка документов</div>
+				</div>
+				<div class="step">
+					<div class="label">3</div>
+					<div class="name">Встреча с менеджером</div>
+				</div>
+				<div class="step">
+					<div class="label">4</div>
+					<div class="name">Открытие счета</div>
+				</div>
+			</div>
+		</div>
+		<div class="open_account text_block">
+			<p>
+				Пожалуйста, загрузите необходимые документы. Это позволит ускорить процедуру регистрации и вам не нужно будет приезжать к нам в офис повторно.
+			</p>
+			<div class="small_text">
+				<p>
+					Максимальный размер загружаемого файла: 25 Мб. Допустимые форматы: .pdf, .doc, .docx, .rtf, .jpg, .png, .bmp.
+				</p>
+			</div>
+			<div class="form">
+				<form action="">
+
+
+					<div class="docs_block">
+						<div class="title">
+							Паспортные данные бенефициаров
+							<span class="icon-info" title="#"></span>
+						</div>
+						<div class="small_text">
+							<p>
+								Загрузите сканы или фотографии паспортов бенефициаров компании. Они могут быть цветными или черно-белыми, но на них должны отчетливо читаться все данные.
+							</p>
+							<p>
+								Необходимо загрузить первый разворот паспорта с основными данными, а также страницу с актуальным штампом регистрации.
+							</p>
+						</div>
+						<div class="beneficiar_list row">
+							<div class="beneficiar_item column half">
+								<div class="beneficiar_item_name">Иванов Петр Александрович</div>
+								<div class="file_upload_list">
+									<div class="file_upload_block column half">
+										<div class="file_title">Первый разворот паспорта</div>
+										<div class="file_button">
+											<label class="button small button_file_upload">
+												Загрузить
+												<input type="file" name="" id=""></label>
+										</div>
+									</div>
+									<div class="file_upload_block  column half">
+										<div class="file_title">Страница со штампом о регистрации</div>
+										<div class="file_button">
+											<label class="button small button_file_upload">
+												Загрузить
+												<input type="file" name="" id=""></label>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="beneficiar_item column half">
+								<div class="beneficiar_item_name">Прокофьев Анатолий Пантелеевич</div>
+								<div class="file_upload_list">
+									<div class="file_upload_block column half">
+										<div class="file_title">Первый разворот паспорта</div>
+										<div class="file_button">
+											<label class="button small button_file_upload">
+												Загрузить
+												<input type="file" name="" id=""></label>
+										</div>
+									</div>
+									<div class="file_upload_block column half">
+										<div class="file_title">Страница со штампом о регистрации</div>
+										<div class="file_button">
+											<label class="button small button_file_upload">
+												Загрузить
+												<input type="file" name="" id=""></label>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="form_buttons">
+						<a href="#" class="button second">Далее</a>
+						<div class="small_text border">
+							<p>
+								Вы можете в любой момент закрыть эту страницу, загрузив часть документов.
+								<br/>
+								Все загруженные файлы будут сохранены.
+							</p>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+
+	</div>
+</article>
+</body>
+</html>

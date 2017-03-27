@@ -1,0 +1,162 @@
+@charset "utf-8";
+.page404,
+.page_clear {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../images/404_back.png") no-repeat center, -webkit-radial-gradient(65% 100%, #edeff1 45%, #b7bfc7 100%);
+  background: url("../images/404_back.png") no-repeat center, -moz-radial-gradient(65% 100%, #edeff1 45%, #b7bfc7 100%);
+  background: url("../images/404_back.png") no-repeat center, -o-radial-gradient(65% 100%, #edeff1 45%, #b7bfc7 100%);
+  background: url("../images/404_back.png") no-repeat center, -ms-radial-gradient(65% 100%, #edeff1 45%, #b7bfc7 100%);
+  background: url("../images/404_back.png") no-repeat center, radial-gradient(65% 100%, #edeff1 45%, #b7bfc7 100%);
+  background-size: auto 95%;
+  overflow: auto;
+}
+.page404 .logo,
+.page_clear .logo {
+  width: 270px;
+  height: 50px;
+  position: absolute;
+  top: 40px;
+  left: calc(50% - 135px);
+  background: url("../images/logo_full_d.svg") no-repeat 0 0;
+  text-indent: -10000em;
+}
+.page404 .content_wrap,
+.page_clear .content_wrap {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.page404 .content_cell,
+.page_clear .content_cell {
+  display: table-cell;
+  width: 100%;
+  vertical-align: middle;
+}
+.page404 .content,
+.page_clear .content {
+  width: 400px;
+  margin: 0 auto;
+  text-align: center;
+}
+.page404 .content p,
+.page_clear .content p {
+  margin: 0 0 15px;
+}
+.page404.old_browser .content_cell,
+.page_clear.old_browser .content_cell {
+  padding-top: 120px;
+  padding-bottom: 30px;
+}
+.page404.old_browser .content,
+.page_clear.old_browser .content {
+  width: 600px;
+  text-align: justify;
+  font-size: 14px;
+}
+.page404.old_browser .browser_list,
+.page_clear.old_browser .browser_list {
+  overflow: hidden;
+  margin: 50px 0 0;
+}
+.page404.old_browser .browser_list li,
+.page_clear.old_browser .browser_list li {
+  float: left;
+  width: 25%;
+  text-align: center;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0 5px;
+  font-size: 13px;
+}
+.page404.old_browser .browser_list li a,
+.page_clear.old_browser .browser_list li a {
+  display: block;
+  background-size: 50% auto;
+  background-repeat: no-repeat;
+  background-position: center 15px;
+  padding: 110px 0 25px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.5);
+  text-decoration: none;
+}
+.page404.old_browser .browser_list li a:hover,
+.page_clear.old_browser .browser_list li a:hover {
+  background-color: #fff;
+}
+.page404.old_browser .browser_list li a.chrome,
+.page_clear.old_browser .browser_list li a.chrome {
+  background-image: url("../images/browser_chrome.png");
+}
+.page404.old_browser .browser_list li a.firefox,
+.page_clear.old_browser .browser_list li a.firefox {
+  background-image: url("../images/browser_firefox.png");
+}
+.page404.old_browser .browser_list li a.ie,
+.page_clear.old_browser .browser_list li a.ie {
+  background-image: url("../images/browser_ie.png");
+}
+.page404.old_browser .browser_list li a.safari,
+.page_clear.old_browser .browser_list li a.safari {
+  background-image: url("../images/browser_safari.png");
+}
+.page404.page_system_update,
+.page_clear.page_system_update {
+  background: url("../images/404_back.png") no-repeat center;
+  background-size: auto 95%;
+}
+.page404.page_system_update .logo,
+.page_clear.page_system_update .logo {
+  top: 20px;
+  left: 20px;
+  width: 200px;
+  background-size: 100% auto;
+}
+.page404.page_system_update .contact,
+.page_clear.page_system_update .contact {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  color: #2b2b2b;
+  font-size: 14px;
+  z-index: 100;
+}
+.page404.page_system_update .contact a,
+.page_clear.page_system_update .contact a {
+  text-decoration: none;
+  color: #2b2b2b;
+  font-size: 18px;
+  display: inline-block;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+.page404.page_system_update .contact a:hover,
+.page_clear.page_system_update .contact a:hover {
+  color: #00417b;
+}
+.page404.page_system_update .content,
+.page_clear.page_system_update .content {
+  width: 80%;
+}
+.page404.page_system_update h1,
+.page_clear.page_system_update h1 {
+  font-size: 41px;
+}
+.page404.page_system_update p,
+.page_clear.page_system_update p {
+  font-size: 20px;
+}
+.page404.page_system_update form,
+.page_clear.page_system_update form {
+  display: inline-block;
+  margin-top: 50px;
+  padding: 30px;
+  background: rgba(255,255,255,0.5);
+}
+.page404.page_system_update form p,
+.page_clear.page_system_update form p {
+  font-size: 16px;
+}
+/*# sourceMappingURL=404.css.map */

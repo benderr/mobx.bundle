@@ -1,0 +1,154 @@
+.page_map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.page_map .page_map_area {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.page_map .page_map_list {
+  position: absolute;
+  width: 300px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.1);
+  transform: translateX(300px);
+  transition: transform 0.3s;
+}
+.page_map .page_map_list.active {
+  transform: translateX(0px);
+}
+.page_map .page_map_list.active .toggle {
+  left: -50px;
+}
+.page_map .page_map_list.active .toggle span {
+  background: transparent;
+}
+.page_map .page_map_list.active .toggle:before {
+  transform: rotate(45deg);
+  top: calc(50% - 1px);
+}
+.page_map .page_map_list.active .toggle:after {
+  transform: rotate(-45deg);
+  top: calc(50% - 1px);
+}
+.page_map .page_map_list .toggle {
+  position: absolute;
+  top: 20px;
+  left: -60px;
+  transition: left 0.2s;
+}
+.page_map .page_map_list .toggle span {
+  width: 20px;
+  height: 2px;
+  background: ctext;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 10px;
+  transition: background 0.2s 0.2s;
+}
+.page_map .page_map_list .toggle:before,
+.page_map .page_map_list .toggle:after {
+  content: '';
+  width: 20px;
+  height: 2px;
+  background: ctext;
+  position: absolute;
+  top: calc(50% - 7px);
+  left: 10px;
+  transition: top 0.2s 0.2s, transform 0.2s 0.2s;
+}
+.page_map .page_map_list .toggle:after {
+  top: calc(50% + 5px);
+}
+.page_map .page_map_list ul {
+  overflow: auto;
+  overflow: overlay;
+  max-height: 100%;
+}
+.page_map .page_map_list li {
+  border-bottom: 1px solid cbdlight;
+}
+.page_map .page_map_list li:last-child {
+  margin-bottom: 70px;
+}
+.page_map .page_map_list li a {
+  display: block;
+  padding: 15px;
+  color: ctext;
+  text-decoration: none;
+  position: relative;
+}
+.page_map .page_map_list li a:hover {
+  background: cbghighlight;
+}
+.page_map .page_map_list li .title {
+  display: block;
+  font-weight: fwm;
+  margin: 0 0 4px;
+}
+.page_map .page_map_list li .desc {
+  display: block;
+  color: ctextlight;
+  margin: 2px 30px 0 0;
+  font-size: fzn -2px;
+}
+.page_map .page_map_list li .location {
+  position: absolute;
+  right: 15px;
+  top: calc(50% - 8px);
+  font-size: fzn -5px;
+  color: ctextlight;
+}
+.page_map .ymaps-2-1-41-map-bg-ru {
+  background: none !important;
+}
+.page_map .ymaps-2-1-41-copyrights-pane,
+.page_map .ymaps-2-1-41-controls-pane {
+  display: none !important;
+}
+.page_map .map_but {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  position: absolute;
+  left: 20px;
+  color: ctext;
+  text-align: center;
+  line-height: 45px;
+  font-size: fzn4px;
+}
+.page_map .map_but.location {
+  top: calc(50% - 110px);
+}
+.page_map .map_but.zoom_in {
+  top: calc(50% - 50px);
+}
+.page_map .map_but.zoom_out {
+  top: calc(50%);
+}
+.page_map .map_but:before {
+  margin: 0;
+}
+.page_map .map_search {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 300px;
+}
+.page_map .map_search input {
+  float: left;
+}
+.page_map .map_search .button {
+  background: #fff;
+}

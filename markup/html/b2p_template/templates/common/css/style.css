@@ -1,0 +1,360 @@
+/*=Base
+----------------------------------------------------------------*/
+@font-face {
+    font-family: 'Segoe UI'; 
+    src: url('../fonts/segoeuil.eot'); 
+    src: local('Segoe UI'), url('../fonts/segoeuil.woff') format('woff'),url('../fonts/segoeuil.ttf') format('truetype'), url('../fonts/segoeuil.svg#Segoe UI') format('svg');
+}
+@font-face {
+    font-family: 'Segoe UI Semilight'; 
+    src: url('../fonts/segoeuisl.eot'); 
+    src: local('Segoe UI Semilight'), url('../fonts/segoeuisl.woff') format('woff'),url('../fonts/segoeuisl.ttf') format('truetype'), url('../fonts/segoeuisl.svg#Segoe UI Semilight') format('svg');
+}
+
+html, body {
+    font-family: 'Segoe UI';
+    font-size: 14px;
+    color: #333333;
+}
+a {
+    color: #1570a6;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+
+/*=Content
+----------------------------------------------------------------*/
+.errorBox {
+    border: 1px solid red !important;
+}
+.errorMessage, .errorMessage2,
+.errorMessage3 {
+    color: #fff;
+    background: red;
+    line-height: 20px;
+    padding: 4px 6px;
+    height: 20px;
+    width: 228px;
+    display: none;
+}
+.errorMessage2 {
+    width: 226px;
+}
+.errorMessage3 {
+    width: 208px;
+}
+
+.content-visa .header {
+    background: none repeat scroll 0 0 #545C56;
+    color: #FFFFFF;
+    font-size: 16px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    min-height: 21px;
+    text-align: center;
+    line-height: 22px;
+}
+.content-visa .header .headerContent {
+    padding: 5px 15px 4px;
+}
+.content-visa .number {
+    background: none repeat scroll 0 0 #767D45;
+    display: inline-block;
+    padding: 0 3px;
+}
+.content-visa .pre-plBannersBox {
+    border-top: 1px dotted #b6b4b1;
+}
+.content-visa .banners {
+    margin: 20px 0;
+}
+.content-visa .post-plBannersBox {
+    width: 100%;
+    height: 20px;
+}
+.content-visa .banners ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+}
+.content-visa .banners ul li {
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.content-visa .banners li.last {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-right: 0;
+}
+.content-visa .banners .img1 {
+    opacity: 0.5;
+    filter: progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+}
+.content-visa .banners .img2 {
+    display: none;
+}
+.content-visa .leftBl {
+    margin-bottom: 20px;
+    max-width: 280px;
+}
+.content-visa .leftBl .leftBottom {
+    background: url("../img/leftBottom.png") no-repeat scroll 0 0 transparent;
+    height: 9px;
+    margin-top: -4px;
+}
+.content-visa .leftBl .content {
+    border-left: 1px solid #E5E5E5;
+    border-right: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
+    box-shadow: 2px 0 3px #F2F2F2;
+    padding: 20px 20px 4px;
+    position: relative;
+}
+.content-visa .rightBl .content {
+    box-shadow: 2px 0px 3px #F2F2F2;
+    padding: 20px 20px 4px;
+    position: relative;
+    border: 1px solid #e5e5e5;
+}
+.content-visa .leftBl .content .bl {
+    padding-bottom: 10px;
+}
+.content-visa .leftBl .content .bl-pr {
+    padding-bottom: 20px;
+}
+.content-visa .leftBl .content .bl .title,
+.content-visa .leftBl .content .bl-pr .title {
+    color: #bbbbbb;
+    font-size: 11px;
+
+}
+.content-visa .leftBl .content .bl .name-shop,
+.content-visa .leftBl .content .bl .name-shop a {
+    font-size: 16px;
+}
+.content-visa .leftBl .content .bl .name-shop,
+.content-visa .leftBl .content .bl .name-shop {
+    max-width: 175px;
+}
+.content-visa .leftBl .content .bl-pr .price {
+    font-size: 36px;
+    line-height: 32px;
+}
+
+.content-visa .rightBl .content .amountBox .amountContent .price {
+    font-size: 36px;
+    line-height: 32px;
+}
+
+.content-visa .leftBl .content .bl .text p {
+    margin: 20px 0 0;
+}
+.content-visa .leftBl .content .bl .text p:first-child {
+    margin: 0;
+}
+.content-visa .leftBl .content .bl .text .text-hide {
+    display: none;
+}
+.content-visa .leftBl .content .bl .text a.more {
+    display: inline-block;
+    margin-top: 5px;
+}
+.content-visa .leftBl .content .bl .text .logoShop {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+
+.descr-wrapped{
+    word-break: break-word;
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+}
+
+#visa-form {
+    margin: 0;
+}
+.content-visa .rightBl {
+    margin-bottom: 20px;
+    max-width: 280px;
+}
+.content-visa .rightBl .content input[type="text"], .content-visa .rightBl .content input[type="number"], .content-visa .rightBl .content input[type="tel"] {
+    width: 226px;
+    margin: 0;
+}
+.content-visa .rightBl .content input[type="text"],.content-visa .rightBl .content input[type="number"], .content-visa .rightBl .content input[type="tel"],
+.content-visa .rightBl .content select {
+    font-size: 13px;
+    margin: 0;
+    cursor: pointer;
+}
+.content-visa .rightBl .content .separate {
+    display: inline-block;
+    padding: 0 3px;
+}
+.content-visa .rightBl .content .date {
+    width: 109px;
+}
+.content-visa .rightBl .content .codeBox {
+    width: 240px;
+    min-height: 50px;
+    margin-bottom: 10px;
+    background: url('../img/codeBg.png') repeat 0 0;
+}
+.content-visa .rightBl .content .codeContent {
+    padding: 10px;
+    position: relative;
+    line-height: 30px;
+}
+.content-visa .rightBl .content .code {
+    font-size: 14px;
+    padding-right: 5px;
+}
+.content-visa .rightBl .content .codeVopros {
+    background: url("../img/vopros.png") no-repeat scroll 0 0 transparent;
+    display: inline-block;
+    height: 15px;
+    margin-right: 25px;
+    width: 15px;
+    cursor: pointer;
+}
+.content-visa .rightBl .content .codeInput {
+    width: 36px !important;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+
+
+
+.content-visa .rightBl .content .amountBox {
+    width: 240px;
+    min-height: 50px;
+}
+.content-visa .rightBl .content .amountContent {
+    position: relative;
+    line-height: 30px;
+}
+.content-visa .rightBl .content .amount {
+    font-size: 14px;
+    padding-right: 5px;
+}
+
+.content-visa .rightBl .content .amountInput {
+    width: 72px !important;
+    position: absolute;
+    right: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.content-visa .rightBl .content select[name="countries"] {
+    width: 240px;
+}
+.content-visa .rightBl .content .btn {
+    border-radius: 0 0 0 0;
+    font-size: 14px;
+    outline: none;
+}
+.content-visa .rightBl .content .cancelBtn {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+.content-visa .rightBl .rightBottomText {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px) {
+    .content-visa .rightBl .content input[type="text"], .content-visa .rightBl .content input[type="number"], .content-visa .rightBl .content input[type="tel"] {
+        width: 164px;
+    }
+    .errorMessage, .errorMessage2 {
+        width: 166px;
+    }
+    .errorMessage3 {
+        width: 148px;
+    }
+    .content-visa .rightBl .content .date {
+        width: 80px;
+    }
+    .content-visa .rightBl .content .codeBox {
+        width: 180px;
+    }
+    .content-visa .rightBl .content .code {
+        font-size: 12px;
+    }
+    .content-visa .rightBl .content .codeVopros {
+        display: none;
+    }
+    .content-visa .rightBl .content select[name="countries"] {
+        width: 180px;
+    }
+    .content-visa .rightBl .content #variant_msdd {
+        width: 175px !important;
+    }
+    .content-visa .rightBl .rightBottomText {
+        font-size: 10px;
+    }
+    .content-visa .leftBl .content .bl .name-shop, .content-visa .leftBl .content .bl .name-shop {
+        width: 115px;
+    }
+    .content-visa .rightBl .content .separate {
+        padding: 0 2px 0 3px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .content-visa .banners li.last {
+        position: relative;
+    }
+}
+
+.btn1 {
+    width: 100px;
+}
+
+.btn2 {
+    width: 130px;
+}
+
+
+.text {
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.error{
+    color:#ff5500; 
+}
+
+.content-visa .content input[type="number"]::-webkit-outer-spin-button,
+.content-visa .content input[type="number"]::-webkit-inner-spin-button {
+    display: none; 
+    -webkit-appearance: none;
+    margin: 0;
+}

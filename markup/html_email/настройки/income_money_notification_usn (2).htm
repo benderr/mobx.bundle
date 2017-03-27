@@ -1,0 +1,167 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1" >
+	<title>Письмо</title>
+	<style>
+		@media screen and (max-width:640px) {
+			.wrap {
+				padding: 0 !important;
+				/*margin: 0 -20px !important;*/
+			}
+				.wrap > tbody > tr > td, .wrap > tr > td {
+					padding: 0 !important;
+				}
+			td[class="text_wrap"] {
+				padding: 20px !important;
+				/*background: #ffffff !important;*/
+			}
+
+			.content_wrap {
+				width: 100% !important;
+			}
+
+			.content > tbody > tr > td, .content > tr > td {
+				padding: 0 !important;
+			}
+
+			.title {
+				font-size: 18px !important;
+			}
+
+			.summ_num {
+				font-size: 18px !important;
+			}
+
+			.footer {
+				width: 100% !important;
+			}
+
+			.fz_s {
+				font-size: 12px !important;
+			}
+		}
+	</style>
+</head>
+<body style="background:#ffffff">
+	<table align="center" class="wrap" width="100%" bgcolor="#fff" cellpadding="0" cellspacing="0" style="border-collapse:collapse; background: #ffffff;">
+		<tr>
+			<td>
+				<table class="content_wrap" width="640" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; line-height: 100%;">
+					<!-- шапка -->
+					<tr>
+						<td>
+							<table align="center" width="100%" height="90" bgcolor="#2D4668" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+								<tr>
+									<td width="25" height="90"></td>
+									<td height="90" valign="middle">
+										<img class="logo" src="{{emailimagesurl}}/email_logo.png" width="205" height="39" alt="ModulBank" style="width:205px; height:39px;">
+									</td>
+									<td width="126" height="90" class="header_img_cell">
+										<img class="header_img" src="{{emailimagesurl}}/email_header.png" height="90" width="126" alt="" style="float: right;">
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+					<!-- контент -->
+				  <tr>
+						<td class="text_wrap" style="padding:30px; background: #ECF2F6; color: #454E59;">
+							<table class="content" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+									<td style="font-family:Calibri, Arial, Tahoma; color: #454E59; font-size: 16px; line-height:1.3em;">
+										<div class="title" style="font-size: 22px; margin: 0 0 25px;">Здравствуйте, {{name}}!</div>
+										<div style="margin: 0 0 20px;">
+											Поступили средства на {{accountName}} ({{account}}) вашей компании {{companyName}}:
+										</div>
+										<table bgcolor="#ffffff" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; font-family:Calibri, Arial, Tahoma;">
+												<tr>
+													<td>
+														<table bgcolor="#ffffff" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; font-family:Calibri, Arial, Tahoma;" >
+															<tr>
+																<td width="50%" style="padding:20px;">
+																	<div class="summ_num" style="font-size: 40px; color:#679e1d; padding-top:10px;">+ {{summ}}</div>
+																</td>
+																<td width="50%" style="padding:20px;">
+																	<div style="font-size:12px; color:#828a96; text-align:right;" {{doNotHideComission}}>За вычетом налога УСН и комиссии:</div>
+																	<div style="font-size:20px; color:#679e1d; text-align:right;">Зачислено: + {{summusn}}</div>
+																</td>
+															</tr>
+															<tr>
+																<td style="padding:0 20px;" colspan="2">
+																	<hr align="center" width="100%" size="1" color="#CDDCE6" style="margin:0;">
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														<table bgcolor="#ffffff" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; font-family:Calibri, Arial, Tahoma;">
+															<tr>
+																<td width="60%" style="padding:20px;">
+																	<div style="font-size:14px;color:#828a96; padding:7px 0 0 0;">Пополнение налогового счёта</div>
+																</td>
+																<td width="40%" style="padding:20px; ">
+																		<div style="font-size:20px; color:#E54D4D; text-align:right;">- {{usnamount}}</div>
+																</td>
+															</tr>
+															<tr>
+																<td style="padding:0 20px;" colspan="2">
+																	<hr align="center" width="100%" size="1" color="#CDDCE6" style="margin:0;";>
+																</td>
+															</tr>
+															<tr>
+																<td width="60%" style="padding:20px;">
+																	<div style="font-size: 14px; color: #828a96; padding:7px 0 0 0; {{doNotHideComission}}">Снятие комиссии по договору с Best2Pay</div>
+																</td>
+																<td width="40%" style="padding:20px;">
+																	<div style="font-size: 20px;color: #E54D4D; text-align:right;">- {{usnamount}}</div>
+																</td>
+															</tr>
+															<tr>
+																<td style="padding:0 20px;" colspan="2">
+																	<hr align="center" width="100%" size="1" color="#CDDCE6" style="margin:0;">
+																</td>
+															</tr>
+															<tr>
+																<td style="padding:20px;" colspan="2">
+																	<div style="font-size: 12px; color: #679e1d;">Внимание: возможно, что позже по операции будет вычтен и переведён на налоговый счёт налог УСН в размере 6%. Следите за обновлениями в личном кабинете.</div>
+																</td>
+															</tr>
+															<tr>
+																<td style="padding:0 20px;" colspan="2">
+																	<hr align="center" width="100%" size="1" color="#CDDCE6" style="margin:0;">
+																</td>
+															</tr>
+															<tr>
+																<td style="padding:20px;" colspan="2">
+																	<div style="margin: 0 0 7px"><span style="color:#828a96">Платежное поручение</span> № {{docNumber}} от {{docDate}}</div>
+																	<div style="margin: 0 0 7px; {{hideContragentName}}"><span style="color:#828a96">Отправитель:</span> {{contragentNameInnKpp}}</div>
+																	<div style="margin: 0 0 7px"><span style="color:#828a96">Получатель:</span> {{companyName}}</div>
+																	<div style="margin: 0 0 7px"><span style="color:#828a96">На счёт:</span> {{account}}</div>
+																	<div style="margin: 0 0 7px"><span style="color:#828a96">Назначение платежа:</span> {{paymentPurpose}}</div>
+																	<div style="margin: 0 0 20px"><span style="color:#828a96">Получено:</span> {{date}} в {{time}}</div>
+																	<div><a href="{{detailsUrl}}" style="color:#00A3DA!important; text-decoration: underline;"><span style="color:#00A3DA">Подробная информация</span></a></div>
+																</td>
+															</tr>
+														</table>
+													</td>
+												</tr>
+										</table>
+										<div style="margin: 30px 0 20px;">С уважением,<br />Команда ModulBank</div>
+										<div style="margin: 20px 0 0; font-size: 11px; color: #939AA5; line-height: 16px; border-top: 1px solid #CDDCE6; padding: 20px 0 0;">
+											Вы получили это сообщение, потому что выразили свое согласие получать уведомления от Modulbank.<br>Если Вы хотите изменить настройки уведомлений на e-mail, зайдите в раздел <a href="{{unsubscribe}}" style="color:#00A3DA!important; text-decoration: underline;"><span style="color:#00A3DA">Уведомления</span></a> вашего профиля.
+										</div>
+									</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="https://fontastic.s3.amazonaws.com/iSooys8TZ8vPkLZDaZHNw8/icons.js"></script>
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open" >
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="tabs tabs_vertical">
+
+			<!-- меню табов -->
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Личные данные</a></li>
+					<li class="active"><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li><a href="">Нормативы SLA</a></li>
+				</ul>
+			</div>
+
+			<!-- контент табов -->
+			<div class="tabs_content">
+
+				<div class="role_settings">
+
+					<!-- кнопки действий -->
+					<div class="f_right" ng-controller="DropdownCtrl">
+						<a href="" class="button second small icon-user-full-add">Пригласить агента</a>
+						<a class="button small icon-group-half-add">Добавить группу</a>
+					</div>
+
+					<!-- переключатель отображения -->
+					<div class="switch_group switch_tabs small m_bot_20">
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab1" checked>
+							<label for="tab1">По фамилиям</label>
+						</div>
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab2">
+							<label for="tab2">По группам</label>
+						</div>
+					</div>
+
+					<!-- Приглашение агента -->
+					<div class="accordion_block r200">
+						<a href="" class="block_close icon-close"></a>
+						<form action="">
+							<div class="form_group">
+								<input type="email" placeholder="E-mail *" class="column full">
+							</div>
+							<div class="form_group">
+								<input type="text" placeholder="Фамилия" class="column half">
+								<input type="text" placeholder="Имя" class="column half">
+							</div>
+							<div class="form_group">
+								<div class="jsRadSelect2 w100" data-placeholder="Выбрать">
+									<option class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+									<option class="jsRadSelect2Options" value="">Бригада</option>
+									<option class="jsRadSelect2Options" value="">Колхозники и колхозницы</option>
+									<option class="jsRadSelect2Options" value="">Юристы</option>
+								</div>
+							</div>
+							<div class="form_group">
+								<div class="column half">
+
+									<input type="radio" name="a1" id="a1" class="input_check">
+									<label class="label_check w100 m_bot_5" for="a1"><i class="icon"></i><span>Бизнес-ассистент</span></label>
+
+									<input type="radio" name="a1" id="a2" class="input_check">
+									<label class="label_check w100 m_bot_5" for="a2"><i class="icon"></i><span>Бухгалтер</span></label>
+
+									<input type="radio" name="a1" id="a3" class="input_check">
+									<label class="label_check w100 m_bot_5" for="a3"><i class="icon"></i><span>Юрист</span></label>
+
+									<input type="radio" name="a1" id="a4" class="input_check">
+									<label class="label_check w100 m_bot_5" for="a4"><i class="icon"></i><span>Менеджер ВЭД</span></label>
+
+									<input type="radio" name="a1" id="a4" class="input_check">
+									<label class="label_check w100 m_bot_5" for="a4"><i class="icon"></i><span>Телемаркетинг</span></label>
+
+								</div>
+								<div class="column half">
+									<input type="radio" name="a1" id="a5" class="input_check">
+									<label class="label_check w100 m_bot_5" for="a5"><i class="icon"></i><span>Администратор</span></label>
+								</div>
+
+							</div>
+							<div class="form_buttons">
+								<a href="" class="button second middle icon-mail-sent">Отправить приглашение</a>
+							</div>
+						</form>
+					</div>
+
+					<!-- таблица -->
+					<div class="table_list border role_list">
+
+						<!-- шапка таблицы -->
+						<div class="table_list_header">
+							<div class="table_list_cell action">&nbsp;</div>
+							<div class="table_list_cell group">Группа</div>
+							<div class="table_list_cell role">Роль</div>
+
+							<div class="table_list_cell name">Имя</div>
+						</div>
+						<div class="table_list_body">
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+								<div class="table_list_cell group">-</div>
+								<div class="table_list_cell role">
+									<ui-select ng-model="person.selected" class="select2-inline">
+										<ui-select-match placeholder="Админ">{{$select.selected.name}}</ui-select-match>
+										<ui-select-choices repeat="city in cities">
+											<div ng-bind-html="city.name"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+								<div class="table_list_cell name">Крикунов Владислав</div>
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+								<div class="table_list_cell group">
+									<ui-select ng-model="person.selected" class="select2-inline">
+										<ui-select-match placeholder="Чемпионы">{{$select.selected.name}}</ui-select-match>
+										<ui-select-choices repeat="city in cities">
+											<div ng-bind-html="city.name"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+								<div class="table_list_cell role">
+									<ui-select ng-model="person.selected" class="select2-inline">
+										<ui-select-match placeholder="Бизнес-ассистент">{{$select.selected.name}}</ui-select-match>
+										<ui-select-choices repeat="city in cities">
+											<div ng-bind-html="city.name"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+								<div class="table_list_cell name">Петров Семен</div>
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action">&nbsp;</div>
+								<div class="table_list_cell invite">
+									<span class="info_label">Отправлено приглашение. <a href="#">Отправить еще раз</a></span>
+								</div>
+								<div class="table_list_cell name">Севастьянова Мария</div>
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+								<div class="table_list_cell group">
+									<ui-select ng-model="person.selected" class="select2-inline">
+										<ui-select-match placeholder="Чемпионы">{{$select.selected.name}}</ui-select-match>
+										<ui-select-choices repeat="city in cities">
+											<div ng-bind-html="city.name"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+								<div class="table_list_cell role">
+									<ui-select ng-model="person.selected" class="select2-inline">
+										<ui-select-match placeholder="Бизнес-ассистент">{{$select.selected.name}}</ui-select-match>
+										<ui-select-choices repeat="city in cities">
+											<div ng-bind-html="city.name"></div>
+										</ui-select-choices>
+									</ui-select>
+								</div>
+								<div class="table_list_cell name">Петров Семен</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

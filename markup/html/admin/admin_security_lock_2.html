@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Блокировка админки</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+<div class="blur">
+
+
+<include data-file="admin/admin_task_list.html header"></include>
+
+<include data-file="admin/admin_task_list.html section"></include>
+
+</div>
+
+<div class="popup_overlay" >
+<div class="popup_table">
+	<div class="popup_cell">
+		<div class="popup_layer security_lock">
+
+			<div class="security_lock_header timer">
+				<div class="icon"></div>
+				0 <span class="light_text">секунд</span>
+			</div>
+			<div class="security_lock_text">
+				<div class="security_lock_text_inner">Вы не успели - мы передали все ваши открытые задачи другим исполнителям</div>
+			</div>
+			<div class="form_buttons">
+				<a class="button light full">Я вернулся</a>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+
+</body>
+</html>

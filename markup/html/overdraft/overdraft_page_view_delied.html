@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Овердрафт</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Овердрафт</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="overdraft_info">
+			<div class="overdraft_info_date">
+				Информация на 18.07.2016
+			</div>
+			<div class="overdraft_info_order">
+				<a class="icon-file">Заявление № 1 от 10.07.2016</a>
+			</div>
+
+		</div>
+		<div class="account_card light_block">
+			<div class="account_card_money">
+					<span class="light_text">Сумма просрочки</span>
+					<span>7 600,00 <span class="cur ruble"><span>р.</span></span></span>
+			</div>
+
+			<div class="account_card_info">
+				<div class="form_group">
+					<div class="property_label col seven">Лимит овердрафта:</div>
+					<div class="prpperty_value col five">200 000 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+
+				<div class="form_group">
+					<div class="property_label col seven">Повышенная ставка
+(на просроченную и срочную задолженность), годовых</div>
+					<div class="prpperty_value col five">29%</div>
+				</div>
+				<div class="form_group">
+					<div class="property_label col seven">Срок договора:</div>
+					<div class="prpperty_value col five">до 10.07.2018</div>
+				</div>
+
+				<div class="form_group">
+					<div class="property_label col seven">Общая задолженность:</div>
+					<div class="prpperty_value col five">61 400 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+
+				<div class="form_group">
+					<div class="property_label col seven">Минимальный платеждо 31 августа:</div>
+					<div class="prpperty_value col five">7 300 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+		<div class="info_error info_icon_error">Необходимо срочно погасить долг в размере  <strong>7600 руб.</strong> <br> На всю задолженность начисляются повышенные проценты, пока не погасите долг
+</div>
+	</div>
+
+</article>
+
+</body>
+</html>

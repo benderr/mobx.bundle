@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Новости в ленте событий</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+
+<body>
+
+
+<include data-file="admin/admin_task_list.html header"></include>
+
+<section class="main">
+
+
+ 	<div class="flex_row">
+
+		<div class="content">
+
+			<!-- <div class="notice_block widget_block icon-warning">
+				<p>Поступили новые задачи, требующие вашего внимания. Чтобы просмотреть их, <a>обновите список</a>.<br/>Убедитесь, что у вас установлены соответствующие фильтры.</p>
+			</div> -->
+
+			<div class="notices">
+				<div class="notice_anim notice_in" style="height: 78px;">
+					<div class="notice_block widget_block icon-smile-bubble" >
+						<a class="close icon-close"></a>
+						<p>Поступили новые задачи, требующие вашего внимания. Чтобы просмотреть их, <a>обновите список</a>.<br/>Убедитесь, что у вас установлены соответствующие фильтры.</p>
+					</div>
+				</div>
+				<div class="notice_sep"></div>
+			</div>
+
+			<div class="title_panel">
+				<h1>Новости в ленте событий</h1>
+				<div class="title_buttons">
+					<a class="button small second icon-plus">Добавить новость</a>
+				</div>
+			</div>
+
+			<!-- таблица -->
+				<div class="table_list table_list_white news_dashboard_list">
+
+					<!-- шапка таблицы -->
+					<div class="table_list_header">
+						<div class="table_list_cell read">
+							Перешло по ссылке
+						</div>
+						<div class="table_list_cell people">
+							Получатели
+						</div>
+						<div class="table_list_cell date_send">
+							Дата выхода
+						</div>
+						<div class="table_list_cell status">
+							Статус
+						</div>
+						<div class="table_list_cell name ">
+							Тема новости
+						</div>
+					</div>
+
+					<!-- контент таблицы -->
+					<div class="table_list_body">
+
+						<!-- строка таблицы -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell read">
+								120 <span class="light_text">(40%)</span>
+							</div>
+							<div class="table_list_cell people">
+								Все <span class="light_text">(250)</span>
+							</div>
+							<div class="table_list_cell date_send">
+								04.08.2015 19:00
+							</div>
+							<div class="table_list_cell status">
+								Опубликовано
+							</div>
+							<div class="table_list_cell name icon-warning">
+								Внеплановые работы
+							</div>
+						</div>
+
+						<!-- строка таблицы -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell read">
+								12 020 <span class="light_text">(40%)</span>
+							</div>
+							<div class="table_list_cell people">
+								Все активные <span class="light_text">(12 250)</span>
+							</div>
+							<div class="table_list_cell date_send">
+								04.08.2015 19:00
+							</div>
+							<div class="table_list_cell status">
+								Опубликовано
+							</div>
+							<div class="table_list_cell name ">
+								Супер скидка всем всем
+							</div>
+						</div>
+
+						<!-- строка таблицы -->
+						<div class="table_list_row row_link">
+							<div class="table_list_cell read">
+								–
+							</div>
+							<div class="table_list_cell people">
+								Все
+							</div>
+							<div class="table_list_cell date_send">
+								04.08.2015 19:00
+							</div>
+							<div class="table_list_cell status">
+								Черновик
+							</div>
+							<div class="table_list_cell name ">
+								Новая услуга
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!-- end таблица -->
+		</div>
+
+
+	</div>
+
+</section>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/init.js"></script>
+
+
+</body>
+</html>

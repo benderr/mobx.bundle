@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Права доступа агента</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer popup_admission_agent small">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Иванов Александр Валерьевич</h1>
+				<h2>Бизнес-ассистент</h2>
+				<h3>Группа: Бригада</h3>
+				<div class="light_block">
+					<p>Портфели прав доступа</p>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa1">
+						<label for="aa1" class="label_check">
+							<i class="icon"></i><span>Настройки <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>Управление агентами (пригласить, удалить, группы)</li>
+<li>Управление правами доступа агентов</li>
+<li>Управление нормативами SLA</li>
+<li>Управление правилами для потоков новых задач</li>
+<li>Управление списком меток</li></ul>
+"></i></span>
+						</label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa2">
+						<label for="aa2" class="label_check"><i class="icon"></i><span>Работа в чатах <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>Просмотр чатов</li>
+<li>Работа с чатами в соответствии с ролями</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa3">
+						<label for="aa3" class="label_check"><i class="icon"></i><span>Инфо по клиенту <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>Информация по счетам/картам</li>
+<li>Информация по представителям</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa4">
+						<label for="aa4" class="label_check"><i class="icon"></i><span>Массовые рассылки <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>На e-mail клиентам</li>
+<li>В ленту клиентам</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa5">
+						<label for="aa5" class="label_check"><i class="icon"></i><span>Отчеты <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>Статистика по агентам</li>
+<li>Статистика по клиентам</li>
+<li>Статистика по меткам</li>
+<li>Статистика по задачам</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa6">
+						<label for="aa6" class="label_check"><i class="icon"></i><span>Логи <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>Логи отправки СМС</li>
+<li>Логи ДБО</li>
+<li>Логи входа в систему</li>
+<li>Системные логи</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa7">
+						<label for="aa7" class="label_check"><i class="icon"></i><span>Управлеие клиентами <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>Смена телефона и e-mail</li>
+<li>Смена руководителя</li>
+<li>Удаление представителя из компании</li>
+<li>Управление правами подписи в компании</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa8">
+						<label for="aa8" class="label_check"><i class="icon"></i><span>Синхронизация данных <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'>
+<li>Синхронизация инфо клиента с АБС (платежи, остатки)</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa9">
+						<label for="aa9" class="label_check"><i class="icon"></i><span>Проблемные банки <i class="icon-info" b365-tooltip title="
+<ul class='point a_left m_5'><li>Справочник проблемных банков и его ведение</li>
+</ul>
+"></i></span></label>
+					</div>
+					<div class="form_group_list">
+						<input type="checkbox" class="input_check" id="aa10">
+						<label for="aa10" class="label_check"><i class="icon"></i><span>Command Promt</span></label>
+						<a class="link m_left_10">настроить</a>
+					</div>
+				</div>
+
+				<div class="popup_panel">
+					<a class="button">Обновить</a>
+					<a class="button_clean">Отмена</a>
+				</div>
+			</div>
+			<div class="popup_backdrop"></div>
+		</div>
+	</div>
+</div>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer popup_admission_agent_comandpromt ">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Command Promt</h1>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>refreshinternalcredentialscache</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa19" checked>
+					<label for="aa19" class="label_check"><i class="icon"></i><span>addsuperbarole</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa29" checked>
+					<label for="aa29" class="label_check"><i class="icon"></i><span>detachuser</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa39" checked>
+					<label for="aa39" class="label_check"><i class="icon"></i><span>mergeclients</span></label>
+				</div>
+				<div class="form_group_list">
+					<input type="checkbox" class="input_check" id="aa49" checked>
+					<label for="aa49" class="label_check"><i class="icon"></i><span>synctransaction</span></label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

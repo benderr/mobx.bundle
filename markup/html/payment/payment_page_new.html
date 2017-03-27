@@ -1,0 +1,511 @@
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Новый платеж</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+
+<include data-file="header.html"></include>
+<include data-file="aside.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page page_payment_new side_right_wide open">
+
+	<div class="page_left">
+		<form class="poss">
+		<!-- шапка слоя -->
+		<div class="page_header">
+			<a class="page_close icon-close"></a>
+			<a class="page_expand icon-fullsize"></a>
+			<h1>
+				Платеж №
+				<input type="text" class="payment_count" placeholder="000000" value="235">
+				от <input type="text" class="payment_date datetimepicker" placeholder="" value="10.10.2016">
+			</h1>
+		</div>
+
+		<!-- контент слоя  -->
+		<div class="page_content">
+
+			<!-- восстановление данных -->
+			<!-- <div class="info">
+				<a class="block_close icon-close"></a>
+				<p>При последнем создании платежного документа введенные данные не были сохранены.</p>
+				<p><a class="icon-reload">Восстановить данные</a></p>
+			</div> -->
+
+
+				<div class="form_group">
+					<div class="input_group_title w100">
+						<div class="jsRadSelect2 w100" data-placeholder="Селект" name="adfasd" id="adsf">
+							<option class="jsRadSelect2Options" value="111" selected>Перевод между своими счетами</option>
+							<option class="jsRadSelect2Options" value="">Платеж контрагенту</option>
+							<option class="jsRadSelect2Options" value="">Платеж физическому лицу</option>
+							<option class="jsRadSelect2Options" value="">Оплата страховых взносов</option>
+							<option class="jsRadSelect2Options" value="">Налоги или бюджетный платеж</option>
+							<option class="jsRadSelect2Options" value="">Таможенный платеж</option>
+							<option class="jsRadSelect2Options" value="">Валютный перевод</option>
+						</div>
+						<div class="input_title">Тип платежа</div>
+					</div>
+				</div>
+
+				<!-- <div class="form_sep"></div> -->
+
+				<div class="form_group">
+					<div class="input_group_title w100">
+						<div class="input_group w100">
+							<input type="search" name="" id="" class="w100 drop-target field_contragent" placeholder="Наименование или ИНН получателя">
+							<div class="drop-content">
+								<div class="drop-content-inner">
+									<ul class="drop-menu max_w_400">
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+										<li><a>ЗАО «Азбука»</a></li>
+										<li><a>ООО «Ромашка»</a></li>
+										<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+										<li><a>Сергеева Алла Николаевна</a></li>
+									</ul>
+								</div>
+				            </div>
+							<a class="button middle field icon-search button_notext input_group_button"></a>
+						</div>
+
+
+
+			            <div class="input_title">Получатель</div>
+			        </div>
+				</div>
+				<div class="form_group row">
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon">ИНН</div>
+							<input type="text" name="" placeholder="ИНН получателя" id="" class="">
+							<span class="payment_field_user_rating icon_user_rating green" b365-tooltip title="Нажмите, чтобы проверить контрагента">15</span>
+						</div>
+					</div>
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon">КПП</div>
+							<input type="text" name="" placeholder="КПП получателя" id="" class="drop-target input_loading">
+							<div class="drop-content">
+								<div class="drop-content-inner">
+									<div class="loading">
+										<div></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="input_group w100">
+						<div class="input_group_addon">Банк</div>
+						<input type="text" name="" placeholder="БИК или наименование банка получателя" id="" class="drop-target input_search_focus">
+						<div class="drop-content">
+							<div class="drop-content-inner">
+								<div class="drop-title">Счета получателя</div>
+									<ul class="drop-menu max_w_600 drop_bank_account">
+										<li>
+											<a>
+												<span class="bank_name">044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ</span>
+												<span class="bank_account_num">Счет 12345678901234567890</span>
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="bank_name">049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ" </span>
+												<span class="bank_account_num">Счет 12345678901234567890</span>
+											</a>
+										</li>
+										<li>
+											<a>
+												<span class="bank_name">044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</span>
+												<span class="bank_account_num">Счет 12345678901234567890</span>
+											</a>
+										</li>
+									</ul>
+									<div class="drop-title m_top_30">Найденные в справочнике</div>
+									<ul class="drop-menu max_w_600">
+										<li> <a>044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ </a> </li>
+										<li> <a> 049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ"</a> </li>
+										<li> <a> 044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</a> </li>
+									</ul>
+								</div>
+			            </div>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="input_group w100">
+						<div class="input_group_addon">р/с</div>
+						<input type="search" name="" placeholder="Счет получателя" id="" class="drop-target input_search_focus">
+						<div class="drop-content">
+							<div class="drop-title">Счета получателя</div>
+							<ul class="drop-menu max_w_600 drop_bank_account">
+								<li>
+									<a>
+										<span class="bank_name">044452368 ОТДЕЛЕНИЕ N8644 СБЕРБАНКА РОССИИ</span>
+										<span class="bank_account_num">Счет 12345678901234567890</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="bank_name">049875622 СПБ ФИЛИАЛ ЗАО "БАНК РУССКИЙ СТАНДАРТ" </span>
+										<span class="bank_account_num">Счет 12345678901234567890</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="bank_name">044586355 ЮЖНЫЙ ФИЛИАЛ ЗАО "РАЙФФАЙЗЕНБАНК"</span>
+										<span class="bank_account_num">Счет 12345678901234567890</span>
+									</a>
+								</li>
+							</ul>
+
+			            </div>
+					</div>
+				</div>
+
+				<div class="info">Реквизиты контрагента будут обновлены после сохранения платежного поручения.</div>
+
+				<div class="form_sep"></div>
+
+				<div class="form_group">
+					<div class="input_group w100">
+						<div class="input_group_addon w70px">УИП</div>
+						<input type="text" name="" placeholder="Уникальный идентификатор платежа" id="" class="drop-target">
+						<div class="drop-content">
+							<div class="drop-content-inner inner_pad">
+								<div class="small_text fs_i">Проверьте данные, такого названия банка или номера БИК нет в нашем справочнике.</div>
+							</div>
+			            </div>
+					</div>
+				</div>
+				<div class="form_group">
+
+					<div class="input_group  w100">
+						<div class="input_group_addon w70px ">Со счета</div>
+						<a class="w100 drop-input drop-target">
+							<span class="drop_account_list">
+								<span class="account_target_name">Расчетный счет</span>
+								<span class="account_target_num">(*****4590)</span>
+								<span class="account_target_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+							</span>
+						</a>
+						<div class="drop-content">
+							<div class="drop-content-inner drop_account_list">
+								<ul class="drop-menu max_w_600">
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Расчетный счет</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+											<span class="account_name">Расчетный счет липовый</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+									<li>
+										<a>
+											<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+											<span class="account_name">Заначка на черный день</span>
+											<span class="account_num">40101234560000000000</span>
+										</a>
+									</li>
+
+								</ul>
+							</div>
+			            </div>
+
+					</div>
+				</div>
+
+				<div class="form_group row">
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon w70px">Сумма</div>
+							<input type="text" name="" placeholder="0,00" id="" class="">
+						</div>
+					</div>
+					<div class="col half">
+						<div class="jsRadSelect2 w100" data-placeholder="Селект" name="adfasd" id="adsf">
+							<option class="jsRadSelect2Options" value="111" selected>Без НДС</option>
+							<option class="jsRadSelect2Options" value="">18% включен в сумму</option>
+							<option class="jsRadSelect2Options" value="">18% сверх суммы</option>
+							<option class="jsRadSelect2Options" value="">10% включен в сумму</option>
+							<option class="jsRadSelect2Options" value="">10% сверх суммы</option>
+							<option class="jsRadSelect2Options" value="">18% включен в сумму</option>
+							<option class="jsRadSelect2Options" value="">Не указывать</option>
+						</div>
+					</div>
+
+				</div>
+				<!-- <div class="form_group a_right m_bot_30">
+					<p class="d_ib c_light f_small m_right_15">Комиссия банка: 70 <span class="cur ruble"><span>р.</span></span>*</p>
+					<p class="d_ib info_label big">Итого: <strong>4 424,00 <span class="cur ruble"><span>р.</span></span></strong></p>
+				</div> -->
+				<div class="form_group">
+					<div class="input_group_title w100">
+						<div class="textarea_block">
+							<textarea name="" id="" placeholder="" class="w100 js_autosize textarea_middle"></textarea>
+							<div class="textarea_border"></div>
+							<div class="textarea_text characters_left">Осталось символов: 28</div>
+							<div class="textarea_text">В том числе НДС 18%</div>
+						</div>
+						<div class="input_title">Назначение платежа</div>
+					</div>
+				</div>
+
+
+				<!-- отправка уведомлений -->
+				<div class="payment_notification_form">
+					<div class="form_group_list">
+						<input type="checkbox" name="name" id="a1">
+						<label for="a1" class="check label_check"><i class="icon"></i><span>Отправить уведомление получателю</span></label>
+					</div>
+					<!-- <div class="form_group_list">
+						<input type="email" name="" id="" class="small w60" placeholder="E-mail получателя">
+					</div>
+					<div class="form_group_list">
+						<textarea name="" id="" placeholder="Введите сообщение" class="small w60 js_autosize textarea_middle"></textarea>
+					</div> -->
+				</div>
+
+
+				<!-- Сохранить как избранный -->
+				<div class="payment_save_favorite">
+					<div class="form_group_list">
+						<input type="checkbox" name="name" id="a22">
+						<label for="a22" class="check label_check"><i class="icon"></i><span>Сохранить как избранный</span></label>
+					</div>
+					<!-- <div class="form_group_list m_left_25">
+						<input type="text" name="" id="" class="small w50" placeholder="Название платежа">
+					</div> -->
+				</div>
+
+
+				<div class="form_buttons">
+					<button class="button icon-check">На подпись</button>
+					<a class="button_clean">Сохранить как черновик</a>
+				</div>
+
+				<!-- <div class="info_error">asfaf</div> -->
+
+				<div class="small_text border">
+					<p class="f_small">Комиссия банка: 70 <span class="cur ruble"><span>р.</span></span></p>
+					<p>Размер комиссии рассчитан автоматически согласно тарифу вашей компании и является ознакомительным. Точный размер комиссии определяется после передачи платежного документа на обработку в банк.</p>
+				</div>
+
+
+		</div>
+		</form>
+	</div>
+
+	<!-- сайдбар -->
+	<div class="page_side page_side_wide"><div>
+
+			<!-- загрузка из 1С -->
+			<div class="import_1c_button">
+				<a class="button small full light">Загрузить платежи из 1С</a>
+			</div>
+
+			<!-- автозаполнение реквизитов -->
+			<!-- <div class="payment_autocompelete_details">
+				<div class="title">Автозаполнение реквизитов</div>
+				<div class="form_group">
+					<div class="textarea_with_attach">
+						<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+		или загрузите в виде файла реквизиты получателя или платежного поручения."></textarea>
+						<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+					</div>
+				</div>
+				<div class="form_buttons">
+					<button class="button middle w100">Заполнить реквизиты</button>
+				</div>
+			</div> -->
+
+			<!-- проверка реквизитов -->
+			<!-- <div class="payment_autocompelete_details">
+				<div class="title">Автозаполнение реквизитов</div>
+				<div class="form_group">
+					<div class="textarea_with_attach">
+						<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+		или загрузите в виде файла реквизиты получателя или платежного поручения." disabled>ИП Ибрагимов Нур Фанурович
+		ИНН: 020504154524
+		Наименование Банка: МОСКОВСКИЙ ФИЛИАЛ ОАО КБ «Региональный кредит» МОСКОВСКИЙ ФИЛИАЛ ОАО
+		</textarea>
+						<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+					</div>
+				</div>
+				<div class="form_buttons">
+					<button class="button middle w100 loader">Распознование реквизитов</button>
+				</div>
+			</div> -->
+
+			<!-- реквизиты заполнены -->
+			<!-- <div class="payment_autocompelete_details">
+				<div class="title">Автозаполнение реквизитов</div>
+				<div class="form_group">
+					<div class="textarea_with_attach">
+						<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+		или загрузите в виде файла реквизиты получателя или платежного поручения." >ИП Ибрагимов Нур Фанурович
+		ИНН: 020504154524
+		Наименование Банка: МОСКОВСКИЙ ФИЛИАЛ ОАО КБ «Региональный кредит» МОСКОВСКИЙ ФИЛИАЛ ОАО
+		</textarea>
+						<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+					</div>
+				</div>
+				<div class="form_buttons">
+					<button class="button middle w100 second icon-check noclick">Реквизиты заполнены</button>
+				</div>
+			</div> -->
+
+			<!-- загрузка файлов -->
+			<!-- <div class="payment_autocompelete_details">
+				<div class="title">Автозаполнение реквизитов</div>
+				<div class="form_group">
+					<div class="textarea_with_attach">
+						<textarea name="" id="" class="w100 js_autosize autocompelete_details_textarea" placeholder="Скопируйте в текстовое поле
+		или загрузите в виде файла реквизиты получателя или платежного поручения." ></textarea>
+						<label for="file" class="button_file_upload icon-attach"><input type="file" name="" id="file">Загрузить фото платежки</label>
+					</div>
+
+					<div class="file_upload_block">
+						<div class="uploaded">
+							<a class="file_delete"></a>
+							<div class="file_center">
+								<div class="file_icon pdf"></div>
+								<div class="file_name">Фото отсканированных реквизитов.pdf</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="form_buttons">
+					<button class="button middle w100 second icon-check noclick">Реквизиты заполнены</button>
+				</div>
+			</div> -->
+
+			<!-- избранные платежи -->
+			<div class="payment_favorites_list">
+				<div class="title">Избранные платежи</div>
+				<div class="favorite_item">
+					<a class="item">
+						<span class="item_icon_favorite icon-favorites-solid js-click-favorite-delete" b365-tooltip title="Удалить из избранного">&nbsp;</span>
+						<span class="item_icon_favorite icon-favorites js-click-favorite-add hidden" b365-tooltip title="Вернуть в избранное">&nbsp;</span>
+
+						<span class="item_icon_edit icon-pencil js-click-edit">&nbsp;</span>
+						<span class="item_icon_save hidden icon-check js-click-save">&nbsp;</span>
+
+						<span class="item_name_editable js-name-editable">
+							<textarea placeholder="Название" class="js_autosize" disabled>ИП Алексеев Иван Александрович</textarea>
+						</span>
+						<span class="item_summ">1 200 <span class="cur ruble"><span>р.</span></span></span>
+					</a>
+				</div>
+				<div class="favorite_item">
+					<a class="item">
+						<span class="item_icon_favorite icon-favorites-solid js-click-favorite-delete" b365-tooltip title="Удалить из избранного">&nbsp;</span>
+						<span class="item_icon_favorite icon-favorites js-click-favorite-add hidden" b365-tooltip title="Вернуть в избранное">&nbsp;</span>
+
+						<span class="item_icon_edit icon-pencil js-click-edit">&nbsp;</span>
+						<span class="item_icon_save hidden icon-check js-click-save">&nbsp;</span>
+
+						<span class="item_name_editable js-name-editable">
+							<textarea placeholder="Название" class="js_autosize" disabled>Аренда автомобиля</textarea>
+						</span>
+						<span class="item_summ">20 000 <span class="cur dollar"><span>$</span></span></span>
+
+					</a>
+				</div>
+				<div class="favorite_item ">
+					<a class="item">
+						<span class="item_icon_favorite icon-favorites-solid js-click-favorite-delete " b365-tooltip title="Удалить из избранного">&nbsp;</span>
+						<span class="item_icon_favorite icon-favorites js-click-favorite-add hidden" b365-tooltip title="Вернуть в избранное">&nbsp;</span>
+
+						<span class="item_icon_edit icon-pencil js-click-edit">&nbsp;</span>
+						<span class="item_icon_save hidden icon-check js-click-save">&nbsp;</span>
+
+						<span class="item_name_editable js-name-editable">
+							<textarea placeholder="Название" class="js_autosize" disabled>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ КОММЕРЧЕСКИЙ БАНК "АГРОСОЮЗ"</textarea>
+						</span>
+						<span class="item_summ">14 000 <span class="cur ruble"><span>р.</span></span></span>
+					</a>
+				</div>
+
+			</div>
+		</div></div>
+
+</article>
+
+</body>
+</html>

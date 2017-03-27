@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Новый платеж</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Выпуск электронной подписи
+		</h1>
+
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="docs_block">
+			<div class="light_text f_small m_bot_20">
+				<p>
+					Пожалуйста, выберите представителей с правом подписи среди владельцев <span class="icon-info"></span> или сотрудников компании и заполните короткую анкету по каждому из них. После выпуска электронной подписи они смогут подписывать платежи и управлять счетами компании.
+				</p>
+			</div>
+			<div class="podpisant_list">
+				<a class="drop-target link_dashed icon-plus"><span>Выбрать представителя</span></a>
+				<div class="drop-content">
+					<div class="drop-content-inner">
+						<ul class="drop-menu max_w_600">
+							<li><a>Гареев Геннадий Олегович <span class="c_light d_b f_xsmall">Владелец компании</span></a></li>
+							<li><a>Иванов Иван Иванович <span class="c_light d_b f_xsmall"><span class="m_right_10">Владелец компании</span><span class="icon-round-check c_success ">Пользователь</span></span></a></li>
+							<li><a>Иванов Иван Иванович <span class="c_light d_b f_xsmall"><span class="m_right_10">Начальник отдела продаж</span><span class=" d_ib icon-round-check c_warning">Приглашен в систему</span></span></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="docs_block">
+			<div class="light_text f_small m_bot_20">
+				<p>
+					Пожалуйста, выберите представителей с правом подписи среди владельцев <span class="icon-info"></span> или сотрудников компании и заполните короткую анкету по каждому из них. После выпуска электронной подписи они смогут подписывать платежи и управлять счетами компании.
+				</p>
+			</div>
+
+			<div class="podpisant_list">
+				<div class="podpisant_item minimized">
+
+					<div class="podpisant_item_name">
+						<a href="" class="link_dashed">
+							<span>Николаев Константин Викторович</span>
+						</a>
+						<span class="post">(Руководитель компании)</span>
+
+					</div>
+
+					<div class="podpisant_item_info">
+						<div class="form_group">
+							<input type="checkbox" name="me" id="me" class="input_check"><label class="label_check" for="me"><i class="icon"></i> Я являюсь этим сотрудником</label>
+						</div>
+
+						<div class="file_upload_list">
+							<div class="file_upload_block">
+								<div class="file_title">Первый разворот паспорта</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+							<div class="file_upload_block">
+								<div class="file_title">Страница со штампом о регистрации</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
+
+
+				<div class="podpisant_item ">
+					<div class="podpisant_item_name">
+						Новый сотрудник с правом подписи
+						<a href="" class="podpisant_delete icon-trash-bin">Удалить</a>
+					</div>
+
+					<div class="podpisant_item_info">
+						<div class="form_group">
+							<input type="checkbox" name="me2" id="me2" class="input_check"><label class="label_check" for="me2"><i class="icon"></i> Я являюсь этим сотрудником</label>
+						</div>
+						<div class="form_group">
+							<input type="text" name="" id="" placeholder="Фамилия" class="column four">
+							<input type="text" name="" id="" placeholder="Имя" class="column four">
+							<input type="text" name="" id="" placeholder="Отчество" class="column four"></div>
+						<div class="form_group">
+							<input type="text" name="" id="" placeholder="Должность" class="column half">
+							<input type="text" name="" id="" placeholder="СНИЛС" class="column half">
+						</div>
+						<div class="form_group">
+							<input type="email" name="" id="" placeholder="E-mail" class="column half">
+							<input type="text" name="" id="" placeholder="Мобильный телефон" class="column half"></div>
+
+						<div class="file_upload_list">
+							<div class="file_upload_block column three">
+								<div class="file_title">Первый разворот паспорта</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+							<div class="file_upload_block column three">
+								<div class="file_title">Страница со штампом о регистрации</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+							<div class="file_upload_block column three">
+								<div class="file_title">
+									СНИЛС
+									<br/>
+									руководителя
+								</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<!-- выбор представителя -->
+				<a class="drop-target  link_dashed icon-plus m_right_30"><span>Выбрать представителя</span></a>
+				<div class="drop-content">
+					<div class="drop-content-inner">
+						<ul class="drop-menu">
+							<li><a>Гареев Геннадий Олегович <span class="c_light d_b f_xsmall">Владелец компании</span></a></li>
+							<li><a>Иванов Иван Иванович <span class="c_light d_b f_xsmall"><span class="m_right_10">Владелец компании</span><span class="icon-round-check c_success ">Пользователь</span></span></a></li>
+							<li><a>Иванов Иван Иванович <span class="c_light d_b f_xsmall"><span class="m_right_10">Начальник отдела продаж</span><span class=" d_ib icon-round-check c_warning">Приглашен в систему</span></span></a></li>
+						</ul>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+
+
+
+
+		<div class="legend m_top_40"><span>Электронные подписи компании</span></div>
+
+		<!-- таблица -->
+		<div class="table_list table_list_small representatives_list">
+
+			<!-- шапка таблицы -->
+			<div class="table_list_header">
+				<div class="table_list_cell sign">Подпись</div>
+				<div class="table_list_cell post">Должность</div>
+				<div class="table_list_cell name">Имя</div>
+			</div>
+			<div class="table_list_body">
+
+				<!-- строка -->
+				<div class="table_list_row">
+					<div class="table_list_cell sign"><span class="info_label_success icon-check">Подпись активна</span></div>
+					<div class="table_list_cell post">
+						<p>Директор</p>
+					</div>
+					<div class="table_list_cell name">
+						<div class="name_title me">Крикунов Владислав (Я)</div>
+							<div class="name_desc">
+								<p>Телефон: +7-965-120 01 02</p>
+								<p>E-mail: <a href="mailto:user@user.com">user@user.com</a></p>
+							</div>
+					</div>
+				</div>
+
+				<!-- строка -->
+				<div class="table_list_row">
+					<div class="table_list_cell sign"><span class="info_label">Заявка отправлена</span></div>
+					<div class="table_list_cell post">
+						<p>Заместитель начальника</p>
+					</div>
+					<div class="table_list_cell name">
+						<div class="name_title">Александр Пропоркин</div>
+							<div class="name_desc">
+								<p>Телефон: +7-965-120 01 02</p>
+							</div>
+					</div>
+				</div>
+
+				<!-- строка -->
+				<div class="table_list_row">
+					<div class="table_list_cell sign"><span class="info_label">Заявка отправлена</span></div>
+					<div class="table_list_cell post">
+						<p>Заместитель начальника</p>
+					</div>
+					<div class="table_list_cell name">
+						<div class="name_title">Александр Пропоркин</div>
+							<div class="name_desc">
+								<p>Телефон: +7-965-120 01 02</p>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+
+
+
+	</div>
+
+
+</article>
+
+</body>
+</html>

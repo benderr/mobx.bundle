@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Best2Pay. Страница оплаты</title>
+		<script type="text/javascript" src="../../../common/scripts/best2pay-checkers-new.js"></script>
+		<script type="text/javascript" src="../../../common/scripts/jquery-1.11.3.min.js"></script>
+		<script type="text/javascript" src="../../../common/scripts/bootstrap.tooltip.js"></script>
+		<script type="text/javascript" src="../../../common/scripts/jquery.validate.js"></script>
+		<script type="text/javascript">
+			var tax = {
+				
+				
+						'VISA':'2.8',	
+						'VISA_IN_AMOUNT':true,			
+				
+						'MASTERCARD':'2.8',	
+						'MASTERCARD_IN_AMOUNT':true,			
+				
+						'WEBMONEY':'4.33',	
+						'WEBMONEY_IN_AMOUNT':true,			
+				
+						'YANDEXDENGI':'4.5',	
+						'YANDEXDENGI_IN_AMOUNT':true,			
+				
+						'QIWI':'5.5',	
+						'QIWI_IN_AMOUNT':false,			
+				
+						'GOROD':'6.0',	
+						'GOROD_IN_AMOUNT':true,			
+				
+						'PSKB':'7.0',	
+						'PSKB_IN_AMOUNT':true,			
+				
+				
+			};
+			
+			var AMOUNT_IS_0 = false;
+			var AMOUNT_DIV = 1.0;
+			var HAS_BIK = false;
+			
+			var customSubmitHandler;
+		</script>
+		<script type="text/javascript" src="../../../common/scripts/unipay/functions_bank.js"></script>
+	<link rel="stylesheet" href="../../../common/css/pay-form.css" />
+</head>
+<body>
+	<div class="header">
+		<div class="container">
+			<h1>Внесение платежа</h1>
+		</div>
+	</div>
+	<div class="main">
+		<div class="container">
+			<div class="b2p-title">
+				<div class="row bank">
+					<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 shop-name">
+						<span class="small">Банк</span>
+						<h2>Магазин "Солнышко"</h2>
+					</div>
+					<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs bank-logo">
+						<img class="logoShop" alt="Магазин "Солнышко"" src="https://81.95.30.42:4433/resources/siteinfos/1/8642a40f-f5fb-4645-b3de-a37fd801c0b6.jpg"/>
+					</div>
+						
+					<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs bank-site">
+						<a href="www.solnishko.biz" target="_blank">www.solnishko.biz</a>
+					</div>
+					 
+				</div>
+				<div class="bank-options">
+					<ul class="list-inline">
+						<li>Не выходя из дома</li>
+						<li>24 часа</li>
+						<li>Зачисление в течение 3 дней</li>
+					</ul>
+				</div>
+			</div>
+			<div class="b2p-form">
+				<form method="post" id="payForm" action="/webapi/PayForm">
+					<fieldset>
+						<input type="hidden" name="sector" value="1" />
+						<input type="hidden" name="reference" value ="test "/>
+						<input type="hidden" id="desc" name="description" value="test"/>
+						<input type="hidden" name="token" value="1440513189970_56ea7c71e91a550a8399a597dba00aa37a0d32c7"/>
+						<input type="hidden" id="fee_kop" name="fee_value" value="0"/>
+						<input type="hidden" name="contract" value=""/>
+						
+						<input name="amount" type="hidden" value="100"/> 
+						
+						
+						 
+						<div class="form-horizontal">
+							<div class="form-group b2p-input">
+								<label class="col-lg-3 col-md-3 col-sm-3">Тип платежа</label>
+								<div class="col-lg-9 col-md-9 col-sm-9 radio-inline-group">
+									<label class="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="paymentTypeCredit" class="payment-type-control desc-render" value="credit" required/> Платеж за кредит
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="inlineRadioOptions" id="paymentTypeCard" class="payment-type-control desc-render" value="card" required/> Пополнение карты
+									</label>
+								</div>
+							</div>
+							<div class="form-group b2p-input">
+								<label class="col-lg-3 col-md-3 col-sm-3">Номер счета</label>
+								<div class="col-lg-9 col-md-9 col-sm-9">
+									<input type="text" name="acc_number" id="accountNumberControl" class="form-control  desc-render"  autocomplete="off" value="" onkeypress="return checkAccount(event, this);" required disabled/>
+								</div>
+							</div>
+							<div class="form-group b2p-input">
+								<label class="col-lg-3 col-md-3 col-sm-3">ФИО</label>
+								<div class="col-lg-9 col-md-9 col-sm-9">
+									<input type="text" name="fio" id="contractNumberControl" class="form-control desc-render" value=""  autocomplete="off" onkeypress="return checkLettersUnicodeRus(event);" required/>
+								</div>
+							</div>
+							<div class="form-group b2p-input">
+								<label class="col-lg-3 col-md-3 col-sm-3">E-Mail</label>
+								<div class="col-lg-9 col-md-9 col-sm-9">
+									<input type="text" name="email" class="form-control" value="" onkeypress="return checkEmail(event);" required  autocomplete="off"/>
+								</div>
+							</div>
+							<div class="form-group b2p-input b2p-card-type">
+								<label class="col-lg-3 col-md-3 col-sm-3">Тип карты</label>
+								<div class="col-lg-9 col-md-9 col-sm-9 radio-inline-group">
+									<label class="radio-inline">
+										<input type="radio" name="ps" class="card-type-control ps desc-render" id="cardTypeVisa" value="1" checked="checked"/> <img src="../../../common/logo/visa-new.png" alt=""/>
+									</label>
+									<label class="radio-inline">
+										<input type="radio" name="ps" class="card-type-control ps desc-render" id="cardTypeMasterCard" value="2"/> <img src="../../../common/logo/ms_me.png" alt=""/>
+									</label>
+								</div>
+							</div>
+							<div class="form-group b2p-input">
+								<label class="col-lg-3 col-md-3 col-sm-3">Сумма к оплате</label>
+								<div class="col-lg-8 col-md-8 col-sm-8">
+																					
+										<p class="form-control-static">1.00 руб.</p>
+										
+								</div>
+							</div>
+							<div class="form-group b2p-commission">
+								<label class="col-lg-3 col-md-3 col-sm-3">Комиссия</label>
+								<div class="col-lg-9 col-md-9 col-sm-9">
+									<p class="form-control-static"><span id="totalCommission"></span> руб</p>
+								</div>
+							</div>
+							<div class="form-group b2p-input b2p-price b2p-price-static">
+								<label class="col-lg-3 col-md-3 col-sm-3">Сумма платежа</label>
+								<div class="col-lg-9 col-md-9 col-sm-9">
+									<p class="form-control-static"><span id="totalAmount"></span> руб.</p>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<div class="form-actions">
+						<input type="submit" class="btn btn-default pull-right" value="Продолжить"/>
+						<div class="clearfix hidden-sm hidden-md hidden-lg"></div>
+						<p class="form-help">Перевод и списание комиссии осуществляет ОАО «МИнБ». Генеральная лицензия Банка России №912 от 16.09.2014 г.</p>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="b2p-links">
+				<a href="https://sealinfo.thawte.com/thawtesplash?form_file=fdf/thawtesplash.fdf&dn=PAY.BEST2PAY.NET&lang=en" target="_blank" class="img-hover pull-left">
+					<img src="../../../common/logo/thawte-site-seal-grayscale.png" class="hover-out" alt=""/>
+					<img src="../../../common/logo/thawte-site-seal.png" class="hover-on" alt=""/>
+				</a>
+				<a href="http://www.best2pay.net" target="_blank" class="img-hover pull-right">
+					<img src="../../../common/logo/best2pay-grayscale.png" class="hover-out" alt=""/>
+					<img src="../../../common/logo/best2pay.png" class="hover-on" alt=""/>
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Чат админа</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+<a class="button link_show"  style="position: fixed; top: 130px; left: 30px; z-index: 1000;">Показать</a>
+<include data-file="admin/admin_task_list.html header"></include>
+
+<!-- <include data-file="admin/admin_task_list.html section"></include> -->
+
+<article class="page open side_right">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Закрыта</h1>
+
+		<!-- Если компания закрыла счет -->
+		<div class="page_client_closed_info icon-warning">Счет компании в банке закрыт</div>
+
+		<!-- Если компания закрыла и открыла счет -->
+		<!-- <div class="page_client_closed_info icon-warning">Счет компании в банке закрыт <span class="f_small">Клиент открыл <a>новый счет</a></span></div> -->
+
+
+		<div class="page_number">#152722</div>
+		<div class="task_favorite_but">
+			<a class="icon-favorites"></a>
+			<!-- если активна -->
+			<!-- <a class="icon-favorites-solid"></a> -->
+		</div>
+
+
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="page_messenger_main">
+
+			<div class="messenger_chat">
+
+				<div class="item right">
+					<div class="desc">
+						<figure class="photo avatar" style="background-image: url(images_out/photo1.jpg)"></figure>
+						<div class="name">Кристина Филатова, ассистент</div>
+						<div class="date_top">Вчера, 17:54 </div>
+						<div class="message">
+							<div class="submessage">
+								<div class="submessage_date">12.05 18:31</div>
+								Расскажите, как пользоваться юристом, и помогите составить договор аренды стадиона для проведения товарищеского матча.
+							</div>
+							<p>Мы выделили этот вопрос в отдельную ветку для вашего удобства. Мы уже начали его решать и скоро вы получите ответ.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="item">
+					<!-- <div class="date">Вчера, 17:54</div> -->
+					<div class="desc">
+						<figure class="avatar photo" style="background-color: #AB38D3">И</figure>
+						<div class="name">Сидоров Иван</div>
+						<div class="date_top">Вчера, 17:54 <span class="message_info icon-info" b365-tooltip title="<b>Версия:</b> веб<br><b>ОС:</b> Windows 7<br><b>Браузер:</b> Chrome 46.0.2490.71 masdfasdfasdfasdf<br><b>Разрешение:</b> 1200x800<br><b>IP:</b> 195.208.179.25" data-placement="bottom"></span></div>
+						<div class="message">
+							<p>Мне СРОЧНО необходимо снять офисное помещение внутри Садового кольца. Общая площадь - не менее 200 кв.м. Наличие парковочных мест для 5 машин обязательно.</p>
+							<ul class="message_file_attachments">
+								<li>
+									<a href="" class="file icon-file">Перечень рабочих мест</a>
+								</li>
+								<li>
+									<a href="" class="file icon-file">Требования к окружению</a>
+								</li>
+							</ul>
+
+
+						</div>
+					</div>
+					<div class="add_new_task_for_message">
+						<a class="icon-plus"></a>
+					</div>
+				</div>
+
+				<div class="item">
+					<!-- <div class="date">Вчера, 17:54</div> -->
+					<div class="desc">
+						<figure class="avatar photo" style="background-color: #AB38D3">И</figure>
+						<div class="name">Сидоров Иван</div>
+						<div class="date_top">Вчера, 17:54 <span class="message_info icon-info" b365-tooltip title="<b>Версия:</b> веб<br><b>ОС:</b> Windows 7<br><b>Браузер:</b> Chrome 46.0.2490.71 m<br><b>Разрешение:</b> 1200x800<br><b>IP:</b> 195.208.179.25" data-placement="bottom"></span></div>
+						<div class="message">
+							<p>И не дороже 100 т.р.</p>
+
+						</div>
+					</div>
+					<div class="add_new_task_for_message">
+						<a class="icon-plus"></a>
+					</div>
+				</div>
+
+				<div class="item right to_agents">
+					<div class="desc">
+						<figure class="avatar photo" style="background-color: #2D4668">J</figure>
+						<div class="name">Василькова Ксения, бухгалтер</div>
+						<div class="date_top">Вчера, 17:54</div>
+						<div class="message">
+							<p>Прилагаю таблицу с 5 вариантами офисных помещений, расценками на арендную плату и контактами владельцев.</p>
+							<ul class="message_file_attachments">
+								<li>
+									<a href="" class="file icon-file">Список офисов</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="item right deleted">
+					<div class="desc">
+						<figure class="photo avatar"><img src="../images_out/photo1.jpg" height="50" width="50" alt=""></figure>
+						<div class="name">Иванова Саша, ассистент</div>
+						<div class="date_top">Вчера, 17:54 <i class="message_edit icon-pencil"></i></div>
+						<div class="message">
+							<p>Сообщение удалено (25.05.2015 17:15)</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="messenger_sep_title">
+					<span>
+						<span class="sep_date">вчера 10:55</span>
+						<span class="sep_text">задачу возобновил(а): <a>Василькова Ксения</a></span>
+					</span>
+
+				</div>
+
+				<div class="item right">
+					<div class="desc">
+						<figure class="avatar photo" style="background-color: rgb(174,225,75)">К</figure>
+						<div class="name">Василькова Ксения, бухгалтер</div>
+						<div class="date_top">Вчера, 17:54
+
+							<a class="button_clean_dropdown icon-down-small small drop-target"></a>
+							<div class="drop-content">
+								<div class="drop-content-inner">
+									<ul class="drop-menu">
+										<li><a class="icon-pencil">Редактировать</a></li>
+										<li><a class="icon-trash-bin">Удалить</a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+						<div class="message">
+							<p>Прилагаю таблицу с 5 вариантами офисных помещений, расценками на арендную плату и контактами владельцев.</p>
+							<ul class="message_file_attachments">
+								<li>
+									<a href="" class="file icon-file">Список офисов</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="item right">
+					<div class="desc">
+						<figure class="avatar photo" style="background-color: rgb(174,225,75)">К</figure>
+						<div class="name">Василькова Ксения, бухгалтер</div>
+						<div class="date_top">Вчера, 17:54
+
+							<a class="button_clean_dropdown icon-down-small small drop-target"></a>
+							<div class="drop-content">
+								<div class="drop-content-inner">
+									<ul class="drop-menu">
+										<li><a class="icon-pencil">Редактировать</a></li>
+										<li><a class="icon-trash-bin">Удалить</a></li>
+									</ul>
+								</div>
+							</div>
+
+						</div>
+						<div class="message">
+							<p>Цена не дороже 100 т.р.</p>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="messenger_sep_title">
+					<span>
+						<span class="sep_date">вчера 10:55</span>
+						<span class="sep_text">Создана <a>задача 2178</a>. Создал: Иванов Иван. Исполнитель: Семенов Илья</span>
+					</span>
+				</div>
+
+
+
+
+				<div class="write_now"><span class="icon-pencil"></span><b>Ибрагимов Нур</b> (клиент), <b>Василькова Ксения</b> (ассистент) набирают сообщение ... </div>
+
+				<span id="messageLast">&nbsp;</span>
+
+
+
+			</div>
+
+
+			<!-- добавление сообщения -->
+
+			<div class="add_message">
+				<div class="add_message_tabs">
+					<a href="" class="color1 active">Ответить клиенту</a>
+					<a href="" class="color2">Написать агентам</a>
+				</div>
+				<div class="add_message_textarea">
+					<textarea name="" id="" placeholder="Счет компании в банке закрыт" class="js_autosize" disabled></textarea>
+					<textarea name="" id="" placeholder="Добавить заметку" class="hidden"></textarea>
+				</div>
+				<!-- <div class="stop_words">Вы ввели стоп-фразу: <span class="info_label_danger middle">фраза 1</span>. Для отправки замените её другой фразой.</div> -->
+				<div class="add_message_buttons">
+					<div class="add_message_send buttons_group">
+						<a class="button second middle">Ответить</a>
+						<a class="button second middle icon-down-big button_notext drop-target" data-position="bottom right"></a>
+						<div class="drop-content" >
+							<div class="drop-content-inner">
+								<ul class="drop-menu">
+									<li><a class="link_disabled">Ответить и закрыть задачу</a></li>
+									<li><a>Ответить и ожидать ответа клиента</a></li>
+								</ul>
+							</div>
+
+			            </div>
+					</div>
+					<div class="file_attach">
+						<label for="file" class="button_file_upload icon-attach">Прикрепить файл <input type="file" name="file" id=""></label>
+					</div>
+				</div>
+
+				<!-- загруженные файлы -->
+				<!-- <div class="file_upload_list inline">
+					<div class="file_upload_item">
+						<a class="file_delete delete show"></a>
+						<div class="total-progress-box">
+							<div class="total-progress" style="width:35%"></div>
+							<div class="total-progress-value">35%</div>
+						</div>
+					</div>
+
+					<div class="file_upload_item error">
+						<span class="file_upload_item_info">
+							<a class="file_delete trash icon-trash-bin"></a>
+							<div class="file_icon pdf"></div>
+							<a class="file_error_text">Заблокировано</a>
+							<a class="file_name">adfadsfad.pdf</a>
+						</span>
+					</div>
+					<div class="file_upload_item">
+						<a class="file_delete trash icon-trash-bin"></a>
+						<div class="file_icon jpg"></div>
+						<a class="file_name">adfadsfadasdfasdfasdfasdfaqrgq.pdf</a>
+					</div>
+				</div> -->
+
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<!-- сайдабар слоя -->
+	<div class="page_side">
+
+
+
+		<div class="task_side_time ">
+
+			<span class="task_side_time_text">03:52</span>
+		</div>
+
+
+
+
+
+
+		<div class="page_edit_tag">
+			<a class="drop-target" data-position="top right">&nbsp;</a>
+			<div class="drop-content">
+				<div class="drop-content-inner">
+					<ul class="tags_drop_list">
+						<li>
+							<div class="tag_item" style="background-color: #E54D4D;">
+								<input type="checkbox" name="1" id="1" class="input_check" checked>
+								<label for="1" class="label_check"><span>Блокировка</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #41C75E;">
+								<input type="checkbox" name="1" id="1" class="input_check" checked>
+								<label for="1" class="label_check"><span>Деньги</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #464DD7;">
+								<input type="checkbox" name="1" id="1" class="input_check" >
+								<label for="1" class="label_check"><span>Депозиты</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #7ED2F6;">
+								<input type="checkbox" name="1" id="1" class="input_check">
+								<label for="1" class="label_check"><span>Эквайринг</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #9C1BC9;">
+								<input type="checkbox" name="1" id="1" class="input_check">
+								<label for="1" class="label_check"><span>Реквизиты</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #6690B0;">
+								<input type="checkbox" name="1" id="1" class="input_check">
+								<label for="1" class="label_check"><span>Бухгалтерия</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #E54D4D;">
+								<input type="checkbox" name="1" id="1" class="input_check" >
+								<label for="1" class="label_check"><span>Блокировка</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #41C75E;">
+								<input type="checkbox" name="1" id="1" class="input_check" >
+								<label for="1" class="label_check"><span>Деньги</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #464DD7;">
+								<input type="checkbox" name="1" id="1" class="input_check" >
+								<label for="1" class="label_check"><span>Депозиты</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #7ED2F6;">
+								<input type="checkbox" name="1" id="1" class="input_check">
+								<label for="1" class="label_check"><span>Карты</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #9C1BC9;">
+								<input type="checkbox" name="1" id="1" class="input_check">
+								<label for="1" class="label_check"><span>Реквизиты</span></label>
+							</div>
+						</li>
+						<li>
+							<div class="tag_item" style="background-color: #6690B0;">
+								<input type="checkbox" name="1" id="1" class="input_check">
+								<label for="1" class="label_check"><span>Бухгалтер и юрист</span></label>
+							</div>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="page_tags">
+			<ul class="page_tags_list">
+				<li>
+					<div class="tag_item" style="background-color: #E54D4D;">
+						<span>Блокировка</span>
+						<a class="tag_delete icon-delete-circle"></a>
+					</div>
+				</li><li>
+					<div class="tag_item" style="background-color: #41C75E;">
+						<span>Деньги</span>
+						<a class="tag_delete icon-delete-circle"></a>
+					</div>
+				</li><li>
+					<div class="tag_item" style="background-color: #9C1BC9;">
+						<span>Эквайринг</span>
+						<a class="tag_delete icon-delete-circle"></a>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+
+		<div class="side_parameter">
+			<div class="side_parameter_name">Группа обслуживания:</div>
+			<div class="side_parameter_value">
+				<div class="jsRadSelect2 select_inline select_full" data-placeholder="Селект" name="" id="">
+					<option class="jsRadSelect2Options" value="11" selected>Бригада</option>
+					<option class="jsRadSelect2Options" value="12">Алия Арсланова</option>
+					<option class="jsRadSelect2Options" value="13">Андрей Вариков</option>
+					<option class="jsRadSelect2Options" value="14">Дамир Амиров</option>
+					<option class="jsRadSelect2Options" value="15">Денис Маслов</option>
+					<option class="jsRadSelect2Options" value="16">Динар Галимов</option>
+					<option class="jsRadSelect2Options" value="17">Нур Ибрагимов</option>
+					<option class="jsRadSelect2Options" value="18">Роберт Сабирьянов</option>
+				</div>
+			</div>
+		</div>
+		<div class="side_parameter">
+			<div class="side_parameter_name">Исполнитель:</div>
+			<div class="side_parameter_value">
+				<!-- <div class="jsRadSelect2 select_inline select_full" data-placeholder="Селект" name="" id="">
+					<div class="jsRadSelect2Options" value="1" selected><span class="agent_status busy"></span>Азат Халилов</div>
+					<div class="jsRadSelect2Options" value="2"><span class="agent_status online"></span>Алия Арсланова</div>
+					<div class="jsRadSelect2Options" value="3"><span class="agent_status busy"></span>Андрей Вариков</div>
+					<div class="jsRadSelect2Options" value="4"><span class="agent_status offline"></span>Дамир Амиров</div>
+					<div class="jsRadSelect2Options" value="5"><span class="agent_status online"></span>Денис Маслов</div>
+					<div class="jsRadSelect2Options" value="6"><span class="agent_status online"></span>Динар Галимов Радиковичфывафываasdfa</div>
+					<div class="jsRadSelect2Options" value="7"><span class="agent_status busy"></span>Нур Ибрагимов</div>
+					<div class="jsRadSelect2Options" value="8"><span class="agent_status busy"></span>Роберт Сабирьянов</div>
+				</div> -->
+				<p>Азат Халилов</p>
+				<!-- <a class="m_top_10 button xsmall">Назначить мне</a> -->
+			</div>
+		</div>
+
+
+		<div class="task_side_client side_block">
+			<figure class="avatar"><img src="../images/avatar_man.jpg" alt="Сидоров Сидр"></figure>
+			<!-- <div class="status"><span class="info_label_success">Online</span></div> -->
+			<div class="status"><span class="info_label_error">Offline</span><span class="last_enter">10.05 11:23</span></div>
+			<div class="desc">
+				<div class="name">Сидоров Михаил</div>
+				<div class="company">Общество с ограниченной ответственностью "Пермские колбасы"</div>
+				<p class="ov_ell icon-mail"><a href="mailto:info@romashka.net">info@romashka.net</a></p>
+				<p class="ov_ell icon-phone">+7 (095) 420-09-80</p>
+				<!-- <span class="info_label_error small">Блокировка ПОД/ФТ</span>
+				<span class="info_label_error small">Пользователь удален из компании</span> -->
+				<span class="portal_id">bd7dec2b-b862-4dc9-8cac-a5df02dec611</span>
+			</div>
+		</div>
+
+
+
+		<div class="side_block">
+			<div class="side_block_title">
+				<a class="button xxsmall f_right light">CRM</a>
+				<a class="button xxsmall f_right light m_right_5">Карточка</a>
+				Компания
+			</div>
+			<p><span class="light_text">ОГРНИП:</span> 123456789012345</p>
+			<p><span class="light_text">ИНН:</span> 123456789012</p>
+			<p><span class="light_text">КПП:</span> 1234567890</p>
+			<p><span class="light_text">ABSID:</span> 3644283679</p>
+			<p><span class="light_text">В системе с:</span> 25.03.2015</p>
+			<p><span class="light_text">Статус в CRM:</span> <a>Счет открыт</a></p>
+			<!-- <p><span class="c_error">Статус в CRM: –</span></p> -->
+			<div class="side_sep"></div>
+			<p><a>Реквизиты компании</a></p>
+			<p><a>Представители</a></p>
+			<!-- <p><span class="light_text">Пользователей:</span> 3</p>
+			<p><span class="light_text">Тарифный план:</span> СТАРТ</p>
+			<p class="m_top_10"><span class="fw_b">Поключены услуги:</span>
+				<ul class="point">
+					<li>Бухгалтер</li>
+					<li>Юрист</li>
+				</ul>
+			</p> -->
+		</div>
+
+		<div class="side_sep"></div>
+
+		<div class="side_block">
+			<div class="side_block_title">Тарифы и услуги</div>
+			<p><span class="light_text">Город:</span> Нижний Новгород</p>
+			<p><span class="light_text">Тариф:</span> Старт Новогодний</p>
+			<p class="m_top_10"><span class="light_text">Поключены услуги:</span>
+				<ul class="point">
+					<li>Бухгалтер</li>
+					<li>Юрист</li>
+				</ul>
+			</p>
+		</div>
+
+		<div class="side_sep"></div>
+
+		<div class="side_block">
+			<div class="side_block_title">
+				<a class="button xxsmall f_right light">Все счета</a>
+				Остатки на счетах
+			</div>
+			<p><span class="light_text w35 d_ib">Рубли:</span> 10 000,22 <span class="cur rur"><span>р.</span></span></p>
+			<p><span class="light_text w35 d_ib">Доллары:</span> 0,01 <span class="cur usd"><span>$</span></span></p>
+			<p><span class="light_text w35 d_ib">Евро:</span> 42,00 <span class="cur eur"><span>€</span></span></p>
+			<p><span class="light_text w35 d_ib">Юань:</span> 0,00 <span class="cur cny"><span>¥</span></span></p>
+		</div>
+
+		<div class="side_sep"></div>
+
+		<div class="side_block">
+			<div class="side_block_title">Заметки</div>
+			<p class="fs_i">Любит общаться долго,<br>На контроле у финмониторинга,<br>Частая смена номера</p>
+			<div class="m_top_10"><a class="button xsmall second">Написать</a></div>
+		</div>
+
+		<div class="side_sep"></div>
+
+		<div class="side_block">
+			<div class="side_block_title">
+				<a class="button xxsmall f_right light">Статистика</a>
+				Задачи
+			</div>
+			<p>Всего: <strong>17</strong></p>
+			<p>Открыто: <strong>3</strong></p>
+		</div>
+
+
+
+	</div>
+
+</article>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

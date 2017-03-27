@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Создание контрагента</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="contragents/contragents.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Новый контрагент</h1>
+		<div class="header_button">
+			<button class="button small light icon-search">Автоматически заполнить реквизиты по ИНН</button>
+		</div>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<form class="form">
+			<div class="form_group">
+				<input type="text" name="" id="" class="w100" placeholder="Полное наименование*">
+			</div>
+			<div class="form_group row">
+				<div class="col eight">
+					<input type="text" name="" id="" class="w100" placeholder="Краткое наименование">
+				</div>
+				<div class="col four"><div class="small_text m_top_5">сокращено автоматически</div></div>
+			</div>
+
+			<div class="form_group">
+				<input type="checkbox" name="" id="a1">
+				<label for="a1" class="label_check check"><i class="icon"></i><span>Иностранный контрагент</span></label>
+			</div>
+
+			<div class="form_group row">
+				<div class="col four">
+					<div class="input_group_title w100">
+						<div class="input_group w100">
+							<input type="text" class="w100" name="" id="" value=""  placeholder="">
+							<a class="button middle light icon-search button_notext input_group_button"></a>
+						</div>
+						<div class="input_title">ИНН</div>
+					</div>
+				</div>
+				<div class="col four">
+					<div class="input_group_title w100">
+						<input type="text" class="w100" name="" id="" value=""  placeholder="">
+						<div class="input_title">КПП</div>
+					</div>
+				</div>
+				<div class="col four">
+					<div class="input_group_title w100">
+						<input type="text" class="w100" name="" id="" value=""  placeholder="">
+						<div class="input_title">ОГРН</div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div class="form_page_important_area">
+				<div class="form_group ">
+					<div class="col four">
+						<div class="input_group_title w100">
+							<input type="text" class="w100" name="" id="" value=""  placeholder="БИК или наименование">
+							<div class="input_title">Банк</div>
+						</div>
+					</div>
+					<div class="col four">
+						<div class="input_group_title w100">
+							<input type="text" class="w100" name="" id="" value=""  placeholder="Номер счета">
+							<div class="input_title">р/с</div>
+						</div>
+					</div>
+					<div class="col four">
+						<a class="icon-delete-circle m_top_25 c_error d_ib m_right_30">Удалить</a>
+					</div>
+				</div>
+				<div class="form_group ">
+					<div class="col four">
+						<div class="input_group_title w100">
+							<input type="text" class="w100" name="" id="" value=""  placeholder="БИК или наименование">
+							<div class="input_title">Банк</div>
+						</div>
+					</div>
+					<div class="col four">
+						<div class="input_group_title w100">
+							<input type="text" class="w100" name="" id="" value=""  placeholder="Номер счета">
+							<div class="input_title">р/с</div>
+						</div>
+					</div>
+					<div class="col four">
+						<a class="icon-delete-circle m_top_25 c_error d_ib m_right_30">Удалить</a>
+						<a class="icon-round-plus m_top_25 d_ib">Добавить счет</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="form_group ">
+				<div class="col four">
+					<div class="input_group_title w100">
+						<select class="w100" disabled>
+							<option value="" selected>Российская Федерация</option>
+							<option value="">Украина</option>
+							<option value="">Казахстан</option>
+						</select>
+						<div class="input_title">Страна</div>
+					</div>
+				</div>
+				<div class="col four">
+					<div class="input_group_title w100">
+						<input type="text" name="" placeholder="" id="" class="w100" >
+						<div class="input_title">Город</div>
+					</div>
+				</div>
+				<div class="col four">
+					<div class="input_group_title w100">
+						<input type="text" name="" placeholder="" id="" class="w100" >
+						<div class="input_title">Адрес</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="form_group ">
+				<div class="col four">
+					<div class="input_group column twelve">
+						<div class="input_group_addon icon-user"></div>
+						<input type="text" name="" placeholder="Контактное лицо" id="" class="" >
+					</div>
+				</div>
+				<div class="col four">
+					<div class="input_group column twelve">
+						<div class="input_group_addon icon-phone"></div>
+						<input type="text" name="" placeholder="Телефон" id="" class="" >
+					</div>
+				</div>
+				<div class="col four">
+					<div class="input_group column twelve">
+						<div class="input_group_addon icon-mail"></div>
+						<input type="text" name="" placeholder="E-mail" id="" class="" >
+					</div>
+				</div>
+			</div>
+			<div class="form_buttons">
+				<button class="button second icon-check">Создать</button>
+				<a class="button_clean">Отменить</a>
+			</div>
+
+		</form>
+	</div>
+</article>
+
+</body>
+</html>

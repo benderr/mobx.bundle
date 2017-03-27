@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/jquery.multiple.select.js"></script>
+	<script src="js/include.js"></script>
+	<script src="js/init.js"></script>
+
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-left-double"></a>
+		<h1>Настройки</h1>
+
+	</div>
+	<div class="page_content">
+		<div class="tabs tabs_vertical">
+			<div class="tabs_menu">
+				<ul>
+					<li class="active"><a href="">Личные данные</a></li>
+					<li><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li><a href="">Нормативы SLA</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+				<div class="personal_settings">
+					<div class="column seven">
+						<div class="form_group form_horizontal">
+							<div class="column three property_label">Фамилия</div>
+							<div class="column nine property_value"><input type="text" name="" id="" value="Сидорова" class="w100"></div>
+						</div>
+						<div class="form_group form_horizontal">
+							<div class="column three property_label">Имя</div>
+							<div class="column nine property_value"><input type="text" name="" id="" value="Елизавета" class="w100"></div>
+						</div>
+						<div class="form_group form_horizontal">
+							<div class="column three property_label">Отчество</div>
+							<div class="column nine property_value"><input type="text" name="" id="" value="Сидоровна" class="w100"></div>
+						</div>
+						<div class="form_group form_horizontal">
+							<div class="column three property_label">Титул</div>
+							<div class="column nine property_value"><input type="text" name="" id="" value="Основатель" class="w100"></div>
+						</div>
+
+
+						<div class="form_group ">
+							<div class="column three property_label">E-mail</div>
+							<div class="column nine property_value">test@test.com <a href="" class="icon-pencil m_left_10">изменить</a></div>
+						</div>
+						<!-- изменение почты -->
+						<!-- <div class="form_group form_horizontal">
+							<div class="column three property_label">E-mail</div>
+							<div class="column nine property_value">
+								<input type="email" name="" id="" value="" placeholder="Новый e-mail" class="w100 m_bot_5">
+								<input type="password" name="" id="" value="" placeholder="Текущий пароль" class="w100 m_bot_10">
+								<a href="" class="button small second">Изменить</a>
+								<a href="" class="button_clean small">Отменить</a>
+							</div>
+						</div> -->
+
+						<div class="form_group">
+							<div class="column three property_label">Пароль</div>
+							<div class="column nine property_value"><a href="" class="icon-pencil">изменить</a></div>
+						</div>
+						<!-- изменение пароля -->
+						<!-- <div class="form_group form_horizontal">
+							<div class="column three property_label">Пароль</div>
+							<div class="column nine property_value">
+								<input type="password" name="" id="" value="" placeholder="Текущий пароль" class="w100 m_bot_5">
+								<input type="password" name="" id="" value="" placeholder="Новый пароль" class="w100 m_bot_5">
+								<input type="password" name="" id="" value="" placeholder="Повторите пароль" class="w100 m_bot_10">
+								<a href="" class="button small second">Изменить</a>
+								<a href="" class="button_clean small">Отменить</a>
+							</div>
+						</div> -->
+
+					</div>
+					<div class="column four offset-by-one a_center">
+						<figure class="avatar" style="background-image: url(../images/avatar_woman.jpg)">
+							<a href="" class="delete avatar_delete"></a>
+							<label class="avatar_edit button_file_upload">Изменить фото <input type="file" name="" id=""></label>
+						</figure>
+						<div class="switch_group switch small sex">
+							<div class="switch_item">
+								<input type="radio" name="12" id="tab1" checked>
+								<label for="tab1">М</label>
+							</div>
+							<div class="switch_item">
+								<input type="radio" name="12" id="tab2">
+								<label for="tab2">Ж</label>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

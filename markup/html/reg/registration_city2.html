@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" >
+	<title>Регистрация</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/registration.css">
+
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/jquery.multiple.select.js"></script>
+  	<script src="js/include.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<div class="reg">
+	<div class="wrap">
+		<div class="reg_header">
+			<include data-file="reg/registration.html .reg_header>*"></include>
+		</div>
+		<div class="reg_section">
+			<div class="reg_side">
+				<include data-file="reg/registration.html .reg_side>*"></include>
+			</div>
+			<div class="reg_article" ng-controller="selectController">
+				<h1>Добро пожаловать, Сергей!</h1>
+				<p>В данный момент мы имеем офисы в Москве и Новосибирске. Вам не обязательно жить в одном из этих городов, но нужно будет приехать в офис один раз для регистрации. В дальнейшем практически все операции можно будет выполнять удаленно.</p>
+
+				<div class="info">
+					Я готов приехать в:
+						<select class="select_inline" data-placeholder="выберите город" data-filter="true">
+							<option value="">Москва</option>
+							<option value="">Нижний-Новгород</option>
+							<option value="">Казань</option>
+							<option value="">Уфа</option>
+						</select>
+
+				</div>
+					<p></p>
+					<p>Или мы оповестим вас сразу, как только появится информация об открытии офиса в Вашем городе:</p>
+					<div class="form_group">
+						<select class="" data-placeholder="выберите город" data-filter="true">
+							<option value="">Москва</option>
+							<option value="">Нижний-Новгород</option>
+							<option value="">Казань</option>
+							<option value="">Уфа</option>
+						</select>
+						<input type="submit" value="Подтвердить" class="button middle second">
+					</div>
+
+
+				<div class="share">
+					<p>Поделитесь этой новостью с друзьями - чем больше заявок будет получено от пользователей из Вашего города, тем быстрее мы откроем офис обслуживания у Вас.</p>
+					<ul class="soc">
+					    <li><a class="soc-twitter" href="#"></a></li>
+					    <li><a class="soc-facebook" href="#"></a></li>
+					    <li><a class="soc-vkontakte" href="#"></a></li>
+					    <li><a class="soc-pinterest" href="#"></a></li>
+					    <li><a class="soc-linkedin soc-icon-last" href="#"></a></li>
+					</ul>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

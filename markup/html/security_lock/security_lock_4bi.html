@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Открытие счета</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+
+	<script src="js/bootstrap.dropdown.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+	<script>
+		angular.module('app',['ui.bootstrap']).controller('DropdownCtrl', function ($scope, $log) {});
+	</script>
+</head>
+<body ng-app="app">
+
+<div class="blur">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main">
+	<include data-file="aside.html"></include>
+	<include data-file="transaction/transaction.html section>*"></include>
+</section>
+</div>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer security_lock">
+				<div class="security_lock_header">
+					<div class="icon icon-password"></div>
+					Мы заботимся<br/> о безопасности<br/> ваших данных
+					<a class="logout" href="">Выйти</a>
+				</div>
+				<div class="security_lock_text">
+					<div class="security_lock_text_inner">Ваш сеанс работы в системе был приостановлен ввиду вашей неактивности. Вам необходимо авторизоваться в системе.</div>
+				</div>
+				<div class="form_buttons">
+					<a class="button light full">Получить СМС-код</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

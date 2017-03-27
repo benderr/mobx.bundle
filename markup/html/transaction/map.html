@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Карта банкоматов и касс</title>
+	<link rel="stylesheet" href="../../css/map_style.css">
+	<script src="../../js/jquery.min.js"></script>
+</head>
+<body>
+	<script>
+		// показать список для карты
+		$(document).ready(function(){
+			$('.page_map_list .toggle').click(function(){
+				$('.page_map').toggleClass('active_list')
+			});
+		})
+	</script>
+	<div class="page_map">
+		<div class="page_map_area">
+
+
+			<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?sid=Yr6e3lPVen-2jopSmlIPr3mKUXonhP4t&amp;width=100%&amp;height=100%&amp;lang=ru_RU&amp;sourceType=constructor&amp;scroll=true"></script>
+
+			<a class="map_but location icon-location"></a>
+			<a class="map_but zoom_in icon-plus"></a>
+			<a class="map_but zoom_out icon-minus"></a>
+			<div class="map_search input_group">
+				<input type="search" class="small" value="" placeholder="Адрес: город, улица, метро">
+				<a class="button field small icon-search button_notext input_group_button"></a>
+			</div>
+		</div>
+		<div class="page_map_list ">
+			<a class="map_but toggle"><span></span></a>
+			<ul>
+				<li>
+					<a class="active">
+						<span class="balloon_info">
+							<span class="title">МКБ</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+							<!-- <span class="location">500 м</span> -->
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">ИнвестКапиталБанк</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">Сбербанк</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">МКБ</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">ИнвестКапиталБанк</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">Сбербанк</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">МКБ</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">ИнвестКапиталБанк</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a>
+						<span class="balloon_info">
+							<span class="title">Сбербанк</span>
+							<span class="address">Уфа, 50 лет октября улица, 3В</span>
+							<span class="desc limits icon-recharge">
+								<strong>Лимиты внесения наличных:</strong>
+								за раз до 85 000 руб<br/>
+								в месяц до 599 000 руб
+							</span>
+							<span class="desc time icon-clock">
+								<strong>Часы работы:</strong>
+								c 10:00 до 19:00
+							</span>
+						</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+	</div>
+</body>
+</html>

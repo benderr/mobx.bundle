@@ -1,0 +1,64 @@
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Загрузка из 1С</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+
+<article class="page open">
+
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Загрузка платежей из 1С
+		</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="w70">
+			<div class="import_1c_success">
+				<h3>Документы готовы</h3>
+				3 новых платежных поручений — в списке операций, {M} платеж{ей} не получилось  создать из-за ошибок в реквизитах.
+
+
+				<p class="m_top_30 m_bot_10 fw_m">Новые платежные поручения:</p>
+				<ul class="circ">
+					<li><a>№ 1023 на 40002,43 Р в ООО Ромашка</a></li>
+					<li><a>№ 1023 на 40002,43 Р в ООО Ромашка</a></li>
+					<li><a>№ 1023 на 40002,43 Р в ООО Ромашка</a></li>
+					<li><a>№ 1023 на 40002,43 Р в ООО Ромашка</a></li>
+					<li><a>№ 1023 на 40002,43 Р в ООО Ромашка</a></li>
+					<li><a>№ 1023 на 40002,43 Р в ООО Ромашка</a></li>
+					<li><span class="c_error">№ 1023 на 40002,43 Р в ООО Ромашка</span> <span class="small_text d_b">{Текст ошибки по документу из ДБО}</span></li>
+					<li><span class="c_error">№ 1023 на 40002,43 Р в ООО Ромашка</span> <span class="small_text d_b">{Текст ошибки по документу из ДБО}</span></li>
+				</ul>
+				<div class="form_buttons">
+					<button class="button second middle icon-sign">Подписать все платежи</button>
+					<a class="button_clean">Закрыть</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</article>
+
+<article class="page side_right_wide open">
+</article>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Статистика по меткам</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+
+
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+
+<section class="main">
+
+
+ 	<div class="flex_row">
+
+		<div class="content">
+
+			<div class="title_panel">
+				<h1>Статистика по меткам</h1>
+
+				<div class="title_buttons">
+					<a class="drop-target icon-date drop-input second small ">с 12 апреля по 19 марта</a>
+					<div class="drop-content">
+						<div class="drop-content-inner dashboard-period-choose">
+							<ul class="drop-menu">
+								<li><a>За всё время</a></li>
+								<li><a>Текущая неделя</a></li>
+								<li><a>Прошлая неделя</a></li>
+								<li><a>Текущий месяц</a></li>
+								<li><a>Прошлый месяц</a></li>
+							</ul>
+							<div class="drop-date-choose">
+								<div class="filter_date_value">
+									<input type="text" name="" id="" class=" filter_date_input small date_from">
+									<input type="text" name="" id="" class=" filter_date_input small date_to">
+									<button class="button small">Ок</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- колонки -->
+			<div class="admin_stat_columns">
+
+				<!-- колонка -->
+				<div class="stat_column widget_block stat_column_tags">
+					<div class="title">
+						Рейтинг меток
+						<span class="subtitle"><strong>закрыто</strong>&nbsp;&nbsp;|&nbsp;&nbsp;среднее время решения</span>
+					</div>
+					<ul class="stat_list">
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Депозиты</span>
+								<span class="value">
+									<span class="total">124</span>
+									<span class="tag_time">15 сек</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link active">
+								<span class="name">Эквайринг</span>
+								<span class="value">
+									<span class="total">80</span>
+									<span class="tag_time">6 мин 20 сек</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Бухгалтер</span>
+								<span class="value">
+									<span class="total">70</span>
+									<span class="tag_time">1 ч 15 мин</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Юрист</span>
+								<span class="value">
+									<span class="total">65</span>
+									<span class="tag_time">1 д 10 ч</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Валютка</span>
+								<span class="value">
+									<span class="total">65</span>
+									<span class="tag_time">> 30 дней</span>
+								</span>
+							</a>
+						</li>
+
+
+					</ul>
+				</div>
+
+				<!-- колонка -->
+				<div class="stat_column widget_block stat_column_tags ">
+					<div class="title">
+						Рейтинг агентов
+						<span class="subtitle"><strong>закрыто</strong>&nbsp;&nbsp;|&nbsp;&nbsp;среднее время решения</span>
+					</div>
+					<ul class="stat_list">
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Иванов Иван Ивановичиичичччи</span>
+								<span class="value">
+									<span class="total">124</span>
+									<span class="tag_time">15 сек</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Сидоров Сидор</span>
+								<span class="value">
+									<span class="total">80</span>
+									<span class="tag_time">26мин 20сек</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Семенов Семен</span>
+								<span class="value">
+									<span class="total">70</span>
+									<span class="tag_time">1 ч 15 мин</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link active">
+								<span class="name">Ильющенко Аня</span>
+								<span class="value">
+									<span class="total">65</span>
+									<span class="tag_time">1 д 10 ч</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">Верлицкая Виолетта</span>
+								<span class="value">
+									<span class="total">65</span>
+									<span class="tag_time">> 30 дней</span>
+								</span>
+							</a>
+						</li>
+
+
+					</ul>
+				</div>
+
+
+				<!-- колонка -->
+				<div class="stat_column stat_column_wide widget_block stat_column_tags">
+					<div class="title">
+						Задачи
+						<span class="subtitle"><strong>всего</strong>&nbsp;&nbsp;|&nbsp;&nbsp;в ожидании&nbsp;&nbsp;|&nbsp;&nbsp;в работе</span>
+					</div>
+					<ul class="stat_list">
+						<li>
+							<a class="stat_list_link">
+								<span class="name">#145155</span>
+								<span class="value">
+									<span class="total">10ч 23мин</span>
+									<span class="tag_time">5ч 10мин</span>
+									<span class="tag_time">5ч 13мин</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">#145155</span>
+								<span class="value">
+									<span class="total">10ч 23мин</span>
+									<span class="tag_time">5ч 10мин</span>
+									<span class="tag_time">5ч 13мин</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">#145155</span>
+								<span class="value">
+									<span class="total">10ч 23мин</span>
+									<span class="tag_time">5ч 10мин</span>
+									<span class="tag_time">5ч 13мин</span>
+								</span>
+							</a>
+						</li>
+						<li>
+							<a class="stat_list_link">
+								<span class="name">#145155</span>
+								<span class="value">
+									<span class="total">10ч 23мин</span>
+									<span class="tag_time">5ч 10мин</span>
+									<span class="tag_time">5ч 13мин</span>
+								</span>
+							</a>
+						</li>
+
+					</ul>
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+
+</section>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+</body>
+</html>

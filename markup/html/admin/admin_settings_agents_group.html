@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open" >
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="tabs tabs_vertical">
+
+			<!-- меню табов -->
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Личные данные</a></li>
+					<li class="active"><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li><a href="">Нормативы SLA</a></li>
+				</ul>
+			</div>
+
+			<!-- контент табов -->
+			<div class="tabs_content">
+
+				<div class="role_settings">
+
+					<!-- кнопки действий -->
+					<div class="f_right">
+						<a href="" class="button second small icon-user-full-add">Пригласить агента</a>
+						<a class="button small icon-group-half-add" dropdown-toggle>Добавить группу</a></div>
+					</div>
+
+					<!-- переключатель отображения -->
+					<div class="switch_group switch_tabs small m_bot_20">
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab1" >
+							<label for="tab1">По фамилиям</label>
+						</div>
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab2" checked>
+							<label for="tab2">По группам</label>
+						</div>
+					</div>
+
+					<!-- таблица -->
+					<div class="table_list table_list_small role_group_list">
+
+						<div class="table_list_header">
+							<div class="table_list_cell action">&nbsp;</div>
+							<div class="table_list_cell default">По умолчанию</div>
+							<div class="table_list_cell chief">Руководитель</div>
+							<div class="table_list_cell name">Группа</div>
+						</div>
+
+						<div class="table_list_body">
+
+							<!-- строка с группой -->
+							<div class="table_list_group">
+
+								<!-- строка -->
+								<div class="table_list_row">
+									<div class="table_list_cell action">
+										<a href="" class="icon-edit notext"></a>
+										<a href="" class="trash icon-trash-bin notext"></a>
+									</div>
+									<div class="table_list_cell default">
+										<input type="radio" name="a1" id="a1" class="input_check">
+										<label class="label_check" for="a1"><i class="icon"></i></label>
+									</div>
+									<div class="table_list_cell chief">
+										<select class="select_inline" data-placeholder="Не задан" data-filter="true">
+											<option value="">Азат Халилов</option>
+											<option value="">Алия Арсланова</option>
+											<option value="" selected>Андрей Вариков</option>
+											<option value="">Дамир Амиров</option>
+											<option value="">Денис Маслов</option>
+											<option value="">Динар Галимов</option>
+											<option value="">Нур Ибрагимов</option>
+											<option value="">Роберт Сабирьянов</option>
+										</select>
+									</div>
+									<div class="table_list_cell name">
+										<a href="#" class="group_name_link link_dashed icon-right-big"><span>Вне группы</span></a>
+										<span class="count">(4)</span>
+									</div>
+								</div>
+
+							</div>
+
+
+
+							<!-- строка с группой -->
+							<div class="table_list_group group_open">
+
+								<div class="table_list_row ">
+									<div class="table_list_cell action">
+										<a href="" class="icon-edit notext"></a>
+										<a href="" class="trash icon-trash-bin notext"></a>
+									</div>
+									<div class="table_list_cell default">
+										<input type="radio" name="a1" id="a2" class="input_check">
+										<label class="label_check" for="a2"><i class="icon"></i></label>
+									</div>
+									<div class="table_list_cell chief">
+										<select class="select_inline" data-placeholder="Не задан" data-filter="true">
+											<option value="">Азат Халилов</option>
+											<option value="">Алия Арсланова</option>
+											<option value="" selected>Андрей Вариков</option>
+											<option value="">Дамир Амиров</option>
+											<option value="">Денис Маслов</option>
+											<option value="">Динар Галимов</option>
+											<option value="">Нур Ибрагимов</option>
+											<option value="">Роберт Сабирьянов</option>
+										</select>
+									</div>
+									<div class="table_list_cell name">
+										<a href="#" class="group_name_link link_dashed icon-right-big"><span>Бригада</span></a>
+										<span class="count">(8)</span>
+									</div>
+								</div>
+
+								<div class="table_list_group_content">
+
+									<!-- таблица -->
+									<div class="table_list table_list_small role_list">
+
+										<!-- шапка таблицы -->
+										<div class="table_list_header">
+											<div class="table_list_cell action">&nbsp;</div>
+											<div class="table_list_cell group">Группа</div>
+											<div class="table_list_cell role">Роль</div>
+
+											<div class="table_list_cell name">Имя</div>
+										</div>
+										<div class="table_list_body">
+
+											<!-- строка -->
+											<div class="table_list_row">
+												<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+												<div class="table_list_cell group">-</div>
+												<div class="table_list_cell role">
+													<select class="select_inline" data-placeholder="Выбрать">
+														<option value="">Администратор</option>
+														<option value="" selected>Бизнес-ассистент</option>
+														<option value="">Бухгалтер</option>
+														<option value="">Юрист</option>
+													</select>
+												</div>
+												<div class="table_list_cell name">Крикунов Владислав</div>
+											</div>
+
+											<!-- строка -->
+											<div class="table_list_row">
+												<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+												<div class="table_list_cell group">
+													<select class="select_multi select_inline" data-placeholder="Выбрать">
+														<option value="" selected>Чемпионы</option>
+														<option value="">Бригада</option>
+														<option value="">Колхозники</option>
+														<option value="">Юристы</option>
+													</select>
+												</div>
+												<div class="table_list_cell role">
+													<select class="select_inline" data-placeholder="Выбрать">
+														<option value="">Администратор</option>
+														<option value="" selected>Бизнес-ассистент</option>
+														<option value="">Бухгалтер</option>
+														<option value="">Юрист</option>
+													</select>
+												</div>
+												<div class="table_list_cell name">Петров Семен</div>
+											</div>
+
+											<!-- строка -->
+											<div class="table_list_row">
+												<div class="table_list_cell action">&nbsp;</div>
+												<div class="table_list_cell invite">
+													<span class="info_label">Отправлено приглашение. <a href="#">Отправить еще раз</a></span>
+												</div>
+												<div class="table_list_cell name">Севастьянова Мария</div>
+											</div>
+
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+
+							<!-- строка с группой-->
+							<div class="table_list_group">
+
+								<div class="table_list_row">
+									<div class="table_list_cell action">
+										<a href="" class="icon-pencil notext"></a>
+										<a href="" class="trash icon-trash-bin notext"></a>
+									</div>
+									<div class="table_list_cell default"><input type="radio" name="group" id=""></div>
+									<div class="table_list_cell chief">
+
+									</div>
+									<div class="table_list_cell name">
+										<a href="#" class="group_name_link link_dashed icon-right-big"><span>Вне группы</span></a>
+										<span class="count">(0)</span>
+									</div>
+								</div>
+
+								<div class="table_list_group_content">
+									<div class="info m_null">Для добавления агентов в группу перейдите к списку агентов и выберите данную группу в строке требуемого агента.</div>
+								</div>
+
+							</div>
+							<!-- end -->
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action">
+									<a href="" class="icon-edit notext"></a>
+									<a href="" class="trash icon-trash-bin notext"></a>
+								</div>
+								<div class="table_list_cell default"><input type="radio" name="group" id=""></div>
+								<div class="table_list_cell chief">
+									<select class="select_inline" data-placeholder="Не задан" data-filter="true">
+										<option value="">Азат Халилов</option>
+										<option value="">Алия Арсланова</option>
+										<option value="" selected>Андрей Вариков</option>
+										<option value="">Дамир Амиров</option>
+										<option value="">Денис Маслов</option>
+										<option value="">Динар Галимов</option>
+										<option value="">Нур Ибрагимов</option>
+										<option value="">Роберт Сабирьянов</option>
+									</select>
+								</div>
+								<div class="table_list_cell name">
+									<a href="#" class="group_name_link hidden">Вне группы</a>
+									<span class="count hidden">(4)</span>
+									<div class="group_name_edit">
+										<input type="text" name="" id="" class="small" placeholder="Название группы" value="Бригада">
+										<a href="" class="button small second">Ok</a>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

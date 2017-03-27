@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Шаг 1 - форма. Заявка на гарантию</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style_garant.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+
+<include data-file="garant/garant_header.html"></include>
+
+
+<section class="main">
+	<div class="wrap">
+
+	<include data-file="garant/garant_aside.html"></include>
+	<include data-file="garant/garant.html .section_content"></include>
+
+	</div>
+</section>
+
+<article class="page open page_with_wizard page_garant_order">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Заявка на банковскую гарантию</h1>
+		<div class="page_wizard ">
+			<div class="wizard_steps steps4 active1">
+				<div class="step active">
+					<div class="label">1 sp</div>
+					<div class="name">Отправка заявки</div>
+				</div>
+				<div class="step">
+					<div class="label">2</div>
+					<div class="name">Загрузка документов</div>
+				</div>
+				<div class="step">
+					<div class="label">3</div>
+					<div class="name">Согласование проекта и оплата</div>
+				</div>
+				<div class="step">
+					<div class="label">4</div>
+					<div class="name">Выдача гарантии</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="page_garant_left">
+			<h3>Заполните информацию о закупке или контракте</h3>
+
+			<div class="form_group">
+				<div class="input_group_title w100">
+					<input type="text" placeholder="" class="w100" >
+					<div class="input_title">Номер аукциона в реестре</div>
+				</div>
+			</div>
+
+			<div class="form_group">
+				<div class="input_group_title w100">
+					<input type="text" placeholder="" class="w100" >
+					<div class="input_title">Ссылка на аукцион</div>
+				</div>
+			</div>
+
+			<h3 class="m_top_30">Условия банковской гарантии</h3>
+			<div class="form_group">
+				<div class="input_group_title w100">
+
+					<div class="jsRadSelect2 w100" data-placeholder="Селект" >
+						<option class="jsRadSelect2Options" value="1">На участие</option>
+						<option class="jsRadSelect2Options" value="2">На исполнение контракта</option>
+					</div>
+					<div class="input_title">Вид банковской гарантии</div>
+				</div>
+			</div>
+			<div class="form_group">
+				<div class="col five">
+					<div class="input_group_title w100">
+
+						<input type="text" placeholder="0,00" class="w60">
+						<div class="input_title">Сумма гарантии</div>
+						рублей
+					</div>
+				</div>
+
+				<div class="col seven">
+					<div class="input_group_title w100">
+						с
+						<input type="text" placeholder="" class="w40 m_left_5 m_right_5 datetimepicker">
+						до
+						<input type="text" placeholder="" class="w40 m_left_5 datetimepicker">
+						<div class="input_title">Требуемая дата выдачи</div>
+					</div>
+				</div>
+			</div>
+			<div class="form_group_checkbox f_small">
+				<input type="checkbox" name="" id="a1">
+				<label for="a1" class="label_check switcher"><i class="icon"></i><span>Требование о бесспорном списании</span></label>
+			</div>
+			<div class="form_buttons">
+				<a class="button middle wide">Отправить заявку</a>
+			</div>
+
+		</div>
+		<div class="page_garant_right">
+			<div class="info info_icon icon_top">
+				Обратите внимание, что банковская гарантия на обеспечение гарантийного периода не предоставляется
+			</div>
+		</div>
+	</div>
+
+</article>
+
+</body>
+</html>

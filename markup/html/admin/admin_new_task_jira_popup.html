@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Новая задача d Jira</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer small">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Создание новой задачи в Jira</h1>
+
+
+				<div class="form_group form_vertical">
+					<div class="property_label">Тема</div>
+					<div class="property_value w100">
+						<input type="text" name="" id="" class="w100" placeholder="Краткое описание проблемы (не более 50 символов)">
+					</div>
+				</div>
+
+
+				<div class="form_group form_vertical">
+					<div class="property_label">Как сейчас?
+						<div class="small_text">Подробно опиши проблему, время и полученный результат, если мобильное приложение, то тип и версия ОС. Шаги для воспроизведения, описание действий приведших к ошибке.</div>
+					</div>
+					<div class="property_value w100">
+						<textarea name="" id="" class="w100 textarea_big"></textarea>
+					</div>
+				</div>
+				<div class="form_group form_vertical">
+					<div class="property_label">Как должно быть?
+					<div class="small_text">Опиши желаемый результат</div></div>
+					<div class="property_value w100">
+						<textarea name="" id="" class="w100 textarea_big"></textarea>
+
+					</div>
+				</div>
+
+
+
+				<div class="form_buttons">
+					<a class="button middle">Создать задачу в Jira</a>
+					<a class="button_clean">Отменить</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

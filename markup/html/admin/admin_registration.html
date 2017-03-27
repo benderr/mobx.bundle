@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Регистрация</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+<body>
+
+<div class="reg">
+	<div class="wrap reg_admin">
+		<div class="reg_header">
+			<a href="/" class="logo">МодульБанк</a>
+			<div class="header_links"><a href="#" class="login">Войти в систему</a></div>
+		</div>
+		<div class="reg_section">
+
+			<div class="reg_article" ng-controller="selectController">
+
+
+
+				<h3>Добро пожаловать в систему <strong>Modulbank Back-Office</strong></h3>
+
+				<div class="row">
+					<div class="column seven">
+						<div class="form_group form_horizontal">
+							<div class="column five property_label">Фамилия</div>
+							<div class="column seven property_value"><input type="text" name="" id="" value="Сидорова" class="w100"></div>
+						</div>
+						<div class="form_group form_horizontal">
+							<div class="column five property_label">Имя</div>
+							<div class="column seven property_value"><input type="text" name="" id="" value="Елизавета" class="w100"></div>
+						</div>
+						<div class="form_group form_horizontal">
+							<div class="column five property_label">Отчество</div>
+							<div class="column seven property_value"><input type="text" name="" id="" value="" class="w100"></div>
+						</div>
+						<div class="form_group form_horizontal">
+							<div class="column five property_label">Пароль</div>
+							<div class="column seven property_value"><input type="password" name="" id="" value="" class="w100"></div>
+						</div>
+						<div class="form_group form_horizontal">
+							<div class="column five property_label">Пароль еще раз</div>
+							<div class="column seven property_value"><input type="password" name="" id="" value="" class="w100"></div>
+						</div>
+						<div class="form_buttons">
+							<div class="column five property_label">&nbsp;</div>
+							<div class="column seven property_value"><a class="button second">Зарегистрироваться</a></div>
+						</div>
+
+					</div>
+					<div class="column four offset-by-one a_center">
+						<figure class="avatar m_bot_20" >
+							<a href="" class="delete avatar_delete"></a>
+							<img src="../images/avatar_man.jpg" alt="">
+							<label class="avatar_edit button_file_upload">Изменить фото <input type="file" name="" id=""></label>
+						</figure>
+						<div class="switch_group switch small sex">
+							<div class="switch_item">
+								<input type="radio" name="a1" id="a1" class="input_check" checked>
+								<label class="label_check" for="a1">М</label>
+							</div>
+							<div class="switch_item">
+								<input type="radio" name="a1" id="a2" class="input_check">
+								<label class="label_check" for="a2">Ж</label>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/bootstrap.tooltip.js"></script>
+<script src="js/jquery-validate.bootstrap-tooltip.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

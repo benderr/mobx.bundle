@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="tabs tabs_vertical">
+
+			<!-- меню табов -->
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Личные данные</a></li>
+					<li class="active"><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li><a href="">Нормативы SLA</a></li>
+				</ul>
+			</div>
+
+			<!-- контент табов -->
+			<div class="tabs_content">
+
+				<div class="role_settings">
+
+					<!-- кнопки действий -->
+					<div class="f_right" ng-controller="DropdownCtrl">
+						<a href="" class="button second small icon-user-full-add">Пригласить агента</a>
+
+						<div dropdown is-open="status.isopen" auto-close="outsideClick">
+							<a class="button small icon-group-half-add" dropdown-toggle>Добавить группу</a>
+					     </div>
+					</div>
+
+					<!-- переключатель отображения -->
+					<div class="switch_group switch_tabs small m_bot_20">
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab1" checked>
+							<label for="tab1">По фамилиям</label>
+						</div>
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab2">
+							<label for="tab2">По группам</label>
+						</div>
+					</div>
+
+
+
+					<!-- таблица -->
+					<div class="table_list table_list_small role_list">
+
+						<!-- шапка таблицы -->
+						<div class="table_list_header">
+							<div class="table_list_cell action">&nbsp;</div>
+							<div class="table_list_cell admission">Доступ</div>
+							<div class="table_list_cell group">Группа</div>
+							<div class="table_list_cell role">Роль</div>
+
+							<div class="table_list_cell name">Имя</div>
+
+						</div>
+						<div class="table_list_body">
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+								<div class="table_list_cell admission"><a class="link_dashed"><span>1 портфель</span></a></div>
+								<div class="table_list_cell group">-</div>
+								<div class="table_list_cell role">
+									<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+										<option class="jsRadSelect2Options" value="" selected>Администратор</option>
+										<option class="jsRadSelect2Options" value="">Бизнес-ассистент</option>
+										<option class="jsRadSelect2Options" value="">Бухгалтер</option>
+										<option class="jsRadSelect2Options" value="">Юрист</option>
+									</div>
+
+								</div>
+								<div class="table_list_cell name"><span class="agent_status online"></span>Крикунов Владислав <div class="name_info">v.krikunov@modulbank.ru</div></div>
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+								<div class="table_list_cell admission"><a class="link_dashed"><span>2 портфеля</span></a></div>
+								<div class="table_list_cell group">
+									<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+										<option class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+										<option class="jsRadSelect2Options" value="">Бригада</option>
+										<option class="jsRadSelect2Options" value="">Колхозники</option>
+										<option class="jsRadSelect2Options" value="">Юристы</option>
+									</div>
+
+								</div>
+								<div class="table_list_cell role">
+									<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+										<option class="jsRadSelect2Options" value="" selected>Администратор</option>
+										<option class="jsRadSelect2Options" value="">Бизнес-ассистент</option>
+										<option class="jsRadSelect2Options" value="">Бухгалтер</option>
+										<option class="jsRadSelect2Options" value="">Юрист</option>
+									</div>
+
+								</div>
+								<div class="table_list_cell name"><span class="agent_status offline"></span>Петров Семен <div class="name_info">p.semenov@modulbank.ru</div></div>
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action">&nbsp;</div>
+								<div class="table_list_cell invite">
+									<span class="info_label">Отправлено приглашение. <a href="#">Отправить еще раз</a></span>
+								</div>
+								<div class="table_list_cell name"><span class="agent_status busy"></span>Севастьянова Мария <div class="name_info">m.sevastyanova@modulbank.ru</div></div>
+							</div>
+
+							<!-- строка -->
+							<div class="table_list_row">
+								<div class="table_list_cell action"><a href="" class="trash icon-trash-bin notext"></a></div>
+								<div class="table_list_cell admission"><a class="link_dashed"><span>7 портфелей</span></a></div>
+								<div class="table_list_cell group">
+									<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+										<option class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+										<option class="jsRadSelect2Options" value="">Бригада</option>
+										<option class="jsRadSelect2Options" value="">Колхозники</option>
+										<option class="jsRadSelect2Options" value="">Юристы</option>
+									</div>
+								</div>
+								<div class="table_list_cell role">
+									<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+										<option class="jsRadSelect2Options" value="" selected>Администратор</option>
+										<option class="jsRadSelect2Options" value="">Бизнес-ассистент</option>
+										<option class="jsRadSelect2Options" value="">Бухгалтер</option>
+										<option class="jsRadSelect2Options" value="">Юрист</option>
+									</div>
+								</div>
+								<div class="table_list_cell name"><span class="agent_status busy"></span>Петров Семен<div class="name_info">s.petrov@modulbank.ru</div></div>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

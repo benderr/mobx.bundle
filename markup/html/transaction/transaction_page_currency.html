@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Заявление на перевод</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Подписание документов</h1>
+		<div class="header_action">
+			<a href="#" class="icon-print"></a>
+			<a href="#" class="icon-favorites"></a>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="row">
+			<div class="col eight">
+
+
+
+				<!-- <div class="info info_error">
+					Были внесены изменения в реквизиты получателя. Для обновления информации в платежном поручении переведите документ в редактирование.
+				</div> -->
+
+				<div class="light_block transaction_view_contragent">
+
+					<div class="transaction_status_stamp">На подписи <span class="date">18.06.2015</span></div>
+					<!-- <div class="transaction_status_stamp success">Исполнен <span class="date">18.06.2015</span></div> -->
+					<!-- <div class="transaction_status_stamp error">Отклонен банком <span class="date">18.06.2015</span></div> -->
+					<!-- <div class="transaction_status_stamp warning">Отложен <span class="date">18.06.2015</span></div> -->
+
+
+					<h3 class="stamp_padding">Заявление на перевод иностранной валюты</h3>
+
+					<div class="transaction_view_info">
+						<div class="transaction_view_info_money">
+							4 500,00 <span class="cur euro"><span>€</span></span>
+						</div>
+						<div class="transaction_view_info_account">
+							<div class="light_text">со счета:</div>
+							Расчетный счет (***012345)
+						</div>
+					</div>
+
+					<div class="name">
+						<span class="c_primary">Munchen Grosse Kolbassen</span>
+						<div class="light_text fw_l f_normal">34, Schluhessen strasse, Munchen, Germany</div>
+
+					</div>
+					<div class="form_group_list">
+						<div class="column five property_label">На счет:</div>
+						<div class="column seven property_value">22341497819132</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column five property_label">Банк:</div>
+						<div class="column seven property_value">BADKDVBACXXX - Deuchland Bank</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column five property_label">Банк-корреспондент:</div>
+						<div class="column seven property_value">ALFAWFWV - AlfaBank</div>
+					</div>
+					<div class="form_group">
+						<div class="column five property_label">Дата валютирования:</div>
+						<div class="column seven property_value">23.08.2015 10:23</div>
+					</div>
+
+					<div class="form_group fw_n">
+						Комиссию оплачивает отправитель
+					</div>
+
+
+					<div class="transaction_view_contragent_appointment">
+						<p>Oplata za partiu romashek po dogovoru 14023-023 от 14.05.2015 г. Summa 11000-00</p>
+					</div>
+				</div>
+
+				<div class="light_block m_bot_30">
+					<div class="transaction_status_stamp">На подписи <span class="date">18.06.2015</span></div>
+					<h3 class="stamp_padding m_top_15 m_bot_30">Справка о валютной операции</h3>
+					<p class="m_bot_20">Выберите необходимую справку в списке. Если считаете, что нужной справки нет в списке, обратитесь к бизнес-ассистенту:</p>
+					<div class="form_group">
+						<div class="jsRadSelect2 w100">
+							<div class="jsRadSelect2Options">Справка</div>
+						</div>
+					</div>
+					<!-- <div class="f_small m_bot_30">
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Дата:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">В:</div>
+							<div class="col seven property_value">Московский филиал ОАО КБ “Региональный кредит”</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">От:</div>
+							<div class="col seven property_value">Московский филиал ОАО КБ “Региональный кредит”</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Номер счета-резидента:</div>
+							<div class="col seven property_value">45000234589889120303</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Страна банка-нерезидента:</div>
+							<div class="col seven property_value">Германия</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Исполнитель:</div>
+							<div class="col seven property_value">Иванов Александр Викторович</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Телефон:</div>
+							<div class="col seven property_value">+7 (917) 234-54-234</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Признак корректировки:</div>
+							<div class="col seven property_value">Да</div>
+						</div>
+					</div>
+
+					<div class="legend f_small"><span>Операция 1</span></div>
+					<div class="f_small m_bot_30">
+						<div class="form_group_list">
+							<div class="col five a_right property_label">№ расчетного документа::</div>
+							<div class="col seven property_value">20980101345</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Дата расчетного документа:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Дата операции:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Признак платежа:</div>
+							<div class="col seven property_value">2-списание</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Код вида валютной операции:</div>
+							<div class="col seven property_value">234</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Сумма операции:</div>
+							<div class="col seven property_value">4 500 <span class="cur dollar"><span>$</span></span></div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Код валюты операции:</div>
+							<div class="col seven property_value">USD</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Номер паспорта сделки:</div>
+							<div class="col seven property_value">235235</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Номер контракта:</div>
+							<div class="col seven property_value">562461</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Дата контракта:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Сумма операции в валюте контракта:</div>
+							<div class="col seven property_value">4 500</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Код валюты контракта:</div>
+							<div class="col seven property_value">2351</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Ожидаемый срок:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+					</div>
+
+					<div class="legend f_small"><span>Операция 2</span></div>
+					<div class="f_small m_bot_30">
+						<div class="form_group_list">
+							<div class="col five a_right property_label">№ расчетного документа::</div>
+							<div class="col seven property_value">20980101345</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Дата расчетного документа:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Дата операции:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Признак платежа:</div>
+							<div class="col seven property_value">2-списание</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Код вида валютной операции:</div>
+							<div class="col seven property_value">234</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Сумма операции:</div>
+							<div class="col seven property_value">4 500 <span class="cur dollar"><span>$</span></span></div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Код валюты операции:</div>
+							<div class="col seven property_value">USD</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Номер паспорта сделки:</div>
+							<div class="col seven property_value">235235</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Номер контракта:</div>
+							<div class="col seven property_value">562461</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Дата контракта:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Сумма операции в валюте контракта:</div>
+							<div class="col seven property_value">4 500</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Код валюты контракта:</div>
+							<div class="col seven property_value">2351</div>
+						</div>
+						<div class="form_group_list">
+							<div class="col five a_right property_label">Ожидаемый срок:</div>
+							<div class="col seven property_value">21.03.2015</div>
+						</div>
+					</div> -->
+
+					<!-- <a class="f_small link_dashed"><span>Скрыть детали справки</span></a> -->
+					<a class="f_small link_dashed"><span>Посмотреть детали справки</span></a>
+				</div>
+
+				<div class="form_group">
+					Я, Иванов Александр Викторович, <span class="light_text">(тел. +7 (917) 23-45-245)</span>
+					<span class="d_b"><a>c правилами ознакомлен</a></span>
+				</div>
+
+				<div class="form_sep_full"></div>
+
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a1">
+					<label for="a1" class="check label_check"><i class="icon"></i><span>Отправить уведомление получателю</span></label>
+				</div>
+				<!-- отправка уведомлений -->
+				<!-- <div class="form_group_list">
+					<input type="email" name="" id="" class="small w60" placeholder="E-mail получателя">
+				</div>
+				<div class="form_group">
+					<textarea name="" id="" placeholder="Введите сообщение" class="small w60 js_autosize textarea_middle"></textarea>
+				</div> -->
+
+
+
+				<div class="form_buttons">
+					<div class="f_right m_top_10">
+						<a class="button_clean">Редактировать</a>
+						<a class="button_clean_dropdown icon-down-small drop-target" data-position="bottom right"></a>
+						<div class="drop-content" >
+							<ul class="drop-menu">
+								<li><a>Удалить</a></li>
+							</ul>
+			            </div>
+					</div>
+
+					<button class="button middle second icon-sign">Подписать</button>
+					<button class="button_clean icon-clock">Отложить</button>
+
+				</div>
+			</div>
+			<div class="col four">
+				<div class="info_success">
+					<p><strong>Ваше заявление на валютный перевод одобрено.</strong> Вам осталось подписать подготовленное платежное поручение.</p>
+					<ul class="point">
+						<li>заявление на перевод иностранной валюты,</li>
+						<li>справку о валютной операции (для валютного контроля)</li>
+					</ul>
+				</div>
+				<div class="info"><p>Обратите внимание, что заявления на перевод иностранной валюты, отправленные в банк <strong>после 16:00 МСК</strong> (15:00 МСК для пятницы), будут исполнены на следующий рабочий день.</p></div>
+			</div>
+		</div>
+
+
+	</div>
+
+</article>
+
+</body>
+</html>

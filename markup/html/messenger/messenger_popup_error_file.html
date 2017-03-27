@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Чат</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/jquery.textarea_autosize.js"></script>
+	<script src="js/waves.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main"></section>
+
+<div class="messenger">
+	<div class="messenger_header">
+		<div class="messenger_header_action">
+			<a class="icon-close close"></a>
+			<a class="icon-arrow-up"></a>
+		</div>
+		<div class="messenger_header_title">
+			<a class="icon-left-big">Список</a>
+		</div>
+	</div>
+
+	<div class="messenger_main">
+		<div class="messenger_chat">
+			<div class="item right">
+				<div class="date">15:35</div>
+				<div class="desc">
+					<figure class="photo avatar" style="background-color: rgb(225,95,75)">Д</figure>
+					<div class="name">Динар</div>
+					<div class="message">
+						<p>Мне СРОЧНО необходимо снять офисноепомещениевнутриСадовогокольца. Общая площадь - не менее 200 кв.м. Наличие парковочных мест для 5 машин обязательно.</p>
+						<ul class="message_file_attachments">
+							<li>
+								<a href="" class="file icon-file">Перечень рабочих мест</a>
+							</li>
+							<li>
+								<a href="" class="file icon-file">Требования к окружению</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="messenger_sep_title"><span>23 марта 2015 г.</span></div>
+			<div class="item">
+				<div class="date">15:35</div>
+				<div class="desc">
+					<figure class="photo avatar"><img src="../images_out/photo1.jpg" height="50" width="50" alt=""></figure>
+					<div class="name">Кристина Филатова, ассистент</div>
+					<div class="message">
+						<p>Прилагаю таблицу с 5 вариантами офисных помещений, расценками на арендную плату и контактами владельцев.</p>
+						<ul class="message_file_attachments">
+							<li>
+								<a href="" class="file icon-file">Перечень рабочих мест</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="item right">
+				<div class="date">15:35</div>
+				<div class="desc">
+					<figure class="photo avatar" style="background-color: rgb(225,95,75)">Д</figure>
+					<div class="name">Динар</div>
+					<div class="message">
+						<p>Мне СРОЧНО необходимо снять офисное помещение внутри Садового кольца. Общая площадь - не менее 200 кв.м. Наличие парковочных мест для 5 машин обязательно.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="info_message">
+				<p>Задача закрыта ассистентом.<br/>Вы довольны ответом?</p>
+				<div class="thumbs">
+					<a class="thumbs_up icon-thumbs-up"></a>
+					<a class="thumbs_down icon-thumbs-down"></a>
+				</div>
+			</div>
+
+			<div class="info_message">
+				<p>Задача завершена</p>
+				<div class="thumbs">
+					<span class="thumbs_up icon-thumbs-up"></span>
+				</div>
+			</div>
+
+		</div>
+
+		<!-- добавление сообщения -->
+		<div class="add_message">
+
+			<div class="add_text">
+				<textarea name="" id="" placeholder="Написать..." class="js_autosize"></textarea>
+				<a href="" class="button_file_upload icon-attach"><input type="file" name="" id=""></a>
+			</div>
+			<div class="add_buttons"><button type="submit" class="button second middle full">Ok</button></div>
+
+			<!-- загруженные файлы -->
+			<div class="file_upload_list">
+
+				<!-- файл -->
+				<div class="file_upload_item">
+					<a class="file_delete trash icon-trash-bin"></a>
+					<div class="file_icon pdf"></div>
+					<a class="file_error_text hidden">Отменено</a>
+					<a class="file_name">Документация по месторождению.pdf</a>
+				</div>
+
+				<!-- файл -->
+				<div class="file_upload_item error">
+					<a class="file_delete trash icon-trash-bin"></a>
+					<div class="file_icon pdf"></div>
+					<a class="file_error_text">Отменено</a>
+					<span class="file_name">Документация по месторождению.pdf</span>
+				</div>
+				<!-- файл -->
+				<div class="file_upload_item">
+					<a class="file_delete delete show"></a>
+					<div class="total-progress-box">
+						<div class="total-progress" style="width:35%"></div>
+						<div class="total-progress-value">35%</div>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+</section>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Блокирование некоторых типов файлов</h1>
+				<p>Максимальный объем загружаемого файла - 10 Мб.</p>
+				<p>Дополнительно в целях предотвращения распространения вирусов на портале Modulbank запрещено передавать сообщения с исполняемыми файлами (например, c расширением .exe). Такие файлы могут содержать вредоносный код и вызвать загрузку программ, которые нарушают нормальную работу компьютера.</p>
+				<div class="info"><strong>Запрещенные типы файлов:</strong><br/>
+				.ade, .adp, .bat, .chm, .cmd, .com, .cpl, .exe, .hta, .ins, .isp, .jse, .lib, .lnk, .mde, .msc, .msp, .mst, .pif, .scr, .sct, .shb, .sys, .vb, .vbe, .vbs, .vxd, .wsc, .wsf, .wsh</div>
+				<p>Запрещается передавать файлы указанных типов, даже если они отправлены в сжатом формате, например .zip, .tar, .tgz, .taz, .z, .gz, .rar.</p>
+				<p>Кроме того, запрещено отправлять файлы в архиве (например zip-архиве), который, в свою очередь, содержит архив с паролем. Перед отправкой необходимо распаковать все файлы и снять защиту.</p>
+				<p>Также на портале запрещен обмен поврежденными файлами.</p>
+				<div class="form_buttons">
+					<a class="button second">Закрыть</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>

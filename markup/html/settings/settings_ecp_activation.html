@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Активация электронной подписи</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Активация электронной подписи
+		</h1>
+
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<p>Электронные подписи для подписания платежных документов и управления счетами компании подготовлены, осталось только встретиться и подписать несколько документов для их активации.</p>
+		<div class="info_error info_icon_error">
+			<p>На текущем тарифе достигнуто максимальное количество представителей с электронной подписью. Перейдите на тариф “Безлимитный”, и вы сможете завершить активацию электронной подписи.</p>
+			<p>Узнать больше информации и перейти на новый тариф вы можете в разделе <a>Тарифы и услуги</a> настроек компании.</p>
+		</div>
+		<div class="light_block ecp_activation_step">
+			<div class="step">1.</div>
+			<p class="m_bot_20">Для каждого представителя распечатайте и заполните Акт признания ключа проверки электронной подписи. Акт должен быть подписан руководителем и заверен печатью вашей организации (если вы используете печать). Мы уже подготовили акты для каждого представителя:</p>
+
+			<ul class="circ">
+				<li><a class="button f_right xsmall icon-save">Скачать</a> Акт для представителя - Кривошеев А.М. (Бухгалтер) </li>
+				<li><a class="button f_right xsmall icon-save">Скачать</a> Акт для представителя - Королев А.М. (Заместитель директора)  </li>
+			</ul>
+		</div>
+		<div class="light_block ecp_activation_step">
+			<div class="step">2.</div>
+			<p class="m_bot_20">Подготовьте следующие документы для встречи с нашим менеджером:</p>
+
+			<ul class="circ">
+				<li>Паспорт руководителя и всех представителей организации, которым необходимо активировать электронные подписи.</li>
+				<li>Документы подтверждающие полномочия лиц действующих от имени организации (доверенность, приказ).</li>
+			</ul>
+		</div>
+		<div class="light_block ecp_activation_step">
+			<div class="step">3.</div>
+			Напишите ассистенту в чате и договоритесь о встрече в офисе банка с нашим менеджером или пригласите его к себе.
+		</div>
+		<div class="light_block ecp_activation_step">
+			<div class="step">4.</div>
+			Подпишите все бумаги на встрече с менеджером банка. После этого электронные подписи будут активированы, и представители компании смогут подписывать платежные документы и управлять счетами компании.
+		</div>
+
+		<div class="form_buttons">
+			<a class="button middle">Закрыть</a>
+		</div>
+
+	</div>
+
+
+</article>
+
+</body>
+</html>

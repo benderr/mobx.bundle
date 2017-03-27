@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Открытие счета</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+
+	<script src="js/bootstrap.dropdown.js"></script>
+	<script src="js/include.js"></script>
+	<script src="js/init.js"></script>
+
+	<script>
+		angular.module('app',['ui.bootstrap']).controller('DropdownCtrl', function ($scope, $log) {});
+	</script>
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main"></section>
+
+<article class="page open">
+
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Открытие счета</h1>
+		<div class="header_action">&nbsp;</div>
+	</div>
+	<div class="page_content">
+		<div class="page_wizard">
+			<div class="wizard_steps steps4 active1">
+				<div class="step active">
+					<div class="label">1</div>
+					<div class="name">Проверка реквизитов</div>
+				</div>
+				<div class="step">
+					<div class="label">2</div>
+					<div class="name">Загрузка документов</div>
+				</div>
+				<div class="step">
+					<div class="label">3</div>
+					<div class="name">Встреча с менеджером</div>
+				</div>
+				<div class="step">
+					<div class="label">4</div>
+					<div class="name">Открытие счета</div>
+				</div>
+			</div>
+		</div>
+		<div class="open_account text_block">
+			<h4>Загрузите подтверждающие документы</h4>
+			<div class="form">
+				<form action="">
+					<!-- <div class="form_group search_ogrn">
+					<div class="input_group_title">
+						<input type="text" class="big" name="" id="" size="25" placeholder="" value="1234567890123" disabled>
+						<div class="input_title">ОГРН или ОГРНИП</div>
+					</div>
+					<a href="#" class="button clean">Изменить ОГРН</a>
+				</div>
+				-->
+				<p>
+					Обычно база ФНС обновляется в середине и в конце каждого месяца, и как только ваша компания появится там, мы отправим вам уведомление. Мы можем ускорить процесс — загрузите подтверждающие документы, и мы проверим их в течение 30 минут.
+				</p>
+				<div class="small_text">
+					<p>
+						Максимальный размер загружаемого файла: 25 Мб. Допустимые форматы: .pdf, .doc, .docx, .rtf, .jpg, .png, .bmp.
+					</p>
+				</div>
+
+				<div class="docs_row row_table">
+
+					<div class="docs_block column half">
+						<div class="title">Свидетельство о регистрации компании</div>
+						<div class="file_upload_list">
+							<div class="file_upload_block">
+								<div class="file_title">Фото или скан документа</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="docs_block column half">
+						<div class="title">Свидетельство о постановке на учет в налоговом органе</div>
+						<div class="file_upload_list">
+							<div class="file_upload_block">
+								<div class="file_title">Фото или скан документа</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="docs_block">
+					<div class="title">Выписка из ЕГРЮЛ, заверенная в ФМС</div>
+					<div class="small_text">
+						<p>
+							Загрузите скан или фотографии всех страниц выписки из ЕГРЮЛ.
+							<br/>
+							Страницы могут быть на одной фото или в нескольких отдельных файлах.
+						</p>
+					</div>
+
+					<div class="file_upload_list">
+
+						<div class="file_upload_block column three">
+							<div class="file_title">Фото или скан документа</div>
+							<div class="file_button">
+								<label class="button small button_file_upload">
+									Загрузить
+									<input type="file" name="" id=""></label>
+							</div>
+						</div>
+
+						<div class="file_upload_block column three error">
+							<a class="file_delete"></a>
+							<div class="file_title error">Произошла ошибка при загрузке файла</div>
+							<div class="file_button">
+								<label class="button small button_file_upload">
+									Загрузить
+									<input type="file" name="" id=""></label>
+							</div>
+						</div>
+
+						<div class="file_upload_block column three">
+
+							<div class="total-progress-box">
+								<div class="total-progress progress-35"></div>
+								<div class="total-progress-value">35%</div>
+							</div>
+
+							<div class="file_button">
+								<label class="button small button_file_upload">
+									Загрузить
+									<input type="file" name="" id=""></label>
+							</div>
+						</div>
+
+						<div class="file_upload_block column three">
+							<div class="uploaded">
+								<a class="file_delete"></a>
+								<div class="file_center">
+									<div class="file_icon pdf"></div>
+									<div class="file_name">adfadsfad.pdf</div>
+									<div class="file_title">Фото или скан </div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<div class="form_buttons">
+					<input type="submit" value="Отправить документы" class="button second">
+					<div class="links">
+						<a href="#">Изменить ОГРН</a>
+					</div>
+					<div class="small_text border">
+						<p>
+							Вы можете в любой момент закрыть эту страницу, загрузив часть документов.
+							<br/>
+							Все загруженные файлы будут сохранены.
+						</p>
+					</div>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</div>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer small">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Закрытие задачи</h1>
+				<p>Прежде чем закрыть задачу, вам необходимо ответить клиенту:</p>
+				<div class="form_group">
+					<textarea name="" id="" rows="5" placeholder="Ответ клиенту" class="textarea_middle w100 js_autosize"></textarea>
+				</div>
+				<div class="form_buttons">
+					<a class="button second">Ответить</a>
+					<a href="" class="button_clean">Закрыть без ответа</a>
+				</div>
+			</div>
+			<div class="popup_backdrop"></div>
+		</div>
+	</div>
+</div>
+
+</article>
+
+</body>
+</html>

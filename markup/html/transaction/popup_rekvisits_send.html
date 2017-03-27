@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Отправка реквизитов</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+<include data-file="transaction/transaction_account_page.html article.page"></include>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer small">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Отправка реквизитов на почту</h1>
+				<div class="form_group">
+					<input type="email" name="" id="" placeholder="E-mail" class="w100">
+				</div>
+				<div class="form_group">
+					<div class="input_group_title w100">
+						<input type="text" class="w100" name="" id="" value="Реквизиты счета ООО Ромашка" placeholder="Тема письма">
+						<div class="input_title">Тема письма:</div>
+					</div>
+				</div>
+				<div class="form_group">
+
+					<div class="input_group_title w100">
+						<textarea name="" id="" class="w100 textarea_big">
+Добрый день!
+Во вложении к письму высылаю вам реквизиты счета нашей компании.
+
+C уважением, ООО Ромашка</textarea>
+						<div class="input_title">Сообщение:</div>
+					</div>
+				</div>
+
+				<div class="form_buttons">
+					<a class="button second">Отправить</a>
+					<a class="button_clean">Отменить</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

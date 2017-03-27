@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Удаление пользователя</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Удаление пользователя компании</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<p class="m_bot_20">В данном разделе вы можете выполнить удаление пользователя компании.</p>
+		<div class="form_group m_bot_40">
+			<div class="input_group_title">
+				<input type="text" class="big" name="" id="" value="1231231231" size="30" placeholder="">
+				<div class="input_title">Введите ОГРН юридического лица:</div>
+			</div>
+			<button class="button">Найти</button>
+		</div>
+
+		<div class="info found_company m_bot_30">
+			<h3>Общество с ограниченной ответственностью «Пример»</h3>
+			<p>ИНН: 0212345678, КПП: 123456789</p>
+		</div>
+
+		<div class="legend"><span>Текущий руководитель компании</span></div>
+		<div class="w80">
+			<div class="form_group_list">
+				<div class="property_label col two">ФИО:</div>
+				<div class="property_value col ten">Иванов Иван Иванович</div>
+			</div>
+			<div class="form_group_list">
+				<div class="property_label col two">Телефон:</div>
+				<div class="property_value col ten">+7 (987) 222-11-11</div>
+			</div>
+			<div class="form_group_list">
+				<div class="property_label col two">E-mail:</div>
+				<div class="property_value col ten">mail@company.com</div>
+			</div>
+			<div class="form_group_list">
+				<div class="property_label col two">CRM_ID:</div>
+				<div class="property_value col ten">5B25B4CA-FBBD-E511-80D2-02BFAC15080A</div>
+			</div>
+		</div>
+
+		<div class="legend m_top_50"><span>Сотрудники компании</span></div>
+		<p class="m_bot_20">Выберите сотрудника для удаления из компании.<br/>Перед удалением руководителя необходимо указать нового руководителя.</p>
+		<div class="w80">
+
+			<div class="user_list">
+
+				<div class="light_block item">
+						<div class="form_group_list name">
+							Петров Петр Петрович
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">Телефон:</div>
+							<div class="property_value col ten">+7-923-222-11-11</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">E-mail:</div>
+							<div class="property_value col ten">mail@company.com</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">CRM_ID:</div>
+							<div class="property_value col ten">6B25B4CA-FBBD-E511-80D2-02BFAC15080A</div>
+						</div>
+						<div class="item_button"><a class="button cancel xsmall">Удалить пользователя</a></div>
+				</div>
+
+				<div class="light_block item">
+						<div class="form_group_list name">
+							Константинов Константин Александрович
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">Телефон:</div>
+							<div class="property_value col ten">+7-923-222-11-11</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">E-mail:</div>
+							<div class="property_value col ten">mail@company.com</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">CRM_ID:</div>
+							<div class="property_value col ten">6B25B4CA-FBBD-E511-80D2-02BFAC15080A</div>
+						</div>
+						<div class="item_button"><a class="button cancel xsmall">Удалить пользователя</a></div>
+				</div>
+
+				<div class="light_block item user_deleted">
+						<div class="form_group_list name">
+							Константинов Константин Александрович
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">Телефон:</div>
+							<div class="property_value col ten">+7-923-222-11-11</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">E-mail:</div>
+							<div class="property_value col ten">mail@company.com</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col two">CRM_ID:</div>
+							<div class="property_value col ten">6B25B4CA-FBBD-E511-80D2-02BFAC15080A</div>
+						</div>
+						<div class="item_button"><a class="button cancel xsmall disabled">Пользователь удалён</a></div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+
+</article>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

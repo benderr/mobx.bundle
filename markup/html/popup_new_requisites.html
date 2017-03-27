@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Отправка реквизитов</title>
+	<base href="../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+<include data-file="transaction/transaction_account_page.html article.page"></include>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>17 июня реквизиты вашего счета изменятся </h1>
+				<div class="f_small">
+					<p>По требованию ЦБ меняем реквизиты банка. Поэтому реквизиты вашего счета тоже изменятся.</p>
+					<p>Это значит, что с <strong>17 июня</strong> реквизиты вашего счета недействительны. Если ваш партнер отправит деньги по старым реквизитам, банк отклонит платеж и деньги не уйдут.</p>
+					<p>Чтобы получать деньги, отправьте клиентам и партнерам письмо с новыми реквизитами.</p>
+				</div>
+				<div class="light_block">
+					<div class="form_group">
+						<div class="input_group_title w100">
+							<input type="text" class="w100 small" name="" id="" value="" placeholder="ivan@ivanov.com, semen@semenov.com">
+							<div class="input_title">Электронные адреса:</div>
+						</div>
+					</div>
+					<div class="form_group">
+						<div class="input_group_title w100">
+							<input type="text" class="w100 small" name="" id="" value="Реквизиты счета ООО Ромашка" placeholder="">
+							<div class="input_title">Тема письма:</div>
+						</div>
+					</div>
+					<div class="form_group">
+
+						<div class="input_group_title w100">
+							<textarea name="" id="" class="w100 small" style="min-height: 230px;">
+Здравствуйте!
+
+17 июня изменятся реквизиты моего счета в Модульбанке. Если вы отправите деньги на старые реквизиты после 17 июня, они не дойдут.
+
+Чтобы деньги дошли до меня, пожалуйста, используйте реквизиты из этого письма. Они во вложении.
+
+Извините за неудобства!
+
+Алексей Пятков</textarea>
+							<div class="input_title">Сообщение:</div>
+						</div>
+					</div>
+
+					<div class="form_buttons">
+						<a class="button second">Отправить новые реквизиты</a>
+					</div>
+				</div>
+				<p class="small_text">Если что-то пошло не так, пишите в чат. Извините за неудобства.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

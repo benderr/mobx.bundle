@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Стоп-фразы</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/jquery.multiple.select.js"></script>
+	<script src="js/include.js"></script>
+	<script src="js/init.js"></script>
+
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<!-- <include data-file="admin/admin_task_list.html section"></include> -->
+
+<article class="page open">
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-left-double"></a>
+		<h1>Настройки</h1>
+
+	</div>
+	<div class="page_content">
+		<div class="tabs tabs_vertical">
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Личные данные</a></li>
+					<li><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li><a href="">Нормативы SLA</a></li>
+					<li><a href="">Метки</a></li>
+					<li class="active"><a href="">Стоп-фразы</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+				<div class="stopwords_settings">
+					<div class="form_group add_stopword">
+						<input type="text" placeholder="Введите стоп-фразу">
+						<button class="button middle">Добавить</button>
+					</div>
+					<ul class="stopwords_settings_list">
+
+						<li>
+							<div class="stopword_item">
+								<span>Вам необходимо Вам необходимо Вам необходимо</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Вам нужно</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Вы должны</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Нам нужно от вас</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Жду от вас</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+
+						<li>
+							<div class="stopword_item">
+								<span>Ждем от вас</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item_edit">
+								<input type="text" class="small" placeholder="Новая метка" value="Че это">
+								<button class="button small">Ок</button>
+								<button class="button_clean small">Отмена</button>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Необходимо предоставить</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Просьба предоставить</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Мне необходимо</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Нам необходимо</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Принял в работу</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Приняли в работу</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Взяли в работу</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Взял в работу</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Берем в работу</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Беру в работу</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Сообщаю </span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Сообщаем </span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Уведомляю</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Уведомляем</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Информирую</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Информируем</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Оповещаем</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Оповещаю</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Напоминаю</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Напоминаем</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Хотим сообщить</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Хочу сообщить</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Довожу до вашего сведения</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Доводим до вашего сведения</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Передаю на проверку</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Передаем на проверку</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Передаю информацию</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Передам информацию</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Платеж готов</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Платеж подготовлен</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Выписка готова</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Справка готова</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Справка готова</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Депозит открыт</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Платеж не подписан</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Блокировка снята</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Платеж не был проведен</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Доброго времени суток</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Занимаюсь проверкой</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Занимаюсь подготовкой</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Проводим проверку</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Ведем работы</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Занимаемся поиском</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Занимаемся поисками</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Осуществляем кредитование</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>В соответствии с</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+						<li>
+							<div class="stopword_item">
+								<span>Необходимо предоставить</span>
+								<a class="stopword_delete icon-delete-circle"></a>
+							</div>
+						</li>
+
+					</ul>
+
+					<ul class="pagination">
+						<li class="disabled arrow"><a href="">«</a></li>
+						<li class="disabled arrow"><a href="">‹</a></li>
+						<li class="active"><a href="">1</a></li>
+						<li><a href="">2</a></li>
+						<li class="arrow"><a href="">›</a></li>
+						<li class="arrow"><a href="">»</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

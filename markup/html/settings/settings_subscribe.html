@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Настройки</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<article class="page open">
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+
+	</div>
+	<div class="page_content">
+		<div class="tabs tabs_vertical">
+			<div class="tabs_menu">
+				<ul>
+					<li class="title">Мои настройки</li>
+					<li><a href="">Мой профиль</a></li>
+					<li class="active"><a href="">Уведомления</a></li>
+					<li><a href="">Электронная подпись</a></li>
+					<li class="title">Настройки компании</li>
+					<li><a href="">Профиль компании</a></li>
+					<li><a href="">Представители</a></li>
+					<li><a href="">Тарифы и услуги</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+				<p class="f_middle">Настройте уведомления о новых платежах, сообщениях и новостях. Уведомления необходимо настроить отдельно для всех компаний, к которым у вас имеется доступ.</p>
+
+				<!-- смс -->
+				<div class="legend m_top_40"><span>СМС - уведомления</span></div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a1" checked>
+					<label for="a1" class="label_check switcher"><i class="icon big"></i><span>Поступление средств</span></label>
+				</div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a2" checked>
+					<label for="a2" class="label_check switcher "><i class="icon big"></i><span>Списание средств</span></label>
+				</div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a3" checked>
+					<label for="a3" class="label_check switcher"><i class="icon big"></i><span>Наличие документов на подпись</span></label>
+				</div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a32" checked>
+					<label for="a32" class="label_check switcher"><i class="icon big"></i><span>Новые сообщения в мессенджере</span></label>
+				</div>
+
+				<!-- e-mail -->
+				<div class="legend m_top_40"><span>Уведомления на e-mail</span></div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a4" checked>
+					<label for="a4" class="label_check switcher"><i class="icon big"></i><span>Уведомления о поступлении средств <span class="d_b light_text f_small">вне зависимости от суммы и валюты</span></span></label>
+				</div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a5" checked>
+					<label for="a5" class="label_check switcher"><i class="icon big"></i><span>Уведомления о списании средств <span class="d_b light_text f_small">вне зависимости от суммы и валюты</span></span></label>
+				</div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a6" checked>
+					<label for="a6" class="label_check switcher"><i class="icon big"></i><span>Уведомления о наличии документов на подпись<span class="d_b light_text f_small">для случаев, когда документ был подготовлен коллегой без права подписи</span></span></label>
+				</div>
+
+				<div class="form_sep"></div>
+				<p class="f_small m_bot_20"><strong>Уведомления о состоянии расчетных счетов</strong></p>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a7" checked>
+					<label for="a7" class="label_check switcher"><i class="icon big"></i><span>За истекшую неделю</span></label>
+				</div>
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a8" checked>
+					<label for="a8" class="label_check switcher"><i class="icon big"></i><span>За истекший месяц</span></label>
+				</div>
+				<div class="form_sep"></div>
+
+				<div class="form_group">
+					<input type="checkbox" name="name" id="a9" checked>
+					<label for="a9" class="label_check switcher"><i class="icon big"></i><span>Новости системы<span class="d_b light_text f_small">обзоры новых функций, вебинары, акции, опросы</span></span></label>
+				</div>
+
+
+				<div class="legend m_top_40"><span>Выписка по расписанию на e-mail</span></div>
+				<ul class="statement_schedule_list w50">
+					<li class="item">
+						<a class="item_link">За квартал по ****1234 в Excel</a>
+						<a class="item_delete icon-trash-bin"></a>
+					</li>
+					<li class="item">
+						<a class="item_link">За месяц по ****5312 в HTML</a>
+						<a class="item_delete icon-trash-bin"></a>
+					</li>
+				</ul>
+				<div class="m_top_20">
+					<a class="button small light icon-plus">Добавить выписку по расписанию</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Синхронизация телефона</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Синхронизация телефона</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content sync_phone">
+
+		<table class="table_sync_phone">
+			<thead>
+				<tr>
+					<th rowspan="3">&nbsp;</th>
+					<th class="name" colspan="4">Прокофьев Александр Николаевич</th>
+				</tr>
+				<tr>
+					<th class="company">ООО “Ромашка”</th>
+					<th class="company">ООО “Москвоский металлургический завод”</th>
+					<th class="company">ИП Прокофьев А.Н.</th>
+					<th class="company">ИП Прокофьев А.Н.</th>
+				</tr>
+				<tr>
+					<th class="post">Руководитель</th>
+					<th class="post">Главный бухгалтер</th>
+					<th class="post">Руководитель</th>
+					<th class="post">Руководитель</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><div class="fw_m">ЛК</div> <span class="c_light">портал, мобилка</span></td>
+					<td colspan="4" align="center">
+						<div class="fw_m f_big m_bot_10">+ 7 900 1234567</div>
+						<div class="form_but">
+							<a class="button xsmall">Синхронизировать все</a>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td><div class="fw_m">ДБО</div> <span class="c_light">карточка ФЛ</span></td>
+					<td><i class="icon_status icon-round-check"></i>+ 7 900 1234567</td>
+					<td class="empty">–</td>
+					<td><i class="icon_status icon-stop-light"></i>+ 7 900 1234567 <div><a class="link f_small">синхронизировать</a></div></td>
+					<td><i class="icon_status icon-round-check"></i>+ 7 900 1234567 <div><a class="link f_small">синхронизировать</a></div></td>
+				</tr>
+				<tr>
+					<td><div class="fw_m">CRM</div> <span class="c_light">карточка ФЛ</span></td>
+					<td><span class="c_error">+ 7 900 1234564</span><div><a class="link f_small">синхронизировать</a></div></td>
+					<td>+ 7 900 1234567</td>
+					<td>+ 7 900 1234567</td>
+					<td>+ 7 900 1234567</td>
+				</tr>
+				<tr>
+					<td><div class="fw_m">CRM</div> <span class="c_light">карточка ЮД</span></td>
+					<td>+ 7 900 1234567</td>
+					<td class="empty">–</td>
+					<td><span class="c_error">+ 7 900 1234567</span> <div><a class="link f_small">синхронизировать</a></div></td>
+					<td><span class="c_error">+ 7 900 1234567</span> <div><a class="link f_small">синхронизировать</a></div></td>
+				</tr>
+				<tr>
+					<td><div class="fw_m">АБС</div> <span class="c_light">карточка ФЛ (досье)</span></td>
+					<td colspan="4">+ 7 900 1234567</td>
+
+				</tr>
+				<tr>
+					<td><div class="fw_m">АБС</div> <span class="c_light">карточка ЮЛ</span></td>
+					<td>+ 7 900 1234567</td>
+					<td class="empty">–</td>
+					<td>+ 7 900 1234567</td>
+					<td>+ 7 900 1234567</td>
+				</tr>
+				<tr>
+					<td><div class="fw_m">АБС</div> <span class="c_light">смс по картам</span></td>
+					<td><div class="fw_m">карта ****1234</div> + 7 900 1234567</td>
+					<td>нет карт</td>
+					<td>
+						<div class="fw_m">карта ****1234</div>
+						<div class="c_error">Номер отсутствует</div>
+						<div><a class="link f_small">синхронизировать</a></div>
+
+					</td>
+					<td>
+						<div class="fw_m">карта ****1234</div>
+						<div class="c_error">Номер отсутствует</div>
+						<div><a class="link f_small">синхронизировать</a></div>
+
+					</td>
+				</tr>
+				<tr>
+					<td><div class="fw_m">АБС</div> <span class="c_light">смс по всем картам, где физик является держателем</span></td>
+					<td>
+						<div class="fw_m">карта ****1234</div>
+						<div class="c_error">+ 7 900 1234567</div>
+						<div><a class="link f_small">синхронизировать</a></div>
+					</td>
+					<td>нет карт</td>
+					<td>
+						<div class="fw_m">карта ****1234</div>
+						<div class="c_error">Номер отсутствует</div>
+						<div><a class="link f_small">синхронизировать</a></div>
+
+					</td>
+					<td>
+						<div class="fw_m">карта ****1234</div>
+						<div class="c_error">Номер отсутствует</div>
+						<div><a class="link f_small">синхронизировать</a></div>
+
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+</article>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Выписка</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page page_small open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Банковская выписка</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content ">
+
+		<div class="row">
+			<div class="col w60">
+				<form class="form">
+
+					<div class="form_group form_horizontal">
+						<div class="column w20 property_label">Тип:</div>
+						<div class="column w70 property_value">
+							<div class="switch_group">
+								<div class="switch_item">
+									<input type="radio" name="22" id="tab11" checked>
+									<label for="tab11">Сейчас</label>
+								</div>
+								<div class="switch_item">
+									<input type="radio" name="22" id="tab12">
+									<label for="tab12">По расписанию</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form_group form_horizontal">
+						<div class="column w20 property_label">По счету:</div>
+						<div class="column w70 property_value">
+							<div class="jsRadSelect2 w100 drop_account_list" data-placeholder="выбрать">
+								<div class="jsRadSelect2Options" value="t1">
+									<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+									<span class="account_name">Расчетный счет</span>
+									<span class="account_num">40101234560000000000</span>
+								</div>
+								<div class="jsRadSelect2Options" value="t2">
+
+									<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+									<span class="account_name">Расчетный счет</span>
+
+									<span class="account_num">40101234560000000000</span>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+					<div class="form_group form_horizontal">
+						<div class="column w20 property_label">За период:</div>
+						<div class="column w70 property_value">
+							<div class="jsRadSelect2 w100" data-placeholder="выбрать">
+								<div class="jsRadSelect2Options" value="d1">за текущий день</div>
+								<div class="jsRadSelect2Options" value="d2">за текущую неделю</div>
+								<div class="jsRadSelect2Options" value="d3">за месяц</div>
+								<div class="jsRadSelect2Options" value="d4">за квартал</div>
+								<div class="jsRadSelect2Options" value="d5" disabled>произвольный</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form_group form_horizontal">
+						<div class="column w20 property_label">В формате:</div>
+						<div class="column w70 property_value">
+							<div class="switch_group">
+								<div class="switch_item">
+									<input type="radio" name="12" id="tab1" checked>
+									<label for="tab1">PDF</label>
+								</div>
+
+								<div class="switch_item">
+									<input type="radio" name="12" id="tab3">
+									<label for="tab3">1C</label>
+								</div>
+								<div class="switch_item">
+									<input type="radio" name="12" id="tab4">
+									<label for="tab4">Excel</label>
+								</div>
+								<div class="switch_item">
+									<input type="radio" name="12" id="tab5">
+									<label for="tab5">HTML</label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form_group form_horizontal m_top_30">
+						<div class="column w20 property_label">&nbsp;</div>
+						<div class="column w75 property_value">
+							<input type="checkbox" name="a2" id="a21" class="input_check">
+							<label for="a21" class="label_check"><i class="icon"></i><span>Отправить выписку на электронную почту</span></label>
+
+							<!-- форма отправки -->
+							<!-- <div class="w80">
+								<div class="m_top_15"><input type="email" name="" id="" placeholder="E-mail" class="small w100"></div>
+								<div class="m_top_10"><textarea name="" id="" placeholder="Введите текст сообщения" cols="30" class="small js_autosize textarea_middle w100"></textarea></div>
+							</div> -->
+						</div>
+					</div>
+
+					<div class="form_buttons row">
+						<div class="column w20 property_label">&nbsp;</div>
+						<div class="column w70 property_value">
+							<button class="button middle">Сформировать</button>
+						</div>
+					</div>
+
+
+
+				</form>
+			</div>
+			<div class="col w35">
+				<div class="statement_schedule">
+					<div class="statement_schedule_title title_middle">Ваши выписки по расписанию</div>
+					<div class="small_text m_bot_20">Выписка будет приходить на вашу электронную почту автоматически по установленному вами расписанию. Вы можете настроить до 5 выписок</div>
+
+					<!-- <div class="statement_schedule_empty">
+						<i class="icon-date"></i>
+						У вас еще нет выписок
+					</div> -->
+
+					<ul class="statement_schedule_list ">
+						<li class="item">
+							<a class="item_link">За квартал по ****1234 в Excel</a>
+							<a class="item_delete icon-trash-bin"></a>
+						</li>
+						<li class="item">
+							<a class="item_link">За месяц по ****5312 в HTML</a>
+							<a class="item_delete icon-trash-bin"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+	</div>
+
+</article>
+
+</body>
+</html>

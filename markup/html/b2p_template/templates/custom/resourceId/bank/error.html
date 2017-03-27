@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Ошибка</title>
+		<script src="../../../common/scripts/jquery-1.11.3.min.js"></script>
+		<script src="../../../common/scripts/bootstrap.tooltip.js"></script>
+		<script src="../../../common/scripts/jquery.validate.js"></script>
+		<link rel="stylesheet" href="../../../common/css/pay-form.css" />
+		<script type="text/javascript" src="../../../common/scripts/error/functions.js"></script>
+		<style>
+		.form-group{
+			margin-bottom: 5px;
+		}
+		</style>
+	</head>
+	<body data-width="575">
+		<div class="header has-error">
+			<div class="container">
+				<h1>Ошибка</h1>
+			</div>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="b2p-title">
+					
+					<p class="shop-error">Ошибка: Неправильная сумма операции. Пожалуйста, обратитесь в свой Финансово-кредитный институт (Банк, МФО).</p>
+					
+				</div>
+				
+				<div class="b2p-form">
+					<form id="reportForm" name="data" method="post" action="/webapi/Report">
+						<input type="hidden" name="sectorId" value="442" />
+						<input type="hidden" name="orderId" value="" />
+						<input type="hidden" name="operationId" value="" />
+						<input type="hidden" name="errorCode" value="128" />
+                                                <input type="hidden" name="urlReferer" value="https://test.best2pay.net/test/sectors" />
+						<fieldset>
+						
+							<div class="form-horizontal">
+								<div class="form-group b2p-input">
+									<label class="col-xs-12 col-sm-5">Сообщить о проблеме</label>
+								</div>
+									<div class="form-group b2p-input">
+									<label>
+										<input type="checkbox" id="agree" name="agree" style="float: left; margin: 8px 4px 0 0;" autocomplete="off" />
+										Получить ответ организации
+									</label>
+								</div>
+								<div class="form-group b2p-input">
+									<label class="col-xs-12 col-sm-5">ФИО:</label>
+									<div class="col-xs-12 col-sm-7">
+										<input type="text" name="fio" id="fio" class="form-control" autocomplete="off" />
+									</div>
+								</div>
+	
+								<div class="form-group b2p-input">
+									<label class="col-xs-12 col-sm-5">E-Mail:</label>
+									<div class="col-xs-12 col-sm-7">
+										<input type="text" name="email" id="email" class="form-control" autocomplete="off" />
+									</div>
+								</div>
+								<div class="form-group b2p-input">
+									<label class="col-xs-12 col-sm-5">Телефон:</label>
+									<div class="col-xs-12 col-sm-7">
+										<input type="text" name="phone" id="phone" class="form-control" autocomplete="off" />
+									</div>
+								</div>
+										
+								<div class="form-group b2p-input">
+									<label class="col-xs-12 col-sm-5">Комментарий:</label>
+									<div class="col-xs-12 col-sm-7">
+										<textarea name="comment" id="comment" class="form-control" rows="5" cols="60"></textarea>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<div class="form-actions">
+							<input id="submitButton" type="submit" class="btn btn-default pull-right" value="Отправить">
+						</div>
+						<p class="form-help text-right">Нажатием кнопки "Отправить" вы соглашаетесь с отправкой указанной на текущей странице информации в ООО "Бест2Пей" для дальнейшей обработки</p>
+					</form>
+				</div>
+				
+				<div class="b2p-copyrights">
+					<p class="small pull-left">8 800 250-78-80, <a href="mailto:helpline@best2pay.net">helpline@best2pay.net</a></p>
+					<p class="small pull-right">2017 &copy; Бест2Пей</p>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="b2p-links">
+					<a href="https://sealinfo.thawte.com/thawtesplash?form_file=fdf/thawtesplash.fdf&dn=PAY.BEST2PAY.NET&lang=en" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/thawte-site-seal-grayscale.png" class="hover-out" />
+						<img src="../../../common/logo/thawte-site-seal.png" class="hover-on" />
+					</a>
+					<a href="http://www.best2pay.net" target="_blank" class="img-hover pull-right">
+						<img src="../../../common/logo/best2pay-grayscale.png" class="hover-out" />
+						<img src="../../../common/logo/best2pay.png" class="hover-on" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

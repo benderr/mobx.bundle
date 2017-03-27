@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Отчеты по задачам</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+
+
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+
+<section class="main">
+
+
+ 	<div class="flex_row">
+
+		<div class="content">
+
+
+
+			<div class="form m_bot_40">
+				<div class="form_group_list form_horizontal">
+					<div class="property_label col w200px">Тип отчета:</div>
+					<div class="property_value col auto">
+						<div class="jsRadSelect2" data-placeholder="Селект">
+							<option class="jsRadSelect2Options" value="1" selected>Статистика времени среднего ожидания клиента</option>
+							<option class="jsRadSelect2Options" value="2">Статистика времени среднего ожидания клиента</option>
+							<option class="jsRadSelect2Options" value="3">Статистика времени среднего ожидания клиента</option>
+						</div>
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="property_label col w200px">Дата с:</div>
+					<div class="property_value col auto">
+						<input type="text" name="" id="" class="datetimepicker filter_date_input w150px">
+					</div>
+					<div class="property_label col auto">по:</div>
+					<div class="property_value col auto">
+						<input type="text" name="" id="" class="datetimepicker filter_date_input w150px">
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="property_label col w200px">Настраиваемый период:</div>
+					<div class="property_value col auto">
+						<div class="jsRadSelect2" data-placeholder="Селект">
+							<option class="jsRadSelect2Options" value="1" selected>Час</option>
+							<option class="jsRadSelect2Options" value="2">День</option>
+							<option class="jsRadSelect2Options" value="3">Неделя</option>
+							<option class="jsRadSelect2Options" value="4">Месяц</option>
+							<option class="jsRadSelect2Options" value="5">Год</option>
+						</div>
+					</div>
+				</div>
+
+				<div class="form_group_list form_horizontal">
+					<div class="property_label col w200px">Агент:</div>
+					<div class="property_value col auto">
+						<div class="jsRadSelect2" data-placeholder="Селект">
+							<option class="jsRadSelect2Options" value="1" selected>Выберите агента</option>
+							<option class="jsRadSelect2Options" value="2">Иванов Иван</option>
+							<option class="jsRadSelect2Options" value="3">Иванов Иван</option>
+							<option class="jsRadSelect2Options" value="4">Иванов Иван</option>
+							<option class="jsRadSelect2Options" value="5">Иванов Иван</option>
+						</div>
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="property_label col w200px">Группа:</div>
+					<div class="property_value col auto">
+						<div class="jsRadSelect2" data-placeholder="Селект">
+							<option class="jsRadSelect2Options" value="1" selected>Бригада</option>
+							<option class="jsRadSelect2Options" value="2">Бригада 1</option>
+							<option class="jsRadSelect2Options" value="3">Бригада 2</option>
+							<option class="jsRadSelect2Options" value="4">Бригада 3</option>
+							<option class="jsRadSelect2Options" value="5">Бригада 4</option>
+						</div>
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="property_label col w200px">Номер телефона:</div>
+					<div class="property_value col auto">
+						<input type="text" name="" id="">
+					</div>
+				</div>
+				<div class="form_buttons row">
+					<div class="property_label col w200px">&nbsp;</div>
+					<div class="property_value col auto">
+						<a class="button middle">Показать отчет</a>
+						<a class="button middle">Выгрузить в EXCEL</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="title_panel">
+				<h1>Статистика времени среднего ожидания клиента</h1>
+			</div>
+
+			<div class="tabel_scroll">
+
+			<table class="table f_small table_report_task_BA">
+				<tr>
+					<th><a class="icon-sort-up">ReportType</a></th>
+					<th><a class="icon-sort-down">ReportDateTime</a></th>
+					<th><a>From</a></th>
+					<th><a>To</a></th>
+					<th><a>PeriodType</a></th>
+					<th><a>AgentId</a></th>
+					<th><a>AgentName</a></th>
+					<th><a>Comment</a></th>
+					<th><a>Comment</a></th>
+					<th><a>Comment</a></th>
+					<th><a>Comment</a></th>
+				</tr>
+
+
+				<tr ng-repeat="item in model.reportList" class="ng-scope"><!— ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">23505249</td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope"></td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">Error</td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">При попытке обработать сообщение в SyncCompanyCardsHanlder произошло исключение. </td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">System.InvalidOperationException: There is an error in XML document (1, 22). —-&gt; System.Xml.XmlException: Data at the root level is invalid. Line 1, position 22.
+				   at System.Xml.XmlTextReaderImpl.Throw(String res, String arg)
+				   at System.Xml.XmlTextReaderImpl.ParseRootLevelWhitespace()
+				   at System.Xml.XmlTextReaderImpl.ParseDocumentContent()
+				   at System.Xml.XmlReader.MoveToContent()
+				   at Microsoft.Xml.Serialization.GeneratedAssembly.XmlSerializationReaderGetAccBalanceResponse.Read8_GetAccBalanceResponse()
+				   —- End of inner exception stack trace —-
+				   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle, XmlDeserializationEvents events)
+				   at System.Xml.Serialization.XmlSerializer.Deserialize(XmlReader xmlReader, String encodingStyle)
+				   at CardStandard.ServiceProvider.ExchangeSerializer.Deserialize[T](String data) in C:\ProgramFiles\TeamCity\Git\BackGitLow_P2\BackEnd\CardStandard\CardStandard\ServiceProvider\ExchangeSerializer.cs:line 68
+				   at CardStandard.CardStandard.getAccBalance(GetAccBalanceRequest request) in C:\ProgramFiles\TeamCity\Git\BackGitLow_P2\BackEnd\CardStandard\CardStandard\CardStandard.cs:line 37
+				   at BusinessLogic.PC.Helpers.CardStandardHelper.GetAccountBalance(String cardContractCode) in C:\ProgramFiles\TeamCity\Git\BackGitLow_P2\BackEnd\BusinessLogic\PC\Helpers\CardStandardHelper.cs:line 32
+				   at BusinessLogic.PC.Helpers.CardSyncHelper.SyncCardBalance(String[] cardcontracts) in C:\ProgramFiles\TeamCity\Git\BackGitLow_P2\BackEnd\BusinessLogic\PC\Helpers\CardSyncHelper.cs:line 40
+				   at BusinessLogic.PC.Helpers.CardSyncHelper.SynCardBalance(Guid companyId) in C:\ProgramFiles\TeamCity\Git\BackGitLow_P2\BackEnd\BusinessLogic\PC\Helpers\CardSyncHelper.cs:line 73
+				   at BusinessLogic.PC.MessageHandlers.SyncCompanyCardsHanlder.HandleMessage(SyncCompanyCards message) in C:\ProgramFiles\TeamCity\Git\BackGitLow_P2\BackEnd\BusinessLogic\PC\MessageHandlers\SyncCompanyCardsHanlder.cs:line 28
+
+				at ServiceBus.Contracts.Strategy.WrappedHandleMessageSchedulerStrategy`1.WrappedHandleMessage(MessageHandler`1 handler, T m) in C:\ProgramFiles\TeamCity\Git\BackGitLow_P2\BackEnd\ServiceBus.Contracts\Strategy\WrappedHandleMessageSchedulerStrategy.cs:line 19 </td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">2016-09-21T09:25:18.693</td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">00000000-0000-0000-0000-000000000000</td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">bb1aafbd-e6f8-408e-91ce-a66a01cc99e2</td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">{"IbsoId":"4406235268","CompanyId":"bb1aafbd-e6f8-408e-91ce-a66a01cc99e2","RequestBalance":true,"RequestOpers":true,"CommandKey":null}</td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope">BusinessLogic.PC.Messages.SyncCompanyCards, BusinessLogic, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</td><!— end ngRepeat: head in model.header track by $index —><td ng-repeat="head in model.header track by $index" class="ng-binding ng-scope"></td><!— end ngRepeat: head in model.header track by $index —></tr>
+			</table>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Шаг 1 - не найдена компания. Заявка на гарантию</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style_garant.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+
+<include data-file="garant/garant_header.html"></include>
+
+
+<section class="main">
+	<div class="wrap">
+
+	<include data-file="garant/garant_aside.html"></include>
+	<include data-file="garant/garant.html .section_content"></include>
+
+	</div>
+</section>
+
+<article class="page open page_with_wizard page_garant_order">
+
+	<include data-file="garant/garant_page_new_step1.html .page_header"></include>
+
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="garant_page_load_block garant_order_step1_not_found">
+			<h3>Мы не нашли ваш ОГРНИП в базах ФНС</h3>
+			<p>Если вы ошиблись в номере — измените {ОГРНИП}. <br/>
+Возможно, компания зарегистрирована недавно и ФНС не добавила<br/> ее в базы данных. Банковская гарантия не выдается для компаний,<br/> зарегистрированных менее 6 месяцев назад</p>
+			<div class="form_buttons">
+				<a class="button_clean">Изменить ОГРН</a>
+			</div>
+		</div>
+	</div>
+
+</article>
+
+</body>
+</html>

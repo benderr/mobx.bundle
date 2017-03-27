@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Настройки</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<article class="page open">
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+
+	</div>
+	<div class="page_content">
+		<div class="tabs tabs_vertical">
+			<div class="tabs_menu ">
+				<ul>
+					<li class="title">Мои настройки</li>
+					<li><a href="">Мой профиль</a></li>
+					<li><a href="">Уведомления</a></li>
+					<li><a href="">Электронная подпись</a></li>
+					<li class="title">Настройки компании</li>
+					<li><a href="">Профиль компании</a></li>
+					<li><a href="">Представители</a></li>
+					<li class="active"><a href="">Тарифы и услуги</a></li>
+				</ul>
+				<a class="tabs_menu_footer_link icon-help">Частые вопросы</a>
+			</div>
+			<div class="tabs_content">
+
+				<div class="info_error m_bot_30"><strong>Внимание:</strong> для вашей компании в системе не установлен тарифный план. Для разрешения вопроса срочно <a>напишите нам</a>. Ниже вы можете ознакомиться с действующими в настоящее время тарифами.</div>
+
+				<div class="tabs tabs_horizontal">
+					<div class="tabs_menu tabs_narrow">
+						<ul>
+							<li class="active"><a href="" class="icon-check">Старт</a></li>
+							<li><a href="">Стартовый</a></li>
+							<li><a href="">Оптимальный<span class="new_label">NEW</span></a></li>
+							<li><a href="">Безлимитный</a></li>
+						</ul>
+					</div>
+					<div class="tabs_content">
+						<div class="row">
+							<div class="col seven">
+
+								<div class="tarif_info">
+									<div class="price">
+										<p>3 000 <span class="ruble"><span>р.</span></span>/мес <span class="old_price">6 000 <span class="ruble"><span>р.</span></span>/мес</span></p>
+										<!-- <p class="small_text">оплачено до 25.03.2016</p> -->
+										<a>Подробное описание тарифа</a>
+									</div>
+									<div class="status icon-step-check">Подключен</div>
+								</div>
+
+								<div class="info_success">
+									<p>Благодарим за участие в наших акциях!</p><p>Мы дарим вам месяц бесплатного обслуживания счетов и платежей без комиссии. Подробнее о текущих акциях и правилах участия вы можете ознакомиться по <a>этой ссылке</a>.</p>
+								</div>
+
+								<div class="tarif_serv_row">
+									<div class="name">
+										<div class="title">Платежи</div>
+										<div class="desc">70 Р/платеж</div>
+									</div>
+									<!-- <div class="value">
+										<div class="title">Списано за платежи за июль:</div>
+										<div class="price">700 <span class="ruble"><span>р.</span></span></div>
+									</div> -->
+								</div>
+
+								<div class="tarif_serv_row">
+									<div class="name">
+										<div class="title">Карты</div>
+										<div class="desc">BUSINESS STANDARD, 2 карты</div>
+									</div>
+									<!-- <div class="value">
+										<div class="title">Списано за карты за 2015 год:</div>
+										<div class="price">500 <span class="ruble"><span>р.</span></span></div>
+									</div> -->
+								</div>
+
+								<div class="tarif_serv_row">
+									<div class="value">
+										<div class="title">Списано за выдачу<br>наличных за июль:</div>
+										<div class="price">2 300 <span class="ruble"><span>р.</span></span></div>
+									</div>
+									<div class="name">
+										<div class="title">Выдача наличных</div>
+										<div class="desc">
+										Менее 500 000 Р - 1%<br>
+										500 000 - 2 000 000 Р - 10%<br>
+										Более 2 000 000 Р - 15% </div>
+									</div>
+
+								</div>
+
+								<div class="tarif_serv_row">
+									<div class="name">
+										<div class="title">Процент на остаток</div>
+										<div class="desc">До 100 000 Р - 3%<br>Свыше 100 000 Р - 5%</div>
+									</div>
+									<!-- <div class="value">
+										<div class="title">Начислено процентов<br>за 2015 год:</div>
+										<div class="price">7 500 <span class="ruble"><span>р.</span></span></div>
+									</div> -->
+								</div>
+
+								<div class="tarif_serv_row">
+									<div class="name">
+										<div class="title">Совместная работа</div>
+										<div class="desc">Доступ в систему - до трех сотрудников<br>
+										Один представитель с правом подписи</div>
+									</div>
+
+								</div>
+
+								<!-- <div class="tarif_balance">
+									<div class="title">Баланс операций с банком (за 2015 год)</div>
+									<div class="balance_list">
+										<div class="list">
+											<div class="item">
+												<div class="price money_income">7 500 <span class="ruble"><span>р.</span></span></div>
+												<div class="name">Начислено банком<br>в качестве процентов</div>
+
+											</div>
+											<div class="item">
+												<div class="price money_expense">2 300 <span class="ruble"><span>р.</span></span></div>
+												<div class="name">Заплачено банку за услуги </div>
+											</div>
+										</div>
+										<div class="total"><div class="money_income">5 200 <span class="ruble"><span>р.</span></span></div></div>
+									</div>
+								</div> -->
+
+								<div class="light_block banner_other_tarif">
+									<div class="title">Переходите на тариф «Безлимитный»<br>и получите</div>
+									<div class="desc">- все платежи бесплатно<br>
+									- 0% комиссии на снятие наличных до 100 000 <span class="ruble"><span>р.</span></span><br>
+									- 5 включенных карт сотрудника STANDART
+									</div>
+									<a class="button small second">Перейти на тариф «Развитие»</a>
+								</div>
+
+								<div class="delete_account"><a>Расстаться с Модульбанком</a></div>
+
+
+							</div>
+							<div class="col five">
+								<div class="border_block tarif_dop_serv dop_serv_connect">
+									<div class="title">Бизнес-ассистент</div>
+									<a class="more">Подробнее</a>
+									<div class="desc">
+										Выполнит любые бизнес-поручения
+									</div>
+									<!-- <div class="price f_right">Бесплатно</div> -->
+									<div class="add ">
+										<span class="connect icon-step-check">Подключен</span>
+									</div>
+
+								</div>
+								<div class="border_block tarif_dop_serv">
+									<div class="title">Бухгалтер</div>
+									<a class="more">Подробнее</a>
+									<div class="desc">
+										Кадровый учет<br>
+										Бухгалтерская отчетность<br>
+										Обработка выписок и платежей
+									</div>
+									<div class="price f_right">1500 <span class="rur"><span>р.</span></span>/мес</div>
+									<div class="add">
+										<a class="button small">Подключить</a>
+									</div>
+								</div>
+
+								<div class="border_block tarif_dop_serv">
+									<div class="title">Юрист</div>
+									<a class="more">Подробнее</a>
+									<div class="desc">
+										Юридические консультации<br>
+										Разработка и согласование договоров
+									</div>
+									<div class="add">
+										<a class="button small">Подключить</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

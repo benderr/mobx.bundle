@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Настройки</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<article class="page open">
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+
+	</div>
+	<div class="page_content">
+		<div class="tabs tabs_vertical">
+			<div class="tabs_menu ">
+				<ul>
+					<li class="title">Мои настройки</li>
+					<li><a href="">Мой профиль</a></li>
+					<li><a href="">Уведомления</a></li>
+					<li><a href="">Электронная подпись</a></li>
+					<li class="title">Настройки компании</li>
+					<li><a href="">Профиль компании</a></li>
+					<li><a href="">Сотрудники</a></li>
+					<li class="active"><a href="">Тарифы</a></li>
+					<li><a href="">Услуги</a></li>
+				</ul>
+				<a class="tabs_menu_footer_link icon-help">Частые вопросы</a>
+			</div>
+			<div class="tabs_content">
+
+				<div class="tarif_page">
+					<div class="tarif_block_current">
+						<div class="tarif_block_current_name">У вас Стартовый тариф</div>
+
+					</div>
+
+					<!-- лимиты -->
+					<div class="tarif_block_limits">
+
+						<!-- лимит -->
+						<div class="tarif_limit_item">
+							<svg width="58" height="58" class="tarif_limit_svg">
+							    <circle r="25" cx="29" cy="29" class="pie color1" style="stroke-dasharray: 105, 358;"></circle>
+							    <circle r="20" cx="29" cy="29" fill="#ffffff"></circle>
+							</svg>
+
+							<div class="tarif_limit_name">
+								Переводы физ. лицам
+							</div>
+							<div class="tarif_limit_value">
+								<span class="fw_b">200 000</span> из 250 000 <span class="cur rur"><span>р.</span></span>
+							</div>
+							<div class="tarif_limit_desc">70 р. за платеж</div>
+						</div>
+
+						<!-- лимит -->
+						<div class="tarif_limit_item">
+							<svg width="58" height="58" class="tarif_limit_svg ">
+							    <circle r="25" cx="29" cy="29" class="pie color2" style="stroke-dasharray: 50, 358;"></circle>
+							    <circle r="20" cx="29" cy="29" fill="#ffffff"></circle>
+							</svg>
+
+							<div class="tarif_limit_name">Снятие наличных</div>
+							<div class="tarif_limit_value">
+								<span class="fw_b">400 000</span> из 2 000 000 <span class="cur rur"><span>р.</span></span>
+							</div>
+							<div class="tarif_limit_desc">Комиссия 15%</div>
+						</div>
+
+					</div>
+
+					<div class="form_sep"></div>
+
+
+
+
+					<!-- все тарифы -->
+					<div class="tarif_block_all">
+						<div class="tarif_block_title">Все тарифы</div>
+						<!-- таблица тарифов -->
+						<div class="tarif_all_list">
+
+							<!-- тариф -->
+							<div class="tarif_all_item color1 active">
+								<div class="tarif_all_item_name">Стартовый</div>
+								<div class="tarif_all_item_price"><span class="price_free">Бесплатно</span></div>
+								<div class="tarif_all_item_but"><a class="button small icon-check selected">Подключен</a></div>
+								<div class="tarif_all_item_desc">
+									<p>90 руб. за платёж</p>
+									<p>Лимит платежей:<br/>5 млн. руб.</p>
+									<p>1 сотрудник</p>
+									<p>Снятие наличных:<br/>
+										<span class="f_xsmall">Менее 100 т.р. - 1 %<br/>
+										100 001 р. - 300 т.р. - 3 %<br/>
+										300 001 р. - 500 т.р. - 5 %<br/>
+										500 001 р. - 1 млн.р. - 10 %<br/>
+										Свыше 1 000 001 р. - 20 %</span>
+									</p>
+									<p>Проценты на остаток не начисляются</p>
+								</div>
+								<div class="tarif_all_item_more"><a class="button_clean">Подробнее</a></div>
+							</div>
+
+							<!-- тариф -->
+							<div class="tarif_all_item color2">
+								<div class="tarif_all_item_name">Оптимальный</div>
+								<div class="tarif_all_item_price">
+									490 <span class="price_small"><span class="cur rur"><span>р.</span></span>/месяц</span>
+								</div>
+								<div class="tarif_all_item_but"><a class="button small">Выбрать</a></div>
+								<div class="tarif_all_item_desc">
+									<p>90 руб. за платёж</p>
+									<p>Лимит платежей:<br/>5 млн. руб.</p>
+									<p>1 сотрудник</p>
+									<p>Снятие наличных:<br/>
+										<span class="f_xsmall">Менее 100 т.р. - 1 %<br/>
+										100 001 р. - 300 т.р. - 3 %<br/>
+										300 001 р. - 500 т.р. - 5 %<br/>
+										500 001 р. - 1 млн.р. - 10 %<br/>
+										Свыше 1 000 001 р. - 20 %</span>
+									</p>
+									<p>Проценты на остаток не начисляются</p>
+								</div>
+								<div class="tarif_all_item_more"><a class="button_clean">Подробнее</a></div>
+							</div>
+
+							<!-- тариф -->
+							<div class="tarif_all_item color3">
+								<div class="tarif_all_item_name">Стартовый</div>
+								<div class="tarif_all_item_price">
+									3000 <span class="price_small"><span class="cur rur"><span>р.</span></span>/месяц</span>
+								</div>
+								<div class="tarif_all_item_but"><a class="button small">Выбрать</a></div>
+								<div class="tarif_all_item_desc">
+									<p>90 руб. за платёж</p>
+									<p>Лимит платежей:<br/>5 млн. руб.</p>
+									<p>1 сотрудник</p>
+									<p>Снятие наличных:<br/>
+										<span class="f_xsmall">Менее 100 т.р. - 1 %<br/>
+										100 001 р. - 300 т.р. - 3 %<br/>
+										300 001 р. - 500 т.р. - 5 %<br/>
+										500 001 р. - 1 млн.р. - 10 %<br/>
+										Свыше 1 000 001 р. - 20 %</span>
+									</p>
+									<p>Проценты на остаток не начисляются</p>
+								</div>
+								<div class="tarif_all_item_more"><a class="button_clean">Подробнее</a></div>
+							</div>
+
+
+
+						</div>
+					</div>
+
+					<!-- услуги -->
+					<div class="tarif_block_services">
+						<div class="tarif_block_title">Услуги</div>
+						<div class="dop_serv_cols">
+							<div class="tarif_dop_serv dop_serv_connect">
+								<div class="title">Бизнес-ассистент</div>
+								<div class="add">
+									<span class="button xsmall connect icon-step-check">Подключен</span>
+								</div>
+
+								<div class="desc">
+									Выполнит любые бизнес-поручения
+								</div>
+								<!-- <div class="price f_right">Бесплатно</div> -->
+								<a class="more">Подробнее</a>
+
+							</div>
+							<div class="tarif_dop_serv">
+								<div class="title">Бухгалтер</div>
+								<div class="add">
+									<a class="button xsmall">Подключить</a>
+								</div>
+
+								<div class="desc">
+									Кадровый учет<br>
+									Бухгалтерская отчетность<br>
+									Обработка выписок и платежей
+								</div>
+								<div class="price">1500 <span class="rur"><span>р.</span></span>/мес</div>
+								<a class="more">Подробнее</a>
+							</div>
+
+							<div class="tarif_dop_serv">
+								<div class="title">Юрист</div>
+								<div class="add">
+									<a class="button xsmall">Подключить</a>
+								</div>
+
+								<div class="desc">
+									Юридические консультации<br>
+									Разработка и согласование договоров
+								</div>
+								<a class="more">Подробнее</a>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="tarif_close_account">
+						<a>Расстаться с Модульбанком</a>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!--  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Загрузка из 1С</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+
+<article class="page open">
+
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Загрузка платежей из 1С
+		</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="w70">
+
+			<div class="docs_block">
+				<div class="row">
+					<div class="column four">
+						<div class="file_upload_list">
+							<div class="file_upload_block column full">
+								<div class="file_title">
+									Файл с платежами<br>из 1С
+								</div>
+								<div class="file_button">
+									<label class="button small button_file_upload">
+										Загрузить
+										<input type="file" name="" id=""></label>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="column eight">
+						<div class="f_small">
+							<p>Загрузите платежки из 1С — обычно по умолчанию файл называется 1С_to_kl.txt. Убедитесь, что вы выгрузили в файл все нужные платежки.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="info_error">
+				<p><strong>Распознать файл не получилось.</strong></br>Чтобы загрузить документ, скачайте его из 1С и попробуйте снова.</p>
+			</div>
+		</div>
+	</div>
+
+</article>
+
+<article class="page side_right_wide open">
+</article>
+
+</body>
+</html>

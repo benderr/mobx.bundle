@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Заявление на перевод</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Подписание документов</h1>
+		<div class="header_action">
+			<a href="#" class="icon-print"></a>
+			<a href="#" class="icon-favorites"></a>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="row">
+			<div class="col eight">
+
+
+
+				<!-- <div class="info info_error">
+					Были внесены изменения в реквизиты получателя. Для обновления информации в платежном поручении переведите документ в редактирование.
+				</div> -->
+
+				<div class="light_block transaction_view_contragent">
+
+					<h3>Заявление на перевод иностранной валюты</h3>
+
+					<div class="transaction_view_info">
+						<div class="transaction_view_info_money">
+							4 500,00 <span class="cur euro"><span>€</span></span>
+						</div>
+						<div class="transaction_view_info_account">
+							<div class="light_text">со счета:</div>
+							Расчетный счет (***012345)
+						</div>
+					</div>
+
+					<div class="name">
+						<span class="c_primary">Munchen Grosse Kolbassen</span>
+						<div class="light_text fw_l f_normal">34, Schluhessen strasse, Munchen, Germany</div>
+
+					</div>
+					<div class="form_group_list">
+						<div class="column five property_label">На счет:</div>
+						<div class="column seven property_value">22341497819132</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column five property_label">Банк:</div>
+						<div class="column seven property_value">BADKDVBACXXX - Deuchland Bank</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column five property_label">Банк-корреспондент:</div>
+						<div class="column seven property_value">ALFAWFWV - AlfaBank</div>
+					</div>
+					<div class="form_group">
+						<div class="column five property_label">Дата валютирования:</div>
+						<div class="column seven property_value">23.08.2015 10:23</div>
+					</div>
+
+					<div class="form_group fw_n">
+						Комиссию оплачивает отправитель
+					</div>
+
+
+					<div class="transaction_view_contragent_appointment">
+						<p>Oplata za partiu romashek po dogovoru 14023-023 от 14.05.2015 г. Summa 11000-00</p>
+					</div>
+				</div>
+
+				<div class="light_block m_bot_30">
+					<h3>Справка о валютной операции</h3>
+					<div class="info_error">
+						Справка по данной валютной операции еще не подготовлена сотрудником банка. Вы пока не можете подписать документы. Обратитесь к бизнес-ассистенту за разъяснениями.
+					</div>
+					<button class="button small cancel">Написать ассистенту</button>
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+
+	</div>
+
+</article>
+
+</body>
+</html>

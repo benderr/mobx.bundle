@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Выставление счета</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open page_invoicing">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Счет на оплату</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content with_bottom_panel">
+		<div class="document_invoicing">
+			<div class="document_invoicing_client">
+				<div class="form_group form_horizontal">
+					<div class="property_label col_form w60px a_right">Номер</div>
+					<div class="property_value col_form auto">
+						<input type="text" name="" id="" class="w100px">
+					</div>
+					<div class="property_label col_form auto">от</div>
+					<div class="property_value col_form auto">
+						<input type="text" name="" id="" class="w150px datetimepicker a_center" value="26.11.2016">
+					</div>
+				</div>
+
+				<div class="form_group form_horizontal">
+					<div class="property_label col_form w60px a_right">Клиент</div>
+					<div class="property_value col_form offset_60px">
+						<input type="text" name="" id="" class="w100" placeholder="Наименование или ИНН получателя">
+					</div>
+				</div>
+				<div class="row">
+					<div class="form_group form_horizontal col half">
+						<div class="property_label col_form w60px a_right">ИНН</div>
+						<div class="property_value col_form offset_60px">
+							<input type="text" name="" id="" class="w100" placeholder="">
+						</div>
+					</div>
+					<div class="form_group form_horizontal col half">
+						<div class="property_label col_form w60px a_right">КПП</div>
+						<div class="property_value col_form offset_60px">
+							<input type="text" name="" id="" class="w100" placeholder="">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="document_invoicing_sep"></div>
+			<div class="document_invoicing_products">
+
+				<table class="light" cellpadding="0" cellspacing="0" border="0">
+					<tr>
+						<th>Наименование</th>
+						<th width="80" class="a_center">Ед. изм.</th>
+						<th width="60" class="a_center">Кол-во</th>
+						<th width="100" class="a_right">Цена</th>
+						<th width="100" class="a_right">Сумма</th>
+						<th width="20">&nbsp;</th>
+					</tr>
+					<tr>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_center"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_center"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_right"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_right"></td>
+						<td valign="top" class="cell_field a_center"><a class="delete_row icon-close "></a></td>
+					</tr>
+					<tr>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_center"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_center"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_right"></td>
+						<td valign="top" class="cell_field"><input type="text" name="" id="" class="small a_right"></td>
+						<td valign="top" class="cell_field a_center"><a class="delete_row icon-close "></a></td>
+					</tr>
+				</table>
+
+				<div class="nds">
+					<div class="left">
+						<div class="jsRadSelect2 select_inline" data-placeholder="НДС" name="adfasd" id="adsf">
+							<option class="jsRadSelect2Options" value="2">Без НДС</option>
+							<option class="jsRadSelect2Options" value="1" selected>В том числе НДС 18%</option>
+							<option class="jsRadSelect2Options" value="3">В том числе НДС 10%</option>
+						</div>
+					</div>
+					<div class="right">
+						0 <span class="cur rur"><span>р.</span></span>
+					</div>
+				</div>
+
+				<div class="total">
+					<div class="left">
+						ВСЕГО К ОПЛАТЕ
+					</div>
+					<div class="right">
+						0 <span class="cur rur"><span>р.</span></span>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="form_group">
+				<textarea name="" id="" class="w100  js_autosize textarea_middle" placeholder="Введите комментарий, если вы хотите, чтобы он появился после списка  товаров/услуг"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<!-- панель с кнопками -->
+	<div class="page_bottom_panel">
+		<a class="button middle wide">Далее</a>
+		<a class="button middle wide clean">Отмена</a>
+	</div>
+
+</article>
+
+</body>
+</html>

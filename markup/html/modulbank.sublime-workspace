@@ -1,0 +1,1997 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cat",
+				"cat_armatura.jpg	w:549 h:270"
+			],
+			[
+				"img",
+				"img14.jpg	w:806 h:920"
+			],
+			[
+				"j",
+				"jquery.min.js"
+			],
+			[
+				"ab",
+				"about_img4.jpg	w:682 h:398"
+			],
+			[
+				"a",
+				"about_img3.jpg	w:683 h:331"
+			],
+			[
+				"s",
+				"slon_main"
+			],
+			[
+				"th",
+				"this	$(this)"
+			],
+			[
+				"le",
+				"length-1"
+			],
+			[
+				"im",
+				"img2.jpg	w:277 h:175"
+			],
+			[
+				"p",
+				"partner1.png	w:488 h:456"
+			],
+			[
+				"sm",
+				"smi6.png	w:108 h:48"
+			],
+			[
+				"png",
+				"assistant_photo.png	w:235 h:235"
+			],
+			[
+				"has",
+				"hasClass	.hasClass()"
+			],
+			[
+				"ic",
+				"icon_tvbus5.png	w:75 h:70"
+			],
+			[
+				"iconb",
+				"icon_tvbus3.png	w:90 h:50"
+			],
+			[
+				"sl",
+				"slide1.png	w:541 h:228"
+			],
+			[
+				"da",
+				"damir2.png	w:474 h:546"
+			],
+			[
+				"r",
+				"rustem.png	w:490 h:536"
+			],
+			[
+				"d",
+				"dinar.png	w:512 h:546"
+			],
+			[
+				"re",
+				"rustem.png	w:536 h:598"
+			],
+			[
+				"slid",
+				"slide_left.svg"
+			],
+			[
+				"mi",
+				"micsql.png	w:214 h:174"
+			],
+			[
+				"ca",
+				"cat_case.png	w:352 h:100"
+			],
+			[
+				"c",
+				"cat_jcb.png	w:194 h:160"
+			],
+			[
+				"v",
+				"partner_virtuoz.jpg	w:170 h:50"
+			],
+			[
+				"i",
+				"images/"
+			],
+			[
+				"par",
+				"partner_eho.jpg	w:150 h:62"
+			],
+			[
+				"outer",
+				"outerHeight	.outerHeight()"
+			],
+			[
+				"tv",
+				"tv_ren.png	w:78 h:80"
+			],
+			[
+				"tv_r",
+				"tv_russia.png	w:140 h:36"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"zapis",
+				"zapis_form"
+			],
+			[
+				"b",
+				"bd	border"
+			],
+			[
+				"tt",
+				"tt:u	text-transform:uppercase"
+			],
+			[
+				"fo",
+				"fontDefault"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"brd",
+				"bdrz	border-radius"
+			],
+			[
+				"bn",
+				"bd:n	border:none"
+			],
+			[
+				"icon_edi",
+				"icon_edit42"
+			],
+			[
+				"tov",
+				"tov-e	text-overflow: ellipsis;"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"in",
+				"input"
+			],
+			[
+				"u",
+				"url"
+			],
+			[
+				"genpl",
+				"genplan_map"
+			],
+			[
+				"borde",
+				"border-color"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"to",
+				"top	top"
+			],
+			[
+				"bot",
+				"bottom"
+			],
+			[
+				"tex",
+				"text-decoration"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"bord",
+				"border"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"bim",
+				"background-image"
+			],
+			[
+				"borc",
+				"border-color"
+			],
+			[
+				"li",
+				"line-height"
+			],
+			[
+				"ri",
+				"right"
+			],
+			[
+				"bo",
+				"border	@border"
+			],
+			[
+				"f",
+				"for	@for"
+			],
+			[
+				"imp",
+				"important"
+			],
+			[
+				"bor",
+				"border-bottom"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"t",
+				"text-align"
+			],
+			[
+				"fa",
+				"fancybox"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"la",
+				"last-child  (pseudo-class)"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"menu_",
+				"menu_down"
+			],
+			[
+				"ba",
+				"background-position"
+			],
+			[
+				"do",
+				"dotted"
+			],
+			[
+				"n",
+				"nowrap"
+			],
+			[
+				"o",
+				"opacity"
+			],
+			[
+				"nor",
+				"no-repeat"
+			],
+			[
+				"box-",
+				"box-shadow:   (property)"
+			],
+			[
+				"m",
+				"margin"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"max",
+				"max-width"
+			],
+			[
+				"border-co",
+				"border-color"
+			],
+			[
+				"min",
+				"min-height"
+			],
+			[
+				"h",
+				"height	@height"
+			],
+			[
+				"border-c",
+				"border-color"
+			],
+			[
+				"jspC",
+				"jspContainer"
+			],
+			[
+				"all_",
+				"all_app_list"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"las",
+				"last-child"
+			],
+			[
+				"border-r",
+				"border-right"
+			],
+			[
+				"cont",
+				"contragents"
+			],
+			[
+				"l",
+				"left"
+			],
+			[
+				"rgb",
+				"rgba()"
+			],
+			[
+				"webkit-box",
+				"-webkit-box-shadow:   (property)"
+			],
+			[
+				"box-s",
+				"box-sizing:   (property)"
+			],
+			[
+				"ta",
+				"table-cell"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"text",
+				"textarea"
+			],
+			[
+				"rep",
+				"repeat-x"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"tra",
+				"transparent"
+			],
+			[
+				"e",
+				"ellipsis"
+			],
+			[
+				"cl",
+				"clear"
+			],
+			[
+				"site_",
+				"site_url"
+			],
+			[
+				"bottom",
+				"bottomMiddle"
+			],
+			[
+				"border",
+				"border_dark"
+			],
+			[
+				"webkit-trans",
+				"-webkit-transition:   (property)"
+			],
+			[
+				"border-bo",
+				"border-bottom-width"
+			],
+			[
+				"ac",
+				"active"
+			],
+			[
+				"I",
+				"!important  (value)"
+			],
+			[
+				"icon_ch",
+				"icon_check"
+			],
+			[
+				"yan",
+				"icon_yandex"
+			],
+			[
+				"fac",
+				"icon_facebook"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"menu",
+				"menu_down"
+			],
+			[
+				"menu_down",
+				"menu_down_link"
+			],
+			[
+				"back",
+				"background-position"
+			],
+			[
+				"tr",
+				"text-decoration"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "header.html",
+			"settings":
+			{
+				"buffer_size": 6311,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "modulbank.sublime-project",
+			"settings":
+			{
+				"buffer_size": 273,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "dashboard.html",
+			"settings":
+			{
+				"buffer_size": 17511,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 143.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"s",
+				"Set Syntax: Stylus"
+			],
+			[
+				"j",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ht",
+				"Set Syntax: HTML"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"htm",
+				"Set Syntax: HTML"
+			],
+			[
+				"em",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"d",
+				"Package Control: Disable Package"
+			],
+			[
+				"dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"di",
+				"Package Control: Disable Package"
+			],
+			[
+				"en",
+				"Package Control: Enable Package"
+			],
+			[
+				"Dis",
+				"Package Control: Disable Package"
+			],
+			[
+				"ed",
+				"Set Syntax: EditorConfig"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"ena",
+				"Package Control: Enable Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"editorc",
+				"Set Syntax: EditorConfig"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"pad",
+				"Package Control: Disable Package"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"enab",
+				"Package Control: Enable Package"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"upd",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"emm",
+				"Emmet: Wrap With Abbreviation"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"sty",
+				"Set Syntax: Stylus"
+			],
+			[
+				"h",
+				"Set Syntax: HTML"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"pa",
+				"Package Control: Disable Package"
+			],
+			[
+				"pac",
+				"Package Control: Disable Package"
+			],
+			[
+				"s h",
+				"Set Syntax: HTML"
+			],
+			[
+				"c",
+				"Tidy CSS"
+			],
+			[
+				"cs",
+				"Tidy CSS"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"syn css",
+				"Set Syntax: CSS"
+			],
+			[
+				"search",
+				"File: Search Files"
+			],
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 489.0
+	},
+	"console":
+	{
+		"height": 125.0,
+		"history":
+		[
+			"https://sublime.wbond.net/testing/packages.json",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp=sublime.installed_packages_path(); os.makedirs(ipp) if not os.path.exists(ipp) else None; urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler())); open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read()); print 'Please restart Sublime Text to finish installation'",
+			"cd ~/Library/Application\\ Support/Sublime\\ Text\\ 3/Packages/",
+			"git clone https://github.com/wbond/sublime_package_control.git \"Package Control\"",
+			"cd Packages",
+			"cd Packages/"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Volumes/Work/Modulbank/html/ModulBank_new_menu/html"
+	],
+	"file_history":
+	[
+		"/Volumes/Work/Modulbank/html/ModulBank_new_menu/html/modulbank.sublime-project",
+		"/Volumes/Work/Projects/RB Team/html/stylus/style.styl",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/CA4CD1B2-01BC-4A0F-925D-9EAD864E2E86/shop.view.first_page.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/8408C3A4-22EF-4BC8-A535-4049792265AD/shop.view.list_subcat.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/970AE1EE-121F-4F35-84A7-56974E1C7C20/shop.view.list.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/BA79B757-A121-4B71-A3AB-563CF532E8E2/cart.view.show_block.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/5DB7A449-AB35-497E-A30F-E4D20A736592/site_product.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/8223BBD6-132E-49AA-9521-45857D9EAF5D/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/A0648C4C-C7BA-4A18-B256-9AD4FC72F9B7/shop.view.rows.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/BACADBED-5C2F-448B-864A-77A259AEC5F9/cart.view.info.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/6FF8D24F-9BEC-44BF-A996-ACE2CB724D87/site_home.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/8BE930BA-3D6F-4C74-81DC-09EE594B78F1/feedback.view.form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/7B4884F6-6C76-47F5-A8CD-A0E6291B1334/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/BCBD60D1-C62A-40D9-89EC-50836BA16D34/site.php",
+		"/Volumes/Work/Projects/Металлобаза/html/js/init.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/58FD6339-CA66-4258-9407-461AE3D9B35C/init.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/74245599-FE21-4E66-BC69-A39E315CB0D6/scripts.js",
+		"/Volumes/Work/Projects/АвтоХолдинг3/html/js/script.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/922B4902-4A6C-4726-8B9E-76B90B24FC15/index_backup.html",
+		"/Volumes/Work/Projects/АвтоХолдинг3/html/index.html",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/12593A53-7BB4-479A-9A39-50D65ECFAC03/site_obrezanie.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/BED59C7E-212F-41BA-B316-118562AE6CEF/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/E23F4CC6-8569-4CC6-ACF4-6A18E60293B6/site_ed.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/E4415DFD-0048-4F12-9A4D-702EC5107E6D/site_obrezanie.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/19B243FC-4F67-437A-9920-AAF22464392F/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/AB31BF82-0117-475E-A0CA-BD09800523C9/site_proctolog.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/CC4DD7F6-92F2-4343-B433-A2CCB65B3322/shop.action.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/22CC5E54-866F-4D07-BAF7-0B08DCE8A2F2/shop.buy_form.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/10404749-642E-4C83-BA45-B37A8F72D896/shop.view.buy_form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/27DA6ECC-48A1-4B16-BB3E-D4189F88BCE1/cart.view.form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/1BD99BB8-2DC9-4ECC-9602-E5C32BCEB9EE/cart.view.payment.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/234C3798-77C8-4005-876D-93023A426972/cart.action.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/5E8D6FDE-6EBB-4D17-9782-7960883DF53A/cart.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/58C2AE9A-5148-46FA-8BAB-3F63E7674106/shop.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/FC221D20-5194-4796-A1B9-AF034E510E93/cart.model.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/25E84BB4-E8D1-420D-9350-5BF9D3F8B02D/cart.show_block.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/FB96B108-4244-4C01-A234-F53609B16C4D/shop.model.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/E9534DC6-6026-47B1-9084-1A58F900FE6B/shop.view.id.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/A76D0FF2-B889-467E-9317-C43A1C1FE79B/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/04FB431F-8AEC-4DD6-8DEB-68D97CE30D12/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/ABE5C1BA-F64F-4716-8B49-532BEDA6E080/site.php",
+		"/Volumes/Work/Projects/Металлобаза/html/catalog.html",
+		"/Volumes/Work/Projects/Металлобаза/html/css/style.css",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/00FB7E65-C808-478F-AD26-E587AD604280/~shop.view.buy_form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/E0ABC6BE-CDAD-4DF5-8167-C4CA873CCA01/shop.view.buy_form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/C2CE93A9-119E-4E05-A34D-D263F796C9ED/site_home.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/23B5051D-B10B-48B1-8718-F31016D26F2E/site.php",
+		"/Users/Dinar/Downloads/chunkfiveex (1)/chunkfiveex.css",
+		"/Users/Dinar/Downloads/ptserifcaption/ptserifcaption.css",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/25A5C882-5615-4C3D-BAEA-B060A5718ACD/search.model.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/382DC5EB-77F7-4C58-9CD8-6F533B3E2D52/search.view.show.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/5632965B-F1E1-4F59-8AC8-3EAF1FF91C6B/search.view.show.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/24166A5B-C073-46B8-8168-2F7798CCCADA/site_catalog.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/ACBDA212-1D27-484A-8C9E-2A3E9B047FB6/site_product.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/AA083B67-A98F-4559-914F-BF772AD3DE40/config.php",
+		"/Users/Dinar/Downloads/ubuntu/ubuntu.css",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/DED9918B-F050-4BA1-8AEF-606B61AC7953/shop.view.id.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/7B69B0BF-6C84-4039-9127-9FEFADAE12EE/shop.view.buy_form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/705E301C-87A9-4502-B1DD-A3770F519F05/shop.buy_form.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/A2E5F73A-BD13-46F5-A273-D4C2E5DDC55B/~shop.view.buy_form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/83E4317F-8965-4AA1-8BFF-EFFD83CDF8A8/jcarousellite_1.0.1.min.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/5DDC826A-E03E-460D-B78A-A468CD895E23/jquery.imgareaselect.min.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/5BE7AAB2-AFBE-4764-8B31-0D504D916756/jquery.imgareaselect.min.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/5646293B-33EC-4CB1-9B1C-D266656B6164/shop.view.id.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/299063B9-C878-4CA1-98EE-6F33758C7712/shop.view.rows.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/6F056B3D-EA7D-438D-94D1-952306535BC9/shop.view.rows.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/AA6A7758-F72A-4961-ADF6-51F488CE2581/shop.view.id.php",
+		"/Users/Dinar/Downloads/ubuntucondensed/ubuntucondensed.css",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/BEE02F92-7B15-433F-913A-5F2229B752DE/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/C4966921-5610-4F0B-8628-B87691CCEE49/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/A198BB45-A24E-4794-A78F-746A38D9EF2A/site_ed.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/DE7150E5-8321-4A93-9BCA-35C78BEBCBDA/site_obrezanie.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/3FC24F0A-5102-456B-AA4F-A72F5F1CE20D/site_proctolog.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/3E78BD68-168A-42CC-B187-750820CABEC3/search.view.show_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/89AC4135-8F01-4DCA-9C8E-CD639CCBB6AF/search.view.show_search_404.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/9E579ACC-4846-481E-9A1F-CCAA23B1339F/shop.view.list_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/F9D2EF3E-4A04-40A1-9804-1072F0D9AD86/search.view.show_search_top.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/A7872D9F-A90D-44CB-9E73-416D5C8E2D4F/search.view.show_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/8B4206FA-6546-4836-ABA2-1A848DB05BA0/search.view.show.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/F4B61266-9E20-4A01-BB9E-CFCE6EC8B4B4/shop.view.list_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/0AD97262-2907-4312-B4D4-97B8F59C16D9/shop.view.show_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/611ECDE5-D202-44B2-BD74-0EA976D8CFDA/cart.view.form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/3493602B-E0B2-45F5-B05C-8AAFD940499A/shop.view.rows.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/147E0B10-AA17-4ABD-903A-A238D9ED4536/shop.view.list.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/9DD6BA2B-F0E0-4FF4-A05F-EB247DB87E7D/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/E5464D55-61F8-4670-A8EF-5A2AEACEA910/feedback.view.form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/59772917-6D93-49AD-9567-F825380DE167/site_home.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/53E35562-1AEE-4011-8B9D-7B9AD6BF5E04/site_catalog.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/468A9C2C-FDC3-477A-A609-0337E8E9FE3C/cart.view.info.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/50A1D7A9-635D-48D5-A9D5-A1F9D5B94B91/site_product.php",
+		"/Volumes/Work/CMS/diafan.CMS.5.4.12.8/modules/shop/views/shop.view.list.php",
+		"/Volumes/Work/CMS/diafan.CMS.5.4.12.8/modules/shop/views/shop.view.rows.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/F5431236-DCCE-433C-BABC-F68FA070AE10/shop.view.show_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/C616C6A1-D7B4-4691-A4EC-E63BDB0C1E60/site_home.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/FCE12F0D-F58A-4EE5-B18B-8BB2DFAAC480/shop.view.id.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/D81476B2-C0B3-417D-BCBC-ADDBC4EA2EFC/bs.view.show_block_small_left.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/C764A4FE-C1D5-43C4-8307-9CAC9E984A56/bs.view.show_block.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/8DA65888-EA25-4A76-8402-290588DA91D7/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/680FAE67-A6CD-4CAD-93A6-C6253AD8FCB1/site_catalog.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/5FD8C065-2778-4F37-B79D-5C13F5B8E205/shop.view.show_brand.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/D4881823-EEDD-4B75-A975-AF5437C3533C/shop.view.show_search.php",
+		"/Volumes/Work/Projects/RB Team/html/js/init.js",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/3BD2397E-AAA1-486C-89E7-272EB7877566/site_product.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/F8919846-75B1-41CA-9F5B-1997DEA741D1/jquery.fancybox.css",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/F66F63A7-1E0A-49B8-9BE6-8E0E7D2220E2/shop.view.id.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/E3A14758-BF17-4810-B8AA-DCBB825D6408/bs.view.show_block_small_center.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/3C721C32-539B-4CE9-BA06-96C25F947DEA/cart.action.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/2E0694C5-8F9D-48F6-BD80-874DE5FEF8E8/site_catalog.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/78C75E31-A476-4AB0-AD19-15097C249643/site_home.php",
+		"/Users/Dinar/Downloads/mb-icon-font (8)/styles.css",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/27CB949C-A556-42BF-9366-C87E5AA43362/shop.view.rows_sale.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/29441DD8-2BDF-4AAB-AC19-574F7CF18B50/shop.view.rows.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/B7E195D2-CECD-4227-924B-13ED812A0E0F/shop.view.show_block.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/2CAA8F15-F0B8-4DC6-91A7-AEEEB6632963/search.view.show_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/1D4A47DA-F592-4C18-A042-EB8A8F743BBF/shop.view.list_search.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/21B70429-837A-4614-BC9A-64E91BDD4D4D/search.view.show.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/ABAC9740-E337-4D6B-B91F-B97EC8260BAA/registration.view.form.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/C30E42AF-8155-4BDB-AB9F-D92C4052AA82/usersettings.view.form.php",
+		"/Volumes/Work/CMS/diafan.CMS.6.0.1.4/modules/shop/views/shop.view.show_search.php",
+		"/Volumes/Work/CMS/diafan.CMS.6.0.1.4/modules/shop/shop.model.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/E24A3E57-E575-4964-B6F1-F7B9B19E7DC1/shop.model.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/4A52C5C9-7221-4877-B882-DE507A1DEDDB/site_home.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/B78CAB8A-D465-4393-8EF8-1861FBD15494/search.view.show_search_top.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/678F1751-695C-4836-9762-28F81700074C/search.view.show_search_top.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/C2D02DDC-3BF1-4E0F-A0F2-8E68DFF53B63/userpage.view.orders.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/926A7FDD-03B8-4032-A48A-1811D7E60481/site_home.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/9D8A2989-4D7B-4413-8EDD-EF5B2C29D868/site.php",
+		"/Users/Dinar/Library/Caches/Cleanup At Startup/Transmit/A81A48A0-4C1C-44D4-8CCE-F3BD756ECB25/site_product.php"
+	],
+	"find":
+	{
+		"height": 25.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Volumes/Work/CMS/diafan.CMS.6.0.1.4",
+			"/Volumes/Work/Modulbank/html/ModulBank/html",
+			"/Volumes/Work/Modulbank/html/ModulBank/stylus",
+			"/Volumes/Work/Modulbank/html/ModulBank/html",
+			"/Volumes/Work/Modulbank/html/ModulBank",
+			"/Volumes/Work/Modulbank/",
+			"/Volumes/Work/Modulbank/html",
+			"/Volumes/Work/Modulbank/git/ModulBank",
+			"/Volumes/Work/Modulbank/html/ModulBank/stylus",
+			"/Volumes/Work/Modulbank/git/ModulBank.FrontEnd/src",
+			"/Volumes/Work/Modulbank/html/ModulBank/",
+			"/Volumes/Work/Modulbank/html/ModulBank/html",
+			"/Volumes/Work/Modulbank/git/ModulBank.FrontEnd/src",
+			"/Volumes/Work/Modulbank/html/ModulBank/",
+			"/Volumes/Work/Modulbank/html/ModulBank/html",
+			"/Volumes/Work/МодульБанк/html/ModulBank/html",
+			"<open files>",
+			"/Volumes/Work/МодульБанк/html/ModulBank/html",
+			"/Volumes/Work/МодульБанк/html/",
+			"/Volumes/Work/МодульБанк/html/Letters",
+			"/Volumes/Work/МодульБанк/html/ModulBank/",
+			"/Volumes/Work/МодульБанк/html/ModulBank/html",
+			"/Volumes/Work/МодульБанк/git/ModulBank.FrontEnd",
+			"/Volumes/Work/МодульБанк/html/ModulBank",
+			"light_bl\n/Volumes/Work/МодульБанк/html/",
+			"light_bl\n/Volumes/Work/МодульБанк/html/ModulBank",
+			"/Volumes/Work/МодульБанк/git/ModulBank.FrontEnd",
+			"/Volumes/Work/МодульБанк/html/ModulBank/stylus/",
+			"/Volumes/Work/МодульБанк/html/ModulBank/",
+			"/Volumes/Work/МодульБанк/html/ModulBank/html",
+			"/Volumes/Work/МодульБанк/git/ModulBank.FrontEnd.InternalPortal",
+			"/Volumes/Work/МодульБанк/html/ModulBank/stylus",
+			"/Volumes/Work/МодульБанк/html/ModulBank/html/reg",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd",
+			"/Volumes/Work/МодульБанк/html/ModulBank/stylus",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd,*.html",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd,*.js",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd,*.html",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd,-*_markup",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd,-*markup",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd,*.html",
+			"/Volumes/Work/МодульБанк/ModulBank.FrontEnd",
+			"/Volumes/Work/МодульБанк/html/ModulBank,*.html",
+			"/Volumes/Work/МодульБанк/html/ModulBank",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.3.4",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.4.6.3",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.3.4",
+			"/Volumes/Work/CMS/ImageCMS/imagecms_shop_pro 2",
+			"/Volumes/Work/CMS/ShopCMS/3_1_1",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.3.4",
+			"/Volumes/Work/CMS/ShopCMS/3_1_1",
+			"/Volumes/Work/Юниклауд/Верстка 365/Бизнес 365",
+			"/Volumes/Work/Сайты/Вебсайт/MEGA.WEB/svn/MegaWeb",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.3.2",
+			"",
+			"/Volumes/Work/Юниклауд/Верстка/Бизнес 365",
+			"",
+			"/Volumes/Work/Сайты/Вебсайт/Можайское имение/html",
+			"/Volumes/Work/CMS/ImageCMS/imagecms_3.4.7.84",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.1.0",
+			"",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.1.0",
+			"/Volumes/Work/Юниклауд/Верстка/Бизнес 365",
+			"/Volumes/Work/Юниклауд/Каркас",
+			"",
+			"/Volumes/Work/CMS/Diafan/diafan.CMS.5.1.0",
+			"/Volumes/Work/CMS/ImageCMS/imagecms_3.4.7.84"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"disabl",
+			"loadin",
+			"load",
+			".title",
+			"calcul",
+			"secti",
+			"cart_delivery_name",
+			"cl1",
+			"72",
+			"form_gr",
+			"cart",
+			"articl",
+			"shop-bu",
+			"корзине",
+			"корзи",
+			"count",
+			"js_cart_remove",
+			"footer",
+			"logo",
+			"footer",
+			"butto",
+			"shop_lis",
+			"shop-li",
+			"shop-lli",
+			"button",
+			"main",
+			"ftitle",
+			"nav",
+			"title",
+			"logo",
+			"js_shop_depend_param",
+			"js_form_option_selected",
+			"select_param_price",
+			"js_shop_param_price",
+			"shop_text",
+			"izoom",
+			"anon",
+			"zoom",
+			"shop-item-previews ",
+			"magnifier",
+			"html",
+			"cursi",
+			"bold",
+			"500",
+			"300",
+			"700",
+			"    ",
+			"ffcur",
+			"ffcursiv",
+			"nav",
+			"search_count",
+			"order_contact",
+			"address",
+			"svg",
+			"block",
+			"($row[\"required\"] ? ",
+			"strong",
+			"shop_lis",
+			"shop_cat_link",
+			"nav",
+			"brand",
+			"shop_search_param",
+			"shop_search_param ",
+			"Поиск по товарам",
+			"zoom",
+			"shop-item",
+			"nav",
+			"</li>",
+			"<li>",
+			"000599",
+			"pay",
+			"deli",
+			"cbglight",
+			"f3f3f3",
+			".button",
+			"error",
+			"select",
+			"one",
+			"shop_form",
+			".button",
+			"buy",
+			"input",
+			"купит",
+			"button",
+			"block paginator",
+			"pagina",
+			"shop_search_price",
+			"minCost",
+			"max",
+			"price",
+			"min",
+			"max",
+			"Поиск",
+			"max",
+			"filter_check",
+			"only_mod",
+			"html",
+			"zoom",
+			"shop_form",
+			"medi",
+			"function list",
+			"list",
+			"nav",
+			"shop_img",
+			"nav",
+			"side",
+			"block",
+			"count_level",
+			"sear",
+			"menu",
+			"show_b",
+			"<a class=\"zoom\"></a>",
+			"link",
+			".shop-it",
+			"point",
+			".button",
+			"<a class=\"zoom\"></a>",
+			"E5E5E5",
+			"ctextlig",
+			"ctextligctextdarkctextdark",
+			"ctextlig",
+			"			\n",
+			"poss",
+			"side_right_wide",
+			"page_header",
+			"Russia",
+			"ten",
+			"two"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"color1",
+			"<a class=\"zoom\"></a>\n						<a class=\"link\"></a>",
+			"<div style=\"font-size:15px;\">",
+			"font-size: 13px;",
+			"<div style=\"font-size: 15px;\">",
+			"div style=\"font-size: 15px;\"",
+			"font-size: 13px;",
+			"table border=\"1\" width=\"100%\" style=\"border-collapse: collapse;font-size: 14px;\"",
+			"",
+			"cCNY",
+			"cEUR",
+			"cRUR",
+			"cUSD",
+			"crur",
+			"cruble",
+			"crur",
+			"cny",
+			"ctextsecond",
+			"email_logo.png\" width=\"205\" height=\"39\" alt=\"ModulBank\" style=\"width:205px; height:39px;\"",
+			"<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n	<meta charset=\"UTF-8\">\n	<meta name=\"format-detection\" content=\"telephone=no\">\n	<title>Письмо</title>\n	<style>\n@media screen and (max-width:640px) {\n	.wrap {padding: 0!important; margin: 0 -20px!important;}\n	.wrap>tbody>tr>td, .wrap>tr>td{padding: 0!important;}\n	td[class=\"text_wrap\"] {padding: 20px!important; background: #ffffff!important;}\n	.content_wrap {width: 500px!important;}\n	.content>tbody>tr>td, .content>tr>td {padding:0!important;}\n	.title { font-size: 18px!important;}\n	.footer {width: 100%!important;}\n	.fz_s {font-size: 12px!important;}\n}\n	</style>\n\n</head>\n<body style=\"background:#ffffff\">\n<table align=\"center\" class=\"wrap\" width=\"100%\" bgcolor=\"#fff\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse; background: #ffffff;\">\n<tr>\n<td>\n\n	<table class=\"content_wrap\" width=\"640\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse; line-height: 100%;\">\n\n		<!-- шапка -->\n		<tr>\n			<td>\n				<table align=\"center\" width=\"100%\" height=\"90\" bgcolor=\"#2D4668\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">\n					<tr>\n						<td width=\"25\" height=\"90\"></td>\n						<td height=\"90\" valign=\"middle\">\n							<img class=\"logo\" src=\"http://galimov.net/modulbank/email/email_logo.png\" width=\"205\" height=\"39\" alt=\"ModulBank\" style=\"\">\n						</td>\n						<td width=\"126\" height=\"90\" class=\"header_img_cell\">\n							<img class=\"header_img\" src=\"http://galimov.net/modulbank/email/email_header.png\" height=\"90\" width=\"126\" alt=\"\" style=\"float: right;\">\n						</td>\n					</tr>\n				</table>\n			</td>\n		</tr>\n\n		<!-- контент -->\n		<tr>\n			<td class=\"text_wrap\" style=\"padding:30px; background: #ECF2F6; color: #454E59; \" >\n				<table class=\"content\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse:collapse;\">\n					<tr>\n						<td style=\"font-family:Calibri, Arial, Tahoma; color: #454E59; font-size: 16px; line-height:1.3em;\">",
+			"color: #454E59",
+			"454E59",
+			"icon-check",
+			"Расчетный",
+			"<div class=\"num\">***2359</div>",
+			"\">***",
+			">\n",
+			"2359",
+			"			\n",
+			"2359",
+			">\n",
+			"<div class=\"reg_header\">\n			<a href=\"/\" class=\"logo\">МодульБанк</a>\n			<div class=\"header_links\"><a href=\"#\" class=\"login\">Войти в систему</a></div>\n		</div>\n		<div class=\"reg_section\">\n			<div class=\"reg_side\">\n				<div class=\"title\">Регистрация компании</div>\n				<p>Тариф «Старт»: 0 рублей/в месяц</p>\n				<p>Команда: Ассистент, Бухгалтер, Юрист</p>\n				<div class=\"copyright\">\n					<p>Для получения дополнительной информации позвоните по телефону 8 (800) 333 79 96 с 09:00 до 21:00</p>\n					<p>Банковские услуги представляются ОАО КБ «Региональный Кредит». Лицензия ЦБ РФ №1927 от 07.08.2012 г.</p>\n				</div>\n			</div>\n			<div class=\"reg_article\" ng-controller=\"selectController\">",
+			"cbd",
+			"images/avatar",
+			"avatar",
+			"icon-",
+			".08s",
+			".15s",
+			".08s",
+			".1s",
+			".0001s",
+			".15s",
+			".01s",
+			".1s",
+			".07s",
+			".1s",
+			".07s",
+			".05s",
+			"",
+			"icon-menu-clients",
+			"icon-menu-transaction",
+			"icon-menu-dashboard",
+			"icon-",
+			"<label class=\"button small button_file_upload\">Загрузить\n												<input type=\"file\" name=\"\" id=\"\"></label>",
+			"<label class=\"button small button_file_upload\">Загрузить\n										<input type=\"file\" name=\"\" id=\"\"></label>",
+			"icon",
+			"class",
+			">\n",
+			"phone",
+			"div",
+			"p",
+			"",
+			"E30613",
+			"",
+			"F57A1C",
+			"558D0A",
+			"$r",
+			"large"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "header.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6311,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6293,
+								6293
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"editorconfig": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2508.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "modulbank.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								273,
+								273
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"editorconfig": true,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "dashboard.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 17511,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								425,
+								425
+							]
+						],
+						"settings":
+						{
+							"bracket_highlighter.busy": false,
+							"bracket_highlighter.regions":
+							[
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content"
+							],
+							"editorconfig": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 25.0
+	},
+	"input":
+	{
+		"height": 35.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 116.0
+	},
+	"output.find_results":
+	{
+		"height": 327.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "modulbank.sublime-project",
+	"replace":
+	{
+		"height": 46.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"das",
+				"html/dashboard.html"
+			],
+			[
+				"he",
+				"html/header.html"
+			],
+			[
+				"ca",
+				"catalog.html"
+			],
+			[
+				"st",
+				"css/style.css"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
+				"paym",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"paymcur",
+				"html/payment/payment_page_currency_closing_passport_contract.html"
+			],
+			[
+				"paymcu",
+				"html/payment/payment_page_currency_passport_credit.html"
+			],
+			[
+				"paycur",
+				"html/payment/payment_page_currency_renewal_passport_contract.html"
+			],
+			[
+				"paymc",
+				"html/payment/payment_page_currency_spravka.html"
+			],
+			[
+				"trpv",
+				"html/transaction/transaction_page_view.html"
+			],
+			[
+				"paypan",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"pay",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"set",
+				"html/settings/settings_ecp.html"
+			],
+			[
+				"acc",
+				"html/open_account/account_widget.html"
+			],
+			[
+				"payn",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"admise",
+				"html/admin/admin_settings_regulations.html"
+			],
+			[
+				"admse",
+				"html/admin/admin_settings_SLA.html"
+			],
+			[
+				"admpta",
+				"html/admin/admin_page_task.html"
+			],
+			[
+				"inv",
+				"html/settings/settings_representatives_invite.html"
+			],
+			[
+				"tr",
+				"html/transaction/transaction.html"
+			],
+			[
+				"f",
+				"stylus/fonts.styl"
+			],
+			[
+				"loc",
+				"html/security_lock/security_lock.html"
+			],
+			[
+				"hea",
+				"html/header.html"
+			],
+			[
+				"tra",
+				"html/transaction/transaction.html"
+			],
+			[
+				"admpat",
+				"html/admin/admin_page_task.html"
+			],
+			[
+				"admpanew",
+				"html/admin/admin_page_new_task.html"
+			],
+			[
+				"paymnep",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"adcl",
+				"html/admin/admin_client_list.html"
+			],
+			[
+				"admta",
+				"html/admin/admin_task_list.html"
+			],
+			[
+				"admpa",
+				"html/admin/admin_page_task.html"
+			],
+			[
+				"log",
+				"html/reg/login.html"
+			],
+			[
+				"reg",
+				"html/reg/registration_step2.html"
+			],
+			[
+				"admde",
+				"html/admin/admin_page_delete_user.html"
+			],
+			[
+				"popupsm",
+				"html/popup_small.html"
+			],
+			[
+				"pop",
+				"html/popup.html"
+			],
+			[
+				"admpc",
+				"html/admin/admin_page_change_director.html"
+			],
+			[
+				"form",
+				"html/forms.html"
+			],
+			[
+				"pa",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"admcna",
+				"html/admin/admin_page_change_director.html"
+			],
+			[
+				"fon",
+				"stylus/fonts.styl"
+			],
+			[
+				"trapv",
+				"html/transaction/transaction_page_view.html"
+			],
+			[
+				"tracur",
+				"html/transaction/transaction_page_currency_trans_account.html"
+			],
+			[
+				"tranc",
+				"html/transaction/transaction_page_currency_trans_account.html"
+			],
+			[
+				"trcb",
+				"html/transaction/transaction_bank_statement_loading.html"
+			],
+			[
+				"papan",
+				"html/payment/payment_page_new_nalog.html"
+			],
+			[
+				"paympn",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"tran",
+				"html/transaction/transaction_page_view.html"
+			],
+			[
+				"but",
+				"html/buttons.html"
+			],
+			[
+				"trapa",
+				"html/transaction/transaction_page_view.html"
+			],
+			[
+				"regsms",
+				"html/reg/registration_sms.html"
+			],
+			[
+				"adrec",
+				"html/admin/admin_report_list_common.html"
+			],
+			[
+				"mes",
+				"html/messenger/messenger_chat.html"
+			],
+			[
+				"admrep",
+				"html/admin/admin_report_list.html"
+			],
+			[
+				"font",
+				"stylus/fonts.styl"
+			],
+			[
+				"adm",
+				"stylus/admin.styl"
+			],
+			[
+				"up",
+				"html/landing_update/landing_update.html"
+			],
+			[
+				"rad",
+				"js/rad-select.js"
+			],
+			[
+				"init",
+				"js/init.js"
+			],
+			[
+				"open",
+				"html/open_account/open_account_step1_2.html"
+			],
+			[
+				"openac",
+				"html/open_account/open_account_step1_1.html"
+			],
+			[
+				"adp",
+				"html/admin/admin_page_new_email.html"
+			],
+			[
+				"admint",
+				"html/admin/admin_task_list.html"
+			],
+			[
+				"ini",
+				"js/init.js"
+			],
+			[
+				"tram",
+				"html/transaction/transaction_page_view_many.html"
+			],
+			[
+				"accpa",
+				"html/transaction/transaction_account_page.html"
+			],
+			[
+				"for",
+				"html/forms.html"
+			],
+			[
+				"traman",
+				"html/transaction/transaction_page_view_many.html"
+			],
+			[
+				"openas",
+				"html/open_account/open_account_step4.html"
+			],
+			[
+				"dr",
+				"js/drop.js"
+			],
+			[
+				"head",
+				"html/header.html"
+			],
+			[
+				"ti",
+				"html/timeline/timeline.html"
+			],
+			[
+				"curtra",
+				"html/transaction/transaction_page_currency_trans_account.html"
+			],
+			[
+				"trasta",
+				"html/transaction/transaction_bank_statement_loading.html"
+			],
+			[
+				"sele",
+				"stylus/select.styl"
+			],
+			[
+				"ma",
+				"stylus/main.styl"
+			],
+			[
+				"bas",
+				"stylus/base.styl"
+			],
+			[
+				"admp",
+				"html/admin/admin_page_new_task.html"
+			],
+			[
+				"restз",
+				"html/reg/registration_step2_22bi_загрузка.html"
+			],
+			[
+				"da",
+				"html/dashboard.html"
+			],
+			[
+				"new",
+				"stylus/new_function.styl"
+			],
+			[
+				"spra",
+				"html/payment/payment_page_currency_spravka.html"
+			],
+			[
+				"спра",
+				"html/pdf/справка о валютных операциях.html"
+			],
+			[
+				"fo",
+				"stylus/fonts.styl"
+			],
+			[
+				"ico",
+				"stylus/icons.styl"
+			],
+			[
+				"asid",
+				"html/aside.html"
+			],
+			[
+				"404",
+				"stylus/404.styl"
+			],
+			[
+				"banl",
+				"html/transaction/transaction_bank_statement.html"
+			],
+			[
+				"regste22",
+				"html/reg/registration_step2_22bvii.html"
+			],
+			[
+				"regs",
+				"html/reg/registration_step2_22bvi.html"
+			],
+			[
+				"regst",
+				"html/reg/registration_step2_22biv.html"
+			],
+			[
+				"step",
+				"html/reg/registration_step3.html"
+			],
+			[
+				"cont",
+				"html/contragents/contragents.html"
+			],
+			[
+				"trapav",
+				"html/transaction/transaction_page_view.html"
+			],
+			[
+				"trap",
+				"html/transaction/transaction_page_view.html"
+			],
+			[
+				"anim",
+				"stylus/animations.styl"
+			],
+			[
+				"regstep2",
+				"html/reg/registration_step2.html"
+			],
+			[
+				"registep",
+				"html/reg/registration_step3.html"
+			],
+			[
+				"dash",
+				"html/dashboard.html"
+			],
+			[
+				"paympan",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"trapan",
+				"html/contragents/contragent_page_new.html"
+			],
+			[
+				"rest",
+				"html/reg/registration_step2_22biv.html"
+			],
+			[
+				"tabl",
+				"stylus/tablet.styl"
+			],
+			[
+				"regste",
+				"html/reg/registration_step2_26b.html"
+			],
+			[
+				"old",
+				"html/old_browser.html"
+			],
+			[
+				"traac",
+				"html/transaction/transaction_account_page.html"
+			],
+			[
+				"regstep",
+				"html/reg/registration_step2_24.html"
+			],
+			[
+				"regsp3",
+				"html/reg/registration_step3.html"
+			],
+			[
+				"regst2",
+				"html/reg/registration_step2.html"
+			],
+			[
+				"mesc",
+				"html/messenger/messenger_chat.html"
+			],
+			[
+				"messe",
+				"html/messenger/messenger.html"
+			],
+			[
+				"me",
+				"html/messenger/messenger_new_chat.html"
+			],
+			[
+				"traa",
+				"html/transaction/transaction_account_page.html"
+			],
+			[
+				"trpa",
+				"html/transaction/transaction_page_view.html"
+			],
+			[
+				"admcl",
+				"html/admin/admin_client_list.html"
+			],
+			[
+				"paypag",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"settar",
+				"html/settings/settings_tarif.html"
+			],
+			[
+				"logi",
+				"html/reg/login_sms.html"
+			],
+			[
+				"setag",
+				"html/admin/admin_settings_agents_group.html"
+			],
+			[
+				"taac",
+				"html/transaction/transaction_account_page.html"
+			],
+			[
+				"admin",
+				"stylus/admin.styl"
+			],
+			[
+				"contpv",
+				"html/contragents/contragent_page_view.html"
+			],
+			[
+				"accw",
+				"html/open_account/account_widget.html"
+			],
+			[
+				"owl",
+				"stylus/owl.carousel.styl"
+			],
+			[
+				"openacsty",
+				"stylus/open_account.styl"
+			],
+			[
+				"paymn",
+				"html/payment/payment_page_new.html"
+			],
+			[
+				"mobi",
+				"html/reg/registration_popup_mobile.html"
+			],
+			[
+				"admpagn",
+				"html/admin/admin_page_new_task_popup.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 220.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

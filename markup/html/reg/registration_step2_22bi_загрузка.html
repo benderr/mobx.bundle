@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Регистрация</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/registration.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+  	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+  	<script src="js/select.js"></script>
+
+</head>
+<body ng-app="myapp">
+
+<script>
+	var module = angular.module('myapp', ['ui.select', 'ngSanitize']);
+	module.controller('selectController',function($scope){
+		$scope.cities=[
+			{name:'Москва'},
+			{name:'Уфа'},
+			{name:'Казань'},
+			{name:'Нижний Новгород'},
+			{name:'Оренбург'},
+			{name:'Омск'},
+		];
+	});
+</script>
+
+<div class="reg">
+	<div class="wrap">
+		<div class="reg_header">
+			<a href="/" class="logo">МодульБанк</a>
+			<div class="header_links"><a href="#" class="login">Войти в систему</a></div>
+		</div>
+		<div class="reg_section">
+			<div class="reg_side">
+				<div class="title">Регистрация компании</div>
+				<p>Тариф «Старт»: 0 рублей/в месяц</p>
+				<p>Команда: Ассистент, Бухгалтер, Юрист</p>
+				<div class="copyright">
+					<p>Для получения дополнительной информации позвоните по телефону 8 (800) 333 79 96 с 09:00 до 21:00</p>
+					<p>Банковские услуги представляются ОАО КБ «Региональный Кредит». Лицензия ЦБ РФ №1927 от 07.08.2012 г.</p>
+				</div>
+			</div>
+			<div class="reg_article" ng-controller="selectController">
+
+				<div class="wizard_steps steps3 active2">
+					<div class="step done">
+						<div class="label">1</div>
+						<div class="name">Контакты</div>
+					</div>
+					<div class="step active">
+						<div class="label">2</div>
+						<div class="name">Реквизиты</div>
+					</div>
+					<div class="step">
+						<div class="label">3</div>
+						<div class="name">Пароль</div>
+					</div>
+
+				</div>
+
+				<p>Укажите регистрационный номер вашей компании или ИП</p>
+
+				<div class="form">
+					<form action="" id="form">
+						<div class="w80">
+							<div class="form_group">
+								<input type="text" name="" value="1234567890123" placeholder="ОГРН или ОГРНИП" class="column eight" >
+							</div>
+						</div>
+
+						<div class="">
+							<p>Загрузите подтверждающие документы и мы проверим ваши документы вручную. Это займет около 20 минут.</p>
+							<p class="small_text">Допустимый формат загружаемых файлов: .jpg, .png, .bmp, .pdf.<br/>
+								Размер каждого файла не должен превышать 25 Мб.</p>
+
+							<div class="file_upload_list">
+
+								<div class="file_upload_block column four">
+									<div class="file_title">Свидетельство о регистрации компании</div>
+									<div class="file_button">
+										<label class="button small button_file_upload">Загрузить
+										<input type="file" name="" id=""></label>
+									</div>
+								</div>
+
+								<div class="file_upload_block column four">
+									<div class="file_title">Свидетельство о постановке на учет в налоговом органе<br/><i>(не уведомление)</i></div>
+									<div class="file_button">
+										<label class="button small button_file_upload">Загрузить
+										<input type="file" name="" id=""></label>
+									</div>
+								</div>
+
+								<div class="file_upload_block column four ">
+									<div class="uploaded">
+										<a class="file_delete"></a>
+										<div class="file_center">
+											<div class="file_icon pdf"></div>
+											<div class="file_name">Сканирование001фывафывафывафывафыва.pdf</div>
+											<div class="file_title">Выписка из ЕГРЮЛ, заверенная в ФНС  фывафывафываф adf asdfas вафыв</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+
+						<div class="form_buttons">
+							<a href="#" class="button second">Отправить</a>
+							<div class="links">
+								<a href="#">Я не помню свой ОГРН</a>
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+<script src="js/jquery.validate.js"></script>
+<script src="js/bootstrap.tooltip.js"></script>
+<script src="js/jquery-validate.bootstrap-tooltip.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

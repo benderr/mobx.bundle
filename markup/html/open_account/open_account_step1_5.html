@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Открытие счета</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+
+	<script src="js/bootstrap.dropdown.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+	<script>
+		angular.module('app',['ui.bootstrap']).controller('DropdownCtrl', function ($scope, $log) {});
+	</script>
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main"></section>
+
+<article class="page open">
+
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Открытие счета</h1>
+		<div class="header_action">&nbsp;</div>
+	</div>
+	<div class="page_content">
+		<div class="page_wizard">
+			<div class="wizard_steps steps4 active1">
+				<div class="step active">
+					<div class="label">1</div>
+					<div class="name">Проверка реквизитов</div>
+				</div>
+				<div class="step">
+					<div class="label">2</div>
+					<div class="name">Загрузка документов</div>
+				</div>
+				<div class="step">
+					<div class="label">3</div>
+					<div class="name">Встреча с менеджером</div>
+				</div>
+				<div class="step">
+					<div class="label">4</div>
+					<div class="name">Открытие счета</div>
+				</div>
+			</div>
+		</div>
+		<div class="open_account text_block">
+			<h4>Данные вашей компании отправлены на проверку.</h4>
+			<p>
+				После окончания проверки мы сразу же зарезервируем расчетный счет для вашей компании и сообщим вам его реквизиты (как правило, это не занимает более 10 минут).
+			</p>
+			<p>
+				После резервирования расчетного счета вы сразу же сможете отправить реквизиты своим партнерам и начать прием платежей.
+			</p>
+			<p>
+				Другие операции по счету (например исходящие платежи), а так же полный доступ ко всем возможностям Modulbank будут доступны после встречи с нашим представителем и подписания нескольких простых документов.
+			</p>
+			<div class="form_buttons">
+				<a href="#" class="button">Закрыть</a>
+			</div>
+		</div>
+
+	</div>
+</article>
+
+</body>
+</html>

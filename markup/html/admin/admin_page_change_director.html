@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Смена гендиректора</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Смена генерального директора</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<p class="m_bot_20">В данном разделе вы можете выполнить смену генерального директора компании.</p>
+		<div class="form_group m_bot_40">
+			<div class="input_group_title">
+				<input type="text" class="big" name="" id="" value="1231231231" size="30" placeholder="">
+				<div class="input_title">Введите ОГРН юридического лица:</div>
+			</div>
+			<button class="button">Найти</button>
+		</div>
+
+		<div class="info found_company m_bot_30">
+			<h3>Общество с ограниченной ответственностью «Пример»</h3>
+			<p>ИНН: 0212345678, КПП: 123456789</p>
+		</div>
+
+		<div class="legend"><span>Текущий руководитель компании</span></div>
+		<div class="w80">
+			<div class="form_group_list">
+				<div class="property_label col two">ФИО:</div>
+				<div class="property_value col ten">Иванов Иван Иванович</div>
+			</div>
+			<div class="form_group_list">
+				<div class="property_label col two">Телефон:</div>
+				<div class="property_value col ten">+7 (987) 222-11-11</div>
+			</div>
+			<div class="form_group_list">
+				<div class="property_label col two">E-mail:</div>
+				<div class="property_value col ten">mail@company.com</div>
+			</div>
+			<div class="form_group_list">
+				<div class="property_label col two">CRM_ID:</div>
+				<div class="property_value col ten">5B25B4CA-FBBD-E511-80D2-02BFAC15080A</div>
+			</div>
+		</div>
+
+		<div class="legend m_top_50"><span>Новый генеральный директор</span></div>
+		<p class="m_bot_20">Укажите информацию по новому генеральному директору:</p>
+		<div class="w80">
+			<div class="form_group_list">
+				<div class="input_group_title w100">
+					<div class="jsRadSelect2 w100" data-placeholder="Селект"  name="" id="">
+						<div class="jsRadSelect2Options selected" value="1">
+							Не выбирать
+						</div>
+						<div class="jsRadSelect2Options" value="1">
+							Гареев Геннадий Олегович
+							<span class="d_b c_light">+7-917-111-22-33</span>
+						</div>
+						<div class="jsRadSelect2Options" value="1">
+							Иванов Иван Иванович
+							<span class="d_b c_light">+7-917-111-22-33</span>
+						</div>
+						<div class="jsRadSelect2Options" value="1">
+							Гареев Геннадий Олегович
+							<span class="d_b c_light">+7-917-111-22-33</span>
+						</div>
+						<div class="jsRadSelect2Options" value="1">
+							Смолин Олег Викторович
+							<span class="d_b c_light">+7-917-111-22-33</span>
+						</div>
+					</div>
+					<div class="input_title">Выберите учетную запись нового гендиректора (если есть):</div>
+				</div>
+			</div>
+			<div class="form_group_list">
+				<div class="input_group_title col four">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">Фамилия:</div>
+				</div>
+				<div class="input_group_title col four">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">Имя:</div>
+				</div>
+				<div class="input_group_title col four">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">Отчество:</div>
+				</div>
+			</div>
+			<div class="form_group_list">
+				<div class="input_group_title col half">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">Телефон:</div>
+				</div>
+				<div class="input_group_title col half">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">E-mail:</div>
+				</div>
+			</div>
+			<div class="form_group_list">
+				<div class="input_group_title col half">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">СНИЛС нового гендиректора:</div>
+				</div>
+				<div class="input_group_title col half">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">CRM_ID нового гендиректора:</div>
+				</div>
+			</div>
+
+			<div class="legend_small m_top_20"><span>Реквизиты компании</span></div>
+
+			<div class="form_group_list">
+				<div class="input_group_title col half">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">ИНН компании:</div>
+				</div>
+				<div class="input_group_title col half">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">Регион компании:</div>
+				</div>
+			</div>
+			<div class="form_group_list">
+				<div class="input_group_title w100">
+					<input type="text" class="w100" name="" id="" value="" placeholder="">
+					<div class="input_title">Адрес компании:</div>
+				</div>
+
+			</div>
+			<div class="form_buttons">
+				<button class="button second">Сменить гендиректора</button>
+			</div>
+		</div>
+
+
+
+
+	</div>
+
+
+</article>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

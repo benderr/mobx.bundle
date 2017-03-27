@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Чат</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main"></section>
+
+<div class="messenger open">
+
+	<div class="messenger_header">
+		<div class="messenger_header_action">
+			<a class="icon-close close"></a>
+			<a class="icon-arrow-up"></a>
+		</div>
+		<div class="messenger_header_title">
+			<a class="icon-left-big">Список</a>
+		</div>
+	</div>
+
+	<div class="messenger_main">
+
+		<div class="messenger_chat_container">
+			<div class="messenger_chat">
+
+				<div class="messenger_sep_title"><span>Сегодня</span></div>
+
+				<div class="item">
+					<div class="date">15:35 <i class="message_edit icon-pencil" title="Отредактировано"></i></div>
+					<div class="desc">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+						<div class="name">Кристина Филатова, ассистент</div>
+						<div class="message">
+							<div class="submessage">
+								<div class="submessage_date">12.05 18:31</div>
+								Расскажите, как пользоваться юристом, и помогите составить договор аренды стадиона для проведения товарищеского матча.
+							</div>
+							<p>Мы выделили этот вопрос в отдельную ветку для вашего удобства. Мы уже начали его решать и скоро вы получите ответ.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="messenger_sep_title"><span>Сегодня</span></div>
+
+				<div class="item right">
+					<div class="date">15:35</div>
+					<div class="desc">
+						<figure class="photo avatar" style="background-color: rgb(225,95,75)">Д</figure>
+						<div class="name">Динар</div>
+						<div class="message">
+							<p>Мне СРОЧНО необходимо снять офисноепомещениевнутриСадовогокольца. Общая площадь - не менее 200 кв.м. Наличие парковочных мест для 5 машин обязательно.</p>
+							<ul class="message_file_attachments">
+								<li>
+									<a href="" class="file icon-file">Перечень_рабочих_мест_оылвралыврафлаплцапцйшущгапцйщшуагпфывафыавфывафывафыва</a>
+								</li>
+								<li>
+									<a href="" class="file icon-file">Требования к окружению</a>
+								</li>
+							</ul>
+
+							<div class="indicator_send delivered"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="messenger_sep_title"><span>23 марта 2015 г.</span></div>
+
+				<div class="item">
+					<div class="date">15:35 <i class="message_edit icon-pencil" title="Отредактировано"></i></div>
+					<div class="desc">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+						<div class="name">Кристина Филатова, ассистент</div>
+						<div class="message">
+							<p>Прилагаю таблицу с 5 вариантами офисных помещений, расценками на арендную плату и контактами владельцев.</p>
+							<ul class="message_file_attachments">
+								<li>
+									<a href="" class="file icon-file">Перечень рабочих мест</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="date">15:35</div>
+					<div class="desc">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+						<div class="name">Кристина Филатова, ассистент</div>
+						<div class="message">
+							<p>Цены от 20 т.р.</p>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="item right">
+					<div class="date">15:35</div>
+					<div class="desc">
+						<figure class="photo avatar" style="background-color: rgb(225,95,75)">Д</figure>
+						<div class="name">Динар</div>
+						<div class="message">
+							<p>Мне СРОЧНО необходимо снять офисное помещение внутри Садового кольца. Общая площадь - не менее 200 кв.м. Наличие парковочных мест для 5 машин обязательно.</p>
+
+							<div class="indicator_send delivered"></div>
+						</div>
+					</div>
+				</div>
+				<div class="item right">
+					<div class="date">15:35</div>
+					<div class="desc">
+						<figure class="photo avatar" style="background-color: rgb(225,95,75)">Д</figure>
+						<div class="name">Динар</div>
+						<div class="message">
+							<p>jashdfkasjhdfoaiusdhfwoqiuefqwiebqoifuqhweiofuqhwfoiquwhef</p>
+
+							<div class="indicator_send read"></div>
+						</div>
+					</div>
+				</div>
+				<div class="info_message icon-timer">
+					Мы скоро ответим на ваш вопрос
+				</div>
+
+				<div class="info_message">
+					<div class="info_message_avatar">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+					</div>
+					Ирина уже взяла задачу в работу и скоро вам ответит
+				</div>
+				<div class="info_message chat_action">
+					<a class="cancel_chat">Отменить задачу</a>
+				</div>
+				<div class="info_message icon-stop-light">
+					Задача отменена
+				</div>
+
+				<div class="info_message chat_action">
+					<p>Задача завершена? Оцените ответ</p>
+					<div class="thumbs">
+						<a class="thumbs_up icon-thumbs-up"></a>
+						<a class="thumbs_down icon-thumbs-down"></a>
+					</div>
+				</div>
+
+				<div class="info_message chat_action">
+					<p>Задача закрыта ассистентом. Вы довольны ответом?</p>
+					<div class="thumbs">
+						<a class="thumbs_up icon-thumbs-up"></a>
+						<a class="thumbs_down icon-thumbs-down"></a>
+					</div>
+				</div>
+
+				<div class="info_message chat_action">
+					<p>Задача завершена c оценкой</p>
+					<div class="thumbs">
+						<span class="thumbs_up icon-thumbs-up"></span>
+					</div>
+				</div>
+
+				<div class="write_now"><span class="icon-pencil"></span>Ассистент набирает сообщение ... </div>
+
+			</div>
+
+			<!-- добавление сообщения -->
+			<div class="add_message">
+
+				<div class="add_text">
+					<textarea name="" id="" placeholder="Написать..." class="js_autosize"></textarea>
+					<a href="" class="button_file_upload icon-attach"><input type="file" name="" id=""></a>
+				</div>
+				<div class="add_buttons"><button type="submit" class="button second middle full">Ok</button></div>
+
+				<!-- загруженные файлы -->
+				<!-- <div class="file_upload_list">
+
+					<div class="file_upload_item">
+						<a class="file_delete trash icon-trash-bin"></a>
+						<div class="file_icon pdf"></div>
+						<a class="file_error_text hidden">Заблокировано</a>
+						<a class="file_name">Документация по месторождению.pdf</a>
+					</div>
+
+					<div class="file_upload_item error">
+						<a class="file_delete trash icon-trash-bin"></a>
+						<div class="file_icon pdf"></div>
+						<a class="file_error_text">Заблокировано</a>
+						<a class="file_name">Документация по месторождению.pdf</a>
+					</div>
+
+					<div class="file_upload_item">
+						<a class="file_delete delete show"></a>
+						<div class="total-progress-box">
+							<div class="total-progress" style="width:35%"></div>
+							<div class="total-progress-value">35%</div>
+						</div>
+					</div>
+
+				</div> -->
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+</section>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/jquery.multiple.select.js"></script>
+	<script src="js/include.js"></script>
+	<script src="js/init.js"></script>
+
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-left-double"></a>
+		<h1>Настройки</h1>
+
+	</div>
+	<div class="page_content">
+		<div class="tabs tabs_vertical">
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Личные данные</a></li>
+					<li><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li class="active"><a href="">Нормативы SLA</a></li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+				<p class="m_bot_20">Время, в течении которого должны обрабатываться запросы клиентов в  соответствии с SLA (Service Level Agreement).</p>
+				<div class="form_group form_horizontal">
+					<div class="property_label col five">Время обработки задачи</div>
+					<div class="property_value col seven"><input type="text" name="" id="" size="3" value="10"> мин.</div>
+				</div>
+				<div class="form_group form_horizontal">
+					<div class="property_label col five">Время первого ответа агента</div>
+					<div class="property_value col seven"><input type="text" name="" id="" size="3" value="60"> мин.</div>
+				</div>
+				<div class="form_group form_horizontal">
+					<div class="property_label col five">Общее время решения задачи</div>
+					<div class="property_value col seven"><input type="text" name="" id="" size="3" value="60"> мин.</div>
+				</div>
+
+				<div class="form_buttons">
+					<buttton class="button second middle">Обновить</buttton>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

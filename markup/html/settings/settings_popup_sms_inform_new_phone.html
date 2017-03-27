@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>СМС информирование</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>СМС об операциях по картам</h1>
+				<p class="fw_m">Все СМСки об операциях по вашим картам теперь будут отправляться на новый номер +7 ******5678. Такие карты приведены в списке ниже.</p>
+
+				<ul class="circ">
+					<li>*** 3732 (ООО "Ромашка")<span class="light_text f_small d_b">Текущий номер СМС-информирование: +7******6677</span></li>
+
+					<li>*** 2133 (ООО "Ромашка")<span class="light_text f_small d_b">Текущий номер СМС-информирование: +7******6677</span></li>
+
+					<li>*** 0239 (ИП Иванов Иван Иванович)<span class="light_text f_small d_b">Текущий номер СМС-информирование: +7******6677</span></li>
+				</ul>
+
+				<div class="form_group m_top_20">
+					<span class="icon-info f_small c_light" b365-tooltip title="Это, возможно, означает, что карта выпущена не на вас. Если у вас есть вопросы, напишите нам в чат">Нужной мне карты нет в списке</span>
+				</div>
+
+				<div class="form_sep"></div>
+
+				<div class="form_buttons">
+					<a class="button middle">Продолжить</a>
+					<a class="button_clean">Отменить</a>
+				</div>
+
+			</div>
+			<div class="popup_backdrop"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

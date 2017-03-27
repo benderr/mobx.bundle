@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Овердрафт</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Овердрафт</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="overdraft_info">
+			<div class="overdraft_info_date">
+				Информация на 18.07.2016
+			</div>
+			<div class="overdraft_info_order">
+				<a class="icon-file">Заявление № 1 от 10.07.2016</a>
+			</div>
+
+		</div>
+		<div class="account_card light_block">
+			<div class="account_card_money">
+					<span class="light_text">Минимальный платеж до 31 августа</span>
+					<span>7 400,00 <span class="cur ruble"><span>р.</span></span></span>
+			</div>
+
+			<div class="account_card_info">
+				<div class="form_group">
+					<div class="property_label col seven">Лимит овердрафта:</div>
+					<div class="prpperty_value col five">200 000 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+				<div class="form_group">
+					<div class="property_label col seven">Доступный овердрафт:</div>
+					<div class="prpperty_value col five">140 000 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+				<div class="form_group">
+					<div class="property_label col seven">Ставка (годовых):</div>
+					<div class="prpperty_value col five">19%</div>
+				</div>
+				<div class="form_group">
+					<div class="property_label col seven">Срок договора:</div>
+					<div class="prpperty_value col five">до 10.07.2018</div>
+				</div>
+
+				<div class="form_group">
+					<div class="property_label col seven">Общая задолженность<br>с учетом процентов:</div>
+					<div class="prpperty_value col five">61 400 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+		<!-- <div class="overdraft_info">
+			<div class="overdraft_info_date">
+				Дата 18.07.2016
+			</div>
+			<div class="overdraft_info_order">
+				<a class="icon-file">Заявление № 1 от 10.07.2016</a>
+			</div>
+			<div class="list">
+				<div class="block">
+					<div class="title">Лимит овердрафта</div>
+					<div class="value">200 000 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+				<div class="block">
+					<div class="title">Ставка (годовых)</div>
+					<div class="value">19%</div>
+				</div>
+				<div class="block bd_right_none">
+					<div class="title">Срок договора до</div>
+					<div class="value">10.07.2018</div>
+				</div>
+				<div class="block bd_bot_none">
+					<div class="title">Свободный лимит</div>
+					<div class="value">140 000 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+				<div class="block bd_bot_none">
+					<div class="title">Общая задолженность</div>
+					<div class="value">61 400 <span class="cur rur"><span>р.</span></span>
+					<span class="value_desc">с учетом процентов </span></div>
+				</div>
+				<div class="block bd_bot_none bd_right_none">
+					<div class="title">Минимальный платеж до 31 августа</div>
+					<div class="value">7 400 <span class="cur rur"><span>р.</span></span></div>
+				</div>
+			</div>
+		</div> -->
+
+
+
+		<!-- <div class="form_group">
+			<div class="property_label col five">Лимит овердрафта</div>
+			<div class="prpperty_value col seven">200 000 <span class="cur rur"><span>р.</span></span></div>
+		</div>
+		<div class="form_group">
+			<div class="property_label col five">Свободный лимит</div>
+			<div class="prpperty_value col seven">140 000 <span class="cur rur"><span>р.</span></span></div>
+		</div>
+		<div class="form_group">
+			<div class="property_label col five">Ставка (годовых)</div>
+			<div class="prpperty_value col seven">19%</div>
+		</div>
+		<div class="form_group">
+			<div class="property_label col five">Срок договора</div>
+			<div class="prpperty_value col seven">до 10.07.2018</div>
+		</div>
+		<div class="form_sep_full"></div>
+
+		<div class="form_group">
+			<div class="property_label col five">Общая задолженность <br>с учетом процентов </div>
+			<div class="prpperty_value col seven">61 400 <span class="cur rur"><span>р.</span></span></div>
+		</div>
+		<div class="form_sep_full"></div>
+
+		<div class="form_group">
+			<div class="property_label col five">Минимальный платеж до 31 августа</div>
+			<div class="prpperty_value col seven fw_b">7 400 <span class="cur rur"><span>р.</span></span></div>
+		</div> -->
+
+		<div class="info info_icon_warning ">Если не оплатить минимальный платеж вовремя - <strong>с 1 сентября</strong> начнут начисляться повышенные проценты на всю задолженность
+</div>
+	</div>
+
+</article>
+
+</body>
+</html>

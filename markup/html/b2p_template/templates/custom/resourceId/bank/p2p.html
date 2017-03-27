@@ -1,0 +1,306 @@
+
+<!DOCTYPE HTML>
+<html>
+	<head lang="en">
+	<link rel="stylesheet" href="../../../common/css/pay-form-c2c.css" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Перевод средств с карты на карту</title>
+<script src="../../../common/scripts/best2pay-checkers-new.js"></script>
+<script src="../../../common/scripts/jquery-1.11.3.min.js"></script>
+<script src="../../../common/scripts/bootstrap.tooltip.js"></script>
+<script src="../../../common/scripts/jquery.validate.js"></script>
+<script src="../../../common/scripts/jquery.placeholder.js"></script>
+<script type="text/javascript">
+	var binFeeValues = {
+	
+		'LIST1_ANY': {
+			'PERCENT': 0.0,
+			'FIX': 0,
+			'NOT_LESS': false,
+			'ENABLE': false
+		},
+		'ANY_LIST2': {
+			'PERCENT': 0.0,
+			'FIX': 0,
+			'NOT_LESS': false,
+			'ENABLE': false
+		},
+		'LIST1_LIST2': {
+			'PERCENT': 0.0,
+			'FIX': 0,
+			'NOT_LESS': false,
+			'ENABLE': false
+		},
+		'LIST1': [],
+		'LIST2': []
+	
+	};
+
+	var feevalues = {
+		'VISA_VISA': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'MASTERCARD_VISA': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'MAESTRO_VISA': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'VISA_MASTERCARD': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'MASTERCARD_MASTERCARD': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'MAESTRO_MASTERCARD': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'VISA_MAESTRO': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'MASTERCARD_MAESTRO': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		},
+		'MAESTRO_MAESTRO': {
+			'PERCENT': 1.5,
+			'FIX': 6000,
+			'NOT_LESS': true,
+		}
+	};
+
+	var notifies = {
+	
+	};
+	
+	var blackBins = [
+	
+	];
+
+	var blackBins2 = [
+	
+	];
+
+	var CONFIRM_FUNDS = 'Подтвердите операцию перевода средств на карту физического лица на сумму: ';
+	var FEE = 'с комиссией: ';
+	var CONTINUE = 'Продолжить';
+	var TRANSFER = 'Перевести';
+	var algorithmAvailable = false;
+	var customAdditionalSubmitHandler;
+</script>
+
+<script src="../../../common/scripts/p2p/functions.js"></script>
+	</head>
+	<body data-width="714">
+		<div id="popup_loader" style="display: none;"></div>
+		<div class="header">
+			<div class="container">
+				<h1>Перевод средств с карты на карту</h1>
+			</div>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="c2c b2p-form">
+					<form id="payForm" name="data" method="post" action="/webapi/P2PTransfer">
+					
+						<input type="hidden" name="sector" value="339" />
+						<input type="hidden" name="url" value=""/>
+						<input type="hidden" name="reference" value="" />
+						<input type="hidden" name="url_referer" value="https://test.best2pay.net/test/sectors"/>
+						<input type="hidden" name="action" value="pay"/>
+						<input type="hidden" name="signature" value=""/>
+						
+						<input type="hidden" name="cardholder_ip" value="81.95.30.42"/>
+						<input type="hidden" name="user_agent" value="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:44.0) Gecko/20100101 Firefox/44.0"/>
+						<input type="hidden" name="browser_language" value="en-US,en;q=0.5"/>
+						<input id="resolution" type="hidden" name="resolution"/>
+						<input type="hidden" name="tkn" value="X92F9ZNMdldic3cbL2Sr165a9Mngc3IV93Jf86T5JDo="/>
+						<input id="fee_value" type="hidden" name="fee_value"/>
+						<input id="time_zone_offset" type="hidden" name="time_zone_offset"/>
+						
+                        
+						
+						<div class="row">
+							<div class="col-sm-6 c2c-sender">
+								<h2>Данные отправителя</h2>
+								<div class="c2c-sender-form">
+									<div class="c2c-sender-form-body">
+										<fieldset>
+											<div class="form-group has-feedback b2p-input">
+												
+												<input type="tel"  name="pan1"  id="cardFrom" class="form-control" placeholder="Номер карты" required maxlength="22" autocomplete="off" onkeypress="return checkCardNumber(event, this);" oninput="return CardNumberFormat(event);"/>
+												<span class="card-ico form-control-feedback" aria-hidden="true"></span>
+											</div>
+											<div class="form-group b2p-input b2p-cvc b2p-year-and-month form-inline">
+												<div class="input-year-and-month">
+													
+													<select name="month" class="form-control" required>
+														<option value="" selected>Месяц</option>
+														<option value="01">&nbsp;&nbsp;1 - январь</option>
+														<option value="02">&nbsp;&nbsp;2 - февраль</option>
+														<option value="03">&nbsp;&nbsp;3 - март</option>
+														<option value="04">&nbsp;&nbsp;4 - апрель</option>
+														<option value="05">&nbsp;&nbsp;5 - май</option>
+														<option value="06">&nbsp;&nbsp;6 - июнь</option>
+														<option value="07">&nbsp;&nbsp;7 - июль</option>
+														<option value="08">&nbsp;&nbsp;8 - август</option>
+														<option value="09">&nbsp;&nbsp;9 - сентябрь</option>
+														<option value="10">10 - октябрь</option>
+														<option value="11">11 - ноябрь</option>
+														<option value="12">12 - декабрь</option>
+													</select>
+													 
+													
+													
+													<select name="year" class="form-control" required>
+														<option value="" selected>Год</option>
+														
+														<option value="2016">2016</option>
+														
+														<option value="2017">2017</option>
+														
+														<option value="2018">2018</option>
+														
+														<option value="2019">2019</option>
+														
+														<option value="2020">2020</option>
+														
+														<option value="2021">2021</option>
+														
+														<option value="2022">2022</option>
+														
+														<option value="2023">2023</option>
+														
+														<option value="2024">2024</option>
+														
+														<option value="2025">2025</option>
+														
+														<option value="2026">2026</option>
+														
+													</select>
+													
+												</div>
+												
+												<div class="input-group cvc-tooltip">
+													<input type="tel" name="cvc" id="cvc" class="form-control" value="" onkeypress="return checkDigits(event);" maxlength="3" autocomplete="off" placeholder="cvc2/cvv2" required/>
+													<div class="input-group-addon hidden-xs">
+														<div class="cvc-tooltip" id="cvcTooltip" data-placement="bottom" title="3-х значный код безопасности (CVV2/CVC2) на обороте карты. Как правило, это отдельная группа из 3 цифр справа на полосе для подписи."><span class="">cvc2/cvv2</span></div>
+													</div>
+													<div class="input-group-addon padding-no hidden-sm hidden-md hidden-lg"></div>
+												</div>
+												  
+											</div>
+											<div class="form-group b2p-input">
+												<input type="text" name="emailFrom" class="form-control" value="" onkeypress="return checkEmail(event);" placeholder="E-mail" required autocomplete="off" />
+											</div>
+										</fieldset>
+									</div>
+									<div class="c2c-sender-form-arrow" id="c2c_form_arrow"></div>
+								</div>
+							</div>
+							<div class="col-sm-6 c2c-recipient">
+								<h2>Данные получателя</h2>
+								<div class="c2c-recipient-form">
+									<fieldset>
+										<div class="form-group has-feedback b2p-input">
+											
+											<input type="tel" name="pan2"  id="cardTo" class="form-control" placeholder="Номер карты" required maxlength="22" autocomplete="off" onkeypress="return checkCardNumber(event, this);" oninput="return CardNumberFormat(event);" />
+											<span class="card-ico form-control-feedback" aria-hidden="true"></span>
+										</div>
+										<div class="form-group b2p-input">
+											<input type="text" name="emailTo" class="form-control" value="" onkeypress="return checkEmail(event);" placeholder="E-mail" autocomplete="off" />
+										</div>
+									</fieldset>
+									<h2>СУММА</h2>
+									<fieldset>
+										<div class="form-group b2p-input b2p-price">
+											<div class="input-group">
+												<input type="tel" id="amountControl" class="form-control" placeholder="0.0" value="" autocomplete="off" onkeypress="return checkPrice(event);" required />
+												<input type="hidden" name="amount" id="amount" />
+												<div class="input-group-addon">руб.</div>
+											</div>
+										</div>
+										<div class="form-group b2p-input b2p-commission">
+											<p><span class="small text-muted">Комиссия:</span> <span id="totalCommission"></span> руб.</p>
+											<p><span class="small text-muted">К списанию:</span> <span id="totalAmount"></span> руб.</p>
+										</div>
+									</fieldset>
+								</div>
+							</div>
+						</div>
+						<div class="form-actions">
+							<input type="submit" id="submitButton" class="btn btn-b2p pull-right" value="Перевести" />
+							<a href="" class="btn btn-cancel pull-right" onclick="doCancel();return false;">Отменить</a>
+							<div class="clearfix hidden-sm hidden-md hidden-lg"></div>
+							<p class="form-help">Нажимая кнопку «Перевести», вы принимаете <a href="https://pay.best2pay.net/oferts/Oferta_FL(p).pdf" target="_blank">Условия</a></p>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		
+		<div class="footer">
+			<div class="container">
+				<div class="b2p-links">
+					<a href="http://www.visa.com/" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/icon-visa-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/icon-visa.png" class="hover-on" alt="" />
+					</a>
+					<a href="http://www.visa.com.ru/ms/smartbuy_internet.jsp" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/verifiedVisa-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/verifiedVisa.png" class="hover-on" alt="" />
+					</a>
+					<a href="#" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/montrns-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/montrns.png" class="hover-on" alt="" />
+					</a>
+					<a href="http://www.mastercard.com/" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/icon-mastercard-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/icon-mastercard.png" class="hover-on" alt="" />
+					</a>
+					<a href="http://www.mastercard.com/ru/consumer/secure-code.html" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/mastercard_securecode-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/mastercard_securecode.png" class="hover-on" alt="" />
+					</a>
+					<a href=" http://www.nspk.ru/cards-mir/" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/icon-mir-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/icon-mir.png" class="hover-on" alt="" />
+					</a>
+					<a href="#" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/mcms-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/mcms.png" class="hover-on" alt="" />
+					</a>
+					<a href="http://ru.pcisecuritystandards.org/minisite/en/" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/PCI-20-g.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/PCI-20-c.png" class="hover-on" alt="" />
+					</a>
+					<a href="http://www.minbank.ru/" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/logo_g_20.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/logo_c_20.png" class="hover-on" alt="" />
+					</a>
+					<a href="http://www.best2pay.net/" target="_blank" class="img-hover pull-right">
+						<img src="../../../common/logo/best2pay-grayscale.png" class="hover-out" alt="" />
+						<img src="../../../common/logo/best2pay.png" class="hover-on" alt="" />
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

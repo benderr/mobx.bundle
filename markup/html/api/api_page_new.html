@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Подключение к API</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Подключение к API</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<p class="m_bot_15">Чтобы приложения могли получать ваши данные из Модульбанка, сгенерируйте <span class="fw_m">токен авторизации</span>.</p>
+		<p class="m_bot_30"><span class="fw_m">Токен авторизации</span> – это секретный ключ, по которому ваше приложение сможет получать данные от API Модульбанка. Подробнее об этом – в <a>документации</a>.</p>
+
+
+		<!-- новый токен -->
+		<div class="legend"><span>Генерация токена авторизации</span></div>
+		<p class="m_bot_20">Укажите информацию, которой готовы делиться по токену</p>
+		<div class="form_group">
+			<input type="checkbox" name="a1" id="a1" class="input_check"><label for="a1" class="label_check w200px"><i class="icon"></i><span>account-info</span></label>
+			<span class="light_text">Получать информацию о компаниях и счетах</span>
+		</div>
+		<div class="form_group">
+			<input type="checkbox" name="a1" id="a2" class="input_check"><label for="a2" class="label_check w200px"><i class="icon"></i><span>operation-info</span></label>
+			<span class="light_text">Просматривать историю операций</span>
+		</div>
+		<div class="form_group">
+			<input type="checkbox" name="a1" id="a3" class="input_check"><label for="a3" class="label_check w200px"><i class="icon"></i><span>web-notifications</span></label>
+			<span class="light_text">Получать уведомления (веб-хуки)</span>
+			<input type="text" name="" id="" placeholder="Укажите веб-адрес для уведомлений" class="w100 m_top_15">
+		</div>
+		<div class="form_buttons">
+			<a class="button middle">Сгенерировать</a>
+		</div>
+
+
+	</div>
+
+</article>
+
+</body>
+</html>

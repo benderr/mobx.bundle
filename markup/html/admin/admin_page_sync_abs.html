@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Синхронизация инфо клиента с АБС</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Синхронизация инфо клиента с АБС</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<p class="light_text">В данном разделе вы можете осуществить синхронизацию информации клиента (документов и их статусов) на портале с данными в АБС. Синхронизация осуществляется в режиме <i>"с удалением и пересчетом"</i>.</p>
+		<div class="sync_abs">
+			<div class="sync_abs_form">
+				<div class="form_group">
+					<input type="text" name="" id="" class="w20" placeholder="ABSID">
+					<span class="c_light m_left_10 m_right_10">или</span>
+					<input type="text" name="" id="" class="w30" placeholder="Номер счета или id счета в ABS">
+
+					<a class="drop-target drop-input icon-date m_left_20">с 8 октября по 31 октября 2016</a>
+					<div class="drop-content">
+						<div class="drop-content-inner dashboard-period-choose">
+							<ul class="drop-menu">
+								<li><a>Последние 30 дней</a></li>
+								<li><a>Текущая неделя</a></li>
+								<li><a>Текущий месяц</a></li>
+								<li><a>Текущий квартал</a></li>
+								<li><a>Весь год</a></li>
+							</ul>
+							<div class="drop-date-choose">
+								<div class="filter_date_value">
+									<input type="text" name="" id="" class="datetimepicker filter_date_input small date_from">
+									<input type="text" name="" id="" class="datetimepicker filter_date_input small date_to">
+									<button class="button small">Ок</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form_buttons">
+					<button class="button second">Синхронизировать с АБС</button>
+					<!-- <div class="info_success info_icon_success d_ib m_left_20">Удачно заверешено</div>
+					<div class="info_error info_icon_error d_ib m_left_20">Завершено с ошибкой</div> -->
+				</div>
+				<!-- <div class="form_error">
+					Не совпадает хеш учетной записи на портале и в ДБО. Синхронизация невозможна
+				</div> -->
+			</div>
+			<div class="sync_abs_result light_block">
+				<div class="sync_abs_result_title">
+					Результат синхронизации
+					<div class="info_label_success">Успешно</div>
+					<div class="info_label_error">Завершено с ошибкой</div>
+				</div>
+				<div class="form_group_list">
+					<div class="property_label col w80px">Клиент:</div>
+					<div class="property_value">{clientid}</div>
+				</div>
+				<div class="form_group_list">
+					<div class="property_label col w80px">Счет:</div>
+					<div class="property_value">{номер счета}</div>
+				</div>
+				<div class="form_group_list">
+					<div class="property_label col w80px">Период:</div>
+					<div class="property_value">с 19.10.2016 по 31.10.2016</div>
+				</div>
+				<div class="form_sep"></div>
+
+				<ul>
+					<li>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Счет:</div>
+							<div class="property_value">номер счета</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Загружено:</div>
+							<div class="property_value">5</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Удалено:</div>
+							<div class="property_value">10</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Перезагружено:</div>
+							<div class="property_value">11</div>
+						</div>
+					</li>
+					<li>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Счет:</div>
+							<div class="property_value">номер счета</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Загружено:</div>
+							<div class="property_value">5</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Удалено:</div>
+							<div class="property_value">10</div>
+						</div>
+						<div class="form_group_list">
+							<div class="property_label col w150px">Перезагружено:</div>
+							<div class="property_value">11</div>
+						</div>
+					</li>
+
+				</ol>
+
+
+			</div>
+			<!-- <div class="check_list">
+				<div class="item">
+					<div class="text">Удаление документов</div>
+					<div class="status"><span class="success">Ok</span></div>
+				</div>
+
+				<div class="item">
+					<div class="text">Синхронизация документов в статусах до Получен и Исполнен</div>
+					<div class="status"><span class="success">Ok</span></div>
+				</div>
+
+				<div class="item">
+					<div class="text">Синхронизация документов Валютного контроля</div>
+					<div class="status"><span class="success">Ok</span></div>
+				</div>
+				<div class="item">
+					<div class="text">Синхронизация полученных и исполненных документов</div>
+					<div class="status"><span class="wait">Выполняется</span></div>
+				</div>
+				<div class="item success">
+					Синхронизация успешно
+				</div>
+			</div> -->
+		</div>
+	</div>
+
+
+</article>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+<script src="js/jquery.multiple.select.js"></script>
+<script src="js/include.js"></script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

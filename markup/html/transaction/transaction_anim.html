@@ -1,0 +1,546 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Счета и операции</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<div class="header_load"><div></div></div>
+
+<section class="main section_areas">
+
+		<div class="section_top_area">
+			<!-- фильтры по валюте -->
+			<div class="transaction_currency_filter widget_block" style="display:none;">
+
+				<input type="radio" name="currency_filter" id="f1" class="input_filter" checked>
+				<label for="f1" class="label_filter">
+					<span class="currency_filter active"><span class="count">Все счета</span></span>
+				</label>
+
+				<input type="radio" name="currency_filter" id="f2" class="input_filter">
+				<label for="f2" class="label_filter">
+					<span class="currency_filter"><span class="count">1 024 000,00</span> <span class="cur ruble"><span>р.</span></span></span>
+				</label>
+
+				<input type="radio" name="currency_filter" id="f3" class="input_filter">
+				<label for="f3" class="label_filter">
+					<span class="currency_filter"><span class="count">25 253,00</span> <span class="cur dollar"><span>$</span></span></span>
+				</label>
+
+				<input type="radio" name="currency_filter" id="f4" class="input_filter">
+				<label for="f4" class="label_filter">
+					<span class="currency_filter"><span class="count">200,34</span> <span class="cur euro"><span>€</span></span></span>
+				</label>
+
+				<input type="radio" name="currency_filter" id="f5" class="input_filter">
+				<label for="f5" class="label_filter">
+					<span class="currency_filter currency_filter_disabled"><span class="count">0,00</span> <span class="cur cny"><span>¥</span></span></span>
+				</label>
+
+				<!-- <div class="overdraft_count"><a>Овердрафт: <strong>300 000,00 <span class="cur ruble"><span>р.</span></span></strong></a></div> -->
+
+				<div class="currency_filter_right">
+					<a class="button small icon-notes">Получить выписку</a>
+				</div>
+			</div>
+
+			<!-- выбор счета -->
+			<div class="transaction_choose_account"  style="display:none;">
+
+				<div class="account_item widget_block account_ruble">
+					<div class="desc">
+						<div class="name">Расчетный счет</div>
+						<a class="num">***2359</a>
+					</div>
+					<div class="light_text">Доступно для операций</div>
+					<div class="value">74 047,00 <span class="cur ruble"><span>р.</span></div>
+				</div>
+
+				<div class="account_item widget_block account_cny">
+					<div class="desc">
+						<div class="name">Валютный в юанях</div>
+						<a class="num">***2359</a>
+					</div>
+					<div class="light_text">Доступно для операций</div>
+					<div class="value">74 047,00 <span class="cur cny"><span>¥</span></div>
+				</div>
+
+				<div class="account_item widget_block account_dollar ">
+					<div class="desc">
+						<div class="name">Вылютный счет</div>
+						<a class="num">***2359</a>
+					</div>
+					<div class="light_text">Доступно для операций</div>
+					<div class="value">120 050,00 <span class="cur dollar"><span>$</span></div>
+				</div>
+
+				<div class="account_item widget_block account_euro ">
+					<div class="desc">
+						<div class="name">Депозитный счет</div>
+						<a class="num">***2359</a>
+					</div>
+					<div class="light_text">15% до 12.05.2016</div>
+					<div class="value">200,43 <span class="cur euro"><span>€</span></div>
+				</div>
+
+				<div class="account_item add_account">
+					<div class="desc">
+						<div class="name">Счет</div>
+						<a class="num">***0000</a>
+					</div>
+					<div class="light_text">15% до 01.01.1111</div>
+					<div class="value">00 000,00</div>
+				</div>
+
+				<div class="account_item widget_block account_euro account_closed">
+					<div class="desc">
+						<div class="name">Депозитный счет </div>
+						<a class="num">***2359</a>
+					</div>
+					<div class="light_text">&nbsp;</div>
+					<div class="value">Счет закрыт</div>
+					<a class="hide_account icon-delete-circle">Скрыть</a>
+				</div>
+
+			</div>
+			<!-- end выбор счета -->
+		</div>
+
+		<div class="section_content">
+
+			<div class="flex_row">
+
+				<!-- контент транзакций -->
+				<div class="content">
+
+					<!-- нету счетов -->
+					<!-- <div class="content_notice">
+						<div class="notice_center">
+							<p>У вас еще нет счетов в этой валюте</p>
+							<p><a>Откройте новый счет в нашем банке</a></p>
+						</div>
+					</div> -->
+
+					<!-- виджет средств -->
+					<!-- <div class="light_block cashflow_widget">
+						<div class="cashflow_widget_title">
+							Итого за период
+							<div class="cashflow_filter">
+								<input type="checkbox" name="" id="aas1" class="input_check">
+								<label for="aas1" class="label_check"><i class="icon"></i><span>учитывать транзакции между счетами</span></label>
+							</div>
+						</div>
+						<div class="list">
+							<div class="item">
+								<div class="name">Остаток на н/п</div>
+								<div class="value">5 471 208,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+							<div class="item">
+								<div class="name">Пришло</div>
+								<div class="value money_income">5 120 040,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+							<div class="item">
+								<div class="name">Ушло</div>
+								<div class="value money_expense">19 480,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+							<div class="item">
+								<div class="name">Остаток на н/п</div>
+								<div class="value">5 570 479,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+						</div>
+					</div> -->
+
+					<!-- <div class="transaction_total widget_block">
+						<div class="title">
+							Итого за период: <strong>12-19 марта 2015</strong>
+							<div class="transaction_total_filter">
+								<input type="checkbox" name="" id="aas1" class="input_check">
+								<label for="aas1" class="label_check"><i class="icon"></i><span>учитывать транзакции между счетами</span></label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col half">
+								<div class="form_group">
+									<div class="total_poperty">Остаток на начало периода</div>
+									<div class="total_value">120 000,00 <span class="cur dollar"><span>$</span></span></div>
+								</div>
+								<div class="form_group">
+									<div class="total_poperty">Остаток на конец периода</div>
+									<div class="total_value">258 250,00 <span class="cur dollar"><span>$</span></span></div>
+								</div>
+							</div>
+							<div class="col half">
+								<div class="form_group">
+									<div class="total_poperty">Доход за период</div>
+									<div class="total_value">
+										<span class="money_income">25 000,00 <span class="cur dollar"><span>$</span></span></span>
+									</div>
+								</div>
+								<div class="form_group">
+									<div class="total_poperty">Расходы за период</div>
+									<div class="total_value">
+										<span class="money_expense">1 660,00 <span class="cur dollar"><span>$</span></span></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> -->
+
+					<div class="transaction_table"  style="display:none;">
+
+						<div class="title_panel">
+
+							<h1>Операции</h1>
+
+							<div class="title_buttons">
+								<a class="drop-target icon-date drop-input small ">с 12 апреля по 19 марта</a>
+								<div class="drop-content">
+									<div class="drop-content-inner dashboard-period-choose">
+										<ul class="drop-menu">
+											<li><a>Последние 30 дней</a></li>
+											<li><a>Текущая неделя</a></li>
+											<li><a>Текущий месяц</a></li>
+											<li><a>Текущий квартал</a></li>
+											<li><a>Весь год</a></li>
+										</ul>
+										<div class="drop-date-choose">
+											<div class="filter_date_value">
+												<input type="text" name="" id="" class="datetimepicker filter_date_input small date_from">
+												<input type="text" name="" id="" class="datetimepicker filter_date_input small date_to">
+												<button class="button small">Ок</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="title_actions">
+								<a class="icon-submenu action_item link_dashed drop-target" data-position="bottom right"><span>Действия</span></a>
+								<div class="drop-content">
+									<div class="drop-content-inner">
+										<ul class="drop-menu">
+											<li><a>Передать на подпись</a></li>
+											<li><a>Подписать</a></li>
+											<li><a>Отложить</a></li>
+											<li><a>Переслать</a></li>
+
+										</ul>
+										<!-- <div class="small_text fs_i inner_pad">
+											Выберите несколько операций в таблице, чтобы выполнить доступные действия
+										</div> -->
+									</div>
+					            </div>
+							</div>
+
+						</div>
+
+						<!-- таблица -->
+						<div class="table_list transaction_list">
+
+							<!-- шапка таблицы -->
+							<div class="table_list_header">
+								<div class="table_list_cell check">
+									<input type="checkbox" name="1" id="1" class="input_check"><label class="label_check" for="1"><i class="icon"></i></label>
+								</div>
+								<div class="table_list_cell action">&nbsp;</div>
+								<div class="table_list_cell desc">Назначение платежа</div>
+								<div class="table_list_cell summ"><a class="icon-sort-up">Сумма</a></div>
+								<div class="table_list_cell date"><a class="icon-sort-down">Дата</a></div>
+								<div class="table_list_cell contragent"><a>Контрагент</a></div>
+
+							</div>
+							<div class="table_list_body">
+
+								<!-- строка -->
+								<div class="table_list_row row_new">
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="2" class="input_check"><label class="label_check" for="2"><i class="icon"></i></label>
+									</div>
+									<div class="table_list_cell action">
+
+										<a class="icon-reload"></a>
+										<a class="icon-redo hide_1400a"></a>
+										<a class="icon-favorites hide_1400a"></a>
+
+										<a class="icon-more drop-target hide_1400b"></a>
+										<div class="drop-content">
+											<div class="drop-content-inner">
+												<ul class="drop-menu">
+													<li><a>Переслать</a></li>
+													<li><a>Добавить в избранное</a></li>
+												</ul>
+											</div>
+							            </div>
+
+									</div>
+									<div class="table_list_cell desc">Доход от продажи товара</div>
+									<div class="table_list_cell summ">
+										<span class="money_income">423 125 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<div class="account">Валютный счет</div>
+									</div>
+									<div class="table_list_cell date">
+										17.03
+										<div class="status c_success">Исполнено</div>
+									</div>
+									<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row">
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="3" class="input_check"><label class="label_check" for="3"><i class="icon"></i></label>
+									</div>
+									<div class="table_list_cell action">
+										<a class="icon-reload"></a>
+										<a class="icon-stop" b365-tooltip="Отклонить" title="Отклонить"></a>
+										<a class="icon-favorites-solid" b365-tooltip="Убрать из избранного" title="Убрать из избранного"></a>
+									</div>
+									<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+									<div class="table_list_cell summ">
+										<span class="money_expense">42 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<div class="account">Текущий счет</div>
+									</div>
+									<div class="table_list_cell date">
+										17.03
+										<div class="status c_error">Отклонен банком</div>
+									</div>
+									<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row row_error">
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="4" class="input_check"><label class="label_check" for="4"><i class="icon"></i></label>
+									</div>
+									<div class="table_list_cell action">
+										<a class="icon-sign"></a>
+										<a class="icon-trash-bin"></a>
+										<a class="icon-favorites" b365-tooltip="Добавить в избранного" title="Добавить в избранного"></a>
+									</div>
+									<div class="table_list_cell desc">Доход от продажи товара</div>
+									<div class="table_list_cell summ">
+										<span class="money_expense">35 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<div class="account">Зарплатный счет</div>
+									</div>
+									<div class="table_list_cell date">
+										17.03
+										<div class="status">Черновик</div>
+									</div>
+									<div class="table_list_cell contragent"><a>ООО «Рога и Копыта»</a></div>
+								</div>
+
+								<!-- строка -->
+								<div class="table_list_row">
+									<div class="table_list_cell check">
+										<input type="checkbox" name="1" id="5" class="input_check"><label class="label_check" for="5"><i class="icon"></i></label>
+									</div>
+									<div class="table_list_cell action">
+										<a class="icon-sign"></a>
+										<a class="icon-bell" data-toggle="tooltip" data-placement="top" title="На подписание фыва фыва фывафываыф фывафыва" data-trigger="click"></a>
+
+									</div>
+									<div class="table_list_cell desc">Перевод прибыли от предпринимательской деятельности. Без НДС</div>
+									<div class="table_list_cell summ">
+										<span class="money_income">105 000,00 <span class="cur dollar"><span>$</span></span></span>
+									</div>
+									<div class="table_list_cell date">
+										17.03
+										<div class="status">На подписи</div>
+									</div>
+									<div class="table_list_cell contragent"><a>ОАО «Башкирский Нефтегазовый холдинг»</a></div>
+								</div>
+
+								<!-- <div class="table_row_info">
+									<div class="info_center">
+										<p>Отображены все операции, соответствующие установленным фильтрам.</p>
+									</div>
+								</div> -->
+
+							</div>
+						</div>
+
+						<div class="table_list_more show_more">
+							<a class="button small light icon-more">Показать еще</a>
+						</div>
+						<!-- end таблица -->
+
+						<!-- таблица -->
+						<div class="table_list transaction_list m_top_50">
+
+							<!-- шапка таблицы -->
+							<div class="table_list_header">
+								<div class="table_list_cell check">
+									<input type="checkbox" name="1" id="1" class="input_check"><label class="label_check" for="1"><i class="icon"></i></label>
+								</div>
+								<div class="table_list_cell action">&nbsp;</div>
+								<div class="table_list_cell desc">Назначение платежа</div>
+								<div class="table_list_cell summ"><a>Сумма</a></div>
+								<div class="table_list_cell date"><a>Дата</a></div>
+								<div class="table_list_cell contragent"><a>Контрагент</a></div>
+							</div>
+							<div class="table_list_body">
+
+								<div class="table_row_info">
+									<div class="info_center">
+										<p>Нет операций, соотвествующих установленным фильтрам.
+											<a>Сбросить все фильтры</a></p>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<!-- end таблица -->
+					</div>
+				</div>
+
+
+
+				<!-- фильтры -->
+				<div class="side side_small side_border"  style="display:none;">
+
+					<div class="light_block cashflow_widget_side">
+						<div class="cashflow_widget_title">
+							Итого за период
+
+						</div>
+						<div class="list">
+							<div class="item">
+								<div class="name">На начало периода:</div>
+								<div class="value">5 471 208,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+							<div class="item">
+								<div class="name">Пришло:</div>
+								<div class="value money_income">5 120 040,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+							<div class="item">
+								<div class="name">Ушло:</div>
+								<div class="value money_expense">19 480,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+							<div class="item">
+								<div class="name">На конец периода:</div>
+								<div class="value">95 570 479,00 <span class="ruble"><span>р.</span></span></div>
+							</div>
+						</div>
+					</div>
+
+					<div class="">
+
+
+					<div class="side_title">Фильтры</div>
+
+					<div class="side_parameter parameter_inline">
+						<div class="side_parameter_name">Операции:</div>
+						<div class="side_parameter_value">
+							<div class="jsRadSelect2 select_inline" data-placeholder="выбрать">
+								<option class="jsRadSelect2Options" value="t1" selected>все операции</option>
+								<option class="jsRadSelect2Options" value="t2">списания</option>
+								<option class="jsRadSelect2Options" value="t3">поступления</option>
+							</div>
+						</div>
+					</div>
+
+					<div class="side_sep"></div>
+
+					<div class="side_filter">
+						<input type="checkbox" name="tfilter" id="ff1" class="input_check">
+						<label for="ff1" class="label_check"><i class="icon"></i><span>Скрыть переводы между счетами</span></label>
+					</div>
+
+					<div class="side_sep"></div>
+
+					<div class="side_filter">
+						<ul>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff1" class="input_check">
+								<label for="ff1" class="label_check"><i class="icon"></i><span>Черновик</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff2" class="input_check">
+								<label for="ff2" class="label_check"><i class="icon"></i><span>На подписи</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff3" class="input_check">
+								<label for="ff3" class="label_check"><i class="icon"></i><span>Отправлен в банк</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff4" class="input_check">
+								<label for="ff4" class="label_check"><i class="icon"></i><span>Исполнен</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff5" class="input_check">
+								<label for="ff5" class="label_check"><i class="icon"></i><span>Отменен</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff6" class="input_check">
+								<label for="ff6" class="label_check"><i class="icon"></i><span>Получен</span></label>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="side_sep"></div>
+
+					<div class="side_parameter">
+						<div class="side_parameter_name">Контрагент:</div>
+						<div class="side_parameter_value">
+							<div class="jsRadSelect2 select_multi select_inline select_multi_column select_full " data-placeholder="выбрать" data-filter="true" data-rd-is-multy-select="true" >
+								<div class="jsRadSelect2Options" value="2">
+									ООО Ромашка
+									<span class="select_item_info">ИНН: 28248240821</span>
+								</div>
+								<div class="jsRadSelect2Options" value="3">
+									ООО Башкирнефтепродукт
+									<span class="select_item_info">ИНН: 28248240821</span>
+								</div>
+								<div class="jsRadSelect2Options" value="4">
+									ООО Пенсионный фонд развития
+									<span class="select_item_info">ИНН: 28248240821</span>
+								</div>
+								<div class="jsRadSelect2Options" value="4">Андрей Вариков</div>
+								<div class="jsRadSelect2Options" value="5">Дамир Амиров</div>
+								<div class="jsRadSelect2Options" value="6">Денис Маслов</div>
+								<div class="jsRadSelect2Options" value="7">Динар Галимов</div>
+								<div class="jsRadSelect2Options" value="8">Нур Ибрагимов</div>
+								<div class="jsRadSelect2Options" value="9">Роберт Сабирьянов</div>
+							</div>
+
+
+
+						</div>
+					</div>
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+
+</section>
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+<script>
+	$('.transaction_currency_filter').delay(500).fadeIn(300);
+	$('.transaction_choose_account').delay(900).fadeIn(300);
+	$('.transaction_table').delay(2000).fadeIn(300);
+	$('.side').delay(1400).fadeIn(300);
+</script>
+<script src="js/init.js"></script>
+
+</body>
+</html>

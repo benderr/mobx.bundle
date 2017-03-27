@@ -1,0 +1,66 @@
+
+.ddcommon {position:relative;display:-moz-inline-stack; zoom:1; display:inline-block; *display:inline; cursor:default;}
+.ddcommon ul{padding:0;margin:0;}
+.ddcommon ul li{list-style-type:none;}
+
+.ddcommon .disabled img, .ddcommon .disabled span, .ddcommon.disabledAll{
+opacity: .5; /* standard: ff gt 1.5, opera, safari */
+-ms-filter:"alpha(opacity=50)"; /* ie 8 */
+filter:alpha(opacity=50); /* ie lt 7 */
+-khtml-opacity:.5; /* safari 1.x */
+-moz-opacity:.5; /* ff lt 1.5, netscape */
+color:#999999;
+}
+.ddcommon .clear{clear:both}
+.ddcommon .shadow{-moz-box-shadow:2px 3px 3px #E6E6E6;-webkit-box-shadow:2px 3px 3px #E6E6E6;box-shadow: 2px 3px 3px #E6E6E6;}
+.ddcommon input.text{color:#7e7e7e;padding:0 0 0 0; position:absolute; background:#fff; display:block; width:98%; height:98%; left:2px; top:0; border:none;}
+.ddOutOfVision{position:relative; display:-moz-inline-stack; display:inline-block; zoom:1; *display:inline;}
+.borderRadius .shadow{-moz-box-shadow:2px 3px 3px #E6E6E6;-webkit-box-shadow:2px 3px 3px #E6E6E6;box-shadow: 2px 3px 3px #E6E6E6;}
+.borderRadiusBtm .shadow{-moz-box-shadow:-5px -5px 5px -5px #888888;-webkit-box-shadow:-5px -5px 5px -5px #888888;box-shadow: -5px -5px 5px -5px #888888}
+img.fnone {
+	float: none !important;
+	margin-right: 13px;
+}
+.ddcommon .divider{width:0; height:100%; position:absolute;}
+.ddcommon .arrow {
+	display:inline-block; 
+	position:absolute; 
+	top: 59%; 
+	right: 0px;
+	background: url('../img/smallStr.png') no-repeat 100% 50%;
+}
+
+.ddcommon .ddTitle{padding:0; position:relative; display:inline-block; width:100%}
+.ddcommon .ddTitle .ddTitleText{display:block; text-align: right;}
+.ddcommon .ddTitle .ddTitleText .ddTitleText{padding:0;}
+.ddcommon .ddTitle .description{display:block;}
+.ddcommon .ddTitle .ddTitleText img{position:relative; vertical-align:middle; float:left}
+.ddcommon .ddChild{position:absolute;display:none;width:100%;overflow-y:auto; overflow-x:hidden; zoom:1; z-index:9999}
+.ddcommon .ddChild li{clear:both;}
+.ddcommon .ddChild li .description{display:block;}
+.ddcommon .ddChild li img{border:0 none; position:relative;vertical-align:middle;float:left}
+.ddcommon .ddChild li.optgroup{padding:0;}
+.ddcommon .ddChild li.optgroup .optgroupTitle{padding:0 5px; font-weight:bold; font-style:italic}
+.ddcommon .ddChild li.optgroup ul li{padding:5px 5px 5px 15px}
+.ddcommon .noBorderTop{border-top:none 0  !important; padding:0; margin:0;}
+
+/*************** default theme **********************/
+.dd{}
+.dd .divider{}
+.dd .arrow{width:16px;height:18px; margin-top:-10px; }
+.dd .arrow:hover{}
+.dd .ddTitle{}
+.dd .ddTitle .ddTitleText{}
+.dd .ddTitle .ddTitleText .ddTitleText{padding:0;}
+.dd .ddTitle .description{font-size:12px; color:#666}
+.dd .ddTitle .ddTitleText img{padding:5px 5px 6px;}
+.dd .ddChild{border:1px solid #EAEAEA; background-color:#fff; left:-1px;}
+.dd .ddChild li{padding:3px 5px; background-color:#fff; border-bottom:1px solid #DADADA;}
+.dd .ddChild li .description{color:#666;}
+.dd .ddChild li .ddlabel{color:#333;}
+.dd .ddChild li.hover{background-color:#f2f2f2}
+.dd .ddChild li img{}
+.dd .ddChild li.optgroup{padding:0;}
+.dd .ddChild li.optgroup .optgroupTitle{padding:0 5px; font-weight:bold; font-style:italic}
+.dd .ddChild li.optgroup ul li{padding:5px 5px 5px 15px}
+.dd .ddChild li.selected{background-color:#d5d5d5; color:#000;}

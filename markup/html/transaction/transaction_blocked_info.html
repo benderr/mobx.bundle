@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Приостовление счета</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open ">
+
+	<!-- шапка слоя -->
+	<div class="page_header clean">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Приостановление № {НомРешПр} от {ДатаРешПр}
+
+		</h1>
+
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="form f_small">
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Счет:</div>
+				<div class="col eight property_value">{НомСч} ({ВидСч})</div>
+			</div>
+
+			<div class="form_sep noborder">&nbsp;</div>
+
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Номер документа:</div>
+				<div class="col eight property_value">{ИдДок}</div>
+			</div>
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Решение о приостановлении:</div>
+				<div class="col eight property_value">{НомСч} ({ВидСч})</div>
+			</div>
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Налоговый орган:</div>
+				<div class="col eight property_value">{КодНО} - {НаимНО}</div>
+			</div>
+
+			<div class="form_sep noborder">&nbsp;</div>
+
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Код основания:</div>
+				<div class="col eight property_value">{КодОснов}</div>
+			</div>
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Причина приостановления:</div>
+				<div class="col eight property_value">{НаимПрич}</div>
+			</div>
+
+			<div class="form_sep noborder">&nbsp;</div>
+
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Налогоплательщик:</div>
+				<div class="col eight property_value">{НаимНП} (ИНН {ИНННП}, КПП {КППНП}), {АдрНП}</div>
+			</div>
+			<div class="form_group_list">
+				<div class="col four property_label a_right">БИК:</div>
+				<div class="col eight property_value">{БИК}</div>
+			</div>
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Банк:</div>
+				<div class="col eight property_value">{НаимКО}</div>
+			</div>
+
+			<div class="form_sep noborder">&nbsp;</div>
+
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Взыскиваемая сумма:</div>
+				<div class="col eight property_value">{СумВзыск} <span class="cur rur"><span>р.</span></span></div>
+			</div>
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Решение о взыскании:</div>
+				<div class="col eight property_value">№: {НомРешВзыск} от  {ДатаРешВзыск}</div>
+			</div>
+
+			<div class="form_sep noborder">&nbsp;</div>
+
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Форма №:</div>
+				<div class="col eight property_value">{НомФ}</div>
+			</div>
+			<div class="form_group_list">
+				<div class="col four property_label a_right">Руководитель:</div>
+				<div class="col eight property_value">{ДолжРук} {ФИОРук} ({КласЧинРук})</div>
+			</div>
+			<div class="form_buttons">
+				<div class="property_label col four">&nbsp;</div>
+				<div class="property_value col eight">
+					<a class="button light small icon-print">На печать</a>
+					<a class="button light small icon-save">Скачать</a>
+					<a class="button light small icon-mail-sent">Отправить</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</article>
+
+</body>
+</html>

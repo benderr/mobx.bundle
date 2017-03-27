@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Контакты</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+	<link href="https://file.myfontastic.com/5AmvWjxEBA28yH8sLbdyeN/icons.css" rel="stylesheet">
+
+</head>
+<body>
+
+<include data-file="header.html"></include>
+
+
+<section class="main">
+
+	<include data-file="aside_contacts.html"></include>
+
+	<div class="section_content">
+
+			<div class="title_panel">
+
+				<h1>Контакты</h1>
+
+				<div class="title_actions">
+
+					<a class="drop-target icon-date button light small">За весь период</a>
+					<div class="drop-content">
+						<div class="drop-content-inner dashboard-period-choose">
+							<ul class="drop-menu">
+								<li><a>Последние 30 дней</a></li>
+								<li><a>Текущая неделя</a></li>
+								<li><a>Текущий месяц</a></li>
+								<li><a>Текущий квартал</a></li>
+								<li><a>Весь год</a></li>
+							</ul>
+							<div class="drop-date-choose">
+								<div class="filter_date_value">
+									<input type="text" name="" id="" class="datetimepicker filter_date_input small date_from">
+									<input type="text" name="" id="" class="datetimepicker filter_date_input small date_to">
+									<button class="button small">Ок</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<a class="button small light icon-filter show_filter_panel">Фильтры</a>
+					<a class="button white icon-filter show_filter_panel float"></a>
+				</div>
+
+			</div>
+
+			<!-- панель фильтров -->
+			<div class="filter_panel">
+
+				<div class="side_filter m_top_0">
+					<div class="side_filter_name">Тип контакта</div>
+					<ul>
+						<li>
+							<input type="radio" name="tfilter" id="aa11" class="input_check" checked>
+							<label for="aa11" class="label_check"><i class="icon"></i><span>Все контакты</span></label>
+						</li>
+						<li>
+							<input type="radio" name="tfilter" id="aa2" class="input_check">
+							<label for="aa2" class="label_check"><i class="icon"></i><span>Юридические лица</span></label>
+						</li>
+						<li>
+							<input type="radio" name="tfilter" id="aa3" class="input_check">
+							<label for="aa3" class="label_check"><i class="icon"></i><span>Индивид. предприниматели</span></label>
+						</li>
+						<li>
+							<input type="radio" name="tfilter" id="aa3" class="input_check">
+							<label for="aa3" class="label_check"><i class="icon"></i><span>Физические лица</span></label>
+						</li>
+						<li>
+							<input type="radio" name="tfilter" id="aa3" class="input_check">
+							<label for="aa3" class="label_check"><i class="icon"></i><span>Не указан ИНН</span></label>
+						</li>
+
+					</ul>
+				</div>
+
+			</div>
+			<!-- / панель фильтров -->
+
+
+
+			<!-- таблица -->
+			<div class="table_list table_list_big contact_list widget_block">
+
+				<!-- шапка таблицы -->
+				<div class="table_list_header">
+					<div class="table_list_cell name">
+						<a class="icon-sort-up">Имя контакта</a>
+						<!-- <input type="search" class="small input_search" value="" placeholder="Имя контакта"> -->
+					</div>
+					<div class="table_list_cell summ">Приходы и расходы</div>
+					<div class="table_list_cell action"></div>
+				</div>
+
+
+				<div class="table_list_body">
+
+
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">ООО «Рога и Копыта»</div>
+							<div class="name_desc">ИНН: 123141421341243</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_expense">423 125,00 <span class="cur rur"><span>р.</span></span></span>
+						</div>
+
+						<div class="table_list_cell action">
+							<a class="icon-payment" b356-tooltip title="Новый платеж"></a>
+						</div>
+
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">ОАО «Башкирский Нефтегазовый холдинг Башкирский Нефтегазовый холдинг»</div>
+							<div class="name_desc">ИНН: 123141421341243</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_income">150 000,00 <span class="cur rur"><span>р.</span></span></span>
+							<span class="money_expense">423 125,00 <span class="cur rur"><span>р.</span></span></span>
+						</div>
+
+						<div class="table_list_cell action">
+							<a class="icon-payment" b356-tooltip title="Новый платеж"></a>
+						</div>
+
+					</div>
+
+					<!-- строка -->
+					<div class="table_list_row row_link">
+
+						<div class="table_list_cell name">
+							<div class="contragent">ОАО «Башкирский Нефтегазовый холдинг» </div>
+							<div class="name_desc">ИНН: 123141421341243</div>
+						</div>
+
+						<div class="table_list_cell summ">
+							<span class="money_income">150 000,00 <span class="cur rur"><span>р.</span></span></span>
+						</div>
+
+						<div class="table_list_cell action">
+							<a class="icon-payment" b356-tooltip title="Новый платеж"></a>
+						</div>
+
+					</div>
+
+
+
+
+				</div>
+			</div>
+
+			<div class="table_list_more show_more">
+				<a class="button small light icon-more">Показать еще</a>
+			</div>
+			<!-- end таблица -->
+
+			<!-- таблица -->
+			<div class="table_list transaction_list m_top_50 widget_block">
+
+				<div class="table_list_body">
+
+					<div class="table_row_info">
+						<div class="info_center">
+							<p>Нет контактов, соотвествующих установленным фильтрам.
+								<a>Сбросить все фильтры</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- end таблица -->
+
+
+
+
+
+
+		<div class="section_action_panel">
+			<div class="selected">
+				<span class="light_text">Выбрано платежей:</span>
+				<strong>2</strong> на сумму <strong>34 847,00 <span class="cur rur">р.</span></strong>
+			</div>
+			<div class="action_panel_buttons">
+				<a class="icon-payment">Оплатить</a>
+				<a class="icon-pencil">Редактировать</a>
+				<a class="icon-trash-bin">Удалить</a>
+			</div>
+		</div>
+
+
+
+
+	</div></section>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="tabs tabs_vertical">
+
+			<!-- меню табов -->
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Личные данные</a></li>
+					<li><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li><a href="">Нормативы SLA</a></li>
+					<li class="active"><a href="">Правила</a></li>
+				</ul>
+			</div>
+
+			<!-- контент табов -->
+			<div class="tabs_content">
+				<div class="legend"><span>Обработка новых задач от клиентов</span></div>
+				<div class="form_group">
+					<div class="property_label col five">Клиенты до открытия счета:</div>
+					<div class="property_value col seven">
+						<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+							<option class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+							<option class="jsRadSelect2Options" value="">Бригада</option>
+							<option class="jsRadSelect2Options" value="">Колхозники и колхозницы</option>
+							<option class="jsRadSelect2Options" value="">Юристы</option>
+						</div>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="property_label col five">Клиенты после открытия счета:</div>
+					<div class="property_value col seven">
+						<div class="jsRadSelect2 select_inline" data-placeholder="Выбрать">
+							<option class="jsRadSelect2Options" value="" selected>Чемпионы</option>
+							<option class="jsRadSelect2Options" value="">Бригада</option>
+							<option class="jsRadSelect2Options" value="">Колхозники и колхозницы</option>
+							<option class="jsRadSelect2Options" value="">Юристы</option>
+						</div>
+					</div>
+				</div>
+
+				<div class="legend m_top_40"><span>Распределение задач</span></div>
+
+				<div class="form_group">
+					<div class="property_label col six">Авто распределение новых задач</div>
+					<div class="property_value col six">
+						<input type="checkbox" name="c5" id="41" checked>
+						<label for="41" class="label_check switcher"><i class="icon"></i></label>
+					</div>
+				</div>
+
+				<div class="form_group">
+					<div class="property_label col six">Авто переназначение текущих задач</div>
+					<div class="property_value col six">
+						<input type="checkbox" name="c5" id="42" checked>
+						<label for="42" class="label_check switcher"><i class="icon"></i></label>
+					</div>
+				</div>
+
+				<div class="form_group">
+					<div class="property_label col six">Лимит "бездействия"</div>
+					<div class="property_value col six">
+						<input type="text" value="10" class="xsmall w30px a_center">
+						минут
+					</div>
+				</div>
+
+				<div class="form_buttons">
+					<a class="button small">Сохранить</a>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>

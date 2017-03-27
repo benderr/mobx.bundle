@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Статистика по клиентам</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+
+
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+
+<section class="main">
+
+
+ 	<div class="flex_row">
+
+		<div class="content">
+
+			<div class="title_panel">
+				<h1>Статистика по клиентам</h1>
+
+			</div>
+
+			<!-- колонки -->
+			<div class="admin_stat_columns">
+
+				<!-- колонка -->
+				<div class="stat_column widget_block">
+					<a class="drop-target icon-date drop-input w100 stat_column_date_filter">с 12 апреля по 19 марта</a>
+					<div class="drop-content">
+						<div class="drop-content-inner dashboard-period-choose">
+							<ul class="drop-menu">
+								<li><a>За всё время</a></li>
+								<li><a>Текущая неделя</a></li>
+								<li><a>Прошлая неделя</a></li>
+								<li><a>Текущий месяц</a></li>
+								<li><a>Прошлый месяц</a></li>
+							</ul>
+							<div class="drop-date-choose">
+								<div class="filter_date_value">
+									<input type="text" name="" id="" class=" filter_date_input small date_from">
+									<input type="text" name="" id="" class=" filter_date_input small date_to">
+									<button class="button small">Ок</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+					<ul class="stat_list">
+						<li>
+							<span class="name">Открыло счет:</span>
+							<span class="value">
+								<span class="total">745</span>
+							</span>
+						</li>
+						<li>
+							<span class="name">Посещало портал:</span>
+							<span class="value">
+								<span class="total">745</span>
+							</span>
+						</li>
+						<li>
+							<span class="name">Активные:</span>
+							<span class="value">
+								<span class="total">745</span>
+							</span>
+						</li>
+
+					</ul>
+					<div class="small_text m_top_30">* активными клиентами считаются клиенты, сделавшие хотя бы одну платежку (любую) в течение указанного периода</div>
+
+
+				</div>
+
+				<!-- колонка -->
+				<div class="stat_column widget_block">
+					<div class="title">Клиенты</div>
+					<ul class="stat_list">
+						<li>
+							<span class="name">Всего компаний:</span>
+							<span class="value">
+								<span class="total">10 345</span>
+							</span>
+						</li>
+						<li>
+							<span class="name">Компаний онлайн:</span>
+							<span class="value">
+								<span class="total">3 456</span>
+							</span>
+						</li>
+						<li>
+							<span class="name">Пользователей онлайн:</span>
+							<span class="value">
+								<span class="total">4 128</span>
+							</span>
+						</li>
+
+						<li>
+							<div class="subtitle">Из них:</div>
+							<ul class="stat_list sub_list">
+								<li>
+									<span class="name"><span class="icon-globe icon-light ">Веб</span></span>
+									<span class="value">
+										<span class="total">3 750</span>
+									</span>
+								</li>
+								<li>
+									<span class="name"><span class="icon-apple icon-primary  ">IOS</span></span>
+									<span class="value">
+										<span class="total">320</span>
+									</span>
+								</li>
+								<li>
+									<span class="name"><span class="icon-android icon-success ">Android</span></span>
+									<span class="value">
+										<span class="total">108</span>
+									</span>
+								</li>
+
+
+							</ul>
+						</li>
+
+
+
+
+					</ul>
+				</div>
+
+
+			</div>
+		</div>
+
+	</div>
+
+</section>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+</body>
+</html>

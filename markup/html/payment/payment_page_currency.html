@@ -1,0 +1,348 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Валютный перевод</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>
+			Валютный перевод
+		</h1>
+
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<!-- <div class="info">
+			<a class="block_close icon-close"></a>
+			<p>При последнем создании платежного документа введенные данные не были сохранены.</p>
+			<p><a class="icon-reload">Восстановить данные</a></p>
+		</div> -->
+		<p class="m_bot_30">Чтобы произвести валютный перевод, вам необходимо указать параметры платежа, указать документы для органов валютного контроля и подписать заявление на перевод иностранной валюты. </p>
+
+		<form class="form w70">
+
+
+
+			<div class="legend"><span>Получатель</span></div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon w20">Наименование</div>
+					<input type="text" name="" placeholder="Наименование получателя латиницей" id="">
+				</div>
+			</div>
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon w20">Страна</div>
+					<input type="text" name="" placeholder="Страна получателя латиницей" id="">
+				</div>
+			</div>
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon w20">Город</div>
+					<input type="text" name="" placeholder="Город получателя латиницей" id="">
+				</div>
+			</div>
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon w20">Адрес</div>
+					<input type="text" name="" placeholder="Адрес получателя латиницей" id="">
+				</div>
+			</div>
+
+			<div class="legend_small m_top_30"><span>Банк получателя</span></div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon w20">SWIFT-код</div>
+					<input type="text" name="" placeholder="SWIFT-код банка получателя" id="">
+				</div>
+				<div class="info_error">Банк получателя не найден в справочнике. Проверьте SWIFT-код. Если код введен верно, для проведения операции <a>свяжитесь с ассистентом</a></div>
+			</div>
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon w20">Номер счета</div>
+					<input type="text" name="" placeholder="Номер счета получателя" id="">
+				</div>
+			</div>
+			<div class="form_group">
+				<input type="checkbox" name="swift" id="a1">
+				<label for="a1" class="label_check f_small"><i class="icon"></i><span>Перевод осуществляется через Банк-корреспондент</span></label>
+			</div>
+
+			<div class="legend m_top_40"><span>Код валютной операции</span></div>
+
+			<div class="form_group">
+
+
+				<a class="w100 drop-target drop-input">Укажите код или ключевые слова из наименования</a>
+				<div class="drop-content">
+					<div class="drop-content-inner drop_code_currency_list">
+						<div class="drop-title">
+							<span class="code">01</span>
+							<span class="value">Конверсионные операции резидентов в базналичной форме</span>
+						</div>
+						<ul class="drop-menu max_w_600">
+							<li>
+								<a>
+									<span class="code">01 010</span>
+									<span class="value">Продажа резидентом иностранной валюты за валюту Российской Федерации</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="code">01 030</span>
+									<span class="value">Покупка резидентом иностранной валюты за валюту Российской Федерации</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="code">01 040</span>
+									<span class="value">Покупка резидентом иностранной валюты за валюту Российской Федерации</span>
+								</a>
+							</li>
+						</ul>
+						<div class="drop-title">
+							<span class="code">02</span>
+							<span class="value">Конверсионные операции нерезидентов в базналичной форме</span>
+						</div>
+						<ul class="drop-menu max_w_600">
+							<li>
+								<a>
+									<span class="code">02 010</span>
+									<span class="value">Продажа резидентом иностранной валюты за валюту Российской Федерации</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="code">02 030</span>
+									<span class="value">Покупка резидентом иностранной валюты за валюту Российской Федерации</span>
+								</a>
+							</li>
+							<li>
+								<a>
+									<span class="code">02 040</span>
+									<span class="value">Покупка резидентом иностранной валюты за валюту Российской Федерации</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+			</div>
+
+			<div class="legend m_top_40"><span>Основание для проведения валютной операции</span></div>
+			<p class="small_text m_bot_20">Вам необходимо представить от одного до трех документов, являющихся основанием для проведения валютной операции. Таким документом может быть счет, инвойс, договор, контракт, соглашение с контрагентом и др.</p>
+
+
+			<div class="docs_block">
+				<!-- <a class="block_close icon-close"></a> -->
+				<div class="w95">
+				<div class="form_group">
+					<div class="input_group w100">
+						<div class="input_group_addon w20">Тип документа</div>
+						<select>
+							<option value="" selected>Договор</option>
+							<option value="">Контракт</option>
+							<option value="">Паспорт сделки</option>
+							<option value="">Государственная таможенная декларация</option>
+						</select>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="input_group w100">
+						<div class="input_group_addon w20">№ документа</div>
+						<input type="text" name="" placeholder="" id="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col four file_upload_list">
+
+						<div class="file_upload_block w100">
+							<div class="file_title">Фото или скан документа основания</div>
+							<div class="file_button">
+								<label class="button small button_file_upload">Загрузить
+								<input type="file" name="" id=""></label>
+							</div>
+						</div>
+					</div>
+					<div class="col eight">
+						<p class="light_text f_small">Загрузите сканы или фотографии подписанного документа (все страницы). Максимальный размер загружаемого файла: 25 Мб. Допустимые форматы: .pdf, .doc, .docx, .rtf, .jpg, .png, .bmp.<br>Пожалуйста перез загрузкой файлов убедитесь, что изображения качественные и хорошо читаемые</p>
+					</div>
+				</div>
+				</div>
+			</div>
+
+
+
+
+
+
+			<div class="form_group">
+				<a class="link_dashed icon-plus"><span>Добавить документ</span></a>
+			</div>
+
+			<div class="legend m_top_40"><span>Сумма и назначение платежа</span></div>
+
+			<div class="form_group">
+
+				<div class="input_group w100">
+					<div class="input_group_addon w80px">Со счета</div>
+
+					<a class="w100 drop-input drop-target">
+						<span>
+							Расчетный счет
+							<span class="light_text">(*****4590)</span>
+							–
+							<span class="fw_m">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+						</span>
+					</a>
+					<div class="drop-content">
+						<div class="drop-content-inner drop_account_list">
+							<ul class="drop-menu max_w_600">
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Расчетный счет</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<span class="account_name">Расчетный счет липовый</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Заначка на черный день</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Расчетный счет</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+		            </div>
+
+				</div>
+			</div>
+
+			<div class="form_group row">
+				<div class="col half">
+					<div class="input_group w100">
+						<div class="input_group_addon w80px">Сумма</div>
+						<input type="text" name="" placeholder="0,00" id="" class="">
+						<div class="input_group_addon"><span class="cur ruble"><span>р.</span></span></div>
+					</div>
+				</div>
+
+			</div>
+			<div class="form_group">
+				<textarea name="" id="" placeholder="Назначение платежа" class="w100 js_autosize textarea_middle"></textarea>
+			</div>
+
+			<div class="legend m_top_40"><span>Комиссии</span></div>
+
+			<div class="form_group">
+
+				<div class="input_group w100">
+					<div class="input_group_addon">Счет списания комиссий</div>
+
+					<a class="w100 drop-input drop-target">
+						<span>
+							Расчетный счет
+							<span class="light_text">(*****4590)</span>
+							–
+							<span class="fw_m">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+						</span>
+					</a>
+					<div class="drop-content">
+						<div class="drop-content-inner drop_account_list">
+							<ul class="drop-menu max_w_600">
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Расчетный счет</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">23 000,00 <span class="cur dollar"><span>$</span></span></span>
+										<span class="account_name">Расчетный счет липовый</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Заначка на черный день</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+								<li>
+									<a>
+										<span class="account_value">203 597,25 <span class="cur ruble"><span>р.</span></span></span>
+										<span class="account_name">Расчетный счет</span>
+										<span class="account_num">40101234560000000000</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+		            </div>
+
+				</div>
+			</div>
+
+			<div class="small_text">
+				<p><strong>Комиссия за счет отправителя</strong></p>
+				<p>Комиссия за перевод денежных средств - 30$*. Комиссия за валютный контроль - в соответствии с тарифами банки. <a class="link">Подробнее</a></p>
+				<p>* Комиссия списывается в день совершения операции в рублях по курсу ЦБ.</p>
+			</div>
+
+
+
+			<div class="form_buttons">
+				<button class="button">Далее</button>
+				<button class="button_clean">Сохранить как черновик</button>
+			</div>
+
+
+
+
+		</form>
+	</div>
+
+
+</article>
+
+</body>
+</html>

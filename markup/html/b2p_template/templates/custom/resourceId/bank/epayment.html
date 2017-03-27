@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Best2Pay. Страница оплаты</title>
+		<script src="../../../common/scripts/best2pay-checkers-new.js"></script>
+		<script src="../../../common/scripts/jquery-1.11.3.min.js"></script>
+		<script src="../../../common/scripts/bootstrap.dropdown.js"></script>
+		<script src="../../../common/scripts/bootstrap.tooltip.js"></script>
+		<script src="../../../common/scripts/jquery.validate.js"></script>
+		<script type="text/javascript" src="../../../common/scripts/epayment/functions_new.js"></script>
+		<link rel="stylesheet" href="../../../common/css/pay-form.css" />
+	</head>
+	<body data-width="575">
+		<div class="header">
+			<div class="container">
+				<h1>Оплата заказа № test</h1>
+			</div>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="b2p-title">
+					<div class="row shop">
+						<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 shop-name">
+							<span class="small">Банк</span>
+							<h2>Магазин "Солнышко"</h2>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-3 hidden-xs shop-logo">
+							<img class="logoShop" alt="Магазин "Солнышко"" src="https://81.95.30.42:4433/resources/siteinfos/1/8642a40f-f5fb-4645-b3de-a37fd801c0b6.jpg"/>
+						</div>
+						
+						
+						<div class="col-lg-4 col-md-4 col-sm-4 hidden-xs shop-site">
+							<a href="www.solnishko.biz" target="_blank">www.solnishko.biz</a>
+						</div>
+						
+					</div>
+					<div class="divider"></div>
+									
+					<div class="row payment">
+						<div class="col-sm-6 payment-amount">
+							<strong>Сумма платежа</strong>
+							<div class="amount">1.00<span> USD</span></div>
+						</div>
+						<div class="col-sm-6 payment-description">
+							<strong>Описание заказа</strong>
+							<p class="small"> 
+								test
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="b2p-form">
+					<form method="post" id="payForm" action="/webapi/Epayment">
+						<fieldset>
+							<input type="hidden" name="action" value="epay" >
+							<input type="hidden" name="sector" value="1">
+							<input type="hidden" name="id" value="7">
+							<input type="hidden" name="signature" value="null">
+
+							<input name="wm" value="0" type="hidden" >
+							<input name="ym"   value="0" type="hidden" >
+							<input name="qiwi" value="0" type="hidden" >
+							<input name="gorod" value="0" type="hidden">						  
+
+							<div class="form-group pay-type">
+								<label>Cпособ оплаты</label>
+								<div class="radio">
+									<div class="row">									  
+										
+										<label>
+											<input type="radio" name="type" onclick="isWM()" /> <img src="../../../common/logo/webmoney-ico.png" alt="" />
+										</label>
+										
+										<label>
+											<input type="radio" name="type" onclick="isYM()" /> <img src="../../../common/logo/yamoney-ico.png" alt="" />
+										</label>
+										
+										<label>
+											<input type="radio" name="type" onclick="isQIWI()" /> <img src="../../../common/logo/qiwi-ico.png" alt="" />
+										</label>
+										
+									</div>
+								</div>
+							</div>
+							<div class="form-horizontal">
+								<div class="form-group b2p-input">
+									<label class="col-lg-2 col-md-2 col-sm-2 text-right">Имя:</label>
+									<div class="col-lg-10 col-md-10 col-sm-10">
+										<input type="text" name="firstName" class="form-control" value="" onkeypress="return checkLettersUnicode(event);" required>
+									</div>
+								</div>
+								<div class="form-group b2p-input">
+									<label class="col-lg-2 col-md-2 col-sm-2 text-right">Фамилия:</label>
+									<div class="col-lg-10 col-md-10 col-sm-10">
+										<input type="text" name="lastName" class="form-control" value="" onkeypress="return checkLettersUnicode(event);" required>
+									</div>
+								</div>
+								<div class="form-group b2p-input">
+									<label class="col-lg-2 col-md-2 col-sm-2 text-right">Телефон:</label>
+									<div class="col-lg-10 col-md-10 col-sm-10">
+										<input type="tel" name="customerNumber" class="form-control" value="" onkeypress="return checkPhone(event);" required>
+									</div>
+								</div>
+								<div class="form-group b2p-input">
+									<label class="col-lg-2 col-md-2 col-sm-2 text-right">E-Mail:</label>
+									<div class="col-lg-10 col-md-10 col-sm-10">
+										<input type="text" name="email" class="form-control" value="" onkeypress="return checkEmail(event);" required>										
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<div class="form-actions">
+							<input type="submit" class="btn btn-default pull-right" value="Оплатить">
+							<a href="" class="btn btn-cancel pull-right">Отменить</a>
+						</div>
+						<p class="form-help text-right">Нажимая "Оплатить", Вы принимаете  
+							<a href="null">
+								Условия
+							</a>
+						</p>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="container">
+				<div class="b2p-links">
+					<a href="https://sealinfo.thawte.com/thawtesplash?form_file=fdf/thawtesplash.fdf&dn=PAY.BEST2PAY.NET&lang=en" target="_blank" class="img-hover pull-left">
+						<img src="../../../common/logo/thawte-site-seal-grayscale.png" class="hover-out"/>
+						<img src="../../../common/logo/thawte-site-seal.png" class="hover-on"/>
+					</a>
+
+					<a href="http://www.best2pay.net" target="_blank" class="img-hover pull-right">
+						<img src="../../../common/logo/best2pay-grayscale.png" class="hover-out"/>
+						<img src="../../../common/logo/best2pay.png" class="hover-on"/>
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+

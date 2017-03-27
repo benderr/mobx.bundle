@@ -1,0 +1,36 @@
+.container {width: 860px!important;}
+
+.main .b2p-title {background: #f6f7f8; border: 1px solid #d2d7dd; box-shadow:0px 9px 6px -5px rgba(0,0,0,0.05); padding: 15px 20px 20px; float: right; width: 34%;}
+.main .b2p-title [class*='col-'] {float: none; width: 100%;}
+.main .b2p-title .shop-name .small {font-weight: bold; font-size: 14px;}
+.main .b2p-title .shop-name h2 {font-weight: normal; margin-bottom: 0;}
+.main .b2p-title .shop-site {padding-top: 0; text-align: left;}
+.main form {border: none; box-shadow: none; margin-top: 0; margin-bottom: 0; width: 64%; float: left; padding: 0 25px;}
+.main .b2p-check {border: none; box-shadow: none; margin-top: 0; margin-bottom: 0; padding: 0;}
+.main .b2p-check .check-border-bottom {display: none;}
+.main .b2p-check .check-options span,
+.main .b2p-check .check-options-last span {font-size: 12px; font-weight: normal; color: rgba(0,0,0,0.5);}
+
+.main .b2p-title .shop-options span,
+.main .b2p-title .shop-options-last span
+{font-size: 14px;}
+
+
+.main .b2p-title .divider {margin: 20px 0;}
+.main .b2p-title .payment-amount .amount {font-weight: 200; font-size: 25px;}
+.main .b2p-title .payment-amount strong {font-weight: bold; font-size: 14px;}
+.main .b2p-title .payment-amount .commission {font-weight: normal; font-size: 14px; padding-top: 0;}
+.main .b2p-title .payment-amount .commission span {font-size: 14px;}
+.main .b2p-title .payment-description {margin-top: 10px;}
+.main .b2p-title .payment-description strong{font-weight: bold; font-size: 14px;}
+.main .b2p-title .payment-description p {padding-top: 0px; margin-top: 3px;}
+
+.main .form-actions {margin-top: 25px;}
+.main .b2p-form .form-help {margin-top: 25px; color: rgba(0,0,0,0.5);}
+
+
+.main .form-actions .btn-cancel { color: #2b2b2b; text-transform: uppercase; font-weight: 500; text-decoration: none; margin-top: 5px; margin-right: 30px;}
+
+@media screen and (max-width:840px) {
+    .main form {padding: 0; width: 100%;}
+}

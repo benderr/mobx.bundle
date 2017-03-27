@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Шаг 4 - ожидание</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style_garant.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+
+<include data-file="garant/garant_header.html"></include>
+
+
+<section class="main">
+	<div class="wrap">
+
+	<include data-file="garant/garant_aside.html"></include>
+	<include data-file="garant/garant.html .section_content"></include>
+
+	</div>
+</section>
+
+<article class="page open page_with_wizard page_garant_order">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Заявка на банковскую гарантию</h1>
+		<div class="header_button">
+			<a class="button xsmall grey icon-file">Все документы по заявке</a>
+		</div>
+		<div class="page_wizard ">
+			<div class="wizard_steps steps4">
+				<div class="step done">
+					<div class="label">1</div>
+					<div class="name">Заявка одобрена</div>
+				</div>
+				<div class="step done">
+					<div class="label">2</div>
+					<div class="name">Документы приняты</div>
+				</div>
+				<div class="step done">
+					<div class="label">3</div>
+					<div class="name">Проект согласован и оплачен</div>
+				</div>
+				<div class="step done">
+					<div class="label">4</div>
+					<div class="name">Гарантия выдана</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="garant_page_load_block garant_order_success">
+			<h3>Банковская гарантия выдана</h3>
+			<p>Мы отправили <a class="link">документ</a> клиенту курьером</p>
+			<div class="form_buttons">
+				<a class="button light middle wide">Закрыть</a>
+			</div>
+		</div>
+	</div>
+
+
+
+</article>
+
+</body>
+</html>

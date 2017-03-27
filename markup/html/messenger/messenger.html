@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Чат</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+
+
+</head>
+<body ng-app="app">
+
+<include data-file="header.html"></include>
+
+<section class="main">
+	<include data-file="aside.html"></include>
+	<include data-file="transaction/transaction.html section>*"></include>
+</section>
+
+<!-- ЧАТ  -->
+
+<div class="messenger">
+		<div class="messenger_header">
+			<div class="messenger_header_action">
+				<a class="icon-close"></a>
+				<a class="icon-arrow-up"></a>
+			</div>
+			<div class="messenger_header_title">
+				<a class="icon-plus">Новый вопрос</a>
+			</div>
+		</div>
+
+		<div class="messenger_main">
+			<div class="messenger_theme_list">
+				<div class="messenger_theme_item new">
+					<a href="#">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Кристина Филатова, ассистент</span>
+							<span class="message">Мне срочно нужно </span>
+						</span>
+					</a>
+					<div class="write_now"><span class="icon-pencil"></span></div>
+				</div>
+				<div class="messenger_theme_item">
+					<a href="#">
+						<figure class="photo avatar" style="background-color: #AB38D3">Д</figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Динар Галимов</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+					<div class="write_now"><span class="icon-pencil"></span></div>
+				</div>
+
+				<div class="messenger_theme_item">
+					<a href="#">
+						<figure class="photo avatar" style="background-color: #38B7D3">Р</figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Роберт Сабирьянов</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+				</div>
+				<div class="messenger_theme_item">
+					<a href="#">
+						<figure class="photo avatar" style="background-color: #38D39F">А</figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Андрей Петров</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+				</div>
+				<div class="messenger_theme_item new">
+					<a href="#">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Кристина, ассистент</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+				</div>
+				<div class="messenger_theme_item">
+					<a href="#">
+						<figure class="photo avatar" style="background-image: url(images/avatar_man.jpg)"></figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Я</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+				</div>
+				<div class="messenger_theme_item">
+					<a href="#">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Я</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+				</div>
+				<div class="messenger_theme_item theme_closed">
+					<a href="#">
+						<figure class="photo avatar" style="background-image: url(images/avatar_woman.jpg)"></figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Кристина, ассистент</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+				</div>
+				<div class="messenger_theme_item theme_closed">
+					<a href="#">
+						<figure class="photo avatar" style="background-image: url(images/avatar_man.jpg)"></figure>
+						<span class="desc">
+							<span class="date">22:30</span>
+							<span class="name">Я</span>
+							<span class="message">Мне срочно нужно найти помещение внутри Садового кольца за 20 рублей</span>
+						</span>
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+
+</div>
+
+</section>
+</body>
+</html>

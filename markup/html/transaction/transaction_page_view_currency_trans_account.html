@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Распоряжение на списание средств</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Распоряжение на списание средств</h1>
+		<div class="header_action">
+			<a href="#" class="icon-print"></a>
+			<a href="#" class="icon-favorites"></a>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="w80">
+
+			<div class="transaction_view_info">
+				<div class="transaction_view_info_money money_expense">
+					11 000,00 <span class="cur dollar"><span>$</span></span>
+				</div>
+				<div class="transaction_view_info_account">
+					<div class="light_text">со счета:</div>
+					Транзитный, USD
+				</div>
+			</div>
+
+			<!-- <div class="info info_error">
+				Были внесены изменения в реквизиты получателя. Для обновления информации в платежном поручении переведите документ в редактирование.
+			</div> -->
+
+			<div class="light_block transaction_view_contragent">
+
+				<!-- <div class="transaction_status_stamp">На подписи <span class="date">18.06.2015</span></div> -->
+					<div class="transaction_status_stamp success">Исполнен <span class="date">18.06.2015</span></div>
+					<!-- <div class="transaction_status_stamp error">Отклонен банком <span class="date">18.06.2015</span></div> -->
+					<!-- <div class="transaction_status_stamp warning">Отложен <span class="date">18.06.2015</span></div> -->
+
+				<div class="form_group_list stamp_padding">
+					<div class="column three property_label">На счет:</div>
+					<div class="column nine property_value">22341497819132 <span class="light_text d_b">Расчетный, USD</span></div>
+				</div>
+
+			</div>
+
+
+		</div>
+
+	</div>
+
+</article>
+
+</body>
+</html>

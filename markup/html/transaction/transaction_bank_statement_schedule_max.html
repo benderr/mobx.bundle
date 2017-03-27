@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Выписка</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body ng-app="app">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page page_small open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Банковская выписка</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+		<div class="row">
+			<div class="col w60">
+				<form class="form">
+
+					<div class="form_group form_horizontal">
+						<div class="column three property_label">Тип:</div>
+						<div class="column nine property_value">
+							<div class="switch_group">
+								<div class="switch_item">
+									<input type="radio" name="22" id="tab11" >
+									<label for="tab11">Сейчас</label>
+								</div>
+								<div class="switch_item">
+									<input type="radio" name="22" id="tab12" checked>
+									<label for="tab12">По расписанию</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form_group form_horizontal">
+						<div class="column three property_label">&nbsp;</div>
+						<div class="column eight property_value">
+							<div class="info">Вы добавили максимальное число выписок</div>
+						</div>
+					</div>
+
+
+
+				</form>
+			</div>
+			<div class="col w35">
+
+				<div class="statement_schedule">
+					<div class="statement_schedule_title title_middle">Ваши выписки по расписанию</div>
+					<div class="small_text m_bot_20">Выписка будет приходить на вашу электронную почту автоматически по установленному вами расписанию. Вы можете настроить до 5 выписок</div>
+
+					<!-- <div class="statement_schedule_empty">
+						<i class="icon-date"></i>
+						У вас еще нет выписок
+					</div> -->
+
+					<ul class="statement_schedule_list ">
+						<li class="item">
+							<a class="item_link">За квартал по ****1234 в Excel</a>
+							<a class="item_delete icon-trash-bin"></a>
+						</li>
+						<li class="item">
+							<a class="item_link">За месяц по ****5312 в HTML</a>
+							<a class="item_delete icon-trash-bin"></a>
+						</li>
+						<li class="item">
+							<a class="item_link">За неделю по ****5312 в HTML</a>
+							<a class="item_delete icon-trash-bin"></a>
+						</li>
+						<li class="item">
+							<a class="item_link">За месяц по ****5312 в 1С</a>
+							<a class="item_delete icon-trash-bin"></a>
+						</li>
+						<li class="item">
+							<a class="item_link">За день по ****5312 в HTML</a>
+							<a class="item_delete icon-trash-bin"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</article>
+
+</body>
+</html>

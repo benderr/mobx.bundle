@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Платежное поручение</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page page_small open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Платежное поручение №5241234</h1>
+		<div class="header_action">
+			<a href="#" class="icon-print"></a>
+			<a href="#" class="icon-favorites"></a>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="tabs tabs_horizontal">
+			<div class="tabs_menu tabs_scroll">
+				<ul class="">
+					<li class="active">
+						<a href="">
+							<span class="fw_n">1 011 000,00 <span class="cur ruble"><span>р.</span></span></span>
+							<span class="light_text f_xsmall d_b">10.06.2015</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="">
+							<span class="fw_n">200 000,00 <span class="cur ruble"><span>р.</span></span></span>
+							<span class="light_text f_xsmall d_b">21.06.2015</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="">
+							<span class="fw_n">3 200,00 <span class="cur ruble"><span>р.</span></span></span>
+							<span class="light_text f_xsmall d_b">01.07.2015</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="">
+							<span class="fw_n">1 011 000,00 <span class="cur ruble"><span>р.</span></span></span>
+							<span class="light_text f_xsmall d_b">10.06.2015</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="">
+							<span class="fw_n">200 000,00 <span class="cur ruble"><span>р.</span></span></span>
+							<span class="light_text f_xsmall d_b">21.06.2015</span>
+						</a>
+					</li>
+					<li class="">
+						<a href="">
+							<span class="fw_n">3 200,00 <span class="cur ruble"><span>р.</span></span></span>
+							<span class="light_text f_xsmall d_b">01.07.2015</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<div class="tabs_content">
+				<div class="transaction_view_info">
+					<div class="transaction_view_info_money">
+						11 000,00 <span class="cur ruble"><span>р.</span></span>
+					</div>
+					<div class="transaction_view_info_account">
+						<div class="light_text">со счета:</div>
+						Расчетный счет (***012345)
+					</div>
+				</div>
+				<div class="light_block transaction_view_contragent">
+
+
+
+					<div class="name">
+						ООО «Цветочная лавка Ромашка»
+						<span class="m_client" title="Клиент Modulbank"></span>
+
+						<!-- <div class="transaction_status_stamp">В обработке</div> -->
+						<div class="transaction_status_stamp success">Исполнен</div>
+						<!-- <div class="transaction_status_stamp error">Отклонен банком</div> -->
+						<!-- <div class="transaction_status_stamp warning">Отложен</div> -->
+					</div>
+					<div class="form_group_list">
+						<div class="column one property_label a_left">ИНН:</div>
+						<div class="column nine property_value">22341497819132</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column one property_label a_left">КПП:</div>
+						<div class="column nine property_value">22341497819132</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column one property_label a_left">Счет:</div>
+						<div class="column nine property_value">40802810970010000395</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column one property_label a_left">Банк:</div>
+						<div class="column nine property_value">Альфа-банк</div>
+					</div>
+					<div class="form_group_list">
+						<div class="column one property_label a_left">БИК:</div>
+						<div class="column nine property_value">121983712</div>
+					</div>
+					<div class="transaction_view_contragent_appointment">
+						<p>Оплата за партию ромашек и одуванчиков по договору 14023-023 от 14.05.2015 г. Сумма 11000-00</p>
+					</div>
+				</div>
+				<div class="form_buttons">
+					<div class="f_right m_top_10">
+						<a class="button_clean">Редактировать</a>
+						<a class="button_clean_dropdown icon-down-small drop-target" data-position="bottom right"></a>
+						<div class="drop-content" >
+							<ul class="drop-menu">
+								<li><button>Удалить</button></li>
+							</ul>
+			            </div>
+					</div>
+
+					<button class="button middle second icon-sign">Подписать</button>
+					<button class="button_clean icon-clock">Отложить</button>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</article>
+
+</body>
+</html>

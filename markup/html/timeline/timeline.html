@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Лента событий</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+
+<section class="main">
+
+	<div class="flex_row">
+		<div class="content"><a href="#" class="button open_schet">Открыть счет</a></div>
+
+		<div class="side">
+
+			<div class="timeline_widget widget_block">
+				<div class="title">
+					<div class="title_filter">
+						<div class="jsRadSelect2 select_inline select_pos_right" data-placeholder="Все события">
+							<option class="jsRadSelect2Options" value="1">Все события</option>
+							<option class="jsRadSelect2Options" value="2">Доходы</option>
+							<option class="jsRadSelect2Options" value="3">Расходы</option>
+						</div>
+
+					</div>
+					Лента
+				</div>
+
+				<div class="timeline">
+					<div class="timeline_important">
+						<div class="timeline_line_block">
+
+							<div class="line_block_item line_block_title">
+								<i class="icon"></i>Важные события
+							</div>
+
+							<div class="line_block_item">
+								<i class="item_icon icon-round-action c_primary"></i>
+								Подпишите <a>Заявление о закрытии паспорта сделки</a> от 03.11.2015
+							</div>
+
+							<div class="line_block_item">
+								<i class="item_icon icon-info c_warning"></i>
+								<a>Истек срок</a> оплаты по счету №235: 5000 <span class="cur ruble"><span>р.</span></span> в Мегафон
+							</div>
+
+							<div class="line_block_item">
+								<i class="item_icon icon-round-action c_primary"></i>
+								<a>Подтвердить платеж</a> 7000 <span class="cur ruble"><span>р.</span></span> в Билайн
+							</div>
+
+							<div class="line_block_item last_child">
+								<i class="item_icon icon-info c_warning"></i>
+								Время <a>платить</a> зарплату
+							</div>
+
+						</div>
+					</div>
+
+					<div class="timeline_block">
+						<div class="line_block_item line_block_title">
+							<i class="icon"></i>
+							Сегодня, 19 июня 2015
+						</div>
+
+						<div class="line_block_item">
+							<i class="item_icon icon-round-minus c_danger"></i>
+							<a class="c_danger">Списано</a>: 7000 <span class="cur dollar"><span>$</span></span> в Билайн
+							<a class="item_delete icon-delete-circle"></a>
+						</div>
+
+						<div class="line_block_item">
+							<i class="item_icon icon-round-minus c_danger"></i>
+							<a class="c_danger">Списано</a>: 20000 <span class="cur ruble"><span>р.</span></span> в МТС
+							<a class="item_delete icon-delete-circle"></a>
+						</div>
+
+						<div class="line_block_item last_child">
+							<i class="item_icon icon-help c_linklight"></i>
+							Какой нибудь вопрос?
+							<a class="item_delete icon-delete-circle"></a>
+						</div>
+					</div>
+
+					<div class="timeline_block">
+						<div class="line_block_item line_block_title">
+							<i class="icon"></i>
+							Вчера, 18 июня 2015
+						</div>
+
+						<div class="line_block_item">
+							<i class="item_icon icon-info c_warning"></i>
+							Пригласите бухгалтера
+							<div class="item_message">
+								У вас нет своего бухгалтера? <a>Подключите нашего</a>.
+							</div>
+							<a class="item_delete icon-delete-circle"></a>
+						</div>
+
+						<div class="line_block_item">
+							<i class="item_icon icon-round-plus c_success_hue"></i>
+							<a class="c_success">Поступило</a>: 7000 <span class="cur ruble"><span>р.</span></span> от Билайн
+							<a class="item_delete icon-delete-circle"></a>
+						</div>
+
+						<div class="line_block_item">
+							<i class="item_icon icon-round-check c_success_hue"></i>
+							<a class="c_success">Реквизиты</a> вашего нового счета
+							<a class="item_delete icon-delete-circle"></a>
+						</div>
+
+						<div class="line_block_item last_child">
+							<i class="item_icon icon-round-check c_success_hue"></i>
+							Вы отправили заявку на регистрацию
+							<a class="item_delete icon-delete-circle"></a>
+						</div>
+					</div>
+					<div class="timeline_more show_more">
+						<a class="button xsmall light icon-more-small">Показать еще</a>
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+			<div class="timeline_widget widget_block">
+				<div class="title">
+					<div class="title_filter">
+						<select class="select_inline" data-placeholder="все события">
+							<option value="">все события</option>
+							<option value="">поступления</option>
+							<option value="">приходы</option>
+							<option value="">расходы</option>
+						</select>
+					</div>
+					Лента
+				</div>
+
+				<div class="timeline">
+					<div class="timeline_clean">У вас нет событий</div>
+
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+</section>
+</body>
+</html>

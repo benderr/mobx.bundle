@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Forms</title>
+	<link rel="stylesheet" href="../css/style.css">
+	<!-- <link rel="stylesheet" href="../css/multiple-select.css"> -->
+
+	<script src="http://yastatic.net/jquery/1.11.0/jquery.js"></script>
+
+	<script src="../js/jquery.multiple.select.js"></script>
+	<script src="../js/init.js"></script>
+
+</head>
+<body>
+<link href="https://file.myfontastic.com/5AmvWjxEBA28yH8sLbdyeN/icons.css" rel="stylesheet">
+
+<div style="padding: 20px; background: #fff;">
+	<div class="legend"><span>Поля</span></div>
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Тип:</div>
+		<div class="property_value col eight">
+			<input type="text" placeholder="type='text'" size="15">
+			<input type="email" placeholder="type='email'" size="15">
+			<input type="password" placeholder="type='password'" size="15">
+			<input type="search" placeholder="type='search'" class="input_search w20">
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Размер:</div>
+		<div class="property_value col eight">
+			<input type="text" placeholder="xsmall" size="15" class="xsmall">
+			<input type="text" placeholder="small" size="15" class="small">
+			<input type="text" placeholder="default" size="15" class="">
+			<input type="text" placeholder="big" size="15" class="big">
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Валидация:</div>
+		<div class="property_value col eight">
+			<input type="text" placeholder="default" size="15" class="error">
+			<input type="text" placeholder="default" size="15" class="success">
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Disabled:</div>
+		<div class="property_value col eight">
+			<input type="text" placeholder="disabled" size="15" class="" disabled>
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">C иконкой</div>
+		<div class="property_value col eight">
+			<div class="input_group w30">
+				<div class="input_group_addon icon-password"></div>
+				<input type="text" placeholder="" size="15" class="">
+			</div>
+		</div>
+	</div>
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">C заголовком</div>
+		<div class="property_value col eight">
+			<div class="input_group_title w30">
+				<div class="input_title">Название поля</div>
+				<input type="text" placeholder="" size="15" class="">
+			</div>
+		</div>
+	</div>
+
+	<div class="legend m_top_40"><span>Текстовые поля</span></div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Размер:</div>
+		<div class="property_value col eight">
+			<textarea name="" id="" placeholder="default"></textarea>
+			<textarea name="" id="" placeholder="small" class="small"></textarea>
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Авторазмер:</div>
+		<div class="property_value col eight">
+			<textarea placeholder="default - 1 строка" class="js_autosize" style="vertical-align: top;"></textarea>
+			<textarea placeholder="textarea_middle - 2 строки" class="js_autosize textarea_middle" style="vertical-align: top;"></textarea>
+			<textarea placeholder="textarea_big - 5 строк" class="js_autosize textarea_big" style="vertical-align: top;"></textarea>
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">C текстом:</div>
+		<div class="property_value col eight">
+			<div class="textarea_block w40">
+				<textarea placeholder="textarea" class="js_autosize"></textarea>
+				<div class="textarea_text">Дополнительный текст</div>
+				<div class="textarea_border"></div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="legend m_top_40"><span>Чекбоксы</span></div>
+
+	<div class="form_group">
+		<div class="property_label col w100px f_small">Отдельно:</div>
+		<div class="property_value col eight">
+			<input type="checkbox" name="c1" id="1" checked>
+			<label for="1" class="label_check"><i class="icon"></i></label>
+
+			<input type="checkbox" name="c1" id="2">
+			<label for="2" class="label_check"><i class="icon"></i></label>
+
+			<input type="checkbox" name="c1" id="3" disabled>
+			<label for="3" class="label_check"><i class="icon"></i></label>
+
+			<input type="checkbox" name="c1" id="4">
+			<label for="4" class="label_check circle"><i class="icon"></i></label>
+
+			<input type="checkbox" name="c1" id="5">
+			<label for="5" class="label_check switcher"><i class="icon"></i></label>
+
+			<input type="checkbox" name="c1" id="51" checked>
+			<label for="51" class="label_check switcher"><i class="icon"></i></label>
+
+			<input type="checkbox" name="c1" id="52" disabled>
+			<label for="52" class="label_check switcher"><i class="icon"></i></label>
+
+			<input type="checkbox" name="c1" id="53" checked disabled>
+			<label for="53" class="label_check switcher"><i class="icon"></i></label>
+
+			<input type="radio" name="c2" id="11">
+			<label for="11" class="label_check m_left_30"><i class="icon"></i></label>
+
+			<input type="radio" name="c2" id="12">
+			<label for="12" class="label_check"><i class="icon"></i></label>
+
+			<input type="radio" name="c2" id="13" disabled>
+			<label for="13" class="label_check"><i class="icon"></i></label>
+		</div>
+	</div>
+
+	<div class="form_group">
+		<div class="property_label col w100px f_small">C текстом:</div>
+		<div class="property_value col eight">
+			<input type="checkbox" name="c3" id="21">
+			<label for="21" class="label_check"><i class="icon"></i><span>Cоглашение</span></label>
+
+			<input type="checkbox" name="c3" id="22">
+			<label for="22" class="label_check circle m_left_30"><i class="icon"></i><span>Cоглашение</span></label>
+
+			<input type="radio" name="c4" id="31">
+			<label for="31" class="label_check m_left_30"><i class="icon"></i><span>ИП</span></label>
+
+			<input type="radio" name="c4" id="32">
+			<label for="32" class="label_check m_left_10"><i class="icon"></i><span>Компания</span></label>
+
+			<input type="checkbox" name="c5" id="33">
+			<label for="33" class="label_check m_left_10 switcher"><i class="icon"></i><span>Компания</span></label>
+		</div>
+	</div>
+
+	<div class="form_group">
+		<div class="property_label col w100px f_small">Disabled:</div>
+		<div class="property_value col eight">
+			<input type="checkbox" name="c5" id="41" disabled>
+			<label for="41" class="label_check"><i class="icon"></i><span>Cоглашение</span></label>
+
+			<input type="checkbox" name="c5" id="41" disabled checked>
+			<label for="41" class="label_check m_left_10"><i class="icon"></i><span>Cоглашение</span></label>
+
+			<input type="radio" name="c6" id="51" disabled>
+			<label for="51" class="label_check m_left_30"><i class="icon"></i><span>ИП</span></label>
+
+			<input type="radio" name="c6" id="52" disabled checked>
+			<label for="52" class="label_check m_left_10"><i class="icon"></i><span>Компания</span></label>
+		</div>
+	</div>
+
+
+
+	<div class="legend m_top_40"><span>Выпадушки</span></div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Селект:</div>
+		<div class="property_value col eight">
+			<div class="jsRadSelect2" data-placeholder="Селект" style="max-width: 200px;" name="adfasd" id="adsf">
+				<option class="jsRadSelect2Options" value="1" selected>Азат</option>
+				<option class="jsRadSelect2Options" value="2">Алия Арсланова</option>
+				<option class="jsRadSelect2Options" value="3">Андрей Вариков</option>
+				<option class="jsRadSelect2Options" value="4">Дамир Амиров</option>
+				<option class="jsRadSelect2Options" value="5">Денис Маслов</option>
+				<option class="jsRadSelect2Options" value="6">Динар Галимов Радикович Динар Галимов Радикович</option>
+			</div>
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">C поиском:</div>
+		<div class="property_value col eight">
+			<div class="jsRadSelect2" data-placeholder="Селект" style="max-width: 200px;" name="adfasd" id="adsf" data-filter="true">
+				<option class="jsRadSelect2Options" value="1" selected>Азат</option>
+				<option class="jsRadSelect2Options" value="2">Алия Арсланова</option>
+				<option class="jsRadSelect2Options" value="3">Андрей Вариков</option>
+				<option class="jsRadSelect2Options" value="4">Дамир Амиров</option>
+				<option class="jsRadSelect2Options" value="5">Денис Маслов</option>
+				<option class="jsRadSelect2Options" value="6">Динар Галимов Радикович Динар Галимов Радикович</option>
+			</div>
+		</div>
+	</div>
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Мультиселект:</div>
+		<div class="property_value col eight">
+			<div class="jsRadSelect2" data-placeholder="Селект" style="max-width: 200px;" name="adfasd" id="adsf">
+				<option class="jsRadSelect2Options" value="1" selected>Азат</option>
+				<option class="jsRadSelect2Options" value="2">Алия Арсланова</option>
+				<option class="jsRadSelect2Options" value="3">Андрей Вариков</option>
+				<option class="jsRadSelect2Options" value="4">Дамир Амиров</option>
+				<option class="jsRadSelect2Options" value="5">Денис Маслов</option>
+				<option class="jsRadSelect2Options" value="6">Динар Галимов Радикович Динар Галимов Радикович</option>
+			</div>
+		</div>
+	</div>
+
+	<div class="form_group">
+		<div class="property_label col w100px f_small">Строчный:</div>
+		<div class="property_value col eight">
+			<div class="jsRadSelect2 select_inline" data-placeholder="Селект" style="max-width: 200px;" name="adfasd" id="adsf">
+				<option class="jsRadSelect2Options" value="1" selected>Азат</option>
+				<option class="jsRadSelect2Options" value="2">Алия Арсланова</option>
+				<option class="jsRadSelect2Options" value="3">Андрей Вариков</option>
+				<option class="jsRadSelect2Options" value="4">Дамир Амиров</option>
+				<option class="jsRadSelect2Options" value="5">Денис Маслов</option>
+				<option class="jsRadSelect2Options" value="6">Динар Галимов Радикович Динар Галимов Радикович</option>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="form_group form_horizontal">
+		<div class="property_label col w100px f_small">Переключатели:</div>
+		<div class="property_value col eight">
+
+			<div class="switch_group">
+				<div class="switch_item">
+					<input type="radio" name="12" id="tab1" checked>
+					<label for="tab1">Мужской</label>
+				</div>
+				<div class="switch_item">
+					<input type="radio" name="12" id="tab2">
+					<label for="tab2">Женский</label>
+				</div>
+			</div>
+
+			<div class="switch_group switch_tabs">
+				<div class="switch_item">
+					<input type="radio" name="13" id="tab3" checked>
+					<label for="tab3">Мужской</label>
+				</div>
+				<div class="switch_item">
+					<input type="radio" name="13" id="tab4">
+					<label for="tab4">Женский</label>
+				</div>
+			</div>
+
+			<div class="switch_group small">
+				<div class="switch_item">
+					<input type="radio" name="14" id="tab5" checked>
+					<label for="tab5">Мужской</label>
+				</div>
+				<div class="switch_item">
+					<input type="radio" name="14" id="tab6">
+					<label for="tab6">Женский</label>
+				</div>
+			</div>
+
+			<div class="switch_group switch_tabs small">
+				<div class="switch_item">
+					<input type="radio" name="15" id="tab7" checked>
+					<label for="tab7">Мужской</label>
+				</div>
+				<div class="switch_item">
+					<input type="radio" name="15" id="tab8">
+					<label for="tab8">Женский</label>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="loading">
+		<div>Текст</div>
+	</div>
+</div>
+</body>
+</html>
