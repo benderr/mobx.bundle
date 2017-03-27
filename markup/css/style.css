@@ -343,6 +343,7 @@
   height: 12px;
   width: 12px;
   background: transparent;
+  color: #fff;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -21696,4 +21697,3 @@ article.page.page_faq .page_faq_list .item .ans .ans_img_title {
 button.jcrop-box {
   background: 0 0;
 }
-/*# sourceMappingURL=style.css.map */

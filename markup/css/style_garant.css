@@ -343,6 +343,7 @@
   height: 12px;
   width: 12px;
   background: transparent;
+  color: #fff;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -587,6 +588,10 @@ a img {
   font-size: 16px !important;
 }
 .ov_ell {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
   display: block;
 }
@@ -4235,6 +4240,10 @@ a.icon-info:hover {
 }
 .drop-input >span {
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 .drop-input.small {
@@ -4572,6 +4581,10 @@ table th a {
   text-decoration: none;
   display: inline-block;
   max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -5186,6 +5199,10 @@ table.light th {
   font-size: 10px !important;
   font-weight: 500 !important;
   color: rgba(0,0,0,0.5) !important;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   padding-top: 15px;
   padding-bottom: 13px;
   line-height: 1;
@@ -5195,6 +5212,10 @@ table.light th {
   text-decoration: none;
   display: inline-block;
   max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -5412,9 +5433,17 @@ table.light th {
   max-width: 100%;
 }
 .table_list_cell .select2-choice {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   font-size: 14px;
 }
 .table_list_cell.name {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   float: none;
 }
 .table_list_cell.name .name_title {
@@ -5424,6 +5453,10 @@ table.light th {
 .table_list_cell.name .name_desc {
   font-size: 13px;
   color: rgba(0,0,0,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -5505,6 +5538,10 @@ table.light th {
 .table_list_cell.summ .money_income,
 .table_list_cell.summ .money_expense {
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 @media screen and (max-width: 1150px) {
@@ -5738,6 +5775,10 @@ table.light th {
   margin-top: 2px;
   font-size: 14px;
   color: rgba(0,0,0,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 .table_list.table_list_big .name {
@@ -5813,6 +5854,10 @@ table.light th {
   display: inline-block;
 }
 .table_list_group .table_list_cell.name .group_name_link span {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: calc(100% - 19px);
   display: inline-block;
   vertical-align: bottom;
@@ -5960,6 +6005,10 @@ table.light th {
   padding-top: 3px;
   font-size: 13px;
   color: rgba(0,0,0,0.5);
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 .table_list.favorites_list .contragent {
@@ -6042,6 +6091,10 @@ table.light th {
   min-width: 110px;
   font-weight: 400;
   text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 .table_list.contragents_list .last_paid {
@@ -6055,6 +6108,10 @@ table.light th {
   max-width: 170px;
   min-width: 110px;
   text-align: right;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 .table_list.transaction_list_contragent .desc {
@@ -8303,6 +8360,10 @@ rad-select2 {
 .file_upload_block .file_name {
   color: rgba(0,0,0,0.5);
   font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 .file_upload_block .file_title {
@@ -9111,6 +9172,10 @@ rad-select2 {
   text-decoration: none;
   color: #00417b;
   max-width: calc(100% - 16px - 20px);
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   display: inline-block;
   vertical-align: middle;
 }
@@ -9387,6 +9452,10 @@ input.date_to {
   box-shadow: none;
 }
 .ms-choice > span {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   display: block;
   max-width: 100%;
 }
@@ -9667,6 +9736,10 @@ input.date_to {
   display: inline-block;
   border-bottom: 1px dashed #00417b;
   max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 .ms-parent.drop_item_wrap label >span,
 .ms-parent.ws_n label >span,
@@ -10830,6 +10903,10 @@ article.page.page_with_wizard .page_content {
 }
 .page_header h1 .link_dashed span {
   display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
   border-bottom-color: transparent;
   vertical-align: top;
@@ -11098,6 +11175,10 @@ article.page.page_with_wizard .page_content {
   max-width: 100%;
 }
 .side_parameter .side_parameter_value .select2-container .select2-choice {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 100%;
 }
 .side_parameter.parameter_inline .side_parameter_name {
@@ -12159,6 +12240,10 @@ article.page.page_with_wizard .page_content {
 .drop_account_list .account_name {
   padding: 0 20px 0 0;
   display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 330px;
   min-width: 142px;
   float: left;
@@ -12186,6 +12271,10 @@ article.page.page_with_wizard .page_content {
 .drop_account_list .account_target_name {
   padding: 0 5px 0 0;
   display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: calc(100% - 192px);
   vertical-align: top;
 }
@@ -12480,6 +12569,10 @@ span.drop_account_list {
 }
 .dashboard_content_filter .dashboard_content_filter_account {
   max-width: 270px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 .dashboard_content_filter .dashboard_content_filter_settings {
   font-size: 20px;
@@ -12882,6 +12975,10 @@ span.drop_account_list {
   clear: both;
 }
 .drop-search .drop_search_list .group_list li a {
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 480px;
 }
 .drop-search .drop_search_list .group_list .show_more {
@@ -12908,12 +13005,20 @@ span.drop_account_list {
 }
 .drop-search .drop_search_list .group_list .name {
   display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 .drop-search .drop_search_list .group_list .desc {
   color: rgba(0,0,0,0.5);
   font-size: 12px;
   display: block;
   clear: left;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 .drop-search .drop_search_list .group_list .actions {
   display: block;
@@ -14138,6 +14243,10 @@ article.page .section_action_panel {
   float: left;
   font-weight: 400;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: calc(100% - 50px);
 }
 .right_menu_filter .filter_item .desc .num {
@@ -15754,6 +15863,10 @@ article.page.page_faq .page_faq_list .item .ans .ans_img_title {
   display: inline-block;
   margin: 0;
   color: #2b2b2b;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 68%;
   font-size: 14px;
 }
@@ -15893,6 +16006,10 @@ article.page.page_faq .page_faq_list .item .ans .ans_img_title {
   vertical-align: middle;
   font-weight: 400;
   color: #2b2b2b;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
   max-width: 84%;
   overflow: ellipssis;
   font-size: 14px;

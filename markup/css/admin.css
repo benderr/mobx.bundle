@@ -343,6 +343,7 @@
   height: 12px;
   width: 12px;
   background: transparent;
+  color: #fff;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
@@ -20729,4 +20730,3 @@ article.page {
 .drop.drop-choose-tags .drop-content-inner {
   max-height: calc(100vh - 60px - 60px);
 }
-/*# sourceMappingURL=admin.css.map */
