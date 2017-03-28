@@ -2,7 +2,7 @@ import React from 'react';
 import TransactionList from '../components/transactionList/TransactionList'
 import InternalLayout from 'components/InternalLayout.jsx'
 
-const TransactionsContainer = (props) => {
+const TransactionsContainer = ({match}) => {
     return (
         <InternalLayout>
             <TransactionList listId={'listHome'}></TransactionList>
