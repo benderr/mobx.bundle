@@ -3,11 +3,10 @@ import {SButton} from 'common/uiElements/uiComponents';
 import TransactionItem from './TransactionItem';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {getList, setFilter, setCompleted} from '../../actions/transactionActions';
+import {setFilter, setCompleted} from '../../actions/transactionActions';
 import {createSelectors} from './transactionSelectors';
 
 const mapDispatchToProps = (dispatch) => ({
-    getList: bindActionCreators(getList, dispatch),
     setFilter: bindActionCreators(setFilter, dispatch),
     setCompleted: bindActionCreators(setCompleted, dispatch)
 });

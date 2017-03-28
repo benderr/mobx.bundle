@@ -1,5 +1,5 @@
 import {Map} from 'immutable';
-import enums from '../enums/enums'
+import {SET_FILTER, SET_COMPLETED} from '../enums/actions'
 
 export const initialState = Map({
 	transactionList: Map({
@@ -47,13 +47,10 @@ export const initialState = Map({
 });
 
 export const actionHandlers = {
-	[enums.TRANSACTIONS.GET_LIST]: (state) => {
-		return state;
-	},
-	[enums.TRANSACTIONS.SET_FILTER]: (state, action) => {
+	[SET_FILTER]: (state, action) => {
 		return state.setIn(['transactionList', action.listId, 'filter'], action.filterState);
 	},
-	[enums.TRANSACTIONS.SET_COMPLETED]: (state, action) => {
+	[SET_COMPLETED]: (state, action) => {
 		return state.setIn(['transactionList', action.payload.listId, 'test'], new Date().getTime());
 	}
 };

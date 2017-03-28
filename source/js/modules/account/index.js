@@ -1,5 +1,4 @@
 import * as accountReducers from './reducers/reducer'
-import * as secondReducer from './reducers/secondReducer'
 
 import * as routes  from './routes.js'
 
@@ -7,8 +6,7 @@ import * as routes  from './routes.js'
 export function getReducers(createReducer) {
 
 	return {
-		account: createReducer(accountReducers.initialState, accountReducers.actionHandlers),
-		transactions: createReducer(secondReducer.initialState, secondReducer.actionHandlers)
+		account: createReducer(accountReducers.initialState, accountReducers.actionHandlers)
 	}
 }
 
