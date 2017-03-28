@@ -28,32 +28,31 @@ var ListExampleComponent = React.createClass({
             }];
 
         return (
-            <InternalLayout>
-                <div className="table_list table_list_big transaction_list transaction_list_usn widget_block">
+            <div className="table_list table_list_big transaction_list transaction_list_usn widget_block">
 
-                    <div className="table_list_body">
+                <div className="table_list_body">
 
-                        <div className="table_list_row row_date">
-                            <div className="table_list_cell name">12 марта 2016</div>
-                            <div className="table_list_cell summ">Остаток: 423 125 000,00 <span
-                                className="cur rur"><span>р.</span></span></div>
-                            <div className="table_list_cell action"></div>
-                            <div className="table_list_cell check"></div>
-                        </div>
-
-                        {listArr.map(function (object, i) {
-                            return <ListItem item={object} key={i}></ListItem>;
-                        })}
-
-                        <div className="table_row_info">
-                            <div className="info_center">
-                                <p>Отображены все операции, соответствующие установленным фильтрам.</p>
-                            </div>
-                        </div>
-
+                    <div className="table_list_row row_date">
+                        <div className="table_list_cell name">12 марта 2016</div>
+                        <div className="table_list_cell summ">Остаток: 423 125 000,00 <span
+                            className="cur rur"><span>р.</span></span></div>
+                        <div className="table_list_cell action"></div>
+                        <div className="table_list_cell check"></div>
                     </div>
+
+                    {listArr.map(function (object, i) {
+                        return <ListItem item={object} key={i}></ListItem>;
+                    })}
+
+                    <div className="table_row_info">
+                        <div className="info_center">
+                            <p>Отображены все операции, соответствующие установленным фильтрам.</p>
+                        </div>
+                    </div>
+
                 </div>
-            </InternalLayout>);
+            </div>
+        );
     }
 });
 
