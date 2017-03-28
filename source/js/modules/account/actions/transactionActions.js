@@ -15,3 +15,10 @@ export function setFilter(listId, filterState) {
 		filterState
 	};
 }
+
+export function setCompleted(listId) {
+	return {
+		type: enums.TRANSACTIONS.SET_COMPLETED,
+		payload: {listId}
+	};
+}

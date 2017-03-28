@@ -10,7 +10,8 @@ export default {
 	},
 	TRANSACTIONS: {
 		GET_LIST: 'TRANSACTIONS.GET_LIST',
-		SET_FILTER: 'TRANSACTIONS.SET_FILTER'
+		SET_FILTER: 'TRANSACTIONS.SET_FILTER',
+		SET_COMPLETED: 'TRANSACTIONS.SET_COMPLETED'
 	}
 };
 
@@ -20,3 +21,4 @@ export const ROUTES = {
 	FINANCE: `${ basePath }finance`,
 	HOME: basePath
 };
+

@@ -1,12 +1,18 @@
-import { createReducer } from 'redux-immutablejs'
+import {createReducer} from 'redux-immutablejs'
+import {routerStateReducer} from 'redux-router';
+import {reducer as formReducer} from 'redux-form'
 
 export default function getReducers(modules) {
+	const reducers = {
+		router: routerStateReducer,
+		form: formReducer //все формы будут хранится тут
+	};
 	return modules
 		.filter((m) => isFunc(m.getReducers))
 		.reduce((reducers, module) => {
-			let r = module.getReducers(createReducer);
+			let r = module.getReducers(createReducer); //гоняем через редюсер из immutablejs, чтобы сразу выбрасывать ошибку если редюсер отдает не имутабельный стейт
 			return {...reducers, ...r}
-		}, {});
+		}, reducers);
 }
 
 function isFunc(f) {

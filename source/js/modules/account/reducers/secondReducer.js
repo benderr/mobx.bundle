@@ -52,6 +52,9 @@ export const actionHandlers = {
 	},
 	[enums.TRANSACTIONS.SET_FILTER]: (state, action) => {
 		return state.setIn(['transactionList', action.listId, 'filter'], action.filterState);
+	},
+	[enums.TRANSACTIONS.SET_COMPLETED]: (state, action) => {
+		return state.setIn(['transactionList', action.payload.listId, 'test'], new Date().getTime());
 	}
 };
 

@@ -11,6 +11,7 @@ export const initialState = Map({
 
 export const actionHandlers = {
 	[enums.ACTIONS.TEST_ACTION]: (state) => {
+
 		const counter = state.get('counter') + 1;
 
 		return state.merge({
