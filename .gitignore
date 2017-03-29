@@ -1,3 +1,7 @@
 **/css
 .DS_Store
 *.codekit
+
+*.codekit
+
+markup/config.codekit
