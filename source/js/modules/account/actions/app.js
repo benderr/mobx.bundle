@@ -37,6 +37,13 @@ function testAsyncError(error) {
 	};
 }
 
+function test({id, name}){
+	return {
+		type: 'commad',
+		payload:{ id, name}
+	}
+}
+
 export function testAsync() {
 	return function (dispatch) {
 		dispatch(testAsyncStart());
@@ -45,6 +52,10 @@ export function testAsync() {
 			.then(data => dispatch(testAsyncSuccess(data)))
 			.catch(error => dispatch(testAsyncError(error)));
 	};
+}
+
+function compone(){
+	dispatch({type:'',payload:{}})
 }
 
 // Update

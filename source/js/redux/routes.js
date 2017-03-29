@@ -1,18 +1,12 @@
 import React from 'react';
-//import {Router, Route, IndexRoute} from 'react-router';
-import {Route, Link} from 'react-router';
-// import {routeCodes} from './routeCodes'
-// import SignInContainer from 'containers/SignInContainer';
-// import InternalLayout from 'components/InternalLayout';
-import ExternalLayout from 'components/ExternalLayout'
+import {Route} from 'react-router';
 import {createRoutes} from 'react-router/lib/RouteUtils';
-const loginStatus = {};
-
+const loginStatus = {};//TODO
 
 export default function getRoutes(modules) {
 	return (
-		<Route path="/" component={ExternalLayout}>
-			{modules.filter((m)=>isFunc(m.getRoutes)).map((m)=>m.getRoutes())}
+		<Route>
+			{modules.filter((m) => isFunc(m.getRoutes)).map((m) => m.getRoutes())}
 			{/*<Route path="*" component={NotFound} status={404}/>*/}
 		</Route>
 	);

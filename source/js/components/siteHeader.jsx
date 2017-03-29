@@ -20,7 +20,7 @@ export  default () => {
             <div className="header_menu free_items">
                 <div className="header_menu_inner">
                     <ul>
-                        <li className="active"><IndexLink to="/"><span>Деньги</span></IndexLink></li>
+                        <li className="active"><IndexLink to="/test-selector"><span>Деньги</span></IndexLink></li>
                         <li><Link to="/list-example">Пример списка</Link></li>
                     </ul>
                 </div>
