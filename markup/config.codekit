@@ -17605,6 +17605,17 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/images\/faq\/faq20.jpg": {
+		"fileType": 16384,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 260652,
+		"inputAbbreviatedPath": "\/images\/faq\/faq20.jpg",
+		"outputAbbreviatedPath": "\/images\/faq\/faq20.jpg",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/images\/faq\/faq3.jpg": {
 		"fileType": 16384,
 		"ignore": 0,
