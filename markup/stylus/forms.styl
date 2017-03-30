@@ -35,7 +35,7 @@ textarea
 	vertical-align middle
 	-webkit-appearance textfield
 	transition border-color .2s, color .2s, background .2s, box-shadow .2s
-	
+
 	&:focus
 		border-color cl2
 		box-shadow inset 0px 2px 2px -2px rgba(0,0,0,0)
@@ -745,6 +745,8 @@ rad-select2
 			cursor default
 			color ctext
 			z-index 10
+
+
 	label
 		float left
 		display block
@@ -792,7 +794,8 @@ rad-select2
 	&.small
 		label
 			height 32px
-			line-height 32px
+			line-height 30px
+			font-size fzn - 2px
 			padding 0 10px
 
 
@@ -1252,17 +1255,16 @@ input.datetimepicker
 	overflow hidden
 	input.date_from, input.date_to
 		font-size fzn - 4px
-
-input.date_from, input.date_to
-	width 48%
-	float left
+		width 48%
+		float left
+	input.date_to
+		float right
 
 input.date_from
 	background url(../images/icon_date_from.svg) no-repeat 6px center
 	background-size 20px
 input.date_to
 	background url(../images/icon_date_to.svg) no-repeat 6px center
-	float right
 	background-size 20px
 
 // textarea с загрузкой
