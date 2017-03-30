@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Селекты по компании</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/admin.css">
+	<style type="text/css">
+		label {
+			margin-right: 1em;
+			vertical-align: middle;
+		}
+		table td,
+		table th {
+			padding-left: .7em;
+			padding-right: .7em;
+		}
+	</style>
+
+
+</head>
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+
+<section class="main">
+
+
+ 	<div class="flex_row">
+
+		<div class="content command_promt_content">
+
+			<div class="form_group m_bot_25">
+				ОГРН:
+				<input type="text" name="" id="" class="small w150px m_right_15">
+
+				Транзакции:
+				<input type="checkbox" name="showtransactions" id="transactions_checkbox"></input>
+				<label for="transactions_checkbox" class="label_check"><i class="icon"></i></label>
+
+				Лента событий:
+				<input type="checkbox" name="showevents" id="events-ribbon_checkbox"></input>
+				<label for="events-ribbon_checkbox" class="label_check"><i class="icon"></i></label>
+
+				От:
+				<input type="text" name="" id="" class="datetimepicker  small w150px m_right_15">
+
+				До:
+				<input type="text" name="" id="" class="datetimepicker  small w150px m_right_15">
+
+				<a class="button small">Поиск</a>
+			</div>
+
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Portal company info</span></div>
+				<table class="table-company-info">
+					<tr>
+						<td>name</td>
+						<td>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ &quot;ПАРИТЕТ&quot;</td>
+					</tr>
+					<tr>
+						<td>departcode</td>
+						<td>007-00-01</td>
+					</tr>
+					<tr>
+						<td>created</td>
+						<td>28.12.2015 15:54:52</td>
+					</tr>
+					<tr>
+						<td>registrationstate</td>
+						<td>CheckingDocumentsDeclined</td>
+					</tr>
+					<tr>
+						<td>id</td>
+						<td>32dcdc84-d32c-4f0b-8df6-a57c040f0445</td>
+					</tr>
+					<tr>
+						<td>crmid</td>
+						<td>4474fb43-7bad-e511-80d2-02bfac15080a</td>
+					</tr>
+					<tr>
+						<td>ibsoid</td>
+						<td>3246979987</td>
+					</tr>
+					<tr>
+						<td>dboid</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>kpp</td>
+						<td>770201001</td>
+					</tr>
+					<tr>
+						<td>inn</td>
+						<td>7702394239</td>
+					</tr>
+					<tr>
+						<td>ogrn</td>
+						<td>5157746103433</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>ДБО</span></div>
+				<table>
+					<tr>
+						<th>id</th>
+						<th>ext_ref</th>
+						<th>branch_id</th>
+						<th>branch_code</th>
+						<th>created</th>
+						<th>status</th>
+					</tr>
+					<tr>
+						<td>6037350</td>
+						<td>3246979987</td>
+						<td>4477</td>
+						<td>007-00-01</td>
+						<td>28.12.2015 19:01:27</td>
+						<td>block</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Счета (bankaccountdb)</span></div>
+				<table>
+					<tr>
+						<th>id</th>
+						<th>companyid</th>
+						<th>number</th>
+						<th>idinouterservice</th>
+						<th>balance</th>
+						<th>category</th>
+						<th>status</th>
+						<th>accountname</th>
+						<th>actual</th>
+						<th>reservedamount</th>
+						<th>ibsoid</th>
+						<th>bankname</th>
+						<th>cardbalance</th>
+						<th>cardcontract</th>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Тариф (contactdb)</span></div>
+				<table>
+					<tr>
+						<th>id</th>
+						<th>sysname</th>
+						<th>crmid</th>
+						<th>maxsignerscount</th>
+						<th>maxemployeescount</th>
+						<th>accessonlyforheadofcompany</th>
+					</tr>
+					<tr>
+						<td>ab726356-a4cd-4f6e-b296-944e9735bcf0</td>
+						<td>optimal</td>
+						<td>95fcdc3c-1b6c-e511-80c3-002590c87de3</td>
+						<td>1</td>
+						<td>3</td>
+						<td>False</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Учетные записи ДБО(outerservicedb)</span></div>
+				<table>
+					<tr>
+						<th>Id</th>
+						<th>dboid</th>
+						<th>userid</th>
+						<th>companyid</th>
+						<th>isrobot</th>
+						<th>passwordhash</th>
+					</tr>
+					<tr>
+						<td>1a0d98c1-7468-477d-87c9-a57c0415133e</td>
+						<td>62b59cde-6e5d-40e0-bcd3-b24937a1c33f</td>
+						<td>1eb0c802-ea2b-41b5-af94-a57c040f0445</td>
+						<td>32dcdc84-d32c-4f0b-8df6-a57c040f0445</td>
+						<td>False</td>
+						<td>290cadd816d4c3220e8934d7251b40cf</td>
+					</tr>
+					<tr>
+						<td>1767dcd3-91ec-48ca-adea-a59e03ed3597</td>
+						<td>32dcdc84-d32c-4f0b-8df6-a57c040f0445</td>
+						<td>32dcdc84-d32c-4f0b-8df6-a57c040f0445</td>
+						<td>32dcdc84-d32c-4f0b-8df6-a57c040f0445</td>
+						<td>True</td>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Представители(contactdb)</span></div>
+				<table>
+					<tr>
+						<th>Id</th>
+						<th>RealUserId</th>
+						<th>IsBeneficiary</th>
+						<th>IsSigner</th>
+						<th>IsHeadOfCompany</th>
+						<th>Name</th>
+						<th>FirstName</th>
+						<th>MiddleName</th>
+						<th>LastName</th>
+						<th>Phone</th>
+						<th>Email</th>
+						<th>JobTitle</th>
+						<th>Snils</th>
+						<th>CrmId</th>
+						<th>Key</th>
+					</tr>
+					<tr>
+						<td>71121520-36ce-469a-af17-a57c0413431d</td>
+						<td>1eb0c802-ea2b-41b5-af94-a57c040f0445</td>
+						<td>true</td>
+						<td>true</td>
+						<td>true</td>
+						<td>Дмитрий Юрьевич Кирилин</td>
+						<td>Дмитрий</td>
+						<td>Юрьевич</td>
+						<td>Кирилин</td>
+						<td></td>
+						<td></td>
+						<td>генеральный директор</td>
+						<td>00482787253</td>
+						<td>2c5cdce9-7bad-e511-80d2-02bfac15080a</td>
+						<td>71121520-36ce-469a-af17-a57c0413431d</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Пользователи(contactdb)</span></div>
+				<table>
+					<tr>
+						<th>id</th>
+						<th>phone</th>
+						<th>name</th>
+						<th>lastname</th>
+						<th>middlename</th>
+						<th>firstname</th>
+						<th>emailconfirmed</th>
+						<th>email</th>
+						<th>contactphone</th>
+						<th>registrationcompleted</th>
+						<th>lastlogin</th>
+						<th>dboid</th>
+						<th>title</th>
+						<th>signer</th>
+						<th>beneficiaryid</th>
+					</tr>
+					<tr>
+						<td>1eb0c802-ea2b-41b5-af94-a57c040f0445</td>
+						<td></td>
+						<td>Кирилин Дмитрий</td>
+						<td>Кирилин</td>
+						<td></td>
+						<td>Дмитрий</td>
+						<td>True</td>
+						<td>9629184707@mail.ru</td>
+						<td>9629184707</td>
+						<td>True</td>
+						<td>28.12.2015 18:54:52</td>
+						<td>NULL</td>
+						<td>NULL</td>
+						<td>False</td>
+						<td>2c5cdce9-7bad-e511-80d2-02bfac15080a</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Сертификаты(edsdb)</span></div>
+				<table>
+					<tr>
+						<th>id</th>
+						<th>status</th>
+						<th>userid</th>
+						<th>dboid</th>
+						<th>password</th>
+						<th>type</th>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Креденшалы(credentialdb)</span></div>
+				<table>
+					<tr>
+						<th>phone</th>
+						<th>userid</th>
+						<th>passwordexists</th>
+						<th>registrationcompleted</th>
+					</tr>
+					<tr>
+						<td>9629184707</td>
+						<td>1eb0c802-ea2b-41b5-af94-a57c040f0445</td>
+						<td>True</td>
+						<td>True</td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="tabel_scroll">
+				<div class="legend m_top_40"><span>Блокировки(contactdb)</span></div>
+				<table>
+					<tr>
+						<th>userid</th>
+						<th>blocktype</th>
+						<th>companyid</th>
+						<th>startdate</th>
+						<th>finishdate</th>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+
+	</div>
+
+</section>
+
+<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+</body>
+</html>
