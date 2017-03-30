@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Платежное поручение</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+<!-- 	<link href="https://fontastic.s3.amazonaws.com/iSooys8TZ8vPkLZDaZHNw8/icons.css" rel="stylesheet">
+ -->
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Платежное поручение № 5241234 от 23.09.2015</h1>
+		<div class="import_1c">&nbsp;</div>
+		<div class="header_action">
+
+			<a href="#" class="icon-chat" b365-tooltip="" title="Написать ассистенту"></a>
+
+			<!-- в избранное -->
+			<a href="#" class="icon-favorites drop-target" data-theme="drop_add_favorites" data-position="bottom right" b365-tooltip title="Добавить в избранное"></a>
+			<div class="drop-content">
+				<div class="drop-content-inner">
+					<div class="title">Назовите избранный платеж</div>
+					<div class="form_group">
+						<input type="text" name="" id="" class="w100 small" value="ООО «Рога и Копыта»" autofocus>
+					</div>
+					<div class="form_buttons">
+						<a class="button small">Сохранить</a>
+						<a class="button_clean small">Отмена</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- печать -->
+			<a href="#" class="icon-share drop-target" data-position="bottom right"  b365-tooltip title="Действия"></a>
+			<div class="drop-content">
+				<div class="drop-content-inner">
+					<ul class="drop-menu">
+						<li><a href="#" class="icon-print">На печать</a></li>
+						<li><a href="#" class="icon-save">Скачать</a></li>
+						<li><a href="#" class="icon-mail-sent">Отправить на почту</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="">
+
+			<div class="transaction_view_info">
+				<div class="transaction_view_info_money money_expense">
+					11 000,00 <span class="cur ruble"><span>р.</span></span>
+				</div>
+				<div class="transaction_view_info_account">
+					<div class="light_text">со счета:</div>
+					Расчетный счет (***012345)
+				</div>
+			</div>
+
+			<!-- <div class="info info_error">
+				Были внесены изменения в реквизиты получателя. Для обновления информации в платежном поручении переведите документ в редактирование.
+			</div> -->
+
+			<div class="light_block transaction_view_contragent">
+
+				<div class="transaction_status_stamp">В обработке <span class="date">18.06.2015</span></div>
+				<!-- <div class="transaction_status_stamp success">Исполнен <span class="date">18.06.2015</span></div> -->
+				<!-- <div class="transaction_status_stamp error">Отклонен банком <span class="date">18.06.2015</span></div> -->
+				<!-- <div class="transaction_status_stamp warning">Отложен <span class="date">18.06.2015</span></div> -->
+
+				<div class="name stamp_padding">
+					ООО «Цветочная лавка Ромашка»
+					<span class="icon_user_rating red" b365-tooltip title="Нажмите, чтобы проверить контрагента">5</span>
+					<span class="m_client" title="Клиент Modulbank"></span>
+				</div>
+
+				<div class="form_group_list">
+					<div class="column one property_label a_left">ИНН:</div>
+					<div class="column nine property_value">22341497819132<span class="value_info icon-info" b365-tooltip title="Нажмите, чтобы проверить контрагента"></span></div>
+				</div>
+				<div class="form_group_list">
+					<div class="column one property_label a_left">КПП:</div>
+					<div class="column nine property_value">22341497819132</div>
+				</div>
+				<div class="form_group_list">
+					<div class="column one property_label a_left">Счет:</div>
+					<div class="column nine property_value">40802810970010000395</div>
+				</div>
+				<div class="form_group_list">
+					<div class="column one property_label a_left">Банк:</div>
+					<div class="column nine property_value">Альфа-банк</div>
+				</div>
+				<div class="form_group_list">
+					<div class="column one property_label a_left">БИК:</div>
+					<div class="column nine property_value">121983712</div>
+				</div>
+
+			</div>
+
+			<div class="form_buttons">
+				<a class="button_clean icon-reload">Повторить</a>
+				<a class="button_clean icon-mail">Уведомить получателя</a>
+				<a class="button_clean icon-sign">Исправить платеж</a>
+			</div>
+
+
+			<!-- уточнение платежа -->
+
+			<div class="info fix_transaction">
+				<div class="title">Уточнение платежа <span class="icon-info" title="Банк получателя отправил запрос на уточнение платежа. Чтобы деньги дошли до получателя, пожалуйста, как можно быстрее уточните информацию о платеже. Если не сделать это за пять рабочих дней, то по правилам ЦБ деньги вернутся обратно на ваш счет." b365-tooltip></span></div>
+
+
+
+				<p><strong>Причина запроса: </strong><em>Счет получателя отсутствует, проверьте номер</em></p>
+
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">Получатель:</div>
+					<div class="column nine property_value">
+						<input type="search" name="" id="" class="w100 drop-target field_contragent" placeholder="Наименование или ИНН получателя">
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">ИНН:</div>
+					<div class="column nine property_value">
+						<input type="search" name="" id="" class="w100 drop-target" placeholder="ИНН получателя">
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">р/с:</div>
+					<div class="column nine property_value">
+						<input type="search" name="" id="" class="w100 drop-target" placeholder="Счет получателя">
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">Назначение платежа:</div>
+					<div class="column nine property_value">
+						<div class="textarea_block">
+							<textarea name="" id="" placeholder="" class="w100 js_autosize textarea_middle"></textarea>
+							<div class="textarea_border"></div>
+							<div class="textarea_text characters_left">Осталось символов: 28</div>
+							<div class="textarea_text">В том числе НДС 18%</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row form_buttons">
+					<div class="column two property_label">&nbsp;</div>
+					<div class="column nine property_value">
+						<a class="button middle">Исправить</a>
+						<a class="button_clean">Написать ассистенту</a>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="info fix_transaction">
+				<a class="block_close icon-close"></a>
+				<div class="title">Уточнение платежа</div>
+
+				<p class="">Исправьте платеж и отправьте уточнение банку получателя, если в реквизитах допущена ошибка. По правилам ЦБ уточнение нужно отправить за пять рабочих дней, после этого срока деньги за неверный платеж вернутся обратно на счет.</p>
+
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">Получатель:</div>
+					<div class="column nine property_value">
+						<input type="search" name="" id="" class="w100 drop-target field_contragent" placeholder="Наименование или ИНН получателя">
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">ИНН:</div>
+					<div class="column nine property_value">
+						<input type="search" name="" id="" class="w100 drop-target" placeholder="ИНН получателя">
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">р/с:</div>
+					<div class="column nine property_value">
+						<input type="search" name="" id="" class="w100 drop-target" placeholder="Счет получателя">
+					</div>
+				</div>
+				<div class="form_group_list form_horizontal">
+					<div class="column two property_label">Назначение платежа:</div>
+					<div class="column nine property_value">
+						<div class="textarea_block">
+							<textarea name="" id="" placeholder="" class="w100 js_autosize textarea_middle"></textarea>
+							<div class="textarea_border"></div>
+							<div class="textarea_text characters_left">Осталось символов: 28</div>
+							<div class="textarea_text">В том числе НДС 18%</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row form_buttons">
+					<div class="column two property_label">&nbsp;</div>
+					<div class="column nine property_value">
+						<a class="button middle">Исправить</a>
+						<a class="button_clean">Отмена</a>
+						<a class="button_clean form_button_right">Написать ассистенту</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="info fix_transaction">
+				<div class="title">Платеж уточнен 12 марта, 14:00</div>
+
+
+				<div class="form_group">
+					<div class="input_group_title w100">
+
+							Для зачисления на счет Ермолаевой Светланы Петровны Заработная плата за февраль 2016 г. Без налога (НДС) Без НДС
+
+						<div class="input_title">Назначение платежа:</div>
+					</div>
+
+
+				</div>
+
+
+			</div>
+
+
+
+
+
+
+
+			<!-- <div class="info_error">Подписание платежного поручения будет доступно после встречи с нашим представителем и завершения процедуры открытия счета.</div> -->
+			<div class="small_text border">
+				<p class="f_small">Комиссия банка: 70 <span class="cur ruble"><span>р.</span></span></p>
+				<p >Размер комиссии рассчитан автоматически согласно тарифу вашей компании и является ознакомительным. Точный размер комиссии определяется после передачи платежного документа на обработку в банк.</p>
+			</div>
+
+		</div>
+
+
+	</div>
+
+</article>
+
+</body>
+</html>
