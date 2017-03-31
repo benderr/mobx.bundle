@@ -822,6 +822,10 @@ article.page
 	will-change width, max-width
 	opacity 0
 	transform translateX(150px) translateZ(0)
+	
+article.page-wide2
+	max-width 1050px
+	
 
 	@media (max-width: 980px)
 		// max-width calc(100% - 45px)
@@ -891,6 +895,17 @@ article.page
 			margin-right 300px
 		.page_content
 			right 300px
+	&.side_right-wide2
+		.page_left
+			right 320px
+			.page_header
+				margin-right 0
+			.page_content
+				right 0
+		.page_header
+			margin-right 320px
+		.page_content
+			right 320px
 
 
 
@@ -1233,6 +1248,9 @@ article.page
 	-webkit-overflow-scrolling touch
 	&.page_side_wide
 		width 300px
+	&.page_side-wide2
+		width 320px
+		font-size 15px
 	.side_sep
 		background cbdlight
 
