@@ -190,6 +190,14 @@ textarea
 		border-color transparent
 		background-clip padding-box
 		box-shadow none
+		&.addon_code
+			width auto
+			min-width 0
+			padding-left 15px
+			font-size fzn
+			line-height 42px
+			&~input
+				padding-left 36px !important
 	input
 		border-top-left-radius 4px
 		border-bottom-left-radius 4px
@@ -199,6 +207,7 @@ textarea
 		&:focus
 			border-top-left-radius 0
 			border-bottom-left-radius 0
+
 
 
 
