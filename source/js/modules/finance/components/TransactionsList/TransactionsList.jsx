@@ -4,6 +4,7 @@ import InternalLayout from 'components/InternalLayout';
 import TransactionsListIem from './../TransactionsListItem/TransactionsListItem.jsx';
 import actions from './../../actions/transactionsActions.js';
 import financeDataContext from './../../bl/financeDataContext.js';
+import {bindActionCreators} from 'redux';
 
 function mapStateToProps(state) {
     return {
@@ -13,12 +14,21 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getTransactions: getTransactions
+        getTransactionsByThunk: getTransactionsByThunk,
+        getTransactionsBySaga: bindActionCreators(actions.getTransactionsBySaga, dispatch)
     };
 
-    function getTransactions() {
-        financeDataContext.getTransactionsList()
-            .then(dispatch(actions.updateTransactionsList()));
+    function getTransactionsByThunk() {
+        const asyncGet = () => {
+            return dispatch => {
+                financeDataContext.getTransactionsListByThunk()
+                    .then((res)=> {
+                        dispatch(actions.updateTransactionsList(res));
+                    });
+            }
+        };
+        dispatch(asyncGet());
+
     }
 };
 
@@ -47,8 +57,12 @@ var TransactionsList = (props) => {
                             <p>Отображены все операции, соответствующие установленным фильтрам.</p>
                         </div>
                         <div>
-                            <a onClick={props.getTransactions}>
-                                Получить новый список
+                            <a onClick={props.getTransactionsByThunk}>
+                                Получить новый список через redux-thunk
+                            </a>
+                            <br />
+                            <a onClick={props.getTransactionsBySaga}>
+                                Получить новый список через redux-sags
                             </a>
                         </div>
                     </div>
