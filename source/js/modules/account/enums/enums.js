@@ -12,8 +12,6 @@ export default {
 
 export const ROUTES = {
 	SIGN_IN: `${ basePath }signin`,
-	LIST_EXAMPLE: `${ basePath }list-example`,
-	FINANCE: `${ basePath }finance`,
 	HOME: basePath
 };
 

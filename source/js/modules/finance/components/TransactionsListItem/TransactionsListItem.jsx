@@ -1,9 +1,8 @@
 import React from 'react';
 
-var ListItem = React.createClass({
+var TransactionsListItem = React.createClass({
     clickOnItem: ()=> {
         alert("test success!");
-        console.log(this.state);
     },
     getInitialState: ()=>{
         return {
@@ -16,7 +15,7 @@ var ListItem = React.createClass({
     },
     render: function () {
         var item = this.props.item;
-        
+
         return (<div className="table_list_row row_link">
 
             <div className="table_list_cell name" onClick={this.clickOnItem}>
@@ -55,4 +54,4 @@ var ListItem = React.createClass({
     }
 });
 
-export default ListItem
+export default TransactionsListItem

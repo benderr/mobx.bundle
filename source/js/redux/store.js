@@ -1,6 +1,6 @@
 import {createStore as _createStore, combineReducers, compose} from 'redux';
 
-export default function createStore(middleware, reducers, routes, initionalState) {
+export default function createStore({middleware, reducers, routes, initionalState, sagaMiddleware, sagas}) {
 
 	//let createHistory;
 
@@ -25,6 +25,13 @@ export default function createStore(middleware, reducers, routes, initionalState
 	)(_createStore);
 
 	const store = finalCreateStore(allReducers, initionalState);
+
+	const rootSaga = function* () {
+		yield sagas;
+	};
+
+	sagaMiddleware.run(rootSaga);
+
 	return store;
 }
 
