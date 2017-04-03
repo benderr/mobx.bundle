@@ -3,14 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Ежемесячный платеж за обслуживание</title>
 	<style>
 @media screen and (max-width:640px) {
-	.wrap {padding: 0!important; margin: 0 -20px!important;}
+	body {width: auto; margin: 0; padding: 0;}
+	.logo { margin: 30px 20px !important;}
+	.wrap {padding: 0!important; margin: 0 0px!important;}
 	.wrap>tbody>tr>td, .wrap>tr>td{padding: 0!important;}
 	td[class="text_wrap"] {padding: 20px!important; background: #ffffff!important;}
-	.content_wrap {width: 500px!important;}
+	.content_wrap {width: 95%!important;}
 	.content>tbody>tr>td, .content>tr>td {padding:0!important;}
+	.full_img img {width: 100%!important;height: auto!important;}
 	.title { font-size: 18px!important;}
 	.footer {width: 100%!important;}
 	.fz_s {font-size: 12px!important;}
@@ -18,39 +22,44 @@
 	</style>
 
 </head>
-<body style="background:#ECEEEF;">
+<body style="background:#ECEEEF; min-width: 100%;">
 <table bgcolor="#ECEEEF" align="center" class="wrap" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
 <tr>
-	<td height="30"></td>
+	<td height="30">&nbsp;</td>
 </tr>
 <tr>
 <td>
 
-	<table class="content_wrap" width="640" align="center" cellpadding="0" cellspacing="0" style="background: #fff; border-collapse:collapse; line-height: 100%; border-radius: 3px; box-shadow: 0 1px 2px 0 rgba(0,0,0,.13);">
+	<table class="content_wrap" width="610" align="center" cellpadding="0" cellspacing="0" style="background: #fff; border-collapse:collapse; line-height: 100%; border-radius: 3px; box-shadow: 0 1px 2px 0 #ddd; overflow: hidden; table-layout: fixed;">
 
 		<!-- шапка -->
 		<tr>
 			<td>
-				<div style="margin: 40px 35px 5px;">
-					<img class="logo" src="http://galimov.net/modulbank/email/logo.png" width="180" height="30" alt="ModulBank" style="width:180px; height:30px;">
+				<div class="logo" style="margin: 40px 35px;">
+					<img  src="http://galimov.net/modulbank/email/logo.png" width="180" height="30" alt="ModulBank" style="width:180px; height:30px;">
 				</div>
 			</td>
 		</tr>
 
+
 		<!-- контент -->
 		<tr>
 			<td class="text_wrap" style="padding:30px 35px; color: #2B2B2B; " >
+
+
+
 				<table class="content" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
 					<tr>
 						<td style="font-family:Arial, Tahoma, sans-serif; color: #2B2B2B; font-size: 16px; line-height:1.3em;">
-							
-							<div class="title" style="font-size: 16px; margin-bottom: 10px;">Николай, добрый день!</div>
-							<div style="margin-bottom: 20px;">
+							<div class="title" style="font-size: 16px; margin-bottom: 12px;">Николай, добрый день!</div>
+							<div style="margin-bottom: 12px;">
 								Пришло время оплатить обслуживание, у&nbsp;вас {Оптимальный} тариф&nbsp;за {490} рублей. Оплата списывается первого числа, сейчас не&nbsp;хватает 300&nbsp;рублей. Пожалуйста, пополните счет.
 							</div>
-							<div style="margin-bottom: 50px;"><a href="">Подробнее</a></div>
+							<div style="margin-bottom: 50px;">
+								<a href="" style="color:#00417B!important; text-decoration: underline;"><span style="color:#00417B">Подробнее</span></a>
+							</div>
 							<div>С уважением, <br>Модульбанк</div>
-							
+
 						</td>
 					</tr>
 				</table>
@@ -61,8 +70,6 @@
 
 	</table>
 
-	<div style="font-family:Arial, Tahoma, sans-serif;  text-align: center; font-size: 12px; color: #767778; line-height: 16px; margin: 20px 0 0;">Вы получили это письмо как клиент Модульбанка, но можете отписаться
-	</div>
 
 </td>
 </tr>
