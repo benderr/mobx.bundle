@@ -1,3 +1,3 @@
-import PhoneField1 from './PhoneField';
+import phoneField1 from './phoneField';
 
-export const PhoneField = PhoneField1;
+export const phoneField = phoneField1;

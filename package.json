@@ -41,6 +41,7 @@
     "nib": "^1.1.2",
     "postcss-loader": "^1.1.1",
     "prepush": "^3.1.11",
+    "react-tooltip": "^3.2.10",
     "redux-devtools": "^3.3.1",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.1.1",
