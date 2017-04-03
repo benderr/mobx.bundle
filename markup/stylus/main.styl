@@ -822,6 +822,7 @@ article.page
 	will-change width, max-width
 	opacity 0
 	transform translateX(150px) translateZ(0)
+	
 
 	@media (max-width: 980px)
 		// max-width calc(100% - 45px)
@@ -891,6 +892,17 @@ article.page
 			margin-right 300px
 		.page_content
 			right 300px
+	&.side_right-xwide
+		.page_left
+			right 320px
+			.page_header
+				margin-right 0
+			.page_content
+				right 0
+		.page_header
+			margin-right 320px
+		.page_content
+			right 320px
 
 
 
@@ -1233,6 +1245,8 @@ article.page
 	-webkit-overflow-scrolling touch
 	&.page_side_wide
 		width 300px
+	&.page_side-xwide
+		width 320px
 	.side_sep
 		background cbdlight
 
@@ -1257,6 +1271,26 @@ article.page
 			text-transform none
 	p
 		margin 0 0 5px
+		
+.side_block_services
+	li
+		display flex
+		margin-bottom 7px
+	span
+		margin-right auto
+		overflow hidden
+		text-overflow ellipsis
+	.icon-info
+		margin-left 6px
+		font-size 14px
+		&::before
+			vertical-align -3px
+
+	&-no-wide
+		span
+			margin-right 0
+	
+
 
 .side_parameter
 	margin 30px 0
