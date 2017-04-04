@@ -105,22 +105,37 @@
 				<a class="notes">Получить выписку</a>
 			</div>
 
-
-		</div>
-
-		<div class="account_card account_card_bg">
-			<div class="account_card_details">
-				<div class="card_picture">1234 56** **** 7890</div>
+			<!-- Добавить класс plastic_card_expired если срок действия карты истек -->
+			<div class="account_plastic_card plastic_card_expired">
+				<div class="card_picture"><span>1234 56** **** 7890</span></div>
 				<div class="card_details">
-					<p>Корпоративная карта</p>
-					<p><span>1234 56** **** 7890</span>MC Unibossed</p>
+					<p class="card_details_title">Корпоративная карта</p>
+					<p class="card_details_number_type">
+						<span class="card_number">1234 56** **** 7890</span>
+						<span>MC Unibossed</span>
+					</p>
 					<p><span>ФИО держателя:</span>Иванов Петр Николаевич</p>
 					<p><span>Дата выпуска:</span>01/01/2015</p>
 					<p><span>Срок действия:</span>01/20</p>
 					<p><span>Статус:</span>активная</p>
 				</div>
+				<!-- Отображать, если скоро конец действия карты -->
+<!-- 				<div class="card_expiring  info info_icon icon_top">
+					<p class="main_text">Карта перестанет действовать в конце месяца</p>
+					<a class="button xsmall light">Перевыпустить карту</a>
+				</div>				
+ -->				<!-- Отображать, если срок действия карты истек -->
+				<div class="card_expiring  info info_icon icon_top">
+					<p class="main_text">Срок действия карты истек. Карта заблокирована</p> 
+					<a class="button xsmall light">Перевыпустить карту</a>
+				</div>
+
+
 			</div>
+
+
 		</div>
+
 
 
 		<div class="account_details">
