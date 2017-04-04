@@ -118,6 +118,12 @@
 	padding 25px
 	margin-bottom 30px
 	clearfix()
+	
+.account_card_bg
+	border 1px solid rgba(#000,0.1)
+	box-shadow 0 2px 3px 0 rgba(0,0,0,.07)
+	margin-bottom 36px
+	margin-top -30px
 
 .account_card_money
 	float left
@@ -218,8 +224,17 @@
 		
 .account_card_details
 	width 100%
-	background #fff url("../images/card.jpg") no-repeat
-	background-size 180px 115px
+	.card_picture
+		display inline-block
+		width 180px
+		height 115px
+		vertical-align top
+		background url("../images/card.jpg") no-repeat
+		background-size cover
+		
+	.card_details
+		display inline-block
+		vertical-align top
 
 .account_details_actions
 	float right
