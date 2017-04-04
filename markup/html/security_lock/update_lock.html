@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Открытие счета</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+
+	<script src="js/bootstrap.dropdown.js"></script>
+	<script src="js/init.js"></script>
+	<script src="js/include.js"></script>
+	<script>
+		angular.module('app',['ui.bootstrap']).controller('DropdownCtrl', function ($scope, $log) {});
+	</script>
+</head>
+<body ng-app="app">
+
+<div class="blur">
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+
+<section class="main">
+	<include data-file="aside.html"></include>
+	<include data-file="transaction/transaction.html section>*"></include>
+</section>
+</div>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer popup_update_lock">
+
+				<h3>Модульбанк эволиционирует</h3>
+
+				<p>Мы ведем технические работы <br/>и делаем Модульбанк лучше.</p>
+				<p>Если вы хотите узнать информацию <br/> по платежам или открыть счёт, <br/>закажите обратный звонок.</p>
+
+				<div class="form_buttons">
+					<a class="button light middle">Заказать звонок</a>
+
+					<!-- Поле ввода телефона -->
+					<!-- <div>
+						<div class="input_group col nine">
+							<div class="input_group_addon addon_code ">+7</div>
+							<input type="tel" name="phone" placeholder="Телефон *" id="phone">
+						</div>
+						<a class="button middle col three">Ok</a>
+					</div> -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
