@@ -119,6 +119,77 @@
 	margin-bottom 30px
 	clearfix()
 
+.account_plastic_card
+	background #FFF
+	margin 20px -25px -25px
+	padding 25px
+	padding-bottom 32px
+	width 100%
+	border-top 1px solid cbdlight
+	.card_picture
+		display inline-block
+		width 186px
+		height 122px
+		vertical-align top
+		background url("../images/card.jpg") no-repeat
+		background-size cover
+		span
+			color #FFF
+			display inline-block
+			margin-top 50px
+			margin-left 11px
+			font-size 15px
+			font-weight bold
+			letter-spacing 0.7px
+	.card_details
+		display inline-block
+		vertical-align top
+		margin-left 30px
+		font-size 14px
+		color ctext
+		p
+			margin-bottom 5px
+		span
+			color ctextlight
+			display inline-block
+			width 110px
+			margin-right 10px
+		&_title
+			margin-top -6px
+			margin-bottom 3px !important
+			font-size 18px
+			font-weight 500
+		&_number_type
+			margin-bottom 14px !important
+			.card_number
+				width auto
+				margin-right 25px
+	.card_expiring
+		float right
+		margin 0
+		text-align center
+		i
+			color #9F9C78
+			font-size 24px
+			opacity .5
+			&::before
+				vertical-align 0
+				margin 0
+		.main_text
+			width 196px
+			color ctextlight
+			font-size 13px
+			line-height 18px
+			margin-bottom 16px
+
+.plastic_card_expired
+	.card_picture, .card_details
+		opacity .4
+	.card_picture
+		background url("../images/card_expired.png") no-repeat
+		background-size cover
+
+
 .account_card_money
 	float left
 	font-size 42px
