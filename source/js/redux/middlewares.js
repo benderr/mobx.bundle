@@ -20,7 +20,7 @@ export function getMiddlewares(modules) {
 
 	middlewares.push(sagaMiddleware);
 
-	if (__DEV__) {
+	if (__DEV__ && __LOGGER__) {
 		middlewares.push(logger);
 	}
 

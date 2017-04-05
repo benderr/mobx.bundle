@@ -1,6 +1,7 @@
 import React from 'react'
 import {Provider} from 'react-redux';
 import {ReduxRouter} from 'redux-router';
+import ReactTooltip from 'react-tooltip'
 
 export default class RootContainer extends React.Component {
     static propTypes = {
@@ -13,10 +14,15 @@ export default class RootContainer extends React.Component {
             <Provider store={this.props.store}>
                 <div className="poss">
                     <ReduxRouter routes={this.props.routes}/>
+                    {/*{this.renderServices()}*/}
                     {this.renderDevTools()}
                 </div>
             </Provider>
         );
+    }
+
+    renderServices() {
+        return ( <div><ReactTooltip /></div>);
     }
 
     renderDevTools() {

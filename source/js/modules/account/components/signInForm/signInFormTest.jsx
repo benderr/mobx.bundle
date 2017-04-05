@@ -1,11 +1,11 @@
 import React from 'react';
 import {Field, reduxForm, SubmissionError} from 'redux-form';
-import {phoneField} from 'common/formElements/formComponents'
+import {InputRender, FormGroup} from 'common/formElements/formComponents'
 import {SButton} from 'common/uiElements/uiComponents';
 import {validEmail, isEmpty} from 'common/validators/validators'
 
 const isRequired = (...args) => isEmpty(...args) ? '*' : undefined;
-const isValidEmail = (...args) => !validEmail(...args) ? 'error' : undefined;
+const isValidEmail = (...args) => !validEmail(...args) ? 'invalid email' : undefined;
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
@@ -40,8 +40,10 @@ let SignInForm = props => {
     return (
         <form onSubmit={handleSubmit(submit)}>
             <div className="form">
-                <Field name="email" className="big" label="Email" component={phoneField}
-                       validate={[isRequired, isValidEmail]} onFocus={focus}/>
+                <FormGroup addon="@" >
+                    <Field name="email" className="big" label="Email" component={InputRender}
+                           validate={[isRequired, isValidEmail]} onFocus={focus}/>
+                </FormGroup>
             </div>
             <button disabled={submitting} className="second button" type="submit">Send</button>
         </form> )

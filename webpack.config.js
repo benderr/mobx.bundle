@@ -40,7 +40,8 @@ const plugins = [
 		},
 		__API_URL__: JSON.stringify(config.apiConfig.apiUrl),
 		__DEV__: true,
-		__DEV_TOOLS__: true,
+		__LOGGER__: false,
+		__DEV_TOOLS__: false,
 		__CLIENT__: true,
 		__BASE_PATH__: '/'
 	}),

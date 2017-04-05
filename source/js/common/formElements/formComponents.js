@@ -1,3 +1,4 @@
-import phoneField1 from './phoneField';
+import InputRender from './InputRender';
+import FormGroup from './FormGroup';
 
-export const phoneField = phoneField1;
+export {InputRender, FormGroup};

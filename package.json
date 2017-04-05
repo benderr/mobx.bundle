@@ -66,6 +66,7 @@
     "react-dom": "^15.4.0",
     "react-redux": "^4.4.0",
     "react-router": "^2.0.0",
+    "react-tooltip": "^3.2.10",
     "redux": "^3.3.1",
     "redux-form": "^6.6.0",
     "redux-immutablejs": "0.0.8",
