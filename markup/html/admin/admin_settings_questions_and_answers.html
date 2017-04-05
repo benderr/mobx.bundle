@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin - Вопросы и ответы</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/admin.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+
+
+</head>
+
+<body>
+
+<include data-file="admin/admin_task_list.html header"></include>
+<include data-file="admin/admin_task_list.html section"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a href="#" class="page_close icon-close"></a>
+		<a href="#" class="page_expand icon-fullsize"></a>
+		<h1>Настройки</h1>
+	</div>
+
+	<!-- контент слоя  -->
+	<div class="page_content">
+
+		<div class="tabs tabs_vertical">
+
+			<!-- меню табов -->
+			<div class="tabs_menu">
+				<ul>
+					<li><a href="">Личные данные</a></li>
+					<li><a href="">Агенты</a></li>
+					<li><a href="">База ответов</a></li>
+					<li><a href="">Нормативы SLA</a></li>
+					<li class="active"><a href="">Вопросы и ответы</a></li>
+				</ul>
+			</div>
+
+			<!-- контент табов -->
+			<div class="tabs_content">
+
+				<div class="role_settings">
+
+					<!-- кнопки действий -->
+					<div class="f_right" ng-controller="DropdownCtrl">
+<!-- 						<a href="" class="button second small icon-user-full-add">Пригласить агента</a>
+ -->
+						<div dropdown is-open="status.isopen" auto-close="outsideClick">
+							<a class="button small icon-group-half-add" dropdown-toggle>Добавить вопрос</a>
+					     </div>
+					</div>
+
+					<!-- переключатель отображения -->
+					<div class="switch_group switch_tabs small m_bot_20">
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab1" checked>
+							<label for="tab1">По вопросам</label>
+						</div>
+						<div class="switch_item">
+							<input type="radio" name="12" id="tab2">
+							<label for="tab2">По темам</label>
+						</div>
+					</div>
+
+					<div class="input_search_wrapper">
+						<input type="search" name="" class="input_search small w100" placeholder="Поиск по вопросам">
+					</div>
+
+					<!-- Вопросы и ответы -->
+					<div class="admin_questions_answers">
+						<ul class="questions">
+							<li><a href="">Как узнать свои ИНН?</a></li>
+							<li><a href="">Почему не приходят СМС?</a></li>
+							<li><a href="">Как проверить контрагента?</a></li>
+							<li class="active"><a href="">Что такое индекс доверия?</a></li>
+							<li><a href="">Что влияет на индекс доверия?</a></li>
+							<li><a href="">Как повторить платеж?</a></li>
+							<li><a href="">Как сделать новый платеж?</a></li>
+							<li><a href="">Как сделать перевод между счетами?</a></li>
+							<li><a href="">Как подписать платеж?</a></li>
+							<li><a href="">Как создать платеж в мобильном приложении?</a></li>
+							<li><a href="">Как добавить платеж в "Избранное"?</a></li>
+							<li><a href="">Как сделать платеж на карту физ.лица?</a></li>
+							<li><a href="">Как подгрузить платеж из 1С?</a></li>
+							<li><a href="">Когда платеж поступит в другой банк?</a></li>
+							<li><a href="">Где мне посмотреть историю платежей?</a></li>
+							<li><a href="">Как узнать свои ИНН?</a></li>
+							<li><a href="">Почему не приходят СМС?</a></li>
+							<li><a href="">Как проверить контрагента?</a></li>
+							<li><a href="">Что такое индекс доверия?</a></li>
+							<li><a href="">Что влияет на индекс доверия?</a></li>
+							<li><a href="">Как повторить платеж?</a></li>
+							<li><a href="">Как сделать новый платеж?</a></li>
+							<li><a href="">Как сделать перевод между счетами?</a></li>
+							<li><a href="">Как подписать платеж?</a></li>
+							<li><a href="">Как создать платеж в мобильном приложении?</a></li>
+							<li><a href="">Как добавить платеж в "Избранное"?</a></li>
+							<li><a href="">Как сделать платеж на карту физ.лица?</a></li>
+							<li><a href="">Как подгрузить платеж из 1С?</a></li>
+							<li><a href="">Когда платеж поступит в другой банк?</a></li>
+							<li><a href="">Где мне посмотреть историю платежей?</a></li>
+						</ul>
+						
+						<div class="answer">
+							<div class="answer_header">
+								<a class="button xsmall light">Редактировать</a>
+								<i class="icon-trash-bin"></i>
+							</div>
+							<p class="title">Что такое индекс доверия?</p>
+							<p>Если значение Индекса от&nbsp;1&nbsp;до&nbsp;40, то&nbsp;риск ведения бизнеса с&nbsp;контрагентом минимален.</p>
+							<p>Если значение Индекса от&nbsp;41&nbsp;до&nbsp;70, обратите внимание на&nbsp;срок существования контрагента. Значение индекса в&nbsp;этом диапазоне для новых компаний&nbsp;&mdash; это нормально, т.к. большинство компаний с&nbsp;уставным капиталом в&nbsp;10&nbsp;000 рублей после регистрации попадают именно в&nbsp;этот диапазон. Если&nbsp;же компания существует более года, желательно запросить отчет о&nbsp;контрагенте и&nbsp;проверить, нет&nbsp;ли там отрицательной информации.</p>
+							<p>Если значение Индекса от&nbsp;71&nbsp;до&nbsp;99, то&nbsp;по&nbsp;компании имеется отрицательная информация, рекомендуем запросить отчет о&nbsp;контрагенте.</p>
+						</div>
+					</div>
+
+
+
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+</article>
+
+
+</body>
+</html>
