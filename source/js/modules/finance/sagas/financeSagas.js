@@ -6,7 +6,7 @@ import enums from './../enums/enums.js'
 function* getTransactions(action) {
 	console.log("SAGA!");
 	try {
-		const data = yield call(dataContext.getTransactionsListByThunk, {/*какие нибудь параметры*/});
+		const data = yield call(dataContext.getTransactionsList, {/*какие нибудь параметры*/});
 		yield put({type: enums.TRANSACTIONS.UPDATE_TRANSACTIONS_LIST,
 			payload: {
 				transactionsList: data
