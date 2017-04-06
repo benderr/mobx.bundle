@@ -397,6 +397,23 @@ function init(){
 
 	// });
 
+	$('.js_enter_sms').click(function(){
+		$(this).addClass('disabled')
+		setTimeout(function(){
+		$('.login_content').addClass('anim_enter_sms');
+		},400);
+
+		setTimeout(function(){
+			$('.sms_field input').focus()
+		},700);
+
+		$(".sms_field input").keypress(function(e){
+     	   if(e.keyCode==13){
+     	   	$(this).addClass('loader')
+     	   }
+     	 });
+	})
+
 
 }
 
