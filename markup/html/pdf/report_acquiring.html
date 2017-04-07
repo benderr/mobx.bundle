@@ -6,12 +6,13 @@
 <style>
 	body{background: #fff; font-family: Arial, Tahoma, Verdana; font-size: 11pt; line-height: 1.5;}
 	table{width: 100%;border-spacing: 0;}
-	.report_title{padding: 20pt 0 16pt;}
-	.merchant{padding: 12pt 0; border: 5pt solid #E9E9E9; border-right: none; border-left: none;}
-	.device{padding: 10pt 0 0 30pt;}
+	.report_title{padding: 20pt 0 16pt; border-bottom: 5pt solid #E9E9E9;}
+	.merchant{padding: 20pt 0 14pt; border-bottom: 5pt solid #E9E9E9;}
+	.device{padding: 4pt 0 0 30pt;}
 	.operations td {height: 20pt;}
-	.merchant_total{padding: 22pt 0 36pt;}
-	.merchant_total td {font-size: 12pt;}
+	.merchant_total{padding: 0 0 0 30pt;}
+	.report_total {padding: 22pt 0;}
+	.report_total td{font-size: 12pt;}
 	span{display: inline-block;}
 	td{vertical-align: top; font-size: 10.5pt;}
 	th{border-bottom: 2pt solid #E9E9E9;padding-bottom: 3pt;padding-top: 6pt;}
@@ -51,13 +52,13 @@
 	<thead>
 		<tr>
 			<td class="bold" style="font-size: 12pt;">
-				<span style="width: 140pt;">Название мерчанта:</span>
+				<span style="width: 137pt;">Название мерчанта:</span>
 				<span class="upper">[0017175463] ип гвоздевская ольга сергеевна</span>
 			</td>
 		</tr>
 		<tr>
 			<td class="light" style="padding-bottom: 10pt;">
-				<span style="width: 140pt;">Юридический адрес мерчанта:</span>
+				<span style="width: 137pt;">Юридический адрес мерчанта:</span>
 				<span class="upper">тамбовская обл, некий р-н, алексеевка, ул. школьная, д. 17, кв. 2</span>
 			</td>
 		</tr>
@@ -171,23 +172,24 @@
 						</tr>
 					</tfoot>
 			</table>
+			
+			<!-- Блок не выводится, если Мерчант в отчете только один -->
+			<table class="merchant_total">
+				<tr>
+					<td style="width: 110pt;">Сумма транзакций:</td>
+					<td class="bold">3 156,00 руб.</td>
+				</tr>
+				<tr>
+					<td>Сумма комиссии:</td>
+					<td class="bold">100,00 руб.</td>
+				</tr>
+				<tr>
+					<td>Сумма возмещения:</td>
+					<td class="bold">3 056,00 руб.</td>
+				</tr>
+			</table>
 
 		</td>
-	</tr>
-</table>
-
-<table class="merchant_total">
-	<tr>
-		<td style="width: 125pt;">Сумма транзакций:</td>
-		<td class="bold">3 156,00 руб.</td>
-	</tr>
-	<tr>
-		<td style="">Сумма комиссии:</td>
-		<td class="bold">11,66 руб.</td>
-	</tr>
-	<tr>
-		<td style="">Сумма возмещения:</td>
-		<td class="bold">3 144,34 руб.</td>
 	</tr>
 </table>
 
@@ -198,13 +200,13 @@
 	<thead>
 		<tr>
 			<td class="bold" style="font-size: 12pt;">
-				<span>Название мерчанта:</span>
+				<span style="width: 137pt;">Название мерчанта:</span>
 				<span class="upper">[0017175463] ип петрушкин квинтилиян трофимович</span>
 			</td>
 		</tr>
 		<tr>
 			<td class="light" style="padding-bottom: 10pt;">
-				<span>Юридический адрес мерчанта:</span>
+				<span style="width: 137pt;">Юридический адрес мерчанта:</span>
 				<span class="upper">якутия, некий р-н, оймякон, ул. российская, д. 197, кв. 299</span>
 			</td>
 		</tr>
@@ -272,22 +274,41 @@
 						</tr>
 					</tfoot>
 			</table>
+
+			<!-- Блок не выводится, если Мерчант в отчете только один -->
+			<table class="merchant_total">
+				<tr>
+					<td style="width: 110pt;">Сумма транзакций:</td>
+					<td class="bold">12 427,00 руб.</td>
+				</tr>
+				<tr>
+					<td>Сумма комиссии:</td>
+					<td class="bold">400,00 руб.</td>
+				</tr>
+				<tr>
+					<td>Сумма возмещения:</td>
+					<td class="bold">12 027,00 руб.</td>
+				</tr>
+			</table>
+
 		</td>
 	</tr>
 </table>
 
-<table class="merchant_total">
+
+
+<table class="report_total">
 	<tr>
 		<td style="width: 125pt;">Сумма транзакций:</td>
-		<td class="bold">12 427,00 руб.</td>
+		<td class="bold">15 583,00 руб.</td>
 	</tr>
 	<tr>
 		<td style="">Сумма комиссии:</td>
-		<td class="bold">1 100,00 руб.</td>
+		<td class="bold">1 583,00 руб.</td>
 	</tr>
 	<tr>
 		<td style="">Сумма возмещения:</td>
-		<td class="bold">11 327,00 руб.</td>
+		<td class="bold">14 000,00 руб.</td>
 	</tr>
 </table>
 
