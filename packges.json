@@ -1,0 +1,12 @@
+{
+  "name": "Modulbank.Design",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-server-livereload": "^1.9.2",
+    "gulp-stylus": "^2.6.0",
+    "nib": "^1.1.2",
+    "run-sequence": "^1.2.2"
+  }
+}
