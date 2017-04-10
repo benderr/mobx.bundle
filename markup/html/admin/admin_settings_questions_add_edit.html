@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Добавить вопрос</title>
+	<link rel="stylesheet" href="../../css/admin.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.18/angular-sanitize.js"></script>
+	<script src="../js/bootstrap.dropdown.js"></script>
+	<script src="../js/init.js"></script>
+</head>
+<body ng-app="app">
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer small">
+				<a href="" class="popup_close icon-close"></a>
+				<h1>Добавить вопрос</h1>
+				<div class="form_group">
+					<button type="button" class="ms-choice" tabindex="-1">
+						<span class="placeholder">Тема</span>
+						<span style="display: none;"></span>
+					</button>
+				</div>
+
+				<div class="form_group">
+					<input type="text" name="" id="" class="w100" placeholder="Текст вопроса">
+				</div>
+				<!-- Варианты вопросов (изначально не отображается) -->
+				<div class="form_group">
+					<input type="text" name="" id="" class="w100" placeholder="Вариант 2">
+					<a class="input_delete" style=""><i class="icon-trash-bin"></i></a>
+				</div>
+				<div class="form_group">
+					<input type="text" name="" id="" class="w100" placeholder="Вариант 3">
+					<a class="input_delete" style=""><i class="icon-trash-bin"></i></a>
+				</div>
+
+
+				<div class="form_group">
+					<a href="" class="link icon-plus">Вариант написания вопроса</a>
+				</div>
+				<div class="form_group">
+					<textarea name="" id="" class="w100 textarea_big" placeholder="Текст ответа"></textarea>
+				</div>
+				<div class="form_group">
+					<a href="" class="link icon-plus">Вариант ответа (мобилка)</a>
+				</div>
+				<div class="form_group">
+					<textarea name="" id="" class="w100 textarea_big" placeholder="Вариант ответа (мобилка) - изначально не отображается"></textarea>
+				</div>
+				<div class="popup_panel">
+					<a class="button second">Сохранить</a>
+					<a class="button_clean">Отмена</a>
+				</div>
+			</div>
+			<div class="popup_backdrop"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
