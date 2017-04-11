@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     function getTransactionsByThunk() {
         const asyncGet = () => {
             return dispatch => {
-                financeDataContext.getTransactionsListByThunk()
+                financeDataContext.getTransactionsList()
                     .then((res)=> {
                         dispatch(actions.updateTransactionsList(res));
                     });

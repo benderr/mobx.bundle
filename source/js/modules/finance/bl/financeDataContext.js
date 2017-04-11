@@ -3,7 +3,7 @@ import q from 'q';
 
 var dataContext = {
 
-	getTransactionsListByThunk: ()=> {
+	getTransactionsList: ()=> {
 		var deferr = q.defer();
 
 		setTimeout(()=>{
