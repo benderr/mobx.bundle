@@ -1,5 +1,5 @@
 import React from 'react';
-import {testAction, testAsync, testSetter} from '../actions/app';
+//import {testAction, testAsync, testSetter} from '../actions/app';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 
@@ -80,8 +80,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        testAsync: bindActionCreators(testAsync, dispatch),
-        testAction: bindActionCreators(testAction, dispatch),
-        testSetter: bindActionCreators(testSetter, dispatch)
+        // testAsync: bindActionCreators(testAsync, dispatch),
+        // testAction: bindActionCreators(testAction, dispatch),
+        // testSetter: bindActionCreators(testSetter, dispatch)
     }
 }

@@ -1,4 +1,4 @@
-import * as AccountModule1 from './account/index'
+import * as AccountModule1 from './account/accountModule'
 import * as TestSelector1 from './testSelectors/index'
 import * as FinanceModule1 from './finance/index'
 

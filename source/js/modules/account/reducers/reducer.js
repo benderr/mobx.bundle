@@ -1,43 +1,55 @@
 import {Map} from 'immutable';
-import enums from '../enums/enums'
+import {LOGIN, LOGIN_CANCEL, LOGOUT} from '../enums/actions'
 
 export const initialState = Map({
-	counter: 0,
-	asyncLoading: false,
-	asyncError: null,
-	asyncData: null,
+	loading: false,
+	authError: null,
+	authData: null
 });
 
 
 export const actionHandlers = {
-	[enums.ACTIONS.TEST_ACTION]: (state) => {
 
-		const counter = state.get('counter') + 1;
-
+	[LOGIN.REQUEST]: (state) => {
 		return state.merge({
-			counter,
+			loading: true,
+			authError: null,
+			authData: null
 		});
 	},
 
-	// Async action
-	[enums.ACTIONS.TEST_ASYNC_ACTION_START]: (state) => {
+	[LOGIN.SUCCESS]: (state, action) => {
 		return state.merge({
-			asyncLoading: true,
-			asyncError: null,
+			loading: false,
+			authError: null,
+			authData: action.response
 		});
 	},
-	[enums.ACTIONS.TEST_ASYNC_ACTION_ERROR]: (state, action) => {
+
+	[LOGIN.FAILURE]: (state, action) => {
 		return state.merge({
-			asyncLoading: false,
-			asyncError: action.data,
+			loading: false,
+			authError: action.error,
+			authData: null
 		});
 	},
-	[enums.ACTIONS.TEST_ASYNC_ACTION_SUCCESS]: (state, action) => {
+
+	[LOGOUT]: (state, action) => {
 		return state.merge({
-			asyncLoading: false,
-			asyncData: action.data,
+			loading: false,
+			authError: null,
+			authData: null
 		});
 	},
+
+	[LOGIN_CANCEL]: (state, action) => {
+		return state.merge({
+			loading: false,
+			authError: null,
+			authData: null
+		});
+	}
+
 };
 
 export default (createReducer) => createReducer(initialState, actionHandlers);

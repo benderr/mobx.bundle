@@ -3,7 +3,7 @@ import ReactTooltip from 'react-tooltip'
 import {showErrorBorder, showSuccessBorder, getErrorMessage, ifCondition} from './formFieldHelpers'
 
 let id = 1;
-export default ({input, label, className, meta: {touched, error, warning, active, dirty, valid, visited, submitFailed}}) => {
+export default ({input, label, className, type, meta: {touched, error, warning, active, dirty, valid, visited, submitFailed}}) => {
 
 	const highlightError = showErrorBorder({valid, error, active, visited, submitFailed});
 	const highlightSuccess = showSuccessBorder({valid, visited, error, active});
@@ -23,10 +23,11 @@ export default ({input, label, className, meta: {touched, error, warning, active
 	const showErrorMessage = getTooltipError() != null;
 
 	return (
-		<div>
+		<div className="w100">
 			<input {...input}
 				   className={className + additionalClassName}
-				   type="text" placeholder={label}
+				   placeholder={label}
+				   type={type}
 				   {...tooltip} />
 			{showErrorMessage && <ReactTooltip id={tooltipId} getContent={[getTooltipError, 400]}/>}
 		</div>

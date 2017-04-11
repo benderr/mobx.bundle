@@ -1,144 +1,146 @@
 /* global XMLHttpRequest, ActiveXObject */
 
-import Q from 'q'
-import config from 'config'
-import http from 'core/http/http'
-export  default api;
+//import Q from 'q'
+//import config from 'config'
+//import {Http} from './http'
 
-function api() {
-    let beacon = sendBeacon;
-    if (__CLIENT__ && 'sendBeacon' in navigator) {
-        beacon = navigator.sendBeacon;
-    }
+function createApi(http) {
+	//let beacon = sendBeacon;
+	// if (__CLIENT__ && 'sendBeacon' in navigator) {
+	//     beacon = navigator.sendBeacon;
+	// }
 
-    let httpMixin = {
-        http(method, url, params, options) {
-            return http.http(normalizeHttpOptions(method, url, params, options));
-        },
-        beacon(url, params) {
-            var blob = new Blob([JSON.stringify(params)], {
-                type: 'application/json; charset=UTF-8'
-            });
-            return Q(beacon(url, blob)).then(
-                function (result) {
-                    return Q.resolve(result);
-                },
-                function (error) {
-                    return Q.reject(error);
-                }
-            );
-        }
-    };
 
-    httpMixin = ['get', 'post', 'put', 'patch', 'delete', 'options'].reduce(bindHttpShortCut, httpMixin);
+	let httpMixin = {
+		http(method, url, params, options) {
+			return http.http(normalizeHttpOptions(method, url, params, options));
+		},
+		// beacon(url, params) {
+		//     var blob = new Blob([JSON.stringify(params)], {
+		//         type: 'application/json; charset=UTF-8'
+		//     });
+		//     return Q(beacon(url, blob)).then(
+		//         function (result) {
+		//             return Q.resolve(result);
+		//         },
+		//         function (error) {
+		//             return Q.reject(error);
+		//         }
+		//     );
+		// }
+	};
 
-    const api = createResourse(getResourceProto());
-    api.generatePath = function () {
-        return config.apiConfig.apiUrl;
-    };
+	httpMixin = ['get', 'post', 'put', 'patch', 'delete', 'options'].reduce(bindHttpShortCut, httpMixin);
 
-    return api;
+	const api = createResourse(getResourceProto());
+	api.generatePath = function () {
+		return __API_URL__;
+	};
 
-    function getResourceProto() {
-        return {
-            http: httpMixin,
+	return api;
 
-            getResource(resourseName){
-                return function resourseFactory(id) {
-                    return this[normalizeResourceName(resourseName)](id);
-                }.bind(this);
-            },
+	function getResourceProto() {
+		return {
+			http: httpMixin,
 
-            addResource:addResource
-        };
-    }
+			getResource(resourseName){
+				return function resourseFactory(id) {
+					return this[normalizeResourceName(resourseName)](id);
+				}.bind(this);
+			},
 
-    function addResource(name) {
-        var parentResource = this;
-        var methodName = normalizeResourceName(name);
+			addResource: addResource
+		};
+	}
 
-        parentResource['$$prto'][methodName] = resource;
+	function addResource(name) {
+		var parentResource = this;
+		var methodName = normalizeResourceName(name);
 
-        var resourceProto = getResourceProto();
+		parentResource['$$prto'][methodName] = resource;
 
-        return resource();
+		var resourceProto = getResourceProto();
 
-        function resource(id) {
-            var parentResource = this;
-            var res = createResourse(resourceProto);
-            res.generatePath = createGeneratePathFunc(parentResource, res, id);
-            createRestApiFor(res);
-            return res;
-        }
+		return resource();
 
-        function createGeneratePathFunc(parentResource, curentResource, id) {
-            return function generatePath(endPoint) {
-                var path = [];
+		function resource(id) {
+			var parentResource = this;
+			var res = createResourse(resourceProto);
+			res.generatePath = createGeneratePathFunc(parentResource, res, id);
+			createRestApiFor(res);
+			return res;
+		}
 
-                if (parentResource.generatePath) {
-                    path.push(parentResource.generatePath());
-                }
+		function createGeneratePathFunc(parentResource, curentResource, id) {
+			return function generatePath(endPoint) {
+				var path = [];
 
-                path.push(name);
+				if (parentResource.generatePath) {
+					path.push(parentResource.generatePath());
+				}
 
-                if (id) {
-                    path.push(id);
-                }
+				path.push(name);
 
-                if (endPoint) {
-                    path.push(endPoint);
-                }
+				if (id) {
+					path.push(id);
+				}
 
-                return path.join('/');
-            }.bind(curentResource);
-        }
+				if (endPoint) {
+					path.push(endPoint);
+				}
 
-        /**
-         * Добавляет к объекту resource методы 'get', 'post', 'put', 'patch'
-         * @param resource - расширяемый объект
-         */
-        function createRestApiFor(resource) {
-            //  создаем в resource методы .get, .post и т.п.
-            ['get', 'post', 'put', 'patch', 'delete', 'options', 'beacon'].reduce(bindApiRestResourceShortCut, resource);
+				return path.join('/');
+			}.bind(curentResource);
+		}
 
-            function bindApiRestResourceShortCut(api, method) {
-                api[method] = apiRestResourceShortCut;
-                return api;
+		/**
+		 * Добавляет к объекту resource методы 'get', 'post', 'put', 'patch'
+		 * @param resource - расширяемый объект
+		 */
+		function createRestApiFor(resource) {
+			//  создаем в resource методы .get, .post и т.п.
+			['get', 'post', 'put', 'patch', 'delete', 'options', 'beacon'].reduce(bindApiRestResourceShortCut, resource);
 
-                function apiRestResourceShortCut(params, options) {
-                    return resource.http[method](resource.generatePath(), params, options);
-                }
-            }
-        }
-    }
+			function bindApiRestResourceShortCut(api, method) {
+				api[method] = apiRestResourceShortCut;
+				return api;
 
-    function sendBeacon(url, params) {
-        httpMixin.http('POST', url, params, {});
-        return true;
-    }
+				function apiRestResourceShortCut(params, options) {
+					return resource.http[method](resource.generatePath(), params, options);
+				}
+			}
+		}
+	}
+
+	// function sendBeacon(url, params) {
+	//     httpMixin.http('POST', url, params, {});
+	//     return true;
+	// }
 }
 
 function createResourse(resourseProto) {
-    var resourse = Object.create(resourseProto);
-    resourse['$$prto'] = resourseProto;
-    resourse.addResource = resourse.addResource.bind(resourse);
-    return resourse;
+	var resourse = Object.create(resourseProto);
+	resourse['$$prto'] = resourseProto;
+	resourse.addResource = resourse.addResource.bind(resourse);
+	return resourse;
 }
 
 function normalizeResourceName(name) {
-    return name.replace(/-([a-zA-Z])/ig, (str, p1)=>p1.toUpperCase());
+	return name.replace(/-([a-zA-Z])/ig, (str, p1) => p1.toUpperCase());
 }
 
 function normalizeHttpOptions(method, url, params, options) {
-    return {url: url, data: params, method: method, ...options};
+	return {url: url, data: params, method: method, ...options};
 }
 
 function bindHttpShortCut(httpMixin, method) {
-    httpMixin[method] = httpShortCut;
-    return httpMixin;
+	httpMixin[method] = httpShortCut;
+	return httpMixin;
 
-    function httpShortCut(url, params, options) {
-        return httpMixin.http(method, url, params || null, options || null);
-    }
+	function httpShortCut(url, params, options) {
+		return httpMixin.http(method, url, params || null, options || null);
+	}
 }
+
+export {createApi};
 

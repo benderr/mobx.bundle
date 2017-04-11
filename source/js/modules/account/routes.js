@@ -1,7 +1,6 @@
-import {ROUTES} from './enums/enums'
+import {ROUTES} from './enums/routes'
 import SignInContainer from './containers/SignInContainer';
 import ExternalLayout from 'components/ExternalLayout.jsx'
-import InternalLayout from 'components/InternalLayout.jsx'
 import React from 'react';
 import {Route} from 'react-router';
 

@@ -10,8 +10,6 @@ const mountNode = document.getElementById('root');
 
 const {store, routes}= configureRedux(modules, {});
 
-
-
 render(<RootContainer store={store} routes={routes}></RootContainer>, mountNode);
 
 
