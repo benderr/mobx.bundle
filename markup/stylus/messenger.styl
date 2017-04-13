@@ -48,14 +48,7 @@
 			.file_upload_list
 				max-height calc(100vh - 40px - 42px - 455px)
 				min-height 100px
-			
-			// Вирт. ассистент - вопрос-ответ
-			.answers_for_questions
-				background wheat
-				a
-					color cl2
 				
-
 
 		.icon-arrow-up
 			&:before
@@ -520,7 +513,20 @@
 	.add_buttons
 		width 15%
 		margin-left 1%
-
+	.answers_for_questions
+		position absolute
+		background #fff
+		padding 8px 10px 12px 0
+		bottom 100%
+		width 100%
+		box-sizing border-box
+		a
+			display inline-block
+			color cl2
+			margin-left 15px
+			padding 2px 0
+		&.w93
+			width 93%
 
 
 	.add_message_tabs
