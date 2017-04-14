@@ -8,7 +8,7 @@ class InternalLayout extends React.Component {
         const css = {
             position: 'static'
         };
-        const profileName = this.props.authData ? this.props.authData.get('token'):'NULL';
+        const profileName = this.props.authData ? this.props.authData.get('token') : 'NULL';
 
         return (
             <div className="poss">
