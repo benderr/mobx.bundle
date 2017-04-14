@@ -1,15 +1,19 @@
-import {ROUTES} from './enums/routes'
 import SignInContainer from './containers/SignInContainer';
-import ExternalLayout from 'components/ExternalLayout.jsx'
 import React from 'react';
-import {Route} from 'react-router';
+import ExternalLayout from 'components/ExternalLayout'
 
 export function getRoutes() {
-	return (
-		<div>
-			<Route component={ExternalLayout}>
-				<Route path={ ROUTES.SIGN_IN } component={SignInContainer}/>
-			</Route>
-		</div>
-	);
+	return [
+		{
+			path: 'signin',
+			component: ExternalLayout,
+			indexRoute: {component: SignInContainer},
+			// childRoutes: [
+			// 	{
+			// 		path: 'test/:id',
+			// 		component: ExternalLayout,
+			// 		indexRoute: {component: SignInContainer},
+			// 	}]
+		}
+	];
 }

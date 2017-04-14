@@ -1,15 +1,28 @@
 import React from 'react';
-import {Route, Link} from 'react-router';
-import {TEST_SELECTOR, TEST_SELECTOR_CHILD} from './enums/routes'
-import TransactionsContainer from './containers/TransactionsContainer'
-import InternalLayout from 'components/InternalLayout.jsx'
+//import {Route} from 'react-router';
+import TransactionsContainer,{TransactionsContainer2} from './containers/TransactionsContainer'
+import InternalLayout from 'components/InternalLayout'
 
 export function getRoutes() {
-	return (
-		<Route component={InternalLayout}>
-			<Route path={ '/' } />
-			<Route path={ TEST_SELECTOR } component={ TransactionsContainer }/>
-			<Route path={ TEST_SELECTOR_CHILD } component={ TransactionsContainer }/>
-		</Route>
-	);
+	return [
+		{
+			path: '/',
+			component: InternalLayout,
+			indexRoute: {component: TransactionsContainer}
+		},
+		{
+			path: 'list-example',
+			component: InternalLayout,
+			indexRoute: {component: TransactionsContainer},
+		},
+		{
+			path: 'list-example2',
+			component: InternalLayout,
+			indexRoute: {component: TransactionsContainer},
+			childRoutes: [
+				{
+					path: 'second',
+					component: TransactionsContainer2
+				}]
+		}]
 }

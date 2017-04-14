@@ -4,7 +4,7 @@ import api from 'infrastructure/api/api'
 /**
  * Авторизация
  * @param email
- * @param password
+ * @param pass
  * @returns {*|axios.Promise}
  */
 function login(email, pass) {
