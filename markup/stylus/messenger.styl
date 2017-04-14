@@ -410,29 +410,30 @@
 		padding-left 0
 		color ctextlight
 
-	.add_new_task_for_message
+	.action_for_message
 		position absolute
 		top 50%
 		right 0
-		margin -15px 0 0
 		a
 			display inline-block
+			float right
 			border-radius 100px
 			background cseparator
-			font-size 24px
+			font-size 18px
 			text-align center
-			line-height 54px
-			width 50px
-			height 50px
+			line-height 22px
+			width 24px
+			height 24px
 			color #fff
 			transition background .2s, opacity .2s, transform .2s
 			opacity 0
 			transform scale(.5)
-			&:before
-				margin 0
-				min-width 0
+			text-decoration none
+			font-weight fwb
+			margin 0 0 0 6px
 			&:hover
 				background @background - 5%
+
 		&.show
 			a
 				transform scale(1)

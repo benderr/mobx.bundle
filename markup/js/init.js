@@ -169,7 +169,7 @@ function init(){
 
 
 	$( ".message" ).click(function() {
-		$( ".add_new_task_for_message" ).addClass('show');
+		$( ".action_for_message" ).addClass('show');
 	});
 
 	$( ".header_search .drop-target" ).click(function() {
