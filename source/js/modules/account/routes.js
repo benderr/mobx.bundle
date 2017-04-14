@@ -7,7 +7,8 @@ export function getRoutes() {
 		{
 			path: 'signin',
 			component: ExternalLayout,
-			indexRoute: {component: SignInContainer},
+			indexRoute: {component: SignInContainer, allowAnonymous: true},
+			allowAnonymous: true
 			// childRoutes: [
 			// 	{
 			// 		path: 'test/:id',

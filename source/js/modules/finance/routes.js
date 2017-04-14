@@ -11,6 +11,9 @@ export function getRoutes() {
 	return [{
 		path: 'finance',
 		component: InternalLayout,
+		onEnter:(...args)=>{
+			console.log(args);
+		},
 		indexRoute: {component: TransactionsList}
 	}]
 }

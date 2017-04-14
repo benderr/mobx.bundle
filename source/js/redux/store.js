@@ -19,14 +19,13 @@ export default function createStore({middleware, reducers, routes, initionalStat
 	//finalCreateStore = reduxReactRouter({routes, createHistory})(finalCreateStore);
 	//finalCreateStore = compose(middleware)(finalCreateStore);
 
-
 	let finalCreateStore = compose(
 		...middleware
 	)(_createStore);
 
 	const store = finalCreateStore(allReducers, initionalState);
 
-	const rootSaga = function* () {
+	const rootSaga = function*() {
 		yield sagas;
 	};
 

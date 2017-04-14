@@ -1,19 +1,11 @@
 import React from 'react';
 
-var TransactionsListItem = React.createClass({
-    clickOnItem: ()=> {
+class TransactionsListItem extends React.Component {
+    clickOnItem() {
         alert("test success!");
-    },
-    getInitialState: ()=>{
-        return {
-            testStateObj1: "hello",
-            testStateObj2: {
-                id: 1,
-                name: "Тимур"
-            }
-        }
-    },
-    render: function () {
+    }
+
+    render() {
         var item = this.props.item;
 
         return (<div className="table_list_row row_link">
@@ -52,6 +44,6 @@ var TransactionsListItem = React.createClass({
             <div className="clear"></div>
         </div>);
     }
-});
+}
 
 export default TransactionsListItem

@@ -4,7 +4,6 @@ import React from 'react';
 const ExternalLayout = (props) => {
     return (
         <div className="reg">
-            <div>{new Date().getTime()}</div>
             {props.children}
         </div>
     );

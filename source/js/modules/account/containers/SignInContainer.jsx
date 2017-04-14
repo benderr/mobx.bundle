@@ -1,6 +1,5 @@
 import React from 'react';
 import SignInForm from '../components/signInForm/signInFormTest'
-import {Link} from 'react-router';
 
 const SignInContainer = props => {
     return (
@@ -12,13 +11,6 @@ const SignInContainer = props => {
             <div className="reg_section">
                 <div className="reg_article">
                     <SignInForm></SignInForm>
-                    <Link to="/signin">
-                        signin
-                    </Link>
-                    <br/>
-                    <Link to="/signin/test/1">
-                        test
-                    </Link>
                 </div>
             </div>
         </div>
