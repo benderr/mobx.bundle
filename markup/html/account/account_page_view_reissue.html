@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Перевыпуск карты (ввод адреса)</title>
+	<base href="../../"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="aside.html"></include>
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+
+<article class="page open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Перевыпуск карты</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content  account_card_reissue">
+		<p class="afterwords">В марте истекает срок действия карты ****1234. Чтобы получить новую карту, <br>напишите адрес для доставки. Мы привезем ее через пять дней после выпуска.</p>
+	
+		<div class="address_form">
+			<p class="recipient">Получатель: <span>Иванов Иван Иванович</span></p>
+			<p class="additional_info">Курьер привезет карту на этот адрес. Если хотите, поменяйте адрес на другой:</p>
+	
+			<div class="form_group  form_horizontal">
+				<div class="input_group_title  col  three">
+					<div class="input_title">Индекс</div>
+					<input type="text" class="small  w100">
+				</div>
+	
+				<div class="input_group_title  col  nine">
+					<div class="input_title">Город</div>
+					<input type="text" class="small  w100">
+				</div>
+				
+			</div>
+	
+			<div class="form_group  form_horizontal">
+	
+				<div class="input_group_title  col  eight">
+					<div class="input_title">Улица</div>
+					<input type="text" class="small  w100">
+				</div>
+				
+				<div class="input_group_title  col  two">
+					<div class="input_title">№ дома</div>
+					<input type="text" class="small  w100">
+				</div>
+				
+				<div class="input_group_title  col  two">
+					<div class="input_title">№ офиса/кв</div>
+					<input type="text" class="small  w100">
+				</div>
+				
+			</div>
+	
+			<!-- 1-й вариант поля тел. -->
+			<div class="form_group  form_horizontal">
+				<div class="input_group  w55">
+					<p>Контактный телефон</p>
+					<div class="input_group_addon  addon_code">+7</div>
+					<input type="tel" name="phone" placeholder="" id="phone">
+				</div>
+			</div>
+	
+			<!-- 2-й вариант поля тел. -->
+			<!-- <div class="form_group  form_horizontal">
+				<div class="input_group  w50">
+					<p>Контактный телефон</p>
+					<input type="tel" name="phone" id="phone">
+				</div>
+			</div> -->
+		
+		</div>
+	
+		<a class="button  middle">Перевыпустить карту</a>
+	
+	</div>
+
+</article>
+
+</body>
+</html>
