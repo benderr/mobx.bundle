@@ -1,5 +1,3 @@
-const basePath = '/';
-
 export default {
 	TRANSACTIONS: {
 		GET_TRANSACTION_BY_SAGA: 'TRANSACTIONS.GET_TRANSACTION_BY_SAGA', //Получить список через Saga
@@ -7,9 +5,4 @@ export default {
 		UPDATE_TRANSACTIONS_LIST: 'TRANSACTIONS.UPDATE_TRANSACTIONS_LIST', //Обновить список транзакций
 		REPEAT: 'TRANSACTIONS.REPEAT' //Повтор транзакции
 	}
-};
-
-export const ROUTES = {
-	FINANCE: `${ basePath }finance`,
-	HOME: basePath
 };

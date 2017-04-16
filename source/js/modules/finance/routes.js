@@ -1,13 +1,19 @@
-import {ROUTES} from './enums/enums'
 import TransactionsList from './components/TransactionsList/TransactionsList.jsx';
-import ExternalLayout from 'components/ExternalLayout.jsx'
+import InternalLayout from 'components/InternalLayout'
 import React from 'react';
-import {Route, Link} from 'react-router';
 
 export function getRoutes() {
-	return (
-		<Route onlyAnonymous component={ExternalLayout}>
-			<Route path={ ROUTES.FINANCE } component={ TransactionsList }/>
-		</Route>
-	);
+	// return (
+	// 	<Route onlyAnonymous component={ExternalLayout}>
+	// 		<Route path={ ROUTES.FINANCE } component={ TransactionsList }/>
+	// 	</Route>
+	// );
+	return [{
+		path: 'finance',
+		component: InternalLayout,
+		onEnter:(...args)=>{
+			console.log(args);
+		},
+		indexRoute: {component: TransactionsList}
+	}]
 }

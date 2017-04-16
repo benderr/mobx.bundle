@@ -4,7 +4,7 @@ import TransactionItem from './TransactionItem';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {setFilter, setCompleted} from '../../actions/transactionActions';
-import {createSelectors} from './transactionSelectors';
+import {createSelectors} from '../../selectors/transactionSelectors';
 
 const mapDispatchToProps = (dispatch) => ({
     setFilter: bindActionCreators(setFilter, dispatch),

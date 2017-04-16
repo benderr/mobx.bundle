@@ -1,10 +1,10 @@
 import {createReducer} from 'redux-immutablejs'
-import {routerStateReducer} from 'redux-router';
+import {routerReducer} from 'react-router-redux'
 import {reducer as formReducer} from 'redux-form'
 
 export default function getReducers(modules) {
 	const reducers = {
-		router: routerStateReducer,
+		routing: routerReducer,
 		form: formReducer //все формы будут хранится тут
 	};
 	return modules

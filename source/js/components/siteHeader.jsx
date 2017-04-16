@@ -1,13 +1,20 @@
 import React from 'react';
-import {IndexLink, Link} from 'react-router';
+import {Link} from 'react-router';
+import {logOut} from 'modules/account/actions/loginActions'
+import {connect} from 'react-redux';
 
-export  default () => {
+const Header = props => {
+    const {dispatch} = props;
+    const _logOut = () => {
+        dispatch(logOut())
+    };
+
     return (
         <header>
             <div className="header_logo">
-                <IndexLink to="/">
+                <Link to="/">
                     Модульбанк
-                </IndexLink>
+                </Link>
             </div>
 
             <div className="header_search">
@@ -20,15 +27,17 @@ export  default () => {
             <div className="header_menu free_items">
                 <div className="header_menu_inner">
                     <ul>
-                        <li className="active"><IndexLink to="/test-selector"><span>Деньги</span></IndexLink></li>
-                        <li><Link to="/list-example">Пример списка</Link></li>
+                        <li className="active"><Link to="/list-example"><span>Sel1</span></Link></li>
+                        <li><Link to="/list-example2">Sel1</Link></li>
+                        <li><Link to="/list-example2/second">Sel3</Link></li>
+                        <li><Link to="/finance">Fin</Link></li>
                     </ul>
                 </div>
             </div>
 
             <div className="header_profile">
                 <div className="header_profile_name">
-                    <a href="#" className="icon-profile drop-target" data-theme="drop_profile">ООО «Хлебзавод №5»</a>
+                    <a href="#" className="icon-profile drop-target" data-theme="drop_profile">{props.name}</a>
                     <div className="drop-content">
                         <div className="drop-content-inner">
                             <ul className="drop-menu">
@@ -47,10 +56,12 @@ export  default () => {
                 </div>
 
                 <div className="header_profile_logout">
-                    <Link to="/signin"  className="icon-logout"></Link>
+                    <a onClick={_logOut} className="icon-logout"></a>
                 </div>
             </div>
         </header>
     );
 };
 
+export default connect()(Header);
+//export default Header;

@@ -5,6 +5,7 @@ import TransactionsListIem from './../TransactionsListItem/TransactionsListItem.
 import actions from './../../actions/transactionsActions.js';
 import financeDataContext from './../../bl/financeDataContext.js';
 import {bindActionCreators} from 'redux';
+import {Link} from 'react-router';
 
 function mapStateToProps(state) {
     return {
@@ -22,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
         const asyncGet = () => {
             return dispatch => {
                 financeDataContext.getTransactionsList()
-                    .then((res)=> {
+                    .then((res) => {
                         dispatch(actions.updateTransactionsList(res));
                     });
             }
@@ -35,7 +36,13 @@ const mapDispatchToProps = (dispatch) => {
 var TransactionsList = (props) => {
     var listArr = props.listArr ? props.listArr : [];
     return (
-        <InternalLayout>
+        <div>
+            <ul>
+                <li className="active"><Link to="/list-example"><span>Sel1</span></Link></li>
+                <li><Link to="/list-example2">Sel1</Link></li>
+                <li><Link to="/list-example2/second">Sel3</Link></li>
+                <li><Link to="/finance">Fin</Link></li>
+            </ul>
             <div className="table_list table_list_big transaction_list transaction_list_usn widget_block">
 
                 <div className="table_list_body">
@@ -69,7 +76,8 @@ var TransactionsList = (props) => {
 
                 </div>
             </div>
-        </InternalLayout>);
+        </div>
+    );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionsList)

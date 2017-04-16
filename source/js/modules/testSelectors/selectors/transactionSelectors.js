@@ -32,7 +32,6 @@ export const createSelectors = () => {
 
 	const getTotalSum = createSelector([getVisibleValues],
 		(visibleValues) => {
-			console.log('recalc');
 			return visibleValues.reduce((prev, cur) => {
 				return prev + cur;
 			}, 0)
