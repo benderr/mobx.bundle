@@ -1,57 +1,51 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import actions from './../../actions/transactionsActions.js';
+import {bindActionCreators} from 'redux';
 
-var TransactionsListItem = React.createClass({
-    clickOnItem: ()=> {
-        alert("test success!");
-    },
-    getInitialState: ()=>{
-        return {
-            testStateObj1: "hello",
-            testStateObj2: {
-                id: 1,
-                name: "Тимур"
-            }
-        }
-    },
-    render: function () {
-        var item = this.props.item;
-
-        return (<div className="table_list_row row_link">
-
-            <div className="table_list_cell name" onClick={this.clickOnItem}>
-                <div className="contragent">{item.name}</div>
-                <div className="status info_label_success">{item.status}</div>
-                <div className="purpose">{item.paymentPurpose}</div>
-            </div>
-
-            <div className="table_list_cell summ">
-                <span className="money_expense">{item.amount} <span className="cur rur"><span>р.</span></span></span>
-                <div className="account">Расчетный счет</div>
-            </div>
-
-            <div className="table_list_cell action">
-                <a className="icon-reload"></a>
-            </div>
-
-            <div className="table_list_cell check">
-
-            </div>
-
-            <div className="section_action_panel">
-                <div className="selected">
-                    <span className="light_text">Выбрано платежей:</span>
-                    <strong>2</strong> на сумму <strong>34 847,00 <span className="cur rur">р.</span></strong>
-                </div>
-                <div className="action_panel_buttons">
-                    <a className="icon-payment">Оплатить</a>
-                    <a className="icon-pencil">Редактировать</a>
-                    <a className="icon-cancel-doc">Отменить</a>
-                    <a className="icon-trash-bin">Удалить</a>
-                </div>
-            </div>
-            <div className="clear"></div>
-        </div>);
+function mapStateToProps(state) {
+    return {
+        transactionIsLoading: state.account.get('loading')
     }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+    clickOnItem: clickOnItem,
+    repeatTransaction: bindActionCreators(actions.repeatTransaction, dispatch)
 });
 
-export default TransactionsListItem
+function clickOnItem() {
+
+}
+
+var TransactionsListItem = (props) => {
+
+    var item = props.item;
+
+    return (<div className="table_list_row row_link" className={props.transactionIsLoading}>
+
+        <div className="table_list_cell name" onClick={() => props.clickOnItem()}>
+            <div className="contragent">{item.name}</div>
+            <div className="status info_label_success">{item.status}</div>
+            <div className="purpose">{item.paymentPurpose}</div>
+        </div>
+
+        <div className="table_list_cell summ">
+            <span className="money_expense">{item.amount} <span className="cur rur"><span>р.</span></span></span>
+            <div className="account">Расчетный счет</div>
+        </div>
+
+        <div className="table_list_cell action">
+            <a className="icon-reload" onClick={() => props.repeatTransaction(item.id)}></a>
+        </div>
+
+        <div className="table_list_cell check">
+
+        </div>
+
+        <div className="clear"></div>
+    </div>);
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TransactionsListItem)

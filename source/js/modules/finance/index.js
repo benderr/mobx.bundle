@@ -1,7 +1,7 @@
 import * as financeReducers from './reducers/reducers'
 import * as routes  from './routes.js'
 import logger from './middlewares/financeLogger'
-import {mySaga} from './sagas/financeSagas.js';
+import financeSaga from './sagas/financeSagas.js';
 
 export function getReducers(createReducer) {
 	return {
@@ -19,7 +19,7 @@ export function getRoutes() {
 }
 
 export function getSagas() {
-	return [mySaga()]
+	return [financeSaga()]
 }
 
 export function init() {

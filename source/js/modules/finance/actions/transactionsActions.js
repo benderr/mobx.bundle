@@ -18,6 +18,12 @@ var transactionsActions = {
 				transactionsList: data
 			}
 		};
+	},
+	repeatTransaction: (id)=>{
+		return {
+			type: enums.TRANSACTIONS.REPEAT,
+			id: id
+		};
 	}
 };
 
