@@ -13,13 +13,14 @@ function* getTransactions(action) {
 			}
 		});
 	} catch (e) {
-		//yield put({type: "USER_FETCH_FAILED", message: e.message});
+		console.log("get Transaction Error");
 	}
 }
 
 function* repeatTransaction(action) {
 	try {
-		yield put({type: "asd"})
+		//Запуск лоадера
+		yield put({type: enums.TRANSACTIONS.SHOW_LOADER_ON_CURRENT, id: action.id})
 		yield delay(2000);
 		yield put({type: "asd"})
 

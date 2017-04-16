@@ -46,6 +46,6 @@ var TransactionsListItem = (props) => {
         <div className="clear"></div>
     </div>);
 
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(TransactionsListItem)
