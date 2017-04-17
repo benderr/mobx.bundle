@@ -63,11 +63,11 @@ function addAllowAnonymousHook(route, store) {
 		const state = store.getState();
 		if (!isAuthenticate(state) && !route.allowAnonymous) {
 			//console.log('redirect');
-			// replace({
-			// 	pathname: 'signin',
-			// 	query: {...nextState.location.query, backPathname: nextState.location.pathname}
-			// });
-			replace('/signin')
+			replace({
+				pathname: 'signin',
+				query: {...nextState.location.query, backPathname: nextState.location.pathname}
+			});
+			//replace('/signin')
 		}
 		if (originOnEnter) {
 			originOnEnter.call(route);

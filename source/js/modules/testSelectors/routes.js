@@ -18,11 +18,11 @@ export function getRoutes() {
 		{
 			path: 'list-example2',
 			component: InternalLayout,
-			//indexRoute: {component: TransactionsContainer},
+			indexRoute: {component: TransactionsContainer},
 			childRoutes: [
 				{
 					path: 'second',
-					components: {layer: TransactionsContainer2}
+					components: {layer: TransactionsContainer2, main: TransactionsContainer}
 				}]
 		}]
 }

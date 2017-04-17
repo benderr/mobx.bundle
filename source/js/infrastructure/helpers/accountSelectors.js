@@ -1,12 +1,23 @@
 import {createSelector} from 'reselect';
 import {Map, List} from 'immutable';
 
-var xTokenKey = 'X-TOKEN';
+const xTokenKey = 'X-TOKEN';
 
-export const getToken = (state) => {
-	return localStorage.getItem(xTokenKey);
+export const getProfile = (state) => {
+	//return localStorage.getItem(xTokenKey);
+	return state.account.get('authData');
 };
 
-export const isAuthenticate = createSelector([getToken], (token) => {
-	return !!token;
+export const isAuthenticate = createSelector([getProfile], (profile) => {
+	return profile && profile.get('token') != null;
 });
+
+// import {createSelector} from 'reselect'
+//
+// export const getProfile = (state) => {
+// 	return state.account.get('authData');
+// };
+//
+// export const isAuthenticate = createSelector([getProfile], (profile) => {
+// 	return profile && profile.get('token') != null;
+// });

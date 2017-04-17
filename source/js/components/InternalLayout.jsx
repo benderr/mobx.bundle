@@ -15,7 +15,7 @@ class InternalLayout extends React.Component {
                 <SiteHeader name={profileName}/>
                 <section className="main">
                     <div className="section_content" style={css}>
-                        {this.props.children}
+                        {this.props.children || this.props.main}
                     </div>
                 </section>
                 {
@@ -24,7 +24,7 @@ class InternalLayout extends React.Component {
 
                         <div className="page_left">
 
-                            <div class="page_header">
+                            <div className="page_header">
                                 <a className="page_close icon-close"></a>
                                 <a className="page_expand icon-fullsize"></a>
                                 <h1>
@@ -33,7 +33,7 @@ class InternalLayout extends React.Component {
 
                             </div>
 
-                            <div class="page_content">
+                            <div className="page_content">
                                 {this.props.layer}
                             </div>
                         </div>
