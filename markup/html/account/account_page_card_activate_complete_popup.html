@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Активация карты</title>
+	<base href="../../"/>
 	<link rel="stylesheet" href="../css/style.css">
 
 	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
@@ -78,16 +79,10 @@
 <div class="popup_overlay" >
 	<div class="popup_table">
 		<div class="popup_cell">
-			<div class="popup_layer  card_activate">
-				<a href="" class="popup_close icon-close"></a>
-				<p class="title">Для активации карты  введите ее номер</p>
-				<input type="text" placeholder="0000">
-				<input type="text" placeholder="0000">
-				<input type="text" placeholder="0000">
-				<input type="text" placeholder="4509" class="last4digits" disabled>
-				<!-- Ошибка полей -->
-				<!-- <div class="form_error">Некорректный номер карты.  <br>Попробуйте еще раз или <a>напишите нам</a>.</div> -->
-				<div class="disclaimer">Вводя номер карты, я, Иванов Иван Иванович, <a>подтверждаю получение</a> корпоративной карты на ООО «Строительные технологии»</div>
+			<div class="popup_layer  card_activate  card_activate_complete">
+				<i class="icon-check"></i>
+				<p class="title">Заявка на активацию карты отправлена!</p>
+				<div class="form_buttons"><a class="button white middle  wide">Закрыть</a></div>
 			</div>
 			<div class="popup_backdrop"></div>
 		</div>
