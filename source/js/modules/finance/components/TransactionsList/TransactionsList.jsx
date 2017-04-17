@@ -37,12 +37,6 @@ var TransactionsList = (props) => {
     var listArr = props.listArr ? props.listArr : [];
     return (
         <div>
-            <ul>
-                <li className="active"><Link to="/list-example"><span>Sel1</span></Link></li>
-                <li><Link to="/list-example2">Sel1</Link></li>
-                <li><Link to="/list-example2/second">Sel3</Link></li>
-                <li><Link to="/finance">Fin</Link></li>
-            </ul>
             <div className="table_list table_list_big transaction_list transaction_list_usn widget_block">
 
                 <div className="table_list_body">

@@ -18,7 +18,29 @@ class InternalLayout extends React.Component {
                         {this.props.children}
                     </div>
                 </section>
+                {
+                    this.props.layer &&
+                    <article className="page  side_right open">
+
+                        <div className="page_left">
+
+                            <div class="page_header">
+                                <a className="page_close icon-close"></a>
+                                <a className="page_expand icon-fullsize"></a>
+                                <h1>
+                                    Платежное требование №1
+                                </h1>
+
+                            </div>
+
+                            <div class="page_content">
+                                {this.props.layer}
+                            </div>
+                        </div>
+                    </article>
+                }
             </div>
+
         );
     }
 }
