@@ -5083,3 +5083,122 @@ article.page.page_faq
  // Сохранение в избранном при создании платежа
  .payment_save_favorite
 	margin 20px 0 15px
+	
+
+// Перевыпуск карты
+.account_card_reissue
+	padding 30px 70px
+	.address_form
+		background cgrey03
+		padding 22px 30px
+		margin 20px 0 35px
+		border-top 1px solid cgrey09
+		border-bottom 1px solid cgrey09
+		.additional_info
+			margin-bottom 14px
+			font-size 15px
+		.recipient
+			font-size 18px
+			margin-bottom 14px
+			span
+				font-weight fwm
+		.input_title
+			font-size 12px
+		.input_group
+			align-items center
+			p
+				flex 1 0 auto
+				margin-right 6%
+				color ctextlight
+
+// Заявка направлена в банк
+.card_request
+	width 555px
+	margin 20px auto
+	text-align center
+	padding-top 110px
+	background url(../images/icon_wait_card.svg) no-repeat 50% 0
+	&_title
+		font-size 18px
+		font-weight fwm
+		margin-bottom 6px
+	&_text
+		font-size 14px
+		color cgrey72
+
+// Активация карты
+.popup_layer.card_activate
+	width 430px
+	height 274px
+	border-radius 20px
+	padding 60px 30px 30px
+	box-shadow 4px 4px 0 rgba(45,70,104,0.2)
+	background url(../images/mc_logo.png) no-repeat calc(100% - 16px) calc(100% - 26px), linear-gradient(60deg, #2A72AE, #2CBDCA)
+	background-size  59px auto, 100%
+	.popup_close
+		color #FFF
+	.title
+		color #FFF
+		font-weight fwm
+	.disclaimer
+		color rgba(255,255,255,.72)
+		font-size fzn - 4
+		position absolute
+		bottom 26px
+		left 30px
+		right 100px
+		a
+			color inherit
+	input
+		width 76px
+		border 1px solid #fff
+		border-radius 2px
+		font-size 22px
+		margin-right 12px
+		padding 0 12px
+		background rgba(255,255,255,.15)
+		box-shadow none
+		color #FFF
+		text-align center
+		&.error
+			color ctexterror
+		&::-webkit-input-placeholder
+			color #fff
+			opacity 0.3
+			font-weight normal
+		&::-moz-placeholder
+			color #fff
+			opacity 0.3
+		&:-ms-input-placeholder
+			color #fff
+			opacity 0.3
+			
+		&.last4digits
+			border 1px solid transparent
+			&::-webkit-input-placeholder
+				opacity 1
+			&::-moz-placeholder
+				opacity 1
+			&:-ms-input-placeholder
+				opacity 1
+	.form_error
+		color #FFD9D9
+		font-size 12px
+		a
+			color inherit
+	&_complete
+		text-align center
+		padding-top 35px
+		.form_buttons
+			margin-top 40px
+		.icon-check
+			color #FFF
+			font-size 100px
+			line-height 1
+
+
+
+
+
+
+
