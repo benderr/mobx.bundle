@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import InternalLayout from 'components/InternalLayout';
-import TransactionsListIem from './../TransactionsListItem/TransactionsListItem.jsx';
+import TransactionsListItem from './../TransactionsListItem/TransactionsListItem.jsx';
 import actions from './../../actions/transactionsActions.js';
 import financeDataContext from './../../bl/financeDataContext.js';
 import {bindActionCreators} from 'redux';
@@ -56,7 +56,7 @@ var TransactionsList = (props) => {
                     </div>
 
                     {listArr.map(function (object, i) {
-                        return <TransactionsListIem item={object} key={i}></TransactionsListIem>;
+                        return <TransactionsListItem item={object} key={i}></TransactionsListItem>;
                     })}
 
                     <div className="table_row_info">

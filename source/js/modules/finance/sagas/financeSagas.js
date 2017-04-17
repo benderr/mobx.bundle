@@ -1,24 +1,45 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import {call, put, take, fork, takeEvery} from 'redux-saga/effects'
+import {delay} from 'redux-saga'
 import dataContext from './../bl/financeDataContext.js'
 import enums from './../enums/enums.js'
 
-// worker Saga: будет запускаться на экшены типа `USER_FETCH_REQUESTED`
 function* getTransactions(action) {
-	console.log("SAGA!");
 	try {
 		const data = yield call(dataContext.getTransactionsList, {/*какие нибудь параметры*/});
-		yield put({type: enums.TRANSACTIONS.UPDATE_TRANSACTIONS_LIST,
+		yield put({
+			type: enums.TRANSACTIONS.UPDATE_TRANSACTIONS_LIST,
 			payload: {
 				transactionsList: data
 			}
 		});
 	} catch (e) {
-		//yield put({type: "USER_FETCH_FAILED", message: e.message});
+		console.log("get Transaction Error");
 	}
 }
 
-function* mySaga() {
+function* repeatTransaction(action) {
+	try {
+		//Запуск лоадера
+		yield put({type: enums.TRANSACTIONS.SHOW_LOADER_ON_CURRENT, id: action.id})
+		yield delay(2000);
+		yield put({type: "asd"})
+
+	} catch (e) {
+
+	}
+}
+
+function* watchTransactionRequest() {
 	yield takeEvery(enums.TRANSACTIONS.GET_TRANSACTION_BY_SAGA, getTransactions);
 }
 
-export {mySaga};
+export function* watchRepeatTransaction() {
+	yield takeEvery(enums.TRANSACTIONS.REPEAT, repeatTransaction)
+}
+
+export default function*() {
+	yield [
+		fork(watchTransactionRequest),
+		fork(watchRepeatTransaction)
+	]
+}
