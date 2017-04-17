@@ -7,6 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
 var WebpackChunkHash = require('webpack-chunk-hash');
+var OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const autoprefixer = require('autoprefixer');
 
@@ -24,6 +25,7 @@ const paths = {
 
 // Common plugins
 const plugins = [
+
 	new WebpackChunkHash(),
 	new webpack.optimize.CommonsChunkPlugin({
 		name: ["vendor", "manifest"],
@@ -67,8 +69,9 @@ const plugins = [
 				preferPathResolver: 'webpack',
 			},
 			context: sourcePath,
-		},
-	})
+		}
+	}),
+	new OpenBrowserPlugin({url: config.apiConfig.url})
 ];
 
 // Common rules

@@ -1,5 +1,6 @@
 module.exports = {
 	apiConfig: {
-		apiUrl: 'http://react.modulbank.ru/api'
+		url: 'http://react.modulbank.ru',
+		apiUrl: '/api'
 	}
 }
