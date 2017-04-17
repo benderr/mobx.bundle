@@ -1,6 +1,6 @@
 import React from 'react';
 //import {Route} from 'react-router';
-import TransactionsContainer,{TransactionsContainer2} from './containers/TransactionsContainer'
+import TransactionsContainer, {TransactionsContainer2} from './containers/TransactionsContainer'
 import InternalLayout from 'components/InternalLayout'
 
 export function getRoutes() {
@@ -12,17 +12,17 @@ export function getRoutes() {
 		},
 		{
 			path: 'list-example',
-			component: InternalLayout,
-			indexRoute: {component: TransactionsContainer},
+			components: {layer: TransactionsContainer2}
+			//indexRoute: {},
 		},
 		{
 			path: 'list-example2',
 			component: InternalLayout,
-			indexRoute: {component: TransactionsContainer},
+			//indexRoute: {component: TransactionsContainer},
 			childRoutes: [
 				{
 					path: 'second',
-					component: TransactionsContainer2
+					components: {layer: TransactionsContainer2}
 				}]
 		}]
 }
