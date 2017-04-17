@@ -18,6 +18,10 @@ export const actionHandlers = {
 	[enums.TRANSACTIONS.UPDATE_TRANSACTIONS_LIST]: (state, action) => {
 		console.log(action);
 		return state.set('transactionsList', action.payload.transactionsList);
+	},
+	[enums.TRANSACTIONS.SHOW_LOADER_ON_CURRENT]: (state, action) => {
+		console.log(action);
+		return state.transactionsList.set('loader', true);
 	}
 };
 export default (createReducer) => createReducer(initialState, actionHandlers);

@@ -8,7 +8,3 @@ export const FinanceModule = FinanceModule1;
 
 
 export default [AccountModule, TestSelector, FinanceModule];
-
-
-
-
