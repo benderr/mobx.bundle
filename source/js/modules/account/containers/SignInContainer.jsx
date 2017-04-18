@@ -27,7 +27,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);
 
 
 function mapStateToProps(state, ownProps) {
-    console.log(ownProps.location);
     return {
         loading: state.auth.get('loading'),
         errors: state.auth.get('authError'),

@@ -66,7 +66,7 @@ function addAllowAnonymousHook(route, store) {
 
 	route.onEnter = function (nextState, replace, cb) {
 		if (!route.allowAnonymous) {
-			validateProfile()
+			validateProfile(store)
 				.then(finish)
 				.catch(() => {
 					replace({
@@ -79,7 +79,7 @@ function addAllowAnonymousHook(route, store) {
 			finish();
 		}
 
-		function validateProfile() {
+		function validateProfile(store) {
 			return new Promise((resolve, reject) => {
 				const profileState = checkProfile(store.getState());
 				if (profileState == 'ok') {
@@ -100,64 +100,20 @@ function addAllowAnonymousHook(route, store) {
 					});
 				}
 			});
-
 		}
 
 		function finish() {
-			if (originOnEnter) {
-				originOnEnter.call(route);
+			try {
+				if (originOnEnter) {
+					originOnEnter.call(route);
+				}
+				cb();
+			} catch (er) {
+				console.error('LOCATION_CHANGE_ERROR', er);
 			}
-			cb();
 		}
 	}
 }
-
-// /**
-//  * Проверка состояния приложения
-//  * @param route
-//  * @param store
-//  */
-// function addInitHook(route, store) {
-// 	const originOnEnter = route.onEnter;
-//
-// 	route.onEnter = function (nextState, replace, callback) {
-// 		const state = store.getState();
-// 		// if (!isAuthenticate(state) && !route.allowAnonymous) {
-// 		// 	//console.log('redirect');
-// 		// 	replace({
-// 		// 		pathname: 'signin',
-// 		// 		query: {...nextState.location.query, backPathname: nextState.location.pathname}
-// 		// 	});
-// 		// 	//replace('/signin')
-// 		// }
-// 		console.log('start enter');
-// 		if (originOnEnter) {
-// 			originOnEnter.call(route);
-// 		}
-//
-// 		// store.dispatch({type:'ACCOUNT.ACTUALIZE_PROFILE'}).then(() => {
-// 		// 	console.log('HELLO');
-// 		// })
-//
-// 		store.subscribe(() => {
-//
-// 		});
-//
-// 		return new Promise((resolve, reject) => {
-// 			setTimeout(() => {
-// 				resolve();
-// 			}, 0)
-// 		}).then(() => {
-// 			console.log('end enter');
-// 			callback();
-// 		}).catch(err => {
-// 			console.error(err);
-// 			callback();
-// 		})
-//
-//
-// 	}
-// }
 
 export function makeRouteHooksSafe(routes) {
 	return (store) => makeHooksSafe(routes, store);

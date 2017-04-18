@@ -53,11 +53,9 @@ function* actualizeProfile() {
 		let profile = yield select(getProfile);
 		if (profile == null) {
 			const token = yield call(localStorage.getItem, xToken);
-			console.log('token', token);
 			if (token) {
 				yield put(loginInfo.request());
 				const profile = yield call(dataContext.loginInfo, token);
-				console.log('profile', profile);
 				yield put(loginInfo.success(profile));
 			} else {
 				yield put(loginInfo.failure('null token'));

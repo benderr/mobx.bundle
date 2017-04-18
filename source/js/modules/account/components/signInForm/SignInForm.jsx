@@ -11,7 +11,6 @@ const isValidEmail = (text) => (...args) => !validEmail(...args) ? text : undefi
 // export const asyncValidate = (values, dispatch, props, blurredField) => {
 //     return sleep(1000) // имитация серверного ответа
 //         .then(() => {
-//             console.log(blurredField);
 //             // if (!values.email) {
 //             //     // для асинхронной валидации нужно бросить объект с ошибкой
 //             //     throw {email: 'Поле обязательно для заполнения!'}
@@ -33,7 +32,6 @@ let SignInForm = props => {
         login(email, password, redirectUrl);
     };
 
-    console.log(redirectUrl);
     return (
         <form onSubmit={handleSubmit(submit)}>
             <div className="form">
