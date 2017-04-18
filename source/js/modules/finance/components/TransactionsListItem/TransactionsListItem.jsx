@@ -5,7 +5,7 @@ import {bindActionCreators} from 'redux';
 
 function mapStateToProps(state) {
     return {
-        transactionIsLoading: state.account.get('loading')
+        transactionIsLoading: false
     }
 }
 
@@ -22,7 +22,7 @@ var TransactionsListItem = (props) => {
 
     var item = props.item;
 
-    return (<div className="table_list_row row_link" className={props.transactionIsLoading}>
+    return (<div className="table_list_row row_link">
 
         <div className="table_list_cell name" onClick={() => props.clickOnItem()}>
             <div className="contragent">{item.name}</div>

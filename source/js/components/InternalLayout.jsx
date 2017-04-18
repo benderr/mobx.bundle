@@ -1,6 +1,7 @@
 import React from 'react';
 import SiteHeader from 'components/siteHeader';
 import {connect} from 'react-redux';
+import {getProfile} from 'modules/account/selectors/accountSelectors'
 
 //Шаблон для анонимных страниц
 class InternalLayout extends React.Component {
@@ -8,37 +9,16 @@ class InternalLayout extends React.Component {
         const css = {
             position: 'static'
         };
-        const profileName = this.props.authData ? this.props.authData.get('token') : 'NULL';
+        const profileName = this.props.lastName + ' ' + this.props.firstName;
 
         return (
             <div className="poss">
                 <SiteHeader name={profileName}/>
                 <section className="main">
                     <div className="section_content" style={css}>
-                        {this.props.children || this.props.main}
+                        {this.props.children}
                     </div>
                 </section>
-                {
-                    this.props.layer &&
-                    <article className="page  side_right open">
-
-                        <div className="page_left">
-
-                            <div className="page_header">
-                                <a className="page_close icon-close"></a>
-                                <a className="page_expand icon-fullsize"></a>
-                                <h1>
-                                    Платежное требование №1
-                                </h1>
-
-                            </div>
-
-                            <div className="page_content">
-                                {this.props.layer}
-                            </div>
-                        </div>
-                    </article>
-                }
             </div>
 
         );
@@ -48,9 +28,9 @@ class InternalLayout extends React.Component {
 export default connect(mapStateToProps)(InternalLayout)
 
 function mapStateToProps(state) {
+    const profile = getProfile(state);
     return {
-        loading: state.account.get('loading'),
-        authError: state.account.get('authError'),
-        authData: state.account.get('authData')
+        lastName: profile.get('lastName'),
+        firstName: profile.get('firstName')
     }
 }

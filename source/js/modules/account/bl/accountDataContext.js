@@ -14,4 +14,13 @@ function login(email, pass) {
 	}).then((response) => mapper.toClientLogin(response.data));
 }
 
-export {login}
+/**
+ * Получение профиля
+ * @returns {Promise.<{firstName, lastName}>|*|axios.Promise|Thenable<{firstName, lastName}>|Promise<{firstName, lastName}>}
+ */
+function loginInfo() {
+	return api.account().logininfo()
+		.get().then((response) => mapper.toClientLoginInfo(response.data));
+}
+
+export {login, loginInfo}

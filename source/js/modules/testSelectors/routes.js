@@ -7,13 +7,12 @@ export function getRoutes() {
 	return [
 		{
 			path: '/',
-			component: InternalLayout,
-			indexRoute: {component: TransactionsContainer}
+			component: InternalLayout
 		},
 		{
 			path: 'list-example',
-			components: {layer: TransactionsContainer2}
-			//indexRoute: {},
+			component: InternalLayout,
+			indexRoute: {component: TransactionsContainer2},
 		},
 		{
 			path: 'list-example2',
@@ -22,7 +21,7 @@ export function getRoutes() {
 			childRoutes: [
 				{
 					path: 'second',
-					components: {layer: TransactionsContainer2, main: TransactionsContainer}
+					component: TransactionsContainer2
 				}]
 		}]
 }

@@ -1,4 +1,6 @@
-import {isAuthenticate} from 'infrastructure/helpers/accountSelectors'
+//import {isAuthenticate} from 'infrastructure/helpers/accountSelectors'
+import {checkProfile} from 'modules/account/selectors/accountSelectors'
+// import {checkProfileValid} from 'modules/account/actions/loginActions'
 
 // Wrap the hooks so they don't fire if they're called before
 // the store is initialised. This only happens when doing the first
@@ -8,28 +10,31 @@ export function makeHooksSafe(routes, store) {
 		return routes.map((route) => makeHooksSafe(route, store));
 	}
 
-	addAllowAnonymousHook(routes, store)
+	addAllowAnonymousHook(routes, store);
 
 	if (routes.onlyAnonymous) {
-		addOnlyAnonymousHook(routes, store)
+		//addOnlyAnonymousHook(routes, store)
 	}
 
-	const onEnter = routes.onEnter;
+	//addInitHook(routes, store);
 
-	if (onEnter) {
-		routes.onEnter = (...args) => {
-			try {
-				store.getState();
-			} catch (err) {
-				if (onEnter.length === 3) {
-					args[2]();
-				}
-				return;
-			}
-
-			onEnter.apply(null, args);
-		};
-	}
+	//todo сомнительный код, не понятно для чего тут
+	//const onEnter = routes.onEnter;
+	// if (onEnter) {
+	// 	routes.onEnter = (...args) => {
+	// 		try {
+	// 			store.getState();
+	// 		} catch (err) {
+	// 			if (onEnter.length === 3) {
+	// 				args[2]();
+	// 			}
+	// 			return;
+	// 			console.error(err);
+	// 		}
+	//
+	// 		onEnter.apply(null, args);
+	// 	};
+	// }
 
 	if (routes.childRoutes) {
 		makeHooksSafe(routes.childRoutes, store);
@@ -47,12 +52,12 @@ function addOnlyAnonymousHook(routes, store) {
 
 	routes.onEnter = function (nextState, redirect) {
 		const state = store.getState();
-		if (isAuthenticate(state)) {
-			redirect('/');
-		}
-		if (originOnEnter) {
-			originOnEnter.call(routes);
-		}
+		// if (isAuthenticate(state)) {
+		// 	redirect('/');
+		// }
+		// if (originOnEnter) {
+		// 	originOnEnter.call(routes);
+		// }
 	}
 }
 
@@ -60,20 +65,99 @@ function addAllowAnonymousHook(route, store) {
 	const originOnEnter = route.onEnter;
 
 	route.onEnter = function (nextState, replace, cb) {
-		const state = store.getState();
-		if (!isAuthenticate(state) && !route.allowAnonymous) {
-			//console.log('redirect');
-			replace({
-				pathname: 'signin',
-				query: {...nextState.location.query, backPathname: nextState.location.pathname}
-			});
-			//replace('/signin')
+		if (!route.allowAnonymous) {
+			validateProfile()
+				.then(finish)
+				.catch(() => {
+					replace({
+						pathname: 'signin',
+						query: {...nextState.location.query, redirectUrl: nextState.location.pathname}
+					});
+					finish();
+				});
+		} else {
+			finish();
 		}
-		if (originOnEnter) {
-			originOnEnter.call(route);
+
+		function validateProfile() {
+			return new Promise((resolve, reject) => {
+				const profileState = checkProfile(store.getState());
+				if (profileState == 'ok') {
+					resolve();
+				} else if (profileState == 'error') {
+					reject();
+				}
+				else {
+					const unsubscribe = store.subscribe(() => {
+						const profileState = checkProfile(store.getState());
+						if (profileState == 'ok') {
+							unsubscribe();
+							resolve();
+						} else if (profileState == 'error') {
+							unsubscribe();
+							reject();
+						}
+					});
+				}
+			});
+
+		}
+
+		function finish() {
+			if (originOnEnter) {
+				originOnEnter.call(route);
+			}
+			cb();
 		}
 	}
 }
+
+// /**
+//  * Проверка состояния приложения
+//  * @param route
+//  * @param store
+//  */
+// function addInitHook(route, store) {
+// 	const originOnEnter = route.onEnter;
+//
+// 	route.onEnter = function (nextState, replace, callback) {
+// 		const state = store.getState();
+// 		// if (!isAuthenticate(state) && !route.allowAnonymous) {
+// 		// 	//console.log('redirect');
+// 		// 	replace({
+// 		// 		pathname: 'signin',
+// 		// 		query: {...nextState.location.query, backPathname: nextState.location.pathname}
+// 		// 	});
+// 		// 	//replace('/signin')
+// 		// }
+// 		console.log('start enter');
+// 		if (originOnEnter) {
+// 			originOnEnter.call(route);
+// 		}
+//
+// 		// store.dispatch({type:'ACCOUNT.ACTUALIZE_PROFILE'}).then(() => {
+// 		// 	console.log('HELLO');
+// 		// })
+//
+// 		store.subscribe(() => {
+//
+// 		});
+//
+// 		return new Promise((resolve, reject) => {
+// 			setTimeout(() => {
+// 				resolve();
+// 			}, 0)
+// 		}).then(() => {
+// 			console.log('end enter');
+// 			callback();
+// 		}).catch(err => {
+// 			console.error(err);
+// 			callback();
+// 		})
+//
+//
+// 	}
+// }
 
 export function makeRouteHooksSafe(routes) {
 	return (store) => makeHooksSafe(routes, store);

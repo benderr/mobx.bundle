@@ -20,13 +20,6 @@ export default function storageFactory(storage) {
 
 		removeItem(key){
 			storage.removeItem(key);
-		},
-
-		setItemWithKey(key){
-			return (value) => {
-				let strValue = typeof value === 'string' ? value : JSON.stringify(value);
-				storage.setItem(key, strValue);
-			}
 		}
 	}
 }

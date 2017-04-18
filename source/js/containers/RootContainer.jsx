@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // import TransactionsContainer from 'modules/testSelectors/containers/TransactionsContainer'
 // import TransactionsList from 'modules/finance/components/TransactionsList/TransactionsList';
 // import SignInContainer from 'modules/account/containers/SignInContainer'
-// import InternalLayout from 'components/InternalLayout'
+import InternalLayout from 'components/InternalLayout'
 // import ExternalLayout from 'components/ExternalLayout'
 
 export default class RootContainer extends React.Component {
@@ -17,12 +17,14 @@ export default class RootContainer extends React.Component {
     };
 
     render() {
-        const ss=PropTypes;
         const history = syncHistoryWithStore(browserHistory, this.props.store);
         return (
             <Provider store={this.props.store}>
                 <div>
-                    <Router history={history} routes={this.props.routes} />
+                    <Router history={history} routes={this.props.routes}/>
+                    {/*<Router history={history} >*/}
+                        {/*<Route path='/' component={InternalLayout} onEnter={(a,b,cb)=>{}}> </Route>*/}
+                    {/*</Router>*/}
                     {this.renderDevTools()}
                 </div>
             </Provider>

@@ -1,7 +1,12 @@
 import React from 'react';
-import SignInForm from '../components/signInForm/signInFormTest'
+import SignInForm from '../components/signInForm/SignInForm'
+import {connect} from 'react-redux';
+import {login} from '../actions/loginActions'
+import {bindActionCreators} from 'redux';
+
 
 const SignInContainer = props => {
+    const {loading, login, redirectUrl}=props;
     return (
         <div className="wrap login">
             <div className="reg_header">
@@ -10,7 +15,7 @@ const SignInContainer = props => {
             </div>
             <div className="reg_section">
                 <div className="reg_article">
-                    <SignInForm></SignInForm>
+                    <SignInForm login={login} redirectUrl={redirectUrl} loading={loading}></SignInForm>
                 </div>
             </div>
         </div>
@@ -18,4 +23,20 @@ const SignInContainer = props => {
 };
 
 
-export default SignInContainer
+export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);
+
+
+function mapStateToProps(state, ownProps) {
+    console.log(ownProps.location);
+    return {
+        loading: state.auth.get('loading'),
+        errors: state.auth.get('authError'),
+        redirectUrl: ownProps.location.query && ownProps.location.query.redirectUrl || null
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        login: bindActionCreators(login.request, dispatch)
+    }
+}
