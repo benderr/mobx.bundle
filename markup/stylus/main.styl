@@ -1028,6 +1028,10 @@ article.page
 		height auto
 		padding-bottom 23px
 
+	// Если сайдбар ниже шапки
+	&.page_header__full ~ .page_side
+		top 80px
+
 	h1
 		display inline-block
 		margin 0 30px 0 40px
@@ -1170,7 +1174,6 @@ article.page
 		display inline-block
 		margin-top -3px
 		vertical-align -5px
-
 
 
 @media screen and (-webkit-min-device-pixel-ratio:0)
@@ -5083,7 +5086,7 @@ article.page.page_faq
  // Сохранение в избранном при создании платежа
  .payment_save_favorite
 	margin 20px 0 15px
-	
+
 
 // Перевыпуск карты
 .account_card_reissue
@@ -5172,7 +5175,7 @@ article.page.page_faq
 		&:-ms-input-placeholder
 			color #fff
 			opacity 0.3
-			
+
 		&.last4digits
 			border 1px solid transparent
 			&::-webkit-input-placeholder
