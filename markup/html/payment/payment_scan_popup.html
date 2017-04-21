@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dashboard</title>
+	<base href="../../"/>
+	<link rel="stylesheet" href="css/style.css">
+
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="header.html"></include>
+<include data-file="transaction/transaction.html section.main"></include>
+<include data-file="payment/payment_page_new.html article"></include>
+
+<div class="popup_overlay" >
+	<div class="popup_table">
+		<div class="popup_cell">
+			<div class="popup_layer popup_payment_scan">
+				<a href="" class="popup_close icon-close"></a>
+				<div class="payment_scan_header ">
+					<div class="payment_scan_icon">
+						<div class="scanner"></div>
+					</div>
+					<div class="title">Разпознавание...</div>
+					<div class="title_success">Платежка заполнена</div>
+				</div>
+				<div class="payment_scan_content">
+					<h2>Распознование счетов по фото</h2>
+					<p>Загрузите фото счета на оплату и мы <br/>заполним платежку за вас</p>
+					<div class="form_buttons">
+						<a class="button full button_file_upload" data-load><input type="file" name="" id="">Выбрать файл</a>
+					</div>
+				</div>
+
+			</div>
+			<div class="popup_backdrop"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

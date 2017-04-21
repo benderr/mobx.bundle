@@ -397,6 +397,7 @@ function init(){
 
 	// });
 
+	// форма входа
 	$('.js_enter_sms').click(function(){
 		$(this).addClass('disabled')
 		setTimeout(function(){
@@ -412,7 +413,24 @@ function init(){
      	   	$(this).addClass('loader')
      	   }
      	 });
-	})
+	});
+
+	// распознавание текста
+	$('.popup_payment_scan a[data-load]').click(function(){
+		setTimeout(function(){
+			$('.popup_payment_scan').addClass('load')
+		}, 1500);
+
+		setTimeout(function(){
+			$('.popup_payment_scan').addClass('success')
+		}, 6000);
+
+		setTimeout(function(){
+			$('.popup_overlay').fadeOut('slow')
+		}, 7500);
+
+	});
+
 
 
 }
