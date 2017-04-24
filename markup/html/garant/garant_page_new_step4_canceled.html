@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Шаг 4 - ожидание</title>
+	<title>Шаг 4 - отмена</title>
 	<base href="../../"/>
 
 	<link rel="stylesheet" href="css/style_garant.css">
@@ -36,25 +36,24 @@
 		<h1>Заявка на банковскую гарантию</h1>
 		<div class="header_button">
 			<a class="button xsmall grey icon-files">Все документы по заявке</a>
-			<a class="button xsmall grey icon-cancel-doc">Отменить заявку</a>
 		</div>
 		<div class="page_wizard ">
 			<div class="wizard_steps steps4">
-				<div class="step done">
+				<div class="step">
 					<div class="label">1</div>
-					<div class="name">Заявка одобрена</div>
+					<div class="name">Отправка заявки</div>
 				</div>
-				<div class="step done">
+				<div class="step">
 					<div class="label">2</div>
-					<div class="name">Документы приняты</div>
+					<div class="name">Загрузка документов</div>
 				</div>
-				<div class="step done">
+				<div class="step">
 					<div class="label">3</div>
-					<div class="name">Проект согласован и оплачен</div>
+					<div class="name">Согласование проекта и оплата</div>
 				</div>
-				<div class="step active">
+				<div class="step error">
 					<div class="label">4</div>
-					<div class="name">Готовим документы</div>
+					<div class="name">Отмена</div>
 				</div>
 			</div>
 		</div>
@@ -63,14 +62,13 @@
 
 	<!-- контент слоя  -->
 	<div class="page_content">
-		<div class="garant_page_load_block garant_order_doc_verification">
-			<div class="icon"></div>
-			<h3>Готовим документы</h3>
-			<ul class="check a_left d_ib f_small">
-				<li>Гарантия на 100 000 рублей</li>
-				<li>Проект согласован</li>
-				<li>Комиссия 1000 рублей оплачена</li>
-			</ul>
+		<div class="garant_page_load_block garant_order_denied">
+			<h3>Отмена по инициативе клиента</h3>
+			<p>Клиент отменил заявку на банковскую гарантию</p>
+			<div class="form_buttons">
+				<a class="button light middle wide">Закрыть</a>
+				<a class="button light middle ">Удалить заявку</a>
+			</div>
 		</div>
 	</div>
 
