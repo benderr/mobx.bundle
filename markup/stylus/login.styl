@@ -65,13 +65,21 @@
 	overflow hidden
 	transition height .2s
 	&.anim_enter_sms
-		height 300px!important
+		height 300px
 		.login_auth_block, .login_sms_block
 			transform translateY(-300px)
 		.login_auth_block
 			opacity 0
 		.login_sms_block
 			opacity 1
+		&.enter_captcha
+			.login_auth_block, .login_sms_block
+				transform translateY(-450px)
+			.sms_confirm
+				margin-bottom 32px
+			.sms_field
+				margin-bottom 32px
+
 	&.enter_captcha
 		height 450px
 
