@@ -204,13 +204,15 @@
 			font-size fzn - 4px
 			color ctextlight
 			top 0
+
+
 // успешная отправка письма клиенту
 .garant_letter_sent
-	margin 0 -32px -16px
 	padding 24px 16px 24px 72px
 	background cbgsuccess
 	border-top 1px solid cgrey09
 	font-size fzn - 2px
+	box-sizing border-box
 	&:before
 		content: "\36";
 		font-family: "mb-icon-font-3"
@@ -222,23 +224,27 @@
 	h4
 		font-size fzn
 		margin-bottom 8px
+.send_block
+	.garant_letter_sent
+		margin 0 -32px -16px
+
 
 .step3_wait
 	width 85%
 	margin 0 auto
 
 // список документов по заявке
-.garant_all_documents_list
+.garant_documents_list
 	.item
 		margin-bottom 12px
 	a
 		display block
-		padding 0 0 0 42px
+		padding 0 0 0 30px
 		text-decoration none
 		&:before
 			font-family: "mb-icon-font-3"
 			content: "\4a"
 			position absolute
 			top 0
-			left 12px
+			left 0
 			color ctext
