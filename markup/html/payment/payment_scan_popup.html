@@ -20,7 +20,7 @@
 <div class="popup_overlay" >
 	<div class="popup_table">
 		<div class="popup_cell">
-			<div class="popup_layer popup_payment_scan">
+			<div class="popup_layer popup_payment_scan"> <!-- класс load , success , error -->
 				<a href="" class="popup_close icon-close"></a>
 				<div class="payment_scan_header ">
 					<div class="payment_scan_icon">
@@ -34,7 +34,15 @@
 						<div class="form_buttons">
 							<a class="button wide button_file_upload" data-load><input type="file" name="" id="">Выбрать файл</a>
 						</div>
+						<div class="small_text">
+							Допустимые форматы файлов:<br/>JPG, JPEG, BMP, PNG, PDF, GIF, DjVu, DOC, DOCX, XLS, XLSX
+						</div>
+						<!-- <div class="form_error">
+							Допустимые форматы файлов:<br/>JPG, JPEG, BMP, PNG, PDF, GIF, DjVu, DOC, DOCX, XLS, XLSX
+						</div> -->
+						<!-- <div class="form_error">Максимальный объем загружаемого файла ㄧ 15 Мб</div> -->
 					</div>
+
 					<div class="scan_content_text load">
 						<h2>Идет распознавание...</h2>
 						<p>Это может занять до 15 сек</p>
@@ -47,6 +55,29 @@
 							<a class="button second wide">Проверю</a>
 						</div>
 					</div>
+
+					<div class="scan_content_text error ">
+						<!-- <h2>Ошибка при загрузке счета</h2>
+						<p>Повторите попытку позже<br/> или выберете другой файл</p>
+						<div class="form_buttons">
+							<a class="button wide light button_file_upload" data-load><input type="file" name="" id="">Выбрать файл</a>
+						</div>
+						<div class="small_text">
+							Допустимые форматы файлов:<br/>JPG, JPEG, BMP, PNG, PDF, GIF, DjVu, DOC, DOCX, XLS, XLSX
+						</div> -->
+
+						<!-- или -->
+
+						<h2>Мы не смогли распознать счет</h2>
+						<p>Попробуйте еще раз, и если не получится, то заполните поля вручную. Мы проанализируем проблему распознавания и улучшим наш инструмент.</p>
+						<div class="form_buttons">
+							<a class="button wide light button_file_upload" data-load><input type="file" name="" id="">Выбрать новый файл</a>
+						</div>
+
+					</div>
+
+
+
 				</div>
 
 
