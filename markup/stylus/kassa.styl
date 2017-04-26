@@ -1,44 +1,61 @@
 @import 'variables.styl'
 
-.widget_block
-	padding-bottom 2px
-.products_table_head
-	font-size 12px
-	color ctextlight
-	margin-bottom 10px
-.product_row
-	padding 7px 20px
-	margin 0 -20px
-	border-bottom 1px solid cgrey09
-	&:last-child
-		border none
-.products_table_head, .product_row
-	display flex
-	flex-flow row wrap
-	input
-		margin-top 14px
-		&::-webkit-input-placeholder
-			font-size 12px
-			color #cgrey36
-		&::-moz-placeholder
-			font-size 18px
-			color #cgrey50
-		&:-ms-input-placeholder
-			font-size 18px
-			color #cgrey50
-	.product_id
-		flex 0 1 130px
-	.product_name
-		flex 1 1 auto
-		margin 0 16px
-	.product_price
-		flex 0 0 100px
-		text-align right
-		
+
+// Сайдбар
 .sidebar_title
 	font-size 14px
 	text-transform uppercase
 	color #FFF
 	opacity 0.5
 	padding 0 16px 25px
+
+
+// Секция контента
+.widget_block
+	padding-bottom 2px
+
+
+// Таблица
+.widget_block
+	.table_row
+		margin-left -20px
+		margin-right -20px
+		padding-left 20px
+		padding-right 20px
+	
+// общие стили всех таблиц
+.table_head
+	font-size 12px
+	color ctextlight
+	margin-bottom 10px
+.table_row
+	border-bottom 1px solid cgrey09
+	padding 7px 0
+	&:last-child
+		border none
+	&.row_link
+		cursor pointer
+		&:hover
+			background-color cbghighlight 
+.table_row_search
+	padding-bottom 7px
+	
+.table_head, .table_row
+	display flex
+
+// Таблица "Продукты"
+	.product_id
+		flex 0 0 15%
+		min-width 150px
+	.product_name
+		flex 1 1 auto
+		margin 0 16px
+		overflow ellipsis 
+	.product_price
+		flex 0 0 120px
+		text-align right
+
+// Таблица ""
+
+
 	
