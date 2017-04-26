@@ -55,5 +55,55 @@
 		flex 0 0 120px
 		text-align right
 
+// Вкладка Модификаторы
+.add_group
+	display inline-block
+	color cl2
+	text-decoration none
+	text-transform uppercase
+	font-size 12px
+	font-weight fwm
+	margin-bottom 24px
+	&::before
+		font-size 8px
+		vertical-align 0
+		font-weight 600 !important
+.modificators_group
+	margin-bottom 24px
+	&_title
+		display inline-block
+		margin-bottom 10px
+		&.icon-pencil::before
+			position absolute
+			right -36px
+			top 2px
+.wrapper_modificator
+	display flex
+	flex-flow wrap
+.modificator
+	width 124px
+	line-height 66px
+	margin-bottom 4px
+	margin-right 4px
+	font-size 12px
+	font-weight bold
+	text-align center
+	background cgrey09
+	border-radius 2px
+	cursor pointer
+	&.selected
+		background #ECF9FF
+		border 1px solid #1C8BC6
+	&:hover
+		background #ECF9FF
+	&.add_new_modificator
+		font-size 26px
+		font-weight 900
+		
+	
+	
+
+
+
 
 	
