@@ -19,7 +19,7 @@
 	<div class="login_section">
 
 		<div class="login_section_center">
-			<div class="login_content"> <!-- если есть каптча добавить enter_captcha -->
+			<div class="login_content "> <!-- если есть каптча добавить enter_captcha -->
 
 				<!-- блок ввода телефона и пароля -->
 				<div class="login_auth_block ">
@@ -71,8 +71,18 @@
 
 						<p class="small_text">Выслать код повторно через 1 минуту 16 секунд</p>
 						<!-- <p class="small_text"><a>Отправить код повторно</a></p> -->
-
 					</div>
+
+					<!-- Блок каптча - раскомментировать если нужно-->
+					<div class="captcha light_block">
+						<p>А вы, часом, не робот?<br/>Если нет, введите текст с картинки</p>
+						<div class="captcha_left">
+							<input type="text" name="" id="" placeholder="Введите код" class="small">
+							<a href="#">Обновить код</a>
+						</div>
+						<img src="https://yastatic.net/doccenter/images/tech-ru/cleanweb/freeze/0WLRscWa-KXnsJM3K9jyjORMUEc.gif" alt="" width="140" height="50">
+					</div>
+
 				</div>
 			</div>
 			<div class="login_links">

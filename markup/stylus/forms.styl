@@ -358,11 +358,12 @@ input[type='checkbox']
 		.icon
 			width 24px
 			height 14px
-			background #F2F2F2
+			background cbdlight
 			border-radius 2px
 			transition background-color .2s, box-shadow .2s
 			margin-right -26px
 			vertical-align -2px
+			border-color transparent
 			&:after
 				content ''
 				width 12px
@@ -370,11 +371,12 @@ input[type='checkbox']
 				background #fff
 				// box-shadow inset 0 0 0 1.5px cgrey18
 				border 2px solid #D1D1D1
-				border-radius 2px
+				border-radius 4px
 				position absolute
 				top -2px
 				left -2px
 				transition left .2s, box-shadow .2s
+
 			& + span
 				margin-left 36px
 				vertical-align top
@@ -477,8 +479,8 @@ input.search_left
 .form_group_list
 	margin-bottom 10px
 .form_group_checkbox
-	margin-top 30px
-	margin-bottom 30px
+	margin-top 20px
+	margin-bottom 20px
 
 .form_page_important_area
 	background cbgsky
@@ -806,7 +808,6 @@ rad-select2
 	position relative
 	display inline-block
 	overflow hidden
-
 	color clink
 	text-transform uppercase
 	font-weight fwm
@@ -816,6 +817,8 @@ rad-select2
 
 	&.button.light
 		color ctext
+	&.button.light_primary
+		color cl2
 
 	&[class*="icon-"]:before
 		font-size fzn

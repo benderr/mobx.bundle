@@ -422,12 +422,9 @@ function init(){
 		}, 1500);
 
 		setTimeout(function(){
-			$('.popup_payment_scan').addClass('success')
+			$('.popup_payment_scan').removeClass('load').addClass('success')
 		}, 6000);
 
-		setTimeout(function(){
-			$('.popup_overlay').fadeOut('slow')
-		}, 7500);
 
 	});
 
