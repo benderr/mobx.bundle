@@ -566,15 +566,16 @@ h3
 			&.loader
 				background-color transparent
 				background-image url(../images/loading_ring_color.svg)
-				background-size 36px
+				background-size 32px
 				color cgrey09
+				color transparent
 		&.big_field
 			input[type="text"]
 				height 64px
 				font-size 40px
 				width 176px
 				&.loader
-					background-size 50px
+					background-size 44px
 
 
 	.form_buttons
@@ -723,6 +724,8 @@ h3
 
 .loading_block
 	position relative
+	> *
+		opacity .4
 	&[data-loading-text]
 		&:after
 			background-position center calc(50% - 12px)
@@ -748,12 +751,13 @@ h3
 		right 0
 		bottom 0
 		left 0
-		background-color rgba(#fff,0.6)
-		background-image url(../images/loading.gif)
+		background-color rgba(#fff,0)
+		background-image url(../images/loading_ring_color.svg)
 		background-repeat no-repeat
 		background-position center
-		background-size 24px 24px
+		background-size 32px 32px
 		z-index 100
+
 
 .loading_block_clean
 	overflow hidden!important
