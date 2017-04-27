@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<title>Добавление модификатора</title>
+	<base href="../../../"/>
+
+	<link rel="stylesheet" href="css/style_modulkassa.css">
+	<script src="http://yastatic.net/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/init.js"></script>
+
+</head>
+<body>
+
+<include data-file="kassa/kassa_aside.html"></include>
+<include data-file="kassa/kassa_header.html"></include>
+
+<article class="page  open">
+
+	<!-- шапка слоя -->
+	<div class="page_header">
+		<a class="page_close icon-close"></a>
+		<a class="page_expand icon-fullsize"></a>
+		<h1>Добавление модификатора</h1>
+	</div>
+
+
+	<!-- контент слоя  -->
+	<div class="page_content  with_bottom_panel  content_padding">
+
+		<div class="form_group form_horizontal">
+			<div class="property_label col w100px">Товар</div>
+			<div class="property_value col nine">
+				<div class="jsRadSelect2  w100" data-placeholder="Селект" style="" name="adfasd" id="adsf">
+					<option class="jsRadSelect2Options" value="1">Бананы</option>
+					<option class="jsRadSelect2Options" value="2">Яблоки</option>
+					<option class="jsRadSelect2Options" value="3">Груши</option>
+					<option class="jsRadSelect2Options" value="4">Виноград</option>
+					<option class="jsRadSelect2Options" value="5">АпельсиныАпельсины</option>
+					<option class="jsRadSelect2Options" value="6">Маракуйя Маракуйя Маракуйя Маракуйя </option>
+				</div>
+			</div>
+		</div>
+
+		<div class="form_group form_horizontal">
+			<div class="property_label col w100px">Название</div>
+			<div class="property_value col nine">
+				<input type="text" class="w100">
+			</div>
+		</div>
+
+		<div class="form_group form_horizontal">
+			<div class="property_value col nine">
+				<input type="checkbox" name="c5" id="33">
+				<label for="33" class="label_check  switcher"><i class="icon"></i><span class="m_left_45">Выбран по умолчанию</span></label>
+			</div>
+		</div>
+
+
+	</div>
+
+	<!-- панель с кнопками -->
+	<div class="page_bottom_panel">
+		<a class="button middle wide">Сохранить</a>
+		<a class="button middle wide clean">Отмена</a>
+	</div>
+
+</article>
+
+</body>
+</html>
