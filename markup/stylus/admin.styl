@@ -20,7 +20,6 @@ html
 body
 	min-width 1020px
 header
-	// background desaturate(cl1,30%) + 5%
 	left 0
 	color #fff
 section.main
@@ -246,12 +245,17 @@ section.main
 			margin-right 0
 		&.stat_column_wide
 			max-width 550px
+	&.flex_wrap
+		flex-wrap wrap
 	.stat_all_task
 		font-size fzn + 2px
 		color ctextlight
 		.total
 			font-weight fwm
 			color ctext
+		.tasks_complete_bot
+			padding-left 30px
+			background url(../images/icon_bot.svg) no-repeat 0 0
 	.subtitle
 		color ctextlight
 		margin 0 0 5px
@@ -1103,7 +1107,7 @@ article.page
 	.tags_drop_list
 		padding 0 15px 15px
 
-		
+
 //  Вопросы и ответы
 .admin_questions_answers
 	.questions
@@ -1179,14 +1183,14 @@ article.page
 
 
 .popup_question_search
-	height 50vh 
+	height 50vh
 	padding 0px
 	background none
 	box-shadow none
 	.popup_header
 		width 100%
 		position absolute
-		background #FFF 
+		background #FFF
 		border-radius 3px
 	i
 		font-size 20px
@@ -1236,7 +1240,7 @@ article.page
 			background cgrey05
 		a
 			text-decoration none
-			color ctext 
+			color ctext
 	.answer_preview
 		position absolute
 		top 0

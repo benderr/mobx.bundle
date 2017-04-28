@@ -34,32 +34,33 @@
 	<div class="page_content">
 		<form class="form">
 			<div class="form_group">
-				<select class="w100" data-placeholder="Тип платежа">
-					<option value="111" selected>Перевод между своими счетами</option>
-					<option value="">Платеж контрагенту</option>
-					<option value="">Платеж физическому лицу</option>
-					<option value="">Оплата страховых взносов</option>
-					<option value="">Налоги или бюджетный платеж</option>
-					<option value="">Таможенный платеж</option>
-					<option value="">Валютный перевод</option>
-				</select>
+				<div class="input_group_title w100">
+					<div class="jsRadSelect2 w100" data-placeholder="Селект" name="adfasd" id="adsf">
+						<option class="jsRadSelect2Options" value="" selected>Платеж контрагенту</option>
+						<option class="jsRadSelect2Options" value="">Налоги или бюджетный платеж</option>
+						<option class="jsRadSelect2Options" value="">Таможенный платеж</option>
+					</div>
+					<div class="input_title">Тип платежа</div>
+				</div>
 			</div>
-
-			<div class="form_sep"></div>
 
 			<div class="form_group">
-				<input type="text" name="" id="" class="w100 drop-target input_search_focus" placeholder="Получатель">
-				<div class="drop-content">
-					<div class="drop-content-inner">
-						<ul class="drop-menu max_w_400">
-							<li><a>ЗАО «Азбука»</a></li>
-							<li><a>ООО «Ромашка»</a></li>
-							<li><a>ИП Иванов Грикорий Рюрикович</a></li>
-							<li><a>Сергеева Алла Николаевна</a></li>
-						</ul>
-					</div>
-	            </div>
+				<div class="input_group_title w100">
+					<input type="text" name="" id="" class="w100 drop-target input_search_focus" placeholder="Наименование или ИНН получателя">
+					<div class="drop-content">
+						<div class="drop-content-inner">
+							<ul class="drop-menu max_w_400">
+								<li><a>ЗАО «Азбука»</a></li>
+								<li><a>ООО «Ромашка»</a></li>
+								<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+								<li><a>Сергеева Алла Николаевна</a></li>
+							</ul>
+						</div>
+		            </div>
+		            <div class="input_title">Получатель платежа</div>
+		        </div>
 			</div>
+
 			<div class="form_group row">
 				<div class="col half">
 					<div class="input_group w100">
@@ -142,7 +143,66 @@
 				</div>
 			</div>
 
+			<div class="form_group m_top_20">
+				<input type="checkbox" name="" id="a1">
+				<label for="a1" class="check label_check"><i class="icon"></i><span>Оплата налога за третьих лиц</span><i class="text_info icon-info" b365-tooltip title="Чтобы заплатить налог за третье лицо (другую компанию или физическое лицо), укажите его наименование или Ф.И.О. полностью, ИНН и КПП"></i></label>
+
+			</div>
+
+
+
+			<!-- Реквизиты третьего лица -->
+			<!-- <div class="light_block">
+
+				<div class="form_group">
+					<input type="text" name="" id="" class="w100 drop-target input_search_focus" placeholder="Наименование или ФИО третьего лица">
+					<div class="drop-content">
+						<div class="drop-content-inner">
+							<ul class="drop-menu max_w_400">
+								<li><a>ЗАО «Азбука»</a></li>
+								<li><a>ООО «Ромашка»</a></li>
+								<li><a>ИП Иванов Грикорий Рюрикович</a></li>
+								<li><a>Сергеева Алла Николаевна</a></li>
+							</ul>
+						</div>
+		            </div>
+				</div>
+
+				<div class="form_group row">
+
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon">ИНН</div>
+							<input type="text" name="" placeholder="ИНН получателя" id="" class="">
+						</div>
+					</div>
+
+					<div class="col half">
+						<div class="input_group w100">
+							<div class="input_group_addon">КПП</div>
+							<input type="text" name="" placeholder="КПП получателя" id="" class="">
+						</div>
+					</div>
+
+				</div>
+
+			</div> -->
+			<!-- end  Реквизиты третьего лица -->
+
+
 			<div class="form_sep"></div>
+
+			<div class="form_group">
+				<div class="input_group w100">
+					<div class="input_group_addon">УИН</div>
+					<input type="text" name="" placeholder="Уникальный идентификатор платежа" id="" class="drop-target">
+					<div class="drop-content">
+						<div class="drop-content-inner inner_pad">
+							<div class="small_text fs_i">Проверьте данные, такого названия банка или номера БИК нет в нашем справочнике.</div>
+						</div>
+		            </div>
+				</div>
+			</div>
 
 			<div class="form_group">
 				<div class="input_group w100">
@@ -203,51 +263,60 @@
 			<div class="form_group">
 				<div class="input_group w100">
 					<div class="input_group_addon">Основание платежа (106)</div>
-					<select class="ws_n" data-filter="true">
-						<option value="">00 - иные случаи</option>
-						<option value="">АП - погашение задолженности по акту проверки  </option>
-						<option value="">АР - погашение задолженности по исполнительному документу</option>
-						<option value="">БД - документы финансово-хозяйственной деятельности таможенных органов</option>
-						<option value="">БФ - текущий платеж физического лица - клиента банка (владельца счета), уплачиваемый со своего банковского счета</option>
-						<option value="">ВУ - погашение отсроченной задолженности в связи с введением внешнего управления</option>
-					</select>
+
+					<div class="jsRadSelect2 ws_n" data-placeholder="Селект">
+						<div class="jsRadSelect2Options" value="1">00 - иные случаи</div>
+						<div class="jsRadSelect2Options" value="1">АП - погашение задолженности по акту проверки  </div>
+						<div class="jsRadSelect2Options" value="1">АР - погашение задолженности по исполнительному документу</div>
+						<div class="jsRadSelect2Options" value="1">БД - документы финансово-хозяйственной деятельности таможенных органов</div>
+						<div class="jsRadSelect2Options" value="1">БФ - текущий платеж физического лица - клиента банка (владельца счета), уплачиваемый со своего банковского счета</div>
+						<div class="jsRadSelect2Options" value="1">ВУ - погашение отсроченной задолженности в связи с введением внешнего управления</div>
+					</div>
+
+
 				</div>
 			</div>
 
 			<div class="form_group row">
 				<div class="input_group_title col half">
-					<select class="w100 ws_n">
-						<option value="">00 - Не указано</option>
-						<option value="">МС - Месячный платеж</option>
-						<option value="">КВ - Квартальный платеж</option>
-						<option value="">ПЛ - Полугодовой платеж</option>
-						<option value="">ГД - Годовой платеж</option>
-					</select>
+					<div class="jsRadSelect2 ws_n w100" data-placeholder="Селект">
+						<div class="jsRadSelect2Options" value="1">00 - Не указано</div>
+						<div class="jsRadSelect2Options" value="1">МС - Месячный платеж</div>
+						<div class="jsRadSelect2Options" value="1">КВ - Квартальный платеж</div>
+						<div class="jsRadSelect2Options" value="1">ПЛ - Полугодовой платеж</div>
+						<div class="jsRadSelect2Options" value="1">ГД - Годовой платеж</div>
+					</div>
+
+
 					<div class="input_title">Налоговый период (107)</div>
 				</div>
 				<div class="input_group_title col three">
-					<select class="w100">
-						<option value="">01</option>
-						<option value="">02</option>
-						<option value="">03</option>
-						<option value="">04</option>
-						<option value="">05</option>
-						<option value="">06</option>
-						<option value="">07</option>
-						<option value="">08</option>
-						<option value="">09</option>
-						<option value="">10</option>
-						<option value="">11</option>
-						<option value="">12</option>
-					</select>
+					<div class="jsRadSelect2 ws_n" data-placeholder="Селект">
+						<div class="jsRadSelect2Options" value="1">00 - Не указано</div>
+						<div class="jsRadSelect2Options" value="1">01</div>
+						<div class="jsRadSelect2Options" value="1">02</div>
+						<div class="jsRadSelect2Options" value="1">03</div>
+						<div class="jsRadSelect2Options" value="1">04</div>
+						<div class="jsRadSelect2Options" value="1">05</div>
+						<div class="jsRadSelect2Options" value="1">06</div>
+						<div class="jsRadSelect2Options" value="1">07</div>
+						<div class="jsRadSelect2Options" value="1">08</div>
+						<div class="jsRadSelect2Options" value="1">09</div>
+						<div class="jsRadSelect2Options" value="1">10</div>
+						<div class="jsRadSelect2Options" value="1">11</div>
+						<div class="jsRadSelect2Options" value="1">12</div>
+					</div>
+
 					<div class="input_title">Месяц</div>
 				</div>
 				<div class="input_group_title col three">
-					<select class="w100 ws_n">
-						<option value="">2015</option>
-						<option value="">2014</option>
-						<option value="">2013</option>
-					</select>
+
+					<div class="jsRadSelect2 ws_n" data-placeholder="Селект">
+						<div class="jsRadSelect2Options" value="1">2015</div>
+						<div class="jsRadSelect2Options" value="1">2014</div>
+						<div class="jsRadSelect2Options" value="1">2013</div>
+					</div>
+
 					<div class="input_title">Год</div>
 				</div>
 			</div>
@@ -264,17 +333,7 @@
 
 			</div>
 
-			<div class="form_group">
-				<div class="input_group w100">
-					<div class="input_group_addon">УИН</div>
-					<input type="text" name="" placeholder="Уникальный идентификатор платежа" id="" class="drop-target">
-					<div class="drop-content">
-						<div class="drop-content-inner inner_pad">
-							<div class="small_text fs_i">Проверьте данные, такого названия банка или номера БИК нет в нашем справочнике.</div>
-						</div>
-		            </div>
-				</div>
-			</div>
+
 			<div class="form_group">
 
 				<div class="input_group w100">
@@ -326,15 +385,16 @@
 					</div>
 				</div>
 				<div class="col half">
-					<select class="w100" data-placeholder="НДС">
-						<option value="111" selected>Без НДС</option>
-						<option value="">18% включен в сумму</option>
-						<option value="">18% сверх суммы</option>
-						<option value="">10% включен в сумму</option>
-						<option value="">10% сверх суммы</option>
-						<option value="">18% включен в сумму</option>
-						<option value="">Не указывать</option>
-					</select>
+					<div class="jsRadSelect2 w100" data-placeholder="Селект">
+						<div class="jsRadSelect2Options" value="1">Без НДС</div>
+						<div class="jsRadSelect2Options" value="1">18% включен в сумму</div>
+						<div class="jsRadSelect2Options" value="1">18% сверх суммы</div>
+						<div class="jsRadSelect2Options" value="1">10% включен в сумму</div>
+						<div class="jsRadSelect2Options" value="1">10% сверх суммы</div>
+						<div class="jsRadSelect2Options" value="1">18% включен в сумму</div>
+						<div class="jsRadSelect2Options" value="1">Не указывать</div>
+					</div>
+
 				</div>
 			</div>
 			<div class="form_group">
@@ -353,7 +413,7 @@
 			</div> -->
 
 			<div class="form_buttons">
-				<button class="button second icon-check">Создать</button>
+				<button class="button icon-check">На подпись</button>
 				<a class="button_clean">Сохранить черновик</a>
 			</div>
 
