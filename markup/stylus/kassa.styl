@@ -56,12 +56,11 @@
 		text-align right
 
 // Вкладка Модификаторы
-.add_group
+.add_modificators_group
 	display inline-block
-	color cl2
 	text-decoration none
 	text-transform uppercase
-	font-size 12px
+	font-size fzn - 2
 	font-weight fwm
 	margin-bottom 24px
 	&::before
@@ -73,33 +72,38 @@
 	&_title
 		display inline-block
 		margin-bottom 10px
-		&.icon-pencil::before
-			position absolute
-			right -36px
-			top 2px
+		.icon-pencil
+			margin-left 10px
 .wrapper_modificator
 	display flex
 	flex-flow wrap
-.modificator
-	width 124px
-	line-height 66px
-	margin-bottom 4px
-	margin-right 4px
-	font-size 12px
-	font-weight bold
-	text-align center
-	background cgrey09
-	border-radius 2px
-	cursor pointer
-	&.selected
-		background #ECF9FF
-		border 1px solid #1C8BC6
-	&:hover
-		background #ECF9FF
-	&.add_new_modificator
-		font-size 26px
-		font-weight 900
-		
+	.modificator
+		display flex
+		justify-content center
+		align-items center
+		width 124px
+		height 64px
+		box-sizing border-box
+		overflow hidden
+		margin-bottom 4px
+		margin-right 4px
+		padding 5px
+		text-align center
+		font-size 12px
+		font-weight bold
+		background cgrey09
+		border-radius 2px
+		cursor pointer
+		&.selected
+			background #ECF9FF
+			border 1px solid #1C8BC6
+		&:hover
+			background #ECF9FF
+		&.add_new_modificator
+			font-size 26px
+			font-weight 900
+			
+			
 	
 // Слой Добавление модификатора
 .counter_wrapper
@@ -114,12 +118,16 @@
 		text-decoration none
 		background cgrey09
 	input
-		padding-left 10px
-		padding-right 10px
+		padding-left 4px
+		padding-right 4px
+		text-align center
+		width 40px
 		
 .add_modificators_price
 	width 104px
-
+	input
+		width 100%
+		text-align center
 
 
 
