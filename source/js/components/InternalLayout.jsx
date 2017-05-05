@@ -30,7 +30,7 @@ export default connect(mapStateToProps)(InternalLayout)
 function mapStateToProps(state) {
     const profile = getProfile(state);
     return {
-        lastName: profile.get('lastName'),
-        firstName: profile.get('firstName')
+        lastName: profile != null ? profile.get('lastName') : 'NULL',
+        firstName: profile != null ? profile.get('firstName') : ''
     }
 }

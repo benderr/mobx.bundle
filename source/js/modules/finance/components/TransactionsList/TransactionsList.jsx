@@ -5,7 +5,7 @@ import TransactionsListItem from './../TransactionsListItem/TransactionsListItem
 import actions from './../../actions/transactionsActions.js';
 import financeDataContext from './../../bl/financeDataContext.js';
 import {bindActionCreators} from 'redux';
-import {Link} from 'react-router';
+import {Link} from 'react-router-dom';
 
 function mapStateToProps(state) {
     return {

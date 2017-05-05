@@ -4,7 +4,10 @@ import {login, loginInfo} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../bl/accountDataContext'
 import {getProfile} from '../selectors/accountSelectors'
-import {push} from 'react-router-redux'
+//import {push} from 'react-router-redux'
+
+const push = () => { //todo
+};
 
 const xToken = 'X-TOKEN';
 
@@ -45,7 +48,7 @@ function* watchLogout() {
 
 function* logout() {
 	yield call(localStorage.removeItem, xToken);
-	yield put(push({pathname: '/signin'}));
+	//yield put(push({pathname: '/signin'}));
 }
 
 function* actualizeProfile() {
