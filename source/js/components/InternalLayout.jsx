@@ -12,10 +12,10 @@ class InternalLayout extends React.Component {
         const profileName = this.props.lastName + ' ' + this.props.firstName;
 
         return (
-            <div className="poss">
+            <div class="poss">
                 <SiteHeader name={profileName}/>
-                <section className="main">
-                    <div className="section_content" style={css}>
+                <section class="main">
+                    <div class="section_content" style={css}>
                         {this.props.children}
                     </div>
                 </section>
