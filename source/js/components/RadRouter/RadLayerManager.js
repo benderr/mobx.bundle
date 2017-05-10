@@ -13,19 +13,19 @@ class RadLayerManager extends React.Component {
 
 	shouldComponentUpdate(nextProps, nextState) {
 		const {needUpdate}=nextProps;
-		//console.log(nextProps);
 		return needUpdate;
 	}
 
 	render() {
 		const {location, layerId, routes, onCloseLayer}=this.props;
 		const key = `layer_switch_` + layerId;
-		return (<Switch key={key} location={location}>{
-			routes.map(route => routeHelpers.generateRouteComponent({
-					props: {...route, layerId, onCloseLayer},
-					routeId: route.routeId
-				})
-			)}</Switch>);
+		return (
+			<Switch key={key} location={location}>{
+				routes.map(route => routeHelpers.generateRouteComponent({
+						props: {...route, layerId, onCloseLayer},
+						routeId: route.routeId
+					})
+				)}</Switch>);
 	}
 }
 

@@ -1,11 +1,11 @@
 import React from 'react'
 import InternalLayout from 'components/InternalLayout'
-import {LayoutRoute} from 'components/RadRouter/customRoutes/LayoutRoute'
+// import {LayoutRoute} from 'components/RadRouter/customRoutes/LayoutRoute'
 import LayerLayout from 'components/LayerLayout'
 import TransactionsContainer, {TransactionsContainer2} from 'modules/testSelectors/containers/TransactionsContainer'
 import TransactionsList from 'modules/finance/components/TransactionsList/TransactionsList'
 import ExternalLayout, {NotFoundLayout} from 'components/ExternalLayout'
-import FormAuth from 'modules/account/components/signInForm/SignInForm'
+import SignInContainer from 'modules/account/containers/SignInContainer'
 
 export const testRoutes = {
 	/**
@@ -15,21 +15,19 @@ export const testRoutes = {
 		path: '/',
 		exact: true,
 		component: () => (<h2>Hello World</h2>),
-		layout: InternalLayout,
 		index: true
 	},
 	signin: {
 		path: '/signin',
 		exact: true,
-		component: FormAuth,
+		component: SignInContainer,
 		layout: ExternalLayout
 	},
 
 	listExampleSecond: {
 		path: '/list-example2/second',
 		exact: true,
-		component: TransactionsContainer2,
-		layout: InternalLayout
+		component: TransactionsContainer2
 	},
 	/**
 	 * Роут в котором можно указать мастер-страницу
@@ -37,14 +35,16 @@ export const testRoutes = {
 	finance: {
 		path: '/finance',
 		exact: true,
-		component: ()=>(<h2><TransactionsList></TransactionsList></h2>),
-		layout: InternalLayout
+		component: () => (<h2><TransactionsList></TransactionsList></h2>)
 	},
 	transactionLayer: {
 		path: '/finance/:id',
 		exact: true,
-		component: ({location})=>{console.log('finance/id render');return (<h2> Test transactionLayer</h2>)},
 		layout: LayerLayout,
+		component: ({location}) => {
+			console.log('finance/id render', location);
+			return (<h2> Test transactionLayer</h2>)
+		},
 		isLayer: true
 	},
 
@@ -54,8 +54,7 @@ export const testRoutes = {
 	routeTest: {
 		path: '/route-test',
 		exact: true,
-		component: ({location})=>{console.log('route-test render');return (<h2> Test route-test</h2>)},
-		layout: LayerLayout,
+		component: TransactionsContainer2,
 		isLayer: true
 	},
 
@@ -65,8 +64,10 @@ export const testRoutes = {
 	routeTest2: {
 		path: '/route-test2',
 		exact: true,
-		component: ({location})=>{console.log('route-test2 render');return (<h2> Test route-test2</h2>)},
-		layout: LayerLayout,
+		component: ({location}) => {
+			console.log('route-test2 render');
+			return (<h2> Test route-test2</h2>)
+		},
 		isLayer: true
 	},
 	// /**

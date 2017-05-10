@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import InternalLayout from 'components/InternalLayout';
 import TransactionsListItem from './../TransactionsListItem/TransactionsListItem.jsx';
 import actions from './../../actions/transactionsActions.js';
 import financeDataContext from './../../bl/financeDataContext.js';

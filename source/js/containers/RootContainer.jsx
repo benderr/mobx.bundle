@@ -6,9 +6,8 @@ import ReactTooltip from 'react-tooltip'
 //import createBrowserHistory from 'history/createBrowserHistory'
 import PropTypes from 'prop-types';
 import ExternalLayout, {NotFoundLayout} from 'components/ExternalLayout'
-import RadLayerManager from 'components/RadRouter/RadLayerManager'
-
-import {Switch} from 'react-router'
+//import RadLayerManager from 'components/RadRouter/RadLayerManager'
+//import {Switch} from 'react-router'
 
 import {
     BrowserRouter,
@@ -16,7 +15,6 @@ import {
 } from 'react-router-dom'
 import {testRoutes} from 'components/TestRouter'
 import RadRouter from 'components/RadRouter/RadRouter'
-
 
 // class TestLayout extends React.Component {
 //
@@ -171,23 +169,9 @@ export default class RootContainer extends React.Component {
             <Provider store={this.props.store}>
                 <div className="poss">
                     <BrowserRouter basename='/'>
-                        <RadRouter routes={testRoutes} notFound={NotFoundLayout}/>
-                        {/*<div className="flfl"></div>*/}
-                        {/*<div>*/}
-                        {/*<Switch>*/}
-                        {/*<Route exact path="/" component={InternalLayout}/>*/}
-                        {/*<Route path="/modal" component={ModalSwitch}/>*/}
-                        {/*<LayoutRoute layout={InternalLayout} path="/route-test" component={TestLayout}/>*/}
-                        {/*<LayerRoute layout={LayerLayout} path="/route-test2" component={TransactionsContainer2}/>*/}
-                        {/*<Route path="*" component={NotFoundLayout}/>*/}
-                        {/*</Switch>*/}
-                        {/*</div>*/}
+                        <RadRouter routes={this.props.routes} notFound={NotFoundLayout}/>
                         {/*<HelloWorldComponent/>*/}
                     </BrowserRouter>
-                    {/*<Router history={history} routes={this.props.routes}/>*/}
-                    {/*<Router history={history} >*/}
-                    {/*<Route path='/' component={InternalLayout} onEnter={(a,b,cb)=>{}}> </Route>*/}
-                    {/*</Router>*/}
                     {this.renderDevTools()}
                 </div>
             </Provider>

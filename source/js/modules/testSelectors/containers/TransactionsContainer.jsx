@@ -23,7 +23,7 @@ class TransactionsContainer extends React.Component {
 
 export default  TransactionsContainer
 
-export const TransactionsContainer2 = ({match}) => {
+export const TransactionsContainer2 = () => {
     console.log('TransactionsContainer2 render');
     return (
         <div>

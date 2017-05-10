@@ -48,21 +48,26 @@ const generateRouteCustom = (key, props, CustomRoute) => {
 	return (<CustomRoute {...props} key={key}/>)
 };
 
-const transformRoutes = (routes) => {
+const transformRoutes = (routes, defaultLayout, defaultLayerLayout) => {
 	return Object.keys(routes).reduce((r, key) => {
 		const rule = routes[key];
+
 		if (rule.isLayer) {
+			const layout = rule.layout === undefined ? defaultLayerLayout : rule.layout;
 			r.layerRoutes = [...r.layerRoutes,
 				{
 					routeId: `${key}_${getRandomKey()}`,
-					...rule
+					...rule,
+					layout
 				}
 			];
 		} else {
+			const layout = rule.layout === undefined ? defaultLayout : rule.layout;
 			r.pageRoutes = [...r.pageRoutes,
 				{
 					routeId: `${key}_${getRandomKey()}`,
-					...rule
+					...rule,
+					layout
 				}
 			];
 		}

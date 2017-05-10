@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import * as routeHelpers from './routeHelpers'
 import RadPageManager from './RadPageManager'
 import RadLayerManager from './RadLayerManager'
+import DefaultLayerLayout from 'components/DefaultLayerLayout' //todo перенести в пропсы?
+import InternalLayout from 'components/InternalLayout' //todo перенести в пропсы?
 
 class RadRouteManager extends React.Component {
 	static propTypes = {
@@ -10,15 +12,14 @@ class RadRouteManager extends React.Component {
 		notFound: PropTypes.func,
 		location: PropTypes.object.isRequired
 	};
+	layers = [];
 
 	constructor(props, context) {
 		super(props, context);
-		this.allRoutes = routeHelpers.transformRoutes(props.routes)
+		this.allRoutes = routeHelpers.transformRoutes(props.routes, InternalLayout, DefaultLayerLayout)
 	}
 
-	layers = [];
-
-	closeLayer({layerId}) {
+	destroyLayer({layerId}) {
 		this.layers = this.layers.filter(s => s.layerId != layerId);
 		this.props.history.goBack();
 	}
@@ -29,7 +30,6 @@ class RadRouteManager extends React.Component {
 		const isLayer = routeHelpers.isLayerPage(this.allRoutes.layerRoutes, location);
 
 		if (isLayer) {
-			//this.layers = this.layers.filter(s => s.location.pathname != location.pathname);
 
 			this.layers.forEach(s => {
 				s.needUpdate = false;
@@ -64,7 +64,8 @@ class RadRouteManager extends React.Component {
 					<RadLayerManager key={layer.layerId}
 									 {...layer}
 									 routes={this.allRoutes.layerRoutes}
-									 onCloseLayer={::this.closeLayer}/>
+									 onCloseLayer={::this.destroyLayer}/>
+
 				))}
 			</div>
 		);

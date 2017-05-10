@@ -9,8 +9,6 @@ class RadRouter extends React.Component {
 		notFound: PropTypes.func
 	};
 
-
-
 	render() {
 		const {routes, notFound} = this.props;
 		return (
