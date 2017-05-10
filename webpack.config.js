@@ -230,6 +230,7 @@ module.exports = {
 				green: '\u001b[32m',
 			},
 		},
+		disableHostCheck: true
 	},
 	// stylus: {
 	//     use: [require('nib')()],
