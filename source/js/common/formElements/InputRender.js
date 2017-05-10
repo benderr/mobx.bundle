@@ -23,9 +23,9 @@ export default ({input, label, className, type, meta: {touched, error, warning, 
 	const showErrorMessage = getTooltipError() != null;
 
 	return (
-		<div className="w100">
+		<div class="w100">
 			<input {...input}
-				   className={className + additionalClassName}
+				   class={className + additionalClassName}
 				   placeholder={label}
 				   type={type}
 				   {...tooltip} />

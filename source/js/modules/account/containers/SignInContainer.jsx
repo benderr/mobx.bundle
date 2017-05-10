@@ -8,13 +8,13 @@ import {bindActionCreators} from 'redux';
 const SignInContainer = props => {
     const {loading, login, redirectUrl}=props;
     return (
-        <div className="wrap login">
-            <div className="reg_header">
-                <a href="/" className="logo">МодульБанк</a>
-                <div className="title">Вход в систему</div>
+        <div class="wrap login">
+            <div class="reg_header">
+                <a href="/" class="logo">МодульБанк</a>
+                <div class="title">Вход в систему</div>
             </div>
-            <div className="reg_section">
-                <div className="reg_article">
+            <div class="reg_section">
+                <div class="reg_article">
                     <SignInForm login={login} redirectUrl={redirectUrl} loading={loading}></SignInForm>
                 </div>
             </div>

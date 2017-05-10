@@ -37,24 +37,24 @@ var TransactionsList = (props) => {
     var listArr = props.listArr ? props.listArr : [];
     return (
         <div>
-            <div className="table_list table_list_big transaction_list transaction_list_usn widget_block">
+            <div class="table_list table_list_big transaction_list transaction_list_usn widget_block">
 
-                <div className="table_list_body">
+                <div class="table_list_body">
 
-                    <div className="table_list_row row_date">
-                        <div className="table_list_cell name">12 марта 2016</div>
-                        <div className="table_list_cell summ">Остаток: 423 125 000,00 <span
-                            className="cur rur"><span>р.</span></span></div>
-                        <div className="table_list_cell action"></div>
-                        <div className="table_list_cell check"></div>
+                    <div class="table_list_row row_date">
+                        <div class="table_list_cell name">12 марта 2016</div>
+                        <div class="table_list_cell summ">Остаток: 423 125 000,00 <span
+                            class="cur rur"><span>р.</span></span></div>
+                        <div class="table_list_cell action"></div>
+                        <div class="table_list_cell check"></div>
                     </div>
 
                     {listArr.map(function (object, i) {
                         return <TransactionsListItem item={object} key={i}></TransactionsListItem>;
                     })}
 
-                    <div className="table_row_info">
-                        <div className="info_center">
+                    <div class="table_row_info">
+                        <div class="info_center">
                             <p>Отображены все операции, соответствующие установленным фильтрам.</p>
                         </div>
                         <div>
