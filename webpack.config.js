@@ -215,7 +215,7 @@ module.exports = {
 		compress: isProduction,
 		inline: !isProduction,
 		hot: !isProduction,
-		host: '0.0.0.0',
+		host: 'react.modulbank.ru',
 		stats: {
 			assets: true,
 			children: false,
@@ -230,7 +230,7 @@ module.exports = {
 				green: '\u001b[32m',
 			},
 		},
-		disableHostCheck: true
+		//disableHostCheck: true
 	},
 	// stylus: {
 	//     use: [require('nib')()],
