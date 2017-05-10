@@ -3,7 +3,7 @@ import React from 'react';
 //Шаблон для анонимных страниц
 const ExternalLayout = (props) => {
     return (
-        <div className="reg">
+        <div class="reg">
             {props.children}
         </div>
     );

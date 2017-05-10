@@ -25,25 +25,25 @@ const makeMapStateToProps = () => {
 
 const TransactionListComponent = (props) => {
     return (
-        <div className="table_list table_list_big transaction_list transaction_list_usn widget_block">
-            <div className="table_list_body">
+        <div class="table_list table_list_big transaction_list transaction_list_usn widget_block">
+            <div class="table_list_body">
                 Total: {props.total}
                 {props.list.map((object, i) => <TransactionItem item={object} key={i}></TransactionItem>)}
 
-                <div className="form_buttons a_center p_bot_10">
-                    <SButton className='small'
+                <div class="form_buttons a_center p_bot_10">
+                    <SButton class='small'
                              onClick={() => props.setFilter(props.listId, 'SHOW_COMPLETED')}>
                         SHOW_COMPLETED
                     </SButton>
-                    <SButton className="small"
+                    <SButton class="small"
                              onClick={() => props.setFilter(props.listId, 'SHOW_ACTIVE')}>
                         SHOW_ACTIVE
                     </SButton>
-                    <SButton className="small"
+                    <SButton class="small"
                              onClick={() => props.setFilter(props.listId, 'SHOW_ALL')}>
                         SHOW_ALL
                     </SButton>
-                    <SButton className="small"
+                    <SButton class="small"
                              onClick={() => props.setCompleted(props.listId)}>
                         SET_COMPLETED
                     </SButton>

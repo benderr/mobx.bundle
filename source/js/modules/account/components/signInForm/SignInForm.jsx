@@ -34,7 +34,7 @@ let SignInForm = props => {
 
     return (
         <form onSubmit={handleSubmit(submit)}>
-            <div className="form">
+            <div class="form">
                 <FormGroup addonClass="icon-mail">
                     <Field name="email" label="Email" component={InputRender}
                            validate={[isRequired('Укажите E-mail'), isValidEmail('Укажите корректный E-mail')]}
@@ -45,7 +45,7 @@ let SignInForm = props => {
                            validate={[isRequired('Введите пароль')]} type="password"/>
                 </FormGroup>
             </div>
-            <button disabled={loading} className="second button" type="submit">Войти</button>
+            <button disabled={loading} class="second button" type="submit">Войти</button>
         </form> )
 };
 
