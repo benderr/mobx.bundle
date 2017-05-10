@@ -1,22 +1,15 @@
 import React from 'react';
-import {makeHooksSafe} from './routeHooks'
-
-// export function getRoutesDeclarative(modules) {
-// 	return (
-// 		<div>
-// 			{modules.filter((m) => isFunc(m.getRoutes)).map((m) => m.getRoutes())}
-// 		</div>
-// 	);
-// }
 
 export default function getRoutes(modules, store) {
-	let routes = modules.filter((m) => isFunc(m.getRoutes))
+	return modules.filter((m) => isFunc(m.getRoutes))
 		.reduce((routes, module) => {
-			let moduleRoutes = module.getRoutes();
-			return [...routes, ...moduleRoutes];
+			const routesObject = module.getRoutes();
+			const routesArray = Object.keys(routesObject).reduce((prev, key) => {
+				const route = routesObject[key];
+				return [...prev, {...route, name: key}]
+			}, []);
+			return [...routes, ...routesArray];
 		}, []);
-
-	return makeHooksSafe(routes, store);
 }
 
 function isFunc(f) {

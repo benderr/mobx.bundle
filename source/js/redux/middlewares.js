@@ -3,8 +3,8 @@ import thunk from 'redux-thunk';
 import {applyMiddleware} from 'redux';
 import DevTools from 'dev/DevTools.jsx';
 import createSagaMiddleware from 'redux-saga';
-import {routerMiddleware} from 'react-router-redux'
-import {browserHistory} from 'react-router'
+//import {routerMiddleware} from 'react-router-redux'
+//import {browserHistory} from 'react-router'
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,7 +19,7 @@ export function getMiddlewares(modules) {
 
 	let composerFuncs = [];
 
-	middlewares.push(routerMiddleware(browserHistory));
+	//middlewares.push(routerMiddleware(browserHistory));
 
 	modules.forEach((module) => {
 		if (module.getMiddlewares)
