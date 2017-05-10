@@ -1,19 +1,46 @@
 import TransactionsList from './components/TransactionsList/TransactionsList.jsx';
-import InternalLayout from 'components/InternalLayout'
 import React from 'react';
 
 export function getRoutes() {
-	// return (
-	// 	<Route onlyAnonymous component={ExternalLayout}>
-	// 		<Route path={ ROUTES.FINANCE } component={ TransactionsList }/>
-	// 	</Route>
-	// );
-	return [{
-		path: 'finance',
-		component: InternalLayout,
-		onEnter:(...args)=>{
-			console.log(args);
+	return {
+		finance: {
+			path: '/finance',
+			exact: true,
+			component: ({location}) => {
+				return (<h2> Test transactions list</h2>)
+			}
 		},
-		indexRoute: {component: TransactionsList}
-	}]
+		transactionLayer: {
+			path: '/finance/:id',
+			exact: true,
+			component: ({location}) => {
+				console.log('finance/id render', location);
+				return (<h2> Test transactionLayer</h2>)
+			},
+			isLayer: true
+		},
+
+		/**
+		 * Пример правил для слоя
+		 */
+		routeTest: {
+			path: '/route-test',
+			exact: true,
+			component: () => (<h2>route test</h2>),
+			isLayer: true
+		},
+
+		/**
+		 * Пример правил для слоя
+		 */
+		routeTest2: {
+			path: '/route-test2',
+			exact: true,
+			component: ({location}) => {
+				console.log('route-test2 render');
+				return (<h2> Test route-test2</h2>)
+			},
+			isLayer: true
+		}
+	}
 }

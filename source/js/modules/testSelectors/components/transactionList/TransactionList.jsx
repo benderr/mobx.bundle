@@ -24,6 +24,7 @@ const makeMapStateToProps = () => {
 };
 
 const TransactionListComponent = (props) => {
+    console.log('TransactionListComponent render');
     return (
         <div class="table_list table_list_big transaction_list transaction_list_usn widget_block">
             <div class="table_list_body">

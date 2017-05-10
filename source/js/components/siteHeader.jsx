@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
+import {NavLink, Link} from 'react-router-dom';
 import {logOut} from 'modules/account/actions/loginActions'
 import {connect} from 'react-redux';
 
@@ -27,10 +27,44 @@ const Header = props => {
             <div class="header_menu free_items">
                 <div class="header_menu_inner">
                     <ul>
-                        <li class="active"><Link to="/list-example"><span>Sel1</span></Link></li>
-                        <li><Link to="/list-example2">Sel1</Link></li>
-                        <li><Link to="/list-example2/second">Sel3</Link></li>
-                        <li><Link to="/finance">Fin</Link></li>
+                        <li>
+                            <NavLink to="/finance" activeStyle={{
+                                fontWeight: 'bold',
+                                textDecoration: 'underline'
+                            }}><span>List</span></NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/finance/1" exact={true} activeStyle={{
+                                fontWeight: 'bold',
+                                textDecoration: 'underline'
+                            }}><span>L1</span></NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/route-test" exact={true} activeStyle={{
+                                fontWeight: 'bold',
+                                textDecoration: 'underline'
+                            }}><span>L2</span></NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/route-test2" exact={true} activeStyle={{
+                                fontWeight: 'bold',
+                                textDecoration: 'underline'
+                            }}><span>L3</span></NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/list-example2/second" exact={true} activeStyle={{
+                                fontWeight: 'bold',
+                                textDecoration: 'underline'
+                            }}><span>L2/sec</span></NavLink>
+                        </li>
+
+
+                        {/*<li>*/}
+                            {/*<NavLink to="/finance" activeStyle={{*/}
+                                {/*fontWeight: 'bold',*/}
+                                {/*textDecoration: 'underline'*/}
+                            {/*}}><span>Fin</span></NavLink>*/}
+                        {/*</li>*/}
                     </ul>
                 </div>
             </div>

@@ -30,7 +30,7 @@ function mapStateToProps(state, ownProps) {
     return {
         loading: state.auth.get('loading'),
         errors: state.auth.get('authError'),
-        redirectUrl: ownProps.location.query && ownProps.location.query.redirectUrl || null
+        redirectUrl: '/' //ownProps.location.query && ownProps.location.query.redirectUrl || null
     }
 }
 
