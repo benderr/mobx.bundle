@@ -7,6 +7,19 @@ import TransactionsList from 'modules/finance/components/TransactionsList/Transa
 import ExternalLayout, {NotFoundLayout} from 'components/ExternalLayout'
 import SignInContainer from 'modules/account/containers/SignInContainer'
 
+/**
+ * пример роутинга
+ * Разбор флагов
+ * - index - главная страница
+ * - path - v4-docs
+ * - exact - v4-docs
+ * - strict - v4-docs
+ * - component - v4-docs
+ * - isLayer - флаг если страница является слоем
+ * - layout - мастер-страница, если не указана то берется дефолтная
+ * 				(у обычной страницы - своя, у слоя - своя),
+ * 				если layout: null, то рендерится без мастера
+ */
 export const testRoutes = {
 	/**
 	 * Просто рендеринг роута

@@ -44,30 +44,27 @@ const generateRouteDefault = (key, props) => {
 };
 
 const generateRouteCustom = (key, props, CustomRoute) => {
-	//console.log(props);
 	return (<CustomRoute {...props} key={key}/>)
 };
 
 const transformRoutes = (routes, defaultLayout, defaultLayerLayout) => {
-	return Object.keys(routes).reduce((r, key) => {
-		const rule = routes[key];
-
+	return routes.reduce((r, rule) => {
 		if (rule.isLayer) {
 			const layout = rule.layout === undefined ? defaultLayerLayout : rule.layout;
 			r.layerRoutes = [...r.layerRoutes,
 				{
-					routeId: `${key}_${getRandomKey()}`,
-					...rule,
-					layout
+					routeId: `${rule.name}_${getRandomKey()}`,
+					layout,
+					...rule
 				}
 			];
 		} else {
 			const layout = rule.layout === undefined ? defaultLayout : rule.layout;
 			r.pageRoutes = [...r.pageRoutes,
 				{
-					routeId: `${key}_${getRandomKey()}`,
-					...rule,
-					layout
+					routeId: `${rule.name}_${getRandomKey()}`,
+					layout,
+					...rule
 				}
 			];
 		}

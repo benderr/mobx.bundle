@@ -5,7 +5,10 @@ import ReactTooltip from 'react-tooltip'
 //import {syncHistoryWithStore} from 'react-router-redux'
 //import createBrowserHistory from 'history/createBrowserHistory'
 import PropTypes from 'prop-types';
-import ExternalLayout, {NotFoundLayout} from 'components/ExternalLayout'
+import NotFoundLayout from 'components/NotFoundLayout'
+import ExternalLayout from 'components/ExternalLayout'
+import InternalLayout from 'components/InternalLayout'
+import DefaultLayerLayout from 'components/DefaultLayerLayout'
 //import RadLayerManager from 'components/RadRouter/RadLayerManager'
 //import {Switch} from 'react-router'
 
@@ -169,7 +172,7 @@ export default class RootContainer extends React.Component {
             <Provider store={this.props.store}>
                 <div className="poss">
                     <BrowserRouter basename='/'>
-                        <RadRouter routes={this.props.routes} notFound={NotFoundLayout}/>
+                        <RadRouter defaultLayerLayout={DefaultLayerLayout} defaultLayout={InternalLayout} routes={this.props.routes} notFound={NotFoundLayout}/>
                         {/*<HelloWorldComponent/>*/}
                     </BrowserRouter>
                     {this.renderDevTools()}
