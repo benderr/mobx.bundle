@@ -16,7 +16,6 @@ import {
     BrowserRouter,
     Route,
 } from 'react-router-dom'
-import {testRoutes} from 'components/TestRouter'
 import RadRouter from 'components/RadRouter/RadRouter'
 
 // class TestLayout extends React.Component {

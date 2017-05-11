@@ -1,9 +1,12 @@
 import React from 'react';
+import '../../../markup/stylus/login.styl';
 
-//Шаблон для анонимных страниц
 const ExternalLayout = (props) => {
     return (
-        <div class="reg">
+        <div class="login">
+            <header class="login_header">
+                <a href="#"><strong>Модуль</strong>Касса</a>
+            </header>
             {props.children}
         </div>
     );
