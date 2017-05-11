@@ -1,0 +1,1378 @@
+@import 'nib'
+@import 'variables.styl'
+
+::-webkit-input-placeholder
+	color ctextholder
+	font-weight 300
+::-moz-placeholder
+	color ctextholder
+	font-weight 300
+:-ms-input-placeholder
+	color ctextholder!important
+	font-weight 300
+
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="time"],
+input[type="date"],
+input[type="number"],
+textarea
+	height 44px
+	border 1px solid cbd
+	border-radius brform
+	display inline-block
+	background-color #fff
+	font-family ffn
+	font-size fzn
+	font-weight fwn
+	padding 0 15px
+	color ctext
+	box-shadow inset 0px 2px 2px -2px rgba(0,0,0,0.18)
+	box-sizing border-box
+	vertical-align middle
+	-webkit-appearance textfield
+	transition border-color .2s, color .2s, background .2s, box-shadow .2s
+
+	&:focus
+		border-color cl2
+		box-shadow inset 0px 2px 2px -2px rgba(0,0,0,0)
+
+
+	&[disabled], &.disabled
+		color ctextdis
+		background #f5f5f5
+		&::-webkit-input-placeholder
+			color ctextdis
+		&::-moz-placeholder
+			color ctextdis
+		&:-ms-input-placeholder
+			color ctextdis!important
+
+
+	// валидация
+	&.error
+		border-color cerror!important
+		background-color cerror + 97%!important
+		// animation error-border-flash .7s both
+		&::-webkit-input-placeholder
+			// color ctexterror
+		&::-moz-placeholder
+			// color ctexterror
+		&:-ms-input-placeholder
+			// color ctexterror!important
+		// &:focus
+		// 	border-color cl2
+
+	&.valid, &.success
+		border-color csucces
+		// background-color csucces + 96%
+
+	// размеры
+	&.xsmall
+		height 26px
+		padding 0 6px
+		font-size fzn - 2px
+	&.small
+		height 38px
+		padding 0 10px
+		font-size fzn - 2px
+	&.big
+		height 50px
+		padding 0 15px
+		font-size fzn + 2px
+
+	// стиль 2
+	&.second
+		border-color transparent
+		box-shadow 0 1px 1px rgba(0,0,0,0.12)
+		&:focus
+			box-shadow 0 1px 1px rgba(cl1,0.3)
+
+	&:-webkit-autofill
+		transition none
+		box-shadow 0 0 0 1000px white inset
+		&:disabled
+			box-shadow 0 0 0 1000px #f5f5f5 inset
+
+input[type="search"]::-webkit-search-decoration
+	-webkit-appearance none
+input[type="search"]::-webkit-search-cancel-button
+	-webkit-appearance none
+
+
+textarea
+	padding 12px 15px 6px
+	resize none
+	min-height 44px
+	&.small
+		padding 6px 10px
+		min-height  34px
+	&.js_autosize
+		transition none
+		overflow-x hidden
+		overflow-y auto!important
+		max-height 126px
+	&.textarea_middle
+		min-height 65px
+		max-height 146px
+	&.textarea_big
+		min-height 125px
+		max-height 209px
+
+.textarea_block
+	clearfix()
+
+	&.small
+		textarea
+			padding 6px 10px
+			font-size fzn - 2px
+		.textarea_text
+			padding 0 10px 6px
+			&.first_line
+				padding 10px 10px 0
+	&.disabled
+		.textarea_text,
+		.textarea_text.characters_left
+			color ctextdis
+		.textarea_border
+			color ctextdis
+			background #f5f5f5
+		textarea
+			color ctextdis
+			&:focus ~ .textarea_border
+				border-color inherit
+	textarea
+		box-shadow none
+		border none
+		z-index 10
+		position relative
+		background none!important
+		&:focus ~ .textarea_border
+			border-color cl2
+		&.error ~ .textarea_border
+			border-color cerror
+			background-color cerror + 97%
+
+
+	.textarea_border
+		position absolute
+		z-index 0
+		top 0
+		bottom 0
+		right 0
+		left 0
+		border 1px solid cbd
+		background #fff
+		border-radius brform
+		box-shadow inset 0px 2px 2px -2px rgba(0,0,0,0.18)
+	.textarea_text
+		padding 0 15px 10px
+		font-size fzn - 1px
+		z-index 10
+		color ctextlight
+		word-break break-word
+		min-height 19px
+		&.characters_left
+			position absolute
+			right 0
+			bottom 0
+			color ctextlight
+			font-size fzn - 4px
+			margin 4px 0 0
+			min-height auto
+		&.first_line
+			padding 12px 15px 0
+
+			&~textarea
+				padding-top 2px
+
+.editor-disable
+	color ctextdis
+	padding 9px 15px 8px
+	background #f5f5f5
+	font-family ffn
+	font-size fzn - 1px
+	font-weight fwn
+	height 200px
+	overflow auto
+	border 1px solid cbd
+	border-radius brform
+
+
+input[type='search'].input_search
+	border-radius 30px
+	background-image url(../images/icon_search_input.svg)
+	background-repeat no-repeat
+	background-position 10px center
+	background-size 16px auto
+	padding-left 30px
+	transition .2s
+	&:focus
+		border-radius 30px
+
+
+input.input_search_focus
+	background-image url(../images/icon_search_input.svg)
+	background-repeat no-repeat
+	background-position 100% center
+	background-size 0px
+	&:focus
+		background-position calc(100% - 10px) center
+		background-size 16px auto
+		padding-right 40px
+
+input.input_loading
+	background-image url(../images/loading_ring.gif)!important
+	background-position calc(100% - 10px) center
+	background-repeat no-repeat
+	padding-right 40px!important
+	background-size 18px!important
+
+
+
+// -------  оформление чекбоксов --------
+
+label.label_check
+	display inline-block
+	min-width 18px
+	min-height 18px
+
+input[type='radio'], input[type='checkbox']
+	display none!important
+	&:focus
+		background cbghighlight
+
+	& + label.label_check
+		cursor pointer
+		position relative
+
+		.icon
+			width 14px
+			height 14px
+			// box-shadow 0 0 0 2px #D1D1D1
+			border 2px solid #D1D1D1
+			background #fff
+			border-radius 50%
+			display inline-block
+			appearance none
+			vertical-align top
+			position relative
+			cursor pointer
+			box-sizing content-box
+			position absolute
+			left 0
+
+			&:active
+				background rgba(0,0,0,0.03)
+			& + span
+				margin-left 26px
+				display inline-block
+	&:checked
+		+ label.label_check
+			.icon
+				// box-shadow inset 0 0 0 5px cl3, inset 0 0 0 9px #fff
+				border-color cl3
+				border-width 6px
+				width 6px
+				height 6px
+	&:disabled
+		+ label.label_check
+			cursor no-drop
+			color ctextdis
+			*
+				color ctextdis
+			.icon
+				background #f5f5f5
+				cursor no-drop
+				&:after
+					color transparent
+		&:checked
+			+ label.label_check
+				.icon
+					// box-shadow inset 0 0 0 5px ctextdis, inset 0 0 0 9px #fff
+					border-color ctextdis
+					&:after
+						color #fff
+
+// чекбокс
+input[type='checkbox']
+	& + label.label_check
+		.icon
+			width 14px
+			height 14px
+			border-radius 2px
+
+			&:after
+				font-family "mb-icon-font-3"
+				text-transform none!important
+				font-style normal
+				content 's'
+				position absolute
+				display inline-block
+				top 1px
+				left 1px
+				color #fff
+				font-size 12px
+				text-align center
+				line-height 1
+				transition .1s
+			// &.big
+			// 	width 22px
+			// 	height 22px
+			// 	&:after
+			// 		font-size 14px
+			// 		top 4px
+			// 		left 4px
+	&:checked
+		& + label.label_check
+			.icon
+				background cl3
+				border-width 2px
+				width 14px
+				height 14px
+				// box-shadow inset 0 0 0 1.5px cl3
+
+	&:disabled
+		&:checked
+			+ label.label_check
+				.icon
+					box-shadow inset 0 0 0 15px ctextdis
+
+	// круглый чекбокс
+	& + label.label_check.circle
+		min-width 18px
+		.icon
+			width 14px
+			height 14px
+			border-radius 20px
+			&:after
+				top 1px
+				left 1px
+
+	// чекбокс switcher
+	& + label.label_check.switcher
+		min-width 30px
+		.icon
+			width 26px
+			height 14px
+			background cbdlight
+			border-radius 2px
+			transition background-color .2s, box-shadow .2s
+			margin-right -26px
+			vertical-align -2px
+			border-color transparent
+			&:after
+				content ''
+				width 14px
+				height 14px
+				background #fff
+				// box-shadow inset 0 0 0 1.5px cgrey18
+				border 2px solid #D1D1D1
+				border-radius 3px
+				position absolute
+				top -2px
+				left -2px
+				transition left .2s, box-shadow .2s
+
+			& + span
+				margin-left 38px
+				vertical-align top
+	&:disabled
+		+ label.label_check.switcher
+			.icon
+				background #bbb
+				border-color #bbb
+				&:after
+					background #F2F2F2
+					border-color #bbb
+	&:disabled:checked
+		+ label.label_check.switcher
+			.icon
+				&:after
+					border-color #bbb
+	&:checked
+		+ label.label_check.switcher
+			.icon
+				background cl3
+
+				&:after
+					left 10px
+					border-color cl3
+
+
+
+// --------------------
+
+form
+	position relative
+
+// фильтры на чекбоксах
+.label_filter
+	display inline-block
+	cursor pointer
+input[type='radio'], input[type='checkbox']
+	&:checked + .label_filter
+		color cl2
+
+
+label.check
+	color ctextlight
+	transition .2s
+	font-size fzn - 2px
+
+	&:hover
+		color ctext
+
+
+
+input.search_right
+	background url(../images/search.svg) no-repeat calc(100% - 15px) center
+	padding-right 40px
+input.search_left
+	background url(../images/search.svg) no-repeat 15px center
+	padding-left 40px
+
+// -------------- стилизация select --------------
+.form_select
+	height 40px
+	border-radius brform
+	background url(../images/select_arrow.svg) no-repeat calc(100% - 15px) center
+	width auto
+	display inline-block
+	overflow hidden
+	border 1px solid cbd
+	select
+		background transparent
+		appearance none
+		height 40px
+		width 120%
+		width calc(100% + 20px)
+		border none
+		border-radius 0
+		font-family ffn
+		font-size fzn
+		font-weight 300
+		padding 0 40px 0 15px
+		cursor pointer
+		margin 0
+		&:focus
+			color cl2
+		option
+			color cl1
+
+// строка формы
+.form_group, .form_group_list, .form_group_checkbox
+	clearfix()
+	margin-bottom 15px
+	.property_label
+		color ctextlight
+		padding-bottom 3px
+
+		&.col, &.column, &.columns
+			// text-align right
+			padding-bottom 0
+	.small_text
+		padding-top 5px
+.form_group_list
+	margin-bottom 10px
+.form_group_checkbox
+	margin-top 20px
+	margin-bottom 20px
+
+.form_page_important_area
+	background cbgsky
+	border-top 1px solid cbdlightsky
+	border-bottom 1px solid cbdlightsky
+	padding 15px 30px 0
+	margin-left -30px
+	margin-right -30px
+	margin-bottom 15px
+
+
+
+.form_horizontal
+	.property_label
+		padding-top 13px
+.form_horizontal_small
+	.property_label
+		padding-top 5px
+
+.form_vertical
+	.property_label
+		padding-bottom 6px
+
+
+// заголовки
+.legend
+	border-bottom 2px solid cbdlight
+	text-transform uppercase
+	font-weight fwm
+	margin-bottom 25px
+	span
+		display inline-block
+		padding 0 0 6px
+		border-bottom 2px solid cl2
+		margin-bottom -2px
+
+.legend_small
+	border-bottom 1px solid cbdlight
+	font-weight normal
+	margin-bottom 30px
+	font-size fzn - 2px
+	color ctextlight
+	height 10px
+	span
+		display inline-block
+		padding 0 10px 0 0
+		background #fff
+		height 20px
+
+
+// блок кнопок в конце формы
+.form_buttons
+	margin 32px 0 0
+	clearfix()
+	.links
+		display inline-block
+		margin 0 0 0 12px
+		font-size fzn - 1px
+		a
+			display inline-block
+			margin 0 0 0 15px
+			color ctextlight
+			text-decoration none
+			&:hover
+				color ctext
+
+	&+[class*="info_"], &+[class*="captcha"]
+		margin-top 15px
+
+	.form_button_right
+		float right
+		&.button_clean
+			margin-top 13px
+
+	.ms-parent.select_inline
+		vertical-align baseline
+	.button, .button_clean
+		& ~ .ms-parent
+			margin-left 20px
+
+	&.form_buttons_collums
+		display flex
+		justify-content space-between
+		align-items center
+	.form_buttons_left
+		text-align left
+	.form_buttons_right
+		text-align right
+
+
+// -------------- поле с добавление иконки/текста перед полем --------------
+.input_group
+	display flex
+	vertical-align middle
+	input[type="text"],
+	input[type="tel"],
+	input[type="email"],
+	input[type="password"],
+	input[type="number"],
+	input[type="search"]
+		width 100%
+		min-width 0
+		flex 0 1 auto
+		z-index 10
+		& ~ .input_group_addon
+			border 1px solid cbd
+			border-left none
+
+	.ms-parent, .drop-input
+		width 1%!important
+		flex 1 0 auto
+		// z-index 10
+
+rad-select2
+	display none
+
+.input_group_button
+	margin-left -1px
+	flex 0 0 auto
+	order 3
+	&:first-of-type
+		border-radius 0 brbut brbut 0
+.input_group_addon
+	flex 0 0 auto
+	min-width 45px
+	height 44px
+	line-height 44px
+	border 1px solid cbd
+	border-right none
+	border-radius brform
+	border-top-right-radius 0
+	border-bottom-right-radius 0
+	background cbgsky
+	font-family ffn
+	font-size fzn - 4px
+	font-weight fwn
+	text-align center
+	padding 0 7px
+	color ctextholder
+	box-sizing border-box
+	vertical-align middle
+	text-align center
+	white-space nowrap
+	&[class*='icon-']
+		font-size fzn
+		&:before
+			min-width 0!important
+			margin 0
+			width auto
+	&.big
+		height 50px
+		line-height 50px
+		&[class*='icon-']
+			font-size fzn + 2px
+		&.addon_code
+			font-size fzn + 2px
+	&.addon_code
+		font-size fzn - 1px
+
+	.cur
+		font-size fzn
+		display block
+
+
+// -------------- поле с заголовком --------------
+.input_group_title
+	display inline-block
+	vertical-align bottom
+	padding-top 20px
+	.input_title
+		position absolute
+		top 0px
+		left 0
+		font-size fzn - 3px
+		display inline-block
+		color ctextlight
+		transition color .2s
+
+	input
+		// display block
+		&:focus ~ .input_title
+			color cl2
+		&.error ~ .input_title
+			color ctexterror
+
+	.input_group_title_button_right
+		position absolute
+		&.small
+			right 2px
+			top 21px
+		&.middle
+			right 0px
+			top 18px
+
+// поле с заголовком новое
+.field_title
+	.field_label
+		font-size fzn - 3px
+		font-weight fwn
+		margin 0 0 4px
+		color ctextlight
+	.field_text
+		input[type="text"],
+		input[type="password"],
+		input[type="search"],
+		input[type="email"],
+		input[type="tel"],
+		input[type="time"],
+		input[type="date"],
+		input[type="number"],
+		textarea
+			&.error
+				border-color #F89494
+				background-color inherit
+			&.success
+				border-color cbd
+				padding-right 36px
+				& ~ .valid_mark
+					background-image url(../images/icon_valid_success.svg)
+					opacity 1
+					right 10px
+				&:focus
+					border-color cl2
+
+		.valid_mark
+			position absolute
+			right -5px
+			top 13px
+			width 18px
+			height 18px
+			opacity 0
+			background-position center
+			background-repeat no-repeat
+			transition right .2s, opacity .2s
+
+
+
+
+// переключатели
+.switch_group
+	display inline-block
+	vertical-align middle
+	clearfix()
+	.switch_item
+		float left
+		&:first-child
+			label
+				margin-left 0
+
+		&:first-child
+			label
+				border-top-left-radius brform
+				border-bottom-left-radius brform
+		&:last-child
+			label
+				border-top-right-radius brform
+				border-bottom-right-radius brform
+
+	input[type="radio"]
+		&:checked ~ label
+			background cbghighlight
+			border-color cl2
+			font-weight 400
+			cursor default
+			color ctext
+			z-index 10
+
+
+	label
+		float left
+		display block
+		height 44px
+		line-height 42px
+		background #fff
+		border 1px solid cbd
+		margin-left -1px
+		color ctextlight
+		padding 0 15px
+		font-size fzn
+		cursor pointer
+		z-index 1
+		position relative
+		box-sizing border-box
+		&:hover
+			color ctext
+
+
+
+
+	&.switch_tabs
+		.switch_item
+			input[type='radio']
+				&:checked ~ label
+					&:after, &:before
+						top 100%
+						left 50%
+						border solid transparent
+						content " "
+						height 0
+						width 0
+						position absolute
+						pointer-events none
+					&:after
+						border-color rgba(255, 255, 0, 0)
+						border-top-color #eaf5f9
+						border-width 6px
+						margin-left -6px
+					&:before
+						border-color rgba(0, 255, 0, 0)
+						border-top-color cl2
+						border-width 7px
+						margin-left -7px
+	&.small
+		label
+			height 32px
+			line-height 30px
+			font-size fzn - 2px
+			padding 0 10px
+
+
+
+//-------------- кнопка загрузки файла --------------
+
+.button_file_upload
+	position relative
+	display inline-block
+	overflow hidden
+	color clink
+	text-transform uppercase
+	font-weight fwm
+
+	&.button
+		color #fff
+
+	&.button.light
+		color ctext
+	&.button.light_primary
+		color cl2
+
+	&[class*="icon-"]:before
+		font-size fzn
+		vertical-align -4px
+	&:not(.button):hover
+		color clink
+		&:before
+			color clink
+
+	input[type='file']
+		position absolute
+		top 0
+		right 0
+		margin 0
+		opacity 0
+		// filter: alpha(opacity=0);
+		// -ms-filter "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"
+		// -moz-transform translate(-300px, 0) scale(4)
+		direction ltr
+		cursor pointer
+		font-size 150px
+		line-height 150px
+		height 150px
+	&:active
+		transform none
+
+
+
+// -------------- каптча ------------------
+.captcha
+	text-align center
+	p
+		font-size fzn - 2px
+		margin-bottom 12px
+		line-height 1.3
+	.captcha_left
+		width 110px
+		display inline-block
+		margin 0 20px 0 0
+		input[type="text"]
+			width 100%
+			height 34px
+			font-size fzn - 2px
+		a
+			font-size fzn - 3px
+			color ctextlight
+			font-weight fwl
+			display block
+			margin 5px 0 0
+	img
+		width 100px!important
+
+
+
+
+
+// ---------- загрузка файлов ------------------
+
+.docs_block
+	margin-top 20px
+	margin-bottom 24px
+	// max-width 900px
+	box-sizing border-box
+	clearfix()
+	.title
+		font-size fzn
+		font-weight fwm
+		margin 0 0 16px
+		.icon-info
+			margin-left 10px
+	.small_text
+		margin 15px 0
+
+
+.file_upload_list
+	clearfix()
+
+	.col.half:nth-child(2n+1),
+	.col.four:nth-child(3n+1),
+	.col.three:nth-child(4n+1)
+		margin-left 0
+
+	&.vertical
+		.file_upload_block
+			width 100%
+			height auto
+			float none
+			text-align left
+			padding 10px
+
+			.file_title
+				display inline-block
+				width calc(100% - 120px)
+				font-size fzn - 2px
+				vertical-align middle
+
+			.file_button
+				position relative
+				display inline-block
+				vertical-align middle
+				bottom auto
+				top auto
+				right auto
+				left auto
+			.file_icon
+				display inline-block
+				margin 0 10px 0 0
+				height 34px
+				width 26px
+				background-size 100%
+			.uploaded
+				padding 10px
+				.file_title
+					max-height 200px
+					margin 0
+					width calc(100% - 45px)
+			.total-progress-box
+				position relative
+				width 44px
+				height 44px
+				margin -5px auto
+				top 0
+			.total-progress
+				&:before
+					background #f6fafc
+
+
+		.file_button_add_page
+			position relative
+			min-height 56px
+			margin -10px
+			label.button_file_upload
+				position absolute
+				top 0
+				bottom 0
+				left 0
+				right 0
+				color ctextlight
+				font-size fzn - 2px
+				padding 18px 0 0 12px
+
+				&:hover
+					background rgba(#fff,0.15)
+				&:before
+					font-size fzn + 2px
+					display inline-block
+					margin 0 5px 0 0
+					color ctextlight
+
+
+.file_upload_block
+	width 170px
+	height 135px
+	margin-bottom 14px
+	border-radius 6px
+	border 1px solid rgba(0,0,0,0.09)
+	background #F7F7F7
+	display inline-block
+	float left
+	vertical-align middle
+	padding 10px 10px 0
+	box-sizing border-box
+	text-align center
+	&.col.half:nth-child(2n+1),
+	&.col.four:nth-child(3n+1),
+	&.col.three:nth-child(4n+1)
+		margin-left 0
+
+
+	&.error
+		border-color cerror
+		background-color cbgerror
+		// .file_title
+		// 	color ctexterror
+
+	&.loading_block:after
+		background-color #F7F7F7
+		border-radius 6px
+	.uploaded
+		display table
+		table-layout fixed
+		width 100%
+		height 100%
+		width calc(100% + 23px)
+		height calc(100% + 13px)
+		margin -11px 0 0 -11px
+		border-radius 6px
+		border 1px solid rgba(0,0,0,0.12)
+		background #fff
+		padding 0px 10px 0
+		box-sizing border-box
+
+		.file_center
+			display table-cell
+			vertical-align middle
+			width 100%
+
+		.file_title
+			color ctext
+			margin-top 5px
+			word-wrap break-word
+			max-height 44px
+
+	.icon-info
+		position absolute
+		right 8px
+		top 8px
+		z-index 10
+	.file_icon
+		margin-bottom 7px
+	.file_delete
+		width 20px
+		height 20px
+		position absolute
+		right 8px
+		top 8px
+		border-radius 50%
+		z-index 10
+		background #fff url(../images/icon_delete.svg) no-repeat center
+		cursor pointer
+		transition .2s
+		&:hover
+			transform rotate(90deg)
+	.file_name
+		color ctextlight
+		font-size fzn - 4px
+		overflow ellipsis
+		max-width 100%
+	.file_title
+		color cgrey50
+		font-size fzn - 4px
+		max-height 60px
+		overflow hidden
+		line-height 1.3
+		strong
+			display block
+			color cgrey72
+	.file_text_error
+		color ctexterror
+		font-size fzn - 4px
+		margin-bottom 2px
+	.file_button
+		position absolute
+		bottom 15px
+		left 0
+		right 0
+	.file_button_add_page
+		position absolute
+		top 0
+		bottom 0
+		left 0
+		right 0
+		label.button_file_upload
+			position absolute
+			top 0
+			bottom 0
+			left 0
+			right 0
+			color ctextlight
+			font-size fzn - 2px
+			padding-top 27px
+			&:hover
+				background rgba(#fff,0.15)
+			&:before
+				font-size fzn + 10px
+				display block
+				margin 0 0 15px
+				color ctextlight
+	.total-progress-box
+		position absolute
+		top calc(50% - 25px)
+		left 0
+		right 0
+
+	.total-progress
+		display inline-block
+		border-radius 50px
+		width 44px
+		height 44px
+		&:before
+			content ''
+			width 34px
+			height 34px
+			position absolute
+			top 5px
+			left 5px
+			border-radius 50%
+			background #F7F7F7
+	.total-progress-value
+		position absolute
+		font-size fzn - 3px
+		left 6px
+		top 6px
+		height 30px
+		right 6px
+		line-height 30px
+		text-align center
+
+	step = 1
+	loops = 100 / step
+	incpxent = 360 / loops
+	half = loops / 2
+
+	for $i in (1..loops)
+		.progress-{step*$i}
+			if $i < half
+				nextdeg = 90deg + (incpxent*$i)
+				background-image linear-gradient(90deg, cbglight 50%, transparent 50%, transparent), linear-gradient(nextdeg, cl2 50%, cbglight 50%, cbglight)
+			else
+				nextdeg = -90deg + ( incpxent * ( $i - half ) )
+				background-image linear-gradient(nextdeg, cl2 50%, transparent 50%, transparent), linear-gradient(270deg, cl2 50%, cbglight 50%, cbglight)
+
+
+
+.file_upload_list
+
+	.file_upload_item
+		padding 0 0 12px
+		font-size fzn - 2px
+		overflow hidden
+		// &:last-child
+		// 	border-bottom none
+		// 	padding-bottom 0
+		// .file_upload_item_info
+		// 	position relative
+		// 	display block
+		// 	margin -6px 0
+		// 	padding 6px 0
+
+		.file_icon
+			display inline-block
+			width 14px
+			height 18px
+			background-size 14px auto
+			margin 0 4px 0 0
+			vertical-align middle
+		.file_error_text
+			position absolute
+			right 25px
+			top 1px
+
+		&.error
+			.file_name
+				max-width calc(100% - 16px - 20px - 130px)
+				color ctexterror
+		.file_name
+			text-decoration none
+			color clink
+			max-width calc(100% - 16px - 20px)
+			overflow ellipsis
+			display inline-block
+			vertical-align middle
+		a.file_name:hover
+			text-decoration underline
+			color cl2
+		.file_delete
+			position absolute
+			right 0
+			top 0
+			opacity 0
+			transition opacity .2s
+			font-size 14px
+			color ctexterror
+			&.show
+				opacity 1
+		&:hover
+			.file_delete
+				opacity 1
+
+		.total-progress-box
+			height 19px
+			margin-right 25px
+		.total-progress-value
+			color ctextlight
+			font-size fzn - 4px
+			text-align center
+		.total-progress
+			position absolute
+			bottom 0
+			left 0
+			height 3px
+			background cl3
+			border-radius 2px
+
+	// файлы в строку
+	&.inline
+		.file_upload_item
+			display inline-block
+			margin 0 4px 4px 0
+			background cbglight
+			border-radius 2px
+			padding 6px 30px 6px 10px
+			min-width 100px
+
+			.file_upload_item_info
+				padding 6px 30px 6px 10px
+				margin -6px -30px -6px -10px
+			.file_name
+				max-width 200px
+			.file_delete
+				right 6px
+			.file_error_text
+				position relative
+				top auto
+				right auto
+				float right
+				font-size fzn - 2px
+				margin-left 10px
+
+
+// разделитель в форме
+.form_sep
+	display block
+	height 1px
+	width 100%
+	margin 20px auto
+	background cbdlight
+	&.noborder
+		background none
+		margin 15px auto
+		width 100%
+.form_sep_full
+	display block
+	height 1px
+	width 100%
+	margin 20px 0
+	background cbdlight
+
+
+// фильтр по дате
+input.datetimepicker
+	padding-left 28px!important
+	background-image url(../images/icon_date.svg)
+	background-repeat no-repeat
+	background-position 8px center
+	background-size 14px auto
+	padding-right 0px
+
+.filter_date_value
+	padding 15px 0 0
+	max-width 250px
+	overflow hidden
+	input.date_from, input.date_to
+		font-size fzn - 4px
+		width 48%
+		float left
+	input.date_to
+		float right
+
+input.date_from
+	background url(../images/icon_date_from.svg) no-repeat 6px center
+	background-size 20px
+input.date_to
+	background url(../images/icon_date_to.svg) no-repeat 6px center
+	background-size 20px
+
+// textarea с загрузкой
+.textarea_with_attach
+	border 1px solid cbd
+	border-radius brform
+	display inline-block
+	background-color #fff
+	font-family ffn
+	font-size fzn - 1px
+	font-weight 300
+	padding 0
+	color ctext
+	box-shadow inset 0px 2px 2px -2px rgba(0,0,0,0.18)
+	box-sizing border-box
+	vertical-align middle
+	transition .2s
+	textarea
+		border none
+		box-shadow none
+		background none
+
+	.button_file_upload
+		margin 5px 0 7px 12px
+
+.form_disabled_overlay
+	position absolute
+	top 0
+	bottom 0
+	right 0
+	left 0
+
+
+// визивиг
+.mce-tinymce
+	&.error
+		.mce-edit-area
+			border 1px solid cerror
+	&.success
+		.mce-edit-area
+			border 1px solid csucces
+
+
+// валидация полей
+.form_error
+	color ctexterror
+	font-size fzn - 2px
+	margin 15px 0 0
+
+// иконки инфо для поля
+.field_info
+	width 17px
+	height 16px
+	position absolute
+	top 14px
+	right 8px
+	color clinklight
+	font-size fzn
+	line-height 1
+	cursor pointer
+	&:before
+		margin 0
+	&:hover
+		color cl2
+	& ~ input
+		padding-right 70px!important
+	& ~ .valid_mark
+		right 35px!important
+
+
+.value_info
+	display inline-block
+	width 17px
+	height 16px
+	margin-left 10px
+	color ctextlight
+	font-size fzn + 2px
+	line-height 1
+	cursor pointer
+	&:before
+		margin 0
+	&:hover
+		color cl2
+
+
+// Иконка корзины для удаления поля
+.input_delete
+	position absolute
+	right 8px
+	top 11px
+	z-index 2000
+	color rgba(0,0,0,0.5)
+	font-size 18px
+
+
+
+// описание поля - мелкое
+.field_desc
+	font-size fzn - 4px
+	color ctextlight
+	line-height 1.4
+	display block
+	margin-top 5px

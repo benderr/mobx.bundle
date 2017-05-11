@@ -1,0 +1,2938 @@
+@import 'nib'
+@import 'variables.styl'
+
+
+::-webkit-scrollbar
+	height 12px
+	width 12px
+	background transparent
+::-webkit-scrollbar-thumb
+	border-radius 10px
+	cursor pointer
+	width 12px
+	cursor pointer
+	border 3px solid rgba(255, 255, 255, 0)
+	background-clip padding-box
+	background-color rgba(cbgdark, 0.3)
+	// box-shadow inset -1px -1px 0px rgba(0, 0, 0, 0.03), inset 1px 1px 0px rgba(0, 0, 0, 0.03)
+	&:hoverol
+		background-color rgba(cl1, 0.4)
+		cursor pointer
+
+
+*
+	margin 0
+	padding 0
+	vertical-align baseline
+	outline none
+	-webkit-text-size-adjust: none;
+// html
+// 	font-size 1px
+
+// @media screen and (min-width:1600px) and (min-height:750px) {
+//     html {font-size: 1.105px;}
+// }
+// @media screen and (min-width:1900px) and (min-height:750px) {
+//     html {font-size: 1.105px;}
+// }
+
+
+html, body
+	position relative
+	min-height 100%
+	height 100%
+
+
+body
+	font-size fzn
+	font-family ffn
+	font-weight fwn
+	color ctext
+	line-height 1.3
+	-webkit-font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	-webkit-text-size-adjust: none
+
+
+
+div, article, aside, footer, header, nav, section, dialog, figure, hgroup, menu
+	position relative
+
+a
+	color clink
+	text-decoration underline
+	cursor pointer
+	transition color .1s ease
+	&:hover
+		color cl2
+	&:active
+		color cl1
+		transition none
+	&:focus
+		outline -webkit-focus-ring-color auto 3px
+
+	&.link_dashed
+		text-decoration none
+		color clink
+		&>span
+			border-bottom 1px dashed @color
+		&:hover
+			color cl2
+			span
+				border-bottom-color cl2
+	&.link_disabled
+		color ctextdis!important
+		cursor default
+
+	&[class*='icon-']
+		&:before
+			transition 0
+		&:empty
+			text-decoration none
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active)
+			text-decoration none
+	&[class*='icon-close']
+		transition transform .15s
+		&:before
+			transition transform .15s
+			margin 0
+			min-width 0
+		// &:hover
+		// 	&:before
+		// 		transform rotate(90deg)
+		&:active
+			&:before
+				transform scale(.9)
+				transition 0s
+	&[class*='icon-favorites-solid']
+		&:before
+			color ctextwarning!important
+
+	&[class*='icon-favorites']
+		&:hover
+			&:before
+				color ctextwarning!important
+
+	&.c_error
+		&:hover
+			color ctexterror + 10%
+
+p
+	line-height 1.5
+
+ul
+	list-style none
+	&.circ, &.check
+		margin 0 0 15px
+		li
+			background url(../images/ul_circ.svg) no-repeat 0 7px
+			margin 0 0 10px 7px
+			padding-left 20px
+	&.point
+		margin 0 0 15px
+		li
+			margin 0 0 5px 7px
+			padding-left 15px
+			position relative
+			&:before
+				content '•'
+				position absolute
+				top 0px
+				left 0
+				font-size fzn
+			li
+				&:before
+					content '-'
+	&.check
+		li
+			background-image url(../images/check.svg)
+			background-size 14px auto
+			background-position 0 3px
+			padding-left 24px
+
+
+b, strong
+	font-weight fwm
+i, em
+	font-style italic
+h1, h2, h3, h4
+	font-weight fwm
+h1
+	font-size 26px
+	font-weight fwl
+	margin 0 0 30px
+h2
+	font-size 20px
+	margin 0 0 20px
+	font-weight fwn
+h3
+	font-size 18px
+	margin 0 0 24px
+	font-weight fwm
+
+
+
+.hidden
+	display none!important
+.show
+	display block!important
+.no-margin
+	margin 0!important
+.no-padding
+	padding 0!important
+.no-bg
+	background none!important
+.no-border, a img
+	border none!important
+.clear
+	clear both
+	clearfix()
+.f_left
+	float left!important
+.f_right
+	float right!important
+.a_center
+	text-align center!important
+.a_left
+	text-align left!important
+.a_right
+	text-align right!important
+.poss
+	position static!important
+.fzn
+	font-size fzn!important
+
+.ov_ell
+	overflow ellipsis
+	max-width 100%
+	display block
+.ov_h
+	overflow hidden
+
+.d_ib
+	display inline-block
+.d_b
+	display block
+.d_in
+	display inline
+
+.va_m
+	vertical-align middle
+.va_t
+	vertical-align top
+
+.c_text
+	color ctext!important
+.c_primary
+	color cl2!important
+.c_success
+	color ctextsuccess!important
+.c_success_hue
+	color cl3!important
+.c_light
+	color ctextlight!important
+.c_error
+	color ctexterror!important
+.c_warning
+	color ctextwarning!important
+.c_danger
+	color ctextdanger!important
+.c_link
+	color clink!important
+.c_linklight
+	color clinklight!important
+.c_sky
+	color cl4!important
+.c_grey36
+	color cgrey36
+
+.bg_success
+	background-color cbgsuccess
+.bg_error
+	background-color cbgerror
+.bg_warning
+	background-color cbginfo
+
+.f_xsmall
+	font-size fzn - 4px!important
+.f_small
+	font-size fzn - 2px!important
+.f_middle
+	font-size fzn - 1px!important
+.f_normal
+	font-size fzn!important
+.f_big
+	font-size fzn + 2px!important
+.f_xbig
+	font-size fzn + 4px!important
+
+.fs_i
+	font-style italic
+
+.fw_n
+	font-weight fwn
+.fw_r
+	font-weight fwr
+.fw_l
+	font-weight fwl
+.fw_m
+	font-weight fwm
+.fw_b
+	font-weight fwb
+
+
+.highlighted
+	background #FFFDC4
+
+.max_w_600
+	max-width 600px
+
+
+
+// денежный поток
+// .cur
+// 	display inline-block
+.ruble, .rur
+	// color cRUR
+
+	span
+		// width 0
+		// color transparent
+		// display inline-block
+		// user-select none
+		font-family 'Ruble'
+		line-height 0
+
+
+	// &:after
+		// content 'Ҍ'
+		// display inline-block
+		// transform scale( 1, -1)
+		// vertical-align -1px
+
+		// content: '–';
+		// position: absolute;
+		// bottom: 0%;
+		// left: 0;
+		// line-height .92
+		// font-size smaller
+
+
+.dollar, .usd
+	// color cUSD
+.euro, .eur
+	// color cEUR
+.yuan, .cny
+	// color cCNY
+
+.money_income
+	color cl3 - 20%
+	&:before
+		content '+ '
+.money_expense
+	color ctexterror
+	&:before
+		content '– '
+.money_plus
+	&:before
+		content '+ '
+.money_minus
+	&:before
+		content '– '
+.money_income,.money_expense
+	&.money_hold
+		color ctext
+
+.equalize_height
+	display flex
+	align-items stretch
+
+
+// блоки
+.info, .info_error, .info_success, .info_sms
+	background cbginfo
+	padding 14px 20px 16px
+	margin 16px 0
+	box-sizing border-box
+	border-top 2px solid #F6EBB4
+	color cgrey72
+	font-size fzn - 2px
+	line-height 1.35
+	&:first-child
+		margin-top 0
+	h3
+		margin-bottom 15px
+	h4
+		font-size fzn
+		margin-bottom 10px
+	p
+		margin-bottom 10px!important
+		line-height 1.35
+		&:last-child
+			margin-bottom 0!important
+	ul,ol
+		&:last-child
+			margin-bottom 0
+
+
+.info_error
+	background-color cbgerror
+	border-color cbgerror - 10%
+	// color ctexterror
+
+.info_success
+	background-color cbgsuccess
+	border-color cbgsuccess - 20%
+
+.info_sms
+	max-width 450px
+	font-size fzn - 2px
+	color ctext
+	p
+		margin-bottom 15px!important
+	.small_text
+		margin 15px 0
+	.info_error
+		margin-bottom -15px
+	input
+		width 140px
+		padding-left 15px!important
+		letter-spacing 2px
+		transition none!important
+		vertical-align middle
+
+		@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+			line-height 0 //фикс для EDGE
+		}
+		&:focus
+			border-color cbd - 10%!important
+		&::-webkit-input-placeholder
+			color ctextholder
+			font-weight 300
+			letter-spacing 0px
+		&::-moz-placeholder
+			color ctextholder
+			font-weight 300
+			letter-spacing 0px
+		&:-ms-input-placeholder
+			color ctextholder!important
+			font-weight 300
+			letter-spacing 0px
+
+.info_icon,
+.info_icon_error,
+.info_icon_success,
+.info_icon_load,
+.info_icon_warning
+	padding-left 60px
+	min-height 55px
+	&:before
+		content ''
+		position absolute
+		top 0
+		left 0
+		width 60px
+		height 55px
+		background-size 24px
+		opacity .24
+
+	&.icon_top
+		padding 48px 20px 16px
+		&:before
+			width 100%
+			height 50px
+			background-position center 12px
+.info_icon
+	&:before
+		background url(../images/font_icons/info.svg) no-repeat 18px 12px
+.info_icon_error, .info_icon_warning
+	&:before
+		background url(../images/font_icons/danger.svg) no-repeat 18px 12px
+.info_icon_success
+	&:before
+		background url(../images/font_icons/round-check.svg) no-repeat 18px 12px
+.info_icon_load
+	&:before
+		background url(../images/font_icons/wait.svg) no-repeat 18px 12px
+		background-size 26px auto
+
+
+.info.found_company, .light_block.found_company
+	background-image url(../images/icon_found_company.svg)
+	background-repeat no-repeat
+	background-size 50px auto
+	background-position 22px 15px
+	padding-left 100px
+	padding-bottom 25px
+	h3
+		// font-size fzn + 1px
+		// font-weight fwm
+		margin 0 0 12px
+	p
+		margin 0
+		font-size fzn - 2px
+
+	.label_check
+		font-size fzn
+		line-height 1.2
+
+
+// смс подтверждение новое
+.sms_confirm
+	padding 25px
+	font-size fzn - 1px
+	// background cbginfo
+	text-align center
+	&.solid
+		background cbginfo
+		.sms_field
+			input[type="text"]
+				background-color #fff
+	p
+		font-weight fwl
+		line-height 1.5!important
+	p.small_text
+		margin-bottom 0!important
+		a
+			font-size fzn - 2px
+	.sms_phone
+		display block
+		font-size 20px
+	.sms_cancel
+		margin-top 5px
+		display inline-block
+	.sms_field
+		margin 0 0 20px
+		input[type="text"]
+			letter-spacing 5px
+			font-size 32px
+			font-weight fwl
+			// font-family Tahoma, 'Trubuchet MS'
+			background-color cgrey05
+			background-repeat no-repeat
+			background-size 30px
+			border-radius 5px
+			border 1px solid transparent
+			background-position center
+			width 150px
+			padding 0 0 0 20px
+			height 55px
+			box-shadow none
+			transition color .2s, width .2s, height .2s, border-radius .2s, background .1s, border .2s
+
+			&::-webkit-input-placeholder
+				color rgba(0,0,0,0.1)
+				font-weight fwl
+				letter-spacing 5px
+			&::-moz-placeholder
+				color rgba(0,0,0,0.1)
+				font-weight fwl
+				letter-spacing 5px
+			&:-ms-input-placeholder
+				color rgba(0,0,0,0.1)!important
+				font-weight fwl
+				letter-spacing 5px
+			&.error
+				animation: shake 1s cubic-bezier(.36,.07,.19,.97) both;
+				transform: translate3d(0, 0, 0);
+				backface-visibility: hidden;
+				perspective 1000px
+				color ctexterror
+				background-color #fbebee
+
+
+				&::-webkit-input-placeholder
+					color rgba(255,0,0,0.2)
+
+				&::-moz-placeholder
+					color rgba(255,0,0,0.2)
+
+				&:-ms-input-placeholder
+					color rgba(255,0,0,0.2)!important
+			&.success
+				background-color clsub6
+				color ctextsuccess
+			// &.loader
+			// 	width 55px!important
+			// 	height 55px!important
+			// 	color transparent
+			// 	background transparent
+			// 	border-radius 50px
+			// 	border-bottom 5px solid transparent
+			// 	border-top 5px solid transparent
+			// 	border-left 5px solid cl2
+			// 	border-right 5px solid transparent
+			// 	animation rotatingSms 1s .2s linear infinite;
+			&.loader
+				background-color transparent
+				background-image url(../images/loading_ring_color.svg)
+				background-size 32px
+				color cgrey09
+				color transparent
+		&.big_field
+			input[type="text"]
+				height 64px
+				font-size 40px
+				width 176px
+				&.loader
+					background-size 44px
+
+
+	.form_buttons
+		margin 25px 0 20px
+
+	.captcha
+		padding 0
+		border none
+		text-align center
+		.captcha_left
+			float none
+			display inline-block
+
+.popup_layer .sms_confirm
+	margin-right -40px
+	margin-left -40px
+	margin-bottom -35px
+
+
+
+
+
+
+.info_label,
+.info_label_success,
+.info_label_error,
+.info_label_danger,
+.info_label_primary,
+.info_label_grey,
+.info_label_dark
+	background #FAF3BF
+	padding 1px 6px 2px
+	box-sizing border-box
+	color cgrey50
+	font-size fzn - 6px
+	font-weight fwm
+	display inline-block
+	vertical-align middle
+	border-radius 9px
+	&.big
+		font-size fzn
+		padding 3px 10px 4px
+		border-radius 14px
+	&.small
+		font-size fzn - 7px
+		padding 2px 5px
+		font-weight fwm
+	&.middle
+		font-size fzn - 4px
+
+.info_label_success
+	background-color clsub6
+	color #559204
+	border none
+
+.info_label_danger
+	background-color ctextdanger
+	border-color ctextdanger
+	font-weight normal
+	color #fff
+
+.info_label_error
+	background-color cbgerror
+	color cerror
+	border none
+	a
+		color #fff
+		text-decoration underline!important
+.info_label_primary
+	background-color #DFEFF7
+	color cl2
+.info_label_grey
+	background #F2F2F2
+	color cgrey50
+
+.info_label_dark
+	background ctext
+	color #fff
+
+
+
+.info_bot_text
+	font-size fzn - 2px
+	color ctextlight
+	border-top 1px solid cbdlight
+	padding-top 20px
+	margin-top 30px
+
+.text_block
+	p
+		line-height 150%
+		margin 0 0 15px
+	.form
+		margin 0 0 15px
+
+.light_text
+	color ctextlight
+.error_text
+	color ctexterror
+.warning_text
+	color ctextwarning
+.success_text
+	color cl3 - 30%
+
+.small_text
+	font-size fzn - 4px
+	color ctextlight
+	p
+		margin 0 0 5px
+		line-height 1.4
+	&.border
+		border-top 1px solid cbdlight
+		padding-top 24px
+		margin-top 24px
+
+// загрузка
+.loading
+	margin 50px auto
+	display block
+	text-align center
+	div
+		display inline-block
+		background url(../images/loading.gif) no-repeat center 0
+		background-size 24px 24px
+		padding 40px 0 0
+		min-height 24px
+		min-width 24px
+		max-width 350px
+		font-size fzn - 2px
+		color ctext
+		box-sizing border-box
+		line-height 1.5
+		.title
+			font-size fzn
+			margin 0 0 10px
+			display block
+	&.info
+		margin 0 0 15px
+		div
+			max-width 1000px
+			color ctext
+	&.full
+		div
+			max-width 100%
+
+
+.loading_block
+	position relative
+	> *
+		opacity .4
+	&[data-loading-text]
+		&:after
+			background-position center calc(50% - 12px)
+	&:before
+		content ' 'attr(data-loading-text)' '
+		position absolute
+		top 50%
+		left 50%
+		text-align center
+		z-index 101
+		transform translate(-50%, 10px)
+		font-size fzn - 2px
+		color ctext
+		text-shadow 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff, 0 0 7px #fff
+		width 80%
+		line-height 1.2
+
+	&:after
+		transition background-color .5s ease
+		content ''
+		position absolute
+		top 0
+		right 0
+		bottom 0
+		left 0
+		background-color rgba(#fff,0)
+		background-image url(../images/loading_ring_color.svg)
+		background-repeat no-repeat
+		background-position center
+		background-size 32px 32px
+		z-index 100
+
+
+.loading_block_clean
+	overflow hidden!important
+	background-color transparent
+	background-image url(../images/loading.gif)
+	background-repeat no-repeat
+	background-position center
+	background-size 24px 24px
+	max-height 200px
+	& *
+		opacity 0
+
+
+.disable_block
+	position relative
+	> *
+		opacity .4
+
+	&:after
+		content ''
+		position absolute
+		top 0
+		right 0
+		bottom 0
+		left 0
+		z-index 10
+
+
+
+
+// иконки файлов
+.file
+	display inline-block
+	text-decoration underline!important
+
+.file_icon
+	width 32px
+	height 43px
+	display inline-block
+	vertical-align middle
+	background-size 32px 43px
+	background-repeat no-repeat
+	background-position 0 0
+	background-image url(../images/icon_file_other.svg)
+	&.pdf
+		background-image url(../images/icon_file_pdf.svg)
+	&.doc, &.docx, &.docm, &.DOC, &.DOCX, &.DOCM
+		background-image url(../images/icon_file_doc.svg)
+	&.ppt, &.pptx, &.pptm, &.PPT, &.PPTX, &.PPTM
+		background-image url(../images/icon_file_ppt.svg)
+	&.xls, &.xlsx, &.xlsm, &.XLS, &.XLSX, &.XLSM
+		background-image url(../images/icon_file_xls.svg)
+	&.txt, &.rtf, &.pages, &.TXT, &.RTF, &.PAGES
+		background-image url(../images/icon_file_txt.svg)
+	&.jpg, &.jpeg, &.png, &.gif, &.bmp, &.JPG, &.JPEG, &.PNG, &.GIF, &.BMP
+		background-image url(../images/icon_file_img.svg)
+	// &.numbers, &.csv, &.NUMBERS, &.CSV
+	// 	background-image url(../images/icon_file_table.svg)
+	// &.psd
+	// 	background-image url(../images/icon_file_psd.svg)
+	// &.ai
+	// 	background-image url(../images/icon_file_ai.svg)
+	// &.eps, &.svg, &.sketch
+	// 	background-image url(../images/icon_file_vector.svg)
+	// &.mp3, &.aac, &.mp4, &.m4a, &.mp2, &.asx, &.wma, &.ogg, &.wav, &.flac
+	// 	background-image url(../images/icon_file_audio.svg)
+	// &.avi, &.mkv, &.mov, &.wma, &.mp4, &.flv
+	// 	background-image url(../images/icon_file_video.svg)
+	// &.html, &.htm, &.HTML, &.HTM
+	// 	background-image url(../images/icon_file_html.svg)
+	// &.css
+	// 	background-image url(../images/icon_file_css.svg)
+	// &.xml, &.XML, &.js, &.less, &.stylus, &.mysql, &.tpl, &.php
+	// 	background-image url(../images/icon_file_code.svg)
+	&.zip, &.rar, &.7z, &.p7s, &.sig
+		background-image url(../images/icon_file_archive.svg)
+
+
+// -------------- dropdown ---------------
+[dropdown]
+	display inline-block
+
+.dropdown_menu, .dropdown_block
+	display none
+	position absolute
+	z-index 1000
+	top 100%
+	left 0
+	background #fff
+	box-shadow 0 5px 25px rgba(0,0,0,0.1)
+.dropdown_block
+	padding 10px
+.dropdown_menu
+	a
+		white-space nowrap
+		display inline-block
+		padding 5px
+
+.open>.dropdown_menu,
+.opan>.dropdown_block
+	display block
+	padding 15px
+
+
+
+// ------------  tooltip -----------------
+
+.tooltip
+	position absolute
+	z-index 6000
+	display block
+	visibility visible
+	font-weight normal
+	font-size normal
+	opacity 0
+	background #35414C
+	border-radius 3px
+	// border 1px solid cbd
+	// box-shadow 0px 2px 5px 0px rgba(0,0,0,0.11)
+	color #fff
+	margin-right -1000px
+	margin-bottom -1000px
+	margin-left -2px
+
+	&:after
+		border solid transparent
+		content " "
+		height 0
+		width 0
+		position absolute
+		pointer-events none
+	&:after
+		border-color rgba(255, 255, 255, 0)
+		border-width 6px
+	// &:before
+	// 	border-color rgba(208, 211, 215, 0)
+	// 	border-width 7px
+
+	&.error
+		background rgba(cerror, 1)
+		// .tooltip-inner
+		// 	color ctexterror
+		&.top:after
+			border-top-color rgba(cerror, 1)
+		&.bottom:after
+			border-bottom-color rgba(cerror, 1)
+		&.right:after
+			border-right-color rgba(cerror, 1)
+		&.left:after
+			border-left-color rgba(cerror, 1)
+
+	&.in
+		opacity 1
+	&.fade
+		animation-name fadeIn
+		animation-duration .2s
+	&.top
+		margin-top -7px
+		&:after, &:before
+			top 100%
+			left 50%
+		&:after
+			border-top-color #35414C
+			margin-left -6px
+		&:before
+			border-top-color #D0D3D7
+			margin-left -7px
+
+	&.right
+		margin-left 10px
+		&:after, &:before
+			right 100%
+			top 50%
+		&:after
+			border-right-color #35414C
+			margin-top -6px
+		&:before
+			border-right-color #D0D3D7
+			margin-top -7px
+
+	&.bottom
+		margin-top 7px
+		&:after, &:before
+			bottom 100%
+			left 50%
+		&:after
+			border-bottom-color #35414C
+			margin-left -6px
+		&:before
+			border-bottom-color #D0D3D7
+			margin-left -7px
+	&.left
+		margin-left -10px
+		&:after, &:before
+			left 100%
+			top 50%
+		&:after
+			border-left-color #35414C
+			margin-top -6px
+		&:before
+			border-left-color #D0D3D7
+			margin-top -7px
+
+
+.tooltip-inner
+	padding 8px 8px
+	color ctextlight
+	color #fff
+	font-family ffn
+	font-weight 400
+	font-style normal
+	font-size fzn - 4px
+	text-decoration none
+	box-sizing border-box
+	width auto
+	max-width 270px
+	line-height 1.3
+	// text-align center
+	cursor default
+	a
+		color #fff
+		text-decoration underline!important
+
+
+.tooltip-arrow
+	display none
+	position absolute
+	width 0
+	height 0
+	border-color transparent
+	border-style solid
+
+
+
+
+// ------------  grid -----------------
+.row
+	clearfix()
+
+.row_table
+	overflow hidden
+	.column, .columns, .col
+		margin-bottom -1000px
+		padding-bottom 1000px
+
+.col,
+.column,
+.columns
+	width 100%
+	float left
+	box-sizing border-box
+	margin-left 3%
+.col:first-child,
+.column:first-child,
+.columns:first-child
+	margin-left 0
+.col,
+.column,
+.columns
+	&.auto
+		width auto
+	&.one
+		width 5.58333333333%
+	&.two
+		width 14.1666666667%
+	&.three
+		width 22.75%
+	&.four
+		width 31.3333333333%
+	&.five
+		width 39.9166666667%
+	&.six
+		width 48.5%
+	&.seven
+		width 57.0833333333%
+	&.eight
+		width 65.6666666667%
+	&.nine
+		width 74.25%
+	&.ten
+		width 82.8333333333%
+	&.eleven
+		width 91.4166666667%
+	&.twelve, &.full
+		width 100%
+		margin-left 0
+		float none
+	&.one-third
+		width 30.6666666667%
+	&.two-thirds
+		width 65.3333333333%
+	&.half
+		width 48.5%
+
+.offset-by-one.column,
+.offset-by-one.columns,
+.offset-by-one.col
+	margin-left 11.58333333333%
+.offset-by-two.column,
+.offset-by-two.columns,
+.offset-by-two.col
+	margin-left 20.1666666667%
+.offset-by-three.column,
+.offset-by-three.columns,
+.offset-by-three.col
+	margin-left 28.75%
+.offset-by-four.column,
+.offset-by-four.columns,
+.offset-by-four.col
+	margin-left 37.3333333333%
+.offset-by-five.column,
+.offset-by-five.columns,
+.offset-by-five.col
+	margin-left 46.9166666667%
+.offset-by-six.column,
+.offset-by-six.columns,
+.offset-by-six.col
+	margin-left 54.5%
+.offset-by-seven.column,
+.offset-by-seven.columns,
+.offset-by-seven.col
+	margin-left 63.0833333333%
+.offset-by-eight.column,
+.offset-by-eight.columns,
+.offset-by-eight.col
+	margin-left 71.6666666667%
+.offset-by-nine.column,
+.offset-by-nine.columns,
+.offset-by-nine.col
+	margin-left 80.25%
+.offset-by-ten.column,
+.offset-by-ten.columns,
+.offset-by-ten.col
+	margin-left 88.8333333333%
+.offset-by-eleven.column,
+.offset-by-eleven.columns,
+.offset-by-eleven.col
+	margin-left 94.4166666667%
+
+
+// колонки для горизонтальных форм
+.col_form
+	float left
+	box-sizing border-box
+	margin-left 20px
+	width 100%
+.col_form:first-child,
+.col_form:first-child,
+.col_form:first-child
+	margin-left 0
+
+.col_form
+	&.auto
+		width auto
+	&.offset_40px
+		width calc(100% - 20px - 50px)
+	&.offset_50px
+		width calc(100% - 20px - 50px)
+	&.offset_60px
+		width calc(100% - 20px - 60px)
+	&.offset_70px
+		width calc(100% - 20px - 70px)
+	&.offset_80px
+		width calc(100% - 20px - 80px)
+	&.offset_90px
+		width calc(100% - 20px - 90px)
+	&.offset_100px
+		width calc(100% - 20px - 100px)
+	&.offset_110px
+		width calc(100% - 20px - 110px)
+	&.offset_120px
+		width calc(100% - 20px - 120px)
+	&.offset_130px
+		width calc(100% - 20px - 130px)
+	&.offset_140px
+		width calc(100% - 20px - 140px)
+	&.offset_150px
+		width calc(100% - 20px - 150px)
+	&.offset_160px
+		width calc(100% - 20px - 160px)
+	&.offset_170px
+		width calc(100% - 20px - 170px)
+
+
+
+// ------------ попап ------------------
+.blur
+	min-height 100%
+	height 100%
+	-webkit-filter blur(4px)
+
+.modal
+	position absolute
+	left 0
+	top 0
+	height 100%
+	width 100%
+
+.popup_overlay
+	position absolute
+	left 0
+	top 0
+	overflow auto
+	height 100%
+	width 100%
+	background rgba(cl1,0.34)
+	z-index 3000
+	animation popupOverlayOpen .2s linear both
+	-webkit-overflow-scrolling touch
+	&.open_from_chat
+		z-index 5000
+.popup_table
+	display table
+	width 100%
+	height 100%
+.popup_cell
+	display table-cell
+	vertical-align middle
+	padding 20px 0
+	text-align center
+.popup_backdrop
+	position absolute
+	top 0
+	left 0
+	width 100%
+	height 100%
+	z-index 0
+.popup_layer
+	position relative
+	width 720px
+	margin 0 auto
+	padding 35px 40px
+	background #fff
+	box-shadow 6px 6px 0 rgba(cl1,0.2)
+	// box-shadow 0px 7px 5px 3px rgba(0,0,0,0.1)
+	// border 1px solid rgba(0,0,0,0.1)
+	box-sizing border-box
+	z-index 10
+	animation popupOpen .3s ease both
+	text-align left
+	&.xsmall
+		width 400px
+	&.small
+		width 560px
+	&.wide
+		width 800px
+	&.w_auto
+		width auto
+		display inline-block
+
+
+	&.clean
+		background transparent!important
+		box-shadow none!important
+
+	.popup_close
+		position absolute
+		right 15px
+		top 15px
+		z-index 2000
+		color ctextlight
+		font-size 18px
+		text-decoration none
+		&:hover
+			color ctext
+
+	h1
+		margin 0 15px 30px 0
+		position relative
+		font-weight 300
+
+	p
+		line-height 140%
+		margin 0 0 15px
+	ol, &>ul
+		margin 15px 0 15px 20px
+		li
+			margin 0 0 10px
+	ol
+		ol
+			margin-left 20px
+			font-size fzn - 2px
+.popup_panel
+	margin-top 30px
+
+article.page
+	.popup_overlay
+		background rgba(#fff,.8)
+	.popup_layer
+		box-shadow 0 15px 100px rgba(#000,0.2)
+
+
+
+
+.popup_mobile_download
+	text-align center
+	background #fff
+	background-repeat no-repeat
+	background-position center 110%
+	background-size auto 53%
+	padding-bottom 220px
+	&.ios
+		background-image url(../images/mobile_ios.png)
+	&.android
+		background-image url(../images/mobile_android.png)
+	.logo
+		height 40px
+		background url(../images/logo.svg) no-repeat center 0
+		background-size auto 100%
+		margin 0 0 30px
+	.button_clean
+		margin 20px 0 0!important
+
+	@media screen and (min-width: 550px) and (max-height: 600px)
+		background-position 90% bottom
+		background-size auto 80%
+		padding-bottom 40px!important
+		padding-right 45%!important
+		min-height 0
+	@media screen and (max-height: 500px) and (max-width: 550px)
+		background-size auto 45%
+	@media screen and (max-height: 320px) and (min-width: 470px) and (max-width: 490px)
+		background-position 90% bottom
+		background-size auto 60%
+		padding-bottom 40px!important
+		padding-right 45%!important
+		min-height 0
+
+
+// загрузка аватара с обрезкой
+.cropped_image
+	overflow hidden
+	width 480px
+	height 350px
+	display block
+	margin 0 auto
+
+	img-crop
+		width 100%
+		height 100%
+		display block
+		position relative
+		overflow hidden
+
+		canvas
+			display block
+			position absolute
+			top 50%
+			left 50%
+			outline none
+			-webkit-tap-highlight-color rgba(255, 255, 255, 0)
+.upload_avatar_disabled
+	cursor no-drop
+	.avatar_edit, .avatar_delete
+		display none
+
+	img
+		opacity .8
+
+
+// --------- когда обновлено --------------
+.system_info
+	position absolute
+	bottom 15px
+	left 10px
+	right 10px
+	font-size 12px
+	opacity 0.7
+
+// ----------------- отступы margin ------------------
+step = 5
+
+for $i in (0..40)
+	N = step*$i px
+	.m_{N}
+		margin N !important
+	.m_top_{N}
+		margin-top N !important
+	.m_left_{N}
+		margin-left N !important
+	.m_right_{N}
+		margin-right N !important
+	.m_bot_{N}
+		margin-bottom N !important
+
+	.p_{N}
+		padding N !important
+	.p_top_{N}
+		padding-top N !important
+	.p_left_{N}
+		padding-left N !important
+	.p_right_{N}
+		padding-right N !important
+	.p_bot_{N}
+		padding-bottom N !important
+
+.m_null
+	margin 0
+.m_auto
+	margin 0 auto
+.p_null
+	padding 0
+
+// ----------------------------------------
+
+.w5
+	width 5% !important
+.w15
+	width 15% !important
+.w25
+	width 25% !important
+.w35
+	width 35% !important
+.w45
+	width 45% !important
+.w55
+	width 55% !important
+.w65
+	width 65% !important
+.w75
+	width 75% !important
+.w85
+	width 85% !important
+.w95
+	width 95% !important
+.w10
+	width 10% !important
+.w20
+	width 20% !important
+.w30
+	width 30% !important
+.w40
+	width 40% !important
+.w50
+	width 50% !important
+.w60
+	width 60% !important
+.w70
+	width 70% !important
+.w80
+	width 80% !important
+.w90
+	width 90% !important
+.w100
+	width 100% !important
+
+.w5px
+	width 5px !important
+.w15px
+	width 15px !important
+.w25px
+	width 25px !important
+.w35px
+	width 35px !important
+.w45px
+	width 45px !important
+.w55px
+	width 55px !important
+.w65px
+	width 65px !important
+.w75px
+	width 75px !important
+.w85px
+	width 85px !important
+.w95px
+	width 95px !important
+.w10px
+	width 10px !important
+.w20px
+	width 20px !important
+.w30px
+	width 30px !important
+.w40px
+	width 40px !important
+.w50px
+	width 50px !important
+.w60px
+	width 60px !important
+.w70px
+	width 70px !important
+.w80px
+	width 80px !important
+.w90px
+	width 90px !important
+.w100px
+	width 100px !important
+.w150px
+	width 150px !important
+.w200px
+	width 200px !important
+.w250px
+	width 250px !important
+.w300px
+	width 300px !important
+
+
+// -------------- шаги визарда --------------------
+// .page_wizard
+// 	margin -30px -35px 30px
+// 	background cbgsky
+// 	padding 15px 35px
+// 	.wizard_steps
+// 		margin-bottom 0
+// 		.label
+// 			background cbgsky
+// .wizard_steps
+// 	background none
+// 	padding 4px 0
+// 	margin 0 0 30px
+// 	box-sizing border-box
+// 	overflow hidden
+
+// 	&:before
+// 		content ''
+// 		height 2px
+// 		position absolute
+// 		top 20px
+// 		background #B3BDCA
+
+// 	&.steps3
+// 		&:before
+// 			left 16.5%
+// 			right 16.5%
+// 	&.steps4
+// 		&:before
+// 			left 12.5%
+// 			right 12.5%
+// 	&.steps5
+// 		&:before
+// 			left 10%
+// 			right 10%
+
+// 	.step
+// 		float left
+// 		text-align center
+// 		&:nth-last-child(3):first-child~div, &:nth-last-child(3):first-child
+// 			width 33.3333%
+// 		&:nth-last-child(4):first-child~div, &:nth-last-child(4):first-child
+// 			width 25%
+// 		&:nth-last-child(5):first-child~div, &:nth-last-child(5):first-child
+// 			width 20%
+
+// 	.name, .label
+// 		color #B3BDCA
+// 	.name
+// 		font-size fzn - 3px
+// 		font-weight normal
+// 		display block
+// 	.label
+// 		width 30px
+// 		height 30px
+// 		margin 0 0 8px
+// 		display inline-block
+// 		background #fff
+// 		border-radius 50%
+// 		border 2px solid #b3bdca
+// 		line-height 29px
+// 		font-weight normal
+
+
+// 	.active, .done
+// 		.label
+// 			background cl3
+// 			color #fff
+// 			border 6px double #fff
+// 			margin-top -4px
+// 			margin-bottom 4px
+// 			@media screen and (min-width:1600px) and (min-height:750px)
+// 				margin-top -3px
+// 			&:after
+// 				content ''
+// 				position absolute
+// 				left calc(100%+2px)
+// 				top 7px
+// 				width 10px
+// 				height 15px
+// 				background url(../images/wizard_step_arrow.svg) no-repeat 0 0
+// 			&:before
+// 				content ''
+// 				position absolute
+// 				right calc(100%+2px)
+// 				top 7px
+// 				width 10px
+// 				height 15px
+// 				background url(../images/wizard_step_arrow.svg) no-repeat 0 0
+// 				transform scaleX(-1)
+// 		.name
+// 			color cl3
+// 	.done
+// 		.label
+// 			color transparent
+// 			background-image url(../images/check_w.svg)
+// 			background-position center
+// 			background-repeat no-repeat
+// 		.name
+// 			color #B3BDCA
+
+
+// 	.step
+// 		&:first-child
+// 			.label
+// 				&:before
+// 					display none
+// 		&:last-child
+// 			.label
+// 				&:after
+// 					display none
+// 	&.steps4
+// 		&.active1
+// 			&:before
+// 				background linear-gradient(left, cl3 0%, #B3BDCA 25%)
+// 		&.active2
+// 			&:before
+// 				background linear-gradient(left, cl3 33%, #B3BDCA 55%)
+// 		&.active3
+// 			&:before
+// 				background linear-gradient(left, cl3 66%, #B3BDCA 90%)
+// 		&.active4
+// 			&:before
+// 				background cl3
+// 	&.steps3
+// 		&.active1
+// 			&:before
+// 				background linear-gradient(left, cl3 0%, #B3BDCA 45%)
+// 		&.active2
+// 			&:before
+// 				background linear-gradient(left, cl3 50%, #B3BDCA 90%)
+// 		&.active3
+// 			&:before
+// 				background cl3
+
+// 	&.steps5
+// 		&.active1
+// 			&:before
+// 				background linear-gradient(left, cl3 0%, #B3BDCA 20%)
+// 		&.active2
+// 			&:before
+// 				background linear-gradient(left, cl3 25%, #B3BDCA 45%)
+// 		&.active3
+// 			&:before
+// 				background linear-gradient(left, cl3 50%, #B3BDCA 70%)
+// 		&.active4
+// 			&:before
+// 				background linear-gradient(left, cl3 75%, #B3BDCA 90%)
+// 		&.active5
+// 			&:before
+// 				background cl3
+
+// 	&.vertical
+// 		display inline-block
+// 		overflow visible
+// 		margin 0
+// 		padding 0
+// 		&:before
+// 			height auto
+// 			width 2px
+// 			left calc(50% - 1px)
+// 			right auto
+// 			top 10px
+// 			bottom 20px
+// 		.step
+// 			float none
+// 			margin 0
+// 			padding 0 0 30px
+// 			width auto!important
+// 			&:last-child
+// 				padding-bottom 0
+// 			.label
+// 				margin 0
+
+// 		.active, .done
+// 			.label
+// 				background-color cl3
+// 				margin 0
+// 				&:after
+// 					content ''
+// 					position absolute
+// 					transform rotate(90deg)
+// 					left calc(50% - 5px)
+// 					top calc(100% - 3px)
+// 					width 9px
+// 					height 17px
+// 					background url(../images/wizard_step_arrow.svg) no-repeat 0 0
+// 				&:before
+// 					content ''
+// 					position absolute
+// 					left calc(50% - 4px)
+// 					right auto
+// 					bottom calc(100% - 2px)
+// 					top auto
+// 					width 9px
+// 					height 17px
+// 					background url(../images/wizard_step_arrow.svg) no-repeat 0 0
+// 					transform rotate(-90deg)
+
+// 	&.light
+// 		&:before
+// 			background #fff!important
+// 			display none
+// 		.step
+// 			&:after
+// 				content ""
+// 				display block
+// 				width 2px
+// 				position absolute
+// 				left calc(50% - 1px)
+// 				top 34px
+// 				bottom 0
+// 				background #fff
+// 		.label
+// 			background-color transparent
+// 			border-color #fff
+// 			color #fff
+// 		.active, .done
+// 			&:after
+// 				top 38px
+// 			.label
+// 				background-color #fff
+// 				border 6px double cl2
+// 				&:after, &:before
+// 					background url(../images/wizard_step_arrow_white.svg) no-repeat 0 0
+// 				&:after
+// 					top calc(100% - 2px)
+// 		.active
+// 			.label
+// 				color cl2
+// 				font-weight fwm
+// 		.done
+// 			.label
+// 				color transparent
+// 				background-image url(../images/check_b.svg)
+
+// -------------- шаги визарда --------------------
+.page_wizard
+	margin -30px -35px 30px
+	background #F5F5F5
+	padding 15px 35px
+	.wizard_steps
+		margin-bottom 0
+		.label
+			background #F5F5F5
+			box-shadow 0 0 0 24px #F5F5F5
+		.error
+			.label
+				background #F5F5F5!important
+		.done
+			.label
+				background #F5F5F5!important
+			.name
+				background transparent!important
+.wizard_steps
+	background none
+	padding 4px 0
+	margin 0 0 30px
+	box-sizing border-box
+	overflow hidden
+
+	&:before
+		content ''
+		height 1px
+		position absolute
+		top 20px
+		background cgrey18
+
+	&.steps3
+		&:before
+			left 16.5%
+			right 16.5%
+	&.steps4
+		&:before
+			left 12.5%
+			right 12.5%
+	&.steps5
+		&:before
+			left 10%
+			right 10%
+
+	.step
+		float left
+		text-align center
+		&:nth-last-child(3):first-child~div, &:nth-last-child(3):first-child
+			width 33.3333%
+		&:nth-last-child(4):first-child~div, &:nth-last-child(4):first-child
+			width 25%
+		&:nth-last-child(5):first-child~div, &:nth-last-child(5):first-child
+			width 20%
+
+	.name, .label
+		color cgrey50
+	.name
+		font-size fzn - 4px
+		font-weight fwm
+		display inline-block
+		padding 3px 7px 4px
+		border-radius 4px
+		line-height 1.1
+	.label
+		width 30px
+		height 30px
+		margin 0 auto 6px
+		display block
+		background #fff
+		border-radius 50%
+		border 2px solid cgrey50
+		line-height 29px
+		font-weight normal
+		box-shadow 0 0 0 24px #fff
+		font-weight fwm
+
+
+	.active
+		.label
+			background cl2
+			color #fff
+			border-color cl2
+
+		.name
+			background cl2
+			color #fff
+	.done
+		.label
+			color transparent
+			border-color ctextsuccess
+			text-align center
+			line-height 32px
+			&:before
+				font-family "mb-icon-font-3"
+				display block
+				content: "\73"
+				color ctextsuccess
+
+		.name
+			color ctextsuccess
+	.load
+		.label
+			color transparent
+			background-image url(../images/loading_ring_light.svg)
+			background-repeat no-repeat
+			background-position center
+			background-size 40px
+			border-color cgrey03
+	.error
+		.label
+			color transparent
+			font-size 0
+			border-color ctexterror
+			background #fff!important
+			&:before
+				font-size fzn + 2px
+				content '!'
+				color ctexterror
+		.name
+			color ctexterror
+			background transparent!important
+
+
+	&.vertical
+		display inline-block
+		overflow visible
+		margin 0
+		padding 0
+		&:before
+			height auto
+			width 2px
+			left calc(50% - 1px)
+			right auto
+			top 10px
+			bottom 20px
+		.step
+			float none
+			margin 0
+			padding 0 0 30px
+			width auto!important
+			&:last-child
+				padding-bottom 0
+			.label
+				margin 0
+
+		.active, .done
+			.label
+				background-color cl3
+				margin 0
+				&:after
+					content ''
+					position absolute
+					transform rotate(90deg)
+					left calc(50% - 5px)
+					top calc(100% - 3px)
+					width 9px
+					height 17px
+					background url(../images/wizard_step_arrow.svg) no-repeat 0 0
+				&:before
+					content ''
+					position absolute
+					left calc(50% - 4px)
+					right auto
+					bottom calc(100% - 2px)
+					top auto
+					width 9px
+					height 17px
+					background url(../images/wizard_step_arrow.svg) no-repeat 0 0
+					transform rotate(-90deg)
+
+	&.light
+		&:before
+			background #fff!important
+			display none
+		.step
+			&:after
+				content ""
+				display block
+				width 2px
+				position absolute
+				left calc(50% - 1px)
+				top 34px
+				bottom 0
+				background #fff
+		.label
+			background-color transparent
+			border-color #fff
+			color #fff
+		.active, .done
+			&:after
+				top 38px
+			.label
+				background-color #fff
+				border 6px double cl2
+				&:after, &:before
+					background url(../images/wizard_step_arrow_white.svg) no-repeat 0 0
+				&:after
+					top calc(100% - 2px)
+		.active
+			.label
+				color cl2
+				font-weight fwm
+		.done
+			.label
+				color transparent
+				background-image url(../images/check_b.svg)
+
+
+
+
+
+
+
+// иконки
+[class*='icon-']
+	&:before
+		display inline-block
+		// min-width 16px
+		vertical-align -2px
+		margin-right 5px
+	&.icon-light
+		&:before
+			color ctextlight
+	&.icon-primary
+		&:before
+			color cl2
+	&.icon-success
+		&:before
+			color ctextsuccess
+
+
+
+
+a.icon-info
+	cursor pointer
+	opacity 0.7
+	&:hover
+		opacity 1
+
+// подсказка по тексту
+.text_info
+	opacity .5
+	margin-left 8px
+	font-size inherit
+
+// [class*='icon-'].notext
+// 	display inline-block
+// 	vertical-align middle
+// 	opacity 1
+// 	transition .2s
+// 	position relative
+// 	width 20px
+// 	height 20px
+// 	font-size 16px
+// 	z-index 1
+// 	&:before
+// 		margin 0
+// 	&:after
+// 		content ''
+// 		width 24px
+// 		height 24px
+// 		position absolute
+// 		left -2px
+// 		top -1px
+// 		border-radius 20px
+// 		background transparent
+// 		transition .2s
+// 		z-index -1
+// 	&:hover
+// 		&:after
+// 			background cbglight
+// 	&:active
+// 		&:after
+// 			background cbglight - 10%
+
+
+// -------------- стили для печати ------------------
+
+.printable
+	display none
+	div
+		position relative!important
+		padding 0!important
+		height auto
+		background none
+		top auto
+		left auto
+		bottom auto
+	h1
+		margin 0 0 20px!important
+		font-size 24px
+		border none
+	.header_action, .page_close, .page_expand
+		display none
+	p
+		margin 0 0 10px
+	ul
+		list-style circle
+	.page_header
+		box-shadow none
+	.account_details_actions
+		display none
+	.legend
+		border-bottom none
+		text-transform none
+		font-size 24px
+		span
+			border-bottom none
+	.ms-choice
+		border none
+		box-shadow none
+		padding 0
+		height auto
+		font-weight normal !important
+	.form_horizontal .property_label
+		padding-top 0
+	.print_hide
+		display none!important
+	.ms-drop
+		display none!important
+	.ms-choice > span
+		white-space wrap
+
+@media print
+	html
+		background none!important
+	body
+		padding 30px!important
+		background #fff!important
+		height auto!important
+		width auto!important
+		min-height 1px!important
+		min-width 1px!important
+		font-family Arial!important
+		font-weight normal !important
+	.printable
+		display block
+	aside, header, section, article, .notifyjs-corner, .drop, .tooltip, .messenger, body .messenger.hide, .button_chat
+		display none!important
+
+
+
+// ------------- нотификации ------------------
+.notifyjs-corner
+	z-index 2100!important
+	.inner
+		padding 12px 15px
+		color #fff
+		background rgba(cl1,.9)!important
+		border-radius brbut
+		font-weight normal
+		width 360px
+		.title
+			font-weight fwm
+			font-size fzn + 2px
+			margin 0 0 5px
+			&:empty
+				display none
+		.message
+			font-size fzn - 1px
+
+	.notifyjs-textNotification-error
+		.inner
+			background rgba(cerror - 10%,.9)!important
+		a
+			color #fff
+	.notifyjs-textNotification-success
+		.inner
+			background rgba(cl3 - 10%,.9)!important
+		a
+			color #fff
+
+	.notifyjs-textNotification-info
+		.inner
+			background rgba(cbginfo,.9)!important
+			color ctext
+		a
+			color cl2
+
+
+// ------------- табы -------------
+.tabs
+	margin 0 -30px
+
+
+	&.tabs_horizontal
+		&>.tabs_menu
+			// border-bottom 1px solid cbdlightsky
+			box-shadow inset 0 -2px 0 -1px cbdlightsky
+			padding 0 30px
+			white-space nowrap
+			clearfix()
+			& > ul li
+				background-color cbgsky + 10%
+				display inline-block
+				border-top 2px solid transparent
+				border-bottom 1px solid transparent
+				border-right 1px solid transparent
+				border-left 1px solid transparent
+				box-sizing border-box
+				background-clip content-box
+				margin-right 2px
+				&:hover
+					a
+						color ctext
+				&> a
+					display block
+					padding 10px 25px
+					color ctextlight
+					text-decoration none
+					text-align center
+					position relative
+				&.active
+					background #fff
+					border-top 2px solid cl3
+					border-left-color cbdlightsky
+					border-right-color cbdlightsky
+					border-bottom-color #fff
+					a
+						color ctext
+						cursor default
+				.new_label
+					position absolute
+					right 5px
+					top -6px
+					font-size 7px
+					font-weight fwm
+					border-radius 10px
+					padding 2px 4px
+					background ctextdanger
+					color #fff
+			&.tabs_scroll
+				padding 0
+				.owl-stage-outer
+					padding 0 30px
+				.owl-prev, .owl-next
+					top 13px
+					&:before
+						font-size 16px
+						border-radius 50%
+						box-shadow 0 0 0 5px #fff
+			&.tabs_narrow
+				& > ul li
+					&> a
+						padding 10px 20px
+
+		&> .tabs_content
+			padding 30px
+
+
+
+	&.tabs_vertical
+		padding 0
+		position absolute
+		top 0
+		bottom 0
+		right 0
+		left 0
+		margin 0
+		& > .tabs_menu
+			min-height 100%
+			width 220px
+			float left
+			background #fff
+			box-shadow inset -4px 0 0 -2px cseparator
+			padding 30px 0 60px
+			box-sizing border-box
+			font-size fzn
+
+			& > ul li
+				margin-bottom 1px
+				position relative
+
+				&.title
+					padding 0 5px 10px 25px
+					font-size fzn - 4px
+					text-transform uppercase
+					font-weight fwn
+					color cgrey36
+					&~ .title
+						padding-top 25px
+
+				& > a
+					display block
+					padding 12px 5px 13px 25px
+					color ctext
+					line-height 110%
+					text-decoration none
+					// background cbglight
+					transition none
+					&:hover
+						background cbghighlight
+				&.active
+					a
+						background cbghighlight
+						font-weight normal
+						border-right 2px solid clsub2
+						// &:after
+						// 	left 100%
+						// 	top 0
+						// 	border solid transparent
+						// 	content " "
+						// 	height 0
+						// 	width 0
+						// 	position absolute
+						// 	pointer-events none
+						// 	border-color rgba(cseparator, 0)
+						// 	border-left-color cseparator
+						// 	border-width 20px
+						// 	border-left-width 8px
+
+
+		& > .tabs_content
+			margin 0 0 0 200px
+			padding 29px
+			overflow auto
+			height 100%
+			max-height 100%
+			box-sizing border-box
+			-webkit-overflow-scrolling touch
+
+	&.tabs_widget
+		margin 0 0 20px
+		&>.tabs_menu
+			padding 0
+			box-shadow none
+			&>ul>li.active
+				box-shadow 0px 1px 1px 0px rgba(0,0,0,0.12)
+				border-left-color transparent
+				border-right-color transparent
+		.tabs_content
+			background #fff
+			box-shadow 0px 1px 1px 0px rgba(0,0,0,0.12)
+			padding 20px
+			box-sizing border-box
+
+
+// аватар
+.avatar
+	width 150px
+	height 150px
+	display inline-block
+	vertical-align middle
+	text-align center
+	border-radius 50%
+	color #fff
+	font-size @width*0.5
+	line-height 2.1
+	font-weight bold
+	border-radius 50%
+	text-align center
+	text-shadow 2px 2px 0 rgba(0,0,0,0.1)
+	background-size cover
+	background-repeat no-repeat
+	background-position center
+	img
+		width 100%
+		height 100%
+		border-radius 50%
+	&:hover
+		.avatar_edit
+			opacity 1
+			transform scale(1)
+			color #fff
+		.avatar_delete
+			opacity 1
+	.avatar_edit
+		opacity 0
+		transform scale(.6)
+		transition color .3s, opacity .3s, transform .3s
+		position absolute
+		background rgba(ctext,0.5)
+		border-radius 100px
+		top 0
+		bottom 0
+		right 0
+		left 0
+		color #fff
+		font-size fzn
+		font-weight normal
+		line-height 150px
+		text-decoration underline
+		&:hover
+			color #fff!important
+
+
+	.avatar_delete
+		position absolute
+		right 0px
+		top 0px
+		opacity 0
+
+
+
+// пишет сейчас - движущийся карандаш
+.write_now
+	height 16px
+	color ctextlight
+	font-size fzn - 4px
+	transform translateZ(0)
+	[class*='icon-']
+		display inline-block
+		font-size fzn - 2px
+		// animation-duration 1.5s
+		// animation-name writeNow
+		// animation-iteration-count infinite
+		// animation-direction normal
+		animation 1.5s writeNow infinite
+		margin-right 10px
+
+
+// drop
+
+
+.drop-content
+	display none
+.drop-element, .drop-element:after, .drop-element:before, .drop-element *, .drop-element *:after, .drop-element *:before
+	box-sizing border-box
+
+.drop-element
+	position absolute
+	z-index 5000
+
+	transform: translateZ(0);
+	transition: opacity 100ms;
+	opacity: 0;
+	display none
+
+	&.drop-open
+		display none
+
+	&.drop-open-transitionend
+		display block
+		// .drop-content
+		// 	// transform perspective(600px) rotateX(-90deg)
+		// 	// transition background .2s
+		// 	// animation dropHide .2s
+		// 	opacity 0
+		// 	// transform: translateY(7px) translateZ(0px);
+		// 	// transition: transform 0.2s cubic-bezier(0.5, 0, 0, 1.25), opacity 0.15s ease-out;
+		// 	transform: translate3d(0,0,0);
+		// 	transition opacity .2s, margin .2s
+		// 	margin-top 10px
+
+	&.drop-after-open
+		transition opacity .2s
+		opacity 1
+		.drop-content
+
+			// transform perspective(600px) rotateX(0deg)
+			// transition background .2s
+
+			// opacity 1
+			// transform: translateY(0) translateZ(0px);
+			// transition none
+
+			// animation dropShow .2s
+			// display block
+			// margin-top 0px
+
+			transform: translateY(0px) translateZ(0);
+
+	&.drop-target-attached-top
+		margin-top -10px
+		.drop-content
+			transform-origin bottom
+			// transform perspective(600px) rotateX(90deg)
+			transform: translateY(10px);
+
+	&.drop-theme-basic
+		max-width 100%
+		max-height 100%
+
+	&.drop_wide
+		.drop-menu
+			max-width 70vw
+			li
+				a
+					padding-right 30px
+	&.drop_tall
+		.drop-content-inner
+			max-height 70vh
+
+	.drop-content
+		display block
+		background #fff
+		background-clip padding-box
+		padding 0
+		box-shadow 0 5px 20px rgba(0,0,0,0.15), 0px 0px 1px rgba(0,0,0,0.22)
+		// transform-origin top
+		padding-right 20px
+		// margin-top 5px
+
+		transition: transform 0.2s cubic-bezier(0,.6,.39,1);
+		transform: translateY(20px) translateZ(0);
+
+
+
+
+	.drop-content-inner
+		width calc(100% + 20px)
+		max-height 280px
+		overflow auto
+		box-sizing border-box
+		div
+			position static
+		.loading
+			width 150px
+	.inner_pad
+		padding 15px
+	.inner_padding_15
+		padding 15px
+	.inner_padding_30
+		padding 30px
+
+	@media (-webkit-min-device-pixel-ratio:0)
+		.drop-content
+			padding-right 0
+		.drop-content-inner
+			width 100%
+			overflow overlay
+		.inner_pad
+			margin-right 0
+
+	.drop-content_search
+		padding 10px 20px 10px 15px
+
+	.drop-menu
+		margin 0
+		max-width 280px
+
+		&.max_w_500
+			max-width 500px
+		&.max_w_600
+			max-width 600px
+		li
+			display block
+			cursor pointer
+			box-sizing border-box
+			border-bottom 1px solid cbdlight
+
+			&:last-child
+				border-bottom none
+
+			&.submenu
+				a
+					padding-left 25px
+
+			a, button
+				color ctext
+				text-decoration none
+				display block
+				padding 10px 15px 10px 15px
+				// width calc(100% + 15px)
+				transition color .05s, background .05s
+				&[class*="icon-"]:before
+					margin-right 10px
+				&:hover
+					background-color cgrey05
+				&.link_disabled
+					background none
+				&[disabled]
+					cursor no-drop
+					color ctextdis
+			&.active
+				a, button
+					color cl2
+			&.highlight
+				a
+					background cbghighlight
+
+	.drop-title
+		font-size fzn - 4px
+		font-weight fwm
+		color ctextlight
+		color cl2
+		font-style italic
+		margin 15px 15px 4px
+	.drop-sep
+		display block
+		height 1px
+		margin 30px -15px
+		background cbdlight
+	.small_text
+		max-width 270px
+
+
+
+	.drop-date-choose
+		padding 0 15px 15px
+		.filter_date_value
+			max-width none
+		.filter_date_input
+			width 98px
+			padding-right 0
+		input.date_to
+			float none
+			margin-left 4px
+
+	.dashboard-period-choose
+		max-height 300px
+		.drop-menu
+			max-width 400px
+			li:last-child
+				border-bottom 1px solid cbdlight + 40%
+
+
+.drop-input
+	height 44px
+	border 1px solid cbd
+	border-radius brform
+	display inline-block
+	background-color #fff
+	background-image url(../images/select_arrow.svg)
+	background-repeat no-repeat
+	background-position calc(100% - 15px) center
+	font-family ffn
+	font-size fzn
+	font-weight fwn
+	padding 0 40px 0 15px
+	color ctext
+	box-shadow inset 0px 2px 2px -2px rgba(0,0,0,0.18)
+	box-sizing border-box
+	vertical-align middle
+	transition color .2s
+	text-decoration none
+	line-height 44px
+
+	>span
+		display block
+		overflow ellipsis
+		max-width 100%
+	&.small
+		height 34px
+		padding-left 10px
+		line-height 32px
+		font-size fzn - 2px
+
+	&:hover
+		color ctext
+
+
+	&.drop-enabled
+		border-color cl2
+	&.drop-disabled
+		color ctextdis
+		background #f5f5f5
+
+	&.second
+		border-color transparent
+		box-shadow 0px 2px 4px -2px rgba(0,0,0,0.2)
+		&:focus
+			box-shadow 0 1px 1px rgba(cl1,0.3)
+a.drop_input
+	cursor pointer
+
+
+// показать еще
+.show_more
+	padding 20px 0 0
+
+// клиент модульбанка
+.m_client
+	margin-left 5px
+	display inline-block
+	width 12px
+	height 12px
+	background-image url(../images/logo_emblem.svg)
+	background-repeat no-repeat
+	background-size 100%
+	&.light
+		background-image url(../images/logo_emblem_w.svg)
+
+// адаптивные классы
+
+@media (max-width:900px)
+	.hide_900a
+		display none
+@media (max-width:1000px)
+	.hide_1000a
+		display none
+@media (max-width:1100px)
+	.hide_1100a
+		display none
+@media (max-width:1200px)
+	.hide_1200a
+		display none
+@media (max-width:1300px)
+	.hide_1300a
+		display none
+@media (max-width:1400px)
+	.hide_1400a
+		display none
+@media (max-width:1500px)
+	.hide_1500a
+		display none
+@media (max-width:1600px)
+	.hide_1600a
+		display none
+@media (max-width:1700px)
+	.hide_1700a
+		display none
+@media (max-width:1800px)
+	.hide_1800a
+		display none
+@media (max-width:1900px)
+	.hide_1900a
+		display none
+
+
+@media (min-width:900px)
+	.hide_900b
+		display none
+@media (min-width:1000px)
+	.hide_1000b
+		display none
+@media (min-width:1100px)
+	.hide_1100b
+		display none
+@media (min-width:1200px)
+	.hide_1200b
+		display none
+@media (min-width:1300px)
+	.hide_1300b
+		display none
+@media (min-width:1400px)
+	.hide_1400b
+		display none
+@media (min-width:1500px)
+	.hide_1500b
+		display none
+@media (min-width:1600px)
+	.hide_1600b
+		display none
+@media (min-width:1700px)
+	.hide_1700b
+		display none
+@media (min-width:1800px)
+	.hide_1800b
+		display none
+@media (min-width:1900px)
+	.hide_1900b
+		display none
+
+
+
+// скрытие блоков
+.block_hide
+	animation blockHide 3s ease both
+
+
+// если нету контента
+.empty_block
+	width 100%
+	height 80%
+	min-height 150px
+	max-height 70vw
+	display flex
+	justify-content center
+	align-items center
+	&>div
+		max-width 400px
+		text-align center
+		color ctextlight
+	p
+		margin 0 0 15px
+
+
+// анимированный фон
+.back_anim
+	position absolute
+	top 0
+	bottom 0
+	right 0
+	left 0
+	overflow hidden
+	z-index 0
+	display none
+	[class*="cub"]
+		position absolute
+	.cub1
+		height 400px
+		width 16vw
+		min-width 240px
+		background url(../images/cub1.png) no-repeat 0 0
+		background-size 100% auto
+		bottom 40px
+		left 12%
+		animation cub1 30s linear 2
+	.cub2
+		height 400px
+		width 16vw
+		margin 240px
+		background url(../images/cub2.png) no-repeat 0 0
+		background-size 100% auto
+		top -100px
+		right -100px
+		animation cub2 20s linear 3
+	.cub3
+		height 143px
+		width 143px
+		background url(../images/cub3.png) no-repeat 0 0
+		top 150px
+		left 15%
+		animation cub3 30s linear 2
+	.cub4
+		height 131px
+		width 131px
+		background url(../images/cub4.png) no-repeat 0 0
+		bottom 10%
+		right 21%
+		animation cub4 40s linear 2
+	.cub5
+		height 67px
+		width 67px
+		background url(../images/cub5.png) no-repeat 0 0
+		top 95px
+		right 290px
+		animation cub5 30s linear 2
+	.cub6
+		height 58px
+		width 58px
+		background url(../images/cub6.png) no-repeat 0 0
+		bottom 30%
+		left 40%
+		animation cub6 30s linear 2
+	.cub7
+		height 29px
+		width 29px
+		background url(../images/cub7.png) no-repeat 0 0
+		top 100px
+		left 70px
+		animation cub7 30s linear 2
+	.cub8
+		height 33px
+		width 33px
+		background url(../images/cub8.png) no-repeat 0 0
+		bottom 340px
+		right 460px
+		animation cub8 20s linear 3
+	.cub9
+		height 29px
+		width 29px
+		background url(../images/cub9.png) no-repeat 0 0
+		top 150px
+		right 40%
+		animation cub9 20s linear 3
+
+@keyframes cub1 {
+    from { transform: rotate(-180deg) translateX(150px) rotate(360deg); }
+    to   { transform: rotate(180deg) translateX(150px) rotate(0deg); }
+}
+@keyframes cub2 {
+    from { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+    to   { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+}
+@keyframes cub3 {
+    from { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+    to   { transform: rotate(-360deg) translateX(100px) rotate(360deg); }
+}
+@keyframes cub4 {
+    from { transform: rotate(180deg) translateX(200px) rotate(0deg); }
+    to   { transform: rotate(-180deg) translateX(200px) rotate(360deg); }
+}
+@keyframes cub5 {
+    from { transform: rotate(90deg) translateX(50px) rotate(0deg); }
+    to   { transform: rotate(450deg) translateX(50px) rotate(-360deg); }
+}
+@keyframes cub6 {
+    from { transform: rotate(180deg) translateX(50px) rotate(0deg); }
+    to   { transform: rotate(-180deg) translateX(50px) rotate(360deg); }
+}
+@keyframes cub7 {
+    from { transform: rotate(180deg) translateX(50px) rotate(0deg); }
+    to   { transform: rotate(-180deg) translateX(50px) rotate(360deg); }
+}
+@keyframes cub8 {
+    from { transform: rotate(90deg) translateX(50px) rotate(0deg); }
+    to   { transform: rotate(-270deg) translateX(50px) rotate(360deg); }
+}
+@keyframes cub9 {
+    from { transform: rotate(-180deg) translateX(50px) rotate(0deg); }
+    to   { transform: rotate(180deg) translateX(50px) rotate(-360deg); }
+}
+
+
+// оформление таблиц
+table
+	width 100%
+	padding 0
+	margin 0
+	border-collapse collapse
+	background #fff
+
+
+	th, td
+		padding 5px
+		border 1px solid cbdlight
+	th
+		text-align left
+		a
+			color ctext
+			text-decoration none
+			display inline-block
+			max-width 100%
+			overflow ellipsis
+			box-sizing border-box
+			transition color .2s
+			line-height 1
+			&:hover
+				color clink!important
+
+		[class*="icon-sort"]
+			padding-right 20px
+			&:before
+				float right
+				min-width 0
+				margin 0 -17px 0 5px
+	td
+		&.cell_field
+			padding 0
+			input[type="text"],
+			input[type="password"],
+			input[type="search"],
+			input[type="email"],
+			input[type="tel"],
+			input[type="time"],
+			input[type="date"],
+			input[type="number"],
+			textarea
+				width 100%
+				border none
+				box-shadow none
+	&.even
+		tr:nth-child(2n)
+			td
+				background #f9f9f9
+	&.no_border
+		td
+			border none
+			padding 0
+
+
+	.row_title
+		&:first-child
+			td
+				padding-top 5px
+		td
+			text-align left
+			font-weight fwb
+			padding 12px 5px 5px
+			border-bottom 2px solid cseparator
+			color cl2
+	&.light
+		border 1px solid cbd
+		td
+		th
+			border 1px solid cbd
+		th
+			font-weight fwn
+			font-size fzn - 6px
+			text-transform uppercase
+			background cbgsky
+			border-bottom 2px solid cbd
+			color ctextlight
+			padding 10px
+			border-right none
+			border-left none
+// таблица со скроллом по горизонтали
+.tabel_scroll
+	overflow auto
+	width 100%
+	table
+		width auto
+
+// текст подсказка
+.text_placeholder
+	text-align center
+	padding 100px 40px
+	font-style italic
+	color ctextlight
+
+// слайдер/ползунок/выбор времени
+.noUi-base
+	height 5px
+	border-radius 5px
+	background cgrey09
+	.noUi-origin
+		position relative!important
+		display inline-block
+	.noUi-handle
+		height 20px
+		width 20px
+		border-radius 24px
+		background cl2
+		background linear-gradient(45deg, clsub2, clsub4)
+		transform translate(-50%,-30%)
+		box-shadow 0 0 0 3px rgba(0,0,0,0.1)
+		cursor pointer
+
+// постраничная пагинация
+.pagination
+	text-align center
+	margin 30px 0 10px
+	li
+		display inline-block
+		margin 0 1px
+		vertical-align middle
+		a
+			display block
+			height 24px
+			padding 0 6px
+			line-height 24px
+			text-align center
+			border-radius 20px
+			font-size fzn
+			color ctext
+			text-decoration none
+			min-width 24px
+			box-sizing border-box
+
+			&:hover
+				background cbglight
+		&.active
+			a
+				background cbghighlight
+		&.disabled
+			a
+				color ctextdis
+				cursor default
+				&:hover
+					background none
+		&.arrow
+			a
+				line-height 21px
+				font-size fzn + 6px
+
+
+// блок отправки файлов/писем
+.send_block
+	padding 32px 32px 16px
+	background #F7F7F3 url("../images/letter_border.svg") repeat-x 4px 4px
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,0.09), 0 0 1px 0 rgba(0,0,0,0.22);
+	margin-bottom 40px
+	box-sizing border-box

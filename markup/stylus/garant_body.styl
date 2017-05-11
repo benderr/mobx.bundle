@@ -1,0 +1,251 @@
+@import 'nib'
+@import 'variables.styl'
+
+.wrap
+	width 980px
+	margin 0 auto
+header
+	&.garant_header
+		.header_logo
+			background transparent
+			width auto
+			padding-left 0
+			a
+				background url(../images/logo_emblem_w.svg) no-repeat 0 0
+				background-size auto 24px
+				padding-left 36px
+				text-indent 0
+				width auto
+				font-size 19px
+				color #fff
+				font-weight fwl
+				text-decoration none
+				strong
+					font-weight fwm
+		.header_profile
+			padding-right 0
+			.header_profile_name
+				max-width 350px
+section.main
+	overflow auto
+	overflow overlay
+	overflow-x hidden
+	.wrap
+		height auto
+
+.section_content
+	padding-left 0
+	// right 240px
+	position relative
+	overflow hidden
+	margin-right 240px
+
+article.page
+	&.page_with_wizard
+		.page_header
+			height 150px
+		.page_content
+			top 150px
+
+
+
+.page_header
+	height 60px
+	background #fff
+	padding 14px 30px 0
+	box-shadow none
+	background #F5F5F5
+	.page_close
+		width 32px
+		height 32px
+		top 16px
+		left 24px
+		text-align center
+		line-height 32px
+		color cgrey72
+		transition none
+		&:before
+			font-size fzn
+		&:hover
+			color #000
+
+h1
+	font-size 24px
+.page_content
+	top 60px
+	&.content_padding
+		padding-left 70px
+		padding-right 70px
+
+aside.garant_right_menu
+	background none
+	box-shadow none
+	width 230px
+	padding-top 19px
+	// overflow auto
+	// bottom 0
+	// position fixed
+	// top 60px
+	// left calc(50% + 260px)
+	position -webkit-sticky
+	position sticky
+	float right
+	max-height calc(100vh - 80px)
+	overflow auto
+	overflow overlay
+	.right_menu_button
+		padding 0 1px 25px 20px
+	.right_menu_filter
+		margin 0 1px 0 20px
+		padding 0
+		.filter_item
+			font-size fzn - 1px
+			border-radius 2px
+			color ctext
+			height 40px
+			box-sizing border-box
+			padding 12px 15px
+			background rgba(#fff,0)
+			margin-bottom 4px
+			&:hover
+				background rgba(#fff,0.4)
+			&:after, &:before
+				top 0
+				right 100%
+				border solid transparent
+				content " "
+				height 0
+				width 0
+				position absolute
+				pointer-events none
+				border-color rgba(255, 255, 255, 0)
+				border-width 20px
+				transition border-color .2s, right .2s
+				border-right-width 16px
+				margin-top 0
+
+			&:before
+				top -1px
+				border-width 21px
+				border-right-width 17px
+			&.active
+				background #fff
+				box-shadow: 0 1px 2px 0 rgba(0,0,0,0.09), 0 0 1px 0 rgba(0,0,0,0.22);
+				&:after
+					border-right-color #fff
+				&:before
+					border-right-color rgba(0,0,0,0.1)
+
+			.name
+				display inline-block
+
+			.count
+				font-size fzn - 5px
+				float right
+				background cgrey09
+				border-radius 10px
+				padding 3px 5px 1px
+				min-width 8px
+				text-align center
+
+	.right_menu_doc_link
+		padding 0 1px 1px 20px
+		margin 32px 0
+		a
+			display block
+			background #fff url(../images/icon_notes.svg) no-repeat 16px 45%
+			padding  16px 12px 16px 48px
+			box-sizing border-box
+			box-shadow: 0 1px 2px 0 rgba(0,0,0,0.09), 0 0 1px 0 rgba(0,0,0,0.22);
+			font-size fzn - 4px
+			color ctext
+			text-decoration none
+			border-radius brbut
+			&:hover
+				background-color rgba(#fff,0.8)
+
+
+
+// изменения по формам
+input[type="text"],
+input[type="password"],
+input[type="search"],
+input[type="email"],
+input[type="tel"],
+input[type="time"],
+input[type="date"],
+input[type="number"],
+textarea
+	background-color #F5F5F5
+	border-color transparent
+	background-clip padding-box
+	border-radius 4px
+	box-shadow inset 0px 1px 3px -1px rgba(0,0,0,0.18)
+	&:focus
+		background-color #fff
+		border-radius 3px
+	&.success
+		border-color transparent
+		&:focus
+			border-color cl2
+	&.white
+		background-color #fff
+		border-color cbd
+		&:focus
+			border-color cl2
+	&:-webkit-autofill
+		transition none
+		box-shadow inset 0px 1px 3px -1px rgba(0,0,0,0.18), 0 0 0 1000px #F5F5F5 inset
+		background-clip content-box
+		&:disabled
+			box-shadow inset 0px 1px 3px -1px rgba(0,0,0,0.18), 0 0 0 1000px #f5f5f5 inset
+
+.input_group
+	display inline-block
+	.input_group_addon
+		position absolute
+		left 0
+		top 0
+		z-index 10
+		background-color transparent
+		border-color transparent
+		background-clip padding-box
+		box-shadow none
+		&.addon_code
+			width auto
+			min-width 0
+			padding-left 15px
+			font-size fzn
+			line-height 42px
+			color #bbb
+			&~input
+				padding-left 36px !important
+	input
+		border-top-left-radius 4px
+		border-bottom-left-radius 4px
+		padding-left 46px!important
+		&:focus
+			border-radius 3px!important
+		&:focus
+			border-top-left-radius 0
+			border-bottom-left-radius 0
+
+
+
+
+.ms-choice
+	background-color #F5F5F5
+	border-color transparent
+	background-clip padding-box
+	border-radius 4px
+	box-shadow inset 0px 1px 3px -1px rgba(0,0,0,0.18)
+	transition border .2s, background .2s
+	&.open
+		background-color #fff
+		border-radius 3px
+
+
+.form_buttons
+	margin 36px 0 0
+	// чтобы была видна тень от кнопки
+	padding-bottom 16px

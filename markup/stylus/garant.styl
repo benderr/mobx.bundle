@@ -1,0 +1,250 @@
+@import 'nib'
+@import 'variables.styl'
+
+.page
+	&.page_garant_order
+		.page_wizard
+			margin-left -30px!important
+			margin-right -30px!important
+		.page_content
+			padding-left 72px
+			padding-top 48px
+
+// список заявок по гарантии
+.garant_orders_list
+	.item
+		background #fff
+		padding 20px 24px
+		box-shadow 0px 2px 4px 0px rgba(0,0,0,0.09), 0px 0px 1px 0px rgba(0,0,0,0.22);
+		box-sizing border-box
+		margin-bottom 12px
+		border-radius 2px
+
+		.client_name
+			margin-right 200px
+			font-size 22px
+			font-weight fwl
+			margin 0 0 4px
+			cursor pointer
+			&:hover
+				color clink
+		.client_info
+			font-size fzn - 2px
+			color ctextlight
+			margin 0 0 6px
+		.order_num
+			font-size fzn - 2px
+			font-weight fwm
+			margin 0 0 14px
+
+		.order_summ
+			float right
+			font-weight fwl
+			font-size 26px
+			z-index 10
+		.order_deadline
+			float right
+			font-size fzn - 4px
+			color ctextlight
+			clear right
+			z-index 10
+		.order_buts
+			position absolute
+			right 24px
+			bottom 20px
+			margin-top 16px
+			z-index 10
+		.order_status
+			margin-top 16px
+			.progress
+				width 150px
+				height 8px
+				border-radius 8px
+				background cbglight
+				display inline-block
+				margin-right 10px
+				div
+					background linear-gradient(left, #F2BB4E, #EC9E39)
+					height 8px
+					border-radius 8px
+				&.step1
+					div
+						width 25%
+				&.step2
+					div
+						width 50%
+						background linear-gradient(left, #EFE43E, #D8C629)
+				&.step3
+					div
+						width 75%
+						background linear-gradient(left, #DBE954, #ABD031)
+				&.step4
+					div
+						width 100%
+						background linear-gradient(left, #BCDA5F, #66AC30)
+					&.cancel
+						div
+							background linear-gradient(left, #EE9494, #DB4242)
+			.status_text
+				display inline-block
+				font-size fzn - 6px
+				font-weight fwm
+				color cgrey72
+
+
+		background-size 100%
+
+// шаг 1 поиск компании
+.garant_order_step1
+	min-height 270px
+	background url(../images/garant/step1_img.jpg) no-repeat 90% top
+	background-size 360px 270px
+	input.ogrn_input
+		letter-spacing 5px
+		width 340px
+		font-size fzn + 2px
+
+
+// ожидание по шагам
+.garant_page_load_block
+	text-align center
+	padding-top 150px
+	h3
+		margin-bottom 12px
+	p
+		font-size fzn - 2px
+	.icon
+		width 24px
+		height 24px
+		position absolute
+		left calc(50% - 12px)
+		top 45px
+		background url(../images/loading.gif) no-repeat 0 0
+		background-size 100%
+
+
+.garant_order_step1_search
+	background url(../images/garant/load_icon_search.svg) no-repeat 50% 0
+	.icon
+		left 47%
+
+.garant_order_step1_found
+	background url(../images/icon_company.svg) no-repeat center 0
+	background-size 115px 117px
+
+.garant_order_step1_not_found
+	background url(../images/icon_not_found.svg) no-repeat center 0
+	background-size 125px 125px
+	h3
+		color ctexterror
+
+.garant_order_doc_verification
+	background url(../images/garant/load_icon_folder.svg) no-repeat 50% 0
+	.icon
+		left calc(50% - 12px)
+		top 55px
+.garant_order_step3_doc
+	background url(../images/garant/load_icon_doc.svg) no-repeat 50% 15%
+	background-size 90px auto
+	&.done
+		background-image url(../images/garant/load_icon_doc_done.svg)
+.garant_order_step3_payment
+	background url(../images/garant/load_icon_card.svg) no-repeat 50% 20%
+	background-size auto 70px
+	&.done
+		background-image url(../images/garant/load_icon_card_done.svg)
+
+.garant_order_success
+	background url(../images/garant/load_icon_success.svg) no-repeat center 0
+	background-size 90px auto
+
+.garant_order_denied
+	background url(../images/garant/load_icon_denied.svg) no-repeat center 0
+	background-size 90px auto
+
+// каркас шагов заявки
+.page_garant_left
+	float left
+	width 64%
+.page_garant_right
+	width 30%
+	float right
+	.info
+		text-align center
+		font-size fzn - 4px
+		strong
+			font-size fzn - 2px
+		q
+			display block
+			background #fff
+			font-style italic
+			padding 12px
+			margin 0 -16px -12px
+			color ctext
+			word-wrap break-word
+
+// список файлов с оплатой шаг3
+.garant_file_list_invoice
+
+	.item
+		padding 0 120px 24px 40px
+		.file_icon
+			position absolute
+			top 0
+			left 0
+			width 24px
+			height 32px
+			background-size cover
+
+		.button
+			position absolute
+			right 0
+			top 0
+		.desc
+			font-size fzn - 4px
+			color ctextlight
+			top 0
+
+
+// успешная отправка письма клиенту
+.garant_letter_sent
+	padding 24px 16px 24px 72px
+	background cbgsuccess
+	border-top 1px solid cgrey09
+	font-size fzn - 2px
+	box-sizing border-box
+	&:before
+		content: "\36";
+		font-family: "mb-icon-font-3"
+		position absolute
+		top 18px
+		left 32px
+		font-size 24px
+		color ctextsuccess
+	h4
+		font-size fzn
+		margin-bottom 8px
+.send_block
+	.garant_letter_sent
+		margin 0 -32px -16px
+
+
+.step3_wait
+	width 85%
+	margin 0 auto
+
+// список документов по заявке
+.garant_documents_list
+	.item
+		margin-bottom 12px
+	a
+		display block
+		padding 0 0 0 30px
+		text-decoration none
+		&:before
+			font-family: "mb-icon-font-3"
+			content: "\4a"
+			position absolute
+			top 0
+			left 0
+			color ctext
