@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../markup/stylus/404.styl';
+import '../../../markup/stylus/404.styl';
 export default () => {
     return (
         <div className="reg_var2">

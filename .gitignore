@@ -6,3 +6,11 @@ build
 _nogit
 .idea/
 Denis
+
+*.codekit
+markup/html
+markup/html_email
+markup/js
+markup/*.js
+markup/**/*.js
+

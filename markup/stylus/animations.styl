@@ -1,0 +1,461 @@
+@import 'variables.styl'
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+// @keyframes pageHide {
+// 	0% {
+// 		opacity 1
+// 		visibility visible
+// 	}
+
+// 	99% {
+// 		visibility visible
+// 	}
+// 	100% {
+// 		opacity 0
+// 		visibility hidden
+// 		transform translateX(200px)
+// 	}
+
+// }
+
+// @keyframes pageOpen {
+// 	0% {
+// 		opacity: 0;
+// 		transform translateX(200px)
+// 		visibility visible
+// 	}
+// 	100% {
+// 		opacity: 1;
+// 		transform translateX(0px)
+// 	}
+// }
+
+@keyframes pageHide {
+	0% {
+		opacity 1
+		visibility visible
+		right 0px
+	}
+	99% {
+		visibility visible
+	}
+	100% {
+		opacity 0
+		visibility hidden
+		right -150px
+	}
+}
+
+@keyframes pageOpen {
+	0% {
+		opacity: 0;
+		right -150px
+		visibility visible
+	}
+	100% {
+		opacity: 1;
+		right 0px
+	}
+}
+
+@keyframes pageFullsize {
+	0% {
+		width 66%
+	}
+	100% {
+		width 100%
+		max-width 2000px
+	}
+}
+@keyframes pageNorsize {
+	0% {
+		top 40px
+		width 100%
+	}
+	100% {
+		top 65px
+		width 66%
+	}
+}
+
+@keyframes error-border-flash {
+	0%{
+		border-color rgba(cerror,0)
+	}
+	100% {
+		border-color rgba(cerror,1)
+	}
+}
+
+@keyframes writeNow {
+	from {
+		transform translateX(0) translateZ(0)
+	}
+	to {
+		transform translateX(10px) translateZ(0)
+	}
+}
+
+// @keyframes dropShow {
+// 	0% {
+// 		opacity 0
+// 		transform scale(.6)
+// 	}
+// 	100% {
+// 		opacity 1
+// 		transform scale(1)
+// 	}
+// }
+@keyframes dropShow {
+	0% {
+		opacity 0
+		// transform translateY(10px)
+		margin-top 10px
+	}
+	100% {
+		opacity 1
+		// transform translateY(0px)
+		margin-top 0
+	}
+}
+@keyframes dropHide {
+	0% {
+		opacity 1
+		transform translateY(0px)
+	}
+	100% {
+		opacity 0
+		transform translateY(10px)
+	}
+}
+
+@keyframes popupOpen {
+	0% {
+		opacity 0
+		transform: scale(.95) translate3d(0, 30px, 0);
+	}
+
+	100% {
+		opacity 1
+		transform: scale(1) translate3d(0, 0, 0);
+	}
+}
+
+@keyframes popupOverlayOpen {
+	0% {
+		opacity 0
+	}
+	100% {
+		opacity 1
+	}
+}
+
+@keyframes zoomIn {
+	0% {
+		opacity 0
+		transform: scale3d(.9, .9, .9) translate3d(0, 30px, 0);
+	}
+	100% {
+		opacity 1
+		transform: scale3d(1, 1, 1) translate3d(0, 0px, 0);
+	}
+}
+
+@keyframes noticeOut {
+  0 {
+    transform: perspective(1500px);
+  }
+
+  20% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, -20deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+
+  }
+
+  100% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+@keyframes noticeIn {
+  from {
+    transform: perspective(1500px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+    max-height: 0;
+  }
+
+  20% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  55% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+
+  }
+
+  70% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, 0deg);
+    opacity: 1;
+     max-height: 300px;
+  }
+
+  85% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, -5deg);
+
+  }
+
+  100% {
+    transform: perspective(1500px);
+  }
+}
+
+@keyframes noticeIn2 {
+  0% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+    max-height: 300px;
+  }
+
+  40% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+
+  }
+
+  60% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, 0deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: perspective(1500px) rotate3d(1, 0, 0, -5deg);
+
+  }
+
+  100% {
+    transform: perspective(1500px);
+  }
+}
+
+
+@keyframes heartFlash {
+  0% {
+    transform: scale(1);
+    opacity 1;
+    color #fff
+  }
+
+  30% {
+    transform: scale(1.4);
+    opacity 0.6
+  }
+  100% {
+    transform: scale(1);
+    opacity 1
+  }
+
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+@keyframes rotatingSms {
+  0% {
+    transform: rotate(0deg);
+  }
+  50%{
+  	transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// @keyframes showFilter {
+//   0% {
+//     transform: translateX(265px);
+//   }
+//   100% {
+//     transform: translateX(0px);
+//   }
+// }
+// @keyframes hideFilter {
+//   0% {
+//     transform: translateX(0px);
+// 	visibility visible
+//   }
+//   99% {
+//     visibility visible
+//   }
+//   100% {
+//     transform: translateX(285px);
+//   }
+// }
+
+
+@keyframes exchange_money_confirm {
+  0% {
+    width 100%;
+  }
+  50%{
+  	background-color #F0CD3B
+  }
+  100% {
+    width 0%;
+    background-color cerror
+  }
+}
+@keyframes exchange_money_confirm_5 {
+  0% {
+    transform scale(1)
+  }
+  40% {
+ 	transform scale(1.05)
+  }
+  100% {
+ 	transform scale(1)
+  }
+}
+
+
+// распознавание счетов
+@keyframes paymentScannerB {
+  0% {
+    height 60px
+  }
+  25% {
+ 	height 110px
+  }
+  50% {
+ 	height 60px
+  }
+  75% {
+ 	height 10px
+  }
+  100% {
+ 	height 60px
+  }
+}
+@keyframes paymentScannerA {
+  0% {
+    height 60px
+  }
+  25% {
+ 	height 10px
+  }
+  50% {
+ 	height 60px
+  }
+  75% {
+ 	height 110px
+  }
+  100% {
+ 	height 60px
+  }
+}
+@keyframes paymentScanner {
+  0% {
+    transform translateY(0)
+  }
+  25% {
+ 	transform translateY(50px)
+  }
+  50% {
+ 	transform translateY(-0px)
+  }
+  75% {
+ 	transform translateY(-50px)
+  }
+  100% {
+ 	transform translateY(0px)
+  }
+}
+
+
+.notice_anim
+	max-height 0
+	transition 1s
+	overflow hidden
+	.notice_block
+		visibility hidden
+
+	&.notice_out
+		animation-fill-mode both
+		animation-duration 1s
+		animation-name noticeOut
+		backface-visibility visible !important
+		// transition 1s
+		// transition-delay .3s
+		max-height 300px
+		.notice_block
+			visibility visible
+
+
+	&.notice_in
+		animation-fill-mode both
+		// animation-delay .2s
+		animation-duration 1s
+		animation-name noticeIn
+		backface-visibility visible !important
+		// transition .7s
+		max-height 300px
+		.notice_block
+			visibility visible
+
+
+	&:nth-child(1)
+		animation-duration 1s
+		animation-name noticeIn2
+
+
+
+
+// ангруляр анимация
+.ng-animate
+	transition none
+
+.ng-animation
+	transition .3s
+	&.ng-hide-add
+		opacity 1
+	&.ng-hide-add-active
+		opacity 0
+	&.ng-hide-pxove
+		opacity 0
+	&.ng-hide-pxove-active
+		opacity 1

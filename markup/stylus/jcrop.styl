@@ -1,0 +1,282 @@
+.jcrop-circle-css
+	.jcrop-box
+		position absolute
+		top 0px
+		left 0px
+		width 100%
+		height 100%
+		border 1px rgba(255, 255, 255, 0.4) solid
+		border-radius 50%
+		-webkit-box-shadow 1px 1px 26px #000000
+		-moz-box-shadow 1px 1px 26px #000000
+		box-shadow 1px 1px 26px #000000
+		overflow hidden
+		&:focus
+			outline none
+.custom-shade
+	position absolute
+	top 0px
+	left 0px
+	background-color black
+	opacity 0.4
+	width 100%
+	height 100%
+.jcrop-active
+	direction ltr
+	text-align left
+	box-sizing border-box
+	-ms-touch-action none
+.jcrop-dragging
+	-moz-user-select none
+	-webkit-user-select none
+	-ms-user-select none
+	user-select none
+.jcrop-selection
+	z-index 2
+	position absolute
+	&.jcrop-current
+		z-index 4
+.jcrop-border
+	background #fff url(../images/jcrop.gif)
+	line-height 1px !important
+	font-size 0 !important
+	overflow hidden
+	position absolute
+	opacity .5 !important
+	&.ord-e
+		right -1px
+	&.ord-n
+		top -1px
+	&.ord-w
+		left -1px
+	&.ord-s
+		bottom -1px
+.jcrop-border.ord-w, .jcrop-border.ord-e, .jcrop-border.ord-n
+	top 0
+.jcrop-border.ord-n, .jcrop-border.ord-s
+	width 100%
+	height 1px !important
+.jcrop-border.ord-w, .jcrop-border.ord-e
+	height 100%
+	width 1px !important
+.jcrop-box
+	z-index 2
+	display block
+	background 0 0
+	border 0
+	padding 0
+	margin 0
+	font-size 0
+	width 100%
+	height 100%
+	cursor move
+	&:hover
+		background 0 0
+	&:active
+		background 0 0
+	&:focus
+		outline 1px rgba(128, 128, 128, .65) dotted
+.jcrop-active, .jcrop-box
+	position relative
+.jcrop-handle
+	z-index 4
+	background-color rgba(49, 28, 28, .58)
+	border 1px #eee solid
+	width 9px
+	height 9px
+	font-size 0
+	position absolute
+
+	opacity .8 !important
+	&.ord-n
+		left 50%
+		margin-left -5px
+		margin-top -5px
+		top 0
+		cursor n-resize
+	&.ord-s
+		bottom 0
+		left 50%
+		margin-bottom -5px
+		margin-left -5px
+		cursor s-resize
+	&.ord-e
+		margin-right -5px
+		margin-top -5px
+		right 0
+		top 50%
+		cursor e-resize
+	&.ord-w
+		left 0
+		margin-left -5px
+		margin-top -5px
+		top 50%
+		cursor w-resize
+	&.ord-nw
+		left 0
+		margin-left -5px
+		margin-top -5px
+		top 0
+		cursor nw-resize
+	&.ord-ne
+		margin-right -5px
+		margin-top -5px
+		right 0
+		top 0
+		cursor ne-resize
+	&.ord-se
+		bottom 0
+		margin-bottom -5px
+		margin-right -5px
+		right 0
+		cursor se-resize
+	&.ord-sw
+		bottom 0
+		left 0
+		margin-bottom -5px
+		margin-left -5px
+		cursor sw-resize
+.jcrop-touch
+	.jcrop-handle
+		z-index 4
+		background-color rgba(49, 28, 28, .58)
+		border 1px #eee solid
+		width 18px
+		height 18px
+		font-size 0
+		position absolute
+		opacity .8 !important
+		&.ord-n
+			left 50%
+			margin-left -10px
+			margin-top -10px
+			top 0
+			cursor n-resize
+		&.ord-s
+			bottom 0
+			left 50%
+			margin-bottom -10px
+			margin-left -10px
+			cursor s-resize
+		&.ord-e
+			margin-right -10px
+			margin-top -10px
+			right 0
+			top 50%
+			cursor e-resize
+		&.ord-w
+			left 0
+			margin-left -10px
+			margin-top -10px
+			top 50%
+			cursor w-resize
+		&.ord-nw
+			left 0
+			margin-left -10px
+			margin-top -10px
+			top 0
+			cursor nw-resize
+		&.ord-ne
+			margin-right -10px
+			margin-top -10px
+			right 0
+			top 0
+			cursor ne-resize
+		&.ord-se
+			bottom 0
+			margin-bottom -10px
+			margin-right -10px
+			right 0
+			cursor se-resize
+		&.ord-sw
+			bottom 0
+			left 0
+			margin-bottom -10px
+			margin-left -10px
+			cursor sw-resize
+.jcrop-dragbar
+	font-size 0
+	position absolute
+	&.ord-n
+		margin-top -5px
+		cursor n-resize
+		top 0
+	&.ord-s
+		bottom 0
+		margin-bottom -5px
+		cursor s-resize
+	&.ord-e
+		margin-right -5px
+		right 0
+		cursor e-resize
+	&.ord-w
+		margin-left -5px
+		cursor w-resize
+.jcrop-dragbar.ord-n, .jcrop-dragbar.ord-s
+	height 9px !important
+	width 100%
+.jcrop-dragbar.ord-e, .jcrop-dragbar.ord-w
+	top 0
+	height 100%
+	width 9px !important
+.jcrop-shades
+	position relative
+	top 0
+	left 0
+	div
+		cursor crosshair
+.jcrop-noresize .jcrop-dragbar, .jcrop-noresize .jcrop-handle
+	display none
+.jcrop-selection.jcrop-nodrag .jcrop-box, .jcrop-nodrag .jcrop-shades div
+	cursor default
+.jcrop-light
+	.jcrop-border
+		background #fff
+		opacity .7 !important
+	.jcrop-handle
+		background-color #000
+		border-color #fff
+.jcrop-dark
+	.jcrop-border
+		background #000
+		opacity .7 !important
+	.jcrop-handle
+		background-color #fff
+		border-color #000
+.solid-line
+	.jcrop-border
+		background #fff
+.jcrop-thumb
+	position absolute
+	overflow hidden
+	z-index 5
+.jcrop-active img, .jcrop-thumb img, .jcrop-thumb canvas
+	min-width none
+	min-height none
+	max-width none
+	max-height none
+.jcrop-hl-active
+	.jcrop-border
+		opacity .2 !important
+	.jcrop-handle
+		opacity .1 !important
+	.jcrop-selection
+		&:hover
+			.jcrop-border
+				background-color #ccc
+				opacity .5 !important
+		&.jcrop-current
+			.jcrop-border
+				background gray url(../images/jcrop.gif)
+				opacity .35 !important
+			.jcrop-handle
+				opacity .3 !important
+		&.jcrop-focus
+			.jcrop-border
+				background url(../images/jcrop.gif)
+				opacity .65 !important
+			.jcrop-handle
+				opacity .6 !important
+button
+	&.jcrop-box
+		background 0 0
