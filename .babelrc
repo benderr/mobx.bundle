@@ -2,7 +2,8 @@
   "plugins": [
     "transform-class-properties",
     "syntax-decorators",
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    "react-html-attrs"
   ],
   "presets": [
     ["es2015", { "modules": false }],
