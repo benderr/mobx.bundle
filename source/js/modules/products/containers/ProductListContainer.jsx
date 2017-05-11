@@ -1,10 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import ProductList from '../components/ProductListComponent';
 
 class ProductListContainer extends React.Component {
     render() {
         return (<div>
-            Good List
+            <ProductList/>
         </div>);
     }
 }
