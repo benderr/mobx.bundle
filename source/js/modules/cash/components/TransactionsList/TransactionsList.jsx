@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TransactionsListItem from './../TransactionsListItem/TransactionsListItem.jsx';
 import actions from './../../actions/transactionsActions.js';
-import financeDataContext from './../../bl/financeDataContext.js';
+import cashDataContext from './../../bl/cashDataContext.js';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch) => {
     function getTransactionsByThunk() {
         const asyncGet = () => {
             return dispatch => {
-                financeDataContext.getTransactionsList()
+                cashDataContext.getTransactionsList()
                     .then((res) => {
                         dispatch(actions.updateTransactionsList(res));
                     });

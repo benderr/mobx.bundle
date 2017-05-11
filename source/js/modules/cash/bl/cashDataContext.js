@@ -1,4 +1,4 @@
-import financeMapper from "./financeMapper.js";
+import financeMapper from "./cashMapper.js";
 import q from 'q';
 
 var dataContext = {

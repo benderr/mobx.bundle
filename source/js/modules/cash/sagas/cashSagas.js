@@ -1,6 +1,6 @@
 import {call, put, take, fork, takeEvery} from 'redux-saga/effects'
 import {delay} from 'redux-saga'
-import dataContext from './../bl/financeDataContext.js'
+import dataContext from './../bl/cashDataContext.js'
 import enums from './../enums/enums.js'
 
 function* getTransactions(action) {

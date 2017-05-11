@@ -3,11 +3,11 @@ import React from 'react';
 
 export function getRoutes() {
 	return {
-		finance: {
-			path: '/finance',
+		cash: {
+			path: '/cash',
 			exact: true,
 			component: ({location}) => {
-				return (<h2> Test transactions list</h2>)
+				return (<h2> Cash list</h2>)
 			}
 		},
 		transactionLayer: {
