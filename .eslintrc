@@ -24,7 +24,7 @@ rules:
   arrow-parens: 0
   class-methods-use-this: 0
   func-names: 0
-  indent: 2
+  indent: 4
   new-cap: 0
   no-plusplus: 0
   no-return-assign: 0
