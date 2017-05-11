@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import '../markup/stylus/style.styl';
+import '../../markup/stylus/style_modulkassa.styl';
 import {render} from 'react-dom'
 import React from 'react'
 import RootContainer from 'containers/RootContainer'
