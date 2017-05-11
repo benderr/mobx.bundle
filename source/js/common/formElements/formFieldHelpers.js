@@ -34,3 +34,7 @@ export const getErrorMessage = ({error, touched, active, submitFailed}) => {
 	return error && active && (submitFailed || touched) ? error : null;
 };
 
+export const getRandomKey = () => {
+	return Math.floor(Math.random() * (999999999 - 100000000)) + 100000000;
+};
+
