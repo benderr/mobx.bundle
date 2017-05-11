@@ -63,7 +63,7 @@
     "es6-promise": "^3.1.2",
     "immutable": "^3.8.1",
     "path-to-regexp": "^1.7.0",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.5.9",
     "q": "^1.4.1",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",

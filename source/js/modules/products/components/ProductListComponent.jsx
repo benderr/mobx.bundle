@@ -3,16 +3,17 @@
  */
 import React from 'react';
 import ProductItem from './ProductItem';
-import productItemType from './productItemType';
+import productItemType from './validation/productItemType';
+import PropTypes from 'prop-types';
 
-const {arrayOf} = React.PropTypes;
+const {arrayOf} = PropTypes;
 
 
 class ProductListComponent extends React.Component {
 
     render() {
         const {items} = this.props;
-        const productItems = items.map(elem => <ProductItem item={ elem }/>);
+        const productItems = items.map(elem => <ProductItem item={ elem }  key={elem.code}/>);
 
         return (
 

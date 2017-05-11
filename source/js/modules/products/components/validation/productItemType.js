@@ -1,8 +1,8 @@
 /**
  * Created by RobertSabiryanov on 11.05.17.
  */
-import React from 'react';
-const {shape, number, string} = React.PropTypes;
+import PropTypes from 'prop-types';
+const {shape, number, string} = PropTypes;
 
 export default shape({
 	code: number.isRequired,
