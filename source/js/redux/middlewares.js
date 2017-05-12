@@ -5,7 +5,7 @@ import DevTools from 'dev/DevTools.jsx';
 import createSagaMiddleware from 'redux-saga';
 //import {routerMiddleware} from 'react-router-redux'
 //import {browserHistory} from 'react-router'
-
+import { connectRouter, routerMiddleware } from 'connected-react-router'
 const sagaMiddleware = createSagaMiddleware();
 
 /**
@@ -13,13 +13,13 @@ const sagaMiddleware = createSagaMiddleware();
  * @param modules
  * @returns {[*,*]}
  */
-export function getMiddlewares(modules) {
+export function getMiddlewares(modules, history) {
 
 	let middlewares = [thunk];
 
 	let composerFuncs = [];
 
-	//middlewares.push(routerMiddleware(browserHistory));
+	middlewares.push(routerMiddleware(history));
 
 	modules.forEach((module) => {
 		if (module.getMiddlewares)

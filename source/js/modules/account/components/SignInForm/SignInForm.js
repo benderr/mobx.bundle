@@ -21,67 +21,65 @@ const isValidEmail = (text) => (...args) => !validEmail(...args) ? text : undefi
 // };
 
 const validate = values => {
-    //const errors = {};
-    return null;
+	//const errors = {};
+	return null;
 };
 
 const SignInForm = props => {
-    const {handleSubmit, loading, login, redirectUrl} = props;
-    const submit = ({email, password}) => {
-        //dispatch(login.request(email, password, backPath));
-        login(email, password, redirectUrl);
-    };
+	const {handleSubmit, loading, onLogin, redirectUrl} = props;
+	const submit = ({email, password}) => {
+		//dispatch(login.request(email, password, backPath));
+		onLogin(email, password, redirectUrl);
+	};
 
-    return (
-        <div>
-            <div className="login_content">
-                <div className="login_auth_block">
-                    <form onSubmit={handleSubmit(submit)}>
+	return (
+		<form onSubmit={handleSubmit(submit)}>
+			<div className="login_content">
+				<div className="login_auth_block">
 
-                        <Field name="email" label="Email" type="text"
-                               addonClass="icon-mail"
-                               component={InputRender}
-                               validate={[isRequired('Укажите E-mail'), isValidEmail('Укажите корректный E-mail')]}/>
-                        <Field name="password" label="Password" type="password"
-                               addonClass="icon-password"
-                               component={InputRender}
-                               validate={[isRequired('Введите пароль')]}/>
 
-                        {/*Блок ошибок*/}
-                        {/*<div class="form_error">Неверный номер телефона или пароль!</div>*/}
+					<Field name="email" label="Email" type="text"
+						   addonClass="icon-mail"
+						   component={InputRender}
+						   validate={[isRequired('Укажите E-mail'), isValidEmail('Укажите корректный E-mail')]}/>
+					<Field name="password" label="Password" type="password"
+						   addonClass="icon-password"
+						   component={InputRender}
+						   validate={[isRequired('Введите пароль')]}/>
 
-                        {/*/!*Блок каптча - раскомментировать если нужно*!/*/}
-                        {/*<div class="captcha">*/}
-                        {/*<p>А вы, часом, не робот?<br/>Если нет, введите текст с картинки</p>*/}
-                        {/*<div class="captcha_left">*/}
-                        {/*<input type="text" name="" id="" placeholder="Введите код" class="small" /> */}
-                        {/*<a href="#">Обновить код</a>*/}
-                        {/*</div>*/}
-                        {/*<img src="https://yastatic.net/doccenter/images/tech-ru/cleanweb/freeze/0WLRscWa-KXnsJM3K9jyjORMUEc.gif" alt="" width="140" height="50">*/}
-                        {/*</div> */}
+					{/*Блок ошибок*/}
+					{/*<div class="form_error">Неверный номер телефона или пароль!</div>*/}
 
-                    </form>
-                    <div className="form_buttons">
-                        <button disabled={loading} className="button" type="submit">Далее</button>
-                    </div>
-                </div>
-            </div>
-            <div className="login_links">
-                <a>Восстановить пароль</a>
-            </div>
-        </div>
-    )
+					{/*/!*Блок каптча - раскомментировать если нужно*!/*/}
+					{/*<div class="captcha">*/}
+					{/*<p>А вы, часом, не робот?<br/>Если нет, введите текст с картинки</p>*/}
+					{/*<div class="captcha_left">*/}
+					{/*<input type="text" name="" id="" placeholder="Введите код" class="small" /> */}
+					{/*<a href="#">Обновить код</a>*/}
+					{/*</div>*/}
+					{/*<img src="https://yastatic.net/doccenter/images/tech-ru/cleanweb/freeze/0WLRscWa-KXnsJM3K9jyjORMUEc.gif" alt="" width="140" height="50">*/}
+					{/*</div> */}
+					<div className="form_buttons">
+						<button disabled={loading} className="button" type="submit">Далее</button>
+					</div>
+				</div>
+			</div>
+			<div className="login_links">
+				<a>Восстановить пароль</a>
+			</div>
+		</form>
+	)
 };
 
 SignInForm.propTypes = {
-    loading: PropTypes.bool.isRequired,
+	loading: PropTypes.bool.isRequired,
 	onLogin: PropTypes.func.isRequired,
-    redirectUrl: PropTypes.string
+	redirectUrl: PropTypes.string
 };
 
 export default  reduxForm({
-    form: 'auth',// имя формы в state (state.form.auth)
-    validate,
-    //asyncValidate
+	form: 'auth',// имя формы в state (state.form.auth)
+	validate,
+	//asyncValidate
 })(SignInForm);
 

@@ -8,7 +8,7 @@ import configureRedux from 'redux/configureRedux.js'
 
 const mountNode = document.getElementById('root');
 
-const {store, routes}= configureRedux(modules, {});
+const {store, routes, history}= configureRedux(modules, {});
 
-render(<RootContainer store={store} routes={routes}></RootContainer>, mountNode);
+render(<RootContainer store={store} routes={routes} history={history} />, mountNode);
 

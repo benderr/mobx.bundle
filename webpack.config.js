@@ -84,7 +84,7 @@ const rules = [
 		],
 	},
 	{
-		test: /\.(png|gif|jpg|svg|woff|woff2|eot|ttf)$/,
+		test: /\.(png|gif|jpg|svg|woff|woff2|eot|ttf|ico)$/,
 		//include: paths.markupPath,
 		use: 'url-loader?limit=20480&name=assets/[name]-[hash].[ext]',
 	},

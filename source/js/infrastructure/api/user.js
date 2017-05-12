@@ -2,5 +2,5 @@ export const compose = (api) => {
 	/**
 	 * авторизация
 	 */
-	api.addResource('auth');
+	api.v1().addResource('profile');
 };

@@ -3,15 +3,11 @@ import api from 'infrastructure/api/api'
 
 /**
  * Авторизация
- * @param email
- * @param pass
  * @returns {*|axios.Promise}
  */
-function login(email, pass) {
-	return api.auth().post({
-		Password: pass,
-		Email: email
-	}).then((response) => mapper.toClientLogin(response.data));
+function profile(token) {
+	return api.v1().profile().get({}, {Authorization: `Basic ${token}`})
+		.then((response) => mapper.toClientLogin(response.data));
 }
 
 /**
@@ -23,4 +19,4 @@ function loginInfo() {
 		.get().then((response) => mapper.toClientLoginInfo(response.data));
 }
 
-export {login, loginInfo}
+export {profile, loginInfo}
