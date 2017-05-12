@@ -12,7 +12,7 @@ class InputRenderSign extends React.Component {
 						   className={className + addClassName}
 						   placeholder={label}
 						   type={type}/>
-					<div className={'input_group_addon' + (addonClass || '')}></div>
+					<div className={'input_group_addon ' + (addonClass || '')}></div>
 					<div className="input_light_border_bottom"></div>
 				</div>
 			</div>

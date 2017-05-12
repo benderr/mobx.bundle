@@ -25,7 +25,7 @@ const validate = values => {
     return null;
 };
 
-let SignInForm = props => {
+const SignInForm = props => {
     const {handleSubmit, loading, login, redirectUrl} = props;
     const submit = ({email, password}) => {
         //dispatch(login.request(email, password, backPath));
@@ -43,7 +43,7 @@ let SignInForm = props => {
                                component={InputRender}
                                validate={[isRequired('Укажите E-mail'), isValidEmail('Укажите корректный E-mail')]}/>
                         <Field name="password" label="Password" type="password"
-                               addonClass="icon-mail"
+                               addonClass="icon-password"
                                component={InputRender}
                                validate={[isRequired('Введите пароль')]}/>
 
@@ -75,7 +75,7 @@ let SignInForm = props => {
 
 SignInForm.propTypes = {
     loading: PropTypes.bool.isRequired,
-    login: PropTypes.func.isRequired,
+	onLogin: PropTypes.func.isRequired,
     redirectUrl: PropTypes.string
 };
 
