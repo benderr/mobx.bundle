@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInForm from '../components/signInForm/SignInForm'
+import SignInForm from '../components/SignInForm/SignInForm'
 import {connect} from 'react-redux';
 import {login} from '../actions/loginActions'
 import {bindActionCreators} from 'redux';
@@ -10,7 +10,7 @@ const SignInContainer = props => {
     return (
         <div className="login_section">
             <div className="login_section_center">
-                <SignInForm login={login} redirectUrl={redirectUrl} loading={loading}></SignInForm>
+                <SignInForm onLogin={login} redirectUrl={redirectUrl} loading={loading} />
             </div>
         </div>
     );

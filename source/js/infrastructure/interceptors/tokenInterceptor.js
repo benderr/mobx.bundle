@@ -9,6 +9,10 @@ export default {
 		return {request, response, responseError};
 
 		function request(config) {
+			if (config.Authorization) {
+				config.headers['Authorization'] = config.Authorization;
+			}
+
 			const token = getToken();
 			if (token) {
 				config.headers[xTokenKey] = token;

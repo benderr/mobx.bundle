@@ -11,7 +11,7 @@ import InternalLayout from 'components/InternalLayout'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
 //import RadLayerManager from 'components/RadRouter/RadLayerManager'
 //import {Switch} from 'react-router'
-
+import {ConnectedRouter} from 'connected-react-router'
 import {
     BrowserRouter,
     Route,
@@ -161,7 +161,8 @@ import RadRouter from 'components/RadRouter/RadRouter'
 export default class RootContainer extends React.Component {
     static propTypes = {
         store: PropTypes.object.isRequired,
-        routes: PropTypes.array.isRequired
+        routes: PropTypes.array.isRequired,
+        history: PropTypes.object.isRequired
     };
 
     render() {
@@ -170,10 +171,11 @@ export default class RootContainer extends React.Component {
         return (
             <Provider store={this.props.store}>
                 <div className="poss">
-                    <BrowserRouter basename='/'>
-                        <RadRouter defaultLayerLayout={DefaultLayerLayout} defaultLayout={InternalLayout} routes={this.props.routes} notFound={NotFoundLayout}/>
+                    <ConnectedRouter history={this.props.history}>
+                        <RadRouter defaultLayerLayout={DefaultLayerLayout} defaultLayout={InternalLayout}
+                                   routes={this.props.routes} notFound={NotFoundLayout}/>
                         {/*<HelloWorldComponent/>*/}
-                    </BrowserRouter>
+                    </ConnectedRouter>
                     {this.renderDevTools()}
                 </div>
             </Provider>

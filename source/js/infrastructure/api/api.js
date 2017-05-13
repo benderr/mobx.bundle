@@ -1,6 +1,6 @@
 import {createApi} from 'core/http/api'
-import {compose as auth} from './auth'
-import {compose as account} from './account'
+import {compose as base} from './base'
+import {compose as user} from './user'
 import {Http} from 'core/http/Http'
 import {Interceptors} from 'core/http/Interceptors'
 import tokenInterceptorCreator from '../interceptors/tokenInterceptor';
@@ -16,8 +16,8 @@ function initApi() {
 	_interceptors.push(tokenInterceptor);
 	const _http = new Http(_interceptors);
 	const api = createApi(_http);
-	auth(api);
-	account(api);
+	base(api);
+	user(api);
 	return api;
 }
 

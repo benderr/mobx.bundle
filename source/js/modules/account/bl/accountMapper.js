@@ -1,7 +1,7 @@
 export const toClientLogin = (data) => {
 	return {
-		token: data.Token,
-		userId: data.UserId
+		companyName: data.userCompanyName,
+		user: {name: data.userName}
 	};
 };
 

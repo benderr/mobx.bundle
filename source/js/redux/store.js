@@ -1,6 +1,8 @@
 import {createStore as _createStore, combineReducers, compose} from 'redux';
+import { createBrowserHistory } from 'history'
+import { connectRouter } from 'connected-react-router'
 
-export default function createStore({middleware, reducers, routes, initionalState, sagaMiddleware, sagas}) {
+export default function createStore({middleware, reducers, initionalState, sagaMiddleware, sagas, history}) {
 
 	//let createHistory;
 
@@ -23,7 +25,7 @@ export default function createStore({middleware, reducers, routes, initionalStat
 		...middleware
 	)(_createStore);
 
-	const store = finalCreateStore(allReducers, initionalState);
+	const store = finalCreateStore(connectRouter(history)(allReducers), initionalState);
 
 	const rootSaga = function*() {
 		yield sagas;

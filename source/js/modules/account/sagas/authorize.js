@@ -4,21 +4,20 @@ import {login, loginInfo} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../bl/accountDataContext'
 import {getProfile} from '../selectors/accountSelectors'
-//import {push} from 'react-router-redux'
-
-const push = () => { //todo
-};
+import { push } from 'connected-react-router'
 
 const xToken = 'X-TOKEN';
 
 function* authorize(email, pass, redirectUrl) {
 	try {
-		const authData = yield call(dataContext.login, email, pass);
-		yield call(localStorage.setItem, xToken, authData.token);
+		const token = btoa(`${email}:${pass}`);
+		const authData = yield call(dataContext.profile, token);
+		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success(authData));
-		yield call(actualizeProfile);
+		//yield call(actualizeProfile);
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
+		console.log('FAIL', error)
 		yield put(login.failure(error));
 	} finally {
 		if (yield cancelled()) {
@@ -32,7 +31,6 @@ function* watchLogin() {
 		const {email, pass, redirectUrl} = yield take(LOGIN.REQUEST);
 		const task = yield fork(authorize, email, pass, redirectUrl);
 		if (task) {
-
 			const action = yield take([LOGOUT, LOGIN.FAILURE]);
 			if (action.type == LOGOUT) {
 				cancel(task);
