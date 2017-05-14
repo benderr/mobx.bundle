@@ -17,7 +17,7 @@ function* authorize(email, pass, redirectUrl) {
 		//yield call(actualizeProfile);
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
-		console.log('FAIL', error)
+		console.log('FAIL', error);
 		yield put(login.failure(error));
 	} finally {
 		if (yield cancelled()) {
@@ -46,7 +46,7 @@ function* watchLogout() {
 
 function* logout() {
 	yield call(localStorage.removeItem, xToken);
-	//yield put(push({pathname: '/signin'}));
+	yield put(push({pathname: '/signin'}));
 }
 
 function* actualizeProfile() {
