@@ -18,7 +18,10 @@ function* authorize(email, pass, redirectUrl) {
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
 		console.log('FAIL', error);
-		yield put(login.failure(error));
+		yield put(login.failure({
+			status: error.status,
+			data: error.data
+		}));
 	} finally {
 		if (yield cancelled()) {
 			//todo можно что-нибудь запилить при отмене авторизации
@@ -31,21 +34,21 @@ function* watchLogin() {
 		const {email, pass, redirectUrl} = yield take(LOGIN.REQUEST);
 		const task = yield fork(authorize, email, pass, redirectUrl);
 		if (task) {
-			const action = yield take([LOGOUT, LOGIN.FAILURE]);
-			if (action.type == LOGOUT) {
-				cancel(task);
-			}
-			yield call(logout);
+			const logfail = yield take([LOGOUT, LOGIN.FAILURE]);
+			cancel(task);
+			if (logfail.action == LOGOUT)
+				yield call(logout);
 		}
 	}
 }
 
 function* watchLogout() {
-	yield takeEvery(LOGOUT, logout);
+	//yield takeEvery(LOGOUT, logout);
 }
 
 function* logout() {
 	yield call(localStorage.removeItem, xToken);
+	yield call(dataContext.logout);
 	yield put(push({pathname: '/signin'}));
 }
 
@@ -62,7 +65,7 @@ function* actualizeProfile() {
 				console.log(points);
 				yield put(push({pathname: '/'}));
 			} else {
-				yield put(login.failure('null token'));
+				//yield put(login.failure('null token'));
 			}
 		}
 

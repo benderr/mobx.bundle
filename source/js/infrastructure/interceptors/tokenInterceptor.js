@@ -13,6 +13,9 @@ export default {
 				config.headers['Authorization'] = config.Authorization;
 			}
 
+			//это нужно чтобы при получении 401, в барузере не появлялся стандартный попап для авторизации
+			config.headers['X-Requested-With'] = 'XMLHttpRequest';
+
 			const token = getToken();
 			if (token) {
 				config.headers[xTokenKey] = token;

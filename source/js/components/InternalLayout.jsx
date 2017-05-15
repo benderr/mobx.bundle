@@ -1,9 +1,8 @@
 import React from 'react';
 import SiteHeader from 'components/siteHeader';
 import {connect} from 'react-redux';
-import {getAuthData} from 'modules/account/selectors/accountSelectors'
+import {getCompany} from 'modules/account/selectors/accountSelectors'
 
-//Шаблон для анонимных страниц
 class InternalLayout extends React.Component {
     render() {
         const css = {
@@ -27,8 +26,7 @@ class InternalLayout extends React.Component {
 export default connect(mapStateToProps)(InternalLayout)
 
 function mapStateToProps(state) {
-    const data = getAuthData(state);
     return {
-        company: data != null ? data.get('company') : '',
+        company: getCompany(state)
     }
 }
