@@ -1,6 +1,6 @@
 import {call, put, take, fork, cancel, cancelled, takeEvery, select} from 'redux-saga/effects'
 import {LOGIN, LOGOUT} from '../enums/actions'
-import {login} from '../actions/loginActions'
+import {login, checkingAccessStart, checkingAccessStop} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../dataProvider/accountDataContext'
 import {getAuthData} from '../selectors/accountSelectors'
@@ -14,7 +14,6 @@ function* authorize(email, pass, redirectUrl) {
 		const authData = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success(authData));
-		//yield call(actualizeProfile);
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
 		console.log('FAIL', error);
@@ -43,17 +42,18 @@ function* watchLogin() {
 }
 
 function* watchLogout() {
-	//yield takeEvery(LOGOUT, logout);
+	yield takeEvery(LOGOUT, logout);
 }
 
 function* logout() {
-	yield call(localStorage.removeItem, xToken);
 	yield call(dataContext.logout);
+	//yield call(localStorage.removeItem, xToken);
 	yield put(push({pathname: '/signin'}));
 }
 
-function* actualizeProfile() {
+function* initApp() {
 	try {
+		yield put(checkingAccessStart());
 		let authData = yield select(getAuthData);
 		if (authData == null) {
 			const token = yield call(localStorage.getItem, xToken);
@@ -61,21 +61,23 @@ function* actualizeProfile() {
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
 				yield put(login.success(profile));
-				const points = yield call(dataContext.test);
-				console.log(points);
 				yield put(push({pathname: '/'}));
 			} else {
+				//yield take(LOGIN.SUCCESS);
+				yield put(push({pathname: '/signin'}));
 				//yield put(login.failure('null token'));
 			}
 		}
 
 	} catch (err) {
 		yield put(login.failure(err));
+	} finally {
+		yield put(checkingAccessStop());
 	}
 }
 
 function* startApp() {
-	yield fork(actualizeProfile);
+	yield fork(initApp);
 }
 
 

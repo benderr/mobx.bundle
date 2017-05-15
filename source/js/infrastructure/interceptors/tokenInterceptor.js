@@ -1,7 +1,7 @@
 //import q from 'q';
 
-const xTokenKey = 'X-TOKEN';
-const xRegistrationTokenKey = 'X-RegistrationToken';
+const AuthorizationKey = 'Authorization';
+//const xRegistrationTokenKey = 'X-RegistrationToken';
 
 export default {
 	create({getToken, setToken}){
@@ -10,7 +10,7 @@ export default {
 
 		function request(config) {
 			if (config.Authorization) {
-				config.headers['Authorization'] = config.Authorization;
+				config.headers[AuthorizationKey] = config.Authorization;
 			}
 
 			//это нужно чтобы при получении 401, в барузере не появлялся стандартный попап для авторизации
@@ -18,16 +18,16 @@ export default {
 
 			const token = getToken();
 			if (token) {
-				config.headers[xTokenKey] = token;
+				config.headers[AuthorizationKey] = `Basic ${token}`;
 			}
 			return config;
 		}
 
 		function response(resp) {
-			let token = resp.headers[xTokenKey] || resp.headers[xRegistrationTokenKey];
-			if (token) {
-				setToken(token);
-			}
+			// let token = resp.headers[xTokenKey] || resp.headers[xRegistrationTokenKey];
+			// if (token) {
+			// 	setToken(token);
+			// }
 			return resp;
 		}
 

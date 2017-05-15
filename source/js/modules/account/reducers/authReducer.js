@@ -1,10 +1,11 @@
 import {Map} from 'immutable';
-import {LOGIN, LOGOUT} from '../enums/actions'
+import {LOGIN, LOGOUT, CHECKING_ACCESS_STOP, CHECKING_ACCESS_START} from '../enums/actions'
 
 export const initialState = Map({
 	loading: false,
 	authError: null,
-	authData: null
+	authData: null,
+	accessChecking: false
 });
 
 export const actionHandlers = {
@@ -39,6 +40,14 @@ export const actionHandlers = {
 			authError: null,
 			authData: null
 		});
+	},
+
+	[CHECKING_ACCESS_START]: (state, action) => {
+		return state.merge({accessChecking: true});
+	},
+
+	[CHECKING_ACCESS_STOP]: (state, action) => {
+		return state.merge({accessChecking: false});
 	}
 
 };

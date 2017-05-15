@@ -3,6 +3,7 @@ import SiteHeader from 'components/siteHeader';
 import {connect} from 'react-redux';
 import {getCompany} from 'modules/account/selectors/accountSelectors'
 
+@connect((state) => ({company: getCompany(state)}))
 class InternalLayout extends React.Component {
     render() {
         const css = {
@@ -23,10 +24,4 @@ class InternalLayout extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(InternalLayout)
-
-function mapStateToProps(state) {
-    return {
-        company: getCompany(state)
-    }
-}
+export default InternalLayout;
