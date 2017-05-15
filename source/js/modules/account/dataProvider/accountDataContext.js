@@ -8,15 +8,14 @@ import api from 'infrastructure/api/api'
 function profile(token) {
 	return api.v1().profile().get({}, {Authorization: `Basic ${token}`})
 		.then((response) => mapper.toClientLogin(response.data));
-		//.catch(error => ({status: error.status, data: error.data}));
 }
 
 function logout() {
 	return api.v1().logout().get();
 }
 
-function test() {
-	return api.v1().retailpoints().get();
+function getRetailPoints() {
+	return api.v1().retailpoints().get().then(res => res.data);
 }
 
-export {profile, test, logout}
+export {profile, getRetailPoints, logout}
