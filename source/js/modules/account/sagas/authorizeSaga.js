@@ -1,10 +1,10 @@
 import {call, put, take, fork, cancel, cancelled, takeEvery, select} from 'redux-saga/effects'
-import {LOGIN, LOGOUT, LOGIN_INFO} from '../enums/actions'
-import {login, loginInfo} from '../actions/loginActions'
+import {LOGIN, LOGOUT} from '../enums/actions'
+import {login} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
-import * as dataContext  from '../bl/accountDataContext'
-import {getProfile} from '../selectors/accountSelectors'
-import { push } from 'connected-react-router'
+import * as dataContext  from '../dataProvider/accountDataContext'
+import {getAuthData} from '../selectors/accountSelectors'
+import {push} from 'connected-react-router'
 
 const xToken = 'X-TOKEN';
 
@@ -51,20 +51,21 @@ function* logout() {
 
 function* actualizeProfile() {
 	try {
-		let profile = yield select(getProfile);
-		if (profile == null) {
+		let authData = yield select(getAuthData);
+		if (authData == null) {
 			const token = yield call(localStorage.getItem, xToken);
 			if (token) {
-				yield put(loginInfo.request());
-				const profile = yield call(dataContext.loginInfo, token);
-				yield put(loginInfo.success(profile));
+				yield put(login.request());
+				const profile = yield call(dataContext.profile, token);
+				yield put(login.success(profile));
+				yield put(push({pathname: '/'}));
 			} else {
-				yield put(loginInfo.failure('null token'));
+				yield put(login.failure('null token'));
 			}
 		}
 
 	} catch (err) {
-		yield put(loginInfo.failure(err));
+		yield put(login.failure(err));
 	}
 }
 

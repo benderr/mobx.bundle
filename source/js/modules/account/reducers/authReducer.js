@@ -34,27 +34,6 @@ export const actionHandlers = {
 		});
 	},
 
-	[LOGIN_INFO.REQUEST]: (state) => {
-		return state.merge({
-			profileError: null,
-			profile: null
-		});
-	},
-
-	[LOGIN_INFO.SUCCESS]: (state, action) => {
-		return state.merge({
-			profileError: null,
-			profile: action.response
-		});
-	},
-
-	[LOGIN_INFO.FAILURE]: (state, action) => {
-		return state.merge({
-			profileError: null,
-			profile: null
-		});
-	},
-
 	[LOGOUT]: (state, action) => {
 		return state.merge({
 			loading: false,

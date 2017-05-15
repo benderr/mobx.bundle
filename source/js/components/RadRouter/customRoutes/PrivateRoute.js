@@ -22,7 +22,7 @@ export default (RouteComponent) => {
 	return PrivateRoute;
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
 	return {
 		authData: state.auth.get('authData')
 	}
