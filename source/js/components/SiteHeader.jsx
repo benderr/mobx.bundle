@@ -18,6 +18,8 @@ const SiteHeader = props => {
         dispatch(logOut())
     };
 
+    const companyName = props.company ? props.company.name : 'no name';
+
     return (
         <header>
             <div class="header_logo">
@@ -52,7 +54,7 @@ const SiteHeader = props => {
             <div class="header_profile">
 
                 <div class="header_profile_name">
-                    <a href="#" class="icon-profile drop-target" data-theme="drop_profile">ООО «Родные просторы»</a>
+                    <a href="#" class="icon-profile drop-target" data-theme="drop_profile">{companyName}</a>
                     {/*<div class="drop-content">*/}
                     {/*<div class="drop-content-inner">*/}
                     {/*<ul class="drop-menu">*/}

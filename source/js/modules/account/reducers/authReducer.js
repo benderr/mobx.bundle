@@ -1,12 +1,11 @@
 import {Map} from 'immutable';
-import {LOGIN, LOGOUT, LOGIN_INFO} from '../enums/actions'
+import {LOGIN, LOGOUT} from '../enums/actions'
 
 export const initialState = Map({
 	loading: false,
 	authError: null,
 	authData: null
 });
-
 
 export const actionHandlers = {
 
@@ -31,27 +30,6 @@ export const actionHandlers = {
 			loading: false,
 			authError: action.error,
 			authData: null
-		});
-	},
-
-	[LOGIN_INFO.REQUEST]: (state) => {
-		return state.merge({
-			profileError: null,
-			profile: null
-		});
-	},
-
-	[LOGIN_INFO.SUCCESS]: (state, action) => {
-		return state.merge({
-			profileError: null,
-			profile: action.response
-		});
-	},
-
-	[LOGIN_INFO.FAILURE]: (state, action) => {
-		return state.merge({
-			profileError: null,
-			profile: null
 		});
 	},
 

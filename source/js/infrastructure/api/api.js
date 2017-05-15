@@ -1,6 +1,7 @@
 import {createApi} from 'core/http/api'
 import {compose as base} from './base'
 import {compose as user} from './user'
+import retail from './retail'
 import {Http} from 'core/http/Http'
 import {Interceptors} from 'core/http/Interceptors'
 import tokenInterceptorCreator from '../interceptors/tokenInterceptor';
@@ -19,6 +20,7 @@ function initApi() {
 	const api = createApi(_http);
 	base(api);
 	user(api);
+	retail(api)
 	return api;
 }
 

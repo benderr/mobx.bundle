@@ -53,7 +53,7 @@ function createApi(http) {
 		};
 	}
 
-	function addResource(name) {
+	function addResource(name, alias) {
 		var parentResource = this;
 		var methodName = normalizeResourceName(name);
 
@@ -79,7 +79,7 @@ function createApi(http) {
 					path.push(parentResource.generatePath());
 				}
 
-				path.push(name);
+				path.push(alias || name);
 
 				if (id) {
 					path.push(id);

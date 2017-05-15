@@ -7,6 +7,7 @@ export function getRoutes() {
 		signin: {
 			path: '/signin',
 			exact: true,
+			allowAnonymous: true,
 			component: SignInContainer,
 			layout: ExternalLayout
 		}
