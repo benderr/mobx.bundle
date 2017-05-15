@@ -5,24 +5,31 @@ import {bindActionCreators} from 'redux';
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductListComponent';
 
+import retailPointHOC from '../retailPointHOC';
 
+@retailPointHOC
 class ProductListContainer extends React.Component {
     componentDidMount() {
-        let {profile} = this.props;
-        getProducts(profile.retailPointId, 0, 50);
-    },
+        const {retailPoint, getProducts} = this.props;
+        if (retailPoint) {
+            const id = retailPoint.toObject().id;
+            getProducts(id, 0, 50);
+        }
+    }
+
     render() {
+        const {products} = this.props;
         return (<div>
-            <ProductList items={items}/>
+            {products ? <ProductList items={products.toObject()}/> : null}
         </div>);
     }
 }
 
 function mapStateToProps(state, ownProps) {
     return {
-        profile: state.auth.get('loginInfo').profile,
+        retailPoint: state.account.get('retailPoint'),
         error: state.products.get('error'),
-        data: state.products.get('data')
+        products: state.products.get('data')
     }
 }
 

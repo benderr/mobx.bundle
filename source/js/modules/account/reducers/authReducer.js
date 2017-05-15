@@ -1,5 +1,5 @@
 import {Map} from 'immutable';
-import {LOGIN, LOGOUT, CHECKING_ACCESS_STOP, CHECKING_ACCESS_START} from '../enums/actions'
+import {LOGIN, LOGOUT, CHECKING_ACCESS_STOP, CHECKING_ACCESS_START} from '../enums/actions';
 
 export const initialState = Map({
 	loading: false,

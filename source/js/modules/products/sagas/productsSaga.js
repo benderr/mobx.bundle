@@ -3,19 +3,20 @@
  */
 import {call, put, takeLatest} from 'redux-saga/effects'
 import * as actions from '../enums/actions';
+import {getProducts} from '../actions/productActions'
 import * as dataContext from '../dataProvider/productDataContext'
 
 
-function* getProducts({retailPointId, start, count, name, inventCode, price}) {
+function* getProductsProcess({retailPointId, start, count, name, inventCode, price}) {
 	try {
-		const products = yield call(dataContext.getProducts, retailPointId, start, count, name, inventCode, price);
-		yield put(actions.GET_PRODUCTS.SUCCESS, {products});
+		const responce = yield call(dataContext.getProducts, retailPointId, start, count, name, inventCode, price);
+		yield put(getProducts.success(responce.data));
 	}
 	catch (e) {
-		yield put(actions.GET_PRODUCTS.FAILURE, e.message);
+		yield put(getProducts.failure(e));
 	}
 }
 
 export default function*() {
-	yield takeLatest(actions.GET_PRODUCTS.REQUEST, getProducts);
+	yield takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess);
 }

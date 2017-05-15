@@ -15,8 +15,8 @@ function logout() {
 	return api.v1().logout().get();
 }
 
-function test() {
+function retailpoints() {
 	return api.v1().retailpoints().get();
 }
 
-export {profile, test, logout}
+export {profile, retailpoints, logout}
