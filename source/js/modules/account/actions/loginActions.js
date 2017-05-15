@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, LOGIN_INFO} from '../enums/actions'
+import {LOGIN, LOGOUT} from '../enums/actions'
 import {createAction} from 'infrastructure/helpers/actionHelpers'
 
 export const login = {

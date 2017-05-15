@@ -1,12 +1,11 @@
 import {Map} from 'immutable';
-import {LOGIN, LOGOUT, LOGIN_INFO} from '../enums/actions'
+import {LOGIN, LOGOUT} from '../enums/actions'
 
 export const initialState = Map({
 	loading: false,
 	authError: null,
 	authData: null
 });
-
 
 export const actionHandlers = {
 

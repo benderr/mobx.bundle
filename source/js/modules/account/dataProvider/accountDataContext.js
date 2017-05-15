@@ -10,4 +10,9 @@ function profile(token) {
 		.then((response) => mapper.toClientLogin(response.data));
 }
 
-export {profile}
+function test() {
+	return api.v1().retailpoints().get()
+		.then((response) => mapper.toClientLogin(response.data));
+}
+
+export {profile, test}

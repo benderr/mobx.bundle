@@ -58,6 +58,8 @@ function* actualizeProfile() {
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
 				yield put(login.success(profile));
+				const points = yield call(dataContext.test);
+				console.log(points);
 				yield put(push({pathname: '/'}));
 			} else {
 				yield put(login.failure('null token'));
