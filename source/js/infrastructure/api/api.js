@@ -6,6 +6,7 @@ import {Interceptors} from 'core/http/Interceptors'
 import tokenInterceptorCreator from '../interceptors/tokenInterceptor';
 import localStorage from 'core/storage/localStorage'
 
+
 function initApi() {
 	const _interceptors = new Interceptors();
 	const tokenInterceptor = tokenInterceptorCreator

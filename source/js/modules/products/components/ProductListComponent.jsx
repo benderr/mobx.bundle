@@ -2,9 +2,10 @@
  * Created by RobertSabiryanov on 11.05.17.
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import ProductItem from './ProductItem';
 import productItemType from './validation/productItemType';
-import PropTypes from 'prop-types';
+
 
 const {arrayOf} = PropTypes;
 
