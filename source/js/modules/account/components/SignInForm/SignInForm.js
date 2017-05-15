@@ -26,17 +26,24 @@ const validate = values => {
 };
 
 const SignInForm = props => {
-	const {handleSubmit, loading, onLogin, redirectUrl} = props;
+	const {handleSubmit, loading, onLogin, redirectUrl, errors} = props;
 	const submit = ({email, password}) => {
 		//dispatch(login.request(email, password, backPath));
 		onLogin(email, password, redirectUrl);
+	};
+
+	const getError = (error) => {
+		if (!error)
+			return '';
+		if (error.get('status') == 401)
+			return 'Неверный E-mail или пароль!';
+		return 'Произошла неизвестная ошибка.'
 	};
 
 	return (
 		<form onSubmit={handleSubmit(submit)}>
 			<div className="login_content">
 				<div className="login_auth_block">
-
 
 					<Field name="email" label="Email" type="text"
 						   addonClass="icon-mail"
@@ -48,7 +55,7 @@ const SignInForm = props => {
 						   validate={[isRequired('Введите пароль')]}/>
 
 					{/*Блок ошибок*/}
-					{/*<div class="form_error">Неверный номер телефона или пароль!</div>*/}
+					<div className="form_error">{getError(errors)}</div>
 
 					{/*/!*Блок каптча - раскомментировать если нужно*!/*/}
 					{/*<div class="captcha">*/}
@@ -74,7 +81,8 @@ const SignInForm = props => {
 SignInForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	onLogin: PropTypes.func.isRequired,
-	redirectUrl: PropTypes.string
+	redirectUrl: PropTypes.string,
+	errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default  reduxForm({

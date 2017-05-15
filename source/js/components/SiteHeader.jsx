@@ -18,7 +18,7 @@ const SiteHeader = props => {
         dispatch(logOut())
     };
 
-    const companyName = props.company ? props.company.name : 'no name';
+    const companyName = props.company ? props.company.get('name') : 'no name';
 
     return (
         <header>

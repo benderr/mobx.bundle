@@ -3,7 +3,9 @@ import {Route} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import RadRouteManager from './RadRouteManager'
 import * as routeHelpers from './routeHelpers'
+import accessCheckingHOC from 'components/accessCheckingHOC'
 
+@accessCheckingHOC
 class RadRouter extends React.Component {
 	static propTypes = {
 		routes: PropTypes.array.isRequired,

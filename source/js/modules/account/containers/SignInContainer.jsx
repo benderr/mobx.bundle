@@ -6,11 +6,11 @@ import {bindActionCreators} from 'redux';
 
 
 const SignInContainer = props => {
-    const {loading, login, redirectUrl}=props;
+    const {loading, login, redirectUrl, errors}=props;
     return (
         <div className="login_section">
             <div className="login_section_center">
-                <SignInForm onLogin={login} redirectUrl={redirectUrl} loading={loading} />
+                <SignInForm onLogin={login} errors={errors} redirectUrl={redirectUrl} loading={loading}/>
             </div>
         </div>
     );

@@ -8,6 +8,10 @@ export const getUser = createSelector([getAuthData], (info) => {
 	return info ? info.get('user') : null;
 });
 
+export const getCompany = createSelector([getAuthData], (info) => {
+	return info ? info.get('company') : null;
+});
+
 // export const checkProfile = createSelector([getProfile, getLoginInfo], (profile, info) => {
 // 	if (profile != null)
 // 		return 'ok';
