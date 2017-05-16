@@ -16,4 +16,4 @@ export const getProducts = (retailPointId, start, count, name, inventCode, price
 	return api.v1().retailpoint(retailPointId).catalog().inventory()
 		.get({start, count, q})
 		.then(response => toClient(response.data));
-}
+};

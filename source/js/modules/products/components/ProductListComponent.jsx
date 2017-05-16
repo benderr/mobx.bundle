@@ -2,9 +2,11 @@
  * Created by RobertSabiryanov on 11.05.17.
  */
 import React from 'react';
-import PropTypes from 'prop-types';
-import ProductMap from '../model/ProductMap'
+// import PropTypes from 'prop-types';
+// import Immutable from 'immutable';
+
 import ProductItem from './ProductItem';
+// import Product from '../model/Product'
 
 class ProductListComponent extends React.Component {
 
@@ -34,8 +36,8 @@ class ProductListComponent extends React.Component {
     }
 }
 
-ProductListComponent.propTypes = {
-    items: PropTypes.instanceOf(ProductMap).isRequired
-}
+// ProductListComponent.propTypes = {
+//     items: PropTypes.arrayOf(Product).isRequired,
+// }
 
 export default ProductListComponent;

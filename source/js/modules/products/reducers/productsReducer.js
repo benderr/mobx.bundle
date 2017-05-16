@@ -6,7 +6,11 @@ import {GET_PRODUCTS} from '../enums/actions';
 import Product from '../model/Product';
 import ProductMap from '../model/ProductMap'
 
-export const initialState = ProductMap();
+export const initialState = ProductMap({
+	loading: true,
+	error: null,
+	productsList: []
+});
 
 export const actionHandlers = {
 
@@ -14,7 +18,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: true,
 			error: null,
-			productsList: null
+			productsList: []
 		});
 	},
 

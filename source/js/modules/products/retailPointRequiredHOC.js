@@ -5,7 +5,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 export default (Component) => {
-	class RetailPointHOC extends React.Component {
+	class RetailPointRequiredHOC extends React.Component {
 		render() {
 			const {selectedPoint} = this.props;
 			let className = 'poss';
@@ -22,10 +22,9 @@ export default (Component) => {
 	}
 	function mapStateToProps(state, ownProps) {
 		return {
-			//retailPoints: state.retailPointsData.get('retailPoints'),
 			selectedPoint: state.retailPointsData.get('selectedPoint')
 		}
 	}
 
-	return connect(mapStateToProps)(RetailPointHOC);
+	return connect(mapStateToProps)(RetailPointRequiredHOC);
 }

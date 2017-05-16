@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductListComponent';
+// import ProductMap from '../model/ProductMap'
 
-import retailPointHOC from '../retailPointHOC';
+import retailPointHOC from '../retailPointRequiredHOC';
 
 @retailPointHOC
 class ProductListContainer extends React.Component {
@@ -41,7 +42,8 @@ function mapDispatchToProps(dispatch) {
 }
 
 ProductListContainer.propTypes = {
-    selectedPoint: PropTypes.object.isRequired
+    selectedPoint: PropTypes.object.isRequired,
+    //products: PropTypes.instanceOf(List).isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);
