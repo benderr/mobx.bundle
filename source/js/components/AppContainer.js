@@ -24,7 +24,6 @@ class AppContainer extends React.Component {
 
 		return (
 			<div className={className}>
-				{JSON.stringify(this.props.retail)}
 				{this.props.appReady &&
 				<RadRouter defaultLayerLayout={DefaultLayerLayout} defaultLayout={InternalLayout}
 						   routes={this.props.routes} notFound={NotFoundLayout}/>}

@@ -9,8 +9,9 @@ import * as dataContext from '../dataProvider/productDataContext'
 
 function* getProductsProcess({retailPointId, start, count, name, inventCode, price}) {
 	try {
-		const responce = yield call(dataContext.getProducts, retailPointId, start, count, name, inventCode, price);
-		yield put(getProducts.success(responce.data));
+		const response = yield call(dataContext.getProducts, retailPointId, start, count, name, inventCode, price);
+		console.log(response);
+		yield put(getProducts.success(response));
 	}
 	catch (e) {
 		yield put(getProducts.failure(e));

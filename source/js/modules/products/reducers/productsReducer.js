@@ -1,14 +1,12 @@
 /**
  * Created by RobertSabiryanov on 14.05.17.
  */
-import {Map} from 'immutable';
 import {GET_PRODUCTS} from '../enums/actions';
 
-export const initialState = Map({
-	loading: false,
-	error: null,
-	data: null
-});
+import Product from '../model/Product';
+import ProductMap from '../model/ProductMap'
+
+export const initialState = ProductMap();
 
 export const actionHandlers = {
 
@@ -16,7 +14,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: true,
 			error: null,
-			data: null
+			productsList: null
 		});
 	},
 
@@ -24,7 +22,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			data: action.response
+			productsList: action.response.productsList.map((item) => new Product(item))
 		});
 	},
 
@@ -32,7 +30,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: action.error,
-			data: null
+			productsList: null
 		});
 	}
 };

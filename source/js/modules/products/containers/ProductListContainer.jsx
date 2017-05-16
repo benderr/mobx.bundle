@@ -13,7 +13,7 @@ class ProductListContainer extends React.Component {
     componentDidMount() {
         const {selectedPoint, getProducts} = this.props;
         if (selectedPoint) {
-            const id = selectedPoint.id;
+            const id = selectedPoint.toObject().id;
             getProducts(id, 0, 50);
         }
     }
@@ -21,16 +21,16 @@ class ProductListContainer extends React.Component {
     render() {
         const {products} = this.props;
         return (<div>
-            {products ? <ProductList items={products.toObject()}/> : null}
+            {products ? <ProductList items={products}/> : null}
         </div>);
     }
 }
 
 function mapStateToProps(state, ownProps) {
     return {
-        selectedPoint: state.account.get('retailPoint'),
+        selectedPoint: state.retailPointsData.get('selectedPoint'),
         error: state.products.get('error'),
-        products: state.products.get('data')
+        products: state.products.get('productsList')
     }
 }
 
@@ -41,7 +41,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 ProductListContainer.propTypes = {
-    selectedPoint: PropTypes.string.isRequired
+    selectedPoint: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);

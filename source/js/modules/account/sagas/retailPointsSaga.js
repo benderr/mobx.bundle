@@ -12,7 +12,6 @@ export function* setRetailPoints() {
 		try {
 			yield put(getRetailPoints.request());
 			const data = yield call(dataContext.getRetailPoints);
-			console.log(data);
 			yield put(getRetailPoints.success(data));
 			if (data.length > 0)
 				yield put(setRetailPoint(data[0]))

@@ -5,9 +5,15 @@ import api from 'infrastructure/api/api'
 import {toClient} from './productMapper';
 
 export const getProducts = (retailPointId, start, count, name, inventCode, price) => {
-	let q = {name, inventCode, price};
-	return api().v1().retailpoint(retailPointId).get({start, count, q})
-		// .catalog().inventory()
-		// .get({start, count, q})
-		// .then(response => toClient(response.data));
+	let params = [];
+	if (name)
+		params.push(`name=="*${name}"`);
+	if (inventCode)
+		params.push(`inventCode=="*${inventCode}*"`);
+	if (price)
+		params.push(`price=="${price}"`);
+	let q = params.join(';');
+	return api.v1().retailpoint(retailPointId).catalog().inventory()
+		.get({start, count, q})
+		.then(response => toClient(response.data));
 }
