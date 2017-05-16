@@ -6,7 +6,8 @@ import {toClient} from './productMapper';
 
 export const getProducts = (retailPointId, start, count, name, inventCode, price) => {
 	let q = {name, inventCode, price};
-	return api().v1().retailpoint(retailPointId).catalog().inventory()
-		.get({start, count, q})
-		.then(response => toClient(response.data));
+	return api().v1().retailpoint(retailPointId).get({start, count, q})
+		// .catalog().inventory()
+		// .get({start, count, q})
+		// .then(response => toClient(response.data));
 }

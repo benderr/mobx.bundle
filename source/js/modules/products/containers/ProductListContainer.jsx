@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductListComponent';
@@ -10,9 +11,9 @@ import retailPointHOC from '../retailPointHOC';
 @retailPointHOC
 class ProductListContainer extends React.Component {
     componentDidMount() {
-        const {retailPoint, getProducts} = this.props;
-        if (retailPoint) {
-            const id = retailPoint.toObject().id;
+        const {selectedPoint, getProducts} = this.props;
+        if (selectedPoint) {
+            const id = selectedPoint.id;
             getProducts(id, 0, 50);
         }
     }
@@ -27,7 +28,7 @@ class ProductListContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        retailPoint: state.account.get('retailPoint'),
+        selectedPoint: state.account.get('retailPoint'),
         error: state.products.get('error'),
         products: state.products.get('data')
     }
@@ -38,5 +39,9 @@ function mapDispatchToProps(dispatch) {
         getProducts: bindActionCreators(getProducts.request, dispatch)
     }
 }
+
+ProductListContainer.propTypes = {
+    selectedPoint: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);

@@ -4,6 +4,10 @@ export const getAuthData = (state) => {
 	return state.auth.get('authData');
 };
 
+export const getRetailPointsData = (state) => {
+	return state.retailPointsData;
+};
+
 export const getUser = createSelector([getAuthData], (info) => {
 	return info ? info.get('user') : null;
 });
@@ -11,11 +15,3 @@ export const getUser = createSelector([getAuthData], (info) => {
 export const getCompany = createSelector([getAuthData], (info) => {
 	return info ? info.get('company') : null;
 });
-
-// export const checkProfile = createSelector([getProfile, getLoginInfo], (profile, info) => {
-// 	if (profile != null)
-// 		return 'ok';
-// 	if (info.get('profileError') != null)
-// 		return 'error';
-// 	return 'busy';
-// });

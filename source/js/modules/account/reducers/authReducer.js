@@ -5,7 +5,7 @@ export const initialState = Map({
 	loading: false,
 	authError: null,
 	authData: null,
-	accessChecking: false
+	appReady: false
 });
 
 export const actionHandlers = {
@@ -43,11 +43,11 @@ export const actionHandlers = {
 	},
 
 	[CHECKING_ACCESS_START]: (state, action) => {
-		return state.merge({accessChecking: true});
+		return state.merge({appReady: false});
 	},
 
 	[CHECKING_ACCESS_STOP]: (state, action) => {
-		return state.merge({accessChecking: false});
+		return state.merge({appReady: true});
 	}
 
 };

@@ -3,8 +3,9 @@ import {LOGIN, LOGOUT} from '../enums/actions'
 import {login, checkingAccessStart, checkingAccessStop} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../dataProvider/accountDataContext'
-import {getAuthData} from '../selectors/accountSelectors'
-import {push} from 'connected-react-router'
+import * as accountSelectors from '../selectors/accountSelectors'
+import {push, replace} from 'connected-react-router'
+import * as retailPointsSaga from './retailPointsSaga'
 
 const xToken = 'X-TOKEN';
 
@@ -33,10 +34,10 @@ function* watchLogin() {
 		const {email, pass, redirectUrl} = yield take(LOGIN.REQUEST);
 		const task = yield fork(authorize, email, pass, redirectUrl);
 		if (task) {
-			const logfail = yield take([LOGOUT, LOGIN.FAILURE]);
+			yield take([LOGOUT, LOGIN.FAILURE]);
 			cancel(task);
-			if (logfail.action == LOGOUT)
-				yield call(logout);
+			// if (logfail.action == LOGOUT)
+			// 	yield call(logout);
 		}
 	}
 }
@@ -54,19 +55,19 @@ function* logout() {
 function* initApp() {
 	try {
 		yield put(checkingAccessStart());
-		let authData = yield select(getAuthData);
+		let authData = yield select(accountSelectors.getAuthData);
 		if (authData == null) {
 			const token = yield call(localStorage.getItem, xToken);
 			if (token) {
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
 				yield put(login.success(profile));
-				yield put(push({pathname: '/'}));
+				yield call(retailPointsSaga.setRetailPoints);
 			} else {
-				//yield take(LOGIN.SUCCESS);
 				yield put(push({pathname: '/signin'}));
-				//yield put(login.failure('null token'));
 			}
+		} else {
+			yield call(retailPointsSaga.setRetailPoints);
 		}
 
 	} catch (err) {

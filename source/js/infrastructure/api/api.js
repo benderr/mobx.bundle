@@ -20,7 +20,7 @@ function initApi() {
 	const api = createApi(_http);
 	base(api);
 	user(api);
-	retail(api)
+	retail(api);
 	return api;
 }
 

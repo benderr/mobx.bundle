@@ -2,13 +2,8 @@ import React from 'react'
 import {Provider} from 'react-redux';
 import ReactTooltip from 'react-tooltip'
 import PropTypes from 'prop-types';
-import NotFoundLayout from 'components/NotFoundLayout'
-
-import InternalLayout from 'components/InternalLayout'
-import DefaultLayerLayout from 'components/DefaultLayerLayout'
-
 import {ConnectedRouter} from 'connected-react-router'
-import RadRouter from 'components/RadRouter/RadRouter'
+import AppContainer from './AppContainer'
 
 export default class RootContainer extends React.Component {
     static propTypes = {
@@ -23,8 +18,7 @@ export default class RootContainer extends React.Component {
             <Provider store={this.props.store}>
                 <div className="poss">
                     <ConnectedRouter history={this.props.history}>
-                        <RadRouter defaultLayerLayout={DefaultLayerLayout} defaultLayout={InternalLayout}
-                                   routes={this.props.routes} notFound={NotFoundLayout}/>
+                        <AppContainer appReady={false} routes={this.props.routes}/>
                     </ConnectedRouter>
                     {this.renderDevTools()}
                 </div>
