@@ -10,9 +10,13 @@ import ProductItem from './ProductItem';
 
 class ProductListComponent extends React.Component {
 
+    openProduct(product){
+
+    }
+
     render() {
         const {items} = this.props;
-        const productItems = items.map(product => <ProductItem item={ product } key={product.getCode()}/>);
+        const productItems = items.map(product => <ProductItem item={ product } key={product.getCode()} onClick={::this.openProduct(product)}/>);
 
         return (
 

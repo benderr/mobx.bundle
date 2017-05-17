@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductListComponent';
+import ProductActions from '../components/ProductActions'
 // import ProductMap from '../model/ProductMap'
 
 import retailPointHOC from '../retailPointRequiredHOC';
@@ -22,6 +23,12 @@ class ProductListContainer extends React.Component {
     render() {
         const {products} = this.props;
         return (<div>
+            <div class="title_panel">
+
+                <h1>Все товары</h1>
+
+                <ProductActions/>
+            </div>
             {products ? <ProductList items={products}/> : null}
         </div>);
     }
