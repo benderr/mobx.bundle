@@ -22,7 +22,7 @@ function serverRequest(params) {
 
 function normalizeHttpOptions(params) {
 	params.headers = params.headers || {};
-	if (params.method === 'GET' && params.data) {
+	if (params.method.toUpperCase() === 'GET' && params.data) {
 		params.params = params.data;
 		delete params.data;
 	}
