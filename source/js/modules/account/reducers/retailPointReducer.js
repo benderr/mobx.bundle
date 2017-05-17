@@ -38,5 +38,3 @@ export const actionHandlers = {
 		});
 	},
 };
-
-export default (createReducer) => createReducer(initialState, actionHandlers);

@@ -1,4 +1,4 @@
-import * as accountSelectors from '../selectors/accountSelectors'
+import * as retailPointSelectors from '../selectors/retailPointSelectors'
 import {call, put, select} from 'redux-saga/effects'
 import * as dataContext  from '../dataProvider/accountDataContext'
 import {getRetailPoints, setRetailPoint} from '../actions/retailPointActions'
@@ -7,7 +7,7 @@ import {getRetailPoints, setRetailPoint} from '../actions/retailPointActions'
  * Получение и установка торговых точек
  */
 export function* setRetailPoints() {
-	const retailPointsData = yield select(accountSelectors.getRetailPointsData);
+	const retailPointsData = yield select(retailPointSelectors.getRetailPointsData);
 	if (retailPointsData.get('selectedPoint') == null) {
 		try {
 			yield put(getRetailPoints.request());
