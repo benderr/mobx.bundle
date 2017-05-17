@@ -3,10 +3,12 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
+import {getCurrentRetailPointId} from 'modules/account/selectors/retailPointSelectors'
 
 export default (Component) => {
 	class RetailPointRequiredHOC extends React.Component {
 		render() {
+			console.log({...this.props})
 			const {selectedPoint} = this.props;
 			let className = 'poss';
 			if (!selectedPoint) {
@@ -22,7 +24,7 @@ export default (Component) => {
 	}
 	function mapStateToProps(state, ownProps) {
 		return {
-			selectedPoint: state.retailPointsData.get('selectedPoint')
+			selectedPoint: getCurrentRetailPointId(state)
 		}
 	}
 

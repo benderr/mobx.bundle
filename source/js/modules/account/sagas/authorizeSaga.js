@@ -48,7 +48,7 @@ function* watchLogout() {
 
 function* logout() {
 	yield call(dataContext.logout);
-	//yield call(localStorage.removeItem, xToken);
+	yield call(localStorage.removeItem, xToken);
 	yield put(push({pathname: '/signin'}));
 }
 
@@ -62,18 +62,19 @@ function* initApp() {
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
 				yield put(login.success(profile));
-				yield call(retailPointsSaga.setRetailPoints);
+				yield fork(retailPointsSaga.runRetailPoints);
 			} else {
 				yield put(push({pathname: '/signin'}));
 			}
 		} else {
-			yield call(retailPointsSaga.setRetailPoints);
+			yield fork(retailPointsSaga.runRetailPoints);
 		}
+		yield put(checkingAccessStop());
 
 	} catch (err) {
-		yield put(login.failure(err));
-	} finally {
 		yield put(checkingAccessStop());
+		yield put(login.failure(err));
+		yield put(push({pathname: '/signin'}));
 	}
 }
 

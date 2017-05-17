@@ -9,7 +9,7 @@ import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import RadRouter from 'components/RadRouter/RadRouter'
 
 @withRouter
-@connect((state) => ({appReady: state.auth.get('appReady'), retail: state.retailPointsData.get('selectedPoint')}))
+@connect((state) => ({appReady: state.auth.get('appReady')}))
 class AppContainer extends React.Component {
 	static propTypes = {
 		appReady: PropTypes.bool.isRequired,

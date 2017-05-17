@@ -8,16 +8,13 @@ import ProductList from '../components/ProductListComponent';
 import ProductActions from '../components/ProductActions'
 // import ProductMap from '../model/ProductMap'
 
-import retailPointHOC from '../retailPointRequiredHOC';
+import retailPointHOC from '../components/retailPointRequiredHOC';
 
 @retailPointHOC
 class ProductListContainer extends React.Component {
     componentDidMount() {
         const {selectedPoint, getProducts} = this.props;
-        if (selectedPoint) {
-            const id = selectedPoint.toObject().id;
-            getProducts(id, 0, 50);
-        }
+        getProducts(selectedPoint, 0, 50);
     }
 
     render() {
@@ -36,7 +33,6 @@ class ProductListContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        selectedPoint: state.retailPointsData.get('selectedPoint'),
         error: state.products.get('error'),
         products: state.products.get('productsList')
     }
@@ -49,7 +45,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 ProductListContainer.propTypes = {
-    selectedPoint: PropTypes.object.isRequired,
+    selectedPoint: PropTypes.string.isRequired,
     //products: PropTypes.instanceOf(List).isRequired
 };
 

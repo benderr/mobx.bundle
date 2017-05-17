@@ -3,8 +3,8 @@ import {GET_RETAIL_POINTS, SET_RETAIL_POINT} from '../enums/actions'
 
 export const initialState = Map({
 	loading: false,
-	retailPoints: [],
-	selectedPoint: null,
+	retailPoints: null,
+	selectedPointId: null,
 	error: null
 });
 
@@ -18,7 +18,7 @@ export const actionHandlers = {
 
 	[SET_RETAIL_POINT]: (state, action) => {
 		return state.merge({
-			selectedPoint: action.point
+			selectedPointId: action.id
 		});
 	},
 
@@ -38,5 +38,3 @@ export const actionHandlers = {
 		});
 	},
 };
-
-export default (createReducer) => createReducer(initialState, actionHandlers);
