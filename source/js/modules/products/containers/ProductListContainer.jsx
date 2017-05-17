@@ -1,24 +1,52 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
+
+import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductListComponent';
+import ProductActions from '../components/ProductActions'
+// import ProductMap from '../model/ProductMap'
 
+import retailPointHOC from '../components/retailPointRequiredHOC';
+
+@retailPointHOC
 class ProductListContainer extends React.Component {
+    componentDidMount() {
+        const {selectedPoint, getProducts} = this.props;
+        getProducts(selectedPoint, 0, 50);
+    }
+
     render() {
-        const items=[{
-            code:123123,
-            name: "Молоко Лебедевское, 2,5%",
-            price: 50.00
-
-        },
-            {
-                code:343434,
-                name: "Ряженка Фермерская, 0,5лРяженка Фермерская, 0,5лРяженка Фермерская, 0,5л Ряженка Фермерская, 0,5л",
-                price: 330.00
-
-            }];
+        const {products} = this.props;
         return (<div>
-            <ProductList items={items}/>
+            <div class="title_panel">
+
+                <h1>Все товары</h1>
+
+                <ProductActions/>
+            </div>
+            {products ? <ProductList items={products}/> : null}
         </div>);
     }
 }
 
-export default  ProductListContainer
+function mapStateToProps(state, ownProps) {
+    return {
+        error: state.products.get('error'),
+        products: state.products.get('productsList')
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        getProducts: bindActionCreators(getProducts.request, dispatch)
+    }
+}
+
+ProductListContainer.propTypes = {
+    selectedPoint: PropTypes.string.isRequired,
+    //products: PropTypes.instanceOf(List).isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);

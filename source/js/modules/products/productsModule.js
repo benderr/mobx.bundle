@@ -1,23 +1,19 @@
-// import * as authReducers from './reducers/authReducer'
-// import * as loginInfoReducers from './reducers/loginInfoReducer'
-import * as routes  from './routes.js'
-// import authorize from './sagas/authorize'
-// import appRunSaga from './sagas/appRunSaga'
+import * as routes  from './routes.js';
+import * as productsReducer from './reducers/productsReducer';
+import productsSaga from './sagas/productsSaga';
 
-// export function getReducers(createReducer) {
-// 	return {
-// 		auth: createReducer(authReducers.initialState, authReducers.actionHandlers),
-// 		loginInfo: createReducer(loginInfoReducers.initialState, loginInfoReducers.actionHandlers)
-// 	}
-// }
+export function getReducers(createReducer) {
+	return {
+		products: createReducer(productsReducer.initialState, productsReducer.actionHandlers)
+	}
+}
 
 export function getRoutes() {
 	return routes.getRoutes();
 }
 
-// export function getSagas() {
-// 	return [
-// 		authorize(),
-// 		appRunSaga()
-// 	];
-// }
+export function getSagas() {
+	return [
+		productsSaga()
+	];
+}

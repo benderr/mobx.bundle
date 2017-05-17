@@ -1,19 +1,18 @@
 import React from 'react';
 import SiteHeader from 'components/siteHeader';
 import {connect} from 'react-redux';
-import {getProfile} from 'modules/account/selectors/accountSelectors'
+import {getCompany} from 'modules/account/selectors/accountSelectors'
 
-//Шаблон для анонимных страниц
+@connect((state) => ({company: getCompany(state)}))
 class InternalLayout extends React.Component {
     render() {
         const css = {
             position: 'static'
         };
-        const profileName = this.props.lastName + ' ' + this.props.firstName;
 
         return (
             <div class="poss">
-                <SiteHeader name={profileName}/>
+                <SiteHeader company={this.props.company}/>
                 <section class="main">
                     <div class="section_content" style={css}>
                         {this.props.children}
@@ -25,12 +24,4 @@ class InternalLayout extends React.Component {
     }
 }
 
-export default connect(mapStateToProps)(InternalLayout)
-
-function mapStateToProps(state) {
-    const profile = getProfile(state);
-    return {
-        lastName: profile != null ? profile.get('lastName') : 'NULL',
-        firstName: profile != null ? profile.get('firstName') : ''
-    }
-}
+export default InternalLayout;

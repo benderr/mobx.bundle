@@ -1,14 +1,9 @@
 import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 
 export const LOGIN = createRequestTypes('ACCOUNT.LOGIN');
-export const LOGIN_INFO = createRequestTypes('ACCOUNT.LOGIN_INFO');
-
 export const LOGOUT = 'ACCOUNT.LOGOUT'; //авторизация
-export const enums = {
-	APP_START: 'APP_START', //запуск приложения
-	LOGIN_INFO: {
-		SUCCESS: 'LOGIN_INFO.SUCCESS',
-		FAIL: 'LOGIN_INFO.FAIL'
-	}
-};
+export const CHECKING_ACCESS_START = 'ACCOUNT.CHECKING_ACCESS_START';
+export const CHECKING_ACCESS_STOP = 'ACCOUNT.CHECKING_ACCESS_STOP';
 
+export const GET_RETAIL_POINTS = createRequestTypes('ACCOUNT.GET_RETAIL_POINTS');//получение торг. точек
+export const SET_RETAIL_POINT = 'ACCOUNT.SET_RETAIL_POINT'; //установка торговой точки

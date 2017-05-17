@@ -4,19 +4,22 @@ import {logOut} from 'modules/account/actions/loginActions'
 import {connect} from 'react-redux';
 import {Route} from 'react-router'
 
+//todo допилить это непотребство
 const SiteMenuLink = ({label, to, exact}) => (
     <Route path={to} exact={exact} children={({match}) => (
         <li className={match ? 'active' : ''}>
             <Link to={to}><span>{label}</span></Link>
         </li>
     )}/>
-)
+);
 
 const SiteHeader = props => {
     const {dispatch} = props;
     const _logOut = () => {
         dispatch(logOut())
     };
+
+    const companyName = props.company ? props.company.get('name') : 'no name';
 
     return (
         <header>
@@ -39,12 +42,6 @@ const SiteHeader = props => {
                         <SiteMenuLink to="/cash" label="Касса"/>
                         <SiteMenuLink to="/contragents" label="Контрагенты"/>
                         <SiteMenuLink to="/documents" label="Документы"/>
-                        {/*<li><a><span>Статистика</span></a></li>*/}
-                        {/*<li class="active"><a><span>Товары</span></a></li>*/}
-                        {/*<li><a><span>Касса</span></a></li>*/}
-                        {/*<li><a><span>Контрагенты</span></a></li>*/}
-                        {/*<li><a><span>Документы</span></a></li>*/}
-
                     </ul>
                 </div>
             </div>
@@ -52,18 +49,7 @@ const SiteHeader = props => {
             <div class="header_profile">
 
                 <div class="header_profile_name">
-                    <a href="#" class="icon-profile drop-target" data-theme="drop_profile">ООО «Родные просторы»</a>
-                    {/*<div class="drop-content">*/}
-                    {/*<div class="drop-content-inner">*/}
-                    {/*<ul class="drop-menu">*/}
-                    {/*<li><a class="icon-plus add_company">Подключить компанию</a></li>*/}
-                    {/*</ul>*/}
-                    {/*<div class="pdb_info">*/}
-                    {/*Подарим бесплатное <br/>обслуживание для новой <br/>и текущей компании<br/>*/}
-                    {/*<a class="link">Подробнее</a>*/}
-                    {/*</div>*/}
-                    {/*</div>*/}
-                    {/*</div>*/}
+                    <Link class="icon-profile drop-target" to="/retail-points"><span>{companyName}</span></Link>
                 </div>
 
                 <div class="header_profile_logout">

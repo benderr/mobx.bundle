@@ -1,16 +1,21 @@
 import PropTypes from 'prop-types';
 import React from 'react'
-import {Route} from 'react-router-dom'
 
-const LayoutRoute = ({component:Component, layout:Layout, ...props}) => {
-	return (
-		<Route  { ...props } render={(routeProps) => <Layout {...routeProps} {...props}><Component/></Layout>}/>
-	);
-};
+export default (RouteComponent) => {
+	class LayoutRoute extends React.Component {
+		static propTypes = {
+			component: PropTypes.func.isRequired,
+			layout: PropTypes.func.isRequired
+		};
 
-LayoutRoute.propTypes = {
-	component: PropTypes.func.isRequired,
-	layout: PropTypes.func.isRequired
-};
+		render() {
+			const {component:Component, layout:Layout, ...props}=this.props;
+			return (<RouteComponent  { ...props }
+									 render={(routeProps) =>
+										 <Layout {...routeProps} {...props}><Component/></Layout>}/>);
+		}
+	}
 
-export default LayoutRoute;
+	return LayoutRoute;
+}
+
