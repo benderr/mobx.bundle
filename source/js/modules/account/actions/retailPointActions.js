@@ -7,4 +7,4 @@ export const getRetailPoints = {
 	failure: (error) => createAction(actions.GET_RETAIL_POINTS.FAILURE, {error})
 };
 
-export const setRetailPoint = (point) => createAction(actions.SET_RETAIL_POINT, {point});
+export const setRetailPoint = (id) => createAction(actions.SET_RETAIL_POINT, {id});

@@ -1,7 +1,7 @@
 import React from 'react';
 import RetailPointList from '../components/RetailPointList/RetailPointList';
 
-class ProductListContainer extends React.Component {
+class RetailPointsContainer extends React.Component {
 	render() {
 		return (<div>
 			<RetailPointList />
@@ -9,4 +9,4 @@ class ProductListContainer extends React.Component {
 	}
 }
 
-export default  ProductListContainer
+export default  RetailPointsContainer

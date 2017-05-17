@@ -5,5 +5,11 @@ export const getRetailPointsData = (state) => {
 };
 
 export const getRetailPointList = createSelector([getRetailPointsData], rpData => {
-	return {points: rpData.get('retailPoints').toJS()};
+	const points = rpData.get('retailPoints');
+	return points != null ? points.toJS() : []
 });
+
+export const getCurrentRetailPointId = createSelector([getRetailPointsData], rpData => {
+	return rpData.get('selectedPointId');
+});
+
