@@ -16,15 +16,14 @@ const SignInContainer = props => {
     );
 };
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);
 
 
 function mapStateToProps(state, ownProps) {
     return {
-        loading: state.auth.get('loading'),
+        loading: state.auth.get('loading'), //todo сделать селекторы
         errors: state.auth.get('authError'),
-        redirectUrl: '/' //ownProps.location.query && ownProps.location.query.redirectUrl || null
+        redirectUrl: '/' //todo ownProps.location.query && ownProps.location.query.redirectUrl || null
     }
 }
 

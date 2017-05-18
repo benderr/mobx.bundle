@@ -36,7 +36,7 @@ class RetailPointList extends React.Component {
 					<div class='table_head'>
 						<div class='product_id'>Название</div>
 						<div class='product_name'>Адрес</div>
-						<div class='product_price'>Сумма продаж</div>
+						<div class='product_price'>Активный</div>
 					</div>
 					{this.props.points.map(point => (
 						<RetailPointListItem key={'listitem_' + point.id}

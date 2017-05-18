@@ -11,8 +11,9 @@ import ProductItem from './ProductItem';
 
 class ProductListComponent extends React.Component {
     render() {
-        const {items, openProduct} = this.props;
-        const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode} onProductClick={()=>openProduct(product.inventCode)}/>);
+        const {items, openProduct, selectedPoint} = this.props;
+        const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
+                                                               onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
 
         return (
 
@@ -38,7 +39,8 @@ class ProductListComponent extends React.Component {
 
 ProductListComponent.propTypes = {
     items: arrayOf(ProductShape).isRequired,
-    openProduct: PropTypes.func.isRequired
-};
+    openProduct: PropTypes.func.isRequired,
+    selectedPoint: PropTypes.string.isRequired
+}
 
 export default ProductListComponent;

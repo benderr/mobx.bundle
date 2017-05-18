@@ -46,13 +46,21 @@ class DefaultLayerLayout extends React.Component {
 		setTimeout(_ => this.addClass(el, 'open'), 0);
 	}
 
+	getCloseButton() {
+		return (<a className="page_close icon-close" onClick={::this.closeLayer}></a>);
+	}
+
+	getToogleButton() {
+		return (<a id={'page_expand_' + this.props.layerId} className="page_expand icon-fullsize"
+				   onClick={::this.toggleFullSize}></a>);
+	}
+
 	render() {
 		return (
 			<article className="page">
 				<div className="page_header header_height_auto">
-					<a className="page_close icon-close" onClick={::this.closeLayer}></a>
-					<a id={'page_expand_' + this.props.layerId} className="page_expand icon-fullsize"
-					   onClick={::this.toggleFullSize}></a>
+					{this.getCloseButton()}
+					{this.getToogleButton()}
 					<h1>Тестовый слой</h1>
 				</div>
 				<div className="page_content">

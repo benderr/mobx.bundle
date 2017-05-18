@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router'
 import PropTypes from 'prop-types';
-
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductsList/ProductListComponent';
 import ProductActions from '../components/ProductsList/ProductActions';
@@ -12,7 +11,6 @@ import {getProductsList} from '../selectors/productsSelectors'
 
 import retailPointHOC from '../components/ProductsList/retailPointRequiredHOC';
 
-@retailPointHOC
 class ProductListContainer extends React.Component {
     componentDidMount() {
         const {selectedPoint, getProducts} = this.props;
@@ -20,7 +18,7 @@ class ProductListContainer extends React.Component {
     }
 
     render() {
-        const {products, openProduct} = this.props;
+        const {products, openProduct, selectedPoint} = this.props;
         return (<div>
             <div class="title_panel">
 
@@ -28,7 +26,7 @@ class ProductListContainer extends React.Component {
 
                 <ProductActions/>
             </div>
-            {products ? <ProductList items={products} openProduct={openProduct}/> : null}
+            {products ? <ProductList items={products} openProduct={openProduct} selectedPoint={selectedPoint}/> : null}
         </div>);
     }
 }
@@ -43,8 +41,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         getProducts: bindActionCreators(getProducts.request, dispatch),
-        openProduct: (code) => {
-            dispatch(push({pathname: '/product/' + code}))
+        openProduct: (code, point) => {
+            dispatch(push({pathname: `/product/${point}/${code}`}))
         }
     }
 }
@@ -54,4 +52,4 @@ ProductListContainer.propTypes = {
     //products: arrayOf(ProductShape).isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(retailPointHOC(ProductListContainer));
