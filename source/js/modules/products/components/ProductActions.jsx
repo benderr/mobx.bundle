@@ -9,7 +9,7 @@ class ProductActions extends React.Component {
         return ( <div class="title_actions">
             <Link class="button light small" to="/products/export">Экспорт</Link>
             <Link class="button light small" to="/products/import">Импорт</Link>
-            <Link class="button small icon-plus" to="/product/1">Добавить товар</Link>
+            <Link class="button small icon-plus" to="/product/add">Добавить товар</Link>
         </div>)
     }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types';
-import * as routeHelpers from './routeHelpers'
-import RadPageManager from './RadPageManager'
-import RadLayerManager from './RadLayerManager'
+import * as routeHelpers from './routeHelpers';
+import RadPageManager from './RadPageManager';
+import RadLayerManager from './RadLayerManager';
 
 class RadRouteManager extends React.Component {
 	static propTypes = {
@@ -11,16 +11,39 @@ class RadRouteManager extends React.Component {
 		location: PropTypes.object.isRequired
 	};
 	layers = [];
+	pageLocation = this.props.location;
 
 	destroyLayer({layerId}) {
 		this.layers = this.layers.filter(s => s.layerId != layerId);
-		this.props.history.goBack();
+		//если слоев не осталось, то не нужно переходить назад
+		if (this.layers.length != 0) {
+			this.props.history.goBack();
+		}
+		else {
+			//this.props.history.goBack();
+			let loc = {...this.pageLocation};
+			loc.state = {returnToPage: true};
+			this.props.history.replace(loc);
+		}
 	}
 
 	render() {
 		const {location, notFound, routes}=this.props;
 
 		const isLayer = routeHelpers.isLayerPage(routes.layerRoutes, location);
+
+		let currentPageLocation;
+
+		if (isLayer) {
+			if (this.pageLocation.pathname == location.pathname) {
+				this.pageLocation = currentPageLocation = {pathname: '/'};
+			} else {
+				currentPageLocation = this.pageLocation;
+			}
+		} else {
+			this.pageLocation = currentPageLocation = location;
+		}
+
 
 		if (isLayer) {
 
@@ -49,6 +72,7 @@ class RadRouteManager extends React.Component {
 		return (
 			<div className="poss">
 				<RadPageManager
+					pageLocation={currentPageLocation}
 					location={location}
 					routes={routes}
 					notFound={notFound}/>

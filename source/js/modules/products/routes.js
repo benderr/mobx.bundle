@@ -1,4 +1,6 @@
 import ProductListContainer from './containers/ProductListContainer';
+import EditProductContainer from './containers/EditProductContainer';
+import AddProductLayout from './components/EditProductForm/AddProductLayout';
 import React from 'react';
 
 export function getRoutes() {
@@ -9,14 +11,12 @@ export function getRoutes() {
 			exact: true,
 			component: ProductListContainer
 		},
-		product:{
-			path:'/product/:id',
+		product: {
+			path: '/product/add',
 			exact: true,
-			component: ({location}) => {
-				console.log('finance/id render', location);
-				return (<h2> I'm Layer</h2>)
-			},
-			isLayer: true
+			component: EditProductContainer,
+			isLayer: true,
+			layout: AddProductLayout
 		}
 	};
 }

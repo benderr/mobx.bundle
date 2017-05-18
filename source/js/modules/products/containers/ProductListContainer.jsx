@@ -10,7 +10,6 @@ import ProductActions from '../components/ProductActions'
 
 import retailPointHOC from '../components/retailPointRequiredHOC';
 
-@retailPointHOC
 class ProductListContainer extends React.Component {
     componentDidMount() {
         const {selectedPoint, getProducts} = this.props;
@@ -49,4 +48,4 @@ ProductListContainer.propTypes = {
     //products: PropTypes.instanceOf(List).isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(retailPointHOC(ProductListContainer));

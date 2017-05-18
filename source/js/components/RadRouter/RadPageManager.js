@@ -5,36 +5,46 @@ import {isLayerPage, generateRouteComponent} from './routeHelpers'
 
 class RadPageManager extends React.Component {
 
-	pageLocation = this.props.location;
 	static propTypes = {
 		routes: PropTypes.shape({
 			pageRoutes: PropTypes.array.isRequired,
 			layerRoutes: PropTypes.array.isRequired,
 		}),
 		notFound: PropTypes.func,
+		pageLocation: PropTypes.object.isRequired,
 		location: PropTypes.object.isRequired
 	};
 
 	shouldComponentUpdate(nextProps, nextState) {
-		const {location, routes}=nextProps;
-		return !isLayerPage(routes.layerRoutes, location);
+		const {location, routes, pageLocation}=nextProps;
+		const {returnToPage} = location.state || {};
+		return !isLayerPage(routes.layerRoutes, location)
+			&& !returnToPage;
+		//&& pageLocation.pathname != location.pathname;
 	}
 
 	render() {
-		const {location, routes, notFound:NotFound}=this.props;
+		const {routes, pageLocation, notFound:NotFound}=this.props;
 
-		const isLayer = isLayerPage(routes.layerRoutes, location);
-
-		let pageLocation;
-		if (isLayer) {
-			if (this.pageLocation.pathname == location.pathname) {
-				pageLocation = {pathname: '/'};
-			} else {
-				pageLocation = this.pageLocation;
-			}
-		} else {
-			this.pageLocation = pageLocation = location;
+		{/*const isLayer = isLayerPage(routes.layerRoutes, location);*/
 		}
+
+		{/*let currentPageLocation;*/
+		}
+		{/*if (isLayer) {*/
+		}
+		{/*if (pageLocation.pathname == location.pathname) {*/
+		}
+		{/*currentPageLocation = {pathname: '/'};*/
+		}
+		{/*} else {*/
+		}
+		{/*currentPageLocation = this.pageLocation;*/
+		}
+		// 	}
+		// } else {
+		// 	this.props.pageLocation = currentPageLocation = location;
+		// }
 
 		return (<Switch location={pageLocation}>
 			{routes.pageRoutes.map(route =>

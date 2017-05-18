@@ -4,7 +4,7 @@ import React from 'react'
 export default (RouteComponent) => {
 	class LayoutRoute extends React.Component {
 		static propTypes = {
-			component: PropTypes.func.isRequired,
+			component: PropTypes.func,
 			layout: PropTypes.func.isRequired
 		};
 
@@ -12,7 +12,8 @@ export default (RouteComponent) => {
 			const {component:Component, layout:Layout, ...props}=this.props;
 			return (<RouteComponent  { ...props }
 									 render={(routeProps) =>
-										 <Layout {...routeProps} {...props}><Component/></Layout>}/>);
+										 <Layout {...props}>
+											 {Component && <Component/>}</Layout>}/>);
 		}
 	}
 
