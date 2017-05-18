@@ -45,11 +45,11 @@ const SignInForm = props => {
 			<div className="login_content">
 				<div className="login_auth_block">
 
-					<Field name="email" label="Email" type="text"
+					<Field name="email" label="Электронная почта" type="text"
 						   addonClass="icon-mail"
 						   component={InputRender}
 						   validate={[isRequired('Укажите E-mail'), isValidEmail('Укажите корректный E-mail')]}/>
-					<Field name="password" label="Password" type="password"
+					<Field name="password" label="Пароль" type="password"
 						   addonClass="icon-password"
 						   component={InputRender}
 						   validate={[isRequired('Введите пароль')]}/>
