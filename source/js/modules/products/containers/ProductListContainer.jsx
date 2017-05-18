@@ -43,7 +43,7 @@ function mapDispatchToProps(dispatch) {
     return {
         getProducts: bindActionCreators(getProducts.request, dispatch),
         openProduct: (code) => {
-            dispatch(push({pathname: '/product' + code}))
+            dispatch(push({pathname: '/product/' + code}))
         }
     }
 }
