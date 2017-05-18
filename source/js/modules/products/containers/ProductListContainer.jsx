@@ -49,7 +49,7 @@ function mapDispatchToProps(dispatch) {
 
 ProductListContainer.propTypes = {
     selectedPoint: PropTypes.string.isRequired,
-    //products: PropTypes.instanceOf(List).isRequired
+    //products: arrayOf(ProductShape).isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(retailPointHOC(ProductListContainer));
