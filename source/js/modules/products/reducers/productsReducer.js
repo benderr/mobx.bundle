@@ -9,6 +9,7 @@ import ProductMap from '../model/ProductMap'
 export const initialState = ProductMap({
 	loading: true,
 	error: null,
+	productsList2:[],
 	productsList: []
 });
 
@@ -18,6 +19,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: true,
 			error: null,
+			productsList2:[],
 			productsList: []
 		});
 	},
@@ -26,6 +28,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
+			productsList2: action.response.productsList,
 			productsList: action.response.productsList.map((item) => new Product(item))
 		});
 	},
@@ -34,6 +37,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: action.error,
+			productsList2:null,
 			productsList: null
 		});
 	}

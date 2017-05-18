@@ -12,15 +12,16 @@ const validate = values => {
 };
 
 const ProductForm = props => {
-	const {handleSubmit, loading, onSave, errors} = props;
+	const {handleSubmit, loading, onSave, product, errors} = props;
 	const submit = ({email, password}) => {
 		//dispatch(login.request(email, password, backPath));
 		onSave();
 	};
 
 	return (
+		<span>
 		<div class="page_content  with_bottom_panel  content_padding">
-			<div >
+
 				<ul class="tabs_light">
 					<li class="active">Информация</li>
 					<li>Модификаторы</li>
@@ -74,14 +75,12 @@ const ProductForm = props => {
 						<input type="text" class="w100"/>
 					</div>
 				</div>
-
-			</div>
-
-			<div class="page_bottom_panel">
-				<a class="button middle wide">Сохранить</a>
-				<a class="button middle wide clean">Отмена</a>
-			</div>
 		</div>
+			<div class="page_bottom_panel">
+			<a class="button middle wide">Сохранить</a>
+			<a class="button middle wide clean">Отмена</a>
+			</div>
+		</span>
 	)
 };
 
