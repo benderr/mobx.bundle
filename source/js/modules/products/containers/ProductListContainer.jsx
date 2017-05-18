@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {push} from 'connected-react-router'
 import PropTypes from 'prop-types';
 
 import {getProducts} from '../actions/productActions';
@@ -18,7 +19,7 @@ class ProductListContainer extends React.Component {
     }
 
     render() {
-        const {products} = this.props;
+        const {products, openProduct} = this.props;
         return (<div>
             <div class="title_panel">
 
@@ -26,7 +27,7 @@ class ProductListContainer extends React.Component {
 
                 <ProductActions/>
             </div>
-            {products ? <ProductList items={products}/> : null}
+            {products ? <ProductList items={products} openProduct={openProduct}/> : null}
         </div>);
     }
 }
@@ -40,7 +41,10 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getProducts: bindActionCreators(getProducts.request, dispatch)
+        getProducts: bindActionCreators(getProducts.request, dispatch),
+        openProduct: (code) => {
+            dispatch(push({pathname: '/product' + code}))
+        }
     }
 }
 

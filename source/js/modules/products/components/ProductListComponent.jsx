@@ -2,21 +2,16 @@
  * Created by RobertSabiryanov on 11.05.17.
  */
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 // import Immutable from 'immutable';
 
 import ProductItem from './ProductItem';
 // import Product from '../model/Product'
 
 class ProductListComponent extends React.Component {
-
-    openProduct(product){
-
-    }
-
     render() {
-        const {items} = this.props;
-        const productItems = items.map(product => <ProductItem item={ product } key={product.getCode()} onClick={::this.openProduct(product)}/>);
+        const {items, openProduct} = this.props;
+        const productItems = items.map(product => <ProductItem item={ product } key={product.getCode()} onProductClick={()=>openProduct(product.getCode())}/>);
 
         return (
 
@@ -40,8 +35,9 @@ class ProductListComponent extends React.Component {
     }
 }
 
-// ProductListComponent.propTypes = {
-//     items: PropTypes.arrayOf(Product).isRequired,
-// }
+ProductListComponent.propTypes = {
+    //items: PropTypes.arrayOf(Product).isRequired,
+    openProduct: PropTypes.func.isRequired
+}
 
 export default ProductListComponent;
