@@ -3,9 +3,11 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-// import Immutable from 'immutable';
+const {arrayOf} = PropTypes;
 
+import ProductShape from './ProductShape';
 import ProductItem from './ProductItem';
+
 
 class ProductListComponent extends React.Component {
     render() {
@@ -36,7 +38,7 @@ class ProductListComponent extends React.Component {
 }
 
 ProductListComponent.propTypes = {
-    //items: PropTypes.arrayOf(Product).isRequired,
+    items: arrayOf(ProductShape).isRequired,
     openProduct: PropTypes.func.isRequired,
     selectedPoint: PropTypes.string.isRequired
 }

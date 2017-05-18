@@ -4,12 +4,12 @@ import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router'
 import PropTypes from 'prop-types';
 import {getProducts} from '../actions/productActions';
-import ProductList from '../components/ProductListComponent';
-import ProductActions from '../components/ProductActions';
+import ProductList from '../components/ProductsList/ProductListComponent';
+import ProductActions from '../components/ProductsList/ProductActions';
 import {getProductsList} from '../selectors/productsSelectors'
 // import ProductMap from '../model/ProductMap'
 
-import retailPointHOC from '../components/retailPointRequiredHOC';
+import retailPointHOC from '../components/ProductsList/retailPointRequiredHOC';
 
 class ProductListContainer extends React.Component {
     componentDidMount() {
