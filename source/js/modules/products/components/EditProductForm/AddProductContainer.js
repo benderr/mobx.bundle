@@ -26,7 +26,7 @@ class AddProductContainer extends DefaultLayerLayout {
 					{this.getToogleButton()}
 					<h1>Добавление товара</h1>
 				</div>
-				{product && <ProductForm onSave={::this.onSaveProduct} initialValues={product}/>}
+				{product && <ProductForm onSave={::this.onSaveProduct} initialValues={product} onCancel={::this.closeLayer}/>}
 				{!product && <span>Продукт не найден</span>}
 			</article>
 		);
