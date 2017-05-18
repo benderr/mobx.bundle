@@ -80,14 +80,37 @@ const ProductForm = props => {
 				<div class="form_group form_horizontal">
 					<div class="property_label col three">Ед. изм.</div>
 					<div class="property_value col six">
-						<input type="text" class="w100"/>
+						<Field class="w100 ms-choice" name="measure" component="select">
+            <option value="pcs">Штука</option>
+            <option value="kg">Килограмм</option>
+            <option value="ltr">Литр</option>
+          </Field>
 					</div>
 				</div>
 
 				<div class="form_group form_horizontal">
 					<div class="property_label col three">Тип</div>
 					<div class="property_value col six">
-						<input type="text" class="w100"/>
+						<Field class="w100 ms-choice" name="alcoholType" component="select">
+            <option value="NO_ALCOHOL">Обычный</option>
+            <option value="LIGHT_ALCOHOL">Слабоалкогольный</option>
+            <option value="ALCOHOL">Алкоголь</option>
+          </Field>
+					</div>
+				</div>
+
+			<div class="form_group form_horizontal">
+					<div class="property_label col three">НДС</div>
+					<div class="property_value col six">
+						<Field class="w100 ms-choice" name="vatTag" component="select">
+							<option value="0">по умолчанию (из настроек)</option>
+							<option value="1104">НДС 0%</option>
+							<option value="1103">НДС 10%</option>
+							<option value="1102">НДС 18%</option>
+							<option value="1105">НДС не облагается</option>
+							<option value="1107">НДС с рассч. ставкой 10%</option>
+							<option value="1106">НДС с рассч. ставкой 18%</option>
+					  </Field>
 					</div>
 				</div>
 		</div>
