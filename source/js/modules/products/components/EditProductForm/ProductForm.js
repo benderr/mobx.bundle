@@ -86,7 +86,8 @@ const ProductForm = props => {
 
 ProductForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
-	onSave: PropTypes.func.isRequired
+	onSave: PropTypes.func.isRequired,
+	product: PropTypes.object.isRequired
 };
 
 export default  reduxForm({

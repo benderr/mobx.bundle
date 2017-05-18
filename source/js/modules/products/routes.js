@@ -18,7 +18,7 @@ export function getRoutes() {
 			layout: AddProductContainer
 		},
 		productDetail: {
-			path: '/product/:id',
+			path: '/product/:id/:point',
 			exact: true,
 			isLayer: true,
 			layout: AddProductContainer

@@ -19,7 +19,7 @@ class ProductListContainer extends React.Component {
     }
 
     render() {
-        const {products, openProduct} = this.props;
+        const {products, openProduct, selectedPoint} = this.props;
         return (<div>
             <div class="title_panel">
 
@@ -27,7 +27,7 @@ class ProductListContainer extends React.Component {
 
                 <ProductActions/>
             </div>
-            {products ? <ProductList items={products} openProduct={openProduct}/> : null}
+            {products ? <ProductList items={products} openProduct={openProduct} selectedPoint={selectedPoint}/> : null}
         </div>);
     }
 }
@@ -42,8 +42,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         getProducts: bindActionCreators(getProducts.request, dispatch),
-        openProduct: (code) => {
-            dispatch(push({pathname: '/product/' + code}))
+        openProduct: (code, point) => {
+            dispatch(push({pathname: `/product/${code}/${point}`}))
         }
     }
 }
