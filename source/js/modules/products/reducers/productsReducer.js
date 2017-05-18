@@ -1,15 +1,13 @@
 /**
  * Created by RobertSabiryanov on 14.05.17.
  */
+import {Map} from 'immutable';
 import {GET_PRODUCTS} from '../enums/actions';
 
-import Product from '../model/Product';
-import ProductMap from '../model/ProductMap'
-
-export const initialState = ProductMap({
+export const initialState = Map({
 	loading: true,
 	error: null,
-	productsList: []
+	productsList: null
 });
 
 export const actionHandlers = {
@@ -26,7 +24,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			productsList: action.response.productsList.map((item) => new Product(item))
+			productsList: action.response.productsList
 		});
 	},
 
