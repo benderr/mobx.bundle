@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
+import ProductShape from './ProductShape';
 
 class ProductItem extends React.Component {
     render() {
@@ -15,9 +16,9 @@ class ProductItem extends React.Component {
     }
 }
 
-// ProductItem.propTypes = {
-//     item: PropTypes.instanceOf(Product).isRequired,
-//     onProductClick: PropTypes.func.isRequired
-// };
+ProductItem.propTypes = {
+    item: ProductShape.isRequired,
+    onProductClick: PropTypes.func.isRequired
+};
 
 export default ProductItem;
