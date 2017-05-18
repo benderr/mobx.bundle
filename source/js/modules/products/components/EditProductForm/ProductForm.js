@@ -12,7 +12,7 @@ const validate = values => {
 };
 
 const ProductForm = props => {
-	const {handleSubmit, loading, onSave, product, errors} = props;
+	const {handleSubmit, loading, onSave, initialValues:product, errors} = props;
 	const submit = ({email, password}) => {
 		//dispatch(login.request(email, password, backPath));
 		onSave();
@@ -30,35 +30,50 @@ const ProductForm = props => {
 				<div class="form_group form_horizontal">
 					<div class="property_label col three three">Наименование *</div>
 					<div class="property_value col six">
-						<input type="text" class="w100"/>
+						<Field name="name" type="text"
+							   class="w100"
+							   component={InputRender}
+							   validate={[isRequired('Укажите наименование')]}/>
 					</div>
 				</div>
 
 				<div class="form_group form_horizontal">
 					<div class="property_label col three">Код *</div>
 					<div class="property_value col six">
-						<input type="text" class="w100"/>
+						<Field name="inventCode" type="text"
+							   class="w100"
+							   component={InputRender}
+							   validate={[isRequired('Укажите код')]}/>
 					</div>
 				</div>
 
 				<div class="form_group form_horizontal">
 					<div class="property_label col three">Штрих-код *</div>
 					<div class="property_value col six">
-						<input type="text" class="w100"/>
+						<Field name="barcode" type="text"
+							   class="w100"
+							   component={InputRender}
+							   validate={[isRequired('Укажите штрих-код')]}/>
 					</div>
 				</div>
 
 				<div class="form_group form_horizontal">
 					<div class="property_label col three">Цена *</div>
 					<div class="property_value col six">
-						<input type="text" class="w100"/>
+						<Field name="price" type="text"
+							   class="w100"
+							   component={InputRender}
+							   validate={[isRequired('Укажите цену')]}/>
 					</div>
 				</div>
 
 				<div class="form_group form_horizontal">
 					<div class="property_label col three">Мин. цена</div>
 					<div class="property_value col six">
-						<input type="text" class="w100"/>
+						<Field name="minPrice" type="text"
+							   class="w100"
+							   component={InputRender}
+							   validate={[isRequired('Укажите мин. цену')]}/>
 					</div>
 				</div>
 
@@ -87,12 +102,12 @@ const ProductForm = props => {
 ProductForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	onSave: PropTypes.func.isRequired,
-	product: PropTypes.object.isRequired
+	initialValues: PropTypes.object.isRequired
 };
 
 export default  reduxForm({
 	form: 'productForm',// имя формы в state (state.form.auth)
-	validate,
+	validate
 	//asyncValidate
 })(ProductForm);
 

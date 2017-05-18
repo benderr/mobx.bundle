@@ -8,7 +8,6 @@ import {getCurrentRetailPointId} from 'modules/account/selectors/retailPointSele
 export default (Component) => {
 	class RetailPointRequiredHOC extends React.Component {
 		render() {
-			console.log({...this.props})
 			const {selectedPoint} = this.props;
 			let className = 'poss';
 			if (!selectedPoint) {

@@ -6,12 +6,12 @@ import PropTypes from 'prop-types';
 // import Immutable from 'immutable';
 
 import ProductItem from './ProductItem';
-// import Product from '../model/Product'
 
 class ProductListComponent extends React.Component {
     render() {
         const {items, openProduct, selectedPoint} = this.props;
-        const productItems = items.map(product => <ProductItem item={ product } key={product.getCode()} onProductClick={()=>openProduct(product.getCode(), selectedPoint)}/>);
+        const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
+                                                               onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
 
         return (
 

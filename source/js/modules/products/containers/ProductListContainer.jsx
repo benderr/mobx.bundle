@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router'
 import PropTypes from 'prop-types';
-
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductListComponent';
 import ProductActions from '../components/ProductActions';
@@ -43,7 +42,7 @@ function mapDispatchToProps(dispatch) {
     return {
         getProducts: bindActionCreators(getProducts.request, dispatch),
         openProduct: (code, point) => {
-            dispatch(push({pathname: `/product/${code}/${point}`}))
+            dispatch(push({pathname: `/product/${point}/${code}`}))
         }
     }
 }

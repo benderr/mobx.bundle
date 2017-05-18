@@ -1,5 +1,6 @@
 import {showErrorBorder, showSuccessBorder, getErrorMessage, ifCondition, getRandomKey} from './formFieldHelpers'
 import React from 'react'
+import ReactTooltip from 'react-tooltip'
 
 /**
  * HOC для обертки над инпутами, чтобы получить необходимые методы подсветки ошибок и т.д.
