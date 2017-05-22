@@ -39,11 +39,12 @@ const SiteHeader = props => {
             <div class="header_menu free_items">
                 <div class="header_menu_inner">
                     <ul>
+                        <SiteMenuLink to="/list1" label="Контрагенты"/>
+                        <SiteMenuLink to="/list2" label="Документы"/>
                         <SiteMenuLink to="/" exact={true} label="Товары"/>
                         <SiteMenuLink to="/statistics" label="Статистика"/>
                         <SiteMenuLink to="/cash" label="Касса"/>
-                        <SiteMenuLink to="/contragents" label="Контрагенты"/>
-                        <SiteMenuLink to="/documents" label="Документы"/>
+
                     </ul>
                 </div>
             </div>

@@ -1,15 +1,16 @@
 /**
  * Created by RobertSabiryanov on 14.05.17.
  */
-import {call, put, takeLatest} from 'redux-saga/effects'
+import {call, put, takeLatest, takeEvery} from 'redux-saga/effects'
 import * as actions from '../enums/actions';
+import * as accountActions from '../../account/enums/actions';
 import {getProducts} from '../actions/productActions'
 import * as dataContext from '../dataProvider/productDataContext'
 
 
-function* getProductsProcess({retailPointId, start, count, name, inventCode, price}) {
+function* getProductsProcess({retailPointId, start, count, filter}) {
 	try {
-		const response = yield call(dataContext.getProducts, retailPointId, start, count, name, inventCode, price);
+		const response = yield call(dataContext.getProducts, retailPointId, start, count, filter);
 		yield put(getProducts.success(response));
 	}
 	catch (e) {
@@ -17,6 +18,15 @@ function* getProductsProcess({retailPointId, start, count, name, inventCode, pri
 	}
 }
 
+function* initProductsProcess(data) {
+	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
+}
+
+
 export default function*() {
-	yield takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess);
+	yield [
+		takeEvery(accountActions.SET_RETAIL_POINT, initProductsProcess),
+		takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess),
+		takeLatest(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
+	]
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm} from 'redux-form/immutable';
 import InputRender from './InputRenderSign'
 import {validEmail, isEmpty} from 'common/validators/validators'
 import PropTypes from 'prop-types';
@@ -27,9 +27,8 @@ const validate = values => {
 
 const SignInForm = props => {
 	const {handleSubmit, loading, onLogin, redirectUrl, errors} = props;
-	const submit = ({email, password}) => {
-		//dispatch(login.request(email, password, backPath));
-		onLogin(email, password, redirectUrl);
+	const submit = (props) => {
+		onLogin(props);
 	};
 
 	const getError = (error) => {

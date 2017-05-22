@@ -4,14 +4,10 @@
 import api from 'infrastructure/api/api'
 import {toClient} from './productMapper';
 
-export const getProducts = (retailPointId, start, count, name, inventCode, price) => {
+export const getProducts = (retailPointId, start, count, filter) => {
 	let params = [];
-	if (name)
-		params.push(`name=="*${name}"`);
-	if (inventCode)
-		params.push(`inventCode=="*${inventCode}*"`);
-	if (price)
-		params.push(`price=="${price}"`);
+	if (filter)
+		params.push(`name=="*${filter}*"`);
 	let q = params.join(';');
 	return api.v1().retailpoint(retailPointId).catalog().inventory()
 		.get({start, count, q})

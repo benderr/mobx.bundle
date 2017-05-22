@@ -1,7 +1,5 @@
 import * as secondReducer from './reducers/secondReducer'
-
 import * as routes  from './routes.js'
-
 
 export function getReducers(createReducer) {
 	return {

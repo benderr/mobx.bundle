@@ -7,9 +7,10 @@ import NotFoundLayout from 'components/NotFoundLayout'
 import InternalLayout from 'components/InternalLayout'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import RadRouter from 'components/RadRouter/RadRouter'
+import {getAppReady} from 'modules/account/selectors/accountSelectors'
 
 @withRouter
-@connect((state) => ({appReady: state.auth.get('appReady')}))
+@connect((state) => ({appReady: getAppReady(state)}))
 class AppContainer extends React.Component {
 	static propTypes = {
 		appReady: PropTypes.bool.isRequired,

@@ -1,5 +1,5 @@
 import ProductListContainer from './containers/ProductListContainer';
-import AddProductContainer from './components/EditProductForm/AddProductContainer';
+import AddProductContainer from './containers/AddProductContainer';
 import React from 'react';
 
 export function getRoutes() {
