@@ -9,4 +9,4 @@ export const CashModule = CashModule1;
 export const ProductsModule = ProductsModule1;
 
 
-export default [AccountModule, TestSelector, CashModule, ProductsModule];
+export default [TestSelector, AccountModule, ProductsModule];

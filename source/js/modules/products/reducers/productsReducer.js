@@ -1,7 +1,7 @@
 /**
  * Created by RobertSabiryanov on 14.05.17.
  */
-import {Map} from 'immutable';
+import {Map, List, fromJS} from 'immutable';
 import {GET_PRODUCTS} from '../enums/actions';
 
 export const initialState = Map({
@@ -16,7 +16,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: true,
 			error: null,
-			productsList: []
+			productsList: null
 		});
 	},
 
@@ -24,14 +24,14 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			productsList: action.response.productsList
+			productsList: fromJS(action.response.productsList)
 		});
 	},
 
 	[GET_PRODUCTS.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			error: action.error,
+			error: fromJS(action.error),
 			productsList: null
 		});
 	}

@@ -4,15 +4,22 @@ import TransactionsContainer, {TransactionsContainer2} from './containers/Transa
 
 export function getRoutes() {
 	return {
-		listExampleSecond: {
-			path: '/list-example2/second',
+		list: {
+			path: '/',
 			exact: true,
-			component: TransactionsContainer2
+			component: ()=>{ console.log('render home lsit'); return (<span></span>); }
+		},
+		listExampleSecond: {
+			path: '/list1',
+			exact: true,
+			isLayer: true,
+			component: TransactionsContainer
 		},
 		listExample: {
-			path: '/list-example2/second',
+			path: '/list2',
 			exact: true,
-			component: TransactionsContainer
+			isLayer: true,
+			component: TransactionsContainer2
 		}
 	}
 }

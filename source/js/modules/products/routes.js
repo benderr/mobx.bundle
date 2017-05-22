@@ -1,5 +1,5 @@
 import ProductListContainer from './containers/ProductListContainer';
-import AddProductContainer from './components/EditProductForm/AddProductContainer';
+import AddProductContainer from './containers/AddProductContainer';
 import React from 'react';
 
 export function getRoutes() {
@@ -17,7 +17,7 @@ export function getRoutes() {
 			layout: AddProductContainer
 		},
 		productDetail: {
-			path: '/product/:point/:id',
+			path: '/product/:id',
 			exact: true,
 			isLayer: true,
 			layout: AddProductContainer

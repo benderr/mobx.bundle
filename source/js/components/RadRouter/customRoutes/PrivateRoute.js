@@ -1,6 +1,7 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
+import {getAuthData} from 'modules/account/selectors/accountSelectors'
 
 export default (RouteComponent) => {
 
@@ -24,6 +25,6 @@ export default (RouteComponent) => {
 
 function mapStateToProps(state) {
 	return {
-		authData: state.auth.get('authData')
+		authData: getAuthData(state)
 	}
 }

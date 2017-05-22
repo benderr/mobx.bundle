@@ -18,7 +18,9 @@ class ProductListContainer extends React.Component {
     }
 
     render() {
-        const {products, openProduct, selectedPoint} = this.props;
+        const {productsList, openProduct, selectedPoint} = this.props;
+        const products = productsList.toJS();
+
         return (<div>
             <div class="title_panel">
 
@@ -41,8 +43,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         getProducts: bindActionCreators(getProducts.request, dispatch),
-        openProduct: (code, point) => {
-            dispatch(push({pathname: `/product/${point}/${code}`}))
+        openProduct: (code) => {
+            dispatch(push({pathname: `/product/${code}`}))
         }
     }
 }

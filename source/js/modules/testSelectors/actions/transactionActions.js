@@ -14,3 +14,10 @@ export function setCompleted(listId) {
 		payload: {listId}
 	};
 }
+
+export function setData({key, data}) {
+	return {
+		type: 'SET_DATA',
+		key, data
+	};
+}

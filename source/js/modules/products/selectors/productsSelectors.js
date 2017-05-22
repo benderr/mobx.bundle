@@ -8,6 +8,13 @@ export const getProductsData = (state) => {
 };
 
 export const getProductsList = createSelector([getProductsData], data => {
-	const list = data.get('productsList');
-	return list != null ? list.toJS() : [];
+	return data.get('productsList');
 });
+
+export const getProduct = (id) => createSelector([getProductsList], data => {
+	const products = data.get('productsList');
+	if (products)
+		return products.filter(s => s.id == id)[0]
+	return null;
+});
+

@@ -2,7 +2,7 @@ import React from 'react'
 import {Provider} from 'react-redux';
 import ReactTooltip from 'react-tooltip'
 import PropTypes from 'prop-types';
-import {ConnectedRouter} from 'connected-react-router'
+import {ConnectedRouter} from 'connected-react-router/immutable'
 import AppContainer from './AppContainer'
 
 export default class RootContainer extends React.Component {

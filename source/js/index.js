@@ -5,10 +5,12 @@ import React from 'react'
 import RootContainer from 'components/RootContainer'
 import modules from 'modules/modules'
 import configureRedux from 'redux/configureRedux.js'
-
+import {Map} from 'immutable';
 const mountNode = document.getElementById('root');
 
-const {store, routes, history}= configureRedux(modules, {});
+const initialState = Map();
+
+const {store, routes, history}= configureRedux(modules, initialState);
 
 render(<RootContainer store={store} routes={routes} history={history} />, mountNode);
 
