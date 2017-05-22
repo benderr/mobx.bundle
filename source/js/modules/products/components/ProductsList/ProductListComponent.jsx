@@ -12,20 +12,28 @@ import Waypoint from 'react-waypoint';
 
 
 class ProductListComponent extends React.Component {
-    render() {
-        const {items, openProduct, selectedPoint, loadNext, onFilterChanged, onSortChanged, loading} = this.props;
-        const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
-                                                               onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
-        let className = 'widget_block';
+
+    getInfinateScroll(loading, next, count, listLength = 50) {
+        let className = 'table_row';
         if (loading) {
             className += ' loading_block';
         }
 
+        return <div class={className}>
+            {count >= listLength && <Waypoint
+                scrollableAncestor={window}
+                onEnter={next}/>}
+        </div>
+    }
+
+    render() {
+        const {items, openProduct, selectedPoint, loadNext, onFilterChanged, onSortChanged, loading} = this.props;
+        const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
+                                                               onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
+
+        let infinateScroll = this.getInfinateScroll(loading, loadNext, items.length);
         return (
-
-
-
-            <div class={className}>
+            <div class='widget_block'>
                 <div class='table  table_products'>
                     <div class='table_head'>
                         <div class='product_id'>Код</div>
@@ -40,9 +48,7 @@ class ProductListComponent extends React.Component {
                         />
                     </div>
                     {productItems}
-                    {items && items.length >= 50 && <Waypoint
-                        scrollableAncestor={window}
-                        onEnter={loadNext}/>}
+                    {infinateScroll}
                 </div>
             </div>
         );
@@ -55,7 +61,7 @@ ProductListComponent.propTypes = {
     selectedPoint: PropTypes.string.isRequired,
     loadNext: PropTypes.func,
     onFilterChanged: PropTypes.func.isRequired,
-    loading: PropTypes.boolean
+    loading: PropTypes.bool
 }
 
 export default ProductListComponent;
