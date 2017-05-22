@@ -6,19 +6,44 @@ import PropTypes from 'prop-types';
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductsList/ProductListComponent';
 import ProductActions from '../components/ProductsList/ProductActions';
-import {getProductsList} from '../selectors/productsSelectors'
+import {getProductsList, getProductListTotalCount} from '../selectors/productsSelectors'
 // import ProductMap from '../model/ProductMap'
 
+import toJs from '../../../components/HOC/toJs'
 import retailPointHOC from '../components/ProductsList/retailPointRequiredHOC';
 
 class ProductListContainer extends React.Component {
+
     componentDidMount() {
-        const {selectedPoint, getProducts} = this.props;
-        getProducts(selectedPoint, 0, 50);
+        this.start = 0;
+        this.count = 50;
+        this.filtred = false;
+       // this.getProductsList();
+    }
+
+    getProductsList() {
+        const {selectedPoint, getProducts, productsTotalCount} = this.props;
+
+        if (productsTotalCount >= this.start) {
+            getProducts(selectedPoint, this.start, this.count);
+            this.start += this.count;
+        }
+    }
+
+    onFilterChanged(event) {
+        let value = event.target.value;
+        const {selectedPoint, getProductsByFilter} = this.props;
+        this.start = 0;
+        if (value && value.length > 2) {
+            this.filtred = true;
+            getProductsByFilter(selectedPoint, this.start, this.count, value);
+        } else if (!value && this.filtred) {
+            getProductsByFilter(selectedPoint, this.start, this.count);
+        }
     }
 
     render() {
-        const {products, openProduct, selectedPoint} = this.props;
+        const {products, openProduct, selectedPoint, loading} = this.props;
         return (<div>
             <div class="title_panel">
 
@@ -26,21 +51,28 @@ class ProductListContainer extends React.Component {
 
                 <ProductActions/>
             </div>
-            {products ? <ProductList items={products} openProduct={openProduct} selectedPoint={selectedPoint}/> : null}
+            <ProductList items={products} openProduct={openProduct} selectedPoint={selectedPoint}
+                         loadNext={::this.getProductsList} onFilterChanged={::this.onFilterChanged} loading={loading}/>
         </div>);
     }
 }
 
+
 function mapStateToProps(state, ownProps) {
     return {
         error: state.products.get('error'),
-        products: getProductsList(state)
+        products: getProductsList(state),
+        productsTotalCount: getProductListTotalCount(state),
+        loading: state.products.get('loading')
     }
 }
 
+
+//todo https://docs.mobify.com/progressive-web/latest/guides/best-practices-guide/
 function mapDispatchToProps(dispatch) {
     return {
         getProducts: bindActionCreators(getProducts.request, dispatch),
+        getProductsByFilter: bindActionCreators(getProducts.requestWithFilter, dispatch),
         openProduct: (code, point) => {
             dispatch(push({pathname: `/product/${point}/${code}`}))
         }
@@ -52,4 +84,4 @@ ProductListContainer.propTypes = {
     //products: arrayOf(ProductShape).isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(retailPointHOC(ProductListContainer));
+export default connect(mapStateToProps, mapDispatchToProps)(retailPointHOC(toJs(ProductListContainer)));

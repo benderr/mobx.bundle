@@ -9,5 +9,10 @@ export const getProductsData = (state) => {
 
 export const getProductsList = createSelector([getProductsData], data => {
 	const list = data.get('productsList');
-	return list != null ? list.toJS() : [];
+	return list;
+});
+
+export const getProductListTotalCount = createSelector([getProductsData], data => {
+	const list = data.get('productListTotalCount');
+	return list;
 });
