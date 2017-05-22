@@ -23,7 +23,7 @@ class ProductForm extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, loading, onSave, initialValues:product, errors} = this.props;
+		const {handleSubmit, loading, onSave, initialValues:product, error, onCancels} = this.props;
 		const submit = ({email, password}) => {
 			//dispatch(login.request(email, password, backPath));
 			onSave();
@@ -163,7 +163,7 @@ class ProductForm extends React.Component {
 		</div>
 			<div class="page_bottom_panel">
 			<a class="button middle wide">Сохранить</a>
-			<a class="button middle wide clean">Отмена</a>
+			<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
 			</div>
 		</span>
 		)
@@ -173,7 +173,8 @@ class ProductForm extends React.Component {
 ProductForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	onSave: PropTypes.func.isRequired,
-	initialValues: PropTypes.object.isRequired
+	initialValues: PropTypes.object.isRequired,
+	onCancel: PropTypes.func.isRequired
 };
 
 export default  reduxForm({

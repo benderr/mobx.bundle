@@ -43,7 +43,6 @@ function* fetchRetailPoints() {
 	try {
 		yield put(getRetailPoints.request());
 		const data = yield call(dataContext.getRetailPoints);
-		console.log(data);
 		yield put(getRetailPoints.success(data));
 
 	} catch (error) {
