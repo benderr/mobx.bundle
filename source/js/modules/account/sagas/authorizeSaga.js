@@ -59,10 +59,8 @@ function* initApp() {
 		let authData = yield select(accountSelectors.getAuthData);
 
 		if (authData == null) {
-			console.log('GET_RETAIL_POINTS.REQUEST 1')
 			const token = yield call(localStorage.getItem, xToken);
 			if (token) {
-				console.log('GET_RETAIL_POINTS.REQUEST 3')
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
 				yield put(login.success(profile));
@@ -71,11 +69,9 @@ function* initApp() {
 
 				yield fork(retailPointsSaga.runRetailPoints);
 			} else {
-				console.log('GET_RETAIL_POINTS.REQUEST 2')
 				yield put(push({pathname: '/signin'}));
 			}
 		} else {
-			console.log('GET_RETAIL_POINTS.REQUEST 0')
 			yield fork(retailPointsSaga.runRetailPoints);
 			//yield put(retailPointsActions.GET_RETAIL_POINTS.REQUEST);
 		}
