@@ -8,18 +8,16 @@ export const getProductsData = (state) => {
 };
 
 export const getProductsList = createSelector([getProductsData], data => {
-	const list = data.get('productsList');
-	return list;
+	return data.get('productsList');
 });
 
 export const getProductListTotalCount = createSelector([getProductsData], data => {
-	const list = data.get('productListTotalCount');
-	return list;
+	return data.get('productListTotalCount');
 });
 
-export const getProduct = (id) => createSelector([getProductsList], products => {
-	if (products)
-		return products.filter(s => s.id == id)[0];
+export const getProduct = (inventCode) => createSelector([getProductsList], products => {
+	if (products && products.size > 0)
+		return products.filter(s => s.get('inventCode') == inventCode).get(0);
 	return null;
 });
 

@@ -1,8 +1,6 @@
-/**
- * Created by RobertSabiryanov on 14.05.17.
- */
 import {GET_PRODUCTS, GET_FILTRED_PRODUCTS} from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
+import * as selectors from '../selectors/productsSelectors'
 
 export const initialState = Map({
 	loading: true,
@@ -32,7 +30,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			productsList: state.get('productsList').concat(action.response.productsList),
+			productsList: state.get('productsList').concat(fromJS(action.response.productsList)), //todo заменить на селектор
 			productListTotalCount: action.response.totalCount
 		});
 	},

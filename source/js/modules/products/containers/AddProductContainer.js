@@ -17,8 +17,8 @@ class AddProductContainer extends DefaultLayerLayout {
 
 	render() {
 
-		const {productMap}=this.props;
-		const product = productMap.toJS();
+		const {product}=this.props;
+		const productModel = product ? product.toJS() : null;
 		return (
 			<article className="page">
 				<div className="page_header">
@@ -26,8 +26,9 @@ class AddProductContainer extends DefaultLayerLayout {
 					{this.getToogleButton()}
 					<h1>Добавление товара</h1>
 				</div>
-				{product && <ProductForm onSave={::this.onSaveProduct} initialValues={product} onCancel={::this.closeLayer}/>}
-				{!product && <span>Продукт не найден</span>}
+				{productModel &&
+				<ProductForm onSave={::this.onSaveProduct} initialValues={productModel} onCancel={::this.closeLayer}/>}
+				{!productModel && <span>Продукт не найден</span>}
 			</article>
 		);
 	}
@@ -41,7 +42,7 @@ export default AddProductContainer;
 
 function mapStateToProps(state, ownProps) {
 	const {id}=ownProps.match.params;
-	const product = getProduct(state)(id); //todo переделать на запуск саги с получением продукта
+	const product = getProduct(id)(state); //todo переделать на запуск саги с получением продукта
 	return {
 		product: product
 	}

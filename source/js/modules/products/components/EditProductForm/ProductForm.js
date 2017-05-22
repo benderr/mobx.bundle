@@ -23,7 +23,7 @@ class ProductForm extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, loading, onSave, initialValues:product, error, onCancels} = this.props;
+		const {handleSubmit, loading, onSave, initialValues:product, error, onCancel} = this.props;
 		const submit = ({email, password}) => {
 			//dispatch(login.request(email, password, backPath));
 			onSave();

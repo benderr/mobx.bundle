@@ -23,14 +23,14 @@ function* setSelectedPoint() {
 
 	if (!selectedPoint) {
 		const points = yield select(retailPointSelectors.getRetailPointList);
-		if (points.length) {
+		if (points.size > 0) {
 			let pointId = localStorage.getItem(currencyRetailPointKey);
 			//сначала смотрим тот который localStorage
-			if (pointId && points.some(s => s.id == pointId)) {
+			if (pointId && points.some(s => s.get('id') == pointId)) {
 				yield put(setRetailPoint(pointId))
 			}
 			else {
-				yield put(setRetailPoint(points[0].id))
+				yield put(setRetailPoint(points.get(0).get('id')))
 			}
 		}
 	}
