@@ -4,7 +4,7 @@
 import {createSelector} from 'reselect'
 
 export const getProductsData = (state) => {
-	return state.products;
+	return state.get('products');
 };
 
 export const getProductsList = createSelector([getProductsData], data => {
@@ -21,5 +21,9 @@ export const getProduct = (id) => createSelector([getProductsList], products => 
 	if (products)
 		return products.filter(s => s.id == id)[0];
 	return null;
+});
+
+export const getProductLoading = createSelector([getProductsData], data => {
+	return data.get('loading');
 });
 

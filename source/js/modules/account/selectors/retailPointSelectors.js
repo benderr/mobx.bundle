@@ -12,8 +12,4 @@ export const getCurrentRetailPointId = createSelector([getRetailPointsData], rpD
 	return rpData.get('selectedPointId');
 });
 
-Map.prototype.convertJS = function () {
-	console.log(this);
-};
-
 

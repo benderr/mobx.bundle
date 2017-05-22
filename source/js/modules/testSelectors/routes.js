@@ -4,11 +4,11 @@ import TransactionsContainer, {TransactionsContainer2} from './containers/Transa
 
 export function getRoutes() {
 	return {
-		list: {
-			path: '/',
-			exact: true,
-			component: ()=>{ console.log('render home lsit'); return (<span></span>); }
-		},
+		// list: {
+		// 	path: '/',
+		// 	exact: true,
+		// 	component: ()=>{ console.log('render home lsit'); return (<span></span>); }
+		// },
 		listExampleSecond: {
 			path: '/list1',
 			exact: true,

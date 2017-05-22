@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {getProducts} from '../actions/productActions';
 import ProductList from '../components/ProductsList/ProductListComponent';
 import ProductActions from '../components/ProductsList/ProductActions';
-import {getProductsList, getProductListTotalCount} from '../selectors/productsSelectors'
+import {getProductsList, getProductListTotalCount, getProductLoading} from '../selectors/productsSelectors'
 // import ProductMap from '../model/ProductMap'
 
 import toJs from '../../../components/HOC/toJs'
@@ -60,10 +60,10 @@ class ProductListContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        error: state.products.get('error'),
+        //error: state.products.get('error'),
         products: getProductsList(state),
         productsTotalCount: getProductListTotalCount(state),
-        loading: state.products.get('loading')
+        loading: getProductLoading(state)
     }
 }
 
