@@ -28,9 +28,7 @@ const validate = values => {
 const SignInForm = props => {
 	const {handleSubmit, loading, onLogin, redirectUrl, errors} = props;
 	const submit = (props) => {
-		console.log(props);
-		//dispatch(login.request(email, password, backPath));
-		onLogin(props.get('email'), props.get('password'), redirectUrl);
+		onLogin(props);
 	};
 
 	const getError = (error) => {

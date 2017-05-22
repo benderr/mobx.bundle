@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm} from 'redux-form/immutable';
 import InputRender from 'common/formElements/InputRender'
 import {isEmpty} from 'common/validators/validators'
 import PropTypes from 'prop-types';
