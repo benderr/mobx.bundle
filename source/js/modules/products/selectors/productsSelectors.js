@@ -16,3 +16,10 @@ export const getProductListTotalCount = createSelector([getProductsData], data =
 	const list = data.get('productListTotalCount');
 	return list;
 });
+
+export const getProduct = (id) => createSelector([getProductsList], products => {
+	if (products)
+		return products.filter(s => s.id == id)[0];
+	return null;
+});
+

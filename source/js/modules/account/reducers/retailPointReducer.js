@@ -1,4 +1,4 @@
-import {Map} from 'immutable';
+import {Map, fromJS} from 'immutable';
 import {GET_RETAIL_POINTS, SET_RETAIL_POINT} from '../enums/actions'
 
 export const initialState = Map({
@@ -26,14 +26,14 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			retailPoints: action.response
+			retailPoints: fromJS(action.response)
 		});
 	},
 
 	[GET_RETAIL_POINTS.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			error: action.error,
+			error: fromJS(action.error),
 			retailPoints: []
 		});
 	},

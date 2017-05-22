@@ -8,6 +8,10 @@ import RetailPointListItem from './RetailPointListItem'
 import {bindActionCreators} from 'redux';
 import * as retailPointActions from '../../actions/retailPointActions';
 
+const toJS = (obj, def = null) => {
+	return obj ? obj.toJS() : def
+}
+
 const mapActions = dispatch => ({
 	onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch)
 });
@@ -24,11 +28,8 @@ class RetailPointList extends React.Component {
 		selectedPointId: string
 	};
 
-	onSelectPoint(id) {
-		alert(this.props.onSelectPoint)
-	}
-
 	render() {
+		const points = toJS(this.props.points, []);
 		return (
 			<div class='widget_block'>
 				{/*{this.props.selectedPointId}*/}
@@ -38,7 +39,7 @@ class RetailPointList extends React.Component {
 						<div class='product_name'>Адрес</div>
 						<div class='product_price'>Активный</div>
 					</div>
-					{this.props.points.map(point => (
+					{points.map(point => (
 						<RetailPointListItem key={'listitem_' + point.id}
 											 point={point}
 											 selectedPointId={this.props.selectedPointId}

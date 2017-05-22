@@ -1,8 +1,8 @@
 /**
  * Created by RobertSabiryanov on 14.05.17.
  */
-import {Map, List} from 'immutable';
 import {GET_PRODUCTS, GET_FILTRED_PRODUCTS} from '../enums/actions';
+import {Map, List, fromJS} from 'immutable';
 
 export const initialState = Map({
 	loading: true,
@@ -40,7 +40,7 @@ export const actionHandlers = {
 	[GET_PRODUCTS.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			error: action.error
+			error: fromJS(action.error),
 		});
 	}
 };

@@ -6,17 +6,13 @@ class TransactionsContainer extends React.Component {
 
     mustRender = this.props.mustRender;
 
-    shouldComponentUpdate(nextProps, nextState){
-        return nextProps.mustRender;
-    }
-
     render() {
         console.log('TransactionsContainer render');
         return (
             <div>
+                listHome
                 <TransactionList listId={'listHome'}/>
                 {/*<TransactionList listId={'listSecond'}/>*/}
-
             </div>);
     }
 }
@@ -27,8 +23,7 @@ export const TransactionsContainer2 = () => {
     console.log('TransactionsContainer2 render');
     return (
         <div>
-
+            listSecond
             <TransactionList listId={'listSecond'}/>
-
         </div>);
 };

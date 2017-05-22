@@ -1,8 +1,9 @@
-import {createStore as _createStore, combineReducers, compose} from 'redux';
-import { createBrowserHistory } from 'history'
-import { connectRouter } from 'connected-react-router'
+import {createStore, compose} from 'redux';
+import { createBrowserHistory } from 'history' //todo добавить в package?
+import { connectRouter } from 'connected-react-router/immutable'
+import { combineReducers } from 'redux-immutable';
 
-export default function createStore({middleware, reducers, initionalState, sagaMiddleware, sagas, history}) {
+export default function ({middleware, reducers, initionalState, sagaMiddleware, sagas, history}) {
 
 	//let createHistory;
 
@@ -23,7 +24,7 @@ export default function createStore({middleware, reducers, initionalState, sagaM
 
 	let finalCreateStore = compose(
 		...middleware
-	)(_createStore);
+	)(createStore);
 
 	const store = finalCreateStore(connectRouter(history)(allReducers), initionalState);
 

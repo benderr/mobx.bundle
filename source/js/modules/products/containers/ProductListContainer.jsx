@@ -71,7 +71,7 @@ function mapStateToProps(state, ownProps) {
 //todo https://docs.mobify.com/progressive-web/latest/guides/best-practices-guide/
 function mapDispatchToProps(dispatch) {
     return {
-        getProducts: bindActionCreators(getProducts.request, dispatch),
+        getProducts: (getProducts.request, dispatch),
         getProductsByFilter: bindActionCreators(getProducts.requestWithFilter, dispatch),
         openProduct: (code, point) => {
             dispatch(push({pathname: `/product/${point}/${code}`}))

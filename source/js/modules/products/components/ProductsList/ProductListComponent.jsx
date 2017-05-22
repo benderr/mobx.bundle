@@ -20,6 +20,7 @@ class ProductListComponent extends React.Component {
         if (loading) {
             className += ' loading_block';
         }
+
         return (
 
 
