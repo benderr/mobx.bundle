@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import {connect} from 'react-redux';
-import {getCurrentRetailPointId} from 'modules/account/selectors/retailPointSelectors'
+import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 
 export default (Component) => {
 	class RetailPointRequiredHOC extends React.Component {
