@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
-import ProductForm from '../components/EditProductForm/ProductForm';
+import ProductForm from '../components/ProductCard/ProductCard';
 import * as productActions from '../actions/productActions'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -45,7 +45,8 @@ class EditProductContainer extends DefaultLayerLayout {
 					<h1>Редактирование товара</h1>
 				</div>
 				{product &&
-				<ProductForm onSave={::this.onSaveProduct} saving={saving} initialValues={product} onCancel={::this.closeLayer}/>}
+				<ProductForm onSave={::this.onSaveProduct} saving={saving} initialValues={product}
+							 onCancel={::this.closeLayer}/>}
 				<LoaderBlock loading={loading}/>
 				{!product && !loading && <span>Продукт не найден</span>}
 			</article>
