@@ -7,10 +7,7 @@ import {getRetailPointList, getCurrentRetailPointId} from '../../selectors/retai
 import RetailPointListItem from './RetailPointListItem'
 import {bindActionCreators} from 'redux';
 import * as retailPointActions from '../../actions/retailPointActions';
-
-const toJS = (obj, def = null) => {
-	return obj ? obj.toJS() : def
-}
+import toJs from 'components/HOC/toJs'
 
 const mapActions = dispatch => ({
 	onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch)
@@ -22,6 +19,7 @@ const mapState = state => ({
 });
 
 @connect(mapState, mapActions)
+@toJs
 class RetailPointList extends React.Component {
 	static propTypes = {
 		points: arrayOf(RetailPointShape),
@@ -29,7 +27,7 @@ class RetailPointList extends React.Component {
 	};
 
 	render() {
-		const points = toJS(this.props.points, []);
+		const points = this.props.points || [];
 		return (
 
 			<div class='widget_block'>

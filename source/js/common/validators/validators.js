@@ -7,5 +7,5 @@ export const validEmail = (email, required = false) => {
 };
 
 export const isEmpty = val => {
-	return val == '' || val == null || val == undefined;
+	return val === '' || val === null || val === undefined;
 };
