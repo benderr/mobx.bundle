@@ -15,10 +15,8 @@ export const getProductListTotalCount = createSelector([getProductsData], data =
 	return data.get('productListTotalCount');
 });
 
-export const getProduct = (inventCode) => createSelector([getProductsList], products => {
-	if (products && products.size > 0)
-		return products.filter(s => s.get('inventCode') == inventCode).get(0);
-	return null;
+export const getProductView = (inventCode) => createSelector([getProductsData], data => {
+	return data.getIn(['productView', inventCode], null);
 });
 
 export const getProductLoading = createSelector([getProductsData], data => {

@@ -23,4 +23,23 @@ export const getProducts = {
 	failure: (error) => createAction(actions.GET_PRODUCTS.FAILURE, {error})
 };
 
+export const getProductDetails = {
+	request: ({inventCode, point, catalog}) => createAction(actions.GET_PRODUCT_DETAIL.REQUEST, {
+		inventCode,
+		point,
+		catalog
+	}),
+	success: ({product}) => createAction(actions.GET_PRODUCT_DETAIL.SUCCESS, {product}),
+	failure: ({inventCode, error}) => createAction(actions.GET_PRODUCT_DETAIL.FAILURE, {inventCode, error})
+};
+
+
+export const saveProductDetails = {
+	request: ({point, product}) => createAction(actions.SAVE_PRODUCT_DETAIL.REQUEST, {
+		point,
+		product
+	}),
+	success: ({product}) => createAction(actions.SAVE_PRODUCT_DETAIL.SUCCESS, {product}),
+	failure: ({inventCode, error}) => createAction(actions.SAVE_PRODUCT_DETAIL.FAILURE, {inventCode, error})
+};
 

@@ -1,12 +1,12 @@
-import {GET_PRODUCTS, GET_FILTRED_PRODUCTS} from '../enums/actions';
+import {GET_PRODUCTS, GET_FILTRED_PRODUCTS, GET_PRODUCT_DETAIL, SAVE_PRODUCT_DETAIL} from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
-import * as selectors from '../selectors/productsSelectors'
 
 export const initialState = Map({
 	loading: true,
 	error: null,
 	productsList: List([]),
-	productListTotalCount: 0
+	productListTotalCount: 0,
+	productView: Map({})
 });
 
 export const actionHandlers = {
@@ -40,7 +40,47 @@ export const actionHandlers = {
 			loading: false,
 			error: fromJS(action.error),
 		});
-	}
+	},
+
+
+	[GET_PRODUCT_DETAIL.REQUEST]: (state, {inventCode}) => {
+		return state.setIn(['productView', inventCode],
+			Map({
+				loading: true,
+				product: null,
+				error: null
+			}));
+	},
+
+	[GET_PRODUCT_DETAIL.SUCCESS]: (state, {product}) => {
+		return state.setIn(['productView', product.inventCode],
+			Map({
+				loading: false,
+				product: fromJS(product),
+				error: null
+			}));
+	},
+
+	[GET_PRODUCT_DETAIL.FAILURE]: (state, {inventCode, error}) => {
+		return state.setIn(['productView', inventCode],
+			Map({
+				loading: false,
+				product: null,
+				error: fromJS(error)
+			}));
+	},
+
+	[SAVE_PRODUCT_DETAIL.REQUEST]: (state, {product}) => {
+		return state.setIn(['productView', product.inventCode, 'saving'], true);
+	},
+
+	[SAVE_PRODUCT_DETAIL.SUCCESS]: (state, {product}) => {
+		return state.setIn(['productView', product.inventCode, 'saving'], false);
+	},
+
+	[SAVE_PRODUCT_DETAIL.FAILURE]: (state, {inventCode, error}) => {
+		return state.setIn(['productView', inventCode, 'error'], fromJS(error));
+	},
 };
 
 export default (createReducer) => createReducer(initialState, actionHandlers);

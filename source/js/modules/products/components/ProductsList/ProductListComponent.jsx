@@ -55,7 +55,7 @@ ProductListComponent.propTypes = {
     selectedPoint: PropTypes.string.isRequired,
     loadNext: PropTypes.func,
     onFilterChanged: PropTypes.func.isRequired,
-    loading: PropTypes.boolean
+    loading: PropTypes.bool
 }
 
 export default ProductListComponent;

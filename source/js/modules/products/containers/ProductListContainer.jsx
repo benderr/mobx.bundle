@@ -9,8 +9,8 @@ import ProductActions from '../components/ProductsList/ProductActions';
 import {getProductsList, getProductListTotalCount, getProductLoading} from '../selectors/productsSelectors'
 // import ProductMap from '../model/ProductMap'
 
-import toJs from '../../../components/HOC/toJs'
-import retailPointHOC from '../components/ProductsList/retailPointRequiredHOC';
+import toJs from 'components/HOC/toJs'
+import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 
 class ProductListContainer extends React.Component {
 
@@ -18,7 +18,7 @@ class ProductListContainer extends React.Component {
         this.start = 0;
         this.count = 50;
         this.filtred = false;
-       // this.getProductsList();
+        // this.getProductsList();
     }
 
     getProductsList() {

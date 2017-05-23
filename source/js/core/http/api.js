@@ -82,7 +82,10 @@ function createApi(http) {
 				path.push(alias || name);
 
 				if (id) {
-					path.push(id);
+					if (Array.isArray(id))
+						id.forEach(s => path.push(s));
+					else
+						path.push(id);
 				}
 
 				if (endPoint) {
