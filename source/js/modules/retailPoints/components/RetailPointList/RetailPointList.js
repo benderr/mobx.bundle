@@ -31,13 +31,15 @@ class RetailPointList extends React.Component {
 	render() {
 		const points = toJS(this.props.points, []);
 		return (
+
 			<div class='widget_block'>
 				{/*{this.props.selectedPointId}*/}
-				<div class='table  table_products'>
+				<div class='table  table_pos'>
 					<div class='table_head'>
-						<div class='product_id'>Название</div>
-						<div class='product_name'>Адрес</div>
-						<div class='product_price'>Активный</div>
+						<div class='pos_name'>Название</div>
+						<div class='pos_address'>Адрес</div>
+						<div class="pos_amount">Сумма продаж</div>
+						<div class="pos_action">Действия</div>
 					</div>
 					{points.map(point => (
 						<RetailPointListItem key={'listitem_' + point.id}
