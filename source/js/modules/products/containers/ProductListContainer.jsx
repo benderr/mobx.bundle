@@ -15,7 +15,7 @@ import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 class ProductListContainer extends React.Component {
 
     componentDidMount() {
-        this.start = 0;
+        this.start = 50;
         this.count = 50;
         this.filtred = false;
         // this.getProductsList();
@@ -71,7 +71,7 @@ function mapStateToProps(state, ownProps) {
 //todo https://docs.mobify.com/progressive-web/latest/guides/best-practices-guide/
 function mapDispatchToProps(dispatch) {
     return {
-        getProducts: (getProducts.request, dispatch),
+        getProducts: bindActionCreators(getProducts.request, dispatch),
         getProductsByFilter: bindActionCreators(getProducts.requestWithFilter, dispatch),
         openProduct: (code, point) => {
             dispatch(push({pathname: `/product/${point}/${code}`}))

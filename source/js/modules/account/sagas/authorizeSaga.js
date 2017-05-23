@@ -5,7 +5,8 @@ import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../dataProvider/accountDataContext'
 import * as accountSelectors from '../selectors/accountSelectors'
 import {push, replace} from 'connected-react-router'
-import * as retailPointsSaga from './retailPointsSaga'
+//import * as retailPointsActions from '../../retailPoints/enums/actions';
+import * as retailPointsSaga from '../../retailPoints/sagas/retailPointsSaga'
 
 const xToken = 'X-TOKEN';
 
@@ -56,18 +57,23 @@ function* initApp() {
 	try {
 		yield put(checkingAccessStart());
 		let authData = yield select(accountSelectors.getAuthData);
+
 		if (authData == null) {
 			const token = yield call(localStorage.getItem, xToken);
 			if (token) {
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
 				yield put(login.success(profile));
+				//yield put(retailPointsActions.GET_RETAIL_POINTS.REQUEST);
+				//console.log(retailPointsActions.GET_RETAIL_POINTS.REQUEST)
+
 				yield fork(retailPointsSaga.runRetailPoints);
 			} else {
 				yield put(push({pathname: '/signin'}));
 			}
 		} else {
 			yield fork(retailPointsSaga.runRetailPoints);
+			//yield put(retailPointsActions.GET_RETAIL_POINTS.REQUEST);
 		}
 		yield put(checkingAccessStop());
 

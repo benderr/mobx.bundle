@@ -3,8 +3,8 @@
  */
 import {call, put, takeLatest, takeEvery} from 'redux-saga/effects'
 import * as actions from '../enums/actions';
-import * as accountActions from '../../account/enums/actions';
-import {getProducts, getProductDetails, saveProductDetails} from '../actions/productActions'
+import * as retailPointsActions from '../../retailPoints/enums/actions';
+import {getProductDetails, saveProductDetails, getProducts} from '../actions/productActions'
 import * as dataContext from '../dataProvider/productDataContext'
 
 
@@ -44,7 +44,7 @@ function* saveProductDetailsProcess({product, point}) {
 
 export default function*() {
 	yield [
-		takeEvery(accountActions.SET_RETAIL_POINT, initProductsProcess),
+		takeEvery(retailPointsActions.SET_RETAIL_POINT, initProductsProcess),
 		takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess),
 		takeLatest(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
 		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetailsProcess),
