@@ -23,6 +23,7 @@ export const toServer = (point) => {
 		address: point.address,
 		phone: point.phone,
 		inn: point.inn,
+		id: point.id
 	};
 	return result;
 };

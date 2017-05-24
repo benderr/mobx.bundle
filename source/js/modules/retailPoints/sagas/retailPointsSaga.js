@@ -5,6 +5,7 @@ import {addRetailPoint, getRetailPoints, setRetailPoint} from '../actions/retail
 import localStorage from 'core/storage/localStorage'
 const currencyRetailPointKey = 'currencyRetailPointKey';
 import * as actions from '../enums/actions'
+import {uuid} from 'infrastructure/utils/uuidGenerator'
 
 /**
  * Получение и установка торговых точек
@@ -53,13 +54,11 @@ function* fetchRetailPoints() {
 function* addRetailPointProcess(payload) {
 	try {
 		let point = payload.point;
-		console.log('ADD_RETAIL_POINT');
-		const result = yield call(dataContext.addRetailPoint, point);
-		point.id = result.data.id;
-		yield put(addRetailPoint.success(point));
+		point.id = uuid();
+		const newPoint = yield call(dataContext.addRetailPoint, point);
+		yield put(addRetailPoint.success(newPoint));
 	}
 	catch (error) {
-		console.log('ADD_RETAIL_POINT ERROR');
 		yield put(addRetailPoint.failure(error));
 	}
 

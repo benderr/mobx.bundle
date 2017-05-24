@@ -111,7 +111,8 @@ class RetailPointForm extends React.Component {
 }
 RetailPointForm.propTypes = {
     onSave: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired
+    onCancel: PropTypes.func.isRequired,
+    loading: PropTypes.bool
 };
 
 export default reduxForm({

@@ -49,7 +49,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			retailPoints: state.get('retailPoints').concat(fromJS(action.response.addedPoint)),
+			retailPoints: state.get('retailPoints').concat(fromJS([action.response])),
 		});
 	},
 
