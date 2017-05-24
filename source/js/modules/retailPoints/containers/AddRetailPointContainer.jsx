@@ -13,6 +13,7 @@ class AddRetailPointContainer extends DefaultLayerLayout {
     onSave(data) {
         const {addRetailPoint} = this.props;
         addRetailPoint(data);
+        this.closeLayer();
     }
 
     render() {

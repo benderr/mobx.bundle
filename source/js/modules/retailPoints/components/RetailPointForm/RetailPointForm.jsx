@@ -18,12 +18,22 @@ const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
 const validateKpp = (text) => (val) => !isCorrectKpp(val) ? text : undefined;
 
+let disableKpp = true;
 const validate = values => {
     //const errors = {};
     return null;
 };
 
+const parseInn = value => {
+    disableKpp = value.length == 12;
+}
+
 class RetailPointForm extends React.Component {
+
+    handleDemoChange(event) {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+    }
 
     render() {
         const {handleSubmit, pristine, submitting, onSave, onCancel} = this.props;
@@ -35,8 +45,8 @@ class RetailPointForm extends React.Component {
                 phone: props.get('phone'),
                 inn: props.get('inn'),
                 kpp: props.get('kpp'),
-                mock:{
-                    enabled: false
+                mock: {
+                    enabled: this.refs.demoProducts.checked
                 }
             };
             onSave(retailPoint);
@@ -82,7 +92,8 @@ class RetailPointForm extends React.Component {
                                class="w100"
                                component={InputRender}
                                validate={[isRequired('Укажите ИНН'), validateInn('Не совпадают контрольные цифры ИНН')]}
-                               normalize={normalizeInn}/>
+                               normalize={normalizeInn}
+                               parse={parseInn}/>
                     </div>
                 </div>
 
@@ -93,11 +104,11 @@ class RetailPointForm extends React.Component {
                                class="w100"
                                component={InputRender}
                                validate={[isRequired('Укажите КПП'), validateKpp('КПП должен содержать 9 цифр')]}
-                               normalize={normalizeKpp}/>
+                               normalize={normalizeKpp} disabled={disableKpp}/>
                     </div>
                 </div>
                 <div class="form_group form_horizontal mt24">
-                    <input type="checkbox" name="c3" id="21"/>
+                    <input type="checkbox" name="demoProducts" id="21" ref="demoProducts"/>
                     <label for="21" class="label_check"><i class="icon"></i><span class="f_small">Заполнить демо-товарами</span></label>
                 </div>
             </div>
