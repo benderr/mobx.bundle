@@ -1,8 +1,11 @@
-import * as mapper from './accountMapper'
-import api from 'infrastructure/api/api'
+import api from 'infrastructure/api/api';
+import {toServer} from './retailPointsMapper';
 
-function getRetailPoints() {
+export const getRetailPoints = () => {
 	return api.v1().retailpoints().get().then(res => res.data);
-}
+};
 
-export {getRetailPoints}
+export const addRetailPoint = (point) => {
+	//
+	return api.v1().retailpoints().post(toServer(point), {querystring: 'type=BLANK'}).then(res => res.data);
+};

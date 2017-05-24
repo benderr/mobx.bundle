@@ -14,6 +14,6 @@ export function getRoutes() {
 
 export function getSagas() {
 	return [
-		//sagas()
+		sagas()
 	];
 }

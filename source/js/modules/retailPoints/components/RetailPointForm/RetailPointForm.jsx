@@ -4,9 +4,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Field, reduxForm} from 'redux-form/immutable';
+import InputRender from 'common/formElements/InputRender'
+import PhoneField from 'common/formElements/fields/PhoneField'
 
+import {isCorrectInn, isCorrectKpp} from 'common/validators/validators'
+import normalizeKpp from 'common/formElements/fields/normalizeKpp'
+import normalizeInn from 'common/formElements/fields/normalizeInn'
+
+
+import {isEmpty} from 'common/validators/validators'
 
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
+const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
+const validateKpp = (text) => (val) => !isCorrectKpp(val) ? text : undefined;
 
 const validate = values => {
     //const errors = {};
@@ -16,65 +26,87 @@ const validate = values => {
 class RetailPointForm extends React.Component {
 
     render() {
-        const {onSave, onCancel} = this.props;
+        const {handleSubmit, pristine, submitting, onSave, onCancel} = this.props;
 
-        return (<div>
+        const submit = (props) => {
+            let retailPoint = {
+                name: props.get('name'),
+                address: props.get('address'),
+                phone: props.get('phone'),
+                inn: props.get('inn'),
+                kpp: props.get('kpp'),
+                mock:{
+                    enabled: false
+                }
+            };
+            onSave(retailPoint);
+        };
+
+
+        return (<form onSubmit={handleSubmit(submit)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
                     <div class="property_value col nine">
-                        <input type="text" class="w100"/>
+                        <Field name="name" type="text" maxLength="255"
+                               class="w100"
+                               component={InputRender}
+                               validate={[isRequired('Укажите название торговой точки')]}/>
                     </div>
                 </div>
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Адрес</div>
                     <div class="property_value col nine">
-                        <input type="text" class="w100"/>
+                        <Field name="address" type="text" maxLength="255"
+                               class="w100"
+                               component={InputRender}
+                               validate={[isRequired('Укажите адрес торговой точки')]}/>
                     </div>
                 </div>
 
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Телефон</div>
-                    <div class="property_value col four">
-                        <input type="text" class="w100" value="+7"/>
+                    <div class="property_value col w35">
+                        <div class="input_group">
+                            <div class="input_group_addon f_normal">+7</div>
+                            <PhoneField name="phone" class="w100"
+                                        validate={[isRequired('Укажите номер мобильного телефона')]}/>
+                        </div>
                     </div>
                 </div>
 
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">ИНН</div>
-                    <div class="property_value col four">
-                        <input type="text" class="w100"/>
+                    <div class="property_value col w35">
+                        <Field name="inn" type="text" maxLength="12"
+                               class="w100"
+                               component={InputRender}
+                               validate={[isRequired('Укажите ИНН'), validateInn('Не совпадают контрольные цифры ИНН')]}
+                               normalize={normalizeInn}/>
                     </div>
                 </div>
 
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">КПП</div>
-                    <div class="property_value col four">
-                        <input type="text" class="w100"/>
+                    <div class="property_value col w35">
+                        <Field name="kpp" type="text" maxlength="9"
+                               class="w100"
+                               component={InputRender}
+                               validate={[isRequired('Укажите КПП'), validateKpp('КПП должен содержать 9 цифр')]}
+                               normalize={normalizeKpp}/>
                     </div>
                 </div>
-
-                <div class="form_group form_horizontal">
-                    <div class="property_label col three">Вид кассы</div>
-                    <div class="property_value col nine">
-                        <div class="jsRadSelect2  w100" data-placeholder="Селект" name="adfasd" id="adsf">
-                            <option class="jsRadSelect2Options" value="1">Азат</option>
-                            <option class="jsRadSelect2Options" value="2">Алия Арсланова</option>
-                            <option class="jsRadSelect2Options" value="3">Андрей Вариков</option>
-                            <option class="jsRadSelect2Options" value="4">Дамир Амиров</option>
-                            <option class="jsRadSelect2Options" value="5">Денис Маслов</option>
-                            <option class="jsRadSelect2Options" value="6">Динар Галимов Радикович Динар Галимов
-                                Радикович
-                            </option>
-                        </div>
-                    </div>
+                <div class="form_group form_horizontal mt24">
+                    <input type="checkbox" name="c3" id="21"/>
+                    <label for="21" class="label_check"><i class="icon"></i><span class="f_small">Заполнить демо-товарами</span></label>
                 </div>
             </div>
             <div class="page_bottom_panel">
-                <a class="button middle wide" onClick={onSave}>Сохранить</a>
+                <button disabled={pristine || submitting} className="button middle wide" type="submit">Сохранить
+                </button>
                 <a class="button middle wide clean" onClick={onCancel}>Отмена</a>
             </div>
-        </div>)
+        </form>)
     }
 }
 RetailPointForm.propTypes = {
@@ -82,8 +114,7 @@ RetailPointForm.propTypes = {
     onCancel: PropTypes.func.isRequired
 };
 
-export default  reduxForm({
-    form: 'retailPointForm',// имя формы в state (state.form.auth)
+export default reduxForm({
+    form: 'retailPointForm',
     validate
-    //asyncValidate
 })(RetailPointForm);

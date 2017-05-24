@@ -1,17 +1,15 @@
 import * as retailPointSelectors from '../selectors/retailPointSelectors'
 import {call, put, select, fork, take, takeEvery} from 'redux-saga/effects'
-import * as dataContext  from '../../account/dataProvider/accountDataContext'
-import {getRetailPoints, setRetailPoint} from '../actions/retailPointActions'
+import * as dataContext  from '../dataProvider/retialPointsDataContext'
+import {addRetailPoint, getRetailPoints, setRetailPoint} from '../actions/retailPointActions'
 import localStorage from 'core/storage/localStorage'
 const currencyRetailPointKey = 'currencyRetailPointKey';
 import * as actions from '../enums/actions'
-import * as retailPointsActions from '../../retailPoints/enums/actions';
 
 /**
  * Получение и установка торговых точек
  */
 export function* runRetailPoints() {
-	console.log('GET_RETAIL_POINTS');
 	yield fork(fetchRetailPoints);
 	yield take(actions.GET_RETAIL_POINTS.SUCCESS);
 	yield call(setSelectedPoint);
@@ -52,6 +50,24 @@ function* fetchRetailPoints() {
 	}
 }
 
-// export default function*() {
-// 	takeEvery(retailPointsActions.GET_RETAIL_POINTS.REQUEST, runRetailPoints)
-// }
+function* addRetailPointProcess(payload) {
+	try {
+		let point = payload.point;
+		console.log('ADD_RETAIL_POINT');
+		const result = yield call(dataContext.addRetailPoint, point);
+		point.id = result.data.id;
+		yield put(addRetailPoint.success(point));
+	}
+	catch (error) {
+		console.log('ADD_RETAIL_POINT ERROR');
+		yield put(addRetailPoint.failure(error));
+	}
+
+}
+
+export default function*() {
+	yield [
+		//takeEvery(retailPointsActions.GET_RETAIL_POINTS.REQUEST, runRetailPoints)
+		takeEvery(actions.ADD_RETAIL_POINT.REQUEST, addRetailPointProcess)
+	]
+}
