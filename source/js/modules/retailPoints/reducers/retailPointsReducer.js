@@ -1,5 +1,6 @@
 import {Map, fromJS} from 'immutable';
-import {GET_RETAIL_POINTS, SET_RETAIL_POINT} from '../enums/actions'
+import {GET_RETAIL_POINTS, SET_RETAIL_POINT, ADD_RETAIL_POINT} from '../enums/actions';
+// import {getRetailPointList} from '../selectors/retailPointSelectors';
 
 export const initialState = Map({
 	loading: false,
@@ -35,6 +36,28 @@ export const actionHandlers = {
 			loading: false,
 			error: fromJS(action.error),
 			retailPoints: []
+		});
+	},
+
+
+	[ADD_RETAIL_POINT.REQUEST]: (state) => {
+		return state.merge({
+			loading: true
+		});
+	},
+
+	[ADD_RETAIL_POINT.SUCCESS]: (state, action) => {
+		return state.merge({
+			loading: false,
+			error: null,
+			retailPoints: state.get('retailPoints').concat(fromJS([action.response])),
+		});
+	},
+
+	[ADD_RETAIL_POINT.FAILURE]: (state, action) => {
+		return state.merge({
+			loading: false,
+			error: fromJS(action.error),
 		});
 	},
 };

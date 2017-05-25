@@ -1,10 +1,10 @@
-import * as retailPointReducer from '../retailPoints/reducers/retailPointReducer'
-import * as routes  from './routes.js'
-import sagas from './sagas/retailPointsSaga'
+import * as retailPointsReducer from '../retailPoints/reducers/retailPointsReducer';
+import * as routes  from './routes.js';
+import sagas from './sagas/retailPointsSaga';
 
 export function getReducers(createReducer) {
 	return {
-		retailPointsData: createReducer(retailPointReducer.initialState, retailPointReducer.actionHandlers)
+		retailPointsData: createReducer(retailPointsReducer.initialState, retailPointsReducer.actionHandlers)
 	}
 }
 
@@ -14,6 +14,6 @@ export function getRoutes() {
 
 export function getSagas() {
 	return [
-		//sagas()
+		sagas()
 	];
 }

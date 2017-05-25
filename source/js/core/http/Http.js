@@ -26,6 +26,9 @@ function normalizeHttpOptions(params) {
 		params.params = params.data;
 		delete params.data;
 	}
+	if (params.querystring) {
+		params.url += '?' + params.querystring;
+	}
 	return params;
 }
 
