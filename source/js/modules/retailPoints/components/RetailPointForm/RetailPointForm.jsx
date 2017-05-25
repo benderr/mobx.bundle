@@ -39,22 +39,7 @@ class RetailPointForm extends React.Component {
     render() {
         const {handleSubmit, pristine, submitting, onSave, onCancel, isIP} = this.props;
 
-        const submit = (props) => {
-            let retailPoint = {
-                name: props.get('name'),
-                address: props.get('address'),
-                phone: props.get('phone'),
-                inn: props.get('inn'),
-                kpp: props.get('kpp'),
-                mock: {
-                    enabled: props.get('demoProducts'),
-                }
-            };
-            onSave(retailPoint);
-        };
-
-
-        return (<form onSubmit={handleSubmit(submit)} style={{position: 'static'}}>
+        return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
@@ -129,7 +114,7 @@ RetailPointForm.propTypes = {
 RetailPointForm = reduxForm({
     form: 'retailPointForm',
     validate
-})(RetailPointForm)
+})(RetailPointForm);
 
 const selector = formValueSelector('retailPointForm');
 RetailPointForm = connect(

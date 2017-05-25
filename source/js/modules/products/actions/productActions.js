@@ -43,3 +43,5 @@ export const saveProductDetails = {
 	failure: ({inventCode, error}) => createAction(actions.SAVE_PRODUCT_DETAIL.FAILURE, {inventCode, error})
 };
 
+export const resetProductsList = () => createAction(actions.RESET_PRODUCTS_LIST);
+

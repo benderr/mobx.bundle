@@ -82,7 +82,7 @@ export const actionHandlers = {
 		return state.setIn(['productView', inventCode, 'error'], fromJS(error));
 	},
 
-	[RESET_PRODUCTS_LIST.type]:(state)=>{
+	[RESET_PRODUCTS_LIST]:(state)=>{
 		return state.setIn(['productsList'], List([]))
 	}
 };
