@@ -3,7 +3,8 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Field, reduxForm} from 'redux-form/immutable';
+import {connect} from 'react-redux'
+import {Field, reduxForm, formValueSelector, change} from 'redux-form/immutable';
 import InputRender from 'common/formElements/InputRender'
 import PhoneField from 'common/formElements/fields/PhoneField'
 
@@ -15,28 +16,28 @@ import normalizeInn from 'common/formElements/fields/normalizeInn'
 import {isEmpty} from 'common/validators/validators'
 
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
+const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
 const validateKpp = (text) => (val) => !isCorrectKpp(val) ? text : undefined;
 
-let disableKpp = true;
 const validate = values => {
     //const errors = {};
     return null;
 };
 
-const parseInn = value => {
-    disableKpp = value.length == 12;
-}
-
 class RetailPointForm extends React.Component {
 
-    handleDemoChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+    constructor(props) {
+        super(props);
+    }
+    componentWillUpdate(nextProps) {
+        if (nextProps.isIP) {
+            this.props.dispatch(change('retailPointForm', 'kpp', null));
+        }
     }
 
     render() {
-        const {handleSubmit, pristine, submitting, onSave, onCancel} = this.props;
+        const {handleSubmit, pristine, submitting, onSave, onCancel, isIP} = this.props;
 
         const submit = (props) => {
             let retailPoint = {
@@ -46,7 +47,7 @@ class RetailPointForm extends React.Component {
                 inn: props.get('inn'),
                 kpp: props.get('kpp'),
                 mock: {
-                    enabled: this.refs.demoProducts.checked
+                    enabled: props.get('demoProducts'),
                 }
             };
             onSave(retailPoint);
@@ -92,8 +93,7 @@ class RetailPointForm extends React.Component {
                                class="w100"
                                component={InputRender}
                                validate={[isRequired('Укажите ИНН'), validateInn('Не совпадают контрольные цифры ИНН')]}
-                               normalize={normalizeInn}
-                               parse={parseInn}/>
+                               normalize={normalizeInn}/>
                     </div>
                 </div>
 
@@ -103,13 +103,13 @@ class RetailPointForm extends React.Component {
                         <Field name="kpp" type="text" maxlength="9"
                                class="w100"
                                component={InputRender}
-                               validate={[isRequired('Укажите КПП'), validateKpp('КПП должен содержать 9 цифр')]}
-                               normalize={normalizeKpp} disabled={disableKpp}/>
+                               validate={[isRequiredKpp('Укажите КПП', isIP), validateKpp('КПП должен содержать 9 цифр')]}
+                               normalize={normalizeKpp} disabled={isIP}/>
                     </div>
                 </div>
                 <div class="form_group form_horizontal mt24">
-                    <input type="checkbox" name="demoProducts" id="21" ref="demoProducts"/>
-                    <label for="21" class="label_check"><i class="icon"></i><span class="f_small">Заполнить демо-товарами</span></label>
+                    <Field name="demoProducts" id="demoProducts" component="input" type="checkbox"/>
+                    <label for="demoProducts" class="label_check"><i class="icon"></i><span class="f_small">Заполнить демо-товарами</span></label>
                 </div>
             </div>
             <div class="page_bottom_panel">
@@ -126,7 +126,20 @@ RetailPointForm.propTypes = {
     loading: PropTypes.bool
 };
 
-export default reduxForm({
+RetailPointForm = reduxForm({
     form: 'retailPointForm',
     validate
-})(RetailPointForm);
+})(RetailPointForm)
+
+const selector = formValueSelector('retailPointForm');
+RetailPointForm = connect(
+    (state, props) => {
+        const inn = selector(state, 'inn');
+        const isIP = inn && inn.length === 12;
+        return {
+            isIP
+        }
+    }
+)(RetailPointForm);
+
+export default RetailPointForm

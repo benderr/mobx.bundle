@@ -4,7 +4,7 @@ export const getRetailPointsData = (state) => {
 	return state.get('retailPointsData');
 };
 
-export let getRetailPointList = createSelector([getRetailPointsData], rpData => {
+export const getRetailPointList = createSelector([getRetailPointsData], rpData => {
 	return rpData.get('retailPoints');
 });
 
