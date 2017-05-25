@@ -11,7 +11,6 @@ import * as retailPointsActions from '../../retailPoints/enums/actions';
  * Получение и установка торговых точек
  */
 export function* runRetailPoints() {
-	console.log('GET_RETAIL_POINTS');
 	yield fork(fetchRetailPoints);
 	yield take(actions.GET_RETAIL_POINTS.SUCCESS);
 	yield call(setSelectedPoint);

@@ -1,6 +1,8 @@
+import React from 'react';
 import ProductListContainer from './containers/ProductListContainer';
 import EditProductContainer from './containers/EditProductContainer';
-import React from 'react';
+import ProductModifierGroupContainer from './containers/ProductModifierGroupContainer';
+import ProductModifierContainer from './containers/ProductModifierContainer';
 
 export function getRoutes() {
 	return {
@@ -17,10 +19,22 @@ export function getRoutes() {
 			layout: EditProductContainer
 		},
 		productDetail: {
-			path: '/product/:point/:code',
+			path: '/product/:point/:inventCode',
 			exact: true,
 			isLayer: true,
 			layout: EditProductContainer
+		},
+		productModifierGroup: {
+			path: '/product/group',
+			exact: true,
+			isLayer: true,
+			layout: ProductModifierGroupContainer
+		},
+		productModifier: {
+			path: '/product/modifier',
+			exact: true,
+			isLayer: true,
+			layout: ProductModifierContainer
 		}
 	};
 }

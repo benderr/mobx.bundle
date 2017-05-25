@@ -66,20 +66,3 @@ export const actionHandlers = {
 // 			Seq(js).map(fromJSGreedy).toMap();
 // }
 
-console.log('start');
-
-window.test = fromJS({
-	js1: {
-		js2: {
-			js3: {
-				js4: 'js4',
-				js5: [{js6: 'test'}]
-			}
-		}
-	}
-});
-
-console.log(window.test);
-
-console.log('end');
-

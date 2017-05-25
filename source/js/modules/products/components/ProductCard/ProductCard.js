@@ -1,13 +1,9 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form/immutable';
-import InputRender from 'common/formElements/InputRender'
-import {isEmpty} from 'common/validators/validators'
+import {reduxForm} from 'redux-form/immutable';
 import PropTypes from 'prop-types';
 import {PrimaryButton} from 'common/uiElements/uiComponents'
-import ModificationForm from './ModificationForm'
-import ProductForm from './ProductForm'
-
-const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
+import ModifiersTab from './ModifiersTab'
+import ProductTab from './ProductTab'
 
 const validate = values => {
 	//const errors = {};
@@ -26,7 +22,7 @@ class ProductCard extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, onSave, saving, initialValues:product, error, onCancel} = this.props;
+		const {handleSubmit, onSave, saving, product, error, onCancel} = this.props;
 		const submit = (props) => {
 			onSave(props);
 		};
@@ -42,8 +38,14 @@ class ProductCard extends React.Component {
 						<li onClick={::this.changeTab('mod')} className={!isActiveInfo ? 'active' : ''}>Модификаторы
 						</li>
 					</ul>
-					<ProductForm className={!isActiveInfo ? 'hidden' : ''}/>
-					<ModificationForm className={isActiveInfo ? 'hidden' : ''}/>
+					<ProductTab className={!isActiveInfo ? 'hidden' : ''}/>
+					<ModifiersTab
+						modifiers={product.modifiers}
+						onAddGroup={this.props.onAddGroup}
+						onOpenGroup={this.props.onOpenGroup}
+						onAddModifier={this.props.onAddModifier}
+						onOpenModifier={this.props.onOpenModifier}
+						className={isActiveInfo ? 'hidden' : ''}/>
 				</div>
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit" loading={saving}>Сохранить</PrimaryButton>
@@ -56,13 +58,18 @@ class ProductCard extends React.Component {
 
 ProductCard.propTypes = {
 	onSave: PropTypes.func.isRequired,
-	initialValues: PropTypes.object.isRequired,
+	initialValues: PropTypes.object.isRequired, //todo shape
+	product: PropTypes.object.isRequired,
 	onCancel: PropTypes.func.isRequired,
-	saving: PropTypes.bool
+	saving: PropTypes.bool,
+	onAddGroup: PropTypes.func.isRequired,
+	onOpenGroup: PropTypes.func.isRequired,
+	onAddModifier: PropTypes.func.isRequired,
+	onOpenModifier: PropTypes.func.isRequired
 };
 
-export default  reduxForm({
-	form: 'productForm',// имя формы в state (state.form.auth)
+export default (code) => reduxForm({
+	form: 'productCard_' + code,// имя формы в state (state.form.auth)
 	validate
 	//asyncValidate
 })(ProductCard);

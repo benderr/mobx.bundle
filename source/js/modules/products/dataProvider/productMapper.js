@@ -1,4 +1,12 @@
 export const toClientProduct = (item) => {
+	function getModifiers(modifiers) {
+		modifiers = getWithId(modifiers);
+		modifiers.forEach((group, i) => {
+			group.modifiers = getWithId(group.modifiers);
+		});
+		return modifiers;
+	}
+
 	return {
 		accountingQuantity: item.accountingQuantity,
 		additionalPrices: item.additionalPrices,
@@ -28,6 +36,7 @@ export const toClientProduct = (item) => {
 		remainDate: item.remainDate,
 		remainInStock: item.remainInStock,
 		requiredModifiers: item.requiredModifiers,
+		modifiers: getModifiers(item.requiredModifiers),//todo выпилить
 		sellRestrictPeriods: item.sellRestrictPeriods,
 		shortName: item.shortName,
 		vatTag: item.vatTag,
@@ -40,3 +49,11 @@ export const toClient = (data) => {
 	let productsList = data.data.map(toClientProduct);
 	return {pos: data.pos, totalCount: data.total_count, productsList};
 };
+
+function getWithId(collection) {
+	let arr = (collection || []);
+	arr.forEach((item, i) => {
+		item.id = i + 1;
+	});
+	return arr;
+}

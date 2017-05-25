@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Field, reduxForm} from 'redux-form/immutable';
+import {Field} from 'redux-form/immutable';
 import {isEmpty} from 'common/validators/validators'
 import InputRender from 'common/formElements/InputRender'
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
