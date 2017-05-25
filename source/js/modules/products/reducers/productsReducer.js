@@ -1,4 +1,4 @@
-import {GET_PRODUCTS, GET_FILTRED_PRODUCTS, GET_PRODUCT_DETAIL, SAVE_PRODUCT_DETAIL} from '../enums/actions';
+import {GET_PRODUCTS, GET_FILTRED_PRODUCTS, GET_PRODUCT_DETAIL, SAVE_PRODUCT_DETAIL, RESET_PRODUCTS_LIST} from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
 
 export const initialState = Map({
@@ -81,6 +81,10 @@ export const actionHandlers = {
 	[SAVE_PRODUCT_DETAIL.FAILURE]: (state, {inventCode, error}) => {
 		return state.setIn(['productView', inventCode, 'error'], fromJS(error));
 	},
+
+	[RESET_PRODUCTS_LIST.type]:(state)=>{
+		return state.setIn(['productsList'], List([]))
+	}
 };
 
 export default (createReducer) => createReducer(initialState, actionHandlers);

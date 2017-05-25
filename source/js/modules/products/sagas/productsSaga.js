@@ -19,6 +19,7 @@ function* getProductsProcess({retailPointId, start, count, filter}) {
 }
 
 function* initProductsProcess(data) {
+	yield put(actions.RESET_PRODUCTS_LIST);
 	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
 }
 
