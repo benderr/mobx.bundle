@@ -86,51 +86,44 @@ export const actionHandlers = {
 	},
 
 	[SAVE_MODIFIER_GROUP]: (state, {inventCode, group}) => {
-		const {modifiers, modifiersKey} = getModifierGroups({state, inventCode});
+		const groupsKey = getProductGroupsKey(inventCode);
+		const groups = state.getIn(groupsKey);
 
 		if (group.id) {
-			//const modifierIndex = getModifierGroupIndex({modifiers, groupId: group.id});
-			const groupsKey = getProductGroupsKey(inventCode);
-			const groupEntry = state.getIn(groupsKey).findEntry(s => s.get('id') == group.id);
+			const groupEntry = groups.findEntry(s => s.get('id') == group.id);
 			if (groupEntry) {
 				return state.updateIn([...groupsKey, groupEntry[0]], group => group.merge(fromJS(group)))
 			}
-			// if (modifierIndex >= 0)
-			// 	return state.setIn(modifiersKey,
-			// 		modifiers.update(modifierIndex, m => m.merge(fromJS(group))));
 		} else {
-			group.id = modifiers.size + 1;
+			group.id = groups.size + 1;
 			group.modifiers = [];
-			return state.setIn(modifiersKey,
-				modifiers.push(fromJS(group)));
+			return state.updateIn(groupsKey, list => list.push(fromJS(group)));
 		}
 
 		return state;
 	},
 
 	[REMOVE_MODIFIER_GROUP]: (state, {inventCode, groupId}) => {
-		// const {modifiers, modifiersKey} =getModifierGroups({state, inventCode, groupId});
-		// const groupIndex = getModifierGroupIndex({modifiers, groupId});
-		// if (groupIndex >= 0)
-		// 	return state.setIn(modifiersKey, modifiers.delete(groupIndex));
-		// return state;
 		const groupsKey = getProductGroupsKey(inventCode);
 		return state.updateIn(groupsKey, modifiers => modifiers.filter(s => s.get('id') != groupId))
 	},
 
-	[SAVE_MODIFIER_GROUP]: (state, {inventCode, group}) => {
-		const {modifiers, modifiersKey} = getModifierGroups({state, inventCode});
+	[SAVE_MODIFIER]: (state, {inventCode, groupId, modifier}) => {
+		const groupsKey = getProductGroupsKey(inventCode);
+		const groupEntry = state.getIn(groupsKey).findEntry(s => s.get('id') == groupId);
 
-		if (group.id) {
-			const modifierIndex = getModifierGroupIndex({modifiers, groupId: group.id});
-			if (modifierIndex >= 0)
-				return state.setIn(modifiersKey,
-					modifiers.update(modifierIndex, m => m.merge(fromJS(group))));
-		} else {
-			group.id = modifiers.size + 1;
-			group.modifiers = [];
-			return state.setIn(modifiersKey,
-				modifiers.push(fromJS(group)));
+		if (groupEntry) {
+			const modifiers = groupEntry[1].get('modifiers');
+			if (modifier.id) {
+				const modifierEntry = modifiers.findEntry(s => s.get('id') == modifier.id);
+				if (modifierEntry) {
+					return state.updateIn([...groupsKey, groupEntry[0], 'modifiers', modifierEntry[0]],
+						m => m.merge(fromJS(modifier)))
+				}
+			} else {
+				modifier.id = modifiers.size + 1;
+				return state.updateIn([...groupsKey, groupEntry[0], 'modifiers'], list => list.push(fromJS(modifier)));
+			}
 		}
 
 		return state;
@@ -149,18 +142,6 @@ export const actionHandlers = {
 
 function getProductGroupsKey(inventCode) {
 	return ['productView', inventCode, 'product', 'modifiers'];
-}
-
-function getModifierGroupIndex({modifiers, groupId}) {
-	return modifiers.findIndex(item => item.get("id") === groupId);
-}
-
-function getModifierGroups({state, inventCode}) {
-	const modifiersKey = ['productView', inventCode, 'product', 'modifiers'];
-	return {
-		modifiers: state.getIn(modifiersKey),
-		modifiersKey: modifiersKey
-	};
 }
 
 export default (createReducer) => createReducer(initialState, actionHandlers);

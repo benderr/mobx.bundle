@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import * as productSelectors from '../selectors/productsSelectors'
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router'
-import modificationGroupForm from '../components/ProductCard/ModificationGroupForm'
+import modifierGroupForm from '../components/ProductCard/ModifierGroupForm'
 import toJS from 'components/HOC/toJs'
 
 @withRouter
@@ -45,7 +45,7 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 
 	render() {
 		const {inventCode, group}=this.props;
-		const ModificationGroupForm = modificationGroupForm(inventCode);
+		const ModifierGroupForm = modifierGroupForm(inventCode);
 		const title = group ? 'Редактирование группы' : 'Добавление группы';
 		return (
 			<article className="page">
@@ -54,7 +54,7 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 					{this.getToogleButton()}
 					<h1>{title}</h1>
 				</div>
-				<ModificationGroupForm initialValues={group}
+				<ModifierGroupForm initialValues={group}
 									   onSave={::this.onSaveGroup}
 									   onRemove={::this.onRemoveGroup}
 									   onCancel={::this.onCancel}

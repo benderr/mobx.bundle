@@ -8,7 +8,7 @@ import groupShape from './groupShape';
 
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 
-class ModificationGroupForm extends React.Component {
+class ModifierGroupForm extends React.Component {
 
 	render() {
 		const {handleSubmit, onSave, onCancel, onRemove} = this.props;
@@ -38,7 +38,7 @@ class ModificationGroupForm extends React.Component {
 	}
 }
 
-ModificationGroupForm.propTypes = {
+ModifierGroupForm.propTypes = {
 	onSave: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
 	initialValues: PropTypes.instanceOf(groupShape),
@@ -46,6 +46,6 @@ ModificationGroupForm.propTypes = {
 };
 
 export default (productCode) => reduxForm({
-	form: 'modificationGroupForm_' + productCode
-})(ModificationGroupForm);
+	form: 'modifierGroupForm' + productCode
+})(ModifierGroupForm);
 
