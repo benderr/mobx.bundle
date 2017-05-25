@@ -2,48 +2,36 @@ import React from 'react';
 import PropTypes from 'prop-types';
 const {arrayOf, string, func} = PropTypes;
 import RetailPointShape from './RetailPointShape';
-import {connect} from 'react-redux';
-import {getRetailPointList, getCurrentRetailPointId} from '../../selectors/retailPointSelectors'
+
 import RetailPointListItem from './RetailPointListItem'
-import {bindActionCreators} from 'redux';
-import * as retailPointActions from '../../actions/retailPointActions';
 
-const toJS = (obj, def = null) => {
-	return obj ? obj.toJS() : def
-}
-
-const mapActions = dispatch => ({
-	onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch)
-});
-
-const mapState = state => ({
-	points: getRetailPointList(state),
-	selectedPointId: getCurrentRetailPointId(state),
-});
-
-@connect(mapState, mapActions)
 class RetailPointList extends React.Component {
 	static propTypes = {
 		points: arrayOf(RetailPointShape),
-		selectedPointId: string
+		selectedPointId: string,
+		onSelectPoint: func
 	};
 
 	render() {
-		const points = toJS(this.props.points, []);
+		const {points,selectedPointId,onSelectPoint} = this.props;
 		return (
+
 			<div class='widget_block'>
-				{/*{this.props.selectedPointId}*/}
-				<div class='table  table_products'>
+				<div class='table  table_pos'>
 					<div class='table_head'>
-						<div class='product_id'>Название</div>
-						<div class='product_name'>Адрес</div>
-						<div class='product_price'>Активный</div>
+						<div class='pos_name'>Название</div>
+						<div class='pos_address'>Адрес</div>
+						<div class="pos_amount">Сумма продаж</div>
+						<div class="pos_action">Действия</div>
 					</div>
+					{/*<div class="table_row  row_link_search">*/}
+						{/*<input type="search" class="small  w100" placeholder="Поиск по точкам продаж"/>*/}
+					{/*</div>*/}
 					{points.map(point => (
 						<RetailPointListItem key={'listitem_' + point.id}
 											 point={point}
-											 selectedPointId={this.props.selectedPointId}
-											 onSelectPoint={::this.props.onSelectPoint}
+											 selectedPointId={selectedPointId}
+											 onSelectPoint={onSelectPoint}
 						/>))}
 				</div>
 			</div>

@@ -1,46 +1,17 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form/immutable';
-import InputRender from 'common/formElements/InputRender'
-import {isEmpty} from 'common/validators/validators'
 import PropTypes from 'prop-types';
-
+import {Field, reduxForm} from 'redux-form/immutable';
+import {isEmpty} from 'common/validators/validators'
+import InputRender from 'common/formElements/InputRender'
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 
-const validate = values => {
-	//const errors = {};
-	return null;
-};
-
 class ProductForm extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {activeTab: 'info'};
-	}
-
-	changeTab(tab) {
-		return () => this.setState({activeTab: tab});
-	}
-
 	render() {
-		const {handleSubmit, loading, onSave, initialValues:product, error, onCancel} = this.props;
-		const submit = ({email, password}) => {
-			//dispatch(login.request(email, password, backPath));
-			onSave();
-		};
-
-		const isActiveInfo = this.state.activeTab == 'info';
+		const {className}=this.props;
 
 		return (
-			<span>
-		<div class="page_content with_bottom_panel  content_padding">
+			<div className={className}>
 
-				<ul class="tabs_light">
-					<li onClick={::this.changeTab('info')} className={isActiveInfo ? 'active' : ''}>Информация</li>
-					<li onClick={::this.changeTab('mod')} className={!isActiveInfo ? 'active' : ''}>Модификаторы</li>
-				</ul>
-
-			<div className={!isActiveInfo ? 'hidden' : ''}>
 				<div class="form_group form_horizontal">
 					<div class="property_label col three three">Наименование *</div>
 					<div class="property_value col six">
@@ -124,62 +95,12 @@ class ProductForm extends React.Component {
 							<option value="1105">НДС не облагается</option>
 							<option value="1107">НДС с рассч. ставкой 10%</option>
 							<option value="1106">НДС с рассч. ставкой 18%</option>
-					  </Field>
+						</Field>
 					</div>
 				</div>
-
 			</div>
-
-			<div className={isActiveInfo ? 'hidden' : ''}>
-				<a class="icon-plus  add_modificators_group">Добавить группу</a>
-
-		<div class="modificators_group">
-			<div class="modificators_group_title">
-				Гарнир
-				<a class="icon-pencil"></a>
-			</div>
-			<div class="wrapper_modificator">
-				<div class="modificator">Халапенью</div>
-				<div class="modificator  selected">Ананас</div>
-				<div class="modificator">Соус имбирный Соус имбирный Соус имбирный Соус имбирный</div>
-				<div class="modificator">Соус брусничный Соус брусничный Соус брусничный</div>
-				<div class="modificator">Соус брусничный Соус брусничный</div>
-				<div class="modificator  add_new_modificator">+</div>
-			</div>
-		</div>
-
-		<div class="modificators_group">
-			<div class="modificators_group_title">
-				Соус
-				<a class="icon-pencil"></a>
-			</div>
-			<div class="wrapper_modificator">
-				<div class="modificator  selected">Кетчуп</div>
-				<div class="modificator  selected">Сметана</div>
-				<div class="modificator  add_new_modificator">+</div>
-			</div>
-		</div>
-			</div>
-		</div>
-			<div class="page_bottom_panel">
-			<a class="button middle wide">Сохранить</a>
-			<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-			</div>
-		</span>
-		)
+		);
 	}
 }
 
-ProductForm.propTypes = {
-	loading: PropTypes.bool.isRequired,
-	onSave: PropTypes.func.isRequired,
-	initialValues: PropTypes.object.isRequired,
-	onCancel: PropTypes.func.isRequired
-};
-
-export default  reduxForm({
-	form: 'productForm',// имя формы в state (state.form.auth)
-	validate
-	//asyncValidate
-})(ProductForm);
-
+export default ProductForm;
