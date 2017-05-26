@@ -67,3 +67,5 @@ export const removeModifier = ({inventCode, groupId, modifierId}) => createActio
 
 export const destroyProductDetails = ({inventCode}) => createAction(actions.SAVE_MODIFIER);
 
+export const resetProductsList = () => createAction(actions.RESET_PRODUCTS_LIST);
+

@@ -3,6 +3,7 @@ import ProductListContainer from './containers/ProductListContainer';
 import EditProductContainer from './containers/EditProductContainer';
 import ProductModifierGroupContainer from './containers/ProductModifierGroupContainer';
 import ProductModifierContainer from './containers/ProductModifierContainer';
+import TestSelector from 'components/TestSelector'
 
 export function getRoutes() {
 	return {
@@ -11,6 +12,13 @@ export function getRoutes() {
 			index: true,
 			exact: true,
 			component: ProductListContainer
+		},
+		testselect: {
+			path: '/testselect',
+			index: true,
+			exact: true,
+			component: TestSelector,
+			allowAnonymous: true
 		},
 		product: {
 			path: '/product/add',

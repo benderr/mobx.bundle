@@ -4,7 +4,7 @@
 import {call, put, takeLatest, takeEvery} from 'redux-saga/effects'
 import * as actions from '../enums/actions';
 import * as retailPointsActions from '../../retailPoints/enums/actions';
-import {getProductDetails, saveProductDetails, getProducts} from '../actions/productActions'
+import {getProductDetails, saveProductDetails, getProducts, resetProductsList} from '../actions/productActions'
 import * as dataContext from '../dataProvider/productDataContext'
 
 
@@ -19,6 +19,7 @@ function* getProductsProcess({retailPointId, start, count, filter}) {
 }
 
 function* initProductsProcess(data) {
+	yield put(resetProductsList());
 	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
 }
 

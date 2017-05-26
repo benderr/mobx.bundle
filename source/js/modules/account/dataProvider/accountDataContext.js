@@ -14,8 +14,4 @@ function logout() {
 	return api.v1().logout().get();
 }
 
-function getRetailPoints() {
-	return api.v1().retailpoints().get().then(res => res.data);
-}
-
-export {profile, getRetailPoints, logout}
+export {profile, logout}

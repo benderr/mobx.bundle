@@ -1,6 +1,6 @@
 import {
 	GET_PRODUCTS, GET_FILTRED_PRODUCTS, GET_PRODUCT_DETAIL, SAVE_PRODUCT_DETAIL,
-	SAVE_MODIFIER, SAVE_MODIFIER_GROUP, REMOVE_MODIFIER, REMOVE_MODIFIER_GROUP
+	SAVE_MODIFIER, SAVE_MODIFIER_GROUP, REMOVE_MODIFIER, REMOVE_MODIFIER_GROUP, RESET_PRODUCTS_LIST
 } from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
 
@@ -137,6 +137,10 @@ export const actionHandlers = {
 				modifiers => modifiers.filter(s => s.get('id') != modifierId))
 		}
 		return state;
+	},
+
+	[RESET_PRODUCTS_LIST]:(state)=>{
+		return state.setIn(['productsList'], List([]))
 	}
 };
 

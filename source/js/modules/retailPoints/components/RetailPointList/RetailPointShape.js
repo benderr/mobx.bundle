@@ -3,7 +3,7 @@ const {shape, number, string} = PropTypes;
 
 export default shape({
 	name: string.isRequired,
-	address: string.isRequired,
+	address: string,
 	settings: shape({
 		aboutModulPosUrl: string
 	})

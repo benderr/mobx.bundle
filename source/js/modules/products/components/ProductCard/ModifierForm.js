@@ -1,9 +1,10 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form/immutable';
-import InputRender from 'common/formElements/InputRender'
+import InputRender from 'common/formElements/InputRender';
+import SelectRender from 'common/formElements/SelectRender';
 import {isEmpty} from 'common/validators/validators'
 import PropTypes from 'prop-types';
-import {PrimaryButton} from 'common/uiElements/uiComponents'
+import {PrimaryButton, LabelSwitcher} from 'common/uiElements/uiComponents'
 import modifierShape from './modifierShape';
 
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
@@ -11,25 +12,29 @@ const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 class ModifierForm extends React.Component {
 
 	render() {
-		const {handleSubmit, onSave, onCancel, onRemove} = this.props;
-		const submit = (props) => onSave(props);
+		const {handleSubmit, onSave, onCancel, onRemove, modifier} = this.props;
+		const goods = [
+			{value: '1163277534', label: 'Товар 1'},
+			{value: '2', label: 'Товар 2'}
+		];
+
+		const change = (val) => {
+			console.log(val)
+		}
 
 		return (
 
-			<form onSubmit={handleSubmit(submit)} style={{position: 'static'}}>
+			<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
 				<div class="page_content with_bottom_panel  content_padding">
 
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Товар</div>
 						<div class="property_value col nine">
-							<div class="jsRadSelect2  w100" data-placeholder="Селект"  name="adfasd" id="adsf">
-								<option class="jsRadSelect2Options" value="1">Бананы</option>
-								<option class="jsRadSelect2Options" value="2">Яблоки</option>
-								<option class="jsRadSelect2Options" value="3">Груши</option>
-								<option class="jsRadSelect2Options" value="4">Виноград</option>
-								<option class="jsRadSelect2Options" value="5">АпельсиныАпельсины</option>
-								<option class="jsRadSelect2Options" value="6">Маракуйя Маракуйя Маракуйя Маракуйя </option>
-							</div>
+							<Field name="barcode" className="w100"
+								   component={SelectRender}
+								   validate={[isRequired('Выберите товар')]}
+								   options={goods}
+							/>
 						</div>
 					</div>
 
@@ -37,7 +42,7 @@ class ModifierForm extends React.Component {
 						<div class="property_label col w100px">Название</div>
 						<div class="property_value col nine">
 							<Field name="name" type="text"
-								   class="w100" sometype="test"
+								   class="w100"
 								   component={InputRender}
 								   validate={[isRequired('Укажите наименование')]}/>
 						</div>
@@ -48,8 +53,10 @@ class ModifierForm extends React.Component {
 						<div class="property_value col nine">
 							<div class="counter_wrapper">
 								<a class="count_ctrl">&minus;</a>
-								<input type="text" placeholder="0" value="1" />
-									<a class="count_ctrl">+</a>
+								<Field name="qty" type="text"
+									   component={InputRender}
+									   validate={[isRequired('Укажите количество')]}/>
+								<a class="count_ctrl">+</a>
 							</div>
 						</div>
 					</div>
@@ -57,15 +64,17 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Цена</div>
 						<div class="property_value col add_modificators_price">
-							<input type="text" placeholder="0" />
+							<Field name="price" type="text"
+								   component={InputRender}
+								   validate={[isRequired('Укажите цену')]}/>
 						</div>
 						<div class="property_label  col  one"><span class="cur rur"><span>р.</span></span></div>
 					</div>
 
 					<div class="form_group form_horizontal">
 						<div class="property_value col nine">
-							<input type="checkbox" name="c5" id="33" />
-								<label for="33" class="label_check  switcher  m_top_15"><i class="icon"></i><span class="m_left_45">Выбран по умолчанию</span></label>
+							<Field id="modifierSelectedField" name="selected" type="checkbox" component="input"/>
+							<LabelSwitcher label="Выбран по умолчанию" forElement="modifierSelectedField"/>
 						</div>
 					</div>
 
@@ -73,7 +82,7 @@ class ModifierForm extends React.Component {
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit">Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					<a class="button middle wide clean" onClick={onRemove}>Удалить</a>
+					{modifier && <a class="button middle wide clean f_right" onClick={onRemove}>Удалить</a>}
 				</div>
 			</form>
 		)
@@ -85,6 +94,7 @@ ModifierForm.propTypes = {
 	onRemove: PropTypes.func.isRequired,
 	initialValues: PropTypes.instanceOf(modifierShape),
 	onCancel: PropTypes.func.isRequired,
+	modifier: PropTypes.instanceOf(modifierShape)
 };
 
 export default (productCode, groupId) => reduxForm({
