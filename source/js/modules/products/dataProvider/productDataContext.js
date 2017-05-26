@@ -7,7 +7,7 @@ import {toClient, toClientProduct} from './productMapper';
 export const getProducts = (retailPointId, start, count, filter) => {
 	let params = [];
 	if (filter)
-		params.push(`name=="*${filter}*"`);
+		params.push(`:quickSearch="${filter}"`);
 	let q = params.join(';');
 
 	return api.v1().retailpoint(retailPointId).catalog().inventory()
