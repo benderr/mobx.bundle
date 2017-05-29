@@ -16,6 +16,7 @@ function* authorize(email, pass, redirectUrl) {
 		const authData = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success(authData));
+		yield fork(retailPointsSaga.runRetailPoints);
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
 		console.log('FAIL', error);
