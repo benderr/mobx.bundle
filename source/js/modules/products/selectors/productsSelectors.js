@@ -1,7 +1,5 @@
-/**
- * Created by RobertSabiryanov on 18.05.17.
- */
 import {createSelector} from 'reselect'
+import {Map, List} from 'immutable';
 
 export const getProductsData = (state) => {
 	return state.get('products');
@@ -44,3 +42,11 @@ export const getProductModifier = (state, inventCode, groupId, modifierId) => {
 	}
 	return null;
 };
+
+export const getSearchProducts = (formKey) => createSelector([getProductsData], data => {
+	return data.getIn(['searchProductsResult', formKey], Map({
+		loading: false,
+		products: List([]),
+		error: null
+	}));
+});

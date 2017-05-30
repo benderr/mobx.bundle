@@ -11,7 +11,7 @@ const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 class ModifierGroupForm extends React.Component {
 
 	render() {
-		const {handleSubmit, onSave, onCancel, onRemove} = this.props;
+		const {handleSubmit, onSave, onCancel, onRemove, group} = this.props;
 		const submit = (props) => onSave(props);
 
 		return (
@@ -31,7 +31,7 @@ class ModifierGroupForm extends React.Component {
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit" >Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					<a class="button middle wide clean" onClick={onRemove}>Удалить</a>
+					{group && <a class="button middle wide clean" onClick={onRemove}>Удалить</a>}
 				</div>
 			</form>
 		)
@@ -41,7 +41,7 @@ class ModifierGroupForm extends React.Component {
 ModifierGroupForm.propTypes = {
 	onSave: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
-	initialValues: PropTypes.instanceOf(groupShape),
+	group: PropTypes.instanceOf(groupShape),
 	onCancel: PropTypes.func.isRequired,
 };
 

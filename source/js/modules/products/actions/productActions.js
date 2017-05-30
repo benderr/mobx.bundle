@@ -65,6 +65,12 @@ export const removeModifier = ({inventCode, groupId, modifierId}) => createActio
 	modifierId
 });
 
+export const searchProducts = {
+	request: ({formKey, query}) => createAction(actions.SEARCH_PRODUCTS.REQUEST, {formKey, query}),
+	success: ({formKey, products}) => createAction(actions.SEARCH_PRODUCTS.SUCCESS, {formKey, products}),
+	failure: ({formKey, error}) => createAction(actions.SEARCH_PRODUCTS.FAILURE, {formKey, error})
+};
+
 export const destroyProductDetails = ({inventCode}) => createAction(actions.SAVE_MODIFIER);
 
 export const resetProductsList = () => createAction(actions.RESET_PRODUCTS_LIST);

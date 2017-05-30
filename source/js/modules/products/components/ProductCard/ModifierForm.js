@@ -12,15 +12,11 @@ const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 class ModifierForm extends React.Component {
 
 	render() {
-		const {handleSubmit, onSave, onCancel, onRemove, modifier} = this.props;
-		const goods = [
-			{value: '1163277534', label: 'Товар 1'},
-			{value: '2', label: 'Товар 2'}
-		];
-
-		const change = (val) => {
-			console.log(val)
-		}
+		const {
+			handleSubmit, onSave, onCancel, onRemove, modifier,
+			productList, isLoadingProducts, onSearchProducts, onSelectProduct,
+			onIncreaseQty, onDecreaseQty
+		} = this.props;
 
 		return (
 
@@ -30,11 +26,13 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Товар</div>
 						<div class="property_value col nine">
-							<Field name="barcode" className="w100"
+							<Field name="barcode" className="w100" searchable={true}
 								   component={SelectRender}
+								   isLoading={isLoadingProducts}
+								   onInputChange={onSearchProducts}
+								   onChange={onSelectProduct}
 								   validate={[isRequired('Выберите товар')]}
-								   options={goods}
-							/>
+								   options={productList}/>
 						</div>
 					</div>
 
@@ -52,11 +50,11 @@ class ModifierForm extends React.Component {
 						<div class="property_label col w100px">Кол-во</div>
 						<div class="property_value col nine">
 							<div class="counter_wrapper">
-								<a class="count_ctrl">&minus;</a>
+								<a class="count_ctrl" onClick={onDecreaseQty}>&minus;</a>
 								<Field name="qty" type="text"
 									   component={InputRender}
 									   validate={[isRequired('Укажите количество')]}/>
-								<a class="count_ctrl">+</a>
+								<a class="count_ctrl" onClick={onIncreaseQty}>+</a>
 							</div>
 						</div>
 					</div>
@@ -92,12 +90,15 @@ class ModifierForm extends React.Component {
 ModifierForm.propTypes = {
 	onSave: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
-	initialValues: PropTypes.instanceOf(modifierShape),
 	onCancel: PropTypes.func.isRequired,
-	modifier: PropTypes.instanceOf(modifierShape)
+	modifier: modifierShape,
+	productList: PropTypes.array.isRequired,
+	isLoadingProducts: PropTypes.bool.isRequired,
+	onSearchProducts: PropTypes.func.isRequired,
+	onSelectProduct: PropTypes.func.isRequired,
+	onIncreaseQty: PropTypes.func.isRequired,
+	onDecreaseQty: PropTypes.func.isRequired
 };
 
-export default (productCode, groupId) => reduxForm({
-	form: `modifierForm_${productCode}_${groupId}`
-})(ModifierForm);
+export default (key) => reduxForm({form: key})(ModifierForm);
 
