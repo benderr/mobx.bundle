@@ -30,6 +30,7 @@ class RetailPointForm extends React.Component {
     constructor(props) {
         super(props);
     }
+
     componentWillUpdate(nextProps) {
         if (nextProps.isIP) {
             this.props.dispatch(change('retailPointForm', 'kpp', null));
@@ -37,9 +38,43 @@ class RetailPointForm extends React.Component {
     }
 
     render() {
-        const {handleSubmit, pristine, submitting, onSave, onCancel, isIP} = this.props;
+        const {handleSubmit, pristine, submitting, onSave, onCancel, isIP, points} = this.props;
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
+            {points && points.length > 0 && <div class="form_group form_horizontal">
+                <div class="mb16">
+                    <Field name="newListRadio" id="newListRadio" component="input" type="radio" checked="true"/>
+                    <label for="newListRadio" class="label_check">
+                        <i class="icon"></i>
+                        <span>Новый список товаров</span>
+                    </label>
+                </div>
+
+                <div class="selected_item  mb16">
+                    <input type="radio" name="c2" id="12" checked=""/>
+                    <label for="12" class="label_check"><i class="icon"></i><span>Использовать товары и данные другой точки</span></label>
+
+                    <div class="inner_select  mt8">
+                        <div class="form_group form_horizontal  mb8">
+                            <div class="jsRadSelect2  w100" data-placeholder="Селект" name="adfasd" id="adsf">
+                                <option class="jsRadSelect2Options" value="1" selected="">Дмитриевская точка
+                                </option>
+                                <option class="jsRadSelect2Options" value="2">Вторая точка</option>
+                                <option class="jsRadSelect2Options" value="3">Третья точка</option>
+                                <option class="jsRadSelect2Options" value="4">Четвертая точка</option>
+                            </div>
+                        </div>
+                        <div class="info_text">Все изменения по товарам из выбранной точки будут отражены также в
+                            новой точке
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb20">
+                    <input type="radio" name="c2" id="13"/>
+                    <label for="13" class="label_check"><i class="icon"></i><span>Скопировать товары</span></label>
+                </div>
+            </div>}
             <div class="page_content  with_bottom_panel  content_padding">
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
@@ -108,7 +143,8 @@ class RetailPointForm extends React.Component {
 RetailPointForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
-    loading: PropTypes.bool
+    loading: PropTypes.bool,
+    //points: PropTypes.arrayOf(RetailPointShape)
 };
 
 RetailPointForm = reduxForm({
