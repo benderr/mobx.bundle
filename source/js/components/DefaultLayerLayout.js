@@ -43,7 +43,8 @@ class DefaultLayerLayout extends React.Component {
 
 	componentDidMount() {
 		const el = ReactDOM.findDOMNode(this);
-		setTimeout(_ => this.addClass(el, 'open'), 0);
+		this.addClass(el, 'open')
+		//setTimeout(_ => this.addClass(el, 'open'), 0);
 	}
 
 	getCloseButton() {

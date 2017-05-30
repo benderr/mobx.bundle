@@ -1,5 +1,5 @@
 import React from 'react';
-import {SButton} from 'common/uiElements/uiComponents';
+import {SButton} from 'common/uiElements';
 import TransactionItem from './TransactionItem';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';

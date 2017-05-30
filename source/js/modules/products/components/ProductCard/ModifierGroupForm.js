@@ -3,7 +3,7 @@ import {Field, reduxForm} from 'redux-form/immutable';
 import InputRender from 'common/formElements/InputRender'
 import {isEmpty} from 'common/validators/validators'
 import PropTypes from 'prop-types';
-import {PrimaryButton} from 'common/uiElements/uiComponents'
+import {PrimaryButton} from 'common/uiElements'
 import groupShape from './groupShape';
 
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;

@@ -24,10 +24,8 @@ export const getProductLoading = createSelector([getProductsData], data => {
 export const getProductGroup = (state, inventCode, groupId) => {
 	const productView = getProductView(inventCode)(state);
 	if (productView) {
-		const groups = productView.getIn(['product', 'modifiers']);
-		const groupIndex = groups.findIndex(item => item.get("id") === groupId);
-		if (groupIndex >= 0)
-			return groups.get(groupIndex);
+		const groupEntry = productView.getIn(['product', 'modifiers']).findEntry(item => item.get("id") === groupId);
+		return groupEntry ? groupEntry[1] : null;
 	}
 	return null;
 };
@@ -35,10 +33,8 @@ export const getProductGroup = (state, inventCode, groupId) => {
 export const getProductModifier = (state, inventCode, groupId, modifierId) => {
 	const group = getProductGroup(state, inventCode, groupId);
 	if (group) {
-		const modifiers = group.get('modifiers');
-		const modifierIndex = modifiers.findIndex(s => s.get('id') === modifierId);
-		if (modifierIndex >= 0)
-			return modifiers.get(modifierIndex);
+		const modifierEntry = group.get('modifiers').findEntry(s => s.get('id') == modifierId);
+		return modifierEntry ? modifierEntry[1] : null;
 	}
 	return null;
 };

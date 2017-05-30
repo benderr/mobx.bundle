@@ -1,5 +1,5 @@
 import React from 'react';
-import {Select} from 'common/uiElements/uiComponents'
+import {Select} from 'common/uiElements'
 import modifierForm from 'modules/products/components/ProductCard/ModifierForm'
 
 class TestSelector extends React.Component {
@@ -22,6 +22,7 @@ class TestSelector extends React.Component {
 	}
 
 	logChange(val) {
+		debugger
 		//console.log("Selected: ", val);
 		this.setState({selected: val ? val.value : null})
 	}
@@ -39,15 +40,12 @@ class TestSelector extends React.Component {
 			<div style={{minHeight: '500px'}}>
 				<Select name="form-field-name"
 						placeholder=""
+						searchable={true}
 						value={this.state.selected}
 						onChange={::this.logChange} options={options}/>
 
 				<div className="poss" style={{maxWidth: '400px'}}>
-					<ModifierForm initialValues={modifier}
-								  onSave={::this.onSave}
-								  onRemove={::this.onRemove}
-								  onCancel={::this.onCancel}
-					/>
+
 				</div>
 			</div>
 		);

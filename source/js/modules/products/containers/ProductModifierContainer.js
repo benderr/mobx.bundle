@@ -23,22 +23,33 @@ class ProductModifierContainer extends DefaultLayerLayout {
 
 	componentDidMount() {
 		super.componentDidMount();
-		const {hasProduct, searchProducts, modifier}=this.props;
+		const {hasProduct, setDefaultSearchProduct, modifier}=this.props;
 		if (!hasProduct)
 			this.onCancel();
 
 		if (modifier) {
 			const formKey = getSearchFormKey(this.formKey);
-			this.props.searchProducts({formKey, query: modifier.barcode});
+			setDefaultSearchProduct({
+				formKey,
+				defaultsProduct: [{
+					name: modifier.name,
+					inventCode: modifier.barcode,
+					price: modifier.price
+				}]
+			});
+		} else {
+			this.onSearchProducts('');
 		}
 	}
 
 	onSelectProduct(product) {
 		if (product == null) {
-			this.onSearchProducts({query: ''});
+			const {products}=this.props.searchProductsView;
+			if (products.length <= 1)
+				this.onSearchProducts('');
 		}
 		else {
-			this.props.changeField(this.formKey, 'name', product.label);
+			this.props.changeField(this.formKey, 'name', product.name);
 			this.props.changeField(this.formKey, 'price', product.price);
 		}
 	}
@@ -54,7 +65,7 @@ class ProductModifierContainer extends DefaultLayerLayout {
 	onIncreaseQty() {
 		const {formData, changeField} = this.props;
 		if (formData) {
-			const qty = ++formData.qty;
+			const qty = formData.qty ? ++formData.qty : 1;
 			changeField(this.formKey, 'qty', qty);
 		}
 	}
@@ -95,14 +106,12 @@ class ProductModifierContainer extends DefaultLayerLayout {
 
 	render() {
 		const {modifier, searchProductsView}=this.props;
-		//console.log('render modif container ', modifier);
+
+		if (modifier)
+			modifier.product = {inventCode: modifier.barcode};
+
 		const ModifierForm = this.modifierForm;
 		const title = modifier ? 'Редактирование модификатора' : 'Добавление модификатора';
-		const productList = searchProductsView.products ? searchProductsView.products.map(s => ({
-				label: s.name,
-				value: s.inventCode,
-				price: s.price
-			})) : [];
 		const isLoadingProducts = searchProductsView.loading;
 
 		return (
@@ -119,7 +128,7 @@ class ProductModifierContainer extends DefaultLayerLayout {
 							  onCancel={::this.onCancel}
 							  onSearchProducts={::this.onSearchProducts}
 							  onSelectProduct={::this.onSelectProduct}
-							  productList={productList}
+							  productList={searchProductsView.products || []}
 							  isLoadingProducts={isLoadingProducts}
 							  onIncreaseQty={::this.onIncreaseQty}
 							  onDecreaseQty={::this.onDecreaseQty}
@@ -140,7 +149,7 @@ ProductModifierContainer.propTypes = {
 export default ProductModifierContainer;
 
 function mapStateToProps(state, ownProps) {
-	const {location, history}=ownProps;
+	const {location}=ownProps;
 	const {inventCode, groupId, modifierId} = location.state || {};
 
 	//modifier data
@@ -158,12 +167,8 @@ function mapStateToProps(state, ownProps) {
 
 	//search productData
 	const searchFormKey = getSearchFormKey(formKey);
-	// let selectedroduct;
-	// if (modifier) {
-	// 	selectedroduct = {label: modifier.get('name'), value: modifier.get('barcode')};
-	// }
 	let searchProductsView = productSelectors.getSearchProducts(searchFormKey)(state);
-	return {hasProduct, history, inventCode, groupId, modifier, searchProductsView, formData};
+	return {hasProduct, inventCode, groupId, modifier, searchProductsView, formData};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -172,12 +177,13 @@ function mapDispatchToProps(dispatch) {
 			save: productActions.saveModifier,
 			remove: productActions.removeModifier,
 			searchProducts: productActions.searchProducts.request,
+			setDefaultSearchProduct: productActions.setDefaultSearchProduct,
 			changeField: change
 		}, dispatch)
 	}
 }
 
-function getFormKey(inventCode, groupId, modifierId = 0) {
+function getFormKey(inventCode, groupId, modifierId = null) {
 	return `modifierForm_${inventCode}_${groupId}_${modifierId}`;
 }
 

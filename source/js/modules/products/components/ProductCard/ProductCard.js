@@ -1,7 +1,7 @@
 import React from 'react';
 import {reduxForm} from 'redux-form/immutable';
 import PropTypes from 'prop-types';
-import {PrimaryButton} from 'common/uiElements/uiComponents'
+import {PrimaryButton} from 'common/uiElements'
 import ModifiersTab from './ModifiersTab'
 import ProductTab from './ProductTab'
 

@@ -1,10 +1,19 @@
 export const toClientProduct = (item) => {
-	function getModifiers(modifiers) {
-		modifiers = getWithId(modifiers);
-		modifiers.forEach((group, i) => {
-			group.modifiers = getWithId(group.modifiers);
+	function mapModifiers(modifiers) {
+		if (!modifiers)
+			return [];
+		return modifiers.map((group, i) => {
+			group.id = i + 1;
+			group.required = true;
+			group.modifiers = group.modifiers ?
+				group.modifiers.map((m, j) => {
+					m.id = j + 1;
+					m.selected = m.base;
+					return m;
+				}) : [];
+
+			return group;
 		});
-		return modifiers;
 	}
 
 	return {
@@ -36,7 +45,7 @@ export const toClientProduct = (item) => {
 		remainDate: item.remainDate,
 		remainInStock: item.remainInStock,
 		requiredModifiers: item.requiredModifiers,
-		modifiers: getModifiers(item.requiredModifiers),//todo выпилить
+		modifiers: mapModifiers(item.requiredModifiers),//todo выпилить
 		sellRestrictPeriods: item.sellRestrictPeriods,
 		shortName: item.shortName,
 		vatTag: item.vatTag,

@@ -1,35 +1,40 @@
 import React from 'react'
-import {Select} from 'common/uiElements/uiComponents';
+import {Select} from 'common/uiElements';
 import radValidate from './radValidateHoc'
 
 @radValidate({tips: true, dataOnWrapper: true})
 class SelectRender extends React.Component {
 	render() {
-		const {input, label, className, validator: {tooltip, addClassName}, onChange, onBlur, ...otherProps}=this.props;
-		let inputValues = input;
-		if (input && input.value == "") { //хак, при пустой строке показывается будто выбран элемент
-			inputValues = {...input};
-			inputValues.value = undefined;
+		const {
+			input:fieldInput, label, className, validator: {tooltip, addClassName},
+			select:{onChange, onBlur, valueKey = 'value', ...selectOptions}
+		}=this.props;
+
+		let {onChange:onInputChange, onBlur:onInputBlur, ...input}=fieldInput;
+
+		if (input.value == "") { //хак, при пустой строке показывается будто выбран элемент
+			input.value = undefined;
 		}
 
-		const onChangeSelect = (value) => {
-			input.onChange(value);
+		const onChangeSelect = (obj) => {
+			onInputChange(obj ? obj[valueKey] : null);
 			if (onChange)
-				onChange(value);
+				onChange(obj);
 		};
 
-		const onBlurSelect = (value) => {
-			input.onBlur(input.value);
+		const onBlurSelect = (event) => {
+			onInputBlur(input.value);
 			if (onBlur)
-				onBlur(value);
+				onBlur(event);
 		};
 
 		return (<Select className={[className || '', addClassName || ''].join(' ')}
-						{...inputValues}
-						{...otherProps}
-						placeholder={label || ''}
+						{...input}
+						{...selectOptions}
+						valueKey={valueKey}
 						onChange={onChangeSelect}
 						onBlur={onBlurSelect}
+						placeholder={label || ''}
 		/>);
 	}
 }

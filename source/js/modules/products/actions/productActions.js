@@ -71,6 +71,11 @@ export const searchProducts = {
 	failure: ({formKey, error}) => createAction(actions.SEARCH_PRODUCTS.FAILURE, {formKey, error})
 };
 
+export const setDefaultSearchProduct = ({formKey, defaultsProduct}) => createAction(actions.SET_DEFAULT_SEARCH_PRODUCT, {
+	formKey,
+	defaultsProduct
+});
+
 export const destroyProductDetails = ({inventCode}) => createAction(actions.SAVE_MODIFIER);
 
 export const resetProductsList = () => createAction(actions.RESET_PRODUCTS_LIST);

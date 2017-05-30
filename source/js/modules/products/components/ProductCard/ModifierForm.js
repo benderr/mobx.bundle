@@ -4,7 +4,8 @@ import InputRender from 'common/formElements/InputRender';
 import SelectRender from 'common/formElements/SelectRender';
 import {isEmpty} from 'common/validators/validators'
 import PropTypes from 'prop-types';
-import {PrimaryButton, LabelSwitcher} from 'common/uiElements/uiComponents'
+import {PrimaryButton, LabelSwitcher} from 'common/uiElements';
+import {AmountField, NumberField} from 'common/formElements/fields'
 import modifierShape from './modifierShape';
 
 const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
@@ -26,13 +27,19 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Товар</div>
 						<div class="property_value col nine">
-							<Field name="barcode" className="w100" searchable={true}
+							<Field name="barcode" className="w100"
 								   component={SelectRender}
-								   isLoading={isLoadingProducts}
-								   onInputChange={onSearchProducts}
-								   onChange={onSelectProduct}
+								   select={{
+									   searchable: true,
+									   isLoading: isLoadingProducts,
+									   onInputChange: onSearchProducts,
+									   onChange: onSelectProduct,
+									   valueKey: "inventCode",
+									   labelKey: "name",
+									   options: productList
+								   }}
 								   validate={[isRequired('Выберите товар')]}
-								   options={productList}/>
+							/>
 						</div>
 					</div>
 
@@ -51,9 +58,8 @@ class ModifierForm extends React.Component {
 						<div class="property_value col nine">
 							<div class="counter_wrapper">
 								<a class="count_ctrl" onClick={onDecreaseQty}>&minus;</a>
-								<Field name="qty" type="text"
-									   component={InputRender}
-									   validate={[isRequired('Укажите количество')]}/>
+								<NumberField name="qty" type="text"
+											 validate={[isRequired('Укажите количество')]}/>
 								<a class="count_ctrl" onClick={onIncreaseQty}>+</a>
 							</div>
 						</div>
@@ -62,9 +68,8 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Цена</div>
 						<div class="property_value col add_modificators_price">
-							<Field name="price" type="text"
-								   component={InputRender}
-								   validate={[isRequired('Укажите цену')]}/>
+							<AmountField name="price" type="text"
+										 validate={[isRequired('Укажите цену')]}/>
 						</div>
 						<div class="property_label  col  one"><span class="cur rur"><span>р.</span></span></div>
 					</div>

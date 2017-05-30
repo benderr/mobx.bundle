@@ -7,7 +7,7 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router'
 import {getProductView} from '../selectors/productsSelectors'
-import {LoaderBlock} from 'common/uiElements/uiComponents'
+import {LoaderBlock} from 'common/uiElements'
 import toJS from 'components/HOC/toJs'
 
 const First = (Com) => {
@@ -50,7 +50,7 @@ class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onSaveProduct(productProps) {
-		const {productView:{product}} = this.props;
+		const {productView:{product},savingProduct} = this.props;
 		let editProduct = Object.assign({}, product);
 		editProduct.name = productProps.get('name');
 		editProduct.barcode = productProps.get('barcode');
@@ -60,7 +60,8 @@ class EditProductContainer extends DefaultLayerLayout {
 		editProduct.alcoholType = productProps.get('alcoholType');
 		editProduct.vatTag = productProps.get('vatTag');
 		editProduct.requiredModifiers = product.modifiers;
-		this.props.savingProduct({point: this.props.point, product: editProduct});
+		savingProduct({point: this.props.point, product: editProduct});
+		this.closeLayer();
 	}
 
 	onAddGroup() {

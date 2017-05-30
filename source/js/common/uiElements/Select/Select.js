@@ -4,10 +4,13 @@ import './style.styl';
 
 class Select extends React.Component {
 	render() {
-		let {searchable, ...props}=this.props;
+		let {searchable, noResultsText, ...props}=this.props;
 		if (searchable === undefined)
 			searchable = false;
-		return (<Selector {...props} searchable={searchable}/>);
+		if (noResultsText === undefined)
+			noResultsText = 'Введите текст поиска';
+		return (
+			<Selector {...props} noResultsText={noResultsText} searchable={searchable}/>);
 	}
 }
 
