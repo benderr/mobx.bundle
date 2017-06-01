@@ -9,8 +9,11 @@ import ReactTooltip from 'react-tooltip'
  * isSuccess - флаг валидности поля
  * addClassName - css класс success|error
  * tooltip: tooltip - конфиг для тултипа, который внедреятся в <input/>
+ *
+ * tips - включены ли подскажи тултипа
+ * dataOnWrapper - данные для фокусировки и отображению тултипа внедряются в оборачивающий элемент
  */
-function radValidate({tips}={tips: true}) {
+function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 	return (WrappedComponent) => {
 		return class radValidateHOC extends React.Component {
 
@@ -20,13 +23,13 @@ function radValidate({tips}={tips: true}) {
 				this.tooltipId = `tooltip_${this.validatorId}`;
 			}
 
-			getTooltipConfig(id) {
+			getTooltipConfig({id, tipEvent = 'focus', tipEventOf = 'blur', tipPlace = 'right'}) {
 				return {
 					'data-for': id,
-					'data-place': "right",
+					'data-place': tipPlace,
 					'data-type': "error",
-					'data-event': 'focus',
-					'data-event-off': "blur",
+					'data-event': tipEvent,
+					'data-event-off': tipEventOf,
 					'data-tip': ''
 				};
 			}
@@ -37,8 +40,13 @@ function radValidate({tips}={tips: true}) {
 			}
 
 			render() {
-				const {meta:{touched, error, warning, active, dirty, valid, visited, submitFailed}, hideTips}=this.props;
-				const tooltip = this.getTooltipConfig(this.tooltipId);
+				const {
+					meta:{touched, error, warning, active, dirty, valid, visited, submitFailed},
+					hideTips, tipEvent, tipEventOf, tipPlace
+				}=this.props;
+
+				const tooltip = this.getTooltipConfig({id: this.tooltipId, tipEvent, tipEventOf, tipPlace});
+
 				const highlightError = showErrorBorder({valid, error, active, visited, submitFailed});
 				const highlightSuccess = showSuccessBorder({valid, visited, error, active});
 				const additionalClassName = ifCondition(highlightError, ' error ') + ifCondition(highlightSuccess, ' success ');
@@ -51,17 +59,19 @@ function radValidate({tips}={tips: true}) {
 					tooltip: tooltip
 				};
 
+				const wrapperValidator = dataOnWrapper ? {...validator.tooltip, tabIndex: 0} : null;
+
 				if (tips && !hideTips) {
 					const showErrorMessage = this.getTooltipError() != null;
 					return (
 						<div>
-							<WrappedComponent {...this.props} {...validator}/>
+							<WrappedComponent {...this.props} validator={validator}/>
 							{showErrorMessage &&
 							<ReactTooltip id={this.tooltipId} getContent={[::this.getTooltipError, 400]}/>}
 						</div>
 					)
 				} else {
-					return <WrappedComponent {...this.props} {...validator}/>
+					return <WrappedComponent {...this.props} validator={validator}/>
 				}
 
 			}

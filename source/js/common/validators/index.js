@@ -10,6 +10,8 @@ export const isEmpty = val => {
 	return val === '' || val === null || val === undefined;
 };
 
+export const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
+
 export const isCorrectInn = function (INN) {
 	var factor1 = [2, 4, 10, 3, 5, 9, 4, 6, 8];
 	var factor2 = [7, 2, 4, 10, 3, 5, 9, 4, 6, 8];
@@ -54,8 +56,8 @@ export const isCorrectInn = function (INN) {
 	return Result;
 };
 
-export const isCorrectKpp=(val)=>{
-	if(!val)
+export const isCorrectKpp = (val) => {
+	if (!val)
 		return true;
-	return val.length===9;
+	return val.length === 9;
 };

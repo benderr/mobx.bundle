@@ -2,7 +2,7 @@
  * Created by RobertSabiryanov on 21.05.17.
  */
 import React from 'react';
-import { Iterable } from 'immutable';
+import {Iterable} from 'immutable';
 
 const toJS = (WrappedComponent) =>
 	(wrappedComponentProps) => {
@@ -10,7 +10,7 @@ const toJS = (WrappedComponent) =>
 		const VALUE = 1;
 
 		const propsJS = Object.entries(wrappedComponentProps)
-			.reduce((newProps, wrappedComponentProp)  => {
+			.reduce((newProps, wrappedComponentProp) => {
 				newProps[wrappedComponentProp[KEY]] =
 					Iterable.isIterable(wrappedComponentProp[VALUE])
 						? wrappedComponentProp[VALUE].toJS()

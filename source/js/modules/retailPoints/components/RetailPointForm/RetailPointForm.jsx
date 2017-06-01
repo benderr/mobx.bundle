@@ -5,17 +5,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import {Field, reduxForm, formValueSelector, change} from 'redux-form/immutable';
-import InputRender from 'common/formElements/InputRender'
-import PhoneField from 'common/formElements/fields/PhoneField'
-
-import {isCorrectInn, isCorrectKpp} from 'common/validators/validators'
-import normalizeKpp from 'common/formElements/fields/normalizeKpp'
-import normalizeInn from 'common/formElements/fields/normalizeInn'
+import {InputRender} from 'common/formElements'
+import {PhoneField, normalizeKpp,normalizeInn} from 'common/formElements/fields'
+import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators'
 
 
-import {isEmpty} from 'common/validators/validators'
-
-const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
 const validateKpp = (text) => (val) => !isCorrectKpp(val) ? text : undefined;

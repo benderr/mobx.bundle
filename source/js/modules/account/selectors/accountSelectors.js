@@ -19,3 +19,7 @@ export const getUser = createSelector([getAuthData], (info) => {
 export const getCompany = createSelector([getAuthData], (info) => {
 	return info ? info.get('company') : null;
 });
+
+export const getCurrentLocation = (state) => {
+	return state.getIn(['router', 'location']);
+}
