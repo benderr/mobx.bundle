@@ -31,7 +31,7 @@ class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onSaveProduct(productProps) {
-		const {productView:{product},savingProduct} = this.props;
+		const {productView:{product}, savingProduct} = this.props;
 		let editProduct = Object.assign({}, product);
 		editProduct.name = productProps.get('name');
 		editProduct.barcode = productProps.get('barcode');
@@ -72,10 +72,10 @@ class EditProductContainer extends DefaultLayerLayout {
 		const ProductCard = this.productCard;
 
 		return (
-			<article className="page">
+			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
 					{this.getCloseButton()}
-					{this.getToogleButton()}
+					{this.getToggleButton()}
 					<h1>Редактирование товара</h1>
 				</div>
 				{product &&

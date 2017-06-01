@@ -32,7 +32,7 @@ class AddRetailPointContainer extends DefaultLayerLayout {
             <article class="page">
                 <div class="page_header">
                     {this.getCloseButton()}
-                    {this.getToogleButton()}
+                    {this.getToggleButton()}
                     <h1>Добавление точки продаж</h1>
                 </div>
                 <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading}/>

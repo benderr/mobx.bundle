@@ -51,7 +51,7 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 			<article className="page">
 				<div className="page_header">
 					{this.getCloseButton()}
-					{this.getToogleButton()}
+					{this.getToggleButton()}
 					<h1>{title}</h1>
 				</div>
 				<ModifierGroupForm initialValues={group}
