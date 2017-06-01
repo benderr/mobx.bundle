@@ -1,14 +1,11 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form/immutable';
-import InputRender from 'common/formElements/InputRender';
-import SelectRender from 'common/formElements/SelectRender';
-import {isEmpty} from 'common/validators/validators'
+import {InputRender, SelectRender} from 'common/formElements';
+import {isRequired} from 'common/validators'
 import PropTypes from 'prop-types';
-import {PrimaryButton, LabelSwitcher} from 'common/uiElements';
+import {PrimaryButton} from 'common/uiElements';
 import {AmountField, NumberField} from 'common/formElements/fields'
 import modifierShape from './modifierShape';
-
-const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 
 class ModifierForm extends React.Component {
 
@@ -77,7 +74,10 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_value col nine">
 							<Field id="modifierSelectedField" name="selected" type="checkbox" component="input"/>
-							<LabelSwitcher label="Выбран по умолчанию" forElement="modifierSelectedField"/>
+							<label for="modifierSelectedField" className="label_check switcher m_top_15">
+								<i className="icon"></i>
+								<span className="m_left_45">Выбран по умолчанию</span>
+							</label>
 						</div>
 					</div>
 

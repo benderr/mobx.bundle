@@ -1,29 +1,10 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form/immutable';
 import InputRender from './InputRenderSign'
-import {validEmail, isEmpty} from 'common/validators/validators'
+import {validEmail, isRequired} from 'common/validators'
 import PropTypes from 'prop-types';
 
-
-const isRequired = (text) => (...args) => isEmpty(...args) ? text : undefined;
 const isValidEmail = (text) => (...args) => !validEmail(...args) ? text : undefined;
-
-// export const asyncValidate = (values, dispatch, props, blurredField) => {
-//     return sleep(1000) // имитация серверного ответа
-//         .then(() => {
-//             // if (!values.email) {
-//             //     // для асинхронной валидации нужно бросить объект с ошибкой
-//             //     throw {email: 'Поле обязательно для заполнения!'}
-//             // } else if (values.phone.length > 10) {
-//             //     throw {email: 'Заголовок должен быть не более 10 символов!'}
-//             // }
-//         })
-// };
-
-const validate = values => {
-	//const errors = {};
-	return null;
-};
 
 const SignInForm = props => {
 	const {handleSubmit, loading, onLogin, redirectUrl, errors} = props;
@@ -85,8 +66,7 @@ SignInForm.propTypes = {
 };
 
 export default  reduxForm({
-	form: 'auth',// имя формы в state (state.form.auth)
-	validate,
-	//asyncValidate
+	form: 'auth'// имя формы в state (state.form.auth)
+
 })(SignInForm);
 

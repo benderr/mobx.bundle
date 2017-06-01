@@ -1,16 +1,13 @@
 export const toClientProduct = (item) => {
 	function mapModifiers(modifiers) {
-		if (!modifiers)
-			return [];
-		return modifiers.map((group, i) => {
+		return (modifiers || []).map((group, i) => {
 			group.id = i + 1;
 			group.required = true;
-			group.modifiers = group.modifiers ?
-				group.modifiers.map((m, j) => {
-					m.id = j + 1;
-					m.selected = m.base;
-					return m;
-				}) : [];
+			group.modifiers = (group.modifiers || []).map((m, j) => {
+				m.id = j + 1;
+				m.selected = m.base;
+				return m;
+			});
 
 			return group;
 		});

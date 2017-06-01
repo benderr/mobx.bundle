@@ -1,20 +1,13 @@
 import React from 'react';
 import {Field} from 'redux-form/immutable';
 import InputRender from 'common/formElements/InputRender'
-
-const parser = (value) => {
-    if (!value)
-        return value;
-    if (value.replace)
-        value = value.replace(/[^\d]/g, '');
-    return value;
-};
+import parseNumber from './parseNumber';
 
 class NumberField extends React.Component {
     render() {
         return ( <Field type="tel"
                         component={InputRender}
-                        parse={parser} {...this.props}/>)
+                        parse={parseNumber} {...this.props}/>)
     }
 }
 

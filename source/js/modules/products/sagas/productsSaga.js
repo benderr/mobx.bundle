@@ -1,5 +1,5 @@
 import {call, put, takeLatest, takeEvery, select, fork, take, cancel} from 'redux-saga/effects';
-import {delay} from 'redux-saga';
+import {debounce} from 'redux-saga-debounce-effect';
 import * as actions from '../enums/actions';
 import * as retailPointsActions from '../../retailPoints/enums/actions';
 import * as productActions from '../actions/productActions';
@@ -42,20 +42,19 @@ function* saveProductDetailsProcess({product, point}) {
 	}
 }
 
-function* watchSearchProducts() {
-	let task;
-	while (true) {
-		const {formKey, query} = yield take(actions.SEARCH_PRODUCTS.REQUEST);
-		if (task) {
-			yield cancel(task)
-		}
-		task = yield fork(searchProducts, {formKey, query});
-	}
-}
+// function* watchSearchProducts() {
+// 	let task;
+// 	while (true) {
+// 		const {formKey, query} = yield take(actions.SEARCH_PRODUCTS.REQUEST);
+// 		if (task) {
+// 			yield cancel(task)
+// 		}
+// 		task = yield fork(searchProducts, {formKey, query});
+// 	}
+// }
 
 function* searchProducts({formKey, query}) {
 	try {
-		yield call(delay, 500);
 		const retailPointId = yield select(getCurrentRetailPointId);
 		const response = yield call(dataContext.getProducts, retailPointId, 0, 50, query);
 		yield put(productActions.searchProducts.success({formKey, products: response.productsList}));
@@ -73,6 +72,6 @@ export default function*() {
 		takeLatest(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
 		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetailsProcess),
 		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
-		fork(watchSearchProducts)
+		debounce(actions.SEARCH_PRODUCTS.REQUEST, searchProducts)
 	]
 }

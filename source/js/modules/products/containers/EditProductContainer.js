@@ -10,25 +10,6 @@ import {getProductView} from '../selectors/productsSelectors'
 import {LoaderBlock} from 'common/uiElements'
 import toJS from 'components/HOC/toJs'
 
-const First = (Com) => {
-	return props => {
-		console.log('First');
-		return (<Com {...props}/>)
-	}
-}
-
-const Second = (Com) => {
-
-	return class Test extends React.Component {
-		render() {
-			console.log('Second');
-			return (<Com {...this.props}/>)
-		}
-	}
-}
-
-@First
-@Second
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS

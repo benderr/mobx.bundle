@@ -1,5 +1,5 @@
 import React from 'react';
-import {SButton} from 'common/uiElements';
+import {PrimaryButton} from 'common/uiElements';
 import TransactionItem from './TransactionItem';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -66,7 +66,7 @@ const TransactionListComponent = (props) => {
                     {/*SET_COMPLETED*/}
                     {/*</SButton>*/}
 
-                    <SButton class="small"
+                    <PrimaryButton class="small"
                              onClick={() => props.setData({
                                  key: props.listId, data: {
                                      id: 1,
@@ -78,7 +78,7 @@ const TransactionListComponent = (props) => {
                                  }
                              })}>
                         SET_COMPLETED
-                    </SButton>
+                    </PrimaryButton>
                 </div>
             </div>
         </div>

@@ -3,8 +3,8 @@
  */
 import React from 'react';
 import {Field} from 'redux-form/immutable';
-import InputRender from 'common/formElements/InputRender'
-import normalizePhone from 'common/formElements/fields/normalizePhone'
+import InputRender from '../InputRender'
+import normalizePhone from './normalizePhone'
 
 const phoneParser = (value) => {
     return value.replace(/[^\d]/g, '');
@@ -12,7 +12,6 @@ const phoneParser = (value) => {
 
 class PhoneField extends React.Component {
     render() {
-        // normalize={normalizePhone}
         return ( <Field type="tel" maxLength="10"
                         class="w100"
                         component={InputRender}

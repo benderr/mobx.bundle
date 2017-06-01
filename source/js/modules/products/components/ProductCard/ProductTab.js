@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Field} from 'redux-form/immutable';
-import {isEmpty} from 'common/validators/validators'
+import {isRequired} from 'common/validators'
 import InputRender from 'common/formElements/InputRender'
-const isRequired = (text) => (val) => isEmpty(val) ? text : undefined;
 
-class ProductForm extends React.Component {
+class ProductTab extends React.Component {
 	render() {
 		const {className}=this.props;
 
@@ -103,4 +102,4 @@ class ProductForm extends React.Component {
 	}
 }
 
-export default ProductForm;
+export default ProductTab;

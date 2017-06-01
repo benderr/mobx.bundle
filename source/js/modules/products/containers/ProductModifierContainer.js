@@ -64,10 +64,8 @@ class ProductModifierContainer extends DefaultLayerLayout {
 
 	onIncreaseQty() {
 		const {formData, changeField} = this.props;
-		if (formData) {
-			const qty = formData.qty ? ++formData.qty : 1;
-			changeField(this.formKey, 'qty', qty);
-		}
+		const qty = formData && formData.qty ? ++formData.qty : 1;
+		changeField(this.formKey, 'qty', qty);
 	}
 
 	onDecreaseQty() {
