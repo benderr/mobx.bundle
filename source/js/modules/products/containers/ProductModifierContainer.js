@@ -113,7 +113,7 @@ class ProductModifierContainer extends DefaultLayerLayout {
 		const isLoadingProducts = searchProductsView.loading;
 
 		return (
-			<article className="page">
+			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
 					{this.getCloseButton()}
 					{this.getToggleButton()}

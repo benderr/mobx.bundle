@@ -44,8 +44,7 @@ class DefaultLayerLayout extends React.Component {
 
 	componentDidMount() {
 		const el = this.getElement();
-		this.addClass(el, 'open');
-		//setTimeout(_ => this.addClass(el, 'open'), 0);
+		el && this.addClass(el, 'open');
 	}
 
 	getCloseButton() {
@@ -58,7 +57,10 @@ class DefaultLayerLayout extends React.Component {
 	}
 
 	getElement() {
-		return this.el; // || ReactDOM.findDOMNode(this);
+		if (!this.el) {
+			throw 'Отсутствует layerOptions в article-элементе слоя';
+		}
+		return this.el; //ReactDOM.findDOMNode(this);
 	}
 
 	layerOptions = {

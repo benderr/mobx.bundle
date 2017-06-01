@@ -48,7 +48,7 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 		const ModifierGroupForm = modifierGroupForm(inventCode);
 		const title = group ? 'Редактирование группы' : 'Добавление группы';
 		return (
-			<article className="page">
+			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
 					{this.getCloseButton()}
 					{this.getToggleButton()}
