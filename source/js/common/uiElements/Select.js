@@ -1,5 +1,6 @@
 import * as Selector from 'react-select';
 import React from 'react';
+import './style.styl';
 
 class Select extends React.Component {
 	render() {
@@ -13,5 +14,6 @@ class Select extends React.Component {
 	}
 }
 
+Select.propTypes = Selector.propTypes;
 export default Select;
 
