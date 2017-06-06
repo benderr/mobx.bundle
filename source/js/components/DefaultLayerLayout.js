@@ -17,7 +17,7 @@ class DefaultLayerLayout extends React.Component {
 	}
 
 	closeLayer() {
-		const el = ReactDOM.findDOMNode(this);
+		const el = this.el;
 		if (el) {
 			this.removeClass(el, 'open');
 			this.addClass(el, 'hide');
@@ -26,7 +26,7 @@ class DefaultLayerLayout extends React.Component {
 	}
 
 	toggleFullSize() {
-		const el = ReactDOM.findDOMNode(this);
+		const el = this.getElement();
 		const btn = el.querySelector('#page_expand_' + this.props.layerId);
 		if (this.fullSize) {
 			this.removeClass(el, 'fullsize');
@@ -41,26 +41,38 @@ class DefaultLayerLayout extends React.Component {
 		return false;
 	}
 
+
 	componentDidMount() {
-		const el = ReactDOM.findDOMNode(this);
-		setTimeout(_ => this.addClass(el, 'open'), 0);
+		const el = this.getElement();
+		el && this.addClass(el, 'open');
 	}
 
 	getCloseButton() {
 		return (<a className="page_close icon-close" onClick={::this.closeLayer}></a>);
 	}
 
-	getToogleButton() {
+	getToggleButton() {
 		return (<a id={'page_expand_' + this.props.layerId} className="page_expand icon-fullsize"
 				   onClick={::this.toggleFullSize}></a>);
 	}
 
+	getElement() {
+		if (!this.el) {
+			throw 'Отсутствует layerOptions в article-элементе слоя';
+		}
+		return this.el; //ReactDOM.findDOMNode(this);
+	}
+
+	layerOptions = {
+		ref: el => this.el = el
+	};
+
 	render() {
 		return (
-			<article className="page">
+			<article className="page" {...this.layerOptions}>
 				<div className="page_header header_height_auto">
 					{this.getCloseButton()}
-					{this.getToogleButton()}
+					{this.getToggleButton()}
 					<h1>Тестовый слой</h1>
 				</div>
 				<div className="page_content">

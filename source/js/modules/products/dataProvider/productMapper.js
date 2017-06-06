@@ -1,4 +1,18 @@
 export const toClientProduct = (item) => {
+	function mapModifiers(modifiers) {
+		return (modifiers || []).map((group, i) => {
+			group.id = i + 1;
+			group.required = true;
+			group.modifiers = (group.modifiers || []).map((m, j) => {
+				m.id = j + 1;
+				m.selected = m.base;
+				return m;
+			});
+
+			return group;
+		});
+	}
+
 	return {
 		accountingQuantity: item.accountingQuantity,
 		additionalPrices: item.additionalPrices,
@@ -28,6 +42,7 @@ export const toClientProduct = (item) => {
 		remainDate: item.remainDate,
 		remainInStock: item.remainInStock,
 		requiredModifiers: item.requiredModifiers,
+		modifiers: mapModifiers(item.requiredModifiers),//todo выпилить
 		sellRestrictPeriods: item.sellRestrictPeriods,
 		shortName: item.shortName,
 		vatTag: item.vatTag,
@@ -40,3 +55,11 @@ export const toClient = (data) => {
 	let productsList = data.data.map(toClientProduct);
 	return {pos: data.pos, totalCount: data.total_count, productsList};
 };
+
+function getWithId(collection) {
+	let arr = (collection || []);
+	arr.forEach((item, i) => {
+		item.id = i + 1;
+	});
+	return arr;
+}

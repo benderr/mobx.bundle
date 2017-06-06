@@ -5,10 +5,10 @@ import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../dataProvider/accountDataContext'
 import * as accountSelectors from '../selectors/accountSelectors'
 import {push, replace} from 'connected-react-router'
-//import * as retailPointsActions from '../../retailPoints/enums/actions';
 import * as retailPointsSaga from '../../retailPoints/sagas/retailPointsSaga'
 
 const xToken = 'X-TOKEN';
+const signInLocation = {pathname: '/signin'};
 
 function* authorize(email, pass, redirectUrl) {
 	try {
@@ -16,6 +16,7 @@ function* authorize(email, pass, redirectUrl) {
 		const authData = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success(authData));
+		yield fork(retailPointsSaga.runRetailPoints);
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
 		console.log('FAIL', error);
@@ -50,7 +51,7 @@ function* watchLogout() {
 function* logout() {
 	yield call(dataContext.logout);
 	yield call(localStorage.removeItem, xToken);
-	yield put(push({pathname: '/signin'}));
+	yield put(push(signInLocation));
 }
 
 function* initApp() {
@@ -64,12 +65,16 @@ function* initApp() {
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
 				yield put(login.success(profile));
+
+				const location = yield  select(accountSelectors.getCurrentLocation);
+				if (location.get('pathname') == '/signin')
+					yield put(push({pathname: '/'}));
 				//yield put(retailPointsActions.GET_RETAIL_POINTS.REQUEST);
 				//console.log(retailPointsActions.GET_RETAIL_POINTS.REQUEST)
-
+				
 				yield fork(retailPointsSaga.runRetailPoints);
 			} else {
-				yield put(push({pathname: '/signin'}));
+				yield put(push(signInLocation));
 			}
 		} else {
 			yield fork(retailPointsSaga.runRetailPoints);
@@ -80,7 +85,7 @@ function* initApp() {
 	} catch (err) {
 		yield put(checkingAccessStop());
 		yield put(login.failure(err));
-		yield put(push({pathname: '/signin'}));
+		yield put(push(signInLocation));
 	}
 }
 

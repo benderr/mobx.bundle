@@ -1,45 +1,67 @@
-/**
- * Created by RobertSabiryanov on 14.05.17.
- */
-import {call, put, takeLatest, takeEvery} from 'redux-saga/effects'
+import {call, put, takeLatest, takeEvery, select, fork, take, cancel} from 'redux-saga/effects';
+import {debounce} from 'redux-saga-debounce-effect';
 import * as actions from '../enums/actions';
 import * as retailPointsActions from '../../retailPoints/enums/actions';
-import {getProductDetails, saveProductDetails, getProducts, resetProductsList} from '../actions/productActions'
-import * as dataContext from '../dataProvider/productDataContext'
+import * as productActions from '../actions/productActions';
+import * as dataContext from '../dataProvider/productDataContext';
+import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
 
 
 function* getProductsProcess({retailPointId, start, count, filter}) {
 	try {
 		const response = yield call(dataContext.getProducts, retailPointId, start, count, filter);
-		yield put(getProducts.success(response));
+		yield put(productActions.getProducts.success(response));
 	}
 	catch (e) {
-		yield put(getProducts.failure(e));
+		yield put(productActions.getProducts.failure(e));
 	}
 }
 
 function* initProductsProcess(data) {
-	yield put(resetProductsList());
+	yield put(productActions.resetProductsList());
 	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
 }
 
 function* getProductDetailsProcess({point, inventCode, category}) {
 	try {
 		const product = yield call(dataContext.getProduct, point, category, inventCode);
-		yield put(getProductDetails.success({product}));
+		yield put(productActions.getProductDetails.success({product}));
 	}
 	catch (error) {
-		yield put(getProductDetails.failure({inventCode, error}));
+		yield put(productActions.getProductDetails.failure({inventCode, error}));
 	}
 }
 
 function* saveProductDetailsProcess({product, point}) {
 	try {
 		const updatedProduct = yield call(dataContext.saveProduct, point, product);
-		yield put(saveProductDetails.success({product: updatedProduct}));
+		yield put(productActions.saveProductDetails.success({product: updatedProduct}));
 	}
 	catch (error) {
-		yield put(saveProductDetails.failure({inventCode: product.inventCode, error}));
+		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));
+	}
+}
+
+// function* watchSearchProducts() {
+// 	let task;
+// 	while (true) {
+// 		const {formKey, query} = yield take(actions.SEARCH_PRODUCTS.REQUEST);
+// 		if (task) {
+// 			yield cancel(task)
+// 		}
+// 		task = yield fork(searchProducts, {formKey, query});
+// 	}
+// }
+
+function* searchProducts({formKey, query}) {
+	try {
+		const retailPointId = yield select(getCurrentRetailPointId);
+		const response = yield call(dataContext.getProducts, retailPointId, 0, 50, query);
+		yield put(productActions.searchProducts.success({formKey, products: response.productsList}));
+	}
+	catch (error) {
+		console.log(error);
+		yield put(productActions.searchProducts.failure({formKey, error}));
 	}
 }
 
@@ -49,6 +71,7 @@ export default function*() {
 		takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess),
 		takeLatest(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
 		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetailsProcess),
-		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess)
+		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
+		debounce(actions.SEARCH_PRODUCTS.REQUEST, searchProducts)
 	]
 }

@@ -43,5 +43,40 @@ export const saveProductDetails = {
 	failure: ({inventCode, error}) => createAction(actions.SAVE_PRODUCT_DETAIL.FAILURE, {inventCode, error})
 };
 
+export const saveModifierGroup = ({inventCode, group}) => createAction(actions.SAVE_MODIFIER_GROUP, {
+	inventCode,
+	group
+});
+
+export const removeModifierGroup = ({inventCode, groupId}) => createAction(actions.REMOVE_MODIFIER_GROUP, {
+	inventCode,
+	groupId
+});
+
+export const saveModifier = ({inventCode, groupId, modifier}) => createAction(actions.SAVE_MODIFIER, {
+	inventCode,
+	groupId,
+	modifier
+});
+
+export const removeModifier = ({inventCode, groupId, modifierId}) => createAction(actions.REMOVE_MODIFIER, {
+	inventCode,
+	groupId,
+	modifierId
+});
+
+export const searchProducts = {
+	request: ({formKey, query}) => createAction(actions.SEARCH_PRODUCTS.REQUEST, {formKey, query}),
+	success: ({formKey, products}) => createAction(actions.SEARCH_PRODUCTS.SUCCESS, {formKey, products}),
+	failure: ({formKey, error}) => createAction(actions.SEARCH_PRODUCTS.FAILURE, {formKey, error})
+};
+
+export const setDefaultSearchProduct = ({formKey, defaultsProduct}) => createAction(actions.SET_DEFAULT_SEARCH_PRODUCT, {
+	formKey,
+	defaultsProduct
+});
+
+export const destroyProductDetails = ({inventCode}) => createAction(actions.SAVE_MODIFIER);
+
 export const resetProductsList = () => createAction(actions.RESET_PRODUCTS_LIST);
 
