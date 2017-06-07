@@ -8,7 +8,7 @@ import {Field, reduxForm, formValueSelector, change} from 'redux-form/immutable'
 import {InputRender} from 'common/formElements'
 import {PhoneField, normalizeKpp,normalizeInn} from 'common/formElements/fields'
 import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators'
-
+import RetailPointShape from './RetailPointShape';
 
 const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
@@ -138,7 +138,7 @@ RetailPointForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     loading: PropTypes.bool,
-    //points: PropTypes.arrayOf(RetailPointShape)
+    points: PropTypes.arrayOf(RetailPointShape)
 };
 
 RetailPointForm = reduxForm({
