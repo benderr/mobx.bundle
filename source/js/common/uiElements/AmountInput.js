@@ -62,9 +62,21 @@ class AmountInput extends React.Component {
 		}
 	};
 
+	setFocus() {
+		this.el && this.el.focus();
+	}
+
 	componentDidMount() {
 		if (this.props.value) {
 			const {viewValue, value, startPos}=this.parseValue(this.props.value);
+			this.setState({viewValue, value, startPos});
+		}
+	}
+
+	componentWillReceiveProps(props) {
+		console.log('componentWillReceiveProps');
+		if (props && props.value) {
+			const {viewValue, value, startPos}=this.parseValue(props.value);
 			this.setState({viewValue, value, startPos});
 		}
 	}

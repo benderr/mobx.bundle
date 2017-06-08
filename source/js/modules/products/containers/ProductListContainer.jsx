@@ -3,12 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router'
 import PropTypes from 'prop-types';
-import {getProducts} from '../actions/productActions';
+import {getProducts, createProduct} from '../actions/productActions';
 import ProductList from '../components/ProductsList/ProductListComponent';
 import ProductActions from '../components/ProductsList/ProductActions';
 import {getProductsList, getProductListTotalCount, getProductLoading} from '../selectors/productsSelectors'
-// import ProductMap from '../model/ProductMap'
-
 import toJs from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 
@@ -19,6 +17,16 @@ class ProductListContainer extends React.Component {
         this.count = 50;
         this.filtred = false;
         // this.getProductsList();
+    }
+
+    createProduct() {
+        const {catalog = 'INVENTORY', createProduct} = this.props; //todo каталог
+        createProduct({catalog});
+    }
+
+    openProduct(code, point) {
+        const {push}=this.props;
+        push({pathname: `/product/view/point/${point}/catalog/INVENTORY/code/${code}`}); //todo каталог
     }
 
     getProductsList() {
@@ -43,15 +51,15 @@ class ProductListContainer extends React.Component {
     }
 
     render() {
-        const {products, openProduct, selectedPoint, loading} = this.props;
+        const {products, selectedPoint, loading} = this.props;
         return (<div>
             <div class="title_panel">
 
                 <h1>Все товары</h1>
 
-                <ProductActions/>
+                <ProductActions onCreateProduct={::this.createProduct}/>
             </div>
-            <ProductList items={products} openProduct={openProduct} selectedPoint={selectedPoint}
+            <ProductList items={products} openProduct={::this.openProduct} selectedPoint={selectedPoint}
                          loadNext={::this.getProductsList} onFilterChanged={::this.onFilterChanged} loading={loading}/>
         </div>);
     }
@@ -71,11 +79,12 @@ function mapStateToProps(state, ownProps) {
 //todo https://docs.mobify.com/progressive-web/latest/guides/best-practices-guide/
 function mapDispatchToProps(dispatch) {
     return {
-        getProducts: bindActionCreators(getProducts.request, dispatch),
-        getProductsByFilter: bindActionCreators(getProducts.requestWithFilter, dispatch),
-        openProduct: (code, point) => {
-            dispatch(push({pathname: `/product/${point}/${code}`}))
-        }
+        ...bindActionCreators({
+            getProducts: getProducts.request,
+            getProductsByFilter: getProducts.requestWithFilter,
+            push: push,
+            createProduct: createProduct
+        }, dispatch)
     }
 }
 

@@ -4,13 +4,25 @@ import './style.styl';
 
 class Select extends React.Component {
 	render() {
-		let {searchable, noResultsText, ...props}=this.props;
-		if (searchable === undefined)
-			searchable = false;
-		if (noResultsText === undefined)
-			noResultsText = 'Введите текст поиска';
+		let {
+			searchable = false,
+			noResultsText = 'Введите текст поиска',
+			openOnFocus = false, ...props
+		}=this.props;
 		return (
-			<Selector {...props} noResultsText={noResultsText} searchable={searchable}/>);
+			<Selector ref={s => this.el = s}
+					  {...props}
+					  openOnFocus={openOnFocus}
+					  noResultsText={noResultsText}
+					  searchable={searchable}/>);
+	}
+
+	setFocus() {
+		this.el && this.el.focus();
+	}
+
+	inFocus() {
+		this.el && this.el.inFocus;
 	}
 }
 

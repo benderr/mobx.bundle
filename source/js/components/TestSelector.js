@@ -1,9 +1,9 @@
 import React from 'react';
 import {Select} from 'common/uiElements';
-import {AmountField} from 'common/formElements/fields';
+import {AmountField, InputField, PhoneField, NumberField, SelectField} from 'common/formElements/fields';
+import {reduxForm} from 'common/formElements'
 import {connect} from 'react-redux';
-import {Field, reduxForm} from 'redux-form/immutable';
-import {change, getFormValues} from 'redux-form/immutable';
+import {Field, focus,change, getFormValues} from 'redux-form/immutable';
 import {isRequired} from 'common/validators'
 import modifierForm from 'modules/products/components/ProductCard/ModifierForm'
 import {withRouter} from 'react-router';
@@ -11,12 +11,35 @@ import {withRouter} from 'react-router';
 const testForm = ({handleSubmit}) => {
 	return (<form onSubmit={handleSubmit(() => {
 	})}>
+
+		<InputField name="name" validate={[isRequired('Тест')]}/>
+		<PhoneField name="phone" validate={[isRequired('Тест')]}/>
 		<AmountField name="price" type="text"
 					 validate={[isRequired('Укажите цену')]}/>
+		<NumberField name="number" validate={[isRequired('Тест')]}/>
+		<SelectField name="select" options={[{label: '1', value: '1'}, {label: '2', value: '2'}]}
+					 validate={[isRequired('Укажите')]}
+		/>
+
+		<button type="submit" className="button middle wide">отправить</button>
 	</form>)
 };
 
-const TestForm = reduxForm({form: 'testForm'})(testForm);
+const onSubmitFail = formName => (errors, dispatch) => {
+	if (errors) {
+		const firstField = Object.keys(errors)[0];
+		firstField && dispatch(focus(formName, firstField));
+		// setTimeout(() => {
+		// 	document.querySelector(`[name=${firstField}]`).focus();
+		// }, 0);
+
+	}
+};
+
+const TestForm = reduxForm({
+	form: 'testForm',
+	onSubmitFail: onSubmitFail('testForm')
+})(testForm);
 
 @withRouter
 @connect(mapStateProps)
@@ -66,7 +89,7 @@ class TestSelector extends React.Component {
 
 
 				<div className="poss" style={{maxWidth: '400px'}}>
-					<TestForm initialValues={{price:111.22}}/>
+					<TestForm />
 					{amount}
 				</div>
 			</div>

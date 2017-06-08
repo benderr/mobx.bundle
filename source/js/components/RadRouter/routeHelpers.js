@@ -43,10 +43,6 @@ const generateRouteComponent = ({routeId, props}) => {
 	}
 };
 
-const generateRouteDefault = (key, props) => {
-	return (<Route {...props} key={key}/>);
-};
-
 const getRouteComponent = (key, props) => {
 
 	const {allowAnonymous, layout}=props;
@@ -68,10 +64,6 @@ const getRouteComponent = (key, props) => {
 	 }
 	 */
 	return routeComponent;
-};
-
-const generateRouteCustom = (key, props, CustomRoute) => {
-	return (<CustomRoute {...props} key={key}/>)
 };
 
 const transformRoutes = (routes, defaultLayout, defaultLayerLayout) => {

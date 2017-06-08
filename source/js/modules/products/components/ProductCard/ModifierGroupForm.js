@@ -1,6 +1,5 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form/immutable';
-import InputRender from 'common/formElements/InputRender'
+import {Fields, reduxForm} from 'common/formElements'
 import {isRequired} from 'common/validators'
 import PropTypes from 'prop-types';
 import {PrimaryButton} from 'common/uiElements'
@@ -19,15 +18,14 @@ class ModifierGroupForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Название</div>
 						<div class="property_value col nine">
-							<Field name="name" type="text"
-								   class="w100"
-								   component={InputRender}
-								   validate={[isRequired('Укажите наименование')]}/>
+							<Fields.InputField name="name"
+											   class="w100"
+											   validate={[isRequired('Укажите наименование')]}/>
 						</div>
 					</div>
 				</div>
 				<div class="page_bottom_panel">
-					<PrimaryButton type="submit" >Сохранить</PrimaryButton>
+					<PrimaryButton type="submit">Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
 					{group && <a class="button middle wide clean" onClick={onRemove}>Удалить</a>}
 				</div>

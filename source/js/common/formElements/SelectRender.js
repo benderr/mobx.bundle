@@ -1,9 +1,15 @@
 import React from 'react'
 import {Select} from 'common/uiElements';
-import radValidate from './radValidateHoc'
+import {radValidateHoc, CustomFocusable} from './validationHelpers'
 
-@radValidate({tips: true, dataOnWrapper: true})
+@radValidateHoc({tips: true, dataOnWrapper: true})
 class SelectRender extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.focusator = new CustomFocusable();
+	}
+
 	render() {
 		const {
 			input:fieldInput, label, className, validator: {tooltip, addClassName},
@@ -28,10 +34,13 @@ class SelectRender extends React.Component {
 				onSelectBlur(event);
 		};
 
-		return (<Select className={[className || '', addClassName || ''].join(' ')}
+		const classNames = [className || '', addClassName || ''].join(' ');
+
+		return (<Select ref={s => this.focusator.init(s)}
+						className={classNames}
 						{...input}
 						{...selectOptions}
-
+						inputProps={{...tooltip}}
 						valueKey={valueKey}
 						onChange={onChangeSelect}
 						onBlur={onBlurSelect}

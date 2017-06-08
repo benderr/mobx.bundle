@@ -20,14 +20,13 @@ class EditProductContainer extends DefaultLayerLayout {
 		this.productCard = productCard(this.props.inventCode);
 	}
 
-	componentWillUnmount() {
-		const {inventCode, destroyDetails}=this.props;
-	}
-
 	componentDidMount() {
 		super.componentDidMount();
-		const {point, inventCode, catalog, getDetails}=this.props;
-		getDetails({inventCode, point, catalog});
+		const {point, inventCode, catalog, getDetails, setNewProduct, urlAction, productView}=this.props;
+		if (urlAction == 'view')
+			getDetails({inventCode, point, catalog});
+		if (urlAction == 'add' && productView == null)
+			setNewProduct({catalog, inventCode});
 	}
 
 	onSaveProduct(productProps) {
@@ -42,7 +41,12 @@ class EditProductContainer extends DefaultLayerLayout {
 		editProduct.vatTag = productProps.get('vatTag');
 		editProduct.requiredModifiers = product.modifiers;
 		savingProduct({point: this.props.point, product: editProduct});
-		this.closeLayer();
+		this.closeLayer(); //todo закрыть после успеха
+	}
+
+	onRemoveProduct() { //todo сделать удаление
+		const {productView:{product}, savingProduct} = this.props;
+		this.closeLayer(); //todo закрыть после успеха
 	}
 
 	onAddGroup() {
@@ -70,13 +74,13 @@ class EditProductContainer extends DefaultLayerLayout {
 		const {productView} = this.props;
 		const {loading, error, saving, product}= productView || {loading: true};
 		const ProductCard = this.productCard;
-
+		const title = product && !product.isNew ? 'Редактирование товара' : 'Добавление товара';
 		return (
 			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
 					{this.getCloseButton()}
 					{this.getToggleButton()}
-					<h1>Редактирование товара</h1>
+					<h1>{!loading && title}</h1>
 				</div>
 				{product &&
 				<ProductCard onSave={::this.onSaveProduct}
@@ -85,6 +89,7 @@ class EditProductContainer extends DefaultLayerLayout {
 							 onAddModifier={::this.onAddModifier}
 							 onOpenGroup={::this.onOpenGroup}
 							 onOpenModifier={::this.onOpenModifier}
+							 onRemove={::this.onRemoveProduct}
 							 saving={saving}
 							 product={product}
 							 initialValues={product}
@@ -106,10 +111,10 @@ EditProductContainer.propTypes = {
 export default EditProductContainer;
 
 function mapStateToProps(state, ownProps) {
-	console.log('mapStateToProps');
-	const {inventCode, point, catalog}=ownProps.match.params;
+	const {inventCode, point, catalog, action:urlAction}=ownProps.match.params;
 	const productView = getProductView(inventCode)(state);
-	return {inventCode, point, catalog, productView, history: ownProps.history};
+	console.log('mapStateToProps', productView);
+	return {inventCode, point, catalog, productView, urlAction, history: ownProps.history};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -117,7 +122,9 @@ function mapDispatchToProps(dispatch) {
 		...bindActionCreators({
 			getDetails: productActions.getProductDetails.request,
 			destroyDetails: productActions.destroyProductDetails,
-			savingProduct: productActions.saveProductDetails.request
+			savingProduct: productActions.saveProductDetails.request,
+			setNewProduct: productActions.setNewProduct,
+			//removeProduct: productActions.removeProduct.request
 		}, dispatch)
 	}
 }

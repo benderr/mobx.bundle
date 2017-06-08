@@ -6,4 +6,13 @@ import InputField from './InputField';
 import normalizeKpp from './normalizeKpp';
 import normalizeInn from './normalizeInn';
 
-export {PhoneField, AmountField, NumberField, SelectField, InputField, normalizeKpp, normalizeInn};
+export {
+	PhoneField,
+	AmountField,
+	NumberField,
+	SelectField,
+	InputField,
+
+	normalizeKpp,
+	normalizeInn
+};

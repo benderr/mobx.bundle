@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form/immutable';
-import InputRender from './InputRenderSign'
+import {Field} from 'redux-form/immutable';
+import {InputRenderWithAddon, reduxForm} from 'common/formElements'
 import {validEmail, isRequired} from 'common/validators'
 import PropTypes from 'prop-types';
 
@@ -27,11 +27,11 @@ const SignInForm = props => {
 
 					<Field name="email" label="Электронная почта" type="text"
 						   addonClass="icon-mail"
-						   component={InputRender}
+						   component={InputRenderWithAddon}
 						   validate={[isRequired('Укажите E-mail'), isValidEmail('Укажите корректный E-mail')]}/>
 					<Field name="password" label="Пароль" type="password"
 						   addonClass="icon-password"
-						   component={InputRender}
+						   component={InputRenderWithAddon}
 						   validate={[isRequired('Введите пароль')]}/>
 
 					{/*Блок ошибок*/}

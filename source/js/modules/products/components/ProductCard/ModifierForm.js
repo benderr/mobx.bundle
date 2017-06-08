@@ -1,6 +1,6 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form/immutable';
-import {SelectRender} from 'common/formElements';
+import {Field} from 'redux-form/immutable';
+import {reduxForm} from 'common/formElements';
 import {isRequired} from 'common/validators'
 import PropTypes from 'prop-types';
 import {PrimaryButton} from 'common/uiElements';
@@ -62,7 +62,7 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Цена</div>
 						<div class="property_value col add_modificators_price">
-							<AmountField name="price" type="text"
+							<AmountField name="price"
 										 validate={[isRequired('Укажите цену')]}/>
 						</div>
 						<div class="property_label  col  one"><span class="cur rur"><span>р.</span></span></div>
