@@ -13,6 +13,6 @@ export default class InputFocusable extends IFocusableElement {
 			throw 'focusableInput not init';
 		if (!this.focusableInput.focus)
 			throw 'focusableInput does not have method @focus';
-		this.focusableInput.focus && this.focusableInput.focus();
+		this.focusableInput.focus();
 	}
 }
