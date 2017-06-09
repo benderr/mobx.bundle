@@ -1,6 +1,6 @@
-import IFocusableType from './IFocusableType';
+import IFocusableElement from './IFocusableElement';
 
-export default class CustomFocusable extends IFocusableType {
+export default class CustomFocusable extends IFocusableElement {
 	init(el) {
 		this.focusableInput = el;
 	}

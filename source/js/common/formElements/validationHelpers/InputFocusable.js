@@ -1,9 +1,9 @@
-import IFocusableType from './IFocusableType';
+import IFocusableElement from './IFocusableElement';
 
 /**
  * Сервис для фокусировки обычных инпутов
  */
-export default class InputFocusable extends IFocusableType {
+export default class InputFocusable extends IFocusableElement {
 	init(el) {
 		this.focusableInput = el;
 	}

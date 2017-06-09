@@ -1,9 +1,11 @@
 import React from 'react';
 import {Field} from 'redux-form/immutable';
 import InputRender from '../InputRender';
+import InputRenderMaterialStyle from '../InputRenderMaterialStyle';
 import PropTypes from 'prop-types';
 
-const InputField = ({type = 'text', component = InputRender, ...props}) => {
+const InputField = ({type = 'text', materialStyle = false, ...props}) => {
+	const component = materialStyle ? InputRenderMaterialStyle : InputRender;
 	return ( <Field type={type} component={component} {...props}/>);
 };
 

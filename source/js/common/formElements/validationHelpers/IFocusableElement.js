@@ -1,13 +1,13 @@
 /**
  * Интерфейс для работы с фокусировкой объектов
  */
-export default class IFocusableType {
+export default class IFocusableElement {
 	init(el) {
-		throw "IFocusableType method @init not implemented";
+		throw "IFocusableElement method @init not implemented";
 	}
 
 	setFocus() {
-		throw "IFocusableType method @setFocus not implemented";
+		throw "IFocusableElement method @setFocus not implemented";
 	}
 
 	inFocus() {

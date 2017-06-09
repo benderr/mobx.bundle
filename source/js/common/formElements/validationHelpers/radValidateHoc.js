@@ -43,7 +43,7 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 					setTimeout(() => {
 						if (this.wrappedEl) {
 							if (!this.wrappedEl.focusator)
-								throw 'Component does not contain @focusator:IFocusableType';
+								throw 'Component does not contain @focusator:IFocusableElement';
 							this.wrappedEl.focusator.setFocus();
 						}
 					}, 0);

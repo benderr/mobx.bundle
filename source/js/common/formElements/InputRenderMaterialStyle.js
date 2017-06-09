@@ -2,7 +2,7 @@ import React from 'react'
 import {radValidateHoc, InputFocusable} from './validationHelpers'
 
 @radValidateHoc({tips: false})
-class InputRenderWithAddon extends React.Component {
+class InputRenderMaterialStyle extends React.Component {
 	constructor(props) {
 		super(props);
 		this.focusator = new InputFocusable();
@@ -27,4 +27,4 @@ class InputRenderWithAddon extends React.Component {
 	}
 }
 
-export default InputRenderWithAddon
+export default InputRenderMaterialStyle
