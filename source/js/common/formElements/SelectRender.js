@@ -1,13 +1,19 @@
 import React from 'react'
 import {Select} from 'common/uiElements';
-import radValidate from './radValidateHoc'
+import {radValidateHoc, CustomFocusable} from './validationHelpers'
 
-@radValidate({tips: true, dataOnWrapper: true})
+@radValidateHoc({tips: true, dataOnWrapper: true})
 class SelectRender extends React.Component {
+
+	constructor(props) {
+		super(props);
+		this.focusator = new CustomFocusable();
+	}
+
 	render() {
 		const {
 			input:fieldInput, label, className, validator: {tooltip, addClassName},
-			select:{onChange, onBlur, valueKey = 'value', ...selectOptions}
+			onSelectChange, onSelectBlur, valueKey = 'value', ...selectOptions
 		}=this.props;
 
 		let {onChange:onInputChange, onBlur:onInputBlur, ...input}=fieldInput;
@@ -18,19 +24,23 @@ class SelectRender extends React.Component {
 
 		const onChangeSelect = (obj) => {
 			onInputChange(obj ? obj[valueKey] : null);
-			if (onChange)
-				onChange(obj);
+			if (onSelectChange)
+				onSelectChange(obj);
 		};
 
 		const onBlurSelect = (event) => {
 			onInputBlur(input.value);
-			if (onBlur)
-				onBlur(event);
+			if (onSelectBlur)
+				onSelectBlur(event);
 		};
 
-		return (<Select className={[className || '', addClassName || ''].join(' ')}
+		const classNames = [className || '', addClassName || ''].join(' ');
+
+		return (<Select ref={s => this.focusator.init(s)}
+						className={classNames}
 						{...input}
 						{...selectOptions}
+						inputProps={{...tooltip}}
 						valueKey={valueKey}
 						onChange={onChangeSelect}
 						onBlur={onBlurSelect}
@@ -39,5 +49,9 @@ class SelectRender extends React.Component {
 	}
 }
 
+SelectRender.propTypes = Select.propTypes;
+
 export default SelectRender;
+
+
 

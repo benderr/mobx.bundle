@@ -1,8 +1,13 @@
 import React from 'react'
-import radValidate from 'common/formElements/radValidateHoc'
+import {radValidateHoc, InputFocusable} from './validationHelpers'
 
-@radValidate({tips: false})
-class InputRenderSign extends React.Component {
+@radValidateHoc({tips: false})
+class InputRenderMaterialStyle extends React.Component {
+	constructor(props) {
+		super(props);
+		this.focusator = new InputFocusable();
+	}
+
 	render() {
 		const {input, label, addonClass, className, type, validator:{addClassName}}=this.props;
 		const classNames = [className || '', addClassName || ''].join(' ');
@@ -10,6 +15,7 @@ class InputRenderSign extends React.Component {
 			<div className="form_group">
 				<div className="input_group light w100">
 					<input {...input}
+						   ref={i => this.focusator.init(i)}
 						   className={classNames}
 						   placeholder={label}
 						   type={type}/>
@@ -21,4 +27,4 @@ class InputRenderSign extends React.Component {
 	}
 }
 
-export default InputRenderSign
+export default InputRenderMaterialStyle

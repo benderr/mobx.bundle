@@ -13,21 +13,20 @@ export function getRoutes() {
 			exact: true,
 			component: ProductListContainer
 		},
-		testselect: {
+		testSelect: {
 			path: '/testselect',
-			index: true,
 			exact: true,
-			component: TestSelector,
-			allowAnonymous: true
+			allowAnonymous: true,
+			component: TestSelector
 		},
 		product: {
-			path: '/product/add',
+			path: '/product/:action/point/:point/catalog/:catalog/code/:inventCode',
 			exact: true,
 			isLayer: true,
 			layout: EditProductContainer
 		},
-		productDetail: {
-			path: '/product/:point/:inventCode',
+		addProduct: {
+			path: '/product/:action/point/:point/catalog/:catalog/code/:inventCode',
 			exact: true,
 			isLayer: true,
 			layout: EditProductContainer

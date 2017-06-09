@@ -1,7 +1,7 @@
 import {
 	GET_PRODUCTS, GET_FILTRED_PRODUCTS, GET_PRODUCT_DETAIL, SAVE_PRODUCT_DETAIL,
 	SAVE_MODIFIER, SAVE_MODIFIER_GROUP, REMOVE_MODIFIER, REMOVE_MODIFIER_GROUP, RESET_PRODUCTS_LIST,
-	SEARCH_PRODUCTS, SET_DEFAULT_SEARCH_PRODUCT
+	SEARCH_PRODUCTS, SET_DEFAULT_SEARCH_PRODUCT, ADD_PRODUCT_DETAIL
 } from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
 
@@ -170,7 +170,16 @@ export const actionHandlers = {
 			error: null,
 			products: fromJS(defaultsProduct)
 		}));
-	}
+	},
+
+	[ADD_PRODUCT_DETAIL]: (state, {product}) => {
+		return state.setIn(['productView', product.inventCode],
+			Map({
+				loading: false,
+				product: fromJS(product),
+				error: null
+			}));
+	},
 };
 
 function getProductGroupsKey(inventCode) {

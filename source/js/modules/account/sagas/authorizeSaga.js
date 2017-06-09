@@ -69,16 +69,11 @@ function* initApp() {
 				const location = yield  select(accountSelectors.getCurrentLocation);
 				if (location.get('pathname') == '/signin')
 					yield put(push({pathname: '/'}));
-				//yield put(retailPointsActions.GET_RETAIL_POINTS.REQUEST);
-				//console.log(retailPointsActions.GET_RETAIL_POINTS.REQUEST)
-				
+
 				yield fork(retailPointsSaga.runRetailPoints);
-			} else {
-				yield put(push(signInLocation));
 			}
 		} else {
 			yield fork(retailPointsSaga.runRetailPoints);
-			//yield put(retailPointsActions.GET_RETAIL_POINTS.REQUEST);
 		}
 		yield put(checkingAccessStop());
 
@@ -86,6 +81,7 @@ function* initApp() {
 		yield put(checkingAccessStop());
 		yield put(login.failure(err));
 		yield put(push(signInLocation));
+		yield call(localStorage.removeItem, xToken);
 	}
 }
 

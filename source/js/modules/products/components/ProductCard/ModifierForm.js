@@ -1,10 +1,10 @@
 import React from 'react';
-import {Field, reduxForm} from 'redux-form/immutable';
-import {InputRender, SelectRender} from 'common/formElements';
+import {Field} from 'redux-form/immutable';
+import {reduxForm} from 'common/formElements';
 import {isRequired} from 'common/validators'
 import PropTypes from 'prop-types';
 import {PrimaryButton} from 'common/uiElements';
-import {AmountField, NumberField} from 'common/formElements/fields'
+import {AmountField, NumberField, SelectField, InputField} from 'common/formElements/fields'
 import modifierShape from './modifierShape';
 
 class ModifierForm extends React.Component {
@@ -24,18 +24,16 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Товар</div>
 						<div class="property_value col nine">
-							<Field name="barcode" className="w100"
-								   component={SelectRender}
-								   select={{
-									   searchable: true,
-									   isLoading: isLoadingProducts,
-									   onInputChange: onSearchProducts,
-									   onChange: onSelectProduct,
-									   valueKey: "inventCode",
-									   labelKey: "name",
-									   options: productList
-								   }}
-								   validate={[isRequired('Выберите товар')]}
+
+							<SelectField name="barcode" className="w100"
+										 searchable={true}
+										 isLoading={isLoadingProducts}
+										 onInputChange={onSearchProducts}
+										 onChange={onSelectProduct}
+										 valueKey="inventCode"
+										 labelKey="name"
+										 options={productList}
+										 validate={[isRequired('Выберите товар')]}
 							/>
 						</div>
 					</div>
@@ -43,10 +41,9 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Название</div>
 						<div class="property_value col nine">
-							<Field name="name" type="text"
-								   class="w100"
-								   component={InputRender}
-								   validate={[isRequired('Укажите наименование')]}/>
+							<InputField name="name"
+										class="w100"
+										validate={[isRequired('Укажите наименование')]}/>
 						</div>
 					</div>
 
@@ -65,7 +62,7 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Цена</div>
 						<div class="property_value col add_modificators_price">
-							<AmountField name="price" type="text"
+							<AmountField name="price"
 										 validate={[isRequired('Укажите цену')]}/>
 						</div>
 						<div class="property_label  col  one"><span class="cur rur"><span>р.</span></span></div>

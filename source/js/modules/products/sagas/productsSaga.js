@@ -1,11 +1,12 @@
-import {call, put, takeLatest, takeEvery, select, fork, take, cancel} from 'redux-saga/effects';
+import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects';
 import {debounce} from 'redux-saga-debounce-effect';
 import * as actions from '../enums/actions';
 import * as retailPointsActions from '../../retailPoints/enums/actions';
 import * as productActions from '../actions/productActions';
 import * as dataContext from '../dataProvider/productDataContext';
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
-
+import {generateNumber} from 'infrastructure/utils/uuidGenerator';
+import {push} from 'connected-react-router';
 
 function* getProductsProcess({retailPointId, start, count, filter}) {
 	try {
@@ -22,6 +23,29 @@ function* initProductsProcess(data) {
 	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
 }
 
+function* createProduct({catalog}) {
+	const inventCode = generateNumber().toString();
+	yield setProductToLayer({catalog, inventCode});
+	const retailPointId = yield select(getCurrentRetailPointId);
+	yield put(push({pathname: `/product/add/point/${retailPointId}/catalog/${catalog}/code/${inventCode}`}));
+}
+
+function* setProductToLayer({catalog, inventCode}) {
+	const product = {
+		inventCode: inventCode,
+		price: null,
+		alcoholType: 'NO_ALCOHOL',
+		barcode: inventCode,
+		minPrice: 0,
+		measure: 'pcs',
+		vatTag: "0",
+		catalogType: catalog,
+		modifiers: [],
+		isNew: true
+	};
+	yield put(productActions.addProduct({product}));
+}
+
 function* getProductDetailsProcess({point, inventCode, category}) {
 	try {
 		const product = yield call(dataContext.getProduct, point, category, inventCode);
@@ -34,24 +58,15 @@ function* getProductDetailsProcess({point, inventCode, category}) {
 
 function* saveProductDetailsProcess({product, point}) {
 	try {
-		const updatedProduct = yield call(dataContext.saveProduct, point, product);
+		const saveProduct = product.isNew ? dataContext.addProduct : dataContext.saveProduct;
+		const updatedProduct = yield call(saveProduct, point, product);
 		yield put(productActions.saveProductDetails.success({product: updatedProduct}));
+		yield initProductsProcess({id: point});
 	}
 	catch (error) {
 		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));
 	}
 }
-
-// function* watchSearchProducts() {
-// 	let task;
-// 	while (true) {
-// 		const {formKey, query} = yield take(actions.SEARCH_PRODUCTS.REQUEST);
-// 		if (task) {
-// 			yield cancel(task)
-// 		}
-// 		task = yield fork(searchProducts, {formKey, query});
-// 	}
-// }
 
 function* searchProducts({formKey, query}) {
 	try {
@@ -69,9 +84,11 @@ export default function*() {
 	yield [
 		takeEvery(retailPointsActions.SET_RETAIL_POINT, initProductsProcess),
 		takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess),
-		takeLatest(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
+		debounce(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
 		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetailsProcess),
 		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
+		takeEvery(actions.CREATE_PRODUCT, createProduct),
+		takeEvery(actions.SET_NEW_PRODUCT, setProductToLayer),
 		debounce(actions.SEARCH_PRODUCTS.REQUEST, searchProducts)
 	]
 }

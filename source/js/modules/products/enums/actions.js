@@ -1,7 +1,4 @@
-/**
- * Created by RobertSabiryanov on 14.05.17.
- */
-import {createRequestTypes, createAction} from 'infrastructure/helpers/actionHelpers'
+import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 
 export const GET_PRODUCTS = createRequestTypes('PRODUCTS.GET_PRODUCTS');
 export const GET_FILTRED_PRODUCTS = createRequestTypes('PRODUCTS.GET_FILTRED_PRODUCTS');
@@ -14,4 +11,7 @@ export const REMOVE_MODIFIER_GROUP = 'PRODUCTS.REMOVE_MODIFIER_GROUP'; //уда�
 export const RESET_PRODUCTS_LIST = 'PRODUCTS.RESET_PRODUCTS_LIST';
 export const SEARCH_PRODUCTS = createRequestTypes('PRODUCTS.SEARCH_PRODUCTS'); //поиск продуктов для выпадушки
 export const SET_DEFAULT_SEARCH_PRODUCT = 'PRODUCTS.SET_DEFAULT_SEARCH_PRODUCT'; //установка в выпадайке дефолтного продукта при открытии
+export const CREATE_PRODUCT = 'PRODUCTS.CREATE_PRODUCT'; //Создание балванки для нового продукта
+export const SET_NEW_PRODUCT = 'PRODUCTS.SET_NEW_PRODUCT'; //Создание балванки для нового продукта (если перезагрузили страницу)
+export const ADD_PRODUCT_DETAIL = 'PRODUCTS.ADD_PRODUCT_DETAIL'; //добавление нового продукта в стор слоя
 

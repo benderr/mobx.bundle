@@ -1,6 +1,8 @@
 import React from 'react';
 import '../../../markup/stylus/404.styl';
-export default () => {
+import {withRouter} from 'react-router';
+
+const NotFoundLayout = () => {
     return (
         <div className="reg_var2">
             <div className="page4041">
@@ -16,4 +18,6 @@ export default () => {
         </div>
     );
 };
+
+export default withRouter(NotFoundLayout)
 
