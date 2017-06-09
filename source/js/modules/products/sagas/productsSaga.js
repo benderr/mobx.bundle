@@ -38,7 +38,7 @@ function* setProductToLayer({catalog, inventCode}) {
 		barcode: inventCode,
 		minPrice: 0,
 		measure: 'pcs',
-		vatTag: 0,
+		vatTag: "0",
 		catalogType: catalog,
 		modifiers: [],
 		isNew: true

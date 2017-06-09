@@ -23,6 +23,7 @@ class ProductCard extends React.Component {
 		};
 
 		const isActiveInfo = this.state.activeTab == 'info';
+		const isEdit = product && !product.isNew;
 
 		return (
 			<form onSubmit={handleSubmit(submit)} className="poss">
@@ -45,7 +46,7 @@ class ProductCard extends React.Component {
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit" loading={saving}>Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					<a class="button middle wide clean mr44 f_right" onClick={onRemove}>Удалить</a>
+					{isEdit && <a class="button middle wide clean mr44 f_right" onClick={onRemove}>Удалить</a>}
 				</div>
 			</form>
 		)

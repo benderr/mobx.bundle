@@ -9,7 +9,7 @@ export const alcoholOptions = [
 	{label: 'Алкоголь', value: 'ALCOHOL'}];
 
 export const vatTagOptions = [
-	{value: 0, label: 'по умолчанию (из настроек)'},
+	{value: "0", label: 'по умолчанию (из настроек)'},
 	{value: 1104, label: 'НДС 0%'},
 	{value: 1103, label: 'НДС 10%'},
 	{value: 1102, label: 'НДС 18%'},
