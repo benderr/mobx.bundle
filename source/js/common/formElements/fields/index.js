@@ -3,7 +3,6 @@ import AmountField from './AmountField';
 import NumberField from './NumberField';
 import SelectField from './SelectField';
 import InputField from './InputField';
-import InputMaterialField from './InputMaterialField';
 import normalizeKpp from './normalizeKpp';
 import normalizeInn from './normalizeInn';
 
@@ -13,7 +12,6 @@ export {
 	NumberField,
 	SelectField,
 	InputField,
-	InputMaterialField,
 
 	normalizeKpp,
 	normalizeInn

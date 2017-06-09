@@ -1,6 +1,6 @@
 import React from 'react';
 import {reduxForm} from 'common/formElements';
-import {InputMaterialField} from 'common/formElements/fields';
+import {InputField} from 'common/formElements/fields';
 import {validEmail, isRequired} from 'common/validators';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
@@ -21,13 +21,31 @@ const SignInForm = props => {
 		<form onSubmit={handleSubmit(onLogin)}>
 			<div className="login_content">
 				<div className="login_auth_block">
+					<div class="form_group">
+						<div class="input_group light w100">
+							<InputField name="email"
+										label="Почта"
+										type="text"
+										required="Укажите E-mail"
+										hideTips={true}
+										validate={[isValidEmail('Укажите корректный E-mail')]}/>
+							<div class="input_group_addon icon-mail"></div>
+							<div class="input_light_border_bottom"></div>
+						</div>
+					</div>
 
-					<InputMaterialField name="email" label="Электронная почта" type="text"
-								addonClass="icon-mail"
-								validate={[isRequired('Укажите E-mail'), isValidEmail('Укажите корректный E-mail')]}/>
-					<InputMaterialField name="password" label="Пароль" type="password"
-								addonClass="icon-password"
-								validate={[isRequired('Введите пароль')]}/>
+					<div class="form_group">
+						<div class="input_group light w100">
+							<InputField name="password"
+										label="Пароль"
+										type="password"
+										hideTips={true}
+										required="Введите пароль"/>
+							<div class="input_group_addon icon-password"></div>
+							<div class="input_light_border_bottom"></div>
+						</div>
+					</div>
+
 
 					{/*Блок ошибок*/}
 					<div className="form_error">{getError(errors)}</div>

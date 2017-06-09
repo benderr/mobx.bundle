@@ -3,12 +3,11 @@ import {reduxForm} from 'common/formElements';
 import {InputField, PhoneField} from 'common/formElements/fields';
 import {validEmail} from 'common/validators'
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 
 const isValidEmail = (text) => (...args) => !validEmail(...args) ? text : undefined;
 
 const RegistrationForm = props => {
-	const {handleSubmit, loading, onRegister, errors} = props;
+	const {handleSubmit, loading, onRegister, errors, regData} = props;
 
 	const getError = (error) => {
 		if (!error)
@@ -72,6 +71,7 @@ const RegistrationForm = props => {
 						<div class="form_group">
 							<div class="input_group_title w100">
 								<InputField name="email" class="w100"
+											validate={[isValidEmail('Укажите корректную почту')]}
 											required="Укажите Почту"/>
 								<div class="input_title">Электронная почта</div>
 							</div>
@@ -85,8 +85,7 @@ const RegistrationForm = props => {
 						<InputField name="password"
 									type="password"
 									required="Укажите пароль"
-									class="w100"
-						/>
+									class="w100"/>
 						<div class="input_title">Придумайте пароль для входа, не менее 8 символов</div>
 					</div>
 				</div>
@@ -99,11 +98,10 @@ const RegistrationForm = props => {
 
 				{/*<!-- Успешная отправка – отображать вместо кнопки отправить (.form_buttons), остальные поля заблокировать-->*/}
 
-				{/*<div class="info_success info_icon_success">*/}
-				{/*Мы отправили письмо на указанную электронную почту. Для того, чтобы завершить регистрацию, перейдите по ссылке в письме. Ссылка будет работать 24 часа*/}
-				{/*</div>*/}
-
-
+				{regData && <div class="info_success info_icon_success">
+					Мы отправили письмо на указанную электронную почту. Для того, чтобы завершить регистрацию, перейдите
+					по ссылке в письме. Ссылка будет работать 24 часа
+				</div>}
 			</div>
 		</form>
 	)
@@ -112,6 +110,7 @@ const RegistrationForm = props => {
 RegistrationForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	onRegister: PropTypes.func.isRequired,
+	regData: PropTypes.object,
 	errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
