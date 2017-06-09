@@ -1,6 +1,8 @@
 import SignInContainer from './containers/SignInContainer';
+import RegistrationContainer from './containers/RegistrationContainer';
 import React from 'react';
-import ExternalLayout from 'components/ExternalLayout'
+import LoginLayout from 'components/LoginLayout';
+import RegistrationLayout from 'components/RegistrationLayout';
 
 export function getRoutes() {
 	return {
@@ -9,7 +11,14 @@ export function getRoutes() {
 			exact: true,
 			allowAnonymous: true,
 			component: SignInContainer,
-			layout: ExternalLayout
+			layout: LoginLayout
+		},
+		registration: {
+			path: '/registration',
+			exact: true,
+			allowAnonymous: true,
+			component: RegistrationContainer,
+			layout: RegistrationLayout
 		}
 	};
 }

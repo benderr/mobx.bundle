@@ -1,5 +1,5 @@
 import React from 'react';
-import SignInForm from '../components/SignInForm/SignInForm'
+import SignInForm from '../components/SignInForm'
 import {connect} from 'react-redux';
 import {login} from '../actions/loginActions'
 import {bindActionCreators} from 'redux';

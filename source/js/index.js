@@ -1,5 +1,4 @@
 import 'babel-polyfill';
-//import '../../markup/stylus/style_modulkassa.styl';
 import '../../../Markup.Kassa/markup/stylus/style_kassa.styl';
 import {render} from 'react-dom'
 import React from 'react'
