@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 const {arrayOf, string, func} = PropTypes;
-import RetailPointShape from './RetailPointShape';
+import RetailPointShape from '../RetailPointShape';
 
 import RetailPointListItem from './RetailPointListItem'
 

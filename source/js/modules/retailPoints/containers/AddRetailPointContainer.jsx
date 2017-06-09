@@ -5,6 +5,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {addRetailPoint} from '../actions/retailPointActions';
+import {getRetailPointList} from '../selectors/retailPointSelectors'
 
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
 import RetailPointForm from '../components/RetailPointForm/RetailPointForm'
@@ -26,8 +27,9 @@ class AddRetailPointContainer extends DefaultLayerLayout {
         addRetailPoint(retailPoint);
         this.closeLayer();
     }
+
     render() {
-        const {loading} = this.props;
+        const {loading, points} = this.props;
         return (
             <article class="page" {...this.layerOptions}>
                 <div class="page_header">
@@ -35,15 +37,19 @@ class AddRetailPointContainer extends DefaultLayerLayout {
                     {this.getToggleButton()}
                     <h1>Добавление точки продаж</h1>
                 </div>
-                <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading}/>
+                <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading} points={points}/>
             </article>)
     }
 }
 
-function mapDispatchToProps(dispatch) {
+const mapState = state => ({
+    points: getRetailPointList(state),
+});
+
+const mapDispatchToProps = dispatch => {
     return {
         addRetailPoint: bindActionCreators(addRetailPoint.request, dispatch),
     }
-}
+};
 
-export default connect(null, mapDispatchToProps)(AddRetailPointContainer);
+export default connect(mapState, mapDispatchToProps)(AddRetailPointContainer);
