@@ -16,7 +16,7 @@ class PhoneField extends React.Component {
 
         return ( <Field type="tel" maxLength="10"
                         component={InputRender} //todo добавить валидатор для правильного формата телефона
-                        normalize={normalizePhone}
+                        format={normalizePhone}
                         validate={validators}
                         parse={phoneParser} {...props}
         />)

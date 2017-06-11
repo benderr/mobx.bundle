@@ -1,13 +1,13 @@
 import React from 'react';
 import {reduxForm} from 'common/formElements';
 import {InputField} from 'common/formElements/fields';
-import {validEmail} from 'common/validators';
+import {validEmail, isRequired} from 'common/validators';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 const isValidEmail = (text) => (...args) => !validEmail(...args) ? text : undefined;
 
-const SignInForm = props => {
-	const {handleSubmit, loading, onLogin, errors} = props;
+const ForgotForm = props => {
+	const {handleSubmit, loading, onLogin, redirectUrl, errors} = props;
 
 	const getError = (error) => {
 		if (!error)
@@ -46,19 +46,8 @@ const SignInForm = props => {
 						</div>
 					</div>
 
-
-					{/*Блок ошибок*/}
 					<div className="form_error">{getError(errors)}</div>
 
-					{/*/!*Блок каптча - раскомментировать если нужно*!/*/}
-					{/*<div class="captcha">*/}
-					{/*<p>А вы, часом, не робот?<br/>Если нет, введите текст с картинки</p>*/}
-					{/*<div class="captcha_left">*/}
-					{/*<input type="text" name="" id="" placeholder="Введите код" class="small" /> */}
-					{/*<a href="#">Обновить код</a>*/}
-					{/*</div>*/}
-					{/*<img src="https://yastatic.net/doccenter/images/tech-ru/cleanweb/freeze/0WLRscWa-KXnsJM3K9jyjORMUEc.gif" alt="" width="140" height="50">*/}
-					{/*</div> */}
 					<div className="form_buttons">
 						<button disabled={loading} className="button" type="submit">Войти</button>
 					</div>
@@ -72,15 +61,15 @@ const SignInForm = props => {
 	)
 };
 
-SignInForm.propTypes = {
+ForgotForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
-	onLogin: PropTypes.func.isRequired,
-	redirectUrl: PropTypes.string,
+	onSendEmail: PropTypes.func.isRequired,
+	isSent: PropTypes.bool,
 	errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
 export default  reduxForm({
-	form: 'auth'// имя формы в state (state.form.auth)
+	form: 'forgot'// имя формы в state (state.form.auth)
 
-})(SignInForm);
+})(ForgotForm);
 

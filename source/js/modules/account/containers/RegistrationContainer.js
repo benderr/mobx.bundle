@@ -4,22 +4,62 @@ import {connect} from 'react-redux';
 import {register} from '../actions/registrationActions'
 import {bindActionCreators} from 'redux';
 import {getSection} from '../selectors/registrationSelectors'
+import toJs from 'components/HOC/toJs';
 
-const RegistrationContainer = props => {
-	const {loading, register, errors}=props;
-
-	const onRegister = (props) => {
-		let model = {
-			email: props.get('email'),
-			password: props.get('password')
+class RegistrationContainer extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			captcha: null,
+			captchaReady: false
 		};
-		register(model);
-	};
+	}
 
-	return (<RegistrationForm onRegister={onRegister} errors={errors} loading={loading}/>);
-};
+	onCaptchaChange(value) {
+		debugger
+		this.setState({
+			captcha: value
+		});
+	}
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegistrationContainer);
+	onCaptchaLoad() {
+		this.setState({
+			captchaReady: true
+		});
+	}
+
+	onRegister(props) {
+		if (!this.state.captcha)
+			return;
+		const {register}=this.props;
+		const user = {
+			name: props.get('name'),
+			surname: props.get('surname'),
+			company: props.get('company'),
+			phone: props.get('phone'),
+			email: props.get('email'),
+			password: props.get('password'),
+			captcha: this.state.captcha
+		};
+		register(user);
+	}
+
+	render() {
+		const {loading, errors, regData}=this.props;
+
+		return (<RegistrationForm onRegister={::this.onRegister}
+								  errors={errors}
+								  loading={loading}
+								  regData={regData}
+								  captcha={this.state.captcha}
+								  captchaReady={this.state.captchaReady}
+								  onCaptchaChange={::this.onCaptchaChange}
+								  onCaptchaLoad={::this.onCaptchaLoad}
+		/>);
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(toJs(RegistrationContainer));
 
 
 function mapStateToProps(state, ownProps) {

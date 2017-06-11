@@ -6,6 +6,10 @@ export const validEmail = (email, required = false) => {
 	return EMAIL_REGEXP.test(email);
 };
 
+export const validChars = (string) => {
+	return /^[а-яА-ЯёЁ][а-яА-ЯёЁ\-\s]*$/.test(string);
+};
+
 export const isEmpty = val => {
 	return val === '' || val === null || val === undefined;
 };
@@ -61,3 +65,4 @@ export const isCorrectKpp = (val) => {
 		return true;
 	return val.length === 9;
 };
+

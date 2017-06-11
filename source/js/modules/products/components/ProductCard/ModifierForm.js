@@ -33,7 +33,7 @@ class ModifierForm extends React.Component {
 										 valueKey="inventCode"
 										 labelKey="name"
 										 options={productList}
-										 validate={[isRequired('Выберите товар')]}
+										 required="Выберите товар"
 							/>
 						</div>
 					</div>
@@ -43,7 +43,7 @@ class ModifierForm extends React.Component {
 						<div class="property_value col nine">
 							<InputField name="name"
 										class="w100"
-										validate={[isRequired('Укажите наименование')]}/>
+										required="Укажите наименование"/>
 						</div>
 					</div>
 
@@ -53,7 +53,7 @@ class ModifierForm extends React.Component {
 							<div class="counter_wrapper">
 								<a class="count_ctrl" onClick={onDecreaseQty}>&minus;</a>
 								<NumberField name="qty" type="text"
-											 validate={[isRequired('Укажите количество')]}/>
+											 required="Укажите количество" />
 								<a class="count_ctrl" onClick={onIncreaseQty}>+</a>
 							</div>
 						</div>
@@ -63,7 +63,7 @@ class ModifierForm extends React.Component {
 						<div class="property_label col w100px">Цена</div>
 						<div class="property_value col add_modificators_price">
 							<AmountField name="price"
-										 validate={[isRequired('Укажите цену')]}/>
+										 required="Укажите цену"/>
 						</div>
 						<div class="property_label  col  one"><span class="cur rur"><span>р.</span></span></div>
 					</div>

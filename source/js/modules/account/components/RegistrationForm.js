@@ -3,19 +3,37 @@ import {reduxForm} from 'common/formElements';
 import {InputField, PhoneField} from 'common/formElements/fields';
 import {validEmail} from 'common/validators'
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+import {Recaptcha} from 'common/uiElements';
 
 const isValidEmail = (text) => (...args) => !validEmail(...args) ? text : undefined;
 
 const RegistrationForm = props => {
-	const {handleSubmit, loading, onRegister, errors, regData} = props;
+	const {handleSubmit, loading, onRegister, onCaptchaChange, onCaptchaLoad, errors, regData, captchaReady, captcha} = props;
+	let existEmail = false;
+	let defaultErrorText = '';
 
-	const getError = (error) => {
+	const parseError = (error) => {
 		if (!error)
 			return '';
-		if (error.get('status') == 401)
-			return 'Неверный E-mail или пароль!';
-		return 'Произошла неизвестная ошибка.'
+		const data = error.data || {};
+		if (error.status == 401) {
+			defaultErrorText = 'Неверный E-mail или пароль!';
+		} else if (error.status == 400) {
+			switch (data.type) {
+				case 'exist':
+					existEmail = true;
+					break;
+				default:
+					defaultErrorText = 'Убедитесь что вы заполнили все поля верно';
+					return;
+			}
+		} else {
+			defaultErrorText = 'Произошла неизвестная ошибка.';
+		}
 	};
+
+	parseError(errors);
 
 	return (
 		<form onSubmit={handleSubmit(onRegister)} noValidate={true} autoComplete={false}>
@@ -79,24 +97,38 @@ const RegistrationForm = props => {
 					</div>
 				</div>
 
+				<div class="form_group">
+					<Recaptcha
+						sitekey="6LeJNhcUAAAAAEqqVK2197rndTkLHRDyh429W7rw"
+						render="explicit"
+						verifyCallback={onCaptchaChange}
+						expiredCallback={onCaptchaChange}
+						onloadCallback={onCaptchaLoad}
+					/>
+				</div>
 
 				<div class="form_group">
 					<div class="input_group_title w100">
 						<InputField name="password"
-									type="password"
 									required="Укажите пароль"
 									class="w100"/>
 						<div class="input_title">Придумайте пароль для входа, не менее 8 символов</div>
 					</div>
 				</div>
 
-				<div className="form_error">{getError(errors)}</div>
+				{defaultErrorText && <div className="form_error">{defaultErrorText}</div>}
 
-				<div class="form_buttons">
-					<button disabled={loading} className="button" type="submit">Зарегистрироваться</button>
+				{!regData && <div class="form_buttons">
+					<button disabled={loading || !captchaReady} className="button" type="submit">
+						Зарегистрироваться
+					</button>
 				</div>
+				}
 
-				{/*<!-- Успешная отправка – отображать вместо кнопки отправить (.form_buttons), остальные поля заблокировать-->*/}
+				{existEmail && <div class="info_error info_error_icon">
+					Пользователь с таким email уже зарегистрирован в системе. Вы можете <Link
+					to="/signin">войти</Link>&nbsp;в систему или <Link to="/forgot">восстановить</Link> пароль
+				</div>}
 
 				{regData && <div class="info_success info_icon_success">
 					Мы отправили письмо на указанную электронную почту. Для того, чтобы завершить регистрацию, перейдите
@@ -109,8 +141,11 @@ const RegistrationForm = props => {
 
 RegistrationForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
+	captchaReady: PropTypes.bool.isRequired,
 	onRegister: PropTypes.func.isRequired,
-	regData: PropTypes.object,
+	onCaptchaChange: PropTypes.func.isRequired,
+	onCaptchaLoad: PropTypes.func.isRequired,
+	regData: PropTypes.bool,
 	errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 

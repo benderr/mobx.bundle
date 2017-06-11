@@ -5,4 +5,9 @@ export const compose = (api) => {
 	api.v1().addResource('profile');
 
 	api.v1().addResource('logout');
+
+	/**
+	 * регистрация
+	 */
+	api.v1().addResource('webUser', 'web-user');
 };

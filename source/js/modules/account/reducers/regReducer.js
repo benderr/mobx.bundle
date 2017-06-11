@@ -1,5 +1,5 @@
 import {Map, fromJS} from 'immutable';
-// import {LOGIN, LOGOUT, CHECKING_ACCESS_STOP, CHECKING_ACCESS_START} from '../enums/actions';
+import * as actions from '../enums/actions';
 
 export const initialState = Map({
 	loading: false,
@@ -9,29 +9,29 @@ export const initialState = Map({
 
 export const actionHandlers = {
 
-	// [LOGIN.REQUEST]: (state) => {
-	// 	return state.merge({
-	// 		loading: true,
-	// 		authError: null,
-	// 		authData: null
-	// 	});
-	// },
-    //
-	// [LOGIN.SUCCESS]: (state, action) => {
-	// 	return state.merge({
-	// 		loading: false,
-	// 		authError: null,
-	// 		authData: fromJS(action.response)
-	// 	});
-	// },
-    //
-	// [LOGIN.FAILURE]: (state, action) => {
-	// 	return state.merge({
-	// 		loading: false,
-	// 		authError: fromJS(action.error),
-	// 		authData: null
-	// 	});
-	// }
+	[actions.REGISTER.REQUEST]: (state) => {
+		return state.merge({
+			loading: true,
+			regError: null,
+			regData: null
+		});
+	},
+
+	[actions.REGISTER.SUCCESS]: (state, action) => {
+		return state.merge({
+			loading: false,
+			regError: null,
+			regData: true
+		});
+	},
+
+	[actions.REGISTER.FAILURE]: (state, action) => {
+		return state.merge({
+			loading: false,
+			regError: fromJS(action.error),
+			regData: false
+		});
+	}
 };
 
 export default (createReducer) => createReducer(initialState, actionHandlers);
