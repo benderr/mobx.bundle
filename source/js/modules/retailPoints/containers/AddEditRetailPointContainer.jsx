@@ -47,13 +47,14 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
     }
 
     render() {
-        const {loading, points, initialValues} = this.props;
+        const {id, loading, points, initialValues} = this.props;
+        const h1Title = id ? 'Редактирование точки продаж' : 'Добавление точки продаж';
         return (
             <article class="page" {...this.layerOptions}>
                 <div class="page_header">
                     {this.getCloseButton()}
                     {this.getToggleButton()}
-                    <h1>Добавление точки продаж</h1>
+                    <h1>{h1Title}</h1>
                 </div>
                 <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading} points={points}
                                  initialValues={initialValues}/>
