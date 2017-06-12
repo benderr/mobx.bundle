@@ -79,4 +79,9 @@ export const setDefaultSearchProduct = ({formKey, defaultsProduct}) => createAct
 export const destroyProductDetails = ({inventCode}) => createAction(actions.SAVE_MODIFIER);
 
 export const resetProductsList = () => createAction(actions.RESET_PRODUCTS_LIST);
+export const addProduct = ({product}) => createAction(actions.ADD_PRODUCT_DETAIL, {product});
+
+export const createProduct = ({catalog}) => createAction(actions.CREATE_PRODUCT, {catalog});
+export const setNewProduct = ({catalog, inventCode}) => createAction(actions.SET_NEW_PRODUCT, {catalog, inventCode});
+
 

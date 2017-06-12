@@ -1,9 +1,15 @@
 import InputRender from './InputRender';
-import radValidateHoc from './radValidateHoc';
 import SelectRender from './SelectRender';
+import AmountRender from './AmountRender';
+import InputRenderWithAddon from './InputRenderWithAddon';
+import reduxForm from './reduxForm';
+import * as Fields from './fields'
 
 export {
 	InputRender,
-	radValidateHoc,
-	SelectRender
+	SelectRender,
+	AmountRender,
+	InputRenderWithAddon,
+	reduxForm,
+	Fields
 };

@@ -8,7 +8,7 @@ import {Field, reduxForm, formValueSelector, change} from 'redux-form/immutable'
 import {InputRender} from 'common/formElements'
 import {PhoneField, SelectField, normalizeKpp, normalizeInn} from 'common/formElements/fields'
 import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators'
-//import RetailPointShape from '../RetailPointShape';
+import RetailPointShape from '../RetailPointShape';
 
 const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
@@ -34,28 +34,11 @@ class RetailPointForm extends React.Component {
     render() {
         const {handleSubmit, pristine, submitting, onSave, onCancel, isIP, points, existPointProductsList} = this.props;
 
-        const retailPointList = <div class="inner_select  mt8">
-            <div class="form_group form_horizontal  mb8">
-                <div class="jsRadSelect2  w100" data-placeholder="Селект" name="adfasd" id="adsf">
-                    <SelectField name="barcode" className="w100"
-                                 searchable={true}
-                                 isLoading={isLoadingProducts}
-                                 onInputChange={onSearchProducts}
-                                 onChange={onSelectProduct}
-                                 valueKey="inventCode"
-                                 labelKey="name"
-                                 options={points}
-                                 validate={[isRequired('Выберите товар')]}
-                </div>
-            </div>
-            <div class="info_text icon-info f_xsmall">Все изменения по товарам из выбранной точки
-                будут отражены также в новой точке
-            </div>
-        </div>
+        // const retailPointList =
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
-                {points && points.size > 0 && <div class="form_group form_horizontal">
+                {points && points.length > 0 && <div class="form_group form_horizontal">
                     <div class="mb16">
                         <Field type="radio" component="input" name="productsSource" id="11" value="newProductsList"/>
                         <label for="11" class="label_check"><i
@@ -66,7 +49,20 @@ class RetailPointForm extends React.Component {
                         <Field type="radio" component="input" name="productsSource" id="12" value="existPointProductsList"/>
                         <label for="12" class="label_check"><i class="icon"></i><span>Использовать товары и данные другой точки</span></label>
 
-                        {existPointProductsList && retailPointList}
+                        <div class="inner_select  mt8">
+                            <div class="form_group form_horizontal  mb8">
+                                <div class="jsRadSelect2  w100" data-placeholder="Селект" name="adfasd" id="adsf">
+                                    <SelectField name="retailPoints" className="w100"
+                                                 valueKey="id"
+                                                 labelKey="name"
+                                                 options={points}
+                                                 validate={[isRequired('Выберите товар')]} />
+                                </div>
+                            </div>
+                            <div class="info_text icon-info f_xsmall">Все изменения по товарам из выбранной точки
+                                будут отражены также в новой точке
+                            </div>
+                        </div>
                     </div>
 
                     <div class="mb20">
@@ -143,7 +139,7 @@ RetailPointForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     loading: PropTypes.bool,
-    //points: PropTypes.arrayOf(RetailPointShape)
+    points: PropTypes.arrayOf(RetailPointShape)
 };
 
 RetailPointForm = reduxForm({

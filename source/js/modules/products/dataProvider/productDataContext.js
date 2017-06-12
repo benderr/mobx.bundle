@@ -25,3 +25,9 @@ export const saveProduct = (retailPointId, product) => {
 		.put(product)
 		.then(response => toClientProduct(response.data.catalogEntity));
 };
+
+export const addProduct = (retailPointId, product) => {
+	return api.v1().retailpoint(retailPointId).catalog()
+		.post(product)
+		.then(response => toClientProduct(response.data.catalogEntity));
+};

@@ -13,8 +13,7 @@ const phoneParser = (value) => {
 class PhoneField extends React.Component {
     render() {
         return ( <Field type="tel" maxLength="10"
-                        class="w100"
-                        component={InputRender}
+                        component={InputRender} //todo добавить валидатор
                         normalize={normalizePhone}
                         parse={phoneParser} {...this.props}/>)
     }

@@ -74,7 +74,7 @@ function* initApp() {
 				
 				yield fork(retailPointsSaga.runRetailPoints);
 			} else {
-				yield put(push(signInLocation));
+				//yield put(push(signInLocation));
 			}
 		} else {
 			yield fork(retailPointsSaga.runRetailPoints);
@@ -86,6 +86,7 @@ function* initApp() {
 		yield put(checkingAccessStop());
 		yield put(login.failure(err));
 		yield put(push(signInLocation));
+		yield call(localStorage.removeItem, xToken);
 	}
 }
 

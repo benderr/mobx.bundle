@@ -4,12 +4,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import toJs from 'components/HOC/toJs'
+
 import {addRetailPoint} from '../actions/retailPointActions';
 import {getRetailPointList} from '../selectors/retailPointSelectors'
 
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
 import RetailPointForm from '../components/RetailPointForm/RetailPointForm'
 
+@toJs
 class AddRetailPointContainer extends DefaultLayerLayout {
     onSave(props) {
         let retailPoint = {
