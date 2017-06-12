@@ -33,13 +33,13 @@ class RetailPointForm extends React.Component {
     }
 
     render() {
-        const {handleSubmit, pristine, submitting, onSave, onCancel, isIP, points, productsSource} = this.props;
+        const {handleSubmit, submitting, onSave, onCancel, isIP, points, productsSource, showProductSources} = this.props;
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
 
-                {points && points.length > 0 &&
-                <NextPointSettings points={points} productsSource={productsSource} onSelectProduct={()=>{}}/>}
+                {showProductSources &&
+                <NextPointSettings points={points} productsSource={productsSource}/>}
 
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
@@ -124,10 +124,14 @@ RetailPointForm = connect(
         const productsSource = selector(state, 'productsSource');
         const inn = selector(state, 'inn');
         const isIP = inn && inn.length === 12;
+        const initialValues = props.initialValues.retailPoint;
+        const points = props.points;
+        const showProductSources = points && points.length > 0 && (!initialValues || !initialValues.id);
         return {
             isIP,
             productsSource,
-            initialValues: props.initialValues.retailPoint
+            showProductSources,
+            initialValues
         }
     }
 )(RetailPointForm);

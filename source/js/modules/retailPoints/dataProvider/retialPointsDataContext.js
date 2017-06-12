@@ -18,6 +18,6 @@ export const addRetailPoint = (point) => {
 	return api.v1().retailpoints().post(toServer(point), {querystring}).then(res => res.data);
 };
 
-export const getRetailPoint = (pointId) => {
-	return api.v1().retailpoint(pointId).get().then(res => res.data);
+export const getRetailPoint = ({id}) => {
+	return api.v1().retailpoint(id).get().then(res => res.data);
 };

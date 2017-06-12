@@ -1,5 +1,5 @@
 import RetailPointsContainer from '../retailPoints/containers/RetailPointsContainer';
-import AddRetailPointContainer from '../retailPoints/containers/AddRetailPointContainer';
+import AddEditRetailPointContainer from '../retailPoints/containers/AddEditRetailPointContainer';
 import React from 'react';
 
 export function getRoutes() {
@@ -9,11 +9,18 @@ export function getRoutes() {
 			exact: true,
 			component: RetailPointsContainer
 		},
-		retailPoint: {
-			path: '/retail-points/add',
+		retailPointAdd: {
+			path: '/retail-points/:action',
 			exact: true,
 			isLayer: true,
-			layout: AddRetailPointContainer
+			layout: AddEditRetailPointContainer
 		},
+		retailPointEdit: {
+			path: '/retail-points/:action/:id',
+			exact: true,
+			isLayer: true,
+			layout: AddEditRetailPointContainer
+		},
+
 	};
 }

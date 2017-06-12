@@ -17,3 +17,9 @@ export const addRetailPoint = {
 export const setRetailPoint = (id) => createAction(actions.SET_RETAIL_POINT, {id});
 
 export const setEmptyRetailPointInLayer = (isFirstPoint) => createAction(actions.SET_EMPTY_RETAIL_POINT_IN_LAYER, {isFirstPoint});
+
+export const getRetailPoint = {
+	request: (id) => createAction(actions.GET_RETAIL_POINT.REQUEST, {id}),
+	success: (response) => createAction(actions.GET_RETAIL_POINT.SUCCESS, {response}),
+	failure: (error) => createAction(actions.GET_RETAIL_POINT.FAILURE, {error})
+};

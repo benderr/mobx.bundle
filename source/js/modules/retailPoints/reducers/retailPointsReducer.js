@@ -1,6 +1,8 @@
 import {Map, fromJS} from 'immutable';
-import {GET_RETAIL_POINTS, SET_RETAIL_POINT, ADD_RETAIL_POINT, SET_EMPTY_RETAIL_POINT_IN_LAYER} from '../enums/actions';
-// import {getRetailPointList} from '../selectors/retailPointSelectors';
+import {
+	GET_RETAIL_POINTS, SET_RETAIL_POINT, ADD_RETAIL_POINT, SET_EMPTY_RETAIL_POINT_IN_LAYER,
+	GET_RETAIL_POINT
+} from '../enums/actions';
 
 export const initialState = Map({
 	loading: false,
@@ -73,7 +75,7 @@ export const actionHandlers = {
 				enabled: null,
 			},
 			isFirstPoint: action.isFirstPoint,
-			productsSource: 'BLANK', //Exists, Copy
+			productsSource: 'BLANK', //SHARE, COPY //todo вынести в enum
 		};
 		return state.setIn(['retailPointInLayer'],
 			Map({
@@ -81,5 +83,28 @@ export const actionHandlers = {
 				retailPoint: fromJS(retailPoint),
 				error: null
 			}));
-	}
+	},
+
+	[GET_RETAIL_POINT.REQUEST]: (state) => {
+		return state.merge({
+			loading: true
+		});
+	},
+
+	[GET_RETAIL_POINT.SUCCESS]: (state, action) => {
+		return state.setIn(['retailPointInLayer'],
+			Map({
+				loading: false,
+				retailPoint: fromJS(action.response),
+				error: null
+			}));
+	},
+
+	[GET_RETAIL_POINT.FAILURE]: (state, action) => {
+		return state.merge({
+			loading: false,
+			error: fromJS(action.error),
+		});
+	},
+
 };

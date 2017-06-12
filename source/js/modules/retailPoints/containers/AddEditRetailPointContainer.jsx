@@ -6,23 +6,25 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toJs from 'components/HOC/toJs'
 
-import {addRetailPoint, setEmptyRetailPointInLayer} from '../actions/retailPointActions';
+import {addRetailPoint, setEmptyRetailPointInLayer, getRetailPoint} from '../actions/retailPointActions';
 import {getRetailPointList, getRetailPointInLayer} from '../selectors/retailPointSelectors';
 
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
 import RetailPointForm from '../components/RetailPointForm/RetailPointForm'
 
 @toJs
-class AddRetailPointContainer extends DefaultLayerLayout {
+class AddEditRetailPointContainer extends DefaultLayerLayout {
     componentDidMount() {
         super.componentDidMount();
-        const {points, setEmptyRetailPointInLayer} = this.props;
-        // if (urlAction == 'view')
-        //     getDetails({inventCode, point, catalog});
-        // if (urlAction == 'add' && productView == null)
-        //     setNewProduct({catalog, inventCode});
-        const isFirstPoint = !points || points.length === 0;
-        setEmptyRetailPointInLayer(isFirstPoint);
+        const {id, action, points, setEmptyRetailPointInLayer, getRetailPoint} = this.props;
+        if (action === 'edit') {
+            getRetailPoint(id);
+        }
+        if (action === 'add') {
+            const isFirstPoint = !points || points.length === 0;
+            setEmptyRetailPointInLayer(isFirstPoint);
+        }
+
     }
 
     onSave(props) {
@@ -59,16 +61,29 @@ class AddRetailPointContainer extends DefaultLayerLayout {
     }
 }
 
-const mapState = state => ({
-    points: getRetailPointList(state),
-    initialValues: getRetailPointInLayer(state)
-});
-
-const mapDispatchToProps = dispatch => {
+const mapStateToProps = (state, ownProps) => {
+    const {action, id} = ownProps.computedMatch.params;
     return {
-        addRetailPoint: bindActionCreators(addRetailPoint.request, dispatch),
-        setEmptyRetailPointInLayer: bindActionCreators(setEmptyRetailPointInLayer, dispatch),
+        id,
+        action,
+        points: getRetailPointList(state),
+        initialValues: getRetailPointInLayer(state)
     }
 };
 
-export default connect(mapState, mapDispatchToProps)(AddRetailPointContainer);
+const mapDispatchToProps = dispatch => {
+    return {
+        ...bindActionCreators({
+            addRetailPoint: addRetailPoint.request,
+            setEmptyRetailPointInLayer: setEmptyRetailPointInLayer,
+            getRetailPoint: getRetailPoint.request,
+        }, dispatch)
+    }
+    // return {
+    //     addRetailPoint: bindActionCreators(addRetailPoint.request, dispatch),
+    //     setEmptyRetailPointInLayer: bindActionCreators(setEmptyRetailPointInLayer, dispatch),
+    //     getRetailPoint: bindActionCreators(setEmptyRetailPointInLayer, dispatch),
+    // }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddEditRetailPointContainer);

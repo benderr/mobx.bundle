@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom'
+import {push} from 'connected-react-router'
 import {bindActionCreators} from 'redux';
 import toJs from 'components/HOC/toJs'
 import {getRetailPointList, getCurrentRetailPointId} from '../selectors/retailPointSelectors'
@@ -9,7 +10,8 @@ import * as retailPointActions from '../actions/retailPointActions';
 
 
 const mapActions = dispatch => ({
-	onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch)
+	onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch),
+	push: bindActionCreators(push, dispatch),
 });
 
 const mapState = state => ({
@@ -20,6 +22,12 @@ const mapState = state => ({
 @connect(mapState, mapActions)
 @toJs
 class RetailPointsContainer extends React.Component {
+
+	openPoint(id) {
+		const {push}=this.props;
+		push({pathname: `/retail-points/edit/${id}`});
+	}
+
 	render() {
 		const { points, selectedPointId, onSelectPoint} = this.props;
 		return ( points && points.length > 0 ? <div>
@@ -29,7 +37,7 @@ class RetailPointsContainer extends React.Component {
 					<Link class="button small icon-plus" to="/retail-points/add">Добавить точку</Link>
 				</div>
 			</div>
-			<RetailPointList points={points} selectedPointId={selectedPointId} onSelectPoint={onSelectPoint}/>
+			<RetailPointList points={points} selectedPointId={selectedPointId} onSelectPoint={onSelectPoint} onItemClick={::this.openPoint}/>
 		</div> : <div class="pos_0">
 			<div class="pos_0_inner">
 				<i class="icon-pos"></i>
