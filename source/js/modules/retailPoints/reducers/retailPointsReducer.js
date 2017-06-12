@@ -96,16 +96,13 @@ export const actionHandlers = {
 	},
 
 	[EDIT_RETAIL_POINT.SUCCESS]: (state, action) => {
-		state = state.setIn(['retailPointInLayer', action.response.id],
-			Map({
-				retailPoint: fromJS(action.response),
-			}));
-
-		return state.merge({
-			loading: false,
-			error: null,
-			retailPoints: state.get('retailPoints').merge(fromJS([action.response])),
-		});
+		let index = state.get('retailPoints').findIndex(item => item.get('id') === action.response.id);
+		return state.setIn(['retailPointInLayer', action.response.id], fromJS(action.response))
+			.setIn(['retailPoints', index], fromJS(action.response))
+			.merge({
+				loading: false,
+				error: null
+			});
 	},
 
 	[EDIT_RETAIL_POINT.FAILURE]: (state, action) => {
