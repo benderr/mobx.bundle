@@ -110,7 +110,7 @@ RetailPointForm.propTypes = {
     onCancel: PropTypes.func.isRequired,
     loading: PropTypes.bool,
     points: PropTypes.arrayOf(RetailPointShape),
-    initialValues: RetailPointShape
+    retailPoint: RetailPointShape
 };
 
 RetailPointForm = reduxForm({
@@ -124,9 +124,9 @@ RetailPointForm = connect(
         const productsSource = selector(state, 'productsSource');
         const inn = selector(state, 'inn');
         const isIP = inn && inn.length === 12;
-        const initialValues = props.initialValues.retailPoint;
+        const initialValues = props.retailPoint;
         const points = props.points;
-        const showProductSources = points && points.length > 0 && (!initialValues || !initialValues.id);
+        const showProductSources = points && points.length > 0 && (initialValues && initialValues.isNew);
         return {
             isIP,
             productsSource,

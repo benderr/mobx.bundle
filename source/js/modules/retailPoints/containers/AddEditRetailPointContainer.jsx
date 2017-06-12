@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toJs from 'components/HOC/toJs'
 
-import {addRetailPoint, setEmptyRetailPointInLayer, getRetailPoint} from '../actions/retailPointActions';
+import {addRetailPoint, setEmptyRetailPointInLayer, getRetailPoint, editRetailPoint} from '../actions/retailPointActions';
 import {getRetailPointList, getRetailPointInLayer} from '../selectors/retailPointSelectors';
 
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
@@ -22,7 +22,7 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
         }
         if (action === 'add') {
             const isFirstPoint = !points || points.length === 0;
-            setEmptyRetailPointInLayer(isFirstPoint);
+            setEmptyRetailPointInLayer(id, isFirstPoint);
         }
 
     }
@@ -38,17 +38,26 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
                 enabled: props.get('demoProducts'),
             },
             type: props.get('productsSource'),
-            source: props.get('retailPoints')
+            source: props.get('retailPoints'),
+            id: props.get('id')
         };
 
-        const {addRetailPoint} = this.props;
-        addRetailPoint(retailPoint);
+        const {addRetailPoint, editRetailPoint} = this.props;
+        if(retailPoint.isNew){
+            addRetailPoint(retailPoint);
+        }else {
+            editRetailPoint(retailPoint);
+        }
+
         this.closeLayer();
     }
 
     render() {
         const {id, loading, points, initialValues} = this.props;
-        const h1Title = id ? 'Редактирование точки продаж' : 'Добавление точки продаж';
+        const retailPoint = initialValues[id] && initialValues[id].retailPoint;
+
+        const h1Title = retailPoint && retailPoint.isNew ? 'Добавление точки продаж' : 'Редактирование точки продаж';
+
         return (
             <article class="page" {...this.layerOptions}>
                 <div class="page_header">
@@ -57,7 +66,7 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
                     <h1>{h1Title}</h1>
                 </div>
                 <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading} points={points}
-                                 initialValues={initialValues}/>
+                                 retailPoint={retailPoint}/>
             </article>)
     }
 }
@@ -76,15 +85,11 @@ const mapDispatchToProps = dispatch => {
     return {
         ...bindActionCreators({
             addRetailPoint: addRetailPoint.request,
+            editRetailPoint: editRetailPoint.request,
             setEmptyRetailPointInLayer: setEmptyRetailPointInLayer,
             getRetailPoint: getRetailPoint.request,
         }, dispatch)
     }
-    // return {
-    //     addRetailPoint: bindActionCreators(addRetailPoint.request, dispatch),
-    //     setEmptyRetailPointInLayer: bindActionCreators(setEmptyRetailPointInLayer, dispatch),
-    //     getRetailPoint: bindActionCreators(setEmptyRetailPointInLayer, dispatch),
-    // }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddEditRetailPointContainer);

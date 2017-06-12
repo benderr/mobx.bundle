@@ -7,15 +7,21 @@ export const getRetailPoints = () => {
 
 export const addRetailPoint = (point) => {
 	let querystringArr=[];
-	let type = point.type;
-	if(type=== 'BLANK' && point.mock.enabled)
-		type = 'DEMO';
-	querystringArr.push(`type=${type}`);
+	if(point.type) {
+		let type = point.type;
+		if (type === 'BLANK' && point.mock.enabled)
+			type = 'DEMO';
+		querystringArr.push(`type=${type}`);
+	}
 	if(point.source){
 		querystringArr.push(`source=${point.source}`);
 	}
 	let querystring = querystringArr.join('&');
 	return api.v1().retailpoints().post(toServer(point), {querystring}).then(res => res.data);
+};
+
+export const editRetailPoint = (point) => {
+	return api.v1().retailpoint(point.id).put(toServer(point)).then(res => res.data);
 };
 
 export const getRetailPoint = ({id}) => {

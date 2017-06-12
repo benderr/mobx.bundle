@@ -10,7 +10,7 @@ export function getRoutes() {
 			component: RetailPointsContainer
 		},
 		retailPointAdd: {
-			path: '/retail-points/:action',
+			path: '/retail-points/:action/:id',
 			exact: true,
 			isLayer: true,
 			layout: AddEditRetailPointContainer

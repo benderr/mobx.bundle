@@ -13,13 +13,20 @@ export const addRetailPoint = {
 	failure: (error) => createAction(actions.ADD_RETAIL_POINT.FAILURE, {error})
 };
 
+export const editRetailPoint = {
+	request: (point) => createAction(actions.EDIT_RETAIL_POINT.REQUEST, {point}),
+	success: (response) => createAction(actions.EDIT_RETAIL_POINT.SUCCESS, {response}),
+	failure: (error) => createAction(actions.EDIT_RETAIL_POINT.FAILURE, {error})
+};
 
 export const setRetailPoint = (id) => createAction(actions.SET_RETAIL_POINT, {id});
 
-export const setEmptyRetailPointInLayer = (isFirstPoint) => createAction(actions.SET_EMPTY_RETAIL_POINT_IN_LAYER, {isFirstPoint});
+export const setEmptyRetailPointInLayer = (id, isFirstPoint) => createAction(actions.SET_EMPTY_RETAIL_POINT_IN_LAYER, {id, isFirstPoint});
 
 export const getRetailPoint = {
 	request: (id) => createAction(actions.GET_RETAIL_POINT.REQUEST, {id}),
 	success: (response) => createAction(actions.GET_RETAIL_POINT.SUCCESS, {response}),
 	failure: (error) => createAction(actions.GET_RETAIL_POINT.FAILURE, {error})
 };
+
+export const createRetailPoint = () => createAction(actions.CREATE_RETAIL_POINT, {});

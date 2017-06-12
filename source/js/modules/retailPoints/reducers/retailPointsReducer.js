@@ -1,6 +1,6 @@
 import {Map, fromJS} from 'immutable';
 import {
-	GET_RETAIL_POINTS, SET_RETAIL_POINT, ADD_RETAIL_POINT, SET_EMPTY_RETAIL_POINT_IN_LAYER,
+	GET_RETAIL_POINTS, SET_RETAIL_POINT, ADD_RETAIL_POINT, EDIT_RETAIL_POINT,
 	GET_RETAIL_POINT
 } from '../enums/actions';
 
@@ -64,35 +64,15 @@ export const actionHandlers = {
 		});
 	},
 
-	[SET_EMPTY_RETAIL_POINT_IN_LAYER]: (state, action) => {
-		let retailPoint = {
-			name: null,
-			address: null,
-			phone: null,
-			inn: null,
-			kpp: null,
-			mock: {
-				enabled: null,
-			},
-			isFirstPoint: action.isFirstPoint,
-			productsSource: 'BLANK', //SHARE, COPY //todo вынести в enum
-		};
-		return state.setIn(['retailPointInLayer'],
+	[GET_RETAIL_POINT.REQUEST]: (state, action) => {
+		return state.setIn(['retailPointInLayer', action.id],
 			Map({
-				loading: false,
-				retailPoint: fromJS(retailPoint),
-				error: null
+				loading: true,
 			}));
 	},
 
-	[GET_RETAIL_POINT.REQUEST]: (state) => {
-		return state.merge({
-			loading: true
-		});
-	},
-
 	[GET_RETAIL_POINT.SUCCESS]: (state, action) => {
-		return state.setIn(['retailPointInLayer'],
+		return state.setIn(['retailPointInLayer', action.response.id],
 			Map({
 				loading: false,
 				retailPoint: fromJS(action.response),
@@ -101,10 +81,32 @@ export const actionHandlers = {
 	},
 
 	[GET_RETAIL_POINT.FAILURE]: (state, action) => {
+		return state.setIn(['retailPointInLayer', action.id],
+			Map({
+				loading: false,
+				retailPoint: null,
+				error: fromJS(action.error)
+			}));
+	},
+
+	[EDIT_RETAIL_POINT.REQUEST]: (state) => {
+		return state.merge({
+			loading: true
+		});
+	},
+
+	[EDIT_RETAIL_POINT.SUCCESS]: (state, action) => {
+		return state.merge({
+			loading: false,
+			error: null,
+			retailPoints: state.get('retailPoints').merge(fromJS([action.response])),
+		});
+	},
+
+	[EDIT_RETAIL_POINT.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
 			error: fromJS(action.error),
 		});
 	},
-
 };
