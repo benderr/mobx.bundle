@@ -21,14 +21,23 @@ class NextPointSettings extends React.Component {
                 <Field type="radio" component="input" name="productsSource" id="12" value="Exists"/>
                 <label for="12" class="label_check"><i class="icon"></i><span>Использовать товары и данные другой точки</span></label>
 
+
+                <SelectField name="retailPoints1" className="w100"
+                             valueKey="id"
+                             labelKey="name"
+                             options={[{id:'1',name:'1'},{id:'2',name:'2'}]}
+                             validate={[isRequired('Выберите точку продаж')]}/>
+
+                <SelectField name="retailPoints" className="w100"
+                             valueKey="id"
+                             labelKey="name"
+                             options={points}
+                             validate={[isRequired('Выберите точку продаж')]}/>
+
                 <div class="inner_select  mt8">
                     <div class="form_group form_horizontal  mb8">
-                        <div class="jsRadSelect2  w100" data-placeholder="Селект" name="adfasd" id="adsf">
-                            <SelectField name="retailPoints" className="w100"
-                                         valueKey="id"
-                                         labelKey="name"
-                                         options={points}
-                                         validate={[isRequired('Выберите точку продаж')]}/>
+                        <div class="jsRadSelect2  w100" data-placeholder="Селект" name="existsPoints" id="existsPoints">
+
                         </div>
                     </div>
                     <div class="info_text icon-info f_xsmall">Все изменения по товарам из выбранной точки

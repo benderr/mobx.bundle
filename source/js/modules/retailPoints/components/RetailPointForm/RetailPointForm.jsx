@@ -37,6 +37,9 @@ class RetailPointForm extends React.Component {
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
+                <SelectField name="retailPoints12" options={[{label: '1', value: '1'}, {label: '2', value: '2'}]}
+                             validate={[isRequired('Укажите')]} />
+
                 {points && points.length > 0 &&
                 <NextPointSettings points={points}/>}
 
