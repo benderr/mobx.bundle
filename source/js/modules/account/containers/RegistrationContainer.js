@@ -1,9 +1,9 @@
 import React from 'react';
 import RegistrationForm from '../components/RegistrationForm'
 import {connect} from 'react-redux';
-import {register} from '../actions/registrationActions'
+import {register} from '../actions/accountActions'
 import {bindActionCreators} from 'redux';
-import {getSection} from '../selectors/registrationSelectors'
+import {getRegistrationSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
 
 class RegistrationContainer extends React.Component {
@@ -61,13 +61,12 @@ class RegistrationContainer extends React.Component {
 
 export default connect(mapStateToProps, mapDispatchToProps)(toJs(RegistrationContainer));
 
-
 function mapStateToProps(state, ownProps) {
-	let regSection = getSection(state);
+	let regSection = getRegistrationSection(state);
 	return {
 		loading: regSection.get('loading'),
-		errors: regSection.get('regError'),
-		regData: regSection.get('regData')
+		errors: regSection.get('error'),
+		regData: regSection.get('success')
 	}
 }
 

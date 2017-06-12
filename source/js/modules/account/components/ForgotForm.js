@@ -1,27 +1,25 @@
 import React from 'react';
 import {reduxForm} from 'common/formElements';
 import {InputField} from 'common/formElements/fields';
-import {validEmail, isRequired} from 'common/validators';
+import {validEmail} from 'common/validators';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
 const isValidEmail = (text) => (...args) => !validEmail(...args) ? text : undefined;
 
 const ForgotForm = props => {
-	const {handleSubmit, loading, onLogin, redirectUrl, errors} = props;
+	const {handleSubmit, loading, isSent, onSendEmail, errors} = props;
 
 	const getError = (error) => {
 		if (!error)
 			return '';
-		if (error.status == 401)
-			return 'Неверный E-mail или пароль!';
-		return 'Произошла неизвестная ошибка.'
+		return 'Мы не можем вам отправить ссылку для восстановления пароля. Пожалуйста, проверьте введенный адрес электронной почты.'
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onLogin)}>
-			<div className="login_content">
+		<form onSubmit={handleSubmit(onSendEmail)}>
+			<div class="login_title">Восстановление пароля</div>
+			<div className="login_content" style={{height: '220px'}}>
 				<div className="login_auth_block">
-					<div class="form_group">
+					{!isSent && <div class="form_group">
 						<div class="input_group light w100">
 							<InputField name="email"
 										label="Почта"
@@ -32,30 +30,19 @@ const ForgotForm = props => {
 							<div class="input_group_addon icon-mail"></div>
 							<div class="input_light_border_bottom"></div>
 						</div>
-					</div>
+					</div>}
 
-					<div class="form_group">
-						<div class="input_group light w100">
-							<InputField name="password"
-										label="Пароль"
-										type="password"
-										hideTips={true}
-										required="Введите пароль"/>
-							<div class="input_group_addon icon-password"></div>
-							<div class="input_light_border_bottom"></div>
-						</div>
-					</div>
+					{errors && <div className="form_error">{getError(errors)}</div>}
 
-					<div className="form_error">{getError(errors)}</div>
+					{!isSent && <div className="form_buttons">
+						<button disabled={loading} className="button" type="submit">Отправить</button>
+					</div>}
 
-					<div className="form_buttons">
-						<button disabled={loading} className="button" type="submit">Войти</button>
-					</div>
+					{isSent &&
+					<div class="info_success info_icon_success">На вашу электронную почту, указанную при регистрации,
+						отправлено письмо для смены пароля.
+						Пожалуйста, перейдите по ссылке в письме. Ссылка действительна 24 часа.</div>}
 				</div>
-			</div>
-			<div className="login_links">
-				<Link to="/forgot">Забыли пароль?</Link>
-				<Link to="/registration">Зарегистрироваться</Link>
 			</div>
 		</form>
 	)

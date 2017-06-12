@@ -9,15 +9,15 @@ export const initialState = Map({
 
 export const actionHandlers = {
 
-	[actions.REGISTER.REQUEST]: (state) => {
+	[actions.FORGOT.REQUEST]: (state) => {
 		return state.merge({
 			loading: true,
 			error: null,
-			success: null
+			success: false
 		});
 	},
 
-	[actions.REGISTER.SUCCESS]: (state, action) => {
+	[actions.FORGOT.SUCCESS]: (state, action) => {
 		return state.merge({
 			loading: false,
 			error: null,
@@ -25,7 +25,7 @@ export const actionHandlers = {
 		});
 	},
 
-	[actions.REGISTER.FAILURE]: (state, action) => {
+	[actions.FORGOT.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
 			error: fromJS(action.error),

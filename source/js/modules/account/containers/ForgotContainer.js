@@ -1,22 +1,26 @@
 import React from 'react';
-import SignInForm from '../components/SignInForm'
+import ForgotForm from '../components/ForgotForm'
 import {connect} from 'react-redux';
-import {login} from '../actions/loginActions'
+import {forgot} from '../actions/accountActions'
 import {bindActionCreators} from 'redux';
-import {getSection} from '../selectors/accountSelectors'
+import {getForgotSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
 
 const ForgotContainer = props => {
-	const {loading, sendMail, errors}=props;
+	const {loading, sendMail, success, errors}=props;
 
-	const onSend = (props) => {
+	const onSendEmail = (props) => {
 		sendMail(props.get('email'));
 	};
 
 	return (
 		<div className="login_section">
 			<div className="login_section_center">
-
+				<ForgotForm onSendEmail={onSendEmail}
+							loading={loading}
+							isSent={success}
+							errors={errors}
+				/>
 			</div>
 		</div>
 	);
@@ -27,14 +31,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(toJs(ForgotContainer
 
 function mapStateToProps(state, ownProps) {
 	return {
-		loading: getSection(state).get('loading'),
-		errors: getSection(state).get('authError'),
-		redirectUrl: '/' //todo ownProps.location.query && ownProps.location.query.redirectUrl || null
+		loading: getForgotSection(state).get('loading'),
+		errors: getForgotSection(state).get('error'),
+		success: getForgotSection(state).get('success')
 	}
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		sendMail: bindActionCreators(login.request, dispatch)
+		sendMail: bindActionCreators(forgot.request, dispatch)
 	}
 }

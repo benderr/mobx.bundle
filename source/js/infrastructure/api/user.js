@@ -10,4 +10,11 @@ export const compose = (api) => {
 	 * регистрация
 	 */
 	api.v1().addResource('webUser', 'web-user');
+
+	let user = api.v1().addResource('user');
+
+	/**
+	 * восстановление пароля
+	 */
+	user.addResource('tempPassword', 'temp-password');
 };
