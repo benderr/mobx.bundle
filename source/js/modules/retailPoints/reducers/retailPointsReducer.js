@@ -73,7 +73,7 @@ export const actionHandlers = {
 				enabled: null,
 			},
 			isFirstPoint: action.isFirstPoint,
-			productsSource: 'New', //Exists, Copy
+			productsSource: 'BLANK', //Exists, Copy
 		};
 		return state.setIn(['retailPointInLayer'],
 			Map({

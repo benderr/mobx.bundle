@@ -34,7 +34,9 @@ class AddRetailPointContainer extends DefaultLayerLayout {
             kpp: props.get('kpp'),
             mock: {
                 enabled: props.get('demoProducts'),
-            }
+            },
+            type: props.get('productsSource'),
+            source: props.get('retailPoints')
         };
 
         const {addRetailPoint} = this.props;

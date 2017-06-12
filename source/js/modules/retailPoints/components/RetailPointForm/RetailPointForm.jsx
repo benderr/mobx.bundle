@@ -37,11 +37,9 @@ class RetailPointForm extends React.Component {
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
-                <SelectField name="retailPoints12" options={[{label: '1', value: '1'}, {label: '2', value: '2'}]}
-                             validate={[isRequired('Укажите')]} />
 
                 {points && points.length > 0 &&
-                <NextPointSettings points={points}/>}
+                <NextPointSettings points={points} productsSource={productsSource} onSelectProduct={()=>{}}/>}
 
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
@@ -94,13 +92,13 @@ class RetailPointForm extends React.Component {
                                normalize={normalizeKpp} disabled={isIP}/>
                     </div>
                 </div>
-                <div class="form_group form_horizontal mt24">
+                {productsSource === 'BLANK' && <div class="form_group form_horizontal mt24">
                     <Field name="demoProducts" id="demoProducts" component="input" type="checkbox"/>
                     <label for="demoProducts" class="label_check"><i class="icon"></i><span class="f_small">Заполнить демо-товарами</span></label>
-                </div>
+                </div>}
             </div>
             <div class="page_bottom_panel">
-                <button disabled={pristine || submitting} className="button middle wide" type="submit">Сохранить
+                <button disabled={submitting} className="button middle wide" type="submit">Сохранить
                 </button>
                 <a class="button middle wide clean" onClick={onCancel}>Отмена</a>
             </div>
