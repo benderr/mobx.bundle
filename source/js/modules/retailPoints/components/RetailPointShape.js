@@ -6,5 +6,6 @@ export default shape({
 	address: string,
 	settings: shape({
 		aboutModulPosUrl: string
-	})
+	}),
+
 })

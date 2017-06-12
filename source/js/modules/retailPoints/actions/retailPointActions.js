@@ -15,3 +15,5 @@ export const addRetailPoint = {
 
 
 export const setRetailPoint = (id) => createAction(actions.SET_RETAIL_POINT, {id});
+
+export const setEmptyRetailPointInLayer = (isFirstPoint) => createAction(actions.SET_EMPTY_RETAIL_POINT_IN_LAYER, {isFirstPoint});
