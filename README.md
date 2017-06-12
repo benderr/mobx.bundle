@@ -1,4 +1,4 @@
-# ModulBank.FrontArchitecture2
+# ModulBank.Kassa
 Boilerplate для проектов с использованием React+Redux+Webpack 2
 
 Требования к проекту:
@@ -9,41 +9,6 @@ Boilerplate для проектов с использованием React+Redux+
 4. Использование DI, IoC
 5. Реализовать механизм подключения модульного создания actions/reducers и их автоматического подключения к store
 # React and Redux, Webpack 2 boilerplate
-
-## Table of contents
-* [What is this?](#user-content-what-is-this)
-* [Features](#user-content-features)
-* [Setup](#user-content-setup)
-* [Running in dev mode](#user-content-running-in-dev-mode)
-* [Build (production)](#user-content-build-production)
-* [Running in preview production mode](#user-content-running-in-preview-production-mode)
-* [Linting](#user-content-linting)
-* [Git hooks](#user-content-git-hooks)
-* [Changelog](#user-content-changelog)
-
-
-## What is this?
-
-Boilerplate I extracted from a small real world project.
-
-~~Webpack 2 is still in beta, but at this point is the only version
-that I managed to run everything I wanted, including hot module replacement.~~
-
-This boilerplate includes complete, minimal react app.
-By complete I mean it has examples for:
-
-- components (both container/views and regular ones)
-- routes
-- reducers (redux)
-- actions (both sync and async),
-- SASS (with autoprefixer)<sup>1</sup>
-- dummy API
-- using assets (in CSS and components)
-- imports relative to the app root
-
-![Example dashboard](http://i.imgur.com/z4Cpmdb.png)
-
-<sup>1</sup> Using source maps breaks urls in the CSS loader - https://github.com/webpack/css-loader/issues/232. Try [this](https://github.com/webpack/css-loader/issues/232#issuecomment-240449998) to fix it (but it breaks testing from local network).
 
 ## Features
 
