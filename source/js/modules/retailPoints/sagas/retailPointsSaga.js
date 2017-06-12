@@ -108,8 +108,6 @@ function* setEmptyRetailPointProcess({id, isFirstPoint}) {
 
 function* createRetailPointProcess() {
 	const id = uuid();
-	//yield setProductToLayer({catalog, inventCode});
-	//const retailPointId = yield select(getCurrentRetailPointId);
 	yield put(push({pathname: `/retail-points/add/${id}`}));
 }
 

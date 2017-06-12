@@ -96,6 +96,11 @@ export const actionHandlers = {
 	},
 
 	[EDIT_RETAIL_POINT.SUCCESS]: (state, action) => {
+		state = state.setIn(['retailPointInLayer', action.response.id],
+			Map({
+				retailPoint: fromJS(action.response),
+			}));
+
 		return state.merge({
 			loading: false,
 			error: null,
