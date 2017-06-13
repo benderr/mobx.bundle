@@ -10,6 +10,6 @@ export {
 	LoaderBlock,
 	Select,
 	AmountInput,
-	Recaptcha
+	Recaptcha,
 	InfinateScroll
 }
