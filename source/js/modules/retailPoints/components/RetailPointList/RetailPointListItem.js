@@ -1,5 +1,5 @@
 import React from 'react'
-import RetailPointShape from './RetailPointShape';
+import RetailPointShape from '../RetailPointShape';
 import {string, func} from 'prop-types';
 
 const RetailPointListItem = ({point, selectedPointId, onSelectPoint}) => {
