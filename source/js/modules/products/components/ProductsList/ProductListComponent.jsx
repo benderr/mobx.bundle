@@ -8,30 +8,16 @@ const {arrayOf} = PropTypes;
 import ProductShape from './ProductShape';
 import ProductItem from './ProductItem';
 
-import Waypoint from 'react-waypoint';
+import {InfinateScroll} from 'common/uiElements'
 
 
 class ProductListComponent extends React.Component {
-
-    getInfinateScroll(loading, next, count, listLength = 50) {
-        let className = 'table_row';
-        if (loading) {
-            className += ' loading_block';
-        }
-
-        return <div class={className}>
-            {count >= listLength && <Waypoint
-                scrollableAncestor={window}
-                onEnter={next}/>}
-        </div>
-    }
 
     render() {
         const {items, openProduct, selectedPoint, loadNext, onFilterChanged, onSortChanged, loading} = this.props;
         const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
                                                                onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
 
-        let infinateScroll = this.getInfinateScroll(loading, loadNext, items.length);
         return (
             <div class='widget_block'>
                 <div class='table  table_products'>
@@ -48,7 +34,7 @@ class ProductListComponent extends React.Component {
                         />
                     </div>
                     {productItems}
-                    {infinateScroll}
+                    <InfinateScroll loadNext={loadNext} totalCount={items.length} listLength={50} loading={loading}/>
                 </div>
             </div>
         );
