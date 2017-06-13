@@ -101,6 +101,7 @@ class RetailPointForm extends React.Component {
                 <button disabled={submitting} className="button middle wide" type="submit">Сохранить
                 </button>
                 <a class="button middle wide clean" onClick={onCancel}>Отмена</a>
+                <a class="button middle wide clean mr44 f_right" onClick={onDelete}>Удалить точку</a>
             </div>
         </form>)
     }
