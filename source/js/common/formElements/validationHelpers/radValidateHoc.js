@@ -1,6 +1,7 @@
 import {showErrorBorder, showSuccessBorder, getErrorMessage, ifCondition, getRandomKey} from './formFieldHelpers'
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
+import {focus} from 'redux-form/immutable'
 
 /**
  * HOC для обертки над инпутами, чтобы получить необходимые методы подсветки ошибок и т.д.
@@ -34,9 +35,39 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 				};
 			}
 
-			getTooltipError() {
-				const {meta: {touched, error, active, submitFailed}}=this.props;
-				return getErrorMessage({error, touched, active, submitFailed})
+			componentDidUpdate(prevProps) {
+				const {meta: {submitFailed, active, error}} = this.props;
+				const {meta: {active: wasActive}} = prevProps;
+
+				if (submitFailed && error && !wasActive && active) {
+					setTimeout(() => {
+						if (this.wrappedEl) {
+							if (!this.wrappedEl.focusator)
+								throw 'Component does not contain @focusator:IFocusableElement';
+							this.wrappedEl.focusator.setFocus();
+						}
+					}, 0);
+				}
+			}
+
+
+			inFocus() {
+				const {meta: {active}}=this.props;
+				return active
+					||
+					(this.wrappedEl
+					&& this.wrappedEl.inFocus
+					&& this.wrappedEl.inFocus());
+			}
+
+			getError() {
+				const {meta: {error}}=this.props;
+				return error;
+			}
+
+			showTooltipError() {
+				const {meta: {touched, error, submitFailed}}=this.props;
+				return error && (submitFailed || touched);
 			}
 
 			render() {
@@ -52,26 +83,25 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 				const additionalClassName = ifCondition(highlightError, ' error ') + ifCondition(highlightSuccess, ' success ');
 
 				const validator = {
-					getTooltipError: this.getTooltipError,
+					error: error,
 					isError: highlightError,
 					isSuccess: highlightSuccess,
 					addClassName: additionalClassName,
 					tooltip: tooltip
 				};
 
-				const wrapperValidator = dataOnWrapper ? {...validator.tooltip, tabIndex: 0} : null;
-
 				if (tips && !hideTips) {
-					const showErrorMessage = this.getTooltipError() != null;
+					const showErrorMessage = this.inFocus() && this.showTooltipError();
 					return (
 						<div>
-							<WrappedComponent {...this.props} validator={validator}/>
+							<WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
+											  validator={validator}/>
 							{showErrorMessage &&
-							<ReactTooltip id={this.tooltipId} getContent={[::this.getTooltipError, 400]}/>}
+							<ReactTooltip id={this.tooltipId} getContent={[::this.getError, 400]}/>}
 						</div>
 					)
 				} else {
-					return <WrappedComponent {...this.props} validator={validator}/>
+					return <WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props} validator={validator}/>
 				}
 
 			}

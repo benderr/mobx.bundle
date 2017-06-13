@@ -30,8 +30,8 @@ export const showSuccessBorder = ({valid, visited, error, active}) => {
 /**
  * Показывать тултип с ошибкой
  */
-export const getErrorMessage = ({error, touched, active, submitFailed}) => {
-	return error && active && (submitFailed || touched) ? error : null;
+export const getErrorMessage = ({error, touched, submitFailed}) => {
+	return error && (submitFailed || touched) ? error : null;
 };
 
 export const getRandomKey = () => {

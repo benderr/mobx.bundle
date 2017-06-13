@@ -3,9 +3,9 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux'
-import {Field, reduxForm, formValueSelector, change} from 'redux-form/immutable';
-import {InputRender} from 'common/formElements'
+import {connect} from 'react-redux';
+import {Field, formValueSelector, change} from 'redux-form/immutable';
+import {InputRender, reduxForm} from 'common/formElements'
 import {PhoneField, normalizeKpp,normalizeInn} from 'common/formElements/fields'
 import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators'
 import RetailPointShape from './RetailPointShape';
