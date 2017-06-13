@@ -29,4 +29,12 @@ export const getRetailPoint = {
 	failure: (error) => createAction(actions.GET_RETAIL_POINT.FAILURE, {error})
 };
 
+export const deleteRetailPoint = {
+	request: (id) => createAction(actions.DELETE_RETAIL_POINT.REQUEST, {id}),
+	success: (response) => createAction(actions.DELETE_RETAIL_POINT.SUCCESS, {response}),
+	failure: (error) => createAction(actions.DELETE_RETAIL_POINT.FAILURE, {error})
+};
+
+
+
 export const createRetailPoint = () => createAction(actions.CREATE_RETAIL_POINT, {});

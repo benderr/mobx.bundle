@@ -27,3 +27,7 @@ export const editRetailPoint = (point) => {
 export const getRetailPoint = ({id}) => {
 	return api.v1().retailpoint(id).get().then(res => res.data);
 };
+
+export const deleteRetailPoint = ({id}) => {
+	return api.v1().retailpoint(id).delete().then(() => id);
+};

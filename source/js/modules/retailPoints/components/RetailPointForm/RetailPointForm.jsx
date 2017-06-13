@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import {Field, reduxForm, formValueSelector, change} from 'redux-form/immutable';
 import {InputRender} from 'common/formElements'
-import {PhoneField, SelectField, normalizeKpp, normalizeInn} from 'common/formElements/fields'
+import {PhoneField, normalizeKpp, normalizeInn} from 'common/formElements/fields'
 import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators'
 import RetailPointShape from '../RetailPointShape';
 import NextPointSettings from './NextPointSettings'
@@ -14,11 +14,6 @@ import NextPointSettings from './NextPointSettings'
 const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
 const validateKpp = (text) => (val) => !isCorrectKpp(val) ? text : undefined;
-
-const validate = values => {
-    //const errors = {};
-    return null;
-};
 
 class RetailPointForm extends React.Component {
 
@@ -33,7 +28,8 @@ class RetailPointForm extends React.Component {
     }
 
     render() {
-        const {handleSubmit, submitting, onSave, onCancel, isIP, points, productsSource, showProductSources} = this.props;
+        const {onSave, onCancel, onDelete,  points} = this.props;
+        const {handleSubmit, submitting,  isIP,  productsSource, showProductSources, showDelete} = this.props;
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
@@ -101,7 +97,7 @@ class RetailPointForm extends React.Component {
                 <button disabled={submitting} className="button middle wide" type="submit">Сохранить
                 </button>
                 <a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-                <a class="button middle wide clean mr44 f_right" onClick={onDelete}>Удалить точку</a>
+                {showDelete && <a class="button middle wide clean mr44 f_right" onClick={onDelete}>Удалить точку</a>}
             </div>
         </form>)
     }
@@ -109,14 +105,14 @@ class RetailPointForm extends React.Component {
 RetailPointForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
     loading: PropTypes.bool,
     points: PropTypes.arrayOf(RetailPointShape),
     retailPoint: RetailPointShape
 };
 
 RetailPointForm = reduxForm({
-    form: 'retailPointForm',
-    validate
+    form: 'retailPointForm'
 })(RetailPointForm);
 
 const selector = formValueSelector('retailPointForm');
@@ -128,10 +124,12 @@ RetailPointForm = connect(
         const initialValues = props.retailPoint;
         const points = props.points;
         const showProductSources = points && points.length > 0 && (initialValues && initialValues.isNew);
+        const showDelete = initialValues && !initialValues.isNew;
         return {
             isIP,
             productsSource,
             showProductSources,
+            showDelete,
             initialValues
         }
     }

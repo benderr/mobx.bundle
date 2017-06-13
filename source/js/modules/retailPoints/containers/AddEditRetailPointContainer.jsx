@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toJs from 'components/HOC/toJs'
 
-import {addRetailPoint, setEmptyRetailPointInLayer, getRetailPoint, editRetailPoint} from '../actions/retailPointActions';
+import {addRetailPoint, setEmptyRetailPointInLayer, getRetailPoint, editRetailPoint, deleteRetailPoint} from '../actions/retailPointActions';
 import {getRetailPointList, getRetailPointInLayer} from '../selectors/retailPointSelectors';
 
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
@@ -39,7 +39,8 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
             },
             type: props.get('productsSource'),
             source: props.get('retailPoints'),
-            id: props.get('id')
+            id: props.get('id'),
+            isNew: props.get('isNew'),
         };
 
         const {addRetailPoint, editRetailPoint} = this.props;
@@ -49,6 +50,12 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
             editRetailPoint(retailPoint);
         }
 
+        this.closeLayer();
+    }
+
+    onDelete(){
+        const {id, deleteRetailPoint} = this.props;
+        deleteRetailPoint(id);
         this.closeLayer();
     }
 
@@ -66,7 +73,7 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
                     <h1>{h1Title}</h1>
                 </div>
                 <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading} points={points}
-                                 retailPoint={retailPoint}/>
+                                 retailPoint={retailPoint} onDelete={::this.onDelete}/>
             </article>)
     }
 }
@@ -88,6 +95,7 @@ const mapDispatchToProps = dispatch => {
             editRetailPoint: editRetailPoint.request,
             setEmptyRetailPointInLayer: setEmptyRetailPointInLayer,
             getRetailPoint: getRetailPoint.request,
+            deleteRetailPoint: deleteRetailPoint.request,
         }, dispatch)
     }
 };

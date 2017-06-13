@@ -8,4 +8,5 @@ export const ADD_RETAIL_POINT = createRequestTypes('RETAIL_POINTS.ADD_RETAIL_POI
 export const SET_EMPTY_RETAIL_POINT_IN_LAYER = 'RETAIL_POINTS.SET_EMPTY_RETAIL_POINT_IN_LAYER'; //пустая торговая точка
 export const CREATE_RETAIL_POINT = 'RETAIL_POINTS.CREATE_RETAIL_POINT'; //добавление торговой точки
 export const EDIT_RETAIL_POINT = createRequestTypes('RETAIL_POINTS.EDIT_RETAIL_POINT');//редактирование торг. точки
+export const DELETE_RETAIL_POINT = createRequestTypes('RETAIL_POINTS.DELETE_RETAIL_POINT');//удаление торг. точки
 

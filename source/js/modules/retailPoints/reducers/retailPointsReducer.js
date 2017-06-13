@@ -1,7 +1,7 @@
 import {Map, fromJS} from 'immutable';
 import {
 	GET_RETAIL_POINTS, SET_RETAIL_POINT, ADD_RETAIL_POINT, EDIT_RETAIL_POINT,
-	GET_RETAIL_POINT
+	GET_RETAIL_POINT, DELETE_RETAIL_POINT
 } from '../enums/actions';
 
 export const initialState = Map({
@@ -54,7 +54,10 @@ export const actionHandlers = {
 			loading: false,
 			error: null,
 			retailPoints: state.get('retailPoints').concat(fromJS([action.response])),
-		});
+		}).setIn(['retailPointInLayer', action.response.id],
+			Map({
+				retailPoint: fromJS(action.response),
+			}));
 	},
 
 	[ADD_RETAIL_POINT.FAILURE]: (state, action) => {
@@ -106,6 +109,29 @@ export const actionHandlers = {
 	},
 
 	[EDIT_RETAIL_POINT.FAILURE]: (state, action) => {
+		return state.merge({
+			loading: false,
+			error: fromJS(action.error),
+		});
+	},
+
+	[DELETE_RETAIL_POINT.REQUEST]: (state) => {
+		return state.merge({
+			loading: true
+		});
+	},
+
+	[DELETE_RETAIL_POINT.SUCCESS]: (state, action) => {
+		let index = state.get('retailPoints').findIndex(item => item.get('id') === action.response);
+		return state.merge({
+			loading: false,
+			error: null,
+			retailPoints: state.get('retailPoints').delete(index),
+		})
+		.deleteIn(['retailPointInLayer', action.response])
+	},
+
+	[DELETE_RETAIL_POINT.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
 			error: fromJS(action.error),

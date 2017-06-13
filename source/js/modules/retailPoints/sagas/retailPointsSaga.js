@@ -3,7 +3,7 @@ import {push} from 'connected-react-router';
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import * as retailPointSelectors from '../selectors/retailPointSelectors'
 import * as dataContext  from '../dataProvider/retialPointsDataContext'
-import {addRetailPoint, getRetailPoints, setRetailPoint, getRetailPoint, editRetailPoint} from '../actions/retailPointActions'
+import {addRetailPoint, getRetailPoints, setRetailPoint, getRetailPoint, editRetailPoint, deleteRetailPoint} from '../actions/retailPointActions'
 import localStorage from 'core/storage/localStorage'
 const currencyRetailPointKey = 'currencyRetailPointKey';
 import * as actions from '../enums/actions'
@@ -111,6 +111,17 @@ function* createRetailPointProcess() {
 	yield put(push({pathname: `/retail-points/add/${id}`}));
 }
 
+function* deleteRetailPointProcess({id}) {
+	try {
+		const res = yield call(dataContext.deleteRetailPoint, {id});
+		yield put(deleteRetailPoint.success(res));
+	}
+	catch (error) {
+		yield put(deleteRetailPoint.failure(error));
+	}
+
+}
+
 export default function*() {
 	yield [
 		//takeEvery(retailPointsActions.GET_RETAIL_POINTS.REQUEST, runRetailPoints)
@@ -119,5 +130,6 @@ export default function*() {
 		takeEvery(actions.SET_EMPTY_RETAIL_POINT_IN_LAYER, setEmptyRetailPointProcess),
 		takeEvery(actions.CREATE_RETAIL_POINT, createRetailPointProcess),
 		takeEvery(actions.EDIT_RETAIL_POINT.REQUEST, editRetailPointProcess),
+		takeEvery(actions.DELETE_RETAIL_POINT.REQUEST, deleteRetailPointProcess),
 	]
 }
