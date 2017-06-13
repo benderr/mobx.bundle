@@ -1,14 +1,26 @@
 import {call, put, take, fork, cancel, cancelled, takeEvery, select} from 'redux-saga/effects'
 import * as actions from '../enums/actions';
 import * as registerDataContext from '../dataProvider/accountDataContext';
-import {register, forgot} from '../actions/accountActions';
+import {register, forgot, changePassword} from '../actions/accountActions';
 
-function* forgotPassword({email}){
+function* forgotPassword({email}) {
 	try {
 		yield call(registerDataContext.forgotPass, email);
 		yield put(forgot.success());
 	} catch (error) {
 		yield put(forgot.failure({
+			status: error.status,
+			data: error.data
+		}));
+	}
+}
+
+function* changePass({oldPassword, newPassword}) {
+	try {
+		yield call(registerDataContext.changePass, oldPassword, newPassword);
+		yield put(changePassword.success());
+	} catch (error) {
+		yield put(changePassword.failure({
 			status: error.status,
 			data: error.data
 		}));
@@ -31,6 +43,7 @@ function* registerUser({user}) {
 export default function*() {
 	yield [
 		takeEvery(actions.REGISTER.REQUEST, registerUser),
-		takeEvery(actions.FORGOT.REQUEST, forgotPassword)
+		takeEvery(actions.FORGOT.REQUEST, forgotPassword),
+		takeEvery(actions.CHANGE_PASSWORD.REQUEST, changePass)
 	]
 }

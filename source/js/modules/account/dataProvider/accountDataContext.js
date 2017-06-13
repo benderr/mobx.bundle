@@ -19,6 +19,19 @@ export const forgotPass = (email) => {
 };
 
 /**
+ * Смена пароля
+ * @param email
+ * @returns {axios.Promise|*}
+ */
+export const changePass = (oldPassword, newPassword) => {
+	const queryString = `currentPassword=${oldPassword}&newPassword=${newPassword}`;
+	return api.v1().user().password().put({
+		currentPassword: oldPassword,
+		newPassword: newPassword
+	}, {querystring: queryString});
+};
+
+/**
  * Регистрация
  */
 export const register = (user) => {

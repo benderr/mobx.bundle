@@ -17,4 +17,9 @@ export const compose = (api) => {
 	 * восстановление пароля
 	 */
 	user.addResource('tempPassword', 'temp-password');
+
+	/**
+	 * Изменение пароля
+	 */
+	user.addResource('password');
 };

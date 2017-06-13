@@ -10,3 +10,5 @@ export const CHECKING_ACCESS_STOP = 'ACCOUNT.CHECKING_ACCESS_STOP';
 export const REGISTER = createRequestTypes('ACCOUNT.REGISTER');
 //восстановление пароля
 export const FORGOT = createRequestTypes('ACCOUNT.FORGOT');
+//смена пароля
+export const CHANGE_PASSWORD = createRequestTypes('ACCOUNT.CHANGE_PASSWORD');

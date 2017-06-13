@@ -44,7 +44,6 @@ const SiteHeader = props => {
                         <SiteMenuLink to="/" exact={true} label="Товары"/>
                         <SiteMenuLink to="/#" label="Статистика"/>
                         <SiteMenuLink to="/#" label="Касса"/>
-
                     </ul>
                 </div>
             </div>
@@ -55,6 +54,9 @@ const SiteHeader = props => {
                     <Link class="icon-profile drop-target" to="/retail-points"><span>{companyName}</span></Link>
                 </div>
 
+                <div class="header_profile_settigs">
+                    <Link to="/settings" class="icon-settings"></Link>
+                </div>
                 <div class="header_profile_logout">
                     <a onClick={_logOut} class="icon-logout"></a>
                 </div>

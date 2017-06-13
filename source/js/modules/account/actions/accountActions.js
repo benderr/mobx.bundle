@@ -12,3 +12,9 @@ export const forgot = {
 	success: (response) => createAction(actions.FORGOT.SUCCESS, {response}),
 	failure: (error) => createAction(actions.FORGOT.FAILURE, {error})
 };
+
+export const changePassword = {
+	request: ({oldPassword,newPassword}) => createAction(actions.CHANGE_PASSWORD.REQUEST, {oldPassword,newPassword}),
+	success: (response) => createAction(actions.CHANGE_PASSWORD.SUCCESS, {response}),
+	failure: (error) => createAction(actions.CHANGE_PASSWORD.FAILURE, {error})
+};

@@ -10,6 +10,14 @@ export const validChars = (string) => {
 	return /^[а-яА-ЯёЁ][а-яА-ЯёЁ\-\s]*$/.test(string);
 };
 
+export const validPassword = (password) => {
+	return !isEmpty(password) && /(?=.*\d)(?=.*\D)(?=.*[А-ЯЁ,A-Z])(?=.*[а-яё,a-z])/.test(password); //должны быть буквы и цифры, заглавные и маленькие
+};
+
+export const validPasswordLength = (password) => {
+	return !isEmpty(password) && password.length >= 8;
+};
+
 export const isEmpty = val => {
 	return val === '' || val === null || val === undefined;
 };

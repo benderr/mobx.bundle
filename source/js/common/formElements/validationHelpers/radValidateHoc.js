@@ -24,13 +24,9 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 				this.tooltipId = `tooltip_${this.validatorId}`;
 			}
 
-			getTooltipConfig({id, tipEvent = 'focus', tipEventOf = 'blur', tipPlace = 'right'}) {
+			getTooltipConfig({id, error}) {
 				return {
 					'data-for': id,
-					'data-place': tipPlace,
-					'data-type': "error",
-					'data-event': tipEvent,
-					'data-event-off': tipEventOf,
 					'data-tip': ''
 				};
 			}
@@ -70,13 +66,27 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 				return error && (submitFailed || touched);
 			}
 
+			getTooltipProps() {
+				const self = this;
+				const {tipPlace = 'right'}=this.props;
+				return {
+					html: true,
+					multiline: true,
+					getContent: [::self.getError, 400],
+					type: 'error',
+					event: 'focus',
+					eventOff: 'blur keydown',
+					place: tipPlace,
+					delayHide: 1500
+				}
+			}
+
 			render() {
 				const {
-					meta:{touched, error, warning, active, dirty, valid, visited, submitFailed},
-					hideTips, tipEvent, tipEventOf, tipPlace
+					meta:{touched, error, warning, active, dirty, valid, visited, submitFailed}, hideTips
 				}=this.props;
 
-				const tooltip = this.getTooltipConfig({id: this.tooltipId, tipEvent, tipEventOf, tipPlace});
+				const tooltip = this.getTooltipConfig({id: this.tooltipId, error});
 
 				const highlightError = showErrorBorder({valid, error, active, visited, submitFailed});
 				const highlightSuccess = showSuccessBorder({valid, visited, error, active});
@@ -91,17 +101,18 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 				};
 
 				if (tips && !hideTips) {
-					const showErrorMessage = this.inFocus() && this.showTooltipError();
+					const showErrorMessage = this.showTooltipError();
 					return (
 						<div>
 							<WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
 											  validator={validator}/>
 							{showErrorMessage &&
-							<ReactTooltip id={this.tooltipId} getContent={[::this.getError, 400]}/>}
+							<ReactTooltip id={this.tooltipId} {...this.getTooltipProps()}/>}
 						</div>
 					)
 				} else {
-					return <WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props} validator={validator}/>
+					return <WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
+											 validator={validator}/>
 				}
 
 			}

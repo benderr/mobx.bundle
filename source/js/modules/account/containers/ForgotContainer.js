@@ -30,10 +30,11 @@ export default connect(mapStateToProps, mapDispatchToProps)(toJs(ForgotContainer
 
 
 function mapStateToProps(state, ownProps) {
+	const forgotState = getForgotSection(state);
 	return {
-		loading: getForgotSection(state).get('loading'),
-		errors: getForgotSection(state).get('error'),
-		success: getForgotSection(state).get('success')
+		loading: forgotState.get('loading'),
+		errors: forgotState.get('error'),
+		success: forgotState.get('success')
 	}
 }
 
