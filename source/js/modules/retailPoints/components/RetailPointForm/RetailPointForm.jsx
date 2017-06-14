@@ -3,21 +3,17 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
+import {connect} from 'react-redux'
 import {Field, formValueSelector, change} from 'redux-form/immutable';
-import {InputRender, reduxForm} from 'common/formElements'
-import {PhoneField, normalizeKpp,normalizeInn} from 'common/formElements/fields'
-import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators'
+import {InputRender, reduxForm} from 'common/formElements';
+import {PhoneField, normalizeKpp, normalizeInn} from 'common/formElements/fields';
+import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators';
 import RetailPointShape from '../RetailPointShape';
+import NextPointSettings from './NextPointSettings';
 
 const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
 const validateKpp = (text) => (val) => !isCorrectKpp(val) ? text : undefined;
-
-const validate = values => {
-    //const errors = {};
-    return null;
-};
 
 class RetailPointForm extends React.Component {
 
@@ -32,44 +28,15 @@ class RetailPointForm extends React.Component {
     }
 
     render() {
-        const {handleSubmit, pristine, submitting, onSave, onCancel, isIP, points} = this.props;
+        const {onSave, onCancel, onDelete,  points} = this.props;
+        const {handleSubmit, submitting,  isIP,  productsSource, showProductSources, showDelete} = this.props;
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
-            {points && points.length > 0 && <div class="form_group form_horizontal">
-                <div class="mb16">
-                    <Field name="newListRadio" id="newListRadio" component="input" type="radio" checked="true"/>
-                    <label for="newListRadio" class="label_check">
-                        <i class="icon"></i>
-                        <span>Новый список товаров</span>
-                    </label>
-                </div>
-
-                <div class="selected_item  mb16">
-                    <input type="radio" name="c2" id="12" checked=""/>
-                    <label for="12" class="label_check"><i class="icon"></i><span>Использовать товары и данные другой точки</span></label>
-
-                    <div class="inner_select  mt8">
-                        <div class="form_group form_horizontal  mb8">
-                            <div class="jsRadSelect2  w100" data-placeholder="Селект" name="adfasd" id="adsf">
-                                <option class="jsRadSelect2Options" value="1" selected="">Дмитриевская точка
-                                </option>
-                                <option class="jsRadSelect2Options" value="2">Вторая точка</option>
-                                <option class="jsRadSelect2Options" value="3">Третья точка</option>
-                                <option class="jsRadSelect2Options" value="4">Четвертая точка</option>
-                            </div>
-                        </div>
-                        <div class="info_text">Все изменения по товарам из выбранной точки будут отражены также в
-                            новой точке
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb20">
-                    <input type="radio" name="c2" id="13"/>
-                    <label for="13" class="label_check"><i class="icon"></i><span>Скопировать товары</span></label>
-                </div>
-            </div>}
             <div class="page_content  with_bottom_panel  content_padding">
+
+                {showProductSources &&
+                <NextPointSettings points={points} productsSource={productsSource}/>}
+
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
                     <div class="property_value col nine">
@@ -121,15 +88,16 @@ class RetailPointForm extends React.Component {
                                normalize={normalizeKpp} disabled={isIP}/>
                     </div>
                 </div>
-                <div class="form_group form_horizontal mt24">
+                {productsSource === 'BLANK' && <div class="form_group form_horizontal mt24">
                     <Field name="demoProducts" id="demoProducts" component="input" type="checkbox"/>
                     <label for="demoProducts" class="label_check"><i class="icon"></i><span class="f_small">Заполнить демо-товарами</span></label>
-                </div>
+                </div>}
             </div>
             <div class="page_bottom_panel">
-                <button disabled={pristine || submitting} className="button middle wide" type="submit">Сохранить
+                <button disabled={submitting} className="button middle wide" type="submit">Сохранить
                 </button>
                 <a class="button middle wide clean" onClick={onCancel}>Отмена</a>
+                {showDelete && <a class="button middle wide clean mr44 f_right" onClick={onDelete}>Удалить точку</a>}
             </div>
         </form>)
     }
@@ -137,22 +105,32 @@ class RetailPointForm extends React.Component {
 RetailPointForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
     loading: PropTypes.bool,
-    points: PropTypes.arrayOf(RetailPointShape)
+    points: PropTypes.arrayOf(RetailPointShape),
+    retailPoint: RetailPointShape
 };
 
 RetailPointForm = reduxForm({
-    form: 'retailPointForm',
-    validate
+    form: 'retailPointForm'
 })(RetailPointForm);
 
 const selector = formValueSelector('retailPointForm');
 RetailPointForm = connect(
     (state, props) => {
+        const productsSource = selector(state, 'productsSource');
         const inn = selector(state, 'inn');
         const isIP = inn && inn.length === 12;
+        const initialValues = props.retailPoint;
+        const points = props.points;
+        const showProductSources = points && points.length > 0 && (initialValues && initialValues.isNew);
+        const showDelete = initialValues && !initialValues.isNew;
         return {
-            isIP
+            isIP,
+            productsSource,
+            showProductSources,
+            showDelete,
+            initialValues
         }
     }
 )(RetailPointForm);

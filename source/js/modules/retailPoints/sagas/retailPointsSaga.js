@@ -1,11 +1,13 @@
-import * as retailPointSelectors from '../selectors/retailPointSelectors'
 import {call, put, select, fork, take, takeEvery} from 'redux-saga/effects'
+import {push} from 'connected-react-router';
+import {uuid} from 'infrastructure/utils/uuidGenerator'
+import * as retailPointSelectors from '../selectors/retailPointSelectors'
 import * as dataContext  from '../dataProvider/retialPointsDataContext'
-import {addRetailPoint, getRetailPoints, setRetailPoint} from '../actions/retailPointActions'
+import {addRetailPoint, getRetailPoints, setRetailPoint, getRetailPoint, editRetailPoint, deleteRetailPoint} from '../actions/retailPointActions'
 import localStorage from 'core/storage/localStorage'
 const currencyRetailPointKey = 'currencyRetailPointKey';
 import * as actions from '../enums/actions'
-import {uuid} from 'infrastructure/utils/uuidGenerator'
+import productSources from '../enums/productSourcesEnum'
 
 /**
  * Получение и установка торговых точек
@@ -54,7 +56,6 @@ function* fetchRetailPoints() {
 function* addRetailPointProcess(payload) {
 	try {
 		let point = payload.point;
-		point.id = uuid();
 		const newPoint = yield call(dataContext.addRetailPoint, point);
 		yield put(addRetailPoint.success(newPoint));
 	}
@@ -64,9 +65,72 @@ function* addRetailPointProcess(payload) {
 
 }
 
+function* editRetailPointProcess(payload) {
+	try {
+		let point = payload.point;
+		const newPoint = yield call(dataContext.editRetailPoint, point);
+		yield put(editRetailPoint.success(newPoint));
+	}
+	catch (error) {
+		yield put(editRetailPoint.failure(error));
+	}
+
+}
+
+
+
+function* getRetailPointProcess(id) {
+	try {
+		const point = yield call(dataContext.getRetailPoint, id);
+		yield put(getRetailPoint.success(point));
+	}
+	catch (error) {
+		yield put(getRetailPoint.failure(error));
+	}
+}
+
+function* setEmptyRetailPointProcess({id, isFirstPoint}) {
+	const retailPoint = {
+		id: id,
+		name: null,
+		address: null,
+		phone: null,
+		inn: null,
+		kpp: null,
+		mock: {
+			enabled: false,
+		},
+		isFirstPoint: isFirstPoint,
+		productsSource: productSources.BLANK,
+		isNew: true
+	};
+	yield put(getRetailPoint.success(retailPoint));
+}
+
+function* createRetailPointProcess() {
+	const id = uuid();
+	yield put(push({pathname: `/retail-points/add/${id}`}));
+}
+
+function* deleteRetailPointProcess({id}) {
+	try {
+		const res = yield call(dataContext.deleteRetailPoint, {id});
+		yield put(deleteRetailPoint.success(res));
+	}
+	catch (error) {
+		yield put(deleteRetailPoint.failure(error));
+	}
+
+}
+
 export default function*() {
 	yield [
 		//takeEvery(retailPointsActions.GET_RETAIL_POINTS.REQUEST, runRetailPoints)
-		takeEvery(actions.ADD_RETAIL_POINT.REQUEST, addRetailPointProcess)
+		takeEvery(actions.ADD_RETAIL_POINT.REQUEST, addRetailPointProcess),
+		takeEvery(actions.GET_RETAIL_POINT.REQUEST, getRetailPointProcess),
+		takeEvery(actions.SET_EMPTY_RETAIL_POINT_IN_LAYER, setEmptyRetailPointProcess),
+		takeEvery(actions.CREATE_RETAIL_POINT, createRetailPointProcess),
+		takeEvery(actions.EDIT_RETAIL_POINT.REQUEST, editRetailPointProcess),
+		takeEvery(actions.DELETE_RETAIL_POINT.REQUEST, deleteRetailPointProcess),
 	]
 }

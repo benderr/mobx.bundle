@@ -12,4 +12,8 @@ export const getCurrentRetailPointId = createSelector([getRetailPointsData], rpD
 	return rpData.get('selectedPointId');
 });
 
+export const getRetailPointInLayer = createSelector([getRetailPointsData], rpData => {
+	return rpData.getIn(['retailPointInLayer'], null);
+});
+
 
