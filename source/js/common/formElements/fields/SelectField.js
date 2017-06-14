@@ -2,6 +2,7 @@ import React from 'react';
 import {Field} from 'redux-form/immutable';
 import SelectRender from '../SelectRender';
 import PropTypes from 'prop-types';
+import {getRequiredValidator} from '../validationHelpers/formFieldHelpers'
 
 const stringOrNode = PropTypes.oneOfType([
 	PropTypes.string,
@@ -81,13 +82,16 @@ class SelectField extends React.Component {
 		valueKey: PropTypes.string,           // path of the label value in option objects
 		valueRenderer: PropTypes.func,        // valueRenderer: function (option) {}
 		wrapperStyle: PropTypes.object,       // optional style to apply to the component wrapper
-	}
+	};
 
 	render() {
-		const {onChange, onBlur, ...props} = this.props;
+		const {onChange, onBlur, required, requiredDisable, validate = [],...props} = this.props;
+		const validators = [...getRequiredValidator({required, requiredDisable}), ...validate];
+
 		return ( <Field component={SelectRender}
 						onSelectChange={onChange}
 						onSelectBlur={onBlur}
+						validate={validators}
 						{...props} />);
 	}
 }

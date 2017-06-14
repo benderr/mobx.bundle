@@ -20,7 +20,7 @@ class ModifierGroupForm extends React.Component {
 						<div class="property_value col nine">
 							<Fields.InputField name="name"
 											   class="w100"
-											   validate={[isRequired('Укажите наименование')]}/>
+											   required="Укажите наименование"/>
 						</div>
 					</div>
 				</div>

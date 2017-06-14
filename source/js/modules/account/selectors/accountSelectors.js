@@ -4,6 +4,18 @@ export const getSection = (state) => {
 	return state.get('auth');
 };
 
+export const getRegistrationSection = (state) => {
+	return state.get('reg');
+};
+
+export const getForgotSection = (state) => {
+	return state.get('forgot');
+};
+
+export const getChangePasswordSection = (state) => {
+	return state.get('changePassword');
+};
+
 export const getAuthData = createSelector([getSection], (section) => {
 	return section ? section.get('authData') : null;
 });
