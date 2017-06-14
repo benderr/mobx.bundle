@@ -3,10 +3,11 @@ import {Select} from 'common/uiElements';
 import {AmountField, InputField, PhoneField, NumberField, SelectField} from 'common/formElements/fields';
 import {reduxForm} from 'common/formElements'
 import {connect} from 'react-redux';
-import {Field, focus,change, getFormValues} from 'redux-form/immutable';
+import {Field, focus, change, getFormValues} from 'redux-form/immutable';
 import {isRequired} from 'common/validators'
 import modifierForm from 'modules/products/components/ProductCard/ModifierForm'
 import {withRouter} from 'react-router';
+import {ConfirmPopupService} from 'common/uiElements';
 
 const testForm = ({handleSubmit}) => {
 	return (<form onSubmit={handleSubmit(() => {
@@ -36,6 +37,11 @@ const onSubmitFail = formName => (errors, dispatch) => {
 	}
 };
 
+function getParent() {
+	return document.querySelector('#root');
+}
+
+
 const TestForm = reduxForm({
 	form: 'testForm',
 	onSubmitFail: onSubmitFail('testForm')
@@ -58,12 +64,35 @@ class TestSelector extends React.Component {
 
 	}
 
-	onRemove() {
+	onRemove(elem) {
+		this.removePopup.open2({
+			onOk: () => {
+				console.log('removing element ', elem);
+			},
+			onCancel: () => {
+				console.log('canceling for element ', elem);
+			},
+			onClose: () => {
+				console.log('closing for element ', elem);
+			},
+			title: 'Удалить элемент ' + elem.id
+		});
+	};
 
-	}
+	onRemove2(elem) {
+		this.removePopup.open({title: 'Удалить элемент ' + elem.id})
+			.then(() => {
+				console.log('removing element ', elem);
+			})
+			.catch(({close}) => {
+				if (close)
+					console.log('closing for element ', elem);
+				else
+					console.log('canceling for element ', elem);
+			});
+	};
 
 	logChange(val) {
-		debugger
 		//console.log("Selected: ", val);
 		this.setState({selected: val ? val.value : null})
 	}
@@ -77,6 +106,7 @@ class TestSelector extends React.Component {
 		//let modifier = null;
 		//const ModifierForm = this.modifierForm;
 		const amount = this.props.formData ? this.props.formData.get('price') : 'null';
+
 		return (
 			<div style={{minHeight: '500px'}}>
 				<Select name="form-field-name"
@@ -90,8 +120,19 @@ class TestSelector extends React.Component {
 
 				<div className="poss" style={{maxWidth: '400px'}}>
 					<TestForm />
-					{amount}
 				</div>
+
+				<br/>
+
+				<button className="button" onClick={() => this.onRemove({id: 1})}>Удалить что-то 1</button>
+				<button className="button" onClick={() => this.onRemove2({id: 2})}>Удалить что-то 2</button>
+
+				<ConfirmPopupService
+					ref={p => this.removePopup = p}
+					okName="Подтвердить"
+					cancelName="Отмена"
+					title="Удаление тестовое"
+					text="Вы действительно хотите что-то удалить?"/>
 			</div>
 		);
 	}
