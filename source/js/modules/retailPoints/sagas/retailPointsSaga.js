@@ -7,6 +7,7 @@ import {addRetailPoint, getRetailPoints, setRetailPoint, getRetailPoint, editRet
 import localStorage from 'core/storage/localStorage'
 const currencyRetailPointKey = 'currencyRetailPointKey';
 import * as actions from '../enums/actions'
+import productSources from '../enums/productSourcesEnum'
 
 /**
  * Получение и установка торговых точек
@@ -100,7 +101,7 @@ function* setEmptyRetailPointProcess({id, isFirstPoint}) {
 			enabled: false,
 		},
 		isFirstPoint: isFirstPoint,
-		productsSource: 'BLANK', //SHARE, COPY //todo вынести в enum
+		productsSource: productSources.BLANK
 		isNew: true
 	};
 	yield put(getRetailPoint.success(retailPoint));
