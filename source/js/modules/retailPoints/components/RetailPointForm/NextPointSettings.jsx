@@ -30,7 +30,7 @@ class NextPointSettings extends React.Component {
                                          valueKey="id"
                                          labelKey="name"
                                          options={points}
-                                         validate={[isRequired('Выберите точку продаж')]}/>
+                                         required="Выберите точку продаж"/>
                         </div>
                     </div>
                     <div class="info_text icon-info f_xsmall">Все изменения по товарам из выбранной точки
@@ -51,7 +51,7 @@ class NextPointSettings extends React.Component {
                                          valueKey="id"
                                          labelKey="name"
                                          options={points}
-                                         validate={[isRequired('Выберите точку продаж')]}/>
+                                         required="Выберите точку продаж"/>
                         </div>
                     </div>
                     <div class="info_text icon-info f_xsmall">Изменения товаров одной точки НЕ будут отражены на товарах

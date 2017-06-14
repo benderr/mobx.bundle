@@ -101,7 +101,7 @@ function* setEmptyRetailPointProcess({id, isFirstPoint}) {
 			enabled: false,
 		},
 		isFirstPoint: isFirstPoint,
-		productsSource: productSources.BLANK
+		productsSource: productSources.BLANK,
 		isNew: true
 	};
 	yield put(getRetailPoint.success(retailPoint));
