@@ -1,3 +1,5 @@
+import {isRequired} from 'common/validators';
+
 export const ifCondition = (condition, value, defaultVal = '') => {
 	return condition ? value : defaultVal;
 };
@@ -38,3 +40,6 @@ export const getRandomKey = () => {
 	return Math.floor(Math.random() * (999999999 - 100000000)) + 100000000;
 };
 
+export const getRequiredValidator = ({required = false, requiredDisable = false}) => {
+	return required && !requiredDisable ? [isRequired(required)] : [];
+};

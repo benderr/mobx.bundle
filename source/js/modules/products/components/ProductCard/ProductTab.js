@@ -21,7 +21,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<InputField name="name"
 									class="w100"
-									validate={[isRequired('Укажите наименование')]}/>
+									required="Укажите наименование"/>
 					</div>
 				</div>
 
@@ -30,7 +30,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<InputField name="inventCode"
 									class="w100"
-									validate={[isRequired('Укажите код')]}/>
+									required="Укажите код"/>
 					</div>
 				</div>
 
@@ -39,7 +39,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<InputField name="barcode"
 									class="w100"
-									validate={[isRequired('Укажите штрих-код')]}/>
+									required="Укажите штрих-код"/>
 					</div>
 				</div>
 
@@ -48,7 +48,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<AmountField name="price"
 									 class="w100"
-									 validate={[isRequired('Укажите цену')]}/>
+									 required="Укажите цену"/>
 					</div>
 				</div>
 
@@ -57,7 +57,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<AmountField name="minPrice"
 									 class="w100"
-									 validate={[isRequired('Укажите мин. цену')]}/>
+									 required="Укажите мин. цену"/>
 					</div>
 				</div>
 

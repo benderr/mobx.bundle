@@ -41,10 +41,13 @@ class DefaultLayerLayout extends React.Component {
 		return false;
 	}
 
-
-	componentDidMount() {
+	openLayer() {
 		const el = this.getElement();
 		el && setTimeout(() => this.addClass(el, 'open'), 100);
+	}
+
+	componentDidMount() {
+		this.openLayer();
 	}
 
 	getCloseButton() {

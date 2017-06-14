@@ -1,9 +1,10 @@
 import React from 'react'
-import {Route} from 'react-router-dom'
+import {withRouter} from 'react-router'
 import PropTypes from 'prop-types';
 import RadRouteManager from './RadRouteManager'
 import * as routeHelpers from './routeHelpers'
 
+@withRouter
 class RadRouter extends React.Component {
 	static propTypes = {
 		routes: PropTypes.array.isRequired,
@@ -18,10 +19,8 @@ class RadRouter extends React.Component {
 	}
 
 	render() {
-		const {notFound} = this.props;
-		return (
-			<Route render={props => <RadRouteManager routes={this.allRoutes} {...props} notFound={notFound}/>}/>
-		);
+		const {notFound, location, history} = this.props;
+		return (<RadRouteManager history={history} location={location} routes={this.allRoutes} notFound={notFound}/>);
 	}
 }
 
