@@ -1,6 +1,10 @@
 import SignInContainer from './containers/SignInContainer';
+import RegistrationContainer from './containers/RegistrationContainer';
+import ForgotContainer from './containers/ForgotContainer';
+import SettingsContainer from './containers/SettingsContainer';
 import React from 'react';
-import ExternalLayout from 'components/ExternalLayout'
+import LoginLayout from 'components/LoginLayout';
+import RegistrationLayout from 'components/RegistrationLayout';
 
 export function getRoutes() {
 	return {
@@ -9,7 +13,33 @@ export function getRoutes() {
 			exact: true,
 			allowAnonymous: true,
 			component: SignInContainer,
-			layout: ExternalLayout
+			layout: LoginLayout
+		},
+		registration: {
+			path: '/registration',
+			exact: true,
+			allowAnonymous: true,
+			component: RegistrationContainer,
+			layout: RegistrationLayout
+		},
+		forgot: {
+			path: '/forgot',
+			exact: true,
+			allowAnonymous: true,
+			component: ForgotContainer,
+			layout: LoginLayout
+		},
+		settings:{
+			path:'/settings/:tab',
+			exact: false,
+			isLayer: true,
+			layout: SettingsContainer
+		},
+		settings2:{
+			path:'/settings',
+			exact: true,
+			isLayer: true,
+			layout: SettingsContainer
 		}
 	};
 }

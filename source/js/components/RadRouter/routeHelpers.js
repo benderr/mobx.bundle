@@ -5,18 +5,24 @@ import {Route} from 'react-router-dom'
 import LayoutRoute from './customRoutes/LayoutRoute'
 import PrivateRoute from './customRoutes/PrivateRoute'
 
-const isLayerPage = (routes, location) => {
+export const isLayerPage = (routes, location) => {
 	return routes.some(s => {
 		const re = pathToRegexp(s.path, []);
 		return re.exec(location.pathname) != null;
 	});
 };
 
-const getRandomKey = () => {
+export const equalLocations = (a, b) => {
+	return a.pathname == b.pathname
+		&& a.hash == b.hash
+		&& a.search == b.search;
+};
+
+export const getRandomKey = () => {
 	return Math.floor(Math.random() * (999999999 - 100000000)) + 100000000;
 };
 
-const generateRouteComponent = ({routeId, props}) => {
+export const generateRouteComponent = ({routeId, props}) => {
 	const key = `page_route_` + routeId;
 	if (!routeId)
 		throw 'RouteId must be set';
@@ -43,7 +49,7 @@ const generateRouteComponent = ({routeId, props}) => {
 	}
 };
 
-const getRouteComponent = (key, props) => {
+export const getRouteComponent = (key, props) => {
 
 	const {allowAnonymous, layout}=props;
 	let routeComponent = Route; //generateRouteDefault(key, props);// Route; //(props) => (<Route {...props}/>);
@@ -66,7 +72,7 @@ const getRouteComponent = (key, props) => {
 	return routeComponent;
 };
 
-const transformRoutes = (routes, defaultLayout, defaultLayerLayout) => {
+export const transformRoutes = (routes, defaultLayout, defaultLayerLayout) => {
 	return routes.reduce((r, rule) => {
 		if (rule.isLayer) {
 			const layout = rule.layout === undefined ? defaultLayerLayout : rule.layout;
@@ -91,6 +97,3 @@ const transformRoutes = (routes, defaultLayout, defaultLayerLayout) => {
 		return r;
 	}, {pageRoutes: [], layerRoutes: []});
 };
-
-
-export {isLayerPage, generateRouteComponent, getRandomKey, transformRoutes}

@@ -1,10 +1,10 @@
 import React from 'react';
-import SignInForm from '../components/SignInForm/SignInForm'
+import SignInForm from '../components/SignInForm'
 import {connect} from 'react-redux';
 import {login} from '../actions/loginActions'
 import {bindActionCreators} from 'redux';
 import {getSection} from '../selectors/accountSelectors'
-
+import toJs from 'components/HOC/toJs';
 
 const SignInContainer = props => {
     const {loading, login, redirectUrl, errors}=props;
@@ -22,7 +22,7 @@ const SignInContainer = props => {
     );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignInContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(toJs(SignInContainer));
 
 
 function mapStateToProps(state, ownProps) {

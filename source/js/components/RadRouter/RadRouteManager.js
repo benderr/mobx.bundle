@@ -8,7 +8,8 @@ class RadRouteManager extends React.Component {
 	static propTypes = {
 		routes: PropTypes.object.isRequired,
 		notFound: PropTypes.func,
-		location: PropTypes.object.isRequired
+		location: PropTypes.object.isRequired,
+		history: PropTypes.object.isRequired
 	};
 	layers = [];
 	pageLocation = this.props.location;
@@ -25,6 +26,14 @@ class RadRouteManager extends React.Component {
 			loc.state = {returnToPage: true};
 			this.props.history.replace(loc);
 		}
+	}
+
+	getExistLayer(location) {
+		return this.layers.filter(s => s.location.pathname == location.pathname)[0]
+	}
+
+	componentWillUnmount() {
+		console.log('RadRouteManager componentWillUnmount');
 	}
 
 	render() {
@@ -62,8 +71,16 @@ class RadRouteManager extends React.Component {
 			if (this.layers.length >= 5) {
 				this.layers.splice(0, 1, createLayer());
 			} else {
-				if (!this.layers.some(s => s.location.pathname == location.pathname))
+				const locationLayer = this.getExistLayer(location);
+				if (!locationLayer) {
 					this.layers.unshift(createLayer());
+				}
+				else {
+					if (!routeHelpers.equalLocations(locationLayer.location, location)) {
+						locationLayer.location = location;
+						locationLayer.needUpdate = true;
+					}
+				}
 			}
 		} else {
 			this.layers = [];

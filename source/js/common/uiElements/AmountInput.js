@@ -74,7 +74,6 @@ class AmountInput extends React.Component {
 	}
 
 	componentWillReceiveProps(props) {
-		console.log('componentWillReceiveProps');
 		if (props && props.value) {
 			const {viewValue, value, startPos}=this.parseValue(props.value);
 			this.setState({viewValue, value, startPos});
