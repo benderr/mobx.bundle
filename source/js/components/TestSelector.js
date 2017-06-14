@@ -65,21 +65,6 @@ class TestSelector extends React.Component {
 	}
 
 	onRemove(elem) {
-		this.removePopup.open2({
-			onOk: () => {
-				console.log('removing element ', elem);
-			},
-			onCancel: () => {
-				console.log('canceling for element ', elem);
-			},
-			onClose: () => {
-				console.log('closing for element ', elem);
-			},
-			title: 'Удалить элемент ' + elem.id
-		});
-	};
-
-	onRemove2(elem) {
 		this.removePopup.open({title: 'Удалить элемент ' + elem.id})
 			.then(() => {
 				console.log('removing element ', elem);
@@ -125,7 +110,7 @@ class TestSelector extends React.Component {
 				<br/>
 
 				<button className="button" onClick={() => this.onRemove({id: 1})}>Удалить что-то 1</button>
-				<button className="button" onClick={() => this.onRemove2({id: 2})}>Удалить что-то 2</button>
+				<button className="button" onClick={() => this.onRemove({id: 2})}>Удалить что-то 2</button>
 
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}

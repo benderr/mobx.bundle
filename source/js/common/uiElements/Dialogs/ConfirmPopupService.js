@@ -7,16 +7,6 @@ import q from 'q';
  */
 class ConfirmPopupService extends React.Component {
 
-	open2({onOk, onCancel, onClose, title, text}) {
-		this.onClickOk = onOk;
-		this.onClickCancel = onCancel;
-		this.onClickClose = onClose;
-		this.dialog._open();
-		this.setState({
-			title, text
-		});
-	}
-
 	open({title, text}) {
 		this.setState({
 			title, text
@@ -28,27 +18,34 @@ class ConfirmPopupService extends React.Component {
 
 	handleOkClick() {
 		this.dialog._close();
-		this.onClickOk && this.onClickOk();
 		this.defer && this.defer.resolve();
 	}
 
 	handleCancelClick() {
 		this.dialog._close();
-		this.onClickCancel && this.onClickCancel();
 		this.defer && this.defer.reject({close: false});
 	}
 
 	handleCloseClick() {
 		this.dialog._close();
-		this.onClickClose && this.onClickClose();
 		this.defer && this.defer.reject({close: true});
 	}
 
 	render() {
-		const {title: stateTitle, text:stateText}=this.state || {};
 		const {
-			parentSelector, onAfterOpen, shouldCloseOnOverlayClick,
-			title:propTitle, okName = 'Подтвердить', cancelName, disableClose = false, text:propText, className = ''
+			title: stateTitle,
+			text:stateText
+		}=this.state || {};
+		const {
+			parentSelector,
+			onAfterOpen,
+			shouldCloseOnOverlayClick = false,
+			title:propTitle,
+			okName = 'Подтвердить',
+			cancelName,
+			disableClose = false,
+			text:propText,
+			className = ''
 		}=this.props;
 
 		const title = stateTitle || propTitle;
@@ -65,9 +62,7 @@ class ConfirmPopupService extends React.Component {
 					{!disableClose && <a class="popup_close icon-close" onClick={::this.handleCloseClick}></a>}
 					<div>
 						{title && <h1>{title}</h1>}
-
 						{text && <p>{title}</p>}
-
 						<div class="popup_panel">
 							<button class="button" onClick={::this.handleOkClick}>{okName}</button>
 							{cancelName && <a class="button_clean" onClick={::this.handleCancelClick}>{cancelName}</a>}
