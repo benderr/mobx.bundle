@@ -7,7 +7,7 @@ import q from 'q';
  */
 class ConfirmPopupService extends React.Component {
 
-	open({title, text}) {
+	open({title, text}={}) {
 		this.setState({
 			title, text
 		});
