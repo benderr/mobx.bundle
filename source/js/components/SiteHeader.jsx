@@ -3,7 +3,7 @@ import {NavLink, Link} from 'react-router-dom';
 import {logOut} from 'modules/account/actions/loginActions'
 import {connect} from 'react-redux';
 import {Route} from 'react-router'
-import Drop from 'common/uiElements/Drop';
+import {Drop2} from 'common/uiElements';
 
 
 //todo допилить это непотребство
@@ -16,14 +16,14 @@ const SiteMenuLink = ({label, to, exact}) => (
 );
 
 const SiteHeader = props => {
-    let drop = null;
+    // let drop = null;
     // constructor(props, context) {
     //     super(props, context);
     //     this.state = {};
     // }
-    function toggleDrop() {
-        drop.toggle();
-    }
+    // function toggleDrop() {
+    //     drop.toggle();
+    // }
 
     const {dispatch} = props;
     const _logOut = () => {
@@ -62,14 +62,14 @@ const SiteHeader = props => {
             <div class="header_profile">
 
                 <div class="header_profile_name">
-                    <a class="icon-profile drop-target" onClick={toggleDrop}><span>{companyName}</span></a>
-                    <Drop ref={(elem) => {
-                        drop = elem;
-                    }}>
-                        <div class="drop-content-1">
+
+                    <Drop2 opts={{position:'bottom right'}}>
+                        <a class="icon-profile drop-target" name="label"><span>{companyName}</span></a>
+
+                        <div class="drop-content">
                             <div class="drop-content-inner">
                                 <ul class="drop-menu f_small">
-                                    <li><a class="icon-check">Дмитриевская точка</a></li>
+                                    <li><a class="icon-check">{companyName}</a></li>
                                     <li><a>Ленинский проспект</a></li>
                                     <li><a>Ленинский проспект 2</a></li>
                                     <li><a>Ленинский проспект 3</a></li>
@@ -80,7 +80,7 @@ const SiteHeader = props => {
                                 </ul>
                             </div>
                         </div>
-                    </Drop>
+                    </Drop2>
                 </div>
 
                 <div class="header_profile_settigs">

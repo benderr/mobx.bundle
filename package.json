@@ -76,7 +76,6 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-select": "^1.0.0-rc.5",
-    "react-tether": "^0.5.7",
     "react-tooltip": "^3.3.0",
     "react-waypoint": "^7.0.3",
     "redux": "^3.3.1",
@@ -86,7 +85,8 @@
     "redux-saga": "^0.14.4",
     "redux-saga-debounce-effect": "^0.2.2",
     "redux-thunk": "^2.0.1",
-    "reselect": "^3.0.0"
+    "reselect": "^3.0.0",
+    "tether-drop": "^1.4.2"
   },
   "description": "Starter boilerplate for React and Redux, using Webpack 2",
   "repository": {
