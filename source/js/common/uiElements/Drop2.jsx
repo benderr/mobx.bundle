@@ -27,20 +27,47 @@ const defaultOptions = {
 
 class Drop2 extends React.Component {
 
-    componentDidMount () {
+    constructor() {
+        super();
+        this.container = document.createElement('div');
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        this.destroyDrop();
+        this.initDrop();
+        return true;
+    }
+
+    componentDidMount() {
+        this.initDrop();
+    }
+
+    componentWillUnmount() {
+        this.destroyDrop();
+    }
+
+    initDrop() {
         const {children} = this.props;
-        const dropContent = children.filter(child=>child.props.className.indexOf('drop-content') > -1)[0];
-        //const element = children.filter(child=>child.props.name==='label')[0];
+        const dropContent = React.Children.map(children, (child) => {
+            if (child.props.className.indexOf('drop-content') > -1) {
+                return child;
+            }
+        })[0];
+        if (!dropContent) {
+            throw new Error('Child element with class drop-content must be specified');
+        }
+
         const opts = Object.assign({
             target: this.refs.drop,
-            content: ReactDOM.render(dropContent, document.createElement('div'))
+            content:  ReactDOM.render(dropContent, this.container)
         }, defaultOptions, this.props.opts);
 
         this.drop = new Drop(opts)
     }
 
-    componentWillUnmount () {
-        if(this.drop) {
+    destroyDrop() {
+        if (this.drop) {
+            ReactDOM.unmountComponentAtNode(this.container);
             this.drop.close();
             this.drop.destroy()
         }
