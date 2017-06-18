@@ -10,7 +10,7 @@ class InternalLayout extends React.Component {
 
         return (
             <div class="poss">
-                <SiteHeader company={this.props.company} points={this.props.points}/>
+                <SiteHeader/>
                 <section class="main">
                     <div class="section_content" style={css}>
                         {this.props.children}

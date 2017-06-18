@@ -20,17 +20,17 @@ const SiteMenuLink = ({label, to, exact}) => (
     )}/>
 );
 
-const mapState = (state) => ({
+const mapStateToProps = (state) => ({
     selectedPointId: getCurrentRetailPointId(state),
     points: getRetailPointList(state),
 });
 
-const mapActions = dispatch => ({
+const mapActionsToProps = dispatch => ({
     onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch),
     push: bindActionCreators(push, dispatch),
 });
 
-@connect(mapState, mapActions)
+@connect(mapStateToProps, mapActionsToProps)
 @toJs
 class SiteHeader extends React.Component {
 
@@ -116,15 +116,5 @@ class SiteHeader extends React.Component {
             ;
     }
 }
-
-
-// SiteHeader.propTypes = {
-//     onSave: PropTypes.func.isRequired,
-//     onCancel: PropTypes.func.isRequired,
-//     onDelete: PropTypes.func.isRequired,
-//     loading: PropTypes.bool,
-//     points: PropTypes.arrayOf(RetailPointShape),
-//     retailPoint: RetailPointShape
-// };
 
 export default SiteHeader;
