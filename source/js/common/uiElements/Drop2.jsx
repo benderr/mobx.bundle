@@ -4,6 +4,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Drop from 'tether-drop';
+import enhanceWithClickOutside from 'react-click-outside';
 
 
 const defaultOptions = {
@@ -30,12 +31,15 @@ class Drop2 extends React.Component {
     constructor() {
         super();
         this.container = document.createElement('div');
+        this.state = {
+            isOpened: false
+        }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        this.destroyDrop();
-        this.initDrop();
-        return true;
+    reposition() {
+        if (this.drop) {
+            this.drop.position();
+        }
     }
 
     componentDidMount() {
@@ -46,7 +50,7 @@ class Drop2 extends React.Component {
         this.destroyDrop();
     }
 
-    initDrop() {
+    getDropContent() {
         const {children} = this.props;
         const dropContent = React.Children.map(children, (child) => {
             if (child.props.className.indexOf('drop-content') > -1) {
@@ -56,13 +60,25 @@ class Drop2 extends React.Component {
         if (!dropContent) {
             throw new Error('Child element with class drop-content must be specified');
         }
+        return dropContent;
+    }
+
+    initDrop() {
 
         const opts = Object.assign({
             target: this.refs.drop,
-            content:  ReactDOM.render(dropContent, this.container)
         }, defaultOptions, this.props.opts);
+        opts.content = (drop) => {
+            return ReactDOM.render(this.getDropContent(), this.container);
+        };
 
-        this.drop = new Drop(opts)
+        this.drop = new Drop(opts);
+    }
+
+    handleClickOutside() {
+        if (this.drop && this.drop.isOpened()) {
+            this.drop.toggle();
+        }
     }
 
     destroyDrop() {
@@ -73,6 +89,7 @@ class Drop2 extends React.Component {
         }
     }
 
+
     render() {
         return <div ref='drop'>
             {this.props.children}
@@ -80,4 +97,4 @@ class Drop2 extends React.Component {
     }
 }
 
-export default Drop2
+export default enhanceWithClickOutside(Drop2)

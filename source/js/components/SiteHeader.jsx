@@ -56,7 +56,9 @@ class SiteHeader extends React.Component {
         const selectedPointName = this.getSelectedPointName(selectedPointId, points);
 
         const pointsBlock = selectedPointId && points ? points.filter(point=>point.id !== selectedPointId)
-            .map(point =>(<li key={'listitem_' + point.id} onClick={()=>onSelectPoint(point.id)}><a>{point.name}</a></li>)) : null;
+            .map(point =>(<li key={'listitem_' + point.id} onClick={()=>onSelectPoint(point.id)}><a>{point.name}</a></li>))
+            : null;
+
 
         return (
 
