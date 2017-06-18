@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import {logOut} from 'modules/account/actions/loginActions'
 import {Route} from 'react-router'
-import {Drop2} from 'common/uiElements';
+import {Drop} from 'common/uiElements';
 import toJs from 'components/HOC/toJs'
 import {push} from 'connected-react-router'
 
@@ -89,7 +89,7 @@ class SiteHeader extends React.Component {
                 <div class="header_profile">
 
                     <div class="header_profile_name">
-                        <Drop2 opts={{position: 'bottom right'}}>
+                        <Drop opts={{position: 'bottom right'}}>
                             <a class="icon-profile drop-target" name="label"><span>{selectedPointName}</span></a>
 
                             <div class="drop-content">
@@ -101,7 +101,7 @@ class SiteHeader extends React.Component {
                                     </ul>
                                 </div>
                             </div>
-                        </Drop2>
+                        </Drop>
                     </div>
 
                     <div class="header_profile_settigs">

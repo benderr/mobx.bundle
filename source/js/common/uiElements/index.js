@@ -5,7 +5,7 @@ import AmountInput from './AmountInput';
 import Recaptcha from './Recaptcha';
 import InfinateScroll from './InfinateScroll';
 import ConfirmPopupService from './Dialogs/ConfirmPopupService';
-import Drop2 from './Drop2'
+import Drop from './Drop';
 
 export {
 	PrimaryButton,
@@ -15,5 +15,5 @@ export {
 	Recaptcha,
 	InfinateScroll,
 	ConfirmPopupService,
-	Drop2
+	Drop
 }

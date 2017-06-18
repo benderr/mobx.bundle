@@ -3,7 +3,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Drop from 'tether-drop';
+import TetherDrop from 'tether-drop';
 import enhanceWithClickOutside from 'react-click-outside';
 
 
@@ -26,7 +26,7 @@ const defaultOptions = {
 //     attachment: 'together'
 // }]}
 
-class Drop2 extends React.Component {
+class Drop extends React.Component {
 
     constructor() {
         super();
@@ -72,7 +72,7 @@ class Drop2 extends React.Component {
             return ReactDOM.render(this.getDropContent(), this.container);
         };
 
-        this.drop = new Drop(opts);
+        this.drop = new TetherDrop(opts);
     }
 
     handleClickOutside() {
@@ -97,4 +97,4 @@ class Drop2 extends React.Component {
     }
 }
 
-export default enhanceWithClickOutside(Drop2)
+export default enhanceWithClickOutside(Drop)
