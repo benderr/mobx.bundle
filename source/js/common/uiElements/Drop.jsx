@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import TetherDrop from 'tether-drop';
 import enhanceWithClickOutside from 'react-click-outside';
 
@@ -65,9 +66,12 @@ class Drop extends React.Component {
 
     initDrop() {
 
+        const outOptions = {
+            position: this.props.position
+        };
         const opts = Object.assign({
             target: this.refs.drop,
-        }, defaultOptions, this.props.opts);
+        }, defaultOptions, outOptions);
         opts.content = (drop) => {
             return ReactDOM.render(this.getDropContent(), this.container);
         };
@@ -96,5 +100,9 @@ class Drop extends React.Component {
         </div>
     }
 }
+
+Drop.propTypes = {
+    position: PropTypes.string
+};
 
 export default enhanceWithClickOutside(Drop)

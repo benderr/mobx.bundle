@@ -89,7 +89,7 @@ class SiteHeader extends React.Component {
                 <div class="header_profile">
 
                     <div class="header_profile_name">
-                        <Drop opts={{position: 'bottom right'}}>
+                        <Drop position="bottom right">
                             <a class="icon-profile drop-target" name="label"><span>{selectedPointName}</span></a>
 
                             <div class="drop-content">
