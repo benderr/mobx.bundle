@@ -10,7 +10,8 @@ import {addRetailPoint, setEmptyRetailPointInLayer, getRetailPoint, editRetailPo
 import {getRetailPointList, getRetailPointInLayer} from '../selectors/retailPointSelectors';
 
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
-import RetailPointForm from '../components/RetailPointForm/RetailPointForm'
+import RetailPointForm from '../components/RetailPointForm/RetailPointForm';
+import {ConfirmPopupService} from 'common/uiElements';
 
 @toJs
 class AddEditRetailPointContainer extends DefaultLayerLayout {
@@ -55,8 +56,17 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
 
     onDelete(){
         const {id, deleteRetailPoint} = this.props;
-        deleteRetailPoint(id);
-        this.closeLayer();
+        this.confirmPopup.open()
+            .then(() => {
+                deleteRetailPoint(id);
+                this.closeLayer();
+            })
+            .catch(({close}) => {
+                if (close)
+                    console.log('closing for element ', elem);
+                else
+                    console.log('canceling for element ', elem);
+            })
     }
 
     render() {
@@ -74,6 +84,12 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
                 </div>
                 <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading} points={points}
                                  retailPoint={retailPoint} onDelete={::this.onDelete}/>
+                <ConfirmPopupService
+                    ref={p => this.confirmPopup = p}
+                    okName="Подтвердить"
+                    cancelName="Отмена"
+                    title="Удалить точку продаж?"
+                    text="Все созданные товары и другие данные этой точки будут удалены. Вы хотите подтвердить операцию?"/>
             </article>)
     }
 }
