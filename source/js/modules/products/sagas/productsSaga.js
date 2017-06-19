@@ -80,6 +80,17 @@ function* searchProducts({formKey, query}) {
 	}
 }
 
+function* importProducts({file}) {
+	try {
+		const response = yield call(dataContext.uploadProducts, file);
+		yield put(productActions.uploadImportProducts.success({response}));
+	}
+	catch (error) {
+		console.log(error);
+		yield put(productActions.uploadImportProducts.failure({error}));
+	}
+}
+
 export default function*() {
 	yield [
 		takeEvery(retailPointsActions.SET_RETAIL_POINT, initProductsProcess),
@@ -89,6 +100,7 @@ export default function*() {
 		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
 		takeEvery(actions.CREATE_PRODUCT, createProduct),
 		takeEvery(actions.SET_NEW_PRODUCT, setProductToLayer),
-		debounce(actions.SEARCH_PRODUCTS.REQUEST, searchProducts)
+		debounce(actions.SEARCH_PRODUCTS.REQUEST, searchProducts),
+		takeEvery(actions.IMPORT_PRODUCTS.REQUEST, importProducts),
 	]
 }

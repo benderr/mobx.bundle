@@ -17,14 +17,14 @@ class ModificationForm extends React.Component {
 							<a className="icon-pencil" onClick={() => onOpenGroup(group.id)}></a>
 						</div>
 
-						<div className="wrapper_modificator">
+						<div className="modificators_wrapper">
 							{group.modifiers.map(m => (
 								<div key={m.id}
-									 className={['modificator', m.selected || m.base ? 'selected' : ''].join(' ')}
+									 className={m.selected ? 'selected' : ''}
 									 onClick={() => onOpenModifier({modifierId: m.id, groupId: group.id})}>
 									{m.name}</div>
 							))}
-							<div className="modificator  add_new_modificator"
+							<div className="add_new_modificator"
 								 onClick={() => onAddModifier({groupId: group.id})}>+
 							</div>
 						</div>

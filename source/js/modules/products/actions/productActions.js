@@ -1,6 +1,3 @@
-/**
- * Created by RobertSabiryanov on 13.05.17.
- */
 import * as actions from '../enums/actions';
 import {createAction} from 'infrastructure/helpers/actionHelpers';
 
@@ -84,4 +81,11 @@ export const addProduct = ({product}) => createAction(actions.ADD_PRODUCT_DETAIL
 export const createProduct = ({catalog}) => createAction(actions.CREATE_PRODUCT, {catalog});
 export const setNewProduct = ({catalog, inventCode}) => createAction(actions.SET_NEW_PRODUCT, {catalog, inventCode});
 
+export const uploadImportProducts = {
+	request: ({file}) => createAction(actions.IMPORT_PRODUCTS.REQUEST, {file}),
+	success: ({response}) => createAction(actions.IMPORT_PRODUCTS.SUCCESS, {response}),
+	failure: ({error}) => createAction(actions.IMPORT_PRODUCTS.FAILURE, {error})
+};
+
+export const resetImportProducts = () => createAction(actions.RESET_IMPORT_LIST);
 

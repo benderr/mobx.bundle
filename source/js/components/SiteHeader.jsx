@@ -51,7 +51,7 @@ const SiteHeader = props => {
             <div class="header_profile">
 
                 <div class="header_profile_name">
-                    <Link class="icon-profile drop-target" to="/retail-points"><span>{companyName}</span></Link>
+                    <Link class="icon-pos drop-target" to="/retail-points"><span>{companyName}</span></Link>
                 </div>
 
                 <div class="header_profile_settigs">
