@@ -1,5 +1,5 @@
 import React from 'react';
-import SiteHeader from 'components/siteHeader';
+import SiteHeader from './SiteHeader';
 
 
 class InternalLayout extends React.Component {
