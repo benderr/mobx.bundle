@@ -22,7 +22,7 @@ export const actionHandlers = {
 
 	[SET_RETAIL_POINT]: (state, action) => {
 		return state.merge({
-			selectedPointId: action.id
+			selectedPointId: action.id,
 		});
 	},
 
