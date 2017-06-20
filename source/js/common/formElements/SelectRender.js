@@ -13,7 +13,7 @@ class SelectRender extends React.Component {
 	render() {
 		const {
 			input:fieldInput, label, className, validator: {tooltip, addClassName},
-			onSelectChange, onSelectBlur, valueKey = 'value', ...selectOptions
+			onSelectChange, onSelectBlur, valueKey = 'value', required, ...selectOptions
 		}=this.props;
 
 		let {onChange:onInputChange, onBlur:onInputBlur, ...input}=fieldInput;

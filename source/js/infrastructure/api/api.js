@@ -1,11 +1,12 @@
-import {createApi} from 'core/http/api'
-import {compose as base} from './base'
-import {compose as user} from './user'
-import retail from './retail'
-import {Http} from 'core/http/Http'
-import {Interceptors} from 'core/http/Interceptors'
+import {createApi} from 'core/http/api';
+import base from './base';
+import user from './user';
+import retail from './retail';
+import product from './product';
+import {Http} from 'core/http/Http';
+import {Interceptors} from 'core/http/Interceptors';
 import tokenInterceptorCreator from '../interceptors/tokenInterceptor';
-import localStorage from 'core/storage/localStorage'
+import localStorage from 'core/storage/localStorage';
 
 
 function initApi() {
@@ -21,6 +22,7 @@ function initApi() {
 	base(api);
 	user(api);
 	retail(api);
+	product(api);
 	return api;
 }
 

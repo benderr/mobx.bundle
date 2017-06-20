@@ -9,16 +9,10 @@ export default (Component) => {
 	class RetailPointRequiredHOC extends React.Component {
 		render() {
 			const {selectedPoint} = this.props;
-			let className = 'poss';
-			if (!selectedPoint) {
-				className += ' loading_block';
-			}
-
-			return (
-				<div className={className}>
-					{selectedPoint && <Component {...this.props}/>}
-				</div>
-			);
+			if (!selectedPoint)
+				return (<div className='loading_block' style={{minHeight:'100%'}}></div>);
+			else
+				return (<Component {...this.props}/>)
 		}
 	}
 	function mapStateToProps(state, ownProps) {

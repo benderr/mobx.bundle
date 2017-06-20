@@ -1,14 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import Button from './Button';
 
-const PrimaryButton = ({className, loading, type, ...props}) => {
-	const buttonType = type || 'button';
-	return (
-		<button type={buttonType}
-				disabled={loading}
-				className={["button middle wide ", className || '', loading ? 'loader' : ''].join(' ')}
-				{...props}>{props.children}</button>
-	)
+const PrimaryButton = ({children, ...props}) => {
+	return (<Button className='button middle wide' {...props}>{children}</Button>);
 };
 
 PrimaryButton.propTypes = {

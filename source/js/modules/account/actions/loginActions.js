@@ -3,7 +3,7 @@ import {createAction} from 'infrastructure/helpers/actionHelpers'
 
 export const login = {
 	request: (email, pass, redirectUrl) => createAction(actions.LOGIN.REQUEST, {email, pass, redirectUrl}),
-	success: (response) => createAction(actions.LOGIN.SUCCESS, {response}),
+	success: ({profile,token}) => createAction(actions.LOGIN.SUCCESS, {profile,token}),
 	failure: (error) => createAction(actions.LOGIN.FAILURE, {error})
 };
 

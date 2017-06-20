@@ -14,4 +14,6 @@ export const SET_DEFAULT_SEARCH_PRODUCT = 'PRODUCTS.SET_DEFAULT_SEARCH_PRODUCT';
 export const CREATE_PRODUCT = 'PRODUCTS.CREATE_PRODUCT'; //Создание балванки для нового продукта
 export const SET_NEW_PRODUCT = 'PRODUCTS.SET_NEW_PRODUCT'; //Создание балванки для нового продукта (если перезагрузили страницу)
 export const ADD_PRODUCT_DETAIL = 'PRODUCTS.ADD_PRODUCT_DETAIL'; //добавление нового продукта в стор слоя
+export const IMPORT_PRODUCTS = createRequestTypes('PRODUCTS.IMPORT_PRODUCTS'); //импорт продуктов
+export const RESET_IMPORT_LIST = 'PRODUCTS.RESET_IMPORT_LIST'; //чистим стор от пред. результата импорта
 

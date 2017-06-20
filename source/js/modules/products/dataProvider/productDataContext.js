@@ -1,8 +1,5 @@
-/**
- * Created by RobertSabiryanov on 14.05.17.
- */
 import api from 'infrastructure/api/api'
-import {toClient, toClientProduct} from './productMapper';
+import {toClient, toClientProduct, toClientImportResult} from './productMapper';
 
 export const getProducts = (retailPointId, start, count, filter) => {
 	let params = [];
@@ -30,4 +27,14 @@ export const addProduct = (retailPointId, product) => {
 	return api.v1().retailpoint(retailPointId).catalog()
 		.post(product)
 		.then(response => toClientProduct(response.data.catalogEntity));
+};
+
+export const uploadProducts = (file) => {
+	const headers = {'Skip-Content-Type': true};
+	const data = new FormData();
+	data.append('file', file);
+
+	return api.v1().uploadCatalog()
+		.post(data, headers)
+		.then(response => toClientImportResult(response.data));
 };

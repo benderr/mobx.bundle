@@ -13,9 +13,9 @@ const signInLocation = {pathname: '/signin'};
 function* authorize(email, pass, redirectUrl) {
 	try {
 		const token = btoa(`${email}:${pass}`);
-		const authData = yield call(dataContext.profile, token);
+		const profile = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
-		yield put(login.success(authData));
+		yield put(login.success({profile, token}));
 		yield fork(retailPointsSaga.runRetailPoints);
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
@@ -38,8 +38,6 @@ function* watchLogin() {
 		if (task) {
 			yield take([LOGOUT, LOGIN.FAILURE]);
 			cancel(task);
-			// if (logfail.action == LOGOUT)
-			// 	yield call(logout);
 		}
 	}
 }
@@ -64,7 +62,7 @@ function* initApp() {
 			if (token) {
 				yield put(login.request());
 				const profile = yield call(dataContext.profile, token);
-				yield put(login.success(profile));
+				yield put(login.success({profile, token}));
 
 				const location = yield  select(accountSelectors.getCurrentLocation);
 				if (location.get('pathname') == '/signin')

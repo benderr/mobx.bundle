@@ -9,6 +9,7 @@ import ProductActions from '../components/ProductsList/ProductActions';
 import {getProductsList, getProductListTotalCount, getProductLoading} from '../selectors/productsSelectors'
 import toJs from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
+import {getSection} from 'modules/account/selectors/accountSelectors';
 
 class ProductListContainer extends React.Component {
 
@@ -17,6 +18,20 @@ class ProductListContainer extends React.Component {
         this.count = 50;
         this.filtred = false;
         // this.getProductsList();
+    }
+
+    exportProduct() {
+        const {token}=this.props;
+        const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
+        const downloadLink = document.createElement("a");
+        const values = atob(token).split(':');
+        const email = values[0];
+        const password = values[1];
+        downloadLink.href = `${protocol}//${email}:${password}@${host}/api/v1/download-catalog`;
+        downloadLink.download = "catalog.xls";
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
     }
 
     createProduct() {
@@ -57,7 +72,9 @@ class ProductListContainer extends React.Component {
 
                 <h1>Все товары</h1>
 
-                <ProductActions onCreateProduct={::this.createProduct}/>
+                <ProductActions onCreateProduct={::this.createProduct}
+                                onExportProduct={::this.exportProduct}
+                />
             </div>
             <ProductList items={products} openProduct={::this.openProduct} selectedPoint={selectedPoint}
                          loadNext={::this.getProductsList} onFilterChanged={::this.onFilterChanged} loading={loading}/>
@@ -71,7 +88,8 @@ function mapStateToProps(state, ownProps) {
         //error: state.products.get('error'),
         products: getProductsList(state),
         productsTotalCount: getProductListTotalCount(state),
-        loading: getProductLoading(state)
+        loading: getProductLoading(state),
+        token: getSection(state).get('token')
     }
 }
 
@@ -89,8 +107,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 ProductListContainer.propTypes = {
-    selectedPoint: PropTypes.string.isRequired,
-    //products: arrayOf(ProductShape).isRequired
+    selectedPoint: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(retailPointHOC(toJs(ProductListContainer)));
