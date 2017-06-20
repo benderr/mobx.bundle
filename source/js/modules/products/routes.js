@@ -22,7 +22,7 @@ export function getRoutes() {
 			component: TestSelector
 		},
 		product: {
-			path: '/product/:action/point/:point/catalog/:catalog/code/:inventCode',
+			path: '/product/:action/point/:point/code/:inventCode',
 			exact: true,
 			isLayer: true,
 			layout: EditProductContainer
@@ -40,7 +40,7 @@ export function getRoutes() {
 			layout: ProductImportContainer
 		},
 		addProduct: {
-			path: '/product/:action/point/:point/catalog/:catalog/code/:inventCode',
+			path: '/product/:action/point/:point/code/:inventCode',
 			exact: true,
 			isLayer: true,
 			layout: EditProductContainer

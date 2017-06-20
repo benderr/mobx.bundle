@@ -23,14 +23,14 @@ function* initProductsProcess(data) {
 	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
 }
 
-function* createProduct({catalog}) {
+function* createProduct() {
 	const inventCode = generateNumber().toString();
-	yield setProductToLayer({catalog, inventCode});
+	yield setProductToLayer({inventCode});
 	const retailPointId = yield select(getCurrentRetailPointId);
-	yield put(push({pathname: `/product/add/point/${retailPointId}/catalog/${catalog}/code/${inventCode}`}));
+	yield put(push({pathname: `/product/add/point/${retailPointId}/code/${inventCode}`}));
 }
 
-function* setProductToLayer({catalog, inventCode}) {
+function* setProductToLayer({inventCode}) {
 	const product = {
 		inventCode: inventCode,
 		price: null,
@@ -39,16 +39,16 @@ function* setProductToLayer({catalog, inventCode}) {
 		minPrice: 0,
 		measure: 'pcs',
 		vatTag: "0",
-		catalogType: catalog,
+		catalogType: 'INVENTORY',
 		modifiers: [],
 		isNew: true
 	};
 	yield put(productActions.addProduct({product}));
 }
 
-function* getProductDetailsProcess({point, inventCode, category}) {
+function* getProductDetailsProcess({point, inventCode}) {
 	try {
-		const product = yield call(dataContext.getProduct, point, category, inventCode);
+		const product = yield call(dataContext.getProduct, point, inventCode);
 		yield put(productActions.getProductDetails.success({product}));
 	}
 	catch (error) {
@@ -61,7 +61,12 @@ function* saveProductDetailsProcess({product, point}) {
 		const saveProduct = product.isNew ? dataContext.addProduct : dataContext.saveProduct;
 		const updatedProduct = yield call(saveProduct, point, product);
 		yield put(productActions.saveProductDetails.success({product: updatedProduct}));
-		yield initProductsProcess({id: point});
+		if (product.isNew) {
+			yield put(productActions.addProductToList({product: updatedProduct}));
+		}
+		else {
+			yield put(productActions.updateProductInList({product: updatedProduct}));
+		}
 	}
 	catch (error) {
 		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));

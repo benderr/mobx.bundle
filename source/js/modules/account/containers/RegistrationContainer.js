@@ -5,6 +5,9 @@ import {register} from '../actions/accountActions'
 import {bindActionCreators} from 'redux';
 import {getRegistrationSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
+import {Link} from 'react-router-dom';
+import ModulHeader from 'components/ModulHeader';
+import styles from 'components/ExternalLayoutStyles';
 
 class RegistrationContainer extends React.Component {
 	constructor(props) {
@@ -47,15 +50,28 @@ class RegistrationContainer extends React.Component {
 	render() {
 		const {loading, errors, regData}=this.props;
 
-		return (<RegistrationForm onRegister={::this.onRegister}
-								  errors={errors}
-								  loading={loading}
-								  regData={regData}
-								  captcha={this.state.captcha}
-								  captchaReady={this.state.captchaReady}
-								  onCaptchaChange={::this.onCaptchaChange}
-								  onCaptchaLoad={::this.onCaptchaLoad}
-		/>);
+		return (
+			<div class="login reg">
+				<ModulHeader/>
+				<div className="login_section">
+					<div className="login_section_center">
+						<RegistrationForm onRegister={::this.onRegister}
+										  errors={errors}
+										  loading={loading}
+										  regData={regData}
+										  captcha={this.state.captcha}
+										  captchaReady={this.state.captchaReady}
+										  onCaptchaChange={::this.onCaptchaChange}
+										  onCaptchaLoad={::this.onCaptchaLoad}
+						/>
+						<div className="login_links">
+							<Link to="/signin">Войти</Link>
+							<Link to="/forgot">Забыли пароль?</Link>
+						</div>
+					</div>
+
+				</div>
+			</div>);
 	}
 }
 

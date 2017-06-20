@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {PrimaryButton} from 'common/uiElements';
 import ModifiersTab from './ModifiersTab';
 import ProductTab from './ProductTab';
+import {ConfirmPopupService} from 'common/uiElements';
 
 class ProductCard extends React.Component {
 
@@ -14,6 +15,11 @@ class ProductCard extends React.Component {
 
 	changeTab(tab) {
 		return () => this.setState({activeTab: tab});
+	}
+
+	handleRemove() {
+		this.removePopup.open()
+			.then(() => this.props.onRemove());
 	}
 
 	render() {
@@ -46,8 +52,14 @@ class ProductCard extends React.Component {
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit" loading={saving}>Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					{isEdit && <a class="button middle wide clean mr44 f_right" onClick={onRemove}>Удалить</a>}
+					{isEdit &&
+					<a class="button middle wide clean mr44 f_right" onClick={::this.handleRemove}>Удалить</a>}
 				</div>
+				<ConfirmPopupService
+					ref={p => this.removePopup = p}
+					okName="Подтвердить"
+					cancelName="Отмена"
+					title="Удаление товара"/>
 			</form>
 		)
 	}
