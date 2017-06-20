@@ -22,8 +22,10 @@ class SettingsContainer extends DefaultLayerLayout {
 
 	componentDidMount() {
 		super.openLayer();
-		const {tab} = this.props;
+		const {tab, getStateIntegration} = this.props;
 		this.setState({tab: tab || 'changepassword'});
+
+		getStateIntegration();
 	}
 
 	componentWillReceiveProps(props) {
@@ -112,7 +114,10 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			changePassword: actions.changePassword.request
+			changePassword: actions.changePassword.request,
+
+			getStateIntegration: actions.getStateIntegration.request,
+			connectIntegration: actions.connectIntegration.request
 		}, dispatch)
 	}
 }

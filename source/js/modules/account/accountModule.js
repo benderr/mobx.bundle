@@ -6,6 +6,7 @@ import * as changeServiceReducer from './reducers/changeServiceReducer';
 import * as routes  from './routes.js';
 import authorizeSaga from './sagas/authorizeSaga';
 import accountSaga from './sagas/accountSaga';
+import integrationSaga from './sagas/integrationSaga';
 
 export function getReducers(createReducer) {
 	return {
@@ -24,6 +25,7 @@ export function getRoutes() {
 export function getSagas() {
 	return [
 		authorizeSaga(),
-		accountSaga()
+		accountSaga(),
+		integrationSaga()
 	];
 }

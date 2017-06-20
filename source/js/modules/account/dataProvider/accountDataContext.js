@@ -44,3 +44,18 @@ export const register = (user) => {
 		userName: `${user.name} ${user.surname}`
 	});
 };
+
+/**
+ * Получает состояние о подключение сервиса "МойСклад"
+ * /api/v1/user/moysklad/state
+ */
+export const getStateIntegration = () => {
+	return api.v1().user().moysklad().state().get()
+		.then((response) => {
+			return {
+				msIntegrationEnabled: response.data.msIntegrationEnabled,
+				msLogin: response.data.msLogin,
+				msPassword: response.data.msPassword
+			}
+		});
+};

@@ -5,36 +5,35 @@ import {validPassword, validPasswordLength} from 'common/validators';
 import PropTypes from 'prop-types';
 
 const ChangeServiceComponent = props => {
-	const {handleSubmit, onChangeService, formState:{loading, success, errors, actionFrom, stateIntegration, loginVal, passwordVal}}= props;
-
-	// console.log(loading, success, errors, actionFrom, stateIntegration, loginVal, passwordVal);
+	const {handleSubmit, onChangeService, formState:{loading, success, errors, actionFrom, stateIntegration, msLogin, msPassword}}= props;
+	console.log(loading, success, errors, actionFrom, stateIntegration, msLogin, msPassword);
 
 	return (
 		<form onSubmit={handleSubmit(onChangeService)}>
 			<div className="form_group form_horizontal">
-				<input type="checkbox" name="c5" id="34" />
+				<input type="checkbox" name="stateIntegration" id="34" value={stateIntegration} />
 				<label for="34" className="label_check switcher small">
 					<i className="icon"/>
 					<span>Интеграция с МойСклад</span>
 				</label>
 			</div>
 
-			<div className="light_block">
+			{stateIntegration && <div className="light_block">
 				<div className="form_group form_horizontal">
 					<div className="property_label col">Логин</div>
 					<div className="property_value col">
-						<InputField name="login" type="text"
+						<InputField name="msLogin" type="text" value={msLogin}
 									required="Укажите логин" />
 					</div>
 				</div>
 				<div className="form_group form_horizontal">
 					<div className="property_label col">Пароль</div>
 					<div className="property_value col">
-						<InputField name="password" type="password"
+						<InputField name="msPassword" type="password" value={msPassword}
 									required="Укажите пароль" />
 					</div>
 				</div>
-			</div>
+			</div>}
 
 			<div className="form_buttons row">
 				<button className="button middle">Проверить и сохранить</button>

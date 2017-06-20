@@ -12,3 +12,7 @@ export const REGISTER = createRequestTypes('ACCOUNT.REGISTER');
 export const FORGOT = createRequestTypes('ACCOUNT.FORGOT');
 //смена пароля
 export const CHANGE_PASSWORD = createRequestTypes('ACCOUNT.CHANGE_PASSWORD');
+
+// сервисы
+export const GET_STATE_INTEGRATION = createRequestTypes('ACCOUNT.GET_STATE_INTEGRATION');
+export const CONNECT_INTEGRATION = createRequestTypes('ACCOUNT.CONNECT_INTEGRATION');

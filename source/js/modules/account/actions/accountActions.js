@@ -19,8 +19,14 @@ export const changePassword = {
 	failure: (error) => createAction(actions.CHANGE_PASSWORD.FAILURE, {error})
 };
 
-export const changeService = {
-	request: ({oldPassword,newPassword}) => createAction(actions.CHANGE_PASSWORD.REQUEST, {oldPassword,newPassword}),
-	success: (response) => createAction(actions.CHANGE_PASSWORD.SUCCESS, {response}),
-	failure: (error) => createAction(actions.CHANGE_PASSWORD.FAILURE, {error})
+export const getStateIntegration = {
+	request: () => createAction(actions.GET_STATE_INTEGRATION.REQUEST),
+	success: (response) => createAction(actions.GET_STATE_INTEGRATION.SUCCESS, {response}),
+	failure: (error) => createAction(actions.GET_STATE_INTEGRATION.FAILURE, {error})
+};
+
+export const connectIntegration = {
+	request: ({login,password}) => createAction(actions.CONNECT_INTEGRATION.REQUEST, {login,password}),
+	success: (response) => createAction(actions.CONNECT_INTEGRATION.SUCCESS, {response}),
+	failure: (error) => createAction(actions.CONNECT_INTEGRATION.FAILURE, {error})
 };
