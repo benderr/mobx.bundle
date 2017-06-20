@@ -18,3 +18,9 @@ export const changePassword = {
 	success: (response) => createAction(actions.CHANGE_PASSWORD.SUCCESS, {response}),
 	failure: (error) => createAction(actions.CHANGE_PASSWORD.FAILURE, {error})
 };
+
+export const changeService = {
+	request: ({oldPassword,newPassword}) => createAction(actions.CHANGE_PASSWORD.REQUEST, {oldPassword,newPassword}),
+	success: (response) => createAction(actions.CHANGE_PASSWORD.SUCCESS, {response}),
+	failure: (error) => createAction(actions.CHANGE_PASSWORD.FAILURE, {error})
+};

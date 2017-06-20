@@ -8,6 +8,7 @@ import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import ChangePasswordComponent from '../components/ChangePasswordComponent';
+import ChangeServiceComponent from '../components/ChangeServiceComponent';
 import toJS from 'components/HOC/toJs';
 
 @withRouter
@@ -31,16 +32,20 @@ class SettingsContainer extends DefaultLayerLayout {
 	}
 
 	onChangePassword(formProps) {
-		const {changePassword}=this.props;
+		const {changePassword} = this.props;
 		changePassword({
 			oldPassword: formProps.get('oldPassword'),
 			newPassword: formProps.get('newPassword')
 		});
 	}
 
+	onChangeService(formProps) {
+		console.log('onChangeService', formProps);
+	}
+
 	render() {
-		const {changePasswordState} = this.props;
-		const {tab:activeTab} = this.state || {};
+		const {changePasswordState, changeServiceState} = this.props;
+		const {tab: activeTab} = this.state || {};
 		const changePassTab = activeTab == 'changepassword';
 		const servicesTab = activeTab == 'services';
 
@@ -77,8 +82,9 @@ class SettingsContainer extends DefaultLayerLayout {
 														 onChangePassword={::this.onChangePassword}/>
 							</div>}
 							{servicesTab &&
-							<div>
-								Сервисы
+							<div class="tab_sevices">
+								<ChangeServiceComponent formState={changeServiceState}
+														onChangeService={::this.onChangeService}/>
 							</div>}
 						</div>
 					</div>
@@ -96,8 +102,11 @@ export default SettingsContainer;
 
 function mapStateToProps(state, ownProps) {
 	const tab = (ownProps.location.hash || '').replace('#', '');
+
 	const changePasswordState = accountSelectors.getChangePasswordSection(state);
-	return {tab, changePasswordState};
+	const changeServiceState = accountSelectors.getChangeServiceSection(state);
+
+	return {tab, changePasswordState, changeServiceState};
 }
 
 function mapDispatchToProps(dispatch) {
