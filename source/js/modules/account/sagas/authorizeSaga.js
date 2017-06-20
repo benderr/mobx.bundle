@@ -24,10 +24,6 @@ function* authorize(email, pass, redirectUrl) {
 			status: error.status,
 			data: error.data
 		}));
-	} finally {
-		if (yield cancelled()) {
-			//todo можно что-нибудь запилить при отмене авторизации
-		}
 	}
 }
 

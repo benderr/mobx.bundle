@@ -12,8 +12,8 @@ export const getProducts = (retailPointId, start, count, filter) => {
 		.then(response => toClient(response.data));
 };
 
-export const getProduct = (retailPointId, catalogType = 'INVENTORY', inventCode) => {
-	return api.v1().retailpoint(retailPointId).catalog([catalogType, inventCode])
+export const getProduct = (retailPointId, inventCode) => {
+	return api.v1().retailpoint(retailPointId).catalog().inventory(inventCode)
 		.get().then(response => toClientProduct(response.data));
 };
 

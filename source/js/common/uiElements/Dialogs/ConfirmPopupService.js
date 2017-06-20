@@ -62,7 +62,7 @@ class ConfirmPopupService extends React.Component {
 					{!disableClose && <a class="popup_close icon-close" onClick={::this.handleCloseClick}></a>}
 					<div>
 						{title && <h1>{title}</h1>}
-						{text && <p>{title}</p>}
+						{text && <p>{text}</p>}
 						<div class="popup_panel">
 							<button class="button" onClick={::this.handleOkClick}>{okName}</button>
 							{cancelName && <a class="button_clean" onClick={::this.handleCancelClick}>{cancelName}</a>}

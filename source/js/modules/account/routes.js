@@ -3,8 +3,6 @@ import RegistrationContainer from './containers/RegistrationContainer';
 import ForgotContainer from './containers/ForgotContainer';
 import SettingsContainer from './containers/SettingsContainer';
 import React from 'react';
-import LoginLayout from 'components/LoginLayout';
-import RegistrationLayout from 'components/RegistrationLayout';
 
 export function getRoutes() {
 	return {
@@ -13,21 +11,21 @@ export function getRoutes() {
 			exact: true,
 			allowAnonymous: true,
 			component: SignInContainer,
-			layout: LoginLayout
+			layout: null
 		},
 		registration: {
 			path: '/registration',
 			exact: true,
 			allowAnonymous: true,
 			component: RegistrationContainer,
-			layout: RegistrationLayout
+			layout: null
 		},
 		forgot: {
 			path: '/forgot',
 			exact: true,
 			allowAnonymous: true,
 			component: ForgotContainer,
-			layout: LoginLayout
+			layout: null
 		},
 		settings:{
 			path:'/settings/:tab',

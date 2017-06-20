@@ -35,13 +35,12 @@ class ProductListContainer extends React.Component {
     }
 
     createProduct() {
-        const {catalog = 'INVENTORY', createProduct} = this.props; //todo каталог
-        createProduct({catalog});
+        this.props.createProduct();
     }
 
     openProduct(code, point) {
         const {push}=this.props;
-        push({pathname: `/product/view/point/${point}/catalog/INVENTORY/code/${code}`}); //todo каталог
+        push({pathname: `/product/view/point/${point}/code/${code}`});
     }
 
     getProductsList() {

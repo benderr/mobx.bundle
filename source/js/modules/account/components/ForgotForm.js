@@ -16,33 +16,32 @@ const ForgotForm = props => {
 
 	return (
 		<form onSubmit={handleSubmit(onSendEmail)}>
-			<div class="login_title">Восстановление пароля</div>
-			<div className="login_content" style={{height: '220px'}}>
-				<div className="login_auth_block">
-					{!isSent && <div class="form_group">
-						<div class="input_group light w100">
-							<InputField name="email"
-										label="Почта"
-										type="text"
-										required="Укажите E-mail"
-										hideTips={true}
-										validate={[isValidEmail('Укажите корректный E-mail')]}/>
-							<div class="input_group_addon icon-mail"></div>
-							<div class="input_light_border_bottom"></div>
-						</div>
-					</div>}
+			<div className="login_content">
+				<p class="mb24">Для восстановления пароля укажите электронную почту, которую вы указали при
+					регистрации</p>
+				{!isSent && <div class="form_group">
+					<div class="input_group light w100">
+						<InputField name="email"
+									label="Почта"
+									type="text"
+									required="Укажите E-mail"
+									hideTips={true}
+									validate={[isValidEmail('Укажите корректный E-mail')]}/>
+						<div class="input_group_addon icon-mail"></div>
+						<div class="input_light_border_bottom"></div>
+					</div>
+				</div>}
 
-					{errors && <div className="form_error">{getError(errors)}</div>}
+				{errors && <div className="form_error">{getError(errors)}</div>}
 
-					{!isSent && <div className="form_buttons">
-						<button disabled={loading} className="button" type="submit">Отправить</button>
-					</div>}
+				{!isSent && <div className="form_buttons">
+					<button disabled={loading} className="button" type="submit">Отправить</button>
+				</div>}
 
-					{isSent &&
-					<div class="info_success info_icon_success">На вашу электронную почту, указанную при регистрации,
-						отправлено письмо для смены пароля.
-						Пожалуйста, перейдите по ссылке в письме. Ссылка действительна 24 часа.</div>}
-				</div>
+				{isSent &&
+				<div class="info_success info_icon_success">На вашу электронную почту, указанную при регистрации,
+					отправлено письмо для смены пароля.
+					Пожалуйста, перейдите по ссылке в письме. Ссылка действительна 24 часа.</div>}
 			</div>
 		</form>
 	)
