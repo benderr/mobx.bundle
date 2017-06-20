@@ -72,7 +72,8 @@ export const toClientImportResult = data => {
 				duplicates: (sheet.rowImportDuplicateResults || []).map(mapProduct),
 				errors: (sheet.rowImportErrorResults || []).map(s => ({
 					error: s.importError,
-					rowNumber: s.rowNumber
+					rowNumber: s.rowNumber,
+					duplicate: s.duplicate
 				})),
 				success: (sheet.rowImportSuccessResults || []).map(mapProduct)
 			}

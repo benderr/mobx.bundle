@@ -29,14 +29,12 @@ class ProductImportContainer extends DefaultLayerLayout {
 					{this.getToggleButton()}
 					<h1>Импорт товаров</h1>
 				</div>
-				<div class="page_content">
-					<ProductImport onUploadFiles={::this.handleUploadFile}
-								   uploading={uploading}
-								   result={result}
-								   error={error}
-								   onClose={::this.closeLayer}
-					/>
-				</div>
+				<ProductImport onUploadFile={::this.handleUploadFile}
+							   uploading={uploading}
+							   result={result}
+							   error={error}
+							   onClose={::this.closeLayer}
+				/>
 			</article>
 		);
 	}

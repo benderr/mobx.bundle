@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {PrimaryButton} from 'common/uiElements';
+import {Button} from 'common/uiElements';
 import ProductImportReport from './ProductImportReport';
 class ProductImport extends React.Component {
 
 
 	handleUpload(files) {
-		const {onUploadFiles} = this.props;
-		files && files.length && onUploadFiles(files[0]);
+		const {onUploadFile} = this.props;
+		files && files.length && onUploadFile(files[0]);
 	}
 
 	openFileDialog() {
@@ -20,9 +20,16 @@ class ProductImport extends React.Component {
 
 		const isDefault = !uploading && !result && !error;
 		const isUploading = uploading;
-		const classNames = ['page_content', result ? 'with_bottom_report_panel' : ''].join(' ');
+		const UploadFileButton = (text, className) => {
+			return (<Button loading={uploading} class={className}>
+				{text}
+				<input type="file"
+					   onChange={ev => this.handleUpload(ev.target.files)}
+					   accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"/>
+			</Button>)
+		};
 		return (
-			<div className={classNames}>
+			<div className='page_content'>
 				{isDefault &&
 				<div class="center_xy  page_center_info  page_center_info__import_from_file">
 					<i class="icon_import"></i>
@@ -30,16 +37,7 @@ class ProductImport extends React.Component {
 					<p>Файл должен быть в формате csv, xls или xlsx.<br/> Если не знаете как сформировать файл<br/>
 						<a>скачайте наш пример</a></p>
 					<div class="form_buttons  row">
-						<PrimaryButton loading={uploading} className="button_file_upload"
-									   onClick={::this.openFileDialog}>
-							Выбрать файл
-						</PrimaryButton>
-						<input type="file"
-							   ref={input => this.fileUploadInput = input}
-							   onChange={(ev) => this.handleUpload(ev.target.files)}
-							   style={{display: "none"}}
-							   accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-						/>
+						{UploadFileButton('Выбрать файл', 'button button_file_upload wide')}
 					</div>
 				</div>}
 				{isUploading &&
@@ -49,20 +47,29 @@ class ProductImport extends React.Component {
 					</div>
 				</div>}
 				{!!result && <ProductImportReport report={result}
-												onClose={onClose}/>
+												  onClose={onClose}
+												  onUploadFile={::this.handleUpload}
+				/>
 				}
-				{!!error && <div className="info info_error">
-					К сожалению, загрузить товары не удалось. Убедитесь в корректности данных справочников товаров и
-					попробуйте снова.
-					еще
-				</div>}
+				{!!error &&
+				<div class="page_center_info  page_center_info__import_report report_error">
+					<i class="icon icon_box_complete"></i>
+					<div class="title">Справочник не обновлен</div>
+					<p>К сожалению, загрузить товары не удалось. Убедитесь в корректности <br/>данных справочников
+						товаров и попробуйте снова.</p>
+					<div class="form_buttons">
+						<button onClick={onClose} class="button  small  wide">Закрыть</button>
+						{UploadFileButton('Загрузить другой файл', 'button small light button_file_upload')}
+					</div>
+				</div>
+				}
 			</div>
 		)
 	}
 }
 
 ProductImport.propTypes = {
-	onUploadFiles: PropTypes.func.isRequired,
+	onUploadFile: PropTypes.func.isRequired,
 	uploading: PropTypes.bool.isRequired,
 	result: PropTypes.object,
 	error: PropTypes.object,

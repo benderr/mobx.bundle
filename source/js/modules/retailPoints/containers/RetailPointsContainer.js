@@ -18,6 +18,7 @@ const mapActions = dispatch => ({
 const mapState = state => ({
 	points: getRetailPointList(state),
 	selectedPointId: getCurrentRetailPointId(state),
+
 });
 
 @connect(mapState, mapActions)
@@ -31,23 +32,28 @@ class RetailPointsContainer extends React.Component {
 
 	render() {
 		const {points, selectedPointId, onSelectPoint, createRetailPoint} = this.props;
-		return ( points && points.length > 0 ? <div>
-			<div class="title_panel">
-				<h1>Точки продаж</h1>
-				<div class="title_actions">
-					<button class="button small icon-plus" onClick={createRetailPoint}>Добавить точку</button>
+		if (points && points.length > 0) {
+			return (<div>
+				<div class="title_panel">
+					<h1>Точки продаж</h1>
+					<div class="title_actions">
+						<button class="button small icon-plus" onClick={createRetailPoint}>Добавить точку</button>
+					</div>
 				</div>
-			</div>
-			<RetailPointList points={points} selectedPointId={selectedPointId} onSelectPoint={onSelectPoint}
-							 onItemClick={::this.openPoint}/>
-		</div> : <div class="pos_0">
-			<div class="pos_0_inner">
-				<i class="icon-pos"></i>
-				<p style={{fontSize: '18px'}}>У вас еще нет торговых точек</p>
-				<p style={{fontSize: '14px'}}>Для добавления товаров необходима добавить точку продаж</p>
-				<button class="button small icon-plus mt28" onClick={createRetailPoint}>Добавить точку продаж</button>
-			</div>
-		</div>);
+				<RetailPointList points={points} selectedPointId={selectedPointId} onSelectPoint={onSelectPoint}
+								 onItemClick={::this.openPoint}/>
+			</div>);
+		} else {
+			return (<div class="pos_0">
+				<div class="pos_0_inner">
+					<i class="icon-pos"></i>
+					<p style={{fontSize: '18px'}}>У вас еще нет торговых точек</p>
+					<p style={{fontSize: '14px'}}>Для добавления товаров необходима добавить точку продаж</p>
+					<button class="button small icon-plus mt28" onClick={createRetailPoint}>Добавить точку продаж
+					</button>
+				</div>
+			</div>);
+		}
 	}
 }
 
