@@ -30,3 +30,7 @@ export const connectIntegration = {
 	success: (response) => createAction(actions.CONNECT_INTEGRATION.SUCCESS, {response}),
 	failure: (error) => createAction(actions.CONNECT_INTEGRATION.FAILURE, {error})
 };
+
+export const updStateIntegration = {
+	active: ({stateIntegration}) => createAction(actions.UPD_STATE_INTEGRATION, {stateIntegration})
+};

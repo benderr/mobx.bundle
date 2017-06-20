@@ -5,7 +5,6 @@ export const initialState = Map({
 	loading: false,
 	error: null,
 	success: null,
-	actionFrom: false,
 	stateIntegration: false,
 	msLogin: '',
 	msPassword: ''
@@ -24,9 +23,13 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 
-			stateIntegration: action.response.msIntegrationEnabled,
-			msLogin: action.response.msLogin,
-			msPassword: action.response.msPassword
+			stateIntegration: true,
+			msLogin: 'login@mail',
+			msPassword: '***'
+
+			// stateIntegration: action.response.msIntegrationEnabled,
+			// msLogin: action.response.msLogin,
+			// msPassword: action.response.msPassword
 		});
 	},
 
@@ -34,6 +37,13 @@ export const actionHandlers = {
 		console.log('GetStateIntegration - failure', error);
 		return state.merge({
 			loading: true
+		});
+	},
+
+	[actions.UPD_STATE_INTEGRATION]: (state, active) => {
+		console.log('UpdStateIntegration', active);
+		return state.merge({
+			stateIntegration: active.stateIntegration
 		});
 	}
 

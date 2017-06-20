@@ -45,6 +45,15 @@ class SettingsContainer extends DefaultLayerLayout {
 		console.log('onChangeService', formProps);
 	}
 
+	onCheckIntegration() {
+		const {changeServiceState, updStateIntegration} = this.props;
+		updStateIntegration({
+			stateIntegration: !changeServiceState.stateIntegration
+		});
+
+		console.log('> onCheckIntegration', changeServiceState);
+	}
+
 	render() {
 		const {changePasswordState, changeServiceState} = this.props;
 		const {tab: activeTab} = this.state || {};
@@ -86,6 +95,7 @@ class SettingsContainer extends DefaultLayerLayout {
 							{servicesTab &&
 							<div class="tab_sevices">
 								<ChangeServiceComponent formState={changeServiceState}
+														onCheckIntegration={::this.onCheckIntegration}
 														onChangeService={::this.onChangeService}/>
 							</div>}
 						</div>
@@ -117,7 +127,8 @@ function mapDispatchToProps(dispatch) {
 			changePassword: actions.changePassword.request,
 
 			getStateIntegration: actions.getStateIntegration.request,
-			connectIntegration: actions.connectIntegration.request
+			connectIntegration: actions.connectIntegration.request,
+			updStateIntegration: actions.updStateIntegration.active
 		}, dispatch)
 	}
 }
