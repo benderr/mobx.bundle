@@ -5,6 +5,10 @@ export const getProductsData = (state) => {
 	return state.get('products');
 };
 
+export const getImportData = (state) => {
+	return state.get('imports');
+};
+
 export const getProductsList = createSelector([getProductsData], data => {
 	return data.get('productsList');
 });

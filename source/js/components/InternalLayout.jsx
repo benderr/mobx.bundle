@@ -4,15 +4,11 @@ import SiteHeader from 'components/siteHeader';
 
 class InternalLayout extends React.Component {
     render() {
-        const css = {
-            position: 'static'
-        };
-
         return (
             <div class="poss">
                 <SiteHeader/>
                 <section class="main">
-                    <div class="section_content" style={css}>
+                    <div class="section_content full_width">
                         {this.props.children}
                     </div>
                 </section>

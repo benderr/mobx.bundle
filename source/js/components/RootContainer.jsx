@@ -21,13 +21,14 @@ export default class RootContainer extends React.Component {
                         <AppContainer appReady={false} routes={this.props.routes}/>
                     </ConnectedRouter>
                     {this.renderDevTools()}
+                    {this.renderServices()}
                 </div>
             </Provider>
         );
     }
 
     renderServices() {
-        return ( <div><ReactTooltip /></div>);
+        return (<ReactTooltip id="globalTooltip" />);
     }
 
     renderDevTools() {

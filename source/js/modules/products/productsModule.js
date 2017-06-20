@@ -1,10 +1,12 @@
 import * as routes  from './routes.js';
 import * as productsReducer from './reducers/productsReducer';
+import * as importReducer from './reducers/importReducer';
 import productsSaga from './sagas/productsSaga';
 
 export function getReducers(createReducer) {
 	return {
-		products: createReducer(productsReducer.initialState, productsReducer.actionHandlers)
+		products: createReducer(productsReducer.initialState, productsReducer.actionHandlers),
+		imports: createReducer(importReducer.initialState, importReducer.actionHandlers)
 	}
 }
 

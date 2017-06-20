@@ -5,7 +5,8 @@ export const initialState = Map({
 	loading: false,
 	authError: null,
 	authData: null,
-	appReady: false
+	appReady: false,
+	token: null
 });
 
 export const actionHandlers = {
@@ -14,15 +15,17 @@ export const actionHandlers = {
 		return state.merge({
 			loading: true,
 			authError: null,
-			authData: null
+			authData: null,
+			token: null
 		});
 	},
 
-	[LOGIN.SUCCESS]: (state, action) => {
+	[LOGIN.SUCCESS]: (state, {profile, token}) => {
 		return state.merge({
 			loading: false,
 			authError: null,
-			authData: fromJS(action.response)
+			authData: fromJS(profile),
+			token: token
 		});
 	},
 
@@ -30,7 +33,8 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			authError: fromJS(action.error),
-			authData: null
+			authData: null,
+			token: null
 		});
 	},
 
@@ -38,7 +42,8 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			authError: null,
-			authData: null
+			authData: null,
+			token: null
 		});
 	},
 

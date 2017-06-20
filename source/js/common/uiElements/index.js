@@ -1,4 +1,5 @@
 import PrimaryButton from './PrimaryButton';
+import Button from './Button';
 import LoaderBlock from './LoaderBlock';
 import Select from './Select';
 import AmountInput from './AmountInput';
@@ -15,5 +16,6 @@ export {
 	Recaptcha,
 	InfinateScroll,
 	ConfirmPopupService,
-	Drop
+	Drop,
+	Button
 }

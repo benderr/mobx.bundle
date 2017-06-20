@@ -56,10 +56,27 @@ export const toClient = (data) => {
 	return {pos: data.pos, totalCount: data.total_count, productsList};
 };
 
-function getWithId(collection) {
-	let arr = (collection || []);
-	arr.forEach((item, i) => {
-		item.id = i + 1;
+export const toClientImportResult = data => {
+	const mapProduct = item => ({
+		barcode: item.inventItem.barcode,
+		name: item.inventItem.name,
+		rowNumber: item.rowNumber
 	});
-	return arr;
-}
+	return {
+		successCount: data.successfullyImportedCnt || 0,
+		failedCount: data.failedToImportCnt || 0,
+		ignoredSheets: data.ignoredSheets || [],
+		importResults: data.importResults.map(sheet => ({
+				name: sheet.sheetName,
+				points: sheet.retailPointNames || [],
+				duplicates: (sheet.rowImportDuplicateResults || []).map(mapProduct),
+				errors: (sheet.rowImportErrorResults || []).map(s => ({
+					error: s.importError,
+					rowNumber: s.rowNumber,
+					duplicate: s.duplicate
+				})),
+				success: (sheet.rowImportSuccessResults || []).map(mapProduct)
+			}
+		))
+	}
+};

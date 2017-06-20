@@ -1,4 +1,4 @@
-export const compose = (api) => {
+export default (api) => {
 	/**
 	 * авторизация/получение профиля
 	 */

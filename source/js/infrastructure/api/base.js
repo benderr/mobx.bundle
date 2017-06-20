@@ -1,4 +1,4 @@
-export const compose = (api) => {
+export default (api) => {
 
 	api.addResource('v1');
 };
