@@ -27,12 +27,17 @@ export const updStateIntegration = {
 
 export const getStateIntegration = {
 	request: () => createAction(actions.GET_STATE_INTEGRATION.REQUEST),
-	success: (response) => createAction(actions.GET_STATE_INTEGRATION.SUCCESS, {response}),
-	failure: (error) => createAction(actions.GET_STATE_INTEGRATION.FAILURE, {error})
+	success: (response) => createAction(actions.GET_STATE_INTEGRATION.SUCCESS, {response})
 };
 
 export const connectIntegration = {
 	request: ({msLogin, msPassword}) => createAction(actions.CONNECT_INTEGRATION.REQUEST, {msLogin, msPassword}),
-	success: () => createAction(actions.CONNECT_INTEGRATION.SUCCESS, {}),
+	success: () => createAction(actions.CONNECT_INTEGRATION.SUCCESS),
 	failure: (error) => createAction(actions.CONNECT_INTEGRATION.FAILURE, {error})
+};
+
+export const confirmIntegration = {
+	request: ({msLogin, msPassword}) => createAction(actions.CONFIRM_INTEGRATION.REQUEST, {msLogin, msPassword}),
+	success: () => createAction(actions.CONFIRM_INTEGRATION.SUCCESS),
+	failure: () => createAction(actions.CONFIRM_INTEGRATION.FAILURE),
 };

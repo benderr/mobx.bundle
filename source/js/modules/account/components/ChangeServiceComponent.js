@@ -19,14 +19,16 @@ class ChangeServiceComponent extends React.Component {
 	componentDidUpdate() {
 		const {
 			onSaveIntegration, onCancelIntegration,
-			formState: {checked}
+			formState: {checked, msLogin, msPassword}
 		} = this.props;
 
 		if (checked) {
 			this.removePopup.open({
 				title: 'Вы хотите подтвердить операцию?',
 				text: 'При интеграции с сервисом МойСклад, созданная структура торговых точек в Личном кабинете будет заменена на структуру МойСклад'
-			}).then(() => onSaveIntegration()).catch(({close}) => {
+			}).then(() => {
+				onSaveIntegration(msLogin, msPassword);
+			}).catch(({close}) => {
 				if (!close) onCancelIntegration();
 			});
 		}
@@ -37,7 +39,6 @@ class ChangeServiceComponent extends React.Component {
 			handleSubmit, onChangeService, onCheckIntegration,
 			formState: {loading, success, errors, stateIntegration}
 		} = this.props;
-		console.log('ChangeServiceComponent', loading, success, errors, stateIntegration);
 
 		return (
 			<form onSubmit={handleSubmit(onChangeService)}>
@@ -81,13 +82,10 @@ class ChangeServiceComponent extends React.Component {
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}
 					okName="Подтвердить"
-					cancelName="Отмена"
-					title="Удаление тестовое"
-					text="Вы действительно хотите что-то удалить?"/>
+					cancelName="Отмена" />
 			</form>
 		);
 	}
-
 }
 
 ChangeServiceComponent.propTypes = {

@@ -49,12 +49,21 @@ class SettingsContainer extends DefaultLayerLayout {
 		});
 	}
 
-	onSaveIntegration() {
-		console.log('Сохранить параметры интеграции!');
+	onSaveIntegration(msLogin, msPassword) {
+		console.log('Сохранить параметры интеграции!', msLogin, msPassword);
+
+		const {confirmIntegration} = this.props;
+		confirmIntegration({
+			msLogin: msLogin,
+			msPassword: msPassword
+		});
 	}
 
 	onCancelIntegration() {
 		console.log('Отменить интеграцию!');
+
+		const {cancelIntegration} = this.props;
+		cancelIntegration()
 	}
 
 	onCheckIntegration() {
@@ -137,9 +146,13 @@ function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			changePassword: actions.changePassword.request,
+
+			// интеграция с МойСклад
 			getStateIntegration: actions.getStateIntegration.request,
 			connectIntegration: actions.connectIntegration.request,
-			updStateIntegration: actions.updStateIntegration.active
+			updStateIntegration: actions.updStateIntegration.active,
+			confirmIntegration: actions.confirmIntegration.request,
+			cancelIntegration: actions.confirmIntegration.failure
 		}, dispatch)
 	}
 }
