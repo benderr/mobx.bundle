@@ -5,6 +5,7 @@ export const initialState = Map({
 	loading: false,
 	errors: null,
 	success: null,
+	checked: false,
 	stateIntegration: false,
 	msLogin: '',
 	msPassword: ''
@@ -15,13 +16,22 @@ export const actionHandlers = {
 	// начальное состояние подключения интеграции с МойСклад
 	[actions.GET_STATE_INTEGRATION.REQUEST]: state => {
 		return state.merge({
-			loading: true
+			loading: true,
+			errors: null,
+			success: null,
+			checked: false,
+			stateIntegration: false,
+			msLogin: '',
+			msPassword: ''
 		});
 	},
 	[actions.GET_STATE_INTEGRATION.SUCCESS]: (state, action) => {
 		console.log('GetStateIntegration - success', action.response);
 		return state.merge({
 			loading: false,
+			errors: null,
+			success: null,
+			checked: false,
 			stateIntegration: action.response.msIntegrationEnabled,
 			msLogin: action.response.msLogin,
 			msPassword: action.response.msPassword
@@ -30,7 +40,13 @@ export const actionHandlers = {
 	[actions.GET_STATE_INTEGRATION.FAILURE]: (state, error) => {
 		console.log('GetStateIntegration - failure', error);
 		return state.merge({
-			loading: true
+			loading: false,
+			errors: null,
+			success: null,
+			checked: false,
+			stateIntegration: false,
+			msLogin: '',
+			msPassword: ''
 		});
 	},
 
@@ -38,6 +54,10 @@ export const actionHandlers = {
 	[actions.UPD_STATE_INTEGRATION]: (state, active) => {
 		console.log('UpdStateIntegration', active);
 		return state.merge({
+			loading: false,
+			errors: null,
+			success: null,
+			checked: false,
 			stateIntegration: active.stateIntegration
 		});
 	},
@@ -46,14 +66,19 @@ export const actionHandlers = {
 	[actions.CONNECT_INTEGRATION.REQUEST]: (state) => {
 		console.log('connectIntegration -> request');
 		return state.merge({
-			loading: true
+			loading: true,
+			errors: null,
+			success: null,
+			checked: false
 		});
 	},
 	[actions.CONNECT_INTEGRATION.SUCCESS]: (state) => {
 		console.log('connectIntegration -> success');
 		return state.merge({
 			loading: false,
-			success: true
+			errors: null,
+			success: true,
+			checked: true
 		});
 	},
 	[actions.CONNECT_INTEGRATION.FAILURE]: (state, action) => {
@@ -61,7 +86,8 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			success: false,
-			errors: fromJS(action.error)
+			errors: fromJS(action.error),
+			checked: false
 		});
 	}
 

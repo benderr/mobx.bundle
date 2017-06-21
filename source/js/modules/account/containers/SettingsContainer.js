@@ -49,6 +49,14 @@ class SettingsContainer extends DefaultLayerLayout {
 		});
 	}
 
+	onSaveIntegration() {
+		console.log('Сохранить параметры интеграции!');
+	}
+
+	onCancelIntegration() {
+		console.log('Отменить интеграцию!');
+	}
+
 	onCheckIntegration() {
 		const {changeServiceState, updStateIntegration} = this.props;
 		updStateIntegration({
@@ -98,6 +106,8 @@ class SettingsContainer extends DefaultLayerLayout {
 							<div class="tab_sevices">
 								<ChangeServiceComponent formState={changeServiceState}
 														onCheckIntegration={::this.onCheckIntegration}
+														onSaveIntegration={::this.onSaveIntegration}
+														onCancelIntegration={::this.onCancelIntegration}
 														onChangeService={::this.onChangeService}/>
 							</div>}
 						</div>

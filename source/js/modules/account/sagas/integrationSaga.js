@@ -21,7 +21,7 @@ function* connect({msLogin, msPassword}) {
 	console.log('connect-saga integration');
 	try {
 		yield call(accountDataContext.connectIntegration, true, msLogin, msPassword);
-		yield call(accountDataContext.connectIntegration, false, msLogin, msPassword);
+		// yield call(accountDataContext.connectIntegration, false, msLogin, msPassword);
 		yield put(connectIntegration.success());
 	} catch (error) {
 		yield put(connectIntegration.failure(error));
