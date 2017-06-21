@@ -50,7 +50,8 @@ class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onRemoveProduct() {
-		const {productView:{product}, removeProduct} = this.props;
+		const {inventCode, point, removeProduct} = this.props;
+		removeProduct({point, inventCode});
 		console.log('removing');
 	}
 
@@ -77,7 +78,7 @@ class EditProductContainer extends DefaultLayerLayout {
 	render() {
 
 		const {productView} = this.props;
-		const {loading, error, saving, product}= productView || {loading: true};
+		const {loading, error, saving, removing, product}= productView || {loading: true};
 		const ProductCard = this.productCard;
 		const title = product && !product.isNew ? 'Редактирование товара' : 'Добавление товара';
 		return (
@@ -97,6 +98,8 @@ class EditProductContainer extends DefaultLayerLayout {
 							 onRemove={::this.onRemoveProduct}
 							 saving={saving}
 							 product={product}
+							 removing={removing}
+							 error={error}
 							 initialValues={product}
 				/>}
 
@@ -128,7 +131,7 @@ function mapDispatchToProps(dispatch) {
 			getDetails: productActions.getProductDetails.request,
 			savingProduct: productActions.saveProductDetails.request,
 			setNewProduct: productActions.setNewProduct,
-			//removeProduct: productActions.removeProduct.request
+			removeProduct: productActions.removeProduct.request
 		}, dispatch)
 	}
 }

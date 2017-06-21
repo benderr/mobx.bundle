@@ -5,6 +5,10 @@ export const getProductsData = (state) => {
 	return state.get('products');
 };
 
+export const getProductDetailSection = (state) => {
+	return state.get('productDetails');
+};
+
 export const getImportData = (state) => {
 	return state.get('imports');
 };
@@ -17,7 +21,7 @@ export const getProductListTotalCount = createSelector([getProductsData], data =
 	return data.get('productListTotalCount');
 });
 
-export const getProductView = (inventCode) => createSelector([getProductsData], data => {
+export const getProductView = (inventCode) => createSelector([getProductDetailSection], data => {
 	return data.getIn(['productView', inventCode], null);
 });
 
@@ -43,7 +47,7 @@ export const getProductModifier = (state, inventCode, groupId, modifierId) => {
 	return null;
 };
 
-export const getSearchProducts = (formKey) => createSelector([getProductsData], data => {
+export const getSearchProducts = (formKey) => createSelector([getProductDetailSection], data => {
 	return data.getIn(['searchProductsResult', formKey], Map({
 		loading: false,
 		products: List([]),

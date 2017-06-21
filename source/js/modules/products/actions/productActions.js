@@ -39,6 +39,15 @@ export const saveProductDetails = {
 	failure: ({inventCode, error}) => createAction(actions.SAVE_PRODUCT_DETAIL.FAILURE, {inventCode, error})
 };
 
+export const removeProduct = {
+	request: ({point, inventCode}) => createAction(actions.REMOVE_PRODUCT.REQUEST, {
+		point,
+		inventCode
+	}),
+	success: ({point, inventCode}) => createAction(actions.REMOVE_PRODUCT.SUCCESS, {point, inventCode}),
+	failure: ({inventCode, point, error}) => createAction(actions.REMOVE_PRODUCT.FAILURE, {inventCode, point, error})
+};
+
 export const addProductToList = ({product}) => createAction(actions.ADD_PRODUCT_TO_LIST, {product});
 export const updateProductInList = ({product}) => createAction(actions.UPDATE_PRODUCT_IN_LIST, {product});
 

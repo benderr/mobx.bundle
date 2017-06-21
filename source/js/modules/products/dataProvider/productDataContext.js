@@ -23,6 +23,13 @@ export const saveProduct = (retailPointId, product) => {
 		.then(response => toClientProduct(response.data.catalogEntity));
 };
 
+export const removeProduct = (retailPointId, productId) => {
+	return api.v1().retailpoint(retailPointId).catalog()
+		.inventory(productId)
+		.delete()
+};
+
+
 export const addProduct = (retailPointId, product) => {
 	return api.v1().retailpoint(retailPointId).catalog()
 		.post(product)

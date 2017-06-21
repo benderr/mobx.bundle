@@ -6,19 +6,27 @@ export const UPDATE_PRODUCT_IN_LIST = 'PRODUCTS.UPDATE_PRODUCT_IN_LIST';
 export const GET_FILTRED_PRODUCTS = createRequestTypes('PRODUCTS.GET_FILTRED_PRODUCTS');
 export const GET_PRODUCT_DETAIL = createRequestTypes('PRODUCTS.GET_PRODUCT_DETAIL');
 export const SAVE_PRODUCT_DETAIL = createRequestTypes('PRODUCTS.SAVE_PRODUCT_DETAIL');
+export const REMOVE_PRODUCT = createRequestTypes('PRODUCTS.REMOVE_PRODUCT');
 
 //MODIFIERS
 export const SAVE_MODIFIER = 'PRODUCTS.SAVE_MODIFIER'; //сохранить модификатор
 export const REMOVE_MODIFIER = 'PRODUCTS.REMOVE_MODIFIER'; //удалить модификатор
+
 //MODIFIERS GROUPS
 export const SAVE_MODIFIER_GROUP = 'PRODUCTS.SAVE_MODIFIER_GROUP'; //сохранить группу модификатора
 export const REMOVE_MODIFIER_GROUP = 'PRODUCTS.REMOVE_MODIFIER_GROUP'; //удалить группу модификатора
+
+//PRODUCTS
 export const RESET_PRODUCTS_LIST = 'PRODUCTS.RESET_PRODUCTS_LIST';
 export const SEARCH_PRODUCTS = createRequestTypes('PRODUCTS.SEARCH_PRODUCTS'); //поиск продуктов для выпадушки
 export const SET_DEFAULT_SEARCH_PRODUCT = 'PRODUCTS.SET_DEFAULT_SEARCH_PRODUCT'; //установка в выпадайке дефолтного продукта при открытии
+
+//PRODUCT LAYER
 export const CREATE_PRODUCT = 'PRODUCTS.CREATE_PRODUCT'; //Создание балванки для нового продукта
 export const SET_NEW_PRODUCT = 'PRODUCTS.SET_NEW_PRODUCT'; //Создание балванки для нового продукта (если перезагрузили страницу)
 export const ADD_PRODUCT_DETAIL = 'PRODUCTS.ADD_PRODUCT_DETAIL'; //добавление нового продукта в стор слоя
+
+//IMPORT
 export const IMPORT_PRODUCTS = createRequestTypes('PRODUCTS.IMPORT_PRODUCTS'); //импорт продуктов
 export const RESET_IMPORT_LIST = 'PRODUCTS.RESET_IMPORT_LIST'; //чистим стор от пред. результата импорта
 

@@ -23,16 +23,16 @@ class ProductCard extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, onSave, saving, product, error, onCancel, onRemove} = this.props;
+		const {handleSubmit, onSave, saving, product, error, onCancel, removing} = this.props;
 		const submit = (props) => {
 			onSave(props);
 		};
 
 		const isActiveInfo = this.state.activeTab == 'info';
 		const isEdit = product && !product.isNew;
-
+		const formClasses = ['poss', removing ? 'loading_block' : ''].join(' ');
 		return (
-			<form onSubmit={handleSubmit(submit)} className="poss">
+			<form onSubmit={handleSubmit(submit)} className={formClasses}>
 				<div class="page_content with_bottom_panel  content_padding">
 
 					<ul class="tabs_light">
@@ -72,6 +72,8 @@ ProductCard.propTypes = {
 	onCancel: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
 	saving: PropTypes.bool,
+	removing: PropTypes.bool,
+	error: PropTypes.object,
 	onAddGroup: PropTypes.func.isRequired,
 	onOpenGroup: PropTypes.func.isRequired,
 	onAddModifier: PropTypes.func.isRequired,

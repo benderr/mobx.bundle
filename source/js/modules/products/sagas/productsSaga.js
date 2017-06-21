@@ -96,6 +96,17 @@ function* importProducts({file}) {
 	}
 }
 
+function* removeProduct({point, inventCode}) {
+	try {
+		yield call(dataContext.removeProduct, point, inventCode);
+		yield put(productActions.removeProduct.success({inventCode}));
+	}
+	catch (error) {
+		console.log(error);
+		yield put(productActions.removeProduct.failure({inventCode, error}));
+	}
+}
+
 export default function*() {
 	yield [
 		takeEvery(retailPointsActions.SET_RETAIL_POINT, initProductsProcess),
@@ -107,5 +118,6 @@ export default function*() {
 		takeEvery(actions.SET_NEW_PRODUCT, setProductToLayer),
 		debounce(actions.SEARCH_PRODUCTS.REQUEST, searchProducts),
 		takeEvery(actions.IMPORT_PRODUCTS.REQUEST, importProducts),
+		takeEvery(actions.REMOVE_PRODUCT.REQUEST, removeProduct)
 	]
 }
