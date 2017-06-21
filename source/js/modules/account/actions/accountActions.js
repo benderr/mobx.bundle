@@ -14,9 +14,13 @@ export const forgot = {
 };
 
 export const changePassword = {
-	request: ({oldPassword,newPassword}) => createAction(actions.CHANGE_PASSWORD.REQUEST, {oldPassword,newPassword}),
+	request: ({oldPassword, newPassword}) => createAction(actions.CHANGE_PASSWORD.REQUEST, {oldPassword, newPassword}),
 	success: (response) => createAction(actions.CHANGE_PASSWORD.SUCCESS, {response}),
 	failure: (error) => createAction(actions.CHANGE_PASSWORD.FAILURE, {error})
+};
+
+export const updStateIntegration = {
+	active: ({stateIntegration}) => createAction(actions.UPD_STATE_INTEGRATION, {stateIntegration})
 };
 
 export const getStateIntegration = {
@@ -26,11 +30,7 @@ export const getStateIntegration = {
 };
 
 export const connectIntegration = {
-	request: ({login,password}) => createAction(actions.CONNECT_INTEGRATION.REQUEST, {login,password}),
-	success: (response) => createAction(actions.CONNECT_INTEGRATION.SUCCESS, {response}),
+	request: ({msLogin, msPassword}) => createAction(actions.CONNECT_INTEGRATION.REQUEST, {msLogin, msPassword}),
+	success: () => createAction(actions.CONNECT_INTEGRATION.SUCCESS, {}),
 	failure: (error) => createAction(actions.CONNECT_INTEGRATION.FAILURE, {error})
-};
-
-export const updStateIntegration = {
-	active: ({stateIntegration}) => createAction(actions.UPD_STATE_INTEGRATION, {stateIntegration})
 };

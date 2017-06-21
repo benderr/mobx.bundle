@@ -18,8 +18,9 @@ class ChangeServiceComponent extends React.Component {
 	render() {
 		const {
 			handleSubmit, onChangeService, onCheckIntegration,
-			formState: {loading, errors, stateIntegration}
+			formState: {loading, success, errors, stateIntegration}
 		} = this.props;
+		console.log('ChangeServiceComponent', loading, success, errors, stateIntegration);
 
 		return (
 			<form onSubmit={handleSubmit(onChangeService)}>
@@ -81,9 +82,11 @@ ChangeServiceComponent = reduxForm({
 })(ChangeServiceComponent);
 
 ChangeServiceComponent = connect(
-	(state, props) => ({
-		initialValues: props.formState
-	})
+	(state, props) => {
+		return {
+			initialValues: props.formState
+		}
+	}
 )(ChangeServiceComponent);
 
 export default ChangeServiceComponent;

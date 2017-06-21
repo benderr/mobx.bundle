@@ -1,10 +1,11 @@
 import {call, put, take, fork, cancel, cancelled, takeEvery, select} from 'redux-saga/effects';
 import * as actions from '../enums/actions';
 import * as accountDataContext from '../dataProvider/accountDataContext';
-import {getStateIntegration, connectIntegration} from '../actions/accountActions';
+import {getStateIntegration, connectIntegration, saveIntegration} from '../actions/accountActions';
 
 
 function* getState() {
+	console.log('getState-saga integration');
 	try {
 		let data = yield call(accountDataContext.getStateIntegration);
 		yield put(getStateIntegration.success(data));
@@ -16,16 +17,16 @@ function* getState() {
 	}
 }
 
-function* connect() {
-	console.log('getState integration');
-
+function* connect({msLogin, msPassword}) {
+	console.log('connect-saga integration');
 	try {
-
+		yield call(accountDataContext.connectIntegration, true, msLogin, msPassword);
+		yield call(accountDataContext.connectIntegration, false, msLogin, msPassword);
+		yield put(connectIntegration.success());
 	} catch (error) {
-
+		yield put(connectIntegration.failure(error));
 	}
 }
-
 
 export default function*() {
 	yield [

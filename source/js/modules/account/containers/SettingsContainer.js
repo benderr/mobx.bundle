@@ -42,7 +42,11 @@ class SettingsContainer extends DefaultLayerLayout {
 	}
 
 	onChangeService(formProps) {
-		console.log('onChangeService', formProps);
+		const {connectIntegration} = this.props;
+		connectIntegration({
+			msLogin: formProps.get('msLogin'),
+			msPassword: formProps.get('msPassword')
+		});
 	}
 
 	onCheckIntegration() {
@@ -50,8 +54,6 @@ class SettingsContainer extends DefaultLayerLayout {
 		updStateIntegration({
 			stateIntegration: !changeServiceState.stateIntegration
 		});
-
-		console.log('> onCheckIntegration', changeServiceState);
 	}
 
 	render() {
@@ -125,7 +127,6 @@ function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			changePassword: actions.changePassword.request,
-
 			getStateIntegration: actions.getStateIntegration.request,
 			connectIntegration: actions.connectIntegration.request,
 			updStateIntegration: actions.updStateIntegration.active
