@@ -20,13 +20,19 @@ class EditProductContainer extends DefaultLayerLayout {
 		this.productCard = productCard(this.props.inventCode);
 	}
 
+	componentWillReceiveProps(props) {
+		const {productView}=props;
+		if (productView && (productView.saved || productView.removed))
+			this.closeLayer();
+	}
+
 	componentDidMount() {
 		super.componentDidMount();
-		const {point, inventCode, catalog, getDetails, setNewProduct, urlAction, productView}=this.props;
+		const {point, inventCode, getDetails, setNewProduct, urlAction, productView}=this.props;
 		if (urlAction == 'view')
-			getDetails({inventCode, point, catalog});
+			getDetails({inventCode, point});
 		if (urlAction == 'add' && productView == null)
-			setNewProduct({catalog, inventCode});
+			setNewProduct({inventCode});
 	}
 
 	onSaveProduct(productProps) {
@@ -41,12 +47,11 @@ class EditProductContainer extends DefaultLayerLayout {
 		editProduct.vatTag = productProps.get('vatTag');
 		editProduct.requiredModifiers = product.modifiers;
 		savingProduct({point: this.props.point, product: editProduct});
-		this.closeLayer(); //todo закрыть после успеха
 	}
 
-	onRemoveProduct() { //todo сделать удаление
-		const {productView:{product}, savingProduct} = this.props;
-		this.closeLayer(); //todo закрыть после успеха
+	onRemoveProduct() {
+		const {productView:{product}, removeProduct} = this.props;
+		console.log('removing');
 	}
 
 	onAddGroup() {
@@ -94,6 +99,7 @@ class EditProductContainer extends DefaultLayerLayout {
 							 product={product}
 							 initialValues={product}
 				/>}
+
 				<LoaderBlock loading={loading}/>
 				{!product && !loading && <span>Продукт не найден</span>}
 			</article>
@@ -104,24 +110,22 @@ class EditProductContainer extends DefaultLayerLayout {
 EditProductContainer.propTypes = {
 	inventCode: PropTypes.string,
 	point: PropTypes.string,
-	catalog: PropTypes.string,
 	productView: PropTypes.object,
 };
 
 export default EditProductContainer;
 
 function mapStateToProps(state, ownProps) {
-	const {inventCode, point, catalog, action:urlAction}=ownProps.match.params;
+	const {inventCode, point, action:urlAction}=ownProps.match.params;
 	const productView = getProductView(inventCode)(state);
 	console.log('mapStateToProps', productView);
-	return {inventCode, point, catalog, productView, urlAction, history: ownProps.history};
+	return {inventCode, point, productView, urlAction, history: ownProps.history};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			getDetails: productActions.getProductDetails.request,
-			destroyDetails: productActions.destroyProductDetails,
 			savingProduct: productActions.saveProductDetails.request,
 			setNewProduct: productActions.setNewProduct,
 			//removeProduct: productActions.removeProduct.request

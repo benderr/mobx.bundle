@@ -21,10 +21,9 @@ export const getProducts = {
 };
 
 export const getProductDetails = {
-	request: ({inventCode, point, catalog}) => createAction(actions.GET_PRODUCT_DETAIL.REQUEST, {
+	request: ({inventCode, point}) => createAction(actions.GET_PRODUCT_DETAIL.REQUEST, {
 		inventCode,
-		point,
-		catalog
+		point
 	}),
 	success: ({product}) => createAction(actions.GET_PRODUCT_DETAIL.SUCCESS, {product}),
 	failure: ({inventCode, error}) => createAction(actions.GET_PRODUCT_DETAIL.FAILURE, {inventCode, error})
@@ -39,6 +38,9 @@ export const saveProductDetails = {
 	success: ({product}) => createAction(actions.SAVE_PRODUCT_DETAIL.SUCCESS, {product}),
 	failure: ({inventCode, error}) => createAction(actions.SAVE_PRODUCT_DETAIL.FAILURE, {inventCode, error})
 };
+
+export const addProductToList = ({product}) => createAction(actions.ADD_PRODUCT_TO_LIST, {product});
+export const updateProductInList = ({product}) => createAction(actions.UPDATE_PRODUCT_IN_LIST, {product});
 
 export const saveModifierGroup = ({inventCode, group}) => createAction(actions.SAVE_MODIFIER_GROUP, {
 	inventCode,
@@ -73,13 +75,11 @@ export const setDefaultSearchProduct = ({formKey, defaultsProduct}) => createAct
 	defaultsProduct
 });
 
-export const destroyProductDetails = ({inventCode}) => createAction(actions.SAVE_MODIFIER);
-
 export const resetProductsList = () => createAction(actions.RESET_PRODUCTS_LIST);
 export const addProduct = ({product}) => createAction(actions.ADD_PRODUCT_DETAIL, {product});
 
-export const createProduct = ({catalog}) => createAction(actions.CREATE_PRODUCT, {catalog});
-export const setNewProduct = ({catalog, inventCode}) => createAction(actions.SET_NEW_PRODUCT, {catalog, inventCode});
+export const createProduct = () => createAction(actions.CREATE_PRODUCT);
+export const setNewProduct = ({inventCode}) => createAction(actions.SET_NEW_PRODUCT, {inventCode});
 
 export const uploadImportProducts = {
 	request: ({file}) => createAction(actions.IMPORT_PRODUCTS.REQUEST, {file}),

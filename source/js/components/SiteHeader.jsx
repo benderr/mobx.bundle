@@ -11,7 +11,6 @@ import {push} from 'connected-react-router'
 import {getCurrentRetailPointId, getRetailPointList} from 'modules/retailPoints/selectors/retailPointSelectors'
 import * as retailPointActions from 'modules/retailPoints/actions/retailPointActions';
 
-//todo допилить это непотребство
 const SiteMenuLink = ({label, to, exact}) => (
     <Route path={to} exact={exact} children={({match}) => (
         <li className={match ? 'active' : ''}>
@@ -26,15 +25,18 @@ const mapStateToProps = (state) => ({
 });
 
 const mapActionsToProps = dispatch => ({
-    onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch),
-    push: bindActionCreators(push, dispatch),
+    ...bindActionCreators({
+        onSelectPoint: retailPointActions.setRetailPoint,
+        push: push,
+        logOut: logOut
+    }, dispatch)
 });
 
 @connect(mapStateToProps, mapActionsToProps)
 @toJs
 class SiteHeader extends React.Component {
 
-    openRetialPointsList() {
+    openRetailPointsList() {
         const {push} = this.props;
         push({pathname: '/retail-points/'});
     }
@@ -48,15 +50,12 @@ class SiteHeader extends React.Component {
     }
 
     render() {
-        const {dispatch} = this.props;
-        const _logOut = () => {
-            dispatch(logOut())
-        };
-        const {selectedPointId, points, onSelectPoint} = this.props;
+        const {selectedPointId, points, onSelectPoint, logOut} = this.props;
         const selectedPointName = this.getSelectedPointName(selectedPointId, points);
 
-        const pointsBlock = selectedPointId && points ? points.filter(point=>point.id !== selectedPointId)
-            .map(point =>(<li key={'listitem_' + point.id} onClick={()=>onSelectPoint(point.id)}><a>{point.name}</a></li>))
+        const pointsBlock = selectedPointId && points ? points.filter(point => point.id !== selectedPointId)
+                .map(point => (
+                    <li key={'listitem_' + point.id} onClick={() => onSelectPoint(point.id)}><a>{point.name}</a></li>))
             : null;
 
 
@@ -96,7 +95,7 @@ class SiteHeader extends React.Component {
                                 <div class="drop-content-inner">
                                     <ul class="drop-menu f_small">
                                         {pointsBlock}
-                                        <li><a class="icon-settings" onClick={::this.openRetialPointsList}>Все точки
+                                        <li><a class="icon-settings" onClick={::this.openRetailPointsList}>Все точки
                                             продаж</a></li>
                                     </ul>
                                 </div>
@@ -108,12 +107,11 @@ class SiteHeader extends React.Component {
                         <Link to="/settings" class="icon-settings"></Link>
                     </div>
                     <div class="header_profile_logout">
-                        <a onClick={_logOut} class="icon-logout"></a>
+                        <a onClick={logOut} class="icon-logout"></a>
                     </div>
                 </div>
             </header>
-        )
-            ;
+        );
     }
 }
 

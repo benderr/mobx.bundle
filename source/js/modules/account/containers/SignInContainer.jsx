@@ -5,6 +5,8 @@ import {login} from '../actions/loginActions'
 import {bindActionCreators} from 'redux';
 import {getSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
+import ModulHeader from 'components/ModulHeader';
+import styles from 'components/ExternalLayoutStyles';
 
 const SignInContainer = props => {
     const {loading, login, redirectUrl, errors}=props;
@@ -14,9 +16,12 @@ const SignInContainer = props => {
     };
 
     return (
-        <div className="login_section">
-            <div className="login_section_center">
-                <SignInForm onLogin={onLogin} errors={errors} redirectUrl={redirectUrl} loading={loading}/>
+        <div class="login">
+            <ModulHeader/>
+            <div className="login_section">
+                <div className="login_section_center">
+                    <SignInForm onLogin={onLogin} errors={errors} redirectUrl={redirectUrl} loading={loading}/>
+                </div>
             </div>
         </div>
     );

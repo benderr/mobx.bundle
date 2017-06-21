@@ -98,6 +98,15 @@ const RegistrationForm = props => {
 				</div>
 
 				<div class="form_group">
+					<div class="input_group_title w100">
+						<InputField name="password"
+									required="Укажите пароль"
+									class="w100"/>
+						<div class="input_title">Придумайте пароль для входа, не менее 8 символов</div>
+					</div>
+				</div>
+
+				<div class="form_group">
 					<Recaptcha
 						sitekey="6LeJNhcUAAAAAEqqVK2197rndTkLHRDyh429W7rw"
 						render="explicit"
@@ -105,15 +114,6 @@ const RegistrationForm = props => {
 						expiredCallback={onCaptchaChange}
 						onloadCallback={onCaptchaLoad}
 					/>
-				</div>
-
-				<div class="form_group">
-					<div class="input_group_title w100">
-						<InputField name="password"
-									required="Укажите пароль"
-									class="w100"/>
-						<div class="input_title">Придумайте пароль для входа, не менее 8 символов</div>
-					</div>
 				</div>
 
 				{defaultErrorText && <div className="form_error">{defaultErrorText}</div>}

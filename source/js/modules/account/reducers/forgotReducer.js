@@ -31,7 +31,12 @@ export const actionHandlers = {
 			error: fromJS(action.error),
 			success: false
 		});
+	},
+
+	[actions.FORGOT_RESET]: (state) => {
+		return initialState;
 	}
+
 };
 
 export default (createReducer) => createReducer(initialState, actionHandlers);

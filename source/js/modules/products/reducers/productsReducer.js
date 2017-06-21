@@ -1,7 +1,7 @@
 import {
 	GET_PRODUCTS, GET_FILTRED_PRODUCTS, GET_PRODUCT_DETAIL, SAVE_PRODUCT_DETAIL,
 	SAVE_MODIFIER, SAVE_MODIFIER_GROUP, REMOVE_MODIFIER, REMOVE_MODIFIER_GROUP, RESET_PRODUCTS_LIST,
-	SEARCH_PRODUCTS, SET_DEFAULT_SEARCH_PRODUCT, ADD_PRODUCT_DETAIL
+	SEARCH_PRODUCTS, SET_DEFAULT_SEARCH_PRODUCT, ADD_PRODUCT_DETAIL, ADD_PRODUCT_TO_LIST, UPDATE_PRODUCT_IN_LIST
 } from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
 
@@ -35,7 +35,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			productsList: state.get('productsList').concat(fromJS(action.response.productsList)), //todo заменить на селектор
+			productsList: state.get('productsList').concat(fromJS(action.response.productsList)),
 			productListTotalCount: action.response.totalCount
 		});
 	},
@@ -47,13 +47,33 @@ export const actionHandlers = {
 		});
 	},
 
+	[ADD_PRODUCT_TO_LIST]: (state, {product}) => {
+		return state.merge({
+			productsList: state.get('productsList').unshift(fromJS(product)),
+			productListTotalCount: state.get('productListTotalCount') + 1
+		});
+	},
+
+	[UPDATE_PRODUCT_IN_LIST]: (state, {product}) => {
+		const entry = state.get('productsList').findEntry(s => s.get('inventCode') == product.inventCode);
+		if (entry) {
+			return state.updateIn(['productsList', entry[0]], m => m.merge(fromJS(product)))
+		}
+		return state;
+
+		return state.merge({
+			productsList: state.update('productsList').unshift(fromJS(product))
+		});
+	},
 
 	[GET_PRODUCT_DETAIL.REQUEST]: (state, {inventCode}) => {
 		return state.setIn(['productView', inventCode],
 			Map({
 				loading: true,
 				product: null,
-				error: null
+				error: null,
+				saving: false,
+				saved: false
 			}));
 	},
 
@@ -80,11 +100,19 @@ export const actionHandlers = {
 	},
 
 	[SAVE_PRODUCT_DETAIL.SUCCESS]: (state, {product}) => {
-		return state.setIn(['productView', product.inventCode, 'saving'], false);
+		return state.updateIn(['productView', product.inventCode],
+			view => view.merge(fromJS({
+				saving: false,
+				saved: true
+			})));
 	},
 
 	[SAVE_PRODUCT_DETAIL.FAILURE]: (state, {inventCode, error}) => {
-		return state.setIn(['productView', inventCode, 'error'], fromJS(error));
+		return state.updateIn(['productView', inventCode], view => view.merge(fromJS({
+			error: error,
+			saving: false,
+			saved: false
+		})));
 	},
 
 	[SAVE_MODIFIER_GROUP]: (state, {inventCode, group}) => {
