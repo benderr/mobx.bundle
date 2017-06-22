@@ -22,12 +22,17 @@ export const changePassword = {
 };
 
 export const updStateIntegration = {
-	active: ({stateIntegration}) => createAction(actions.UPD_STATE_INTEGRATION, {stateIntegration})
+	action: ({stateIntegration}) => createAction(actions.UPD_STATE_INTEGRATION, {stateIntegration})
+};
+
+export const defStateIntegration = {
+	action: () => createAction(actions.DEF_STATE_INTEGRATION)
 };
 
 export const getStateIntegration = {
 	request: () => createAction(actions.GET_STATE_INTEGRATION.REQUEST),
-	success: (response) => createAction(actions.GET_STATE_INTEGRATION.SUCCESS, {response})
+	success: (response) => createAction(actions.GET_STATE_INTEGRATION.SUCCESS, {response}),
+	failure: (error) => createAction(actions.GET_STATE_INTEGRATION.FAILURE, {error})
 };
 
 export const connectIntegration = {
@@ -40,4 +45,10 @@ export const confirmIntegration = {
 	request: ({msLogin, msPassword}) => createAction(actions.CONFIRM_INTEGRATION.REQUEST, {msLogin, msPassword}),
 	success: () => createAction(actions.CONFIRM_INTEGRATION.SUCCESS),
 	failure: () => createAction(actions.CONFIRM_INTEGRATION.FAILURE),
+};
+
+export const disableIntegration = {
+	request: () => createAction(actions.DISABLE_INTEGRATION.REQUEST),
+	success: () => createAction(actions.DISABLE_INTEGRATION.SUCCESS),
+	failure: (error) => createAction(actions.DISABLE_INTEGRATION.FAILURE, {error}),
 };

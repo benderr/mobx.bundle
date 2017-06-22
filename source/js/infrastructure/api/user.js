@@ -29,4 +29,5 @@ export default (api) => {
 	let moysklad = user.addResource('moysklad');
 	moysklad.addResource('state');
 	moysklad.addResource('enable');
+	moysklad.addResource('disable');
 };

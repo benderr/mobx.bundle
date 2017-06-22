@@ -14,7 +14,7 @@ export const initialState = Map({
 export const actionHandlers = {
 
 	// начальное состояние подключения интеграции с МойСклад
-	[actions.GET_STATE_INTEGRATION.REQUEST]: state => {
+	[actions.GET_STATE_INTEGRATION.REQUEST]: (state) => {
 		return state.merge({
 			loading: true,
 			errors: null,
@@ -36,10 +36,20 @@ export const actionHandlers = {
 			msPassword: ''
 		});
 	},
+	[actions.GET_STATE_INTEGRATION.FAILURE]: (state, action) => {
+		return state.merge({
+			loading: false,
+			errors: fromJS(action.response),
+			success: null,
+			checked: false,
+			stateIntegration: false,
+			msLogin: '',
+			msPassword: ''
+		});
+	},
 
 	// показать/скрыть форму ввода логина и пароля
 	[actions.UPD_STATE_INTEGRATION]: (state, active) => {
-		console.log('UpdStateIntegration', active);
 		return state.merge({
 			loading: false,
 			errors: null,
@@ -49,20 +59,32 @@ export const actionHandlers = {
 		});
 	},
 
+	// закроект все оповещения в форме
+	[actions.DEF_STATE_INTEGRATION]: (state) => {
+		return state.merge({
+			loading: false,
+			errors: null,
+			success: null,
+			checked: false,
+		});
+	},
+
 	// проверка корректности логина и пароля для интеграции
-	[actions.CONNECT_INTEGRATION.REQUEST]: (state) => {
+	[actions.CONNECT_INTEGRATION.REQUEST]: (state, action) => {
 		return state.merge({
 			loading: true,
 			errors: null,
 			success: null,
-			checked: false
+			checked: false,
+			msLogin: action.msLogin,
+			msPassword: action.msPassword
 		});
 	},
 	[actions.CONNECT_INTEGRATION.SUCCESS]: (state) => {
 		return state.merge({
 			loading: false,
 			errors: null,
-			success: true,
+			success: false,
 			checked: true
 		});
 	},
@@ -70,34 +92,71 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			success: false,
-			errors: fromJS(action.error),
+			errors: fromJS(action.response),
 			checked: false
 		});
 	},
 
 	// подтверждение интеграции
+	[actions.CONFIRM_INTEGRATION.REQUEST]: (state, action) => {
+		return state.merge({
+			loading: true,
+			errors: null,
+			success: null,
+			checked: false,
+			msLogin: action.msLogin,
+			msPassword: action.msPassword
+		});
+	},
 	[actions.CONFIRM_INTEGRATION.SUCCESS]: (state) => {
-		console.log('confirm success');
 		return state.merge({
 			loading: false,
 			errors: null,
+			success: true,
+			checked: false,
+			stateIntegration: true,
+			msPassword: ''
+		});
+	},
+	[actions.CONFIRM_INTEGRATION.FAILURE]: (state, action) => {
+		return state.merge({
+			loading: false,
+			errors: fromJS(action.response),
 			success: null,
+			checked: false,
+			stateIntegration: true,
+			msPassword: ''
+		});
+	},
+
+	// удаляет данные о интеграции
+	[actions.DISABLE_INTEGRATION.REQUEST]: (state) => {
+		return state.merge({
+			loading: true,
+			errors: null,
+			success: null,
+			checked: false,
+			stateIntegration: false
+		});
+	},
+	[actions.DISABLE_INTEGRATION.SUCCESS]: (state) => {
+		return state.merge({
+			loading: false,
+			errors: null,
+			success: true,
 			checked: false,
 			stateIntegration: false,
 			msLogin: '',
 			msPassword: ''
 		});
 	},
-	[actions.CONFIRM_INTEGRATION.FAILURE]: (state) => {
-		console.log('confirm failure');
+	[actions.DISABLE_INTEGRATION.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: null,
+			errors: fromJS(action.response),
 			success: null,
 			checked: false,
-			stateIntegration: false,
-			msLogin: '',
-			msPassword: ''
+			stateIntegration: false
 		});
 	}
 

@@ -19,19 +19,24 @@ class ChangeServiceComponent extends React.Component {
 	componentDidUpdate() {
 		const {
 			onSaveIntegration, onCancelIntegration,
-			formState: {checked, msLogin, msPassword}
+			formState: {checked, stateIntegration}
 		} = this.props;
 
-		if (checked) {
+		if (checked && stateIntegration) {
 			this.removePopup.open({
 				title: 'Вы хотите подтвердить операцию?',
 				text: 'При интеграции с сервисом МойСклад, созданная структура торговых точек в Личном кабинете будет заменена на структуру МойСклад'
 			}).then(() => {
-				onSaveIntegration(msLogin, msPassword);
+				onSaveIntegration();
 			}).catch(({close}) => {
 				if (!close) onCancelIntegration();
 			});
 		}
+	}
+
+	componentWillUnmount() {
+		const {onDefStateIntegration} = this.props;
+		onDefStateIntegration();
 	}
 
 	render() {
@@ -57,7 +62,6 @@ class ChangeServiceComponent extends React.Component {
 						<div className="property_label col">Логин</div>
 						<div className="property_value col">
 							<Field name="msLogin" type="text"
-								   autocomplete="off"
 								   validate={[isRequired('Укажите логин'), validateLogin('Не верный логин')]}
 								   component={InputRender}/>
 						</div>
@@ -66,13 +70,14 @@ class ChangeServiceComponent extends React.Component {
 						<div className="property_label col">Пароль</div>
 						<div className="property_value col">
 							<Field name="msPassword" type="password"
-								   autocomplete="off"
 								   validate={[isRequired('Укажите пароль')]}
 								   component={InputRender}/>
 						</div>
 					</div>
-					{errors && <div className="info_error">Не удалось установить соединение</div>}
 				</div>}
+
+				{errors && <div className="info_error">Не удалось установить соединение</div>}
+				{success && <div className="info">Настройки сохранены</div>}
 
 				<div className="form_buttons row">
 					<button className="button middle" disabled={loading}>
@@ -101,6 +106,7 @@ ChangeServiceComponent.propTypes = {
 	onSaveIntegration: PropTypes.func.isRequired,
 	onCancelIntegration: PropTypes.func.isRequired,
 	onCheckIntegration: PropTypes.func.isRequired,
+	onDefStateIntegration: PropTypes.func.isRequired
 };
 
 ChangeServiceComponent = reduxForm({

@@ -73,3 +73,12 @@ export const connectIntegration = (testing, msLogin, msPassword) => {
 		msPassword: msPassword
 	}, {querystring: queryString});
 };
+
+/**
+ * Удаляет данные о интеграции
+ * @returns {*}
+ * /api/v1/user/moysklad/disable
+ */
+export const disabledIntegration = () => {
+	return api.v1().user().moysklad().disable().put();
+};

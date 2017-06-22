@@ -42,35 +42,42 @@ class SettingsContainer extends DefaultLayerLayout {
 	}
 
 	onChangeService(formProps) {
-		const {connectIntegration} = this.props;
-		connectIntegration({
-			msLogin: formProps.get('msLogin'),
-			msPassword: formProps.get('msPassword')
-		});
+		const {changeServiceState, connectIntegration, disableIntegration} = this.props;
+		if (changeServiceState.stateIntegration) {
+			connectIntegration({
+				msLogin: formProps.get('msLogin'),
+				msPassword: formProps.get('msPassword')
+			});
+		} else {
+			console.log('> disableIntegration');
+			disableIntegration();
+		}
 	}
 
-	onSaveIntegration(msLogin, msPassword) {
-		console.log('Сохранить параметры интеграции!', msLogin, msPassword);
-
-		const {confirmIntegration} = this.props;
+	onSaveIntegration() {
+		const {changeServiceState, confirmIntegration} = this.props;
 		confirmIntegration({
-			msLogin: msLogin,
-			msPassword: msPassword
+			msLogin: changeServiceState.msLogin,
+			msPassword: changeServiceState.msPassword
 		});
 	}
 
 	onCancelIntegration() {
-		console.log('Отменить интеграцию!');
-
 		const {cancelIntegration} = this.props;
 		cancelIntegration()
 	}
 
 	onCheckIntegration() {
-		const {changeServiceState, updStateIntegration} = this.props;
+		const {changeServiceState, updStateIntegration, defStateIntegration} = this.props;
 		updStateIntegration({
 			stateIntegration: !changeServiceState.stateIntegration
 		});
+		defStateIntegration();
+	}
+
+	onDefStateIntegration() {
+		const {defStateIntegration} = this.props;
+		defStateIntegration();
 	}
 
 	render() {
@@ -115,6 +122,7 @@ class SettingsContainer extends DefaultLayerLayout {
 							<div class="tab_sevices">
 								<ChangeServiceComponent formState={changeServiceState}
 														onCheckIntegration={::this.onCheckIntegration}
+														onDefStateIntegration={::this.onDefStateIntegration}
 														onSaveIntegration={::this.onSaveIntegration}
 														onCancelIntegration={::this.onCancelIntegration}
 														onChangeService={::this.onChangeService}/>
@@ -150,9 +158,11 @@ function mapDispatchToProps(dispatch) {
 			// интеграция с МойСклад
 			getStateIntegration: actions.getStateIntegration.request,
 			connectIntegration: actions.connectIntegration.request,
-			updStateIntegration: actions.updStateIntegration.active,
+			updStateIntegration: actions.updStateIntegration.action,
+			defStateIntegration: actions.defStateIntegration.action,
 			confirmIntegration: actions.confirmIntegration.request,
-			cancelIntegration: actions.confirmIntegration.failure
+			cancelIntegration: actions.confirmIntegration.failure,
+			disableIntegration: actions.disableIntegration.request
 		}, dispatch)
 	}
 }
