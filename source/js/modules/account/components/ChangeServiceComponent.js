@@ -106,7 +106,8 @@ ChangeServiceComponent.propTypes = {
 };
 
 ChangeServiceComponent = reduxForm({
-	form: 'changeService'
+	form: 'changeService',
+	enableReinitialize: true
 })(ChangeServiceComponent);
 
 ChangeServiceComponent = connect(
