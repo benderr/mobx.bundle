@@ -49,7 +49,7 @@ export const actionHandlers = {
 	},
 
 	// показать/скрыть форму ввода логина и пароля
-	[actions.UPD_STATE_INTEGRATION]: (state, active) => {
+	[actions.UPDATE_STATE_INTEGRATION]: (state, active) => {
 		return state.merge({
 			loading: false,
 			errors: null,
@@ -60,7 +60,7 @@ export const actionHandlers = {
 	},
 
 	// закроект все оповещения в форме
-	[actions.DEF_STATE_INTEGRATION]: (state) => {
+	[actions.DEFAULT_STATE_INTEGRATION]: (state) => {
 		return state.merge({
 			loading: false,
 			errors: null,

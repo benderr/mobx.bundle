@@ -22,11 +22,11 @@ export const changePassword = {
 };
 
 export const updStateIntegration = {
-	action: ({stateIntegration}) => createAction(actions.UPD_STATE_INTEGRATION, {stateIntegration})
+	action: ({stateIntegration}) => createAction(actions.UPDATE_STATE_INTEGRATION, {stateIntegration})
 };
 
 export const defStateIntegration = {
-	action: () => createAction(actions.DEF_STATE_INTEGRATION)
+	action: () => createAction(actions.DEFAULT_STATE_INTEGRATION)
 };
 
 export const getStateIntegration = {
