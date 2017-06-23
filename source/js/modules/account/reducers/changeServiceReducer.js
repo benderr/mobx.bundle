@@ -39,7 +39,7 @@ export const actionHandlers = {
 	[actions.GET_STATE_INTEGRATION.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: fromJS(action.response),
+			errors: fromJS(action.error),
 			success: null,
 			checked: false,
 			stateIntegration: false,
@@ -89,10 +89,11 @@ export const actionHandlers = {
 		});
 	},
 	[actions.CONNECT_INTEGRATION.FAILURE]: (state, action) => {
+		console.log('asdasdasd', action);
 		return state.merge({
 			loading: false,
 			success: false,
-			errors: fromJS(action.response),
+			errors: fromJS(action.error),
 			checked: false
 		});
 	},
@@ -121,7 +122,7 @@ export const actionHandlers = {
 	[actions.CONFIRM_INTEGRATION.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: fromJS(action.response),
+			errors: fromJS(action.error),
 			success: null,
 			checked: false,
 			stateIntegration: true,
@@ -153,7 +154,7 @@ export const actionHandlers = {
 	[actions.DISABLE_INTEGRATION.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: fromJS(action.response),
+			errors: fromJS(action.error),
 			success: null,
 			checked: false,
 			stateIntegration: false
