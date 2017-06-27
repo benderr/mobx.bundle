@@ -10,4 +10,5 @@ export const login = {
 export const logOut = () => createAction(actions.LOGOUT);
 export const checkingAccessStart = () => createAction(actions.CHECKING_ACCESS_START);
 export const checkingAccessStop = () => createAction(actions.CHECKING_ACCESS_STOP);
+export const clearApp = () => createAction(actions.CLEAR_APP);
 

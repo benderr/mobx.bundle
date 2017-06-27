@@ -73,10 +73,22 @@ export const removeModifier = ({inventCode, groupId, modifierId}) => createActio
 	modifierId
 });
 
+export const toggleModifier = ({inventCode, groupId, modifierId}) => createAction(actions.TOGGLE_MODIFIER, {
+	inventCode,
+	groupId,
+	modifierId
+});
+
 export const searchProducts = {
 	request: ({formKey, query}) => createAction(actions.SEARCH_PRODUCTS.REQUEST, {formKey, query}),
 	success: ({formKey, products}) => createAction(actions.SEARCH_PRODUCTS.SUCCESS, {formKey, products}),
 	failure: ({formKey, error}) => createAction(actions.SEARCH_PRODUCTS.FAILURE, {formKey, error})
+};
+
+export const searchGroups = {
+	request: ({formKey, query}) => createAction(actions.SEARCH_GROUPS.REQUEST, {formKey, query}),
+	success: ({formKey, groups}) => createAction(actions.SEARCH_GROUPS.SUCCESS, {formKey, groups}),
+	failure: ({formKey, error}) => createAction(actions.SEARCH_GROUPS.FAILURE, {formKey, error})
 };
 
 export const setDefaultSearchProduct = ({formKey, defaultsProduct}) => createAction(actions.SET_DEFAULT_SEARCH_PRODUCT, {

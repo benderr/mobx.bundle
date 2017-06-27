@@ -3,6 +3,7 @@ import * as productsReducer from './reducers/productsReducer';
 import * as productDetailsReducer from './reducers/productDetailsReducer';
 import * as importReducer from './reducers/importReducer';
 import productsSaga from './sagas/productsSaga';
+import productDetailsSaga from './sagas/productDetailsSaga';
 
 export function getReducers(createReducer) {
 	return {
@@ -18,6 +19,7 @@ export function getRoutes() {
 
 export function getSagas() {
 	return [
-		productsSaga()
+		productsSaga(),
+		productDetailsSaga()
 	];
 }

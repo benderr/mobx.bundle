@@ -69,7 +69,6 @@ class SelectField extends React.Component {
 		options: PropTypes.array,             // array of options
 		pageSize: PropTypes.number,           // number of entries to page when using page up/down keys
 		placeholder: stringOrNode,                  // field placeholder, displayed when there's no value
-		required: PropTypes.bool,             // applies HTML5 required attribute when needed
 		resetValue: PropTypes.any,            // value to use when you clear the control
 		scrollMenuIntoView: PropTypes.bool,   // boolean to enable the viewport to shift so that the full menu fully visible when engaged
 		searchable: PropTypes.bool,           // whether to enable searching feature or not

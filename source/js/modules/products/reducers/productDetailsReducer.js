@@ -1,13 +1,14 @@
 import {
 	GET_PRODUCT_DETAIL, SAVE_PRODUCT_DETAIL, SAVE_MODIFIER, SAVE_MODIFIER_GROUP,
-	REMOVE_MODIFIER, REMOVE_MODIFIER_GROUP, SEARCH_PRODUCTS,
-	SET_DEFAULT_SEARCH_PRODUCT, ADD_PRODUCT_DETAIL, REMOVE_PRODUCT
+	REMOVE_MODIFIER, REMOVE_MODIFIER_GROUP, SEARCH_PRODUCTS, SEARCH_GROUPS,
+	SET_DEFAULT_SEARCH_PRODUCT, ADD_PRODUCT_DETAIL, REMOVE_PRODUCT, TOGGLE_MODIFIER
 } from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
 
 export const initialState = Map({
 	productView: Map({}),
-	searchProductsResult: Map({}) //результаты поиска в выпадушке
+	searchProductsResult: Map({}), //результаты поиска в выпадушке
+	searchGroupsResult: Map({}) //результаты поиска группы модификаторов в выпадушке
 });
 
 export const actionHandlers = {
@@ -70,11 +71,11 @@ export const actionHandlers = {
 		if (group.id) {
 			const groupEntry = groups.findEntry(s => s.get('id') == group.id);
 			if (groupEntry) {
-				return state.updateIn([...groupsKey, groupEntry[0]], group => group.merge(fromJS(group)))
+				return state.updateIn([...groupsKey, groupEntry[0]], oldGroup => oldGroup.merge(fromJS(group)))
 			}
 		} else {
 			group.id = groups.size + 1;
-			group.modifiers = [];
+			group.modifiers = group.modifiers || [];
 			return state.updateIn(groupsKey, list => list.push(fromJS(group)));
 		}
 
@@ -117,6 +118,20 @@ export const actionHandlers = {
 		return state;
 	},
 
+	[TOGGLE_MODIFIER]: (state, {inventCode, groupId, modifierId}) => {
+		const groupsKey = getProductGroupsKey(inventCode);
+		const groupEntry = state.getIn(groupsKey).findEntry(s => s.get('id') == groupId);
+		if (groupEntry) {
+			const modifierEntry = groupEntry[1].get('modifiers').findEntry(s => s.get('id') == modifierId);
+			if (modifierEntry) {
+				//todo base старый флаг выпилить
+				return state.updateIn([...groupsKey, groupEntry[0], 'modifiers', modifierEntry[0]],
+					modifier => modifier.merge({selected: !modifier.get('selected'), base: !modifier.get('selected')}))
+			}
+		}
+		return state;
+	},
+
 	[SEARCH_PRODUCTS.REQUEST]: (state, {formKey}) => {
 		return state.updateIn(['searchProductsResult', formKey, 'loading'], _ => true);
 	},
@@ -131,6 +146,29 @@ export const actionHandlers = {
 
 	[SEARCH_PRODUCTS.FAILURE]: (state, {formKey, error}) => {
 		return state.updateIn(['searchProductsResult', formKey], data => data.merge({
+			loading: false,
+			error: fromJS(error)
+		}));
+	},
+
+	[SEARCH_GROUPS.REQUEST]: (state, {formKey}) => {
+		return state.updateIn(['searchGroupsResult', formKey], Map({groups: []}), data =>
+			data.merge({
+				loading: true,
+				error: null
+			}));
+	},
+
+	[SEARCH_GROUPS.SUCCESS]: (state, {formKey, groups}) => {
+		return state.updateIn(['searchGroupsResult', formKey], data => data.merge({
+			loading: false,
+			groups: fromJS(groups),
+			error: null
+		}));
+	},
+
+	[SEARCH_GROUPS.FAILURE]: (state, {formKey, error}) => {
+		return state.updateIn(['searchGroupsResult', formKey], data => data.merge({
 			loading: false,
 			error: fromJS(error)
 		}));

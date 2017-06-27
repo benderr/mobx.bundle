@@ -1,5 +1,6 @@
 import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 
+//PRODUCTS
 export const GET_PRODUCTS = createRequestTypes('PRODUCTS.GET_PRODUCTS');
 export const ADD_PRODUCT_TO_LIST = 'PRODUCTS.ADD_PRODUCT_TO_LIST';
 export const UPDATE_PRODUCT_IN_LIST = 'PRODUCTS.UPDATE_PRODUCT_IN_LIST';
@@ -8,18 +9,19 @@ export const GET_PRODUCT_DETAIL = createRequestTypes('PRODUCTS.GET_PRODUCT_DETAI
 export const SAVE_PRODUCT_DETAIL = createRequestTypes('PRODUCTS.SAVE_PRODUCT_DETAIL');
 export const REMOVE_PRODUCT = createRequestTypes('PRODUCTS.REMOVE_PRODUCT');
 
+export const RESET_PRODUCTS_LIST = 'PRODUCTS.RESET_PRODUCTS_LIST';
+export const SEARCH_PRODUCTS = createRequestTypes('PRODUCTS.SEARCH_PRODUCTS'); //поиск продуктов для выпадушки
+export const SET_DEFAULT_SEARCH_PRODUCT = 'PRODUCTS.SET_DEFAULT_SEARCH_PRODUCT'; //установка в выпадайке дефолтного продукта при открытии
+export const SEARCH_GROUPS = createRequestTypes('PRODUCTS.SEARCH_GROUPS'); //поиск групп для выпадушки
+
 //MODIFIERS
 export const SAVE_MODIFIER = 'PRODUCTS.SAVE_MODIFIER'; //сохранить модификатор
 export const REMOVE_MODIFIER = 'PRODUCTS.REMOVE_MODIFIER'; //удалить модификатор
+export const TOGGLE_MODIFIER = 'PRODUCTS.TOGGLE_MODIFIER'; //чекинг модификатора
 
 //MODIFIERS GROUPS
 export const SAVE_MODIFIER_GROUP = 'PRODUCTS.SAVE_MODIFIER_GROUP'; //сохранить группу модификатора
 export const REMOVE_MODIFIER_GROUP = 'PRODUCTS.REMOVE_MODIFIER_GROUP'; //удалить группу модификатора
-
-//PRODUCTS
-export const RESET_PRODUCTS_LIST = 'PRODUCTS.RESET_PRODUCTS_LIST';
-export const SEARCH_PRODUCTS = createRequestTypes('PRODUCTS.SEARCH_PRODUCTS'); //поиск продуктов для выпадушки
-export const SET_DEFAULT_SEARCH_PRODUCT = 'PRODUCTS.SET_DEFAULT_SEARCH_PRODUCT'; //установка в выпадайке дефолтного продукта при открытии
 
 //PRODUCT LAYER
 export const CREATE_PRODUCT = 'PRODUCTS.CREATE_PRODUCT'; //Создание балванки для нового продукта

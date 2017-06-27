@@ -1,7 +1,6 @@
 import React from 'react';
 import {Field} from 'redux-form/immutable';
 import {reduxForm} from 'common/formElements';
-import {isRequired} from 'common/validators'
 import PropTypes from 'prop-types';
 import {PrimaryButton} from 'common/uiElements';
 import {AmountField, NumberField, SelectField, InputField} from 'common/formElements/fields'
@@ -11,9 +10,9 @@ class ModifierForm extends React.Component {
 
 	render() {
 		const {
-			handleSubmit, onSave, onCancel, onRemove, modifier,
+			handleSubmit, onSave, onCancel, modifier,
 			productList, isLoadingProducts, onSearchProducts, onSelectProduct,
-			onIncreaseQty, onDecreaseQty
+			onIncreaseQty, onDecreaseQty, onRemove
 		} = this.props;
 
 		return (
@@ -50,10 +49,10 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Кол-во</div>
 						<div class="property_value col nine">
-							<div class="counter_wrapper">
+							<div class="counter">
 								<a class="count_ctrl" onClick={onDecreaseQty}>&minus;</a>
 								<NumberField name="qty" type="text"
-											 required="Укажите количество" />
+											 required="Укажите количество"/>
 								<a class="count_ctrl" onClick={onIncreaseQty}>+</a>
 							</div>
 						</div>

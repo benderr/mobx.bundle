@@ -6,6 +6,7 @@ import AmountInput from './AmountInput';
 import Recaptcha from './Recaptcha';
 import InfinateScroll from './InfinateScroll';
 import ConfirmPopupService from './Dialogs/ConfirmPopupService';
+import * as Notify from './Notify';
 import Drop from './Drop';
 
 export {
@@ -17,5 +18,6 @@ export {
 	InfinateScroll,
 	ConfirmPopupService,
 	Drop,
-	Button
+	Button,
+	Notify
 }

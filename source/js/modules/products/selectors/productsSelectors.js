@@ -54,3 +54,11 @@ export const getSearchProducts = (formKey) => createSelector([getProductDetailSe
 		error: null
 	}));
 });
+
+export const getSearchGroups = (formKey) => createSelector([getProductDetailSection], data => {
+	return data.getIn(['searchGroupsResult', formKey], Map({
+		loading: false,
+		groups: List([]),
+		error: null
+	}));
+});

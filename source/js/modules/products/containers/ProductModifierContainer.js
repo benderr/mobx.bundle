@@ -9,6 +9,7 @@ import {withRouter} from 'react-router';
 import modifierForm from '../components/ProductCard/ModifierForm';
 import toJS from 'components/HOC/toJs';
 import {change, getFormValues} from 'redux-form/immutable';
+import {ConfirmPopupService} from 'common/uiElements';
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
@@ -85,7 +86,7 @@ class ProductModifierContainer extends DefaultLayerLayout {
 			barcode: formProps.get('barcode'),
 			qty: formProps.get('qty'),
 			price: formProps.get('price'),
-			base: formProps.get('selected'), //todo выпилить
+			base: formProps.get('selected'), //todo base старый флаг выпилить
 			selected: formProps.get('selected')
 		};
 		save({inventCode, modifier: editModifier, groupId});
@@ -97,9 +98,11 @@ class ProductModifierContainer extends DefaultLayerLayout {
 	}
 
 	onRemove() {
-		const {remove, groupId, modifier, inventCode}=this.props;
-		remove({inventCode, groupId, modifierId: modifier.id});
-		this.closeLayer();
+		this.removePopup.open().then(() => {
+			const {remove, groupId, modifier, inventCode}=this.props;
+			remove({inventCode, groupId, modifierId: modifier.id});
+			this.closeLayer();
+		});
 	}
 
 	render() {
@@ -131,6 +134,11 @@ class ProductModifierContainer extends DefaultLayerLayout {
 							  onIncreaseQty={::this.onIncreaseQty}
 							  onDecreaseQty={::this.onDecreaseQty}
 				/>
+				<ConfirmPopupService
+					ref={p => this.removePopup = p}
+					okName="Подтвердить"
+					cancelName="Отмена"
+					title="Удаление модификатора"/>
 			</article>
 		);
 	}

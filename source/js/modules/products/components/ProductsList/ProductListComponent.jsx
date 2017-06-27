@@ -19,7 +19,7 @@ class ProductListComponent extends React.Component {
                                                                onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
 
         return (
-            <div class='widget_block'>
+            <div class='widget_block' style={{minHeight:'100px'}}>
                 <div class='table  table_products'>
                     <div class='table_head'>
                         <div class='product_id'>Код</div>

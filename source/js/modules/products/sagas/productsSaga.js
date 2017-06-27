@@ -23,67 +23,6 @@ function* initProductsProcess(data) {
 	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
 }
 
-function* createProduct() {
-	const inventCode = generateNumber().toString();
-	yield setProductToLayer({inventCode});
-	const retailPointId = yield select(getCurrentRetailPointId);
-	yield put(push({pathname: `/product/add/point/${retailPointId}/code/${inventCode}`}));
-}
-
-function* setProductToLayer({inventCode}) {
-	const product = {
-		inventCode: inventCode,
-		price: null,
-		alcoholType: 'NO_ALCOHOL',
-		barcode: inventCode,
-		minPrice: 0,
-		measure: 'pcs',
-		vatTag: "0",
-		catalogType: 'INVENTORY',
-		modifiers: [],
-		isNew: true
-	};
-	yield put(productActions.addProduct({product}));
-}
-
-function* getProductDetailsProcess({point, inventCode}) {
-	try {
-		const product = yield call(dataContext.getProduct, point, inventCode);
-		yield put(productActions.getProductDetails.success({product}));
-	}
-	catch (error) {
-		yield put(productActions.getProductDetails.failure({inventCode, error}));
-	}
-}
-
-function* saveProductDetailsProcess({product, point}) {
-	try {
-		const saveProduct = product.isNew ? dataContext.addProduct : dataContext.saveProduct;
-		const updatedProduct = yield call(saveProduct, point, product);
-		yield put(productActions.saveProductDetails.success({product: updatedProduct}));
-		if (product.isNew) {
-			yield put(productActions.addProductToList({product: updatedProduct}));
-		}
-		else {
-			yield put(productActions.updateProductInList({product: updatedProduct}));
-		}
-	}
-	catch (error) {
-		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));
-	}
-}
-
-function* searchProducts({formKey, query}) {
-	try {
-		const retailPointId = yield select(getCurrentRetailPointId);
-		const response = yield call(dataContext.getProducts, retailPointId, 0, 50, query);
-		yield put(productActions.searchProducts.success({formKey, products: response.productsList}));
-	}
-	catch (error) {
-		console.log(error);
-		yield put(productActions.searchProducts.failure({formKey, error}));
-	}
-}
 
 function* importProducts({file}) {
 	try {
@@ -96,28 +35,11 @@ function* importProducts({file}) {
 	}
 }
 
-function* removeProduct({point, inventCode}) {
-	try {
-		yield call(dataContext.removeProduct, point, inventCode);
-		yield put(productActions.removeProduct.success({inventCode}));
-	}
-	catch (error) {
-		console.log(error);
-		yield put(productActions.removeProduct.failure({inventCode, error}));
-	}
-}
-
 export default function*() {
 	yield [
 		takeEvery(retailPointsActions.SET_RETAIL_POINT, initProductsProcess),
 		takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess),
 		debounce(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
-		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetailsProcess),
-		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
-		takeEvery(actions.CREATE_PRODUCT, createProduct),
-		takeEvery(actions.SET_NEW_PRODUCT, setProductToLayer),
-		debounce(actions.SEARCH_PRODUCTS.REQUEST, searchProducts),
-		takeEvery(actions.IMPORT_PRODUCTS.REQUEST, importProducts),
-		takeEvery(actions.REMOVE_PRODUCT.REQUEST, removeProduct)
+		takeEvery(actions.IMPORT_PRODUCTS.REQUEST, importProducts)
 	]
 }

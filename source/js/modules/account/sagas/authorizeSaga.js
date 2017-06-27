@@ -1,10 +1,10 @@
-import {call, put, take, fork, cancel, cancelled, takeEvery, select} from 'redux-saga/effects'
+import {call, put, take, fork, cancel, takeEvery, select} from 'redux-saga/effects'
 import {LOGIN, LOGOUT} from '../enums/actions'
-import {login, checkingAccessStart, checkingAccessStop} from '../actions/loginActions'
+import {login, checkingAccessStart, checkingAccessStop, clearApp} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../dataProvider/accountDataContext'
 import * as accountSelectors from '../selectors/accountSelectors'
-import {push, replace} from 'connected-react-router'
+import {push} from 'connected-react-router'
 import * as retailPointsSaga from '../../retailPoints/sagas/retailPointsSaga'
 
 const xToken = 'X-TOKEN';
@@ -46,6 +46,8 @@ function* logout() {
 	yield call(dataContext.logout);
 	yield call(localStorage.removeItem, xToken);
 	yield put(push(signInLocation));
+	yield put(clearApp());
+	yield put(checkingAccessStop());
 }
 
 function* initApp() {
