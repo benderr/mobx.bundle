@@ -9,15 +9,12 @@ import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import ChangePasswordComponent from '../components/ChangePasswordComponent';
 import toJS from 'components/HOC/toJs';
+import ServiceSettingsContainer from './ServiceSettingsContainer';
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS
 class SettingsContainer extends DefaultLayerLayout {
-
-	constructor(props) {
-		super(props);
-	}
 
 	componentDidMount() {
 		super.openLayer();
@@ -31,7 +28,7 @@ class SettingsContainer extends DefaultLayerLayout {
 	}
 
 	onChangePassword(formProps) {
-		const {changePassword}=this.props;
+		const {changePassword} = this.props;
 		changePassword({
 			oldPassword: formProps.get('oldPassword'),
 			newPassword: formProps.get('newPassword')
@@ -40,7 +37,7 @@ class SettingsContainer extends DefaultLayerLayout {
 
 	render() {
 		const {changePasswordState} = this.props;
-		const {tab:activeTab} = this.state || {};
+		const {tab: activeTab} = this.state || {};
 		const changePassTab = activeTab == 'changepassword';
 		const servicesTab = activeTab == 'services';
 
@@ -77,8 +74,8 @@ class SettingsContainer extends DefaultLayerLayout {
 														 onChangePassword={::this.onChangePassword}/>
 							</div>}
 							{servicesTab &&
-							<div>
-								Сервисы
+							<div class="tab_sevices">
+								<ServiceSettingsContainer />
 							</div>}
 						</div>
 					</div>

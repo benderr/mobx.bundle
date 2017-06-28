@@ -44,3 +44,41 @@ export const register = (user) => {
 		userName: `${user.name} ${user.surname}`
 	});
 };
+
+/**
+ * Получает состояние о подключение сервиса "МойСклад"
+ */
+export const getStateIntegration = () => {
+	return api.v1().user().moysklad().state().get()
+		.then((response) => {
+			return {
+				msIntegrationEnabled: response.data.msIntegrationEnabled,
+				msLogin: response.data.msLogin,
+				msPassword: ''
+			}
+		});
+};
+
+/**
+ * Запрос на проверку наличия пользователя в МойСклад или сохраняет данные на сервере
+ * @param testing		- выполняется тестовый запрос или сохранение данных на сервере
+ * @param msLogin		- логин в формате "admin@***"
+ * @param msPassword	- пароль
+ */
+export const connectIntegration = (testing, msLogin, msPassword) => {
+	const queryString = `checkOnly=${testing}&msLogin=${msLogin}&msPassword=${msPassword}`;
+	return api.v1().user().moysklad().enable().put({
+		checkOnly: testing,
+		msLogin: msLogin,
+		msPassword: msPassword
+	}, {querystring: queryString});
+};
+
+/**
+ * Удаляет данные о интеграции
+ * @returns {*}
+ * /api/v1/user/moysklad/disable
+ */
+export const disabledIntegration = () => {
+	return api.v1().user().moysklad().disable().put();
+};
