@@ -17,6 +17,10 @@ export const getProductsList = createSelector([getProductsData], data => {
 	return data.get('productsList');
 });
 
+export const getNoProductsState = createSelector([getProductsData], data => {
+	return data.get('noProducts');
+});
+
 export const getProductListTotalCount = createSelector([getProductsData], data => {
 	return data.get('productListTotalCount');
 });

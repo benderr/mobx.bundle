@@ -18,8 +18,11 @@ class ProductListComponent extends React.Component {
         const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
                                                                onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
 
+        const notFound = !loading && productItems.length == 0 ?
+            <div class='table_row  center_xy'>По запросу ничего не найдено</div> : null;
+
         return (
-            <div class='widget_block' style={{minHeight:'100px'}}>
+            <div class='widget_block' style={{minHeight: '100px'}}>
                 <div class='table  table_products'>
                     <div class='table_head'>
                         <div class='product_id'>Код</div>
@@ -34,6 +37,7 @@ class ProductListComponent extends React.Component {
                         />
                     </div>
                     {productItems}
+                    {notFound}
                     <InfinateScroll loadNext={loadNext} totalCount={items.length} listLength={50} loading={loading}/>
                 </div>
             </div>

@@ -16,7 +16,7 @@ export const getProducts = {
 		filter,
 		sort
 	}),
-	success: (response) => createAction(actions.GET_PRODUCTS.SUCCESS, {response}),
+	success: (response, initialRequest) => createAction(actions.GET_PRODUCTS.SUCCESS, {response, initialRequest}),
 	failure: (error) => createAction(actions.GET_PRODUCTS.FAILURE, {error})
 };
 

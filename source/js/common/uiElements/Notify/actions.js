@@ -14,6 +14,12 @@ import {SHOW_NOTIFICATION, HIDE_NOTIFICATION, REMOVE_ALL_NOTIFICATIONS} from './
 //   }
 // }
 
+const defaultOptions = {
+	position: 'bl',
+	autoDismiss: 5
+};
+
+
 export function show(opts = {}, level = 'success') {
 	return {
 		type: SHOW_NOTIFICATION,
@@ -23,19 +29,53 @@ export function show(opts = {}, level = 'success') {
 	};
 }
 
-export function success(opts) {
+
+export function success(message, title = '') {
+	return show({
+		message,
+		title,
+		...defaultOptions
+	}, 'success');
+}
+
+export function error(message, title = '') {
+	return show({
+		message,
+		title,
+		...defaultOptions
+	}, 'error');
+}
+
+export function warning(message, title = '') {
+	return show({
+		message,
+		title,
+		...defaultOptions
+	}, 'warning');
+}
+
+export function info(message, title = '') {
+	return show({
+		message,
+		title,
+		...defaultOptions
+	}, 'info');
+}
+
+
+export function successWithOptions(opts) {
 	return show(opts, 'success');
 }
 
-export function error(opts) {
+export function errorWithOptions(opts) {
 	return show(opts, 'error');
 }
 
-export function warning(opts) {
+export function warningWithOptions(opts) {
 	return show(opts, 'warning');
 }
 
-export function info(opts) {
+export function infoWithOptions(opts) {
 	return show(opts, 'info');
 }
 
@@ -47,5 +87,5 @@ export function hide(uid) {
 }
 
 export function removeAll() {
-	return { type: REMOVE_ALL_NOTIFICATIONS };
+	return {type: REMOVE_ALL_NOTIFICATIONS};
 }

@@ -8,7 +8,7 @@ import {isRequired} from 'common/validators'
 import modifierForm from 'modules/products/components/ProductCard/ModifierForm'
 import {withRouter} from 'react-router';
 import {ConfirmPopupService} from 'common/uiElements';
-import {actions as notificator} from 'common/uiElements/Notify';
+import {notify} from 'common/uiElements/Notify';
 
 
 class testForm extends React.Component {
@@ -97,18 +97,19 @@ class TestSelector extends React.Component {
 	}
 
 	onSendNotify() {
-		const notificationOpts = {
-			// uid: 'once-please', // you can specify your own uid if required
-			title: 'Hey, it\'s good to see you!',
-			message: 'Now you can see how easy it is to use notifications in React!',
-			position: 'bl',
-			autoDismiss: 5,
-			action: {
-				label: 'Click me!!',
-				callback: () => alert('clicked!')
-			}
-		};
-		this.props.dispatch(notificator.success(notificationOpts));
+		this.props.dispatch(notify.success('Now you can see how easy it is to use notifications in React!'));
+	}
+
+	onSendNotify2() {
+		this.props.dispatch(notify.error('Now you can see how easy it is to use notifications in React!', 'Error'));
+	}
+
+	onSendNotify3() {
+		this.props.dispatch(notify.warning('Now you can see how easy it is to use notifications in React!', 'Warn'));
+	}
+
+	onSendNotify4() {
+		this.props.dispatch(notify.info('Now you can see how easy it is to use notifications in React!', 'Info'));
 	}
 
 	onRemove(elem) {
@@ -163,6 +164,11 @@ class TestSelector extends React.Component {
 				<button className="button small" onClick={() => this.onRemove({id: 2})}>Удалить что-то 2</button>
 				<br/>
 				<br/>
+
+				<button className="button small" onClick={::this.onSendNotify}>Нотифай</button>
+				<button className="button small" onClick={::this.onSendNotify2}>Нотифай2</button>
+				<button className="button small" onClick={::this.onSendNotify3}>Нотифай3</button>
+				<button className="button small" onClick={::this.onSendNotify4}>Нотифай4</button>
 
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}

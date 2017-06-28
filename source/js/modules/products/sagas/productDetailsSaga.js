@@ -6,6 +6,7 @@ import * as dataContext from '../dataProvider/productDataContext';
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
 import {generateNumber} from 'infrastructure/utils/uuidGenerator';
 import {push} from 'connected-react-router';
+import {notify} from 'common/uiElements/Notify';
 
 
 function* createProduct() {
@@ -46,6 +47,7 @@ function* saveProductDetailsProcess({product, point}) {
 		const saveProduct = product.isNew ? dataContext.addProduct : dataContext.saveProduct;
 		const updatedProduct = yield call(saveProduct, point, product);
 		yield put(productActions.saveProductDetails.success({product: updatedProduct}));
+		yield put(notify.success('Данные успешно сохранены'));
 		if (product.isNew) {
 			yield put(productActions.addProductToList({product: updatedProduct}));
 		}
@@ -54,6 +56,7 @@ function* saveProductDetailsProcess({product, point}) {
 		}
 	}
 	catch (error) {
+		yield put(notify.error('Не удалось сохранить товар'));
 		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));
 	}
 }

@@ -10,6 +10,7 @@ import modifierGroupForm from '../components/ProductCard/ModifierGroupForm'
 import toJS from 'components/HOC/toJs'
 import {change, formValueSelector} from 'redux-form/immutable';
 import {ConfirmPopupService} from 'common/uiElements';
+import {notify} from 'common/uiElements/Notify';
 
 const VIEW_MODE = {NEW: 'new', COPY: 'copy'};
 const REQUIRED = {ON: 'on', OFF: 'off'}; //костыль, т.к. <input radio /> т.к. он не понимает bool
@@ -32,7 +33,7 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 	}
 
 	onSaveGroup(formProps) {
-		const {saveGroup, group, inventCode}=this.props;
+		const {saveGroup, group, inventCode, dispatch}=this.props;
 
 		const editGroup = {
 			id: group ? group.id : null,
@@ -42,6 +43,7 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 		};
 		saveGroup({inventCode, group: editGroup});
 		this.closeLayer();
+		dispatch(notify.success(group && group.id ? 'Группа обновлена' : 'Группа добавлена'));
 	}
 
 	onCancel() {
@@ -50,9 +52,10 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 
 	handleRemoveGroup() {
 		this.removePopup.open().then(() => {
-			const {removeGroup, group, inventCode}=this.props;
+			const {removeGroup, group, inventCode, dispatch}=this.props;
 			removeGroup({inventCode, groupId: group.id});
 			this.closeLayer();
+			dispatch(notify.success('Группа удалена'));
 		});
 	}
 
@@ -161,7 +164,8 @@ function mapDispatchToProps(dispatch) {
 			saveGroup: productActions.saveModifierGroup,
 			removeGroup: productActions.removeModifierGroup,
 			searchGroups: productActions.searchGroups.request,
-			changeField: change
-		}, dispatch)
+			changeField: change,
+		}, dispatch),
+		dispatch
 	}
 }

@@ -15,7 +15,7 @@ export const actionHandlers = {
 		}
 	},
 	[HIDE_NOTIFICATION]: (state, {uid}) => {
-		const notifyEntry = state.findEntry(s => s.uid == uid);
+		const notifyEntry = state.findEntry(s => s.get('uid') == uid);
 		return notifyEntry ? state.deleteIn([notifyEntry[0]]) : state;
 	},
 

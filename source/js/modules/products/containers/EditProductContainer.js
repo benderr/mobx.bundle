@@ -10,6 +10,7 @@ import {getProductView} from '../selectors/productsSelectors'
 import {LoaderBlock} from 'common/uiElements'
 import toJS from 'components/HOC/toJs'
 import {ConfirmPopupService} from 'common/uiElements';
+import {notify} from 'common/uiElements/Notify';
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
@@ -52,9 +53,8 @@ class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onRemoveProduct() {
-		const {inventCode, point, removeProduct} = this.props;
+		const {inventCode, point, removeProduct, dispatch} = this.props;
 		removeProduct({point, inventCode});
-		console.log('removing');
 	}
 
 	onAddGroup() {
@@ -78,9 +78,12 @@ class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onRemoveModifier({modifierId, groupId}) {
-		const {inventCode}=this.props;
+		const {inventCode, dispatch}=this.props;
 		this.removePopup.open()
-			.then(() => this.props.removeModifier({inventCode, groupId, modifierId}));
+			.then(() => {
+				this.props.removeModifier({inventCode, groupId, modifierId});
+				dispatch(notify.success('Модификатор удален'));
+			});
 	}
 
 	onToggleModifier({modifierId, groupId}) {
@@ -169,6 +172,7 @@ function mapDispatchToProps(dispatch) {
 			removeProduct: productActions.removeProduct.request,
 			removeModifier: productActions.removeModifier,
 			toggleModifier: productActions.toggleModifier
-		}, dispatch)
+		}, dispatch),
+		dispatch
 	}
 }

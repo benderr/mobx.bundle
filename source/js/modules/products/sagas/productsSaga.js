@@ -5,22 +5,20 @@ import * as retailPointsActions from '../../retailPoints/enums/actions';
 import * as productActions from '../actions/productActions';
 import * as dataContext from '../dataProvider/productDataContext';
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
-import {generateNumber} from 'infrastructure/utils/uuidGenerator';
-import {push} from 'connected-react-router';
 
-function* getProductsProcess({retailPointId, start, count, filter}) {
+function* getProductsProcess({retailPointId, start, count, filter, initialRequest = false}) {
 	try {
 		const response = yield call(dataContext.getProducts, retailPointId, start, count, filter);
-		yield put(productActions.getProducts.success(response));
+		yield put(productActions.getProducts.success(response, initialRequest));
 	}
 	catch (e) {
 		yield put(productActions.getProducts.failure(e));
 	}
 }
 
-function* initProductsProcess(data) {
+function* initProductsProcess({id}) {
 	yield put(productActions.resetProductsList());
-	yield getProductsProcess({retailPointId: data.id, start: 0, count: 50});
+	yield getProductsProcess({retailPointId: id, start: 0, count: 50, initialRequest: true});
 }
 
 
@@ -28,6 +26,8 @@ function* importProducts({file}) {
 	try {
 		const response = yield call(dataContext.uploadProducts, file);
 		yield put(productActions.uploadImportProducts.success({response}));
+		const retailPointId = yield select(getCurrentRetailPointId);
+		yield initProductsProcess({id: retailPointId});
 	}
 	catch (error) {
 		console.log(error);

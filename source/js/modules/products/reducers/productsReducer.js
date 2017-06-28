@@ -8,7 +8,8 @@ export const initialState = Map({
 	loading: true,
 	error: null,
 	productsList: List([]),
-	productListTotalCount: 0
+	productListTotalCount: 0,
+	noProducts: false
 });
 
 export const actionHandlers = {
@@ -24,22 +25,26 @@ export const actionHandlers = {
 		return state.merge({
 			loading: true,
 			error: null,
+			noProducts: false,
 			productsList: List([]),
 		});
 	},
 
-	[GET_PRODUCTS.SUCCESS]: (state, action) => {
+	[GET_PRODUCTS.SUCCESS]: (state, {response, initialRequest = false}) => {
+		const products = state.get('productsList').concat(fromJS(response.productsList));
 		return state.merge({
 			loading: false,
 			error: null,
-			productsList: state.get('productsList').concat(fromJS(action.response.productsList)),
-			productListTotalCount: action.response.totalCount
+			productsList: products,
+			noProducts: initialRequest && products.size == 0,
+			productListTotalCount: response.totalCount
 		});
 	},
 
 	[GET_PRODUCTS.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
+			noProducts: false,
 			error: fromJS(action.error),
 		});
 	},
@@ -47,7 +52,8 @@ export const actionHandlers = {
 	[ADD_PRODUCT_TO_LIST]: (state, {product}) => {
 		return state.merge({
 			productsList: state.get('productsList').unshift(fromJS(product)),
-			productListTotalCount: state.get('productListTotalCount') + 1
+			productListTotalCount: state.get('productListTotalCount') + 1,
+			noProducts: false
 		});
 	},
 
@@ -61,8 +67,17 @@ export const actionHandlers = {
 	},
 
 	[REMOVE_PRODUCT.SUCCESS]: (state, {inventCode}) => {
-		const entry = state.get('productsList').findEntry(s => s.get('inventCode') == inventCode);
-		return entry ? state.deleteIn(['productsList', entry[0]]) : state;
+		let productsList = state.get('productsList');
+		const entry = productsList.findEntry(s => s.get('inventCode') == inventCode);
+		if (entry) {
+			productsList = productsList.delete(entry[0]);
+			return state.merge({
+				noProducts: productsList.size == 0,
+				productsList: productsList,
+				productListTotalCount: state.get('productListTotalCount') - 1
+			})
+		}
+		return state;
 	}
 };
 

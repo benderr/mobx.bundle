@@ -6,6 +6,7 @@ import {PrimaryButton} from 'common/uiElements';
 import {AmountField, NumberField, SelectField, InputField} from 'common/formElements/fields'
 import modifierShape from './modifierShape';
 
+
 class ModifierForm extends React.Component {
 
 	render() {
@@ -61,8 +62,7 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Цена</div>
 						<div class="property_value col add_modificators_price">
-							<AmountField name="price"
-										 required="Укажите цену"/>
+							<AmountField name="price" />
 						</div>
 						<div class="property_label  col  one"><span class="cur rur"><span>р.</span></span></div>
 					</div>
@@ -81,7 +81,7 @@ class ModifierForm extends React.Component {
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit">Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					{modifier && <a class="button middle wide clean f_right" onClick={onRemove}>Удалить</a>}
+					{modifier.id && <a class="button middle wide clean f_right" onClick={onRemove}>Удалить</a>}
 				</div>
 			</form>
 		)
