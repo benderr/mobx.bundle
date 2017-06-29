@@ -5,8 +5,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import {Field, formValueSelector, change} from 'redux-form/immutable';
-import {InputRender, reduxForm} from 'common/formElements';
-import {PhoneField, normalizeKpp, normalizeInn} from 'common/formElements/fields';
+import {reduxForm} from 'common/formElements';
+import {PhoneField, InputField, normalizeKpp, normalizeInn} from 'common/formElements/fields';
 import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators';
 import RetailPointShape from '../RetailPointShape';
 import NextPointSettings from './NextPointSettings';
@@ -28,8 +28,8 @@ class RetailPointForm extends React.Component {
     }
 
     render() {
-        const {onSave, onCancel, onDelete,  points} = this.props;
-        const {handleSubmit, submitting,  isIP,  productsSource, showProductSources, showDelete} = this.props;
+        const {onSave, onCancel, onDelete, points} = this.props;
+        const {handleSubmit, submitting, isIP, productsSource, showProductSources, showDelete} = this.props;
 
         return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
             <div class="page_content  with_bottom_panel  content_padding">
@@ -40,18 +40,17 @@ class RetailPointForm extends React.Component {
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
                     <div class="property_value col nine">
-                        <Field name="name" type="text" maxLength="255"
-                               class="w100"
-                               component={InputRender}
-                               validate={[isRequired('Укажите название торговой точки')]}/>
+                        <InputField name="name" type="text" maxLength="255"
+                                    class="w100"
+                                    required="Укажите название торговой точки"
+                        />
                     </div>
                 </div>
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Адрес</div>
                     <div class="property_value col nine">
-                        <Field name="address" type="text" maxLength="255"
+                        <InputField name="address" type="text" maxLength="255"
                                class="w100"
-                               component={InputRender}
                                validate={[isRequired('Укажите адрес торговой точки')]}/>
                     </div>
                 </div>
@@ -70,9 +69,8 @@ class RetailPointForm extends React.Component {
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">ИНН</div>
                     <div class="property_value col w35">
-                        <Field name="inn" type="text" maxLength="12"
+                        <InputField name="inn" type="text" maxLength="12"
                                class="w100"
-                               component={InputRender}
                                validate={[isRequired('Укажите ИНН'), validateInn('Не совпадают контрольные цифры ИНН')]}
                                normalize={normalizeInn}/>
                     </div>
@@ -81,9 +79,8 @@ class RetailPointForm extends React.Component {
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">КПП</div>
                     <div class="property_value col w35">
-                        <Field name="kpp" type="text" maxlength="9"
+                        <InputField name="kpp" type="text" maxlength="9"
                                class="w100"
-                               component={InputRender}
                                validate={[isRequiredKpp('Укажите КПП', isIP), validateKpp('КПП должен содержать 9 цифр')]}
                                normalize={normalizeKpp} disabled={isIP}/>
                     </div>

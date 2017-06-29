@@ -7,5 +7,5 @@ const {shape, number, string} = PropTypes;
 export default shape({
 	name: string.isRequired,
 	inventCode: string.isRequired,
-	price: number.isRequired
+	price: number
 })

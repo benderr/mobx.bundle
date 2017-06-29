@@ -1,9 +1,11 @@
 import {createReducer} from 'redux-immutablejs'
-import {reducer as formReducer} from 'redux-form/immutable'
+import {reducer as formReducer} from 'redux-form/immutable';
+import {reducer as notifyReducer} from 'common/uiElements/Notify/immutable';
 
 export default function getReducers(modules) {
 	const reducers = {
-		form: formReducer //все формы будут хранится тут
+		form: formReducer, //все формы будут хранится тут
+		notifications: createReducer(notifyReducer.initialState, notifyReducer.actionHandlers)
 	};
 	return modules
 		.filter((m) => isFunc(m.getReducers))

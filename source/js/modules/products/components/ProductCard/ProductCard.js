@@ -8,38 +8,30 @@ import {ConfirmPopupService} from 'common/uiElements';
 
 class ProductCard extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {activeTab: 'info'};
-	}
-
-	changeTab(tab) {
-		return () => this.setState({activeTab: tab});
-	}
-
 	handleRemove() {
 		this.removePopup.open()
 			.then(() => this.props.onRemove());
 	}
 
 	render() {
-		const {handleSubmit, onSave, saving, product, error, onCancel, onRemove} = this.props;
+		const {handleSubmit, onChangeTab, onSave, saving, product, error, onCancel, removing, activeTab} = this.props;
 		const submit = (props) => {
 			onSave(props);
 		};
 
-		const isActiveInfo = this.state.activeTab == 'info';
+		const isActiveInfo = activeTab == 'info';
 		const isEdit = product && !product.isNew;
-
+		const formClasses = ['poss', removing ? 'loading_block' : ''].join(' ');
+		const tabInfoClasses = ['tab', isActiveInfo ? 'tab__active' : ''].join(' ');
+		const tabModClasses = ['tab', !isActiveInfo ? 'tab__active' : ''].join(' ');
 		return (
-			<form onSubmit={handleSubmit(submit)} className="poss">
+			<form onSubmit={handleSubmit(submit)} className={formClasses}>
 				<div class="page_content with_bottom_panel  content_padding">
 
-					<ul class="tabs_light">
-						<li onClick={::this.changeTab('info')} className={isActiveInfo ? 'active' : ''}>Информация</li>
-						<li onClick={::this.changeTab('mod')} className={!isActiveInfo ? 'active' : ''}>Модификаторы
-						</li>
-					</ul>
+					<div class="tabs_flat">
+						<a onClick={() => onChangeTab('info')} className={tabInfoClasses}>Информация</a>
+						<a onClick={() => onChangeTab('mod')} className={tabModClasses}>Модификаторы</a>
+					</div>
 					<ProductTab className={!isActiveInfo ? 'hidden' : ''}/>
 					<ModifiersTab
 						modifiers={product.modifiers}
@@ -47,6 +39,8 @@ class ProductCard extends React.Component {
 						onOpenGroup={this.props.onOpenGroup}
 						onAddModifier={this.props.onAddModifier}
 						onOpenModifier={this.props.onOpenModifier}
+						onRemoveModifier={this.props.onRemoveModifier}
+						onToggleModifier={this.props.onToggleModifier}
 						className={isActiveInfo ? 'hidden' : ''}/>
 				</div>
 				<div class="page_bottom_panel">
@@ -72,13 +66,17 @@ ProductCard.propTypes = {
 	onCancel: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
 	saving: PropTypes.bool,
+	removing: PropTypes.bool,
+	error: PropTypes.object,
 	onAddGroup: PropTypes.func.isRequired,
 	onOpenGroup: PropTypes.func.isRequired,
 	onAddModifier: PropTypes.func.isRequired,
-	onOpenModifier: PropTypes.func.isRequired
+	onOpenModifier: PropTypes.func.isRequired,
+	onToggleModifier: PropTypes.func.isRequired,
+	onRemoveModifier: PropTypes.func.isRequired,
+	onChangeTab: PropTypes.func.isRequired,
+	activeTab: PropTypes.oneOf(['info', 'mod'])
 };
 
-export default (code) => reduxForm({
-	form: 'productCard_' + code
-})(ProductCard);
+export default (formKey) => reduxForm({form: formKey})(ProductCard);
 

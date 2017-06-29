@@ -1,11 +1,14 @@
 import * as routes  from './routes.js';
 import * as productsReducer from './reducers/productsReducer';
+import * as productDetailsReducer from './reducers/productDetailsReducer';
 import * as importReducer from './reducers/importReducer';
 import productsSaga from './sagas/productsSaga';
+import productDetailsSaga from './sagas/productDetailsSaga';
 
 export function getReducers(createReducer) {
 	return {
 		products: createReducer(productsReducer.initialState, productsReducer.actionHandlers),
+		productDetails: createReducer(productDetailsReducer.initialState, productDetailsReducer.actionHandlers),
 		imports: createReducer(importReducer.initialState, importReducer.actionHandlers)
 	}
 }
@@ -16,6 +19,7 @@ export function getRoutes() {
 
 export function getSagas() {
 	return [
-		productsSaga()
+		productsSaga(),
+		productDetailsSaga()
 	];
 }

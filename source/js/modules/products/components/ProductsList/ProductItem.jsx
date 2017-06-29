@@ -8,7 +8,7 @@ import ProductShape from './ProductShape';
 class ProductItem extends React.Component {
     render() {
         const {item, onProductClick} = this.props;
-        return (<div class='table_row  row_link  row_link' onClick={onProductClick}>
+        return (<div class='table_row   row_link' onClick={onProductClick}>
             <div class='product_id'>{item.inventCode}</div>
             <div class='product_name'>{item.name}</div>
             <div class='product_price'>{item.price}</div>

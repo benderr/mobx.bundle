@@ -9,6 +9,8 @@ import {withRouter} from 'react-router';
 import modifierForm from '../components/ProductCard/ModifierForm';
 import toJS from 'components/HOC/toJs';
 import {change, getFormValues} from 'redux-form/immutable';
+import {ConfirmPopupService} from 'common/uiElements';
+import {notify} from 'common/uiElements/Notify';
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
@@ -77,7 +79,7 @@ class ProductModifierContainer extends DefaultLayerLayout {
 	}
 
 	onSave(formProps) {
-		const {save, modifier, groupId, inventCode}=this.props;
+		const {save, modifier, groupId, inventCode, dispatch}=this.props;
 
 		const editModifier = {
 			id: modifier ? modifier.id : null,
@@ -85,11 +87,12 @@ class ProductModifierContainer extends DefaultLayerLayout {
 			barcode: formProps.get('barcode'),
 			qty: formProps.get('qty'),
 			price: formProps.get('price'),
-			base: formProps.get('selected'), //todo выпилить
+			base: formProps.get('selected'), //todo base старый флаг выпилить
 			selected: formProps.get('selected')
 		};
 		save({inventCode, modifier: editModifier, groupId});
 		this.closeLayer();
+		dispatch(notify.success(modifier && modifier.id ? 'Модификатор обновлен' : 'Модификатор добавлен'));
 	}
 
 	onCancel() {
@@ -97,16 +100,24 @@ class ProductModifierContainer extends DefaultLayerLayout {
 	}
 
 	onRemove() {
-		const {remove, groupId, modifier, inventCode}=this.props;
-		remove({inventCode, groupId, modifierId: modifier.id});
-		this.closeLayer();
+		this.removePopup.open().then(() => {
+			const {remove, groupId, modifier, inventCode, dispatch}=this.props;
+			remove({inventCode, groupId, modifierId: modifier.id});
+			this.closeLayer();
+			dispatch(notify.success('Модификатор удален'));
+		});
 	}
 
 	render() {
 		const {modifier, searchProductsView}=this.props;
+		let initialValues = modifier;
 
-		if (modifier)
-			modifier.product = {inventCode: modifier.barcode};
+		if (initialValues) {
+			initialValues.product = {inventCode: modifier.barcode};
+		}
+		else {
+			initialValues = {qty: 1};
+		}
 
 		const ModifierForm = this.modifierForm;
 		const title = modifier ? 'Редактирование модификатора' : 'Добавление модификатора';
@@ -119,8 +130,8 @@ class ProductModifierContainer extends DefaultLayerLayout {
 					{this.getToggleButton()}
 					<h1>{title}</h1>
 				</div>
-				<ModifierForm initialValues={modifier}
-							  modifier={modifier}
+				<ModifierForm initialValues={initialValues}
+							  modifier={initialValues}
 							  onSave={::this.onSave}
 							  onRemove={::this.onRemove}
 							  onCancel={::this.onCancel}
@@ -131,6 +142,11 @@ class ProductModifierContainer extends DefaultLayerLayout {
 							  onIncreaseQty={::this.onIncreaseQty}
 							  onDecreaseQty={::this.onDecreaseQty}
 				/>
+				<ConfirmPopupService
+					ref={p => this.removePopup = p}
+					okName="Подтвердить"
+					cancelName="Отмена"
+					title="Удаление модификатора"/>
 			</article>
 		);
 	}
@@ -177,7 +193,8 @@ function mapDispatchToProps(dispatch) {
 			searchProducts: productActions.searchProducts.request,
 			setDefaultSearchProduct: productActions.setDefaultSearchProduct,
 			changeField: change
-		}, dispatch)
+		}, dispatch),
+		dispatch
 	}
 }
 
