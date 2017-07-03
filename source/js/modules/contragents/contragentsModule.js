@@ -1,10 +1,10 @@
-import * as reducers from './reducers/reducers'
+import * as listReducer from './reducers/listReducer'
 import * as routes  from './routes.js'
-import sagas from './sagas/sagas';
+import sagas from './sagas/listSaga';
 
 export function getReducers(createReducer) {
 	return {
-		finance: createReducer(reducers.initialState, reducers.actionHandlers)
+		// finance: createReducer(listReducer.initialState, reducers.actionHandlers)
 	}
 }
 
@@ -13,5 +13,5 @@ export function getRoutes() {
 }
 
 export function getSagas() {
-	return [sagas()]
+	return []
 }
