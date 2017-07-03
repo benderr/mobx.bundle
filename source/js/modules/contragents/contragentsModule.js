@@ -1,10 +1,11 @@
-import * as listReducer from './reducers/listReducer'
+import * as listReducer from './reducers/listReducer';
 import * as routes  from './routes.js'
-import sagas from './sagas/listSaga';
+import listSaga from './sagas/listSaga';
 
 export function getReducers(createReducer) {
 	return {
-		// finance: createReducer(listReducer.initialState, reducers.actionHandlers)
+		list: createReducer(listReducer.initialState, listReducer.actionHandlers),
+		// edit: createReducer(editReducers.initialState, editReducers.actionHandlers)
 	}
 }
 
@@ -13,5 +14,7 @@ export function getRoutes() {
 }
 
 export function getSagas() {
-	return []
+	return [
+		listSaga()
+	]
 }
