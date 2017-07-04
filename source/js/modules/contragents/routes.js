@@ -8,6 +8,18 @@ export function getRoutes() {
 			path: '/contragents',
 			exact: true,
 			component: ListComponent
+		},
+		contragentsEdit: {
+			path: '/contragents/:action/:id',
+			exact: true,
+			isLayer: true,
+			layout: EditComponent
+		},
+		contragentsAdd: {
+			path: '/contragents/:action',
+			exact: true,
+			isLayer: true,
+			layout: EditComponent
 		}
 	}
 }

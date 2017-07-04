@@ -6,6 +6,7 @@ import {push} from 'connected-react-router';
 import toJS from 'components/HOC/toJs';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import * as actionList from '../actions/listActions';
+import * as actionEdit from '../actions/editActions';
 import * as selectors from '../selectors/contragentSelectors';
 import ListComponent from '../components/ListComponent';
 
@@ -29,11 +30,14 @@ class ListContainer extends React.Component {
 	}
 
 	onAddFormLayer() {
-		console.log('> onAddFormLayer');
+		const {push} = this.props;
+		push({pathname: `/contragents/add`});
 	}
 
-	onDetailFormLayer() {
-		console.log('> onDetailFormLayer');
+	onDetailFormLayer(item) {
+		const {push, openDetailContragent} = this.props;
+		openDetailContragent(item);
+		push({pathname: `/contragents/edit/${item.code}`});
 	}
 
 	onOpenFilterLayer() {
@@ -88,7 +92,9 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			getListContragent: actionList.getList.request
+			push,
+			getListContragent: actionList.getList.request,
+			openDetailContragent: actionEdit.openDetail
 		}, dispatch)
 	};
 }

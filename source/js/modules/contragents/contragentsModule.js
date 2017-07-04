@@ -1,11 +1,12 @@
 import * as listReducer from './reducers/listReducer';
+import * as editReducer from './reducers/editReduser';
 import * as routes  from './routes.js'
 import listSaga from './sagas/listSaga';
 
 export function getReducers(createReducer) {
 	return {
 		list: createReducer(listReducer.initialState, listReducer.actionHandlers),
-		// edit: createReducer(editReducers.initialState, editReducers.actionHandlers)
+		edit: createReducer(editReducer.initialState, editReducer.actionHandlers)
 	}
 }
 
