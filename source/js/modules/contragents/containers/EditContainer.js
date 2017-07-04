@@ -19,6 +19,17 @@ class EditContainer extends DefaultLayerLayout {
 		console.log('>> EditContainer.componentWillMount');
 	}
 
+	onCheckedRoles(isNew, roleCode, contragentData) {
+		let position = contragentData.roles.indexOf(roleCode);
+		if (position < 0)
+			contragentData.roles.push(roleCode);
+		else
+			contragentData.roles.splice(position, 1);
+
+		const {changeRole} = this.props;
+		changeRole(isNew, contragentData);
+	}
+
 	onSaveSubmit() {
 		console.log('onSaveSubmit');
 	}
@@ -47,9 +58,10 @@ class EditContainer extends DefaultLayerLayout {
 				<EditComponent isNew={isNew}
 							   contragentData={contragentData}
 							   initialValues={contragentData}
+							   onCheckedRoles={::this.onCheckedRoles}
 							   onSaveSubmit={::this.onSaveSubmit}
 							   onCancelSubmit={::this.onCancelSubmit}
-							   onDeleteSubmit={::this.onDeleteSubmit} />
+							   onDeleteSubmit={::this.onDeleteSubmit}/>
 
 			</article>
 		);
@@ -68,7 +80,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		...bindActionCreators({}, dispatch)
+		...bindActionCreators({
+			changeRole: actionEdit.changeRole
+		}, dispatch)
 	};
 }
 
