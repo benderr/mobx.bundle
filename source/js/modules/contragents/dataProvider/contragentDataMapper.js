@@ -3,7 +3,7 @@ export const toClientContragent = (response) => {
 		data: (response.data || []).map(res => {
 			return {
 				code: res.code,
-				locked: res.locked,
+				locked: res.locked ? "on" : "off",
 				login: res.login,
 				name: res.name,
 				password: res.password,

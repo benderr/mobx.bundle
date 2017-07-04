@@ -1,63 +1,72 @@
 import React from 'react';
 import {reduxForm} from 'common/formElements';
 import {PrimaryButton} from 'common/uiElements';
+import {InputField, SwitchField} from 'common/formElements/fields';
+import * as options from '../enums/contragentOptions';
+
+
+const RolesContrages = (props) => {
+	let i = 0;
+	let listRoles = [];
+
+	for(let k in options.roles) {
+		let checked = props.roles.indexOf(k) > -1;
+
+		listRoles.push(
+			<div className="f_left" key={k}>
+				<input type="checkbox"
+							name={`role[${k}]`}
+							checked={checked}
+							id={k}/>
+				<label htmlFor={k} className="label_check">
+					<i className="icon"/>
+					<span>{options.roles[k].label}</span>
+				</label>
+			</div>
+		);
+		if (!(++i % 3)) listRoles.push(<div className="clear" key={'delimiter' + i} />);
+	}
+
+	return <div className="contragent_role_select">{listRoles}<div className="clear" /></div>
+};
 
 class EditComponent extends React.Component {
 	render() {
 		const {
-			isNew, handleSubmit,
+			handleSubmit,
+			isNew, contragentData,
 			onSaveSubmit, onCancelSubmit, onDeleteSubmit
 		} = this.props;
+
+		console.log('contragentData', contragentData);
 
 		return (
 			<form className="poss" onSubmit={handleSubmit(onSaveSubmit)}>
 				<div className="page_content page_content__contragents with_bottom_panel content_padding">
 
-					<div className="contragent_role_select">
-						<input type="checkbox" name="c3" id="21"/>
-						<label htmlFor="21" className="label_check"><i className="icon"/><span>Кассир</span></label>
-
-						<input type="checkbox" name="c3" id="22"/>
-						<label htmlFor="22" className="label_check"><i className="icon"/><span>Покупатель</span></label>
-
-						<input type="checkbox" name="c3" id="23"/>
-						<label htmlFor="23" className="label_check"><i className="icon"/><span>Сотрудник</span></label>
-
-						<br />
-
-						<input type="checkbox" name="c3" id="24"/>
-						<label htmlFor="24" className="label_check"><i className="icon"/><span>Поставщик</span></label>
-
-						<input type="checkbox" name="c3" id="25"/>
-						<label htmlFor="25" className="label_check"><i className="icon"/><span>Поставщик услуг</span></label>
-					</div>
+					<RolesContrages roles={contragentData.roles} />
 
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Наименование</div>
 						<div className="property_value col nine">
-							<input type="text" name="name" className="w100" />
+							<InputField name="name" type="text" className="w100"
+										required="Укажите наименование"/>
 						</div>
 					</div>
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Пароль</div>
 						<div className="property_value col property_value__w234">
-							<input type="text" className="w100" />
+							<InputField name="password" type="text" className="w100" />
 						</div>
 					</div>
 
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Статус</div>
 						<div className="property_value col property_value__w234">
-							<div className="switch_group">
-								<div className="switch_item">
-									<input type="radio" name="12" id="tab1"/>
-									<label htmlFor="tab1">Активный</label>
-								</div>
-								<div className="switch_item">
-									<input type="radio" name="12" id="tab2"/>
-									<label htmlFor="tab2">Неактивный</label>
-								</div>
-							</div>
+							<SwitchField name="locked" switchItems={[
+								{id: 'tab1', label: 'Активный', value: 'off'},
+								{id: 'tab2', label: 'Неактивный', value: 'on'}
+							]}/>
 						</div>
 					</div>
 

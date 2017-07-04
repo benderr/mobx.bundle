@@ -15,6 +15,10 @@ import EditComponent from '../components/EditComponent';
 @retailPointHOC
 @toJS
 class EditContainer extends DefaultLayerLayout {
+	componentWillMount() {
+		console.log('>> EditContainer.componentWillMount');
+	}
+
 	onSaveSubmit() {
 		console.log('onSaveSubmit');
 	}
@@ -30,7 +34,7 @@ class EditContainer extends DefaultLayerLayout {
 	render() {
 		const {editState, isNew, id} = this.props;
 		const title = isNew ? 'Добавление контрагента' : 'Редактирование контрагента';
-		const contragentData = isNew ? {} : editState.views[id];
+		const contragentData = isNew ? editState.newItem : editState.viewItems[id];
 
 		return (
 			<article className="page" {...this.layerOptions}>
@@ -42,6 +46,7 @@ class EditContainer extends DefaultLayerLayout {
 
 				<EditComponent isNew={isNew}
 							   contragentData={contragentData}
+							   initialValues={contragentData}
 							   onSaveSubmit={::this.onSaveSubmit}
 							   onCancelSubmit={::this.onCancelSubmit}
 							   onDeleteSubmit={::this.onDeleteSubmit} />

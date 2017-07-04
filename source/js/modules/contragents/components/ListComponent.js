@@ -41,7 +41,7 @@ const TableBody = (props) => {
 
 			switch (col.code) {
 				case ('locked'):
-					valueText = row.locked ? 'Неактивный' : 'Активный';
+					valueText = row.locked == 'on' ? 'Неактивный' : 'Активный';
 					break;
 				case ('roles'):
 					row.roles.forEach((role) => {
