@@ -20,3 +20,7 @@ export const roles = {
 		label: 'Поставщик'
 	}
 };
+
+export const rolesCode = [
+	'CASHIER', 'CUSTOMER', 'EMPLOYEE', 'ADMINISTRATOR', 'SERVICE_PROVIDER', 'PROVIDER'
+];

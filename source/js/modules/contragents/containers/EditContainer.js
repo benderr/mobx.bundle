@@ -6,6 +6,7 @@ import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import toJS from 'components/HOC/toJs';
 import * as actionEdit from '../actions/editActions';
 import * as selectors from '../selectors/contragentSelectors';
+import * as options from '../enums/contragentOptions';
 import {bindActionCreators} from 'redux';
 import EditComponent from '../components/EditComponent';
 
@@ -19,19 +20,18 @@ class EditContainer extends DefaultLayerLayout {
 		console.log('>> EditContainer.componentWillMount');
 	}
 
-	onCheckedRoles(isNew, roleCode, contragentData) {
-		let position = contragentData.roles.indexOf(roleCode);
-		if (position < 0)
-			contragentData.roles.push(roleCode);
-		else
-			contragentData.roles.splice(position, 1);
-
-		const {changeRole} = this.props;
-		changeRole(isNew, contragentData);
+	onChangeRoles(contragentCode, roleCode) {
+		console.log('onChangeRoles', contragentCode, roleCode);
 	}
 
-	onSaveSubmit() {
-		console.log('onSaveSubmit');
+	onSaveSubmit(props) {
+		let data = {
+			name: props.get('name'),
+			password: props.get('password'),
+			locked: props.get('locked'),
+			roles: props.get('roles').map(i => i.toObject()).toArray()
+		};
+		console.log('onSaveSubmit', data);
 	}
 
 	onCancelSubmit() {
@@ -47,6 +47,14 @@ class EditContainer extends DefaultLayerLayout {
 		const title = isNew ? 'Добавление контрагента' : 'Редактирование контрагента';
 		const contragentData = isNew ? editState.newItem : editState.viewItems[id];
 
+		contragentData.roles = options.rolesCode.map(key => {
+			return {
+				name: key,
+				selected: !(contragentData.roles.indexOf(key) < 0),
+				label: options.roles[key].label
+			}
+		});
+
 		return (
 			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
@@ -58,7 +66,7 @@ class EditContainer extends DefaultLayerLayout {
 				<EditComponent isNew={isNew}
 							   contragentData={contragentData}
 							   initialValues={contragentData}
-							   onCheckedRoles={::this.onCheckedRoles}
+							   onChangeRoles={::this.onChangeRoles}
 							   onSaveSubmit={::this.onSaveSubmit}
 							   onCancelSubmit={::this.onCancelSubmit}
 							   onDeleteSubmit={::this.onDeleteSubmit}/>
