@@ -12,7 +12,6 @@ export const initialState = Map({
 
 		code: 'new',
 		locked: 'off',
-		login: '',
 		name: '',
 		password: '',
 		roles: List([])
@@ -33,36 +32,28 @@ export const actionHandlers = {
 
 			code: contragent.code,
 			locked: contragent.locked,
-			login: contragent.login,
 			name: contragent.name,
 			password: contragent.password,
 			roles: List(contragent.roles)
 		}));
 	},
 
-	[actions.CHANGE_ROLE]: (state, {isNew, contragentUpdate}) => {
-		// const newRoles = [];
-        //
-		// console.log('1', actions.CHANGE_ROLE, {contragentCode, roleCode});
-		// console.log('2', actions.CHANGE_ROLE, state.getIn(['viewItems', contragentCode, 'roles']));
+	[actions.CREATE_CONTRAGENT.REQUEST]: (state, {contragent}) => {
+		console.log(actions.CREATE_CONTRAGENT.REQUEST, contragent);
 
-		let schema
-		return state.setIn(['newItem'], Map(contragentUpdate));
+		return state.setIn(['newItem'], Map({
+			loading: true,
+			locked: contragent.locked,
+			name: contragent.name,
+			password: contragent.password,
+			roles: List(contragent.roles)
+		}));
+	},
+	[actions.CREATE_CONTRAGENT.SUCCESS]: (state, {data}) => {
 
-		// return state.setIn(['viewItems', contragentCode], Map({
-		// 	loading: false,
-		// 	errors: null,
-		// 	success: null,
-		// 	isPassword: false,
-		// 	isPasswordRequired: false,
-        //
-		// 	code: contragent.code,
-		// 	locked: contragent.locked,
-		// 	login: contragent.login,
-		// 	name: contragent.name,
-		// 	password: contragent.password,
-		// 	roles: List(contragent.roles)
-		// }));
+	},
+	[actions.CREATE_CONTRAGENT.FAILURE]: (state, {data}) => {
+
 	}
 };
 

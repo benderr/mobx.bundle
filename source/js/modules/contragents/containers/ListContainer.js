@@ -55,9 +55,9 @@ class ListContainer extends React.Component {
 
 					{!noItems &&
 					<div className="title_actions">
-						<button className="button small light icon-filter show_filter_panel"
+						{/*<button className="button small light icon-filter show_filter_panel"
 								onClick={() => this.onOpenFilterLayer()}>Фильтр
-						</button>
+						</button>*/}
 						<button className="button small icon-plus" onClick={() => this.onAddFormLayer()}>Добавить
 							контрагента
 						</button>

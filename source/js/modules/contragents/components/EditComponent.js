@@ -19,7 +19,7 @@ class EditComponent extends React.Component {
 		console.log('Form State');
 
 		return (
-			<form className="poss" onSubmit={handleSubmit(onSaveSubmit)}>
+			<form className="poss" onSubmit={handleSubmit((props) => onSaveSubmit(props, contragentData.code))}>
 				<div className="page_content page_content__contragents with_bottom_panel content_padding">
 
 					<FieldArray name="roles" component={ ({fields}) =>

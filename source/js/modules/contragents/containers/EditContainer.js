@@ -24,14 +24,22 @@ class EditContainer extends DefaultLayerLayout {
 		console.log('onChangeRoles', contragentCode, roleCode);
 	}
 
-	onSaveSubmit(props) {
+	onSaveSubmit(props, contragetCode) {
+		const {create, update} = this.props;
+
 		let data = {
 			name: props.get('name'),
 			password: props.get('password'),
 			locked: props.get('locked'),
 			roles: props.get('roles').map(i => i.toObject()).toArray()
 		};
-		console.log('onSaveSubmit', data);
+		data.roles = data.roles.filter(e => e.selected === true).map(e => e.name);
+
+		if (contragetCode === 'new') {
+			create(data);
+		} else {
+			update(data, contragetCode);
+		}
 	}
 
 	onCancelSubmit() {
@@ -89,7 +97,9 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			changeRole: actionEdit.changeRole
+			changeRole: actionEdit.changeRole,
+			create: actionEdit.createContragent.request,
+			update: actionEdit.updateContragent.request
 		}, dispatch)
 	};
 }
