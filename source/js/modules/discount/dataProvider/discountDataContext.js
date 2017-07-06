@@ -21,9 +21,9 @@ export const getListDiscount = ({token, q, coll='name', orderBy='asc'}) => {
  * @param token
  * @param props
  */
-export const addDiscount = ({token, props}) => {
+export const createDiscount = ({token, props}) => {
 	return api.v1().retailpoint(token).catalog()
-		.post(mapper.addDiscount(props));
+		.post(mapper.createDiscount(props));
 };
 
 /**

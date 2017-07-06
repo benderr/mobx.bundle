@@ -1,3 +1,5 @@
+import {generateNumber} from 'infrastructure/utils/uuidGenerator';
+
 export const listDiscount = {
 	toServer: (params) => {
 		let options = {};
@@ -20,9 +22,9 @@ export const listDiscount = {
 	})
 };
 
-export const addDiscount = (props) => ({
+export const createDiscount = (props) => ({
 	catalogType: 'SIMPLE_DISCOUNT',
-	code: '',	// тут должен быть генератор случайного числа
+	code: generateNumber().toString(),
 	name: props.name,
 	type: props.type || 'BUTTON',
 	value: parseInt(props.value),
