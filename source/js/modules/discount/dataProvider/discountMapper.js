@@ -5,7 +5,7 @@ export const listDiscount = {
 		let options = {};
 
 		if (params.q) options.q = params.q;
-		if (params.coll) options.sortField = params.coll;
+		if (params.column) options.sortField = params.column;
 		if (params.orderBy) options.sortDirection = params.orderBy;
 
 		return options;

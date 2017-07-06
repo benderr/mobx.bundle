@@ -2,8 +2,8 @@ import * as actions from '../enums/actions';
 import {createAction} from 'infrastructure/helpers/actionHelpers'
 
 export const getListDiscount = {
-	request: () => createAction(actions.GET_LIST.REQUEST),
-	success: (response) => createAction(actions.GET_LIST.SUCCESS, {response}),
+	request: (props) => createAction(actions.GET_LIST.REQUEST, props),
+	success: (response) => createAction(actions.GET_LIST.SUCCESS, response),
 	failure: (error) => createAction(actions.GET_LIST.FAILURE, {error})
 };
 

@@ -9,10 +9,11 @@ import * as mapper from './discountMapper'
  * @param coll
  * @param orderBy
  */
-export const getListDiscount = ({token, q, coll='name', orderBy='asc'}) => {
+export const getListDiscount = ({token, ...params}) => {
+	console.log(token, params);
 	return api.v1().retailpoint(token).catalog().simpleDiscount()
-		.get(mapper.listDiscount.toServer({q, coll, orderBy}))
-		.then((response) => mapper.listDiscount.toClient(response));
+		.get(mapper.listDiscount.toServer(params))
+		.then((response) => mapper.listDiscount.toClient(response.data));
 };
 
 /**

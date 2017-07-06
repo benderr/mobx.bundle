@@ -1,13 +1,39 @@
 import React from 'react';
+import {withRouter} from 'react-router';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {push} from 'connected-react-router';
+import toJS from 'components/HOC/toJs';
+import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 
+import DiscountListComponent from '../components/DiscountListComponent'
+import * as selector from '../selectors/discountSelectors'
+import * as actions from '../actions/discountActions';
+
+
+@withRouter
+@connect(mapStateToProps, mapDispatchToProps)
+@retailPointHOC
+@toJS
 class DiscountListContainer extends React.Component {
 
-	onAddLayer() {
-		console.log('onAddLayer');
+	componentWillMount() {
+		const {getListDiscount} = this.props;
+		getListDiscount({
+			column: 'name',
+			orderBy: 'asc'
+		});
+	}
+
+	onAddFormLayer() {
+		console.log('onAddFormLayer');
 	}
 
 	render() {
+		const {listState} = this.props;
 		const noItems = false;
+
+		console.log('DiscountListContainer', listState);
 
 		return (
 			<div className="h100per">
@@ -15,44 +41,12 @@ class DiscountListContainer extends React.Component {
 					<h1>Скидки</h1>
 					{!noItems &&
 					<div className="title_actions">
-						<button className="button small icon-plus" onClick={() => this.onAddLayer()}>Добавить скидку
+						<button className="button small icon-plus" onClick={() => this.onAddFormLayer()}>Добавить скидку
 						</button>
 					</div>}
 				</div>
 
-				{!noItems &&
-				<div className="widget_block">
-					<div className="table table_discount">
-						<div className="table_head">
-							<div className="discount_id">Код</div>
-							<div className="discount_name">Название</div>
-							<div className="discount_size">Размер, %</div>
-							<div className="discount_status">Активна</div>
-						</div>
-						<div className="table_row  row_link">
-							<div className="discount_id">2839113354</div>
-							<div className="discount_name">Скидка постоянного клиента</div>
-							<div className="discount_size">5</div>
-							<div className="discount_status">
-								<input type="checkbox" name="c1" id="55"/>
-								<label htmlFor="55" className="label_check switcher">
-									<i className="icon"/>
-								</label>
-							</div>
-						</div>
-						<div className="table_row  row_link">
-							<div className="discount_id">1139110344</div>
-							<div className="discount_name">Скидка выходного дня</div>
-							<div className="discount_size">3</div>
-							<div className="discount_status">
-								<input type="checkbox" name="c1" id="ysdg8qsd7qd"/>
-								<label htmlFor="ysdg8qsd7qd" className="label_check switcher">
-									<i className="icon"/>
-								</label>
-							</div>
-						</div>
-					</div>
-				</div>}
+				{!noItems && <DiscountListComponent />}
 
 				{noItems &&
 				<div className="center_xy page_center_info page_center_info__discount0">
@@ -60,7 +54,7 @@ class DiscountListContainer extends React.Component {
 					<div className="title">Скидки не созданы</div>
 					<p>Скидки можно применять ко всему чеку на кассе</p>
 					<div className="form_buttons row">
-						<button className="button small icon-plus" onClick={() => this.onAddLayer()}>Добавить скидку
+						<button className="button small icon-plus" onClick={() => this.onAddFormLayer()}>Добавить скидку
 						</button>
 					</div>
 				</div>}
@@ -68,5 +62,22 @@ class DiscountListContainer extends React.Component {
 		);
 	}
 }
+
+function mapStateToProps(state, ownProps) {
+	const listState = selector.getListState(state);
+	return {
+		listState
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		...bindActionCreators({
+			push,
+			getListDiscount: actions.getListDiscount.request
+		}, dispatch)
+	};
+}
+
 
 export default DiscountListContainer;
