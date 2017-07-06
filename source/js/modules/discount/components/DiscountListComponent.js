@@ -1,42 +1,75 @@
 import React from 'react';
 
+
+const columnList = [
+	{code: 'code', cssClass: 'discount_id', name: 'Код', sort: true},
+	{code: 'name', cssClass: 'discount_name', name: 'Название', sort: true},
+	{code: 'value', cssClass: 'discount_size', name: 'Размер, %'},
+	// {code: '', cssClass: 'discount_status', name: 'Активна'}
+];
+
+const TableHeader = (props) => {
+	const jsxHeader = columnList.map((head) => {
+		let className = head.cssClass;
+
+		if (head.sort) {
+			let by = (props.column === head.code ? (props.orderBy === 'asc' ? 'desc' : 'asc') : 'asc');
+			className += (props.column === head.code ? ' icon-sort-' + (props.orderBy === 'asc' ? 'up' : 'down') : '');
+
+			return (
+				<a key={'head' + head.code} className={className} onClick={() => props.onSortList(head.code, by)}>
+					{head.name}
+				</a>
+			);
+		}
+		else return <div key={head.code} className={head.cssClass}>{head.name}</div>
+	});
+
+	return <div className="table_head">{jsxHeader}</div>
+};
+const TableSearch = (props) => {
+	return (
+		<div className="table_row row_link_search">
+			<input type="search" className="small w100" placeholder="Наименование, код, роль или логин"/>
+		</div>
+	);
+};
+const TableBody = (props) => {
+	const jsxRows = props.list.map((row, i) => {
+		const jsxCols = columnList.map((col) => {
+			let valueText = '';
+
+			switch (col.code) {
+				default: valueText = row[col.code];
+			}
+			return <div className={col.cssClass} key={'col' + col.code}>{valueText}</div>
+		});
+		return <div className="table_row row_link" onClick={() => props.onOpenDetailLayout(row)} key={'row' + row.code}>{jsxCols}</div>
+	});
+	return <div>{jsxRows}</div>;
+};
+
 class DiscountListComponent extends React.Component {
-	render () {
+	render() {
+		const {
+			listState,
+			onOpenDetailLayout, onSortList
+		} = this.props;
+
 		return (
 			<div className="widget_block">
 				<div className="table table_discount">
-					<div className="table_head">
-						<div className="discount_id">Код</div>
-						<div className="discount_name">Название</div>
-						<div className="discount_size">Размер, %</div>
-						<div className="discount_status">Активна</div>
-					</div>
-					<div className="table_row  row_link">
-						<div className="discount_id">2839113354</div>
-						<div className="discount_name">Скидка постоянного клиента</div>
-						<div className="discount_size">5</div>
-						<div className="discount_status">
-							<input type="checkbox" name="c1" id="55"/>
-							<label htmlFor="55" className="label_check switcher">
-								<i className="icon"/>
-							</label>
-						</div>
-					</div>
-					<div className="table_row  row_link">
-						<div className="discount_id">1139110344</div>
-						<div className="discount_name">Скидка выходного дня</div>
-						<div className="discount_size">3</div>
-						<div className="discount_status">
-							<input type="checkbox" name="c1" id="ysdg8qsd7qd"/>
-							<label htmlFor="ysdg8qsd7qd" className="label_check switcher">
-								<i className="icon"/>
-							</label>
-						</div>
-					</div>
+					<TableHeader column={listState.column}
+								 orderBy={listState.orderBy}
+								 onSortList={onSortList} />
+					<TableSearch />
+					<TableBody list={listState.list}
+							   onOpenDetailLayout={onOpenDetailLayout} />
 				</div>
 			</div>
 		);
 	}
 }
+
 
 export default DiscountListComponent;

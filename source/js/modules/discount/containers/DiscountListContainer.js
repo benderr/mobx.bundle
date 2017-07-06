@@ -32,13 +32,17 @@ class DiscountListContainer extends React.Component {
 		const {getListDiscount} = this.props;
 		getListDiscount({
 			column: 'name',
-			orderBy: 'asc',
-			q: 'code=="*sdfsd*"'
+			orderBy: 'asc'
 		});
 	}
 
-	componentDidUpdate() {
-		debugger;
+	onOpenDetailLayout(row) {
+		console.log('onOpenDetailLayout', row);
+	}
+
+	onSortList(column, orderBy) {
+		const {getListDiscount} = this.props;
+		getListDiscount({column, orderBy});
 	}
 
 	render() {
@@ -59,7 +63,9 @@ class DiscountListContainer extends React.Component {
 					</div>}
 				</div>}
 
-				{!noItems && !globalLoading && <DiscountListComponent />}
+				{!noItems && !globalLoading && <DiscountListComponent listState={listState}
+																	  onSortList={::this.onSortList}
+																	  onOpenDetailLayout={::this.onOpenDetailLayout}/>}
 
 				{noItems && !globalLoading &&
 				<div className="center_xy page_center_info page_center_info__discount0">
@@ -72,7 +78,7 @@ class DiscountListContainer extends React.Component {
 					</div>
 				</div>}
 
-				<LoaderBlock loading={globalLoading} />
+				<LoaderBlock loading={globalLoading}/>
 			</div>
 		);
 	}
