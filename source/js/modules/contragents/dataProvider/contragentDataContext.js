@@ -6,13 +6,18 @@ import * as mapper from './contragentDataMapper';
  * @returns {*}
  */
 export function getList({token, q, column, orderBy, start}) {
-	let params = {};
 
-	if (q) params.q = q;
-	if (column) params.sortField = column;
-	if (orderBy) params.sortDirection = orderBy;
-	if (start) params.start = start;
 
-	return api.v1().retailpoint(token).catalog().contractor().get(params)
-		.then((response) => mapper.toClientContragent(response.data));
+	return api.v1().retailpoint(token).catalog().contractor()
+		.get(mapper.getListContragent.toServer({q, column, orderBy, start}))
+		.then((response) => mapper.getListContragent.toClient(response.data));
+}
+
+export function create({token, contragent}) {
+	return api.v1().retailpoint(token).catalog()
+		.post(mapper.createContragent.toServer(contragent));
+}
+
+export function update() {
+
 }

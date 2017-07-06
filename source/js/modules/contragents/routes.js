@@ -16,7 +16,7 @@ export function getRoutes() {
 			component: ListContainer
 		},
 		contragentsEdit: {
-			path: '/contragents/:action/:id',
+			path: '/contragents/:action/:code',
 			exact: true,
 			isLayer: true,
 			layout: EditContainer

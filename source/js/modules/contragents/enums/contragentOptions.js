@@ -1,7 +1,8 @@
 export const roles = {
 	CASHIER: {
 		label: 'Кассир',
-		password: true
+		password: true,
+		passwordRequired: false
 	},
 	CUSTOMER: {
 		label: 'Покупатель'

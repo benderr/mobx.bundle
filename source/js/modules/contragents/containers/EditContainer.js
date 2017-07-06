@@ -1,14 +1,15 @@
-import React from 'react';
-import DefaultLayerLayout from 'components/DefaultLayerLayout';
-import {withRouter} from 'react-router';
-import {connect} from 'react-redux';
+import React from 'react'
+import DefaultLayerLayout from 'components/DefaultLayerLayout'
+import {withRouter} from 'react-router'
+import {connect} from 'react-redux'
+import toJS from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
-import toJS from 'components/HOC/toJs';
-import * as actionEdit from '../actions/editActions';
-import * as selectors from '../selectors/contragentSelectors';
-import * as options from '../enums/contragentOptions';
-import {bindActionCreators} from 'redux';
-import EditComponent from '../components/EditComponent';
+import {bindActionCreators} from 'redux'
+
+import * as selectors from '../selectors/contragentSelectors'
+import * as options from '../enums/contragentOptions'
+import * as actions from '../actions/editActions'
+import EditComponent from '../components/EditComponent'
 
 
 @withRouter
@@ -16,52 +17,46 @@ import EditComponent from '../components/EditComponent';
 @retailPointHOC
 @toJS
 class EditContainer extends DefaultLayerLayout {
-	componentWillMount() {
-		console.log('>> EditContainer.componentWillMount');
+
+	onChangeRoles(propRole, code) {
+		const {checkRoles} = this.props;
+		let roles = propRole.toJS();
+		roles = roles.reduce((prev, val) => val.selected ? [...prev, val.name] : prev, []);
+
+		checkRoles(roles, (code === 'new' || !code ? false : code));
 	}
 
-	onChangeRoles(contragentCode, roleCode) {
-		console.log('onChangeRoles', contragentCode, roleCode);
+	onSubmitForm(props, code) {
+		const {createContragent, updateContragent} = this.props;
+
+		let data = props.toJS();
+		data.roles = data.roles.reduce((prev, val) => val.selected ? [...prev, val.name] : prev, []);
+
+		if (code === 'new')
+			createContragent(data);
+		else
+			updateContragent(data, code);
 	}
 
-	onSaveSubmit(props, contragetCode) {
-		const {create, update} = this.props;
-
-		let data = {
-			name: props.get('name'),
-			password: props.get('password'),
-			locked: props.get('locked'),
-			roles: props.get('roles').map(i => i.toObject()).toArray()
-		};
-		data.roles = data.roles.filter(e => e.selected === true).map(e => e.name);
-
-		if (contragetCode === 'new') {
-			create(data);
-		} else {
-			update(data, contragetCode);
-		}
+	onDeleteContragent(code) {
+		console.log('onDeleteContragent', code);
 	}
 
-	onCancelSubmit() {
-		console.log('onCancelSubmit');
-	}
-
-	onDeleteSubmit() {
-		console.log('onDeleteSubmit');
+	onCloseFrom() {
+		console.log('onCloseFrom', code);
 	}
 
 	render() {
-		const {editState, isNew, id} = this.props;
+		const {isNew, code, editState} = this.props;
 		const title = isNew ? 'Добавление контрагента' : 'Редактирование контрагента';
-		const contragentData = isNew ? editState.newItem : editState.viewItems[id];
+		const formState = isNew ? editState.newItem : editState.viewItems[code];
 
-		contragentData.roles = options.rolesCode.map(key => {
-			return {
-				name: key,
-				selected: !(contragentData.roles.indexOf(key) < 0),
-				label: options.roles[key].label
-			}
-		});
+		// нормализация для ReduxForm.FieldArray
+		formState.roles = options.rolesCode.map(k => ({
+			name: k,
+			selected: !(formState.roles.indexOf(k) < 0),
+			label: options.roles[k].label
+		}));
 
 		return (
 			<article className="page" {...this.layerOptions}>
@@ -72,34 +67,35 @@ class EditContainer extends DefaultLayerLayout {
 				</div>
 
 				<EditComponent isNew={isNew}
-							   contragentData={contragentData}
-							   initialValues={contragentData}
 							   onChangeRoles={::this.onChangeRoles}
-							   onSaveSubmit={::this.onSaveSubmit}
-							   onCancelSubmit={::this.onCancelSubmit}
-							   onDeleteSubmit={::this.onDeleteSubmit}/>
-
+							   onSubmit={::this.onSubmitForm}
+							   onDelete={::this.onDeleteContragent}
+							   onClose={::this.onCloseFrom}
+							   formState={formState}
+							   initialValues={formState}/>
 			</article>
 		);
 	}
 }
 
 function mapStateToProps(state, ownProps) {
-	const {action, id} = ownProps.match.params;
 	const editState = selectors.getEditSection(state);
-	const isNew = !(action === 'edit' && id);
+	const {action, code} = ownProps.match.params;
+	const isNew = !(action === 'edit' && code);
 
 	return {
-		action, id, editState, isNew
+		isNew,
+		code,
+		editState
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			changeRole: actionEdit.changeRole,
-			create: actionEdit.createContragent.request,
-			update: actionEdit.updateContragent.request
+			checkRoles: actions.changeRole,
+			createContragent: actions.createContragent.request,
+			updateContragent: actions.updateContragent.request
 		}, dispatch)
 	};
 }
