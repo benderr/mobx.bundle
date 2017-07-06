@@ -28,12 +28,6 @@ class DiscountListContainer extends React.Component {
 
 	onAddFormLayer() {
 		console.log('onAddFormLayer');
-
-		const {getListDiscount} = this.props;
-		getListDiscount({
-			column: 'name',
-			orderBy: 'asc'
-		});
 	}
 
 	onOpenDetailLayout(row) {
@@ -43,6 +37,10 @@ class DiscountListContainer extends React.Component {
 	onSortList(column, orderBy) {
 		const {getListDiscount} = this.props;
 		getListDiscount({column, orderBy});
+	}
+
+	onCheckActive(code) {
+		console.log('onCheckActive', code)
 	}
 
 	render() {
@@ -63,9 +61,11 @@ class DiscountListContainer extends React.Component {
 					</div>}
 				</div>}
 
-				{!noItems && !globalLoading && <DiscountListComponent listState={listState}
-																	  onSortList={::this.onSortList}
-																	  onOpenDetailLayout={::this.onOpenDetailLayout}/>}
+				{!noItems && !globalLoading &&
+				<DiscountListComponent listState={listState}
+									   onCheckActive={::this.onCheckActive}
+									   onSortList={::this.onSortList}
+									   onOpenDetailLayout={::this.onOpenDetailLayout}/>}
 
 				{noItems && !globalLoading &&
 				<div className="center_xy page_center_info page_center_info__discount0">

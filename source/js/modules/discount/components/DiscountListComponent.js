@@ -1,11 +1,12 @@
 import React from 'react';
+import {Field} from 'redux-form/immutable';
 
 
 const columnList = [
 	{code: 'code', cssClass: 'discount_id', name: 'Код', sort: true},
 	{code: 'name', cssClass: 'discount_name', name: 'Название', sort: true},
 	{code: 'value', cssClass: 'discount_size', name: 'Размер, %'},
-	// {code: '', cssClass: 'discount_status', name: 'Активна'}
+	// {code: 'activate', cssClass: 'discount_status', name: 'Активность', noClick: true}
 ];
 
 const TableHeader = (props) => {
@@ -40,11 +41,24 @@ const TableBody = (props) => {
 			let valueText = '';
 
 			switch (col.code) {
+				case ('activate'):
+					let checkValue = true;
+					valueText = (
+						<div className="discount_status">
+							<input name="stateIntegration" type="checkbox" id={`check_${col.code}_${i}`}
+								   /*checked={checkValue}*/
+								   onChange={() => props.onCheckActive(row)} />
+							<label htmlFor={`check_${col.code}_${i}`} className="label_check switcher">
+								<i className="icon"/>
+							</label>
+						</div>
+					);
+					break;
 				default: valueText = row[col.code];
 			}
-			return <div className={col.cssClass} key={'col' + col.code}>{valueText}</div>
+			return <div className={col.cssClass} onClick={() => !col.noClick && props.onOpenDetailLayout(row)} key={'col' + col.code}>{valueText}</div>
 		});
-		return <div className="table_row row_link" onClick={() => props.onOpenDetailLayout(row)} key={'row' + row.code}>{jsxCols}</div>
+		return <div className="table_row row_link" key={'row' + row.code}>{jsxCols}</div>
 	});
 	return <div>{jsxRows}</div>;
 };
@@ -53,7 +67,7 @@ class DiscountListComponent extends React.Component {
 	render() {
 		const {
 			listState,
-			onOpenDetailLayout, onSortList
+			onCheckActive, onOpenDetailLayout, onSortList
 		} = this.props;
 
 		return (
@@ -64,6 +78,7 @@ class DiscountListComponent extends React.Component {
 								 onSortList={onSortList} />
 					<TableSearch />
 					<TableBody list={listState.list}
+							   onCheckActive={onCheckActive}
 							   onOpenDetailLayout={onOpenDetailLayout} />
 				</div>
 			</div>
