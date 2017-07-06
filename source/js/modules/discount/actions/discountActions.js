@@ -3,7 +3,7 @@ import {createAction} from 'infrastructure/helpers/actionHelpers'
 
 export const getListDiscount = {
 	request: (props) => createAction(actions.GET_LIST.REQUEST, props),
-	success: (response) => createAction(actions.GET_LIST.SUCCESS, response),
+	success: (response, initialRequest) => createAction(actions.GET_LIST.SUCCESS, {response, initialRequest}),
 	failure: (error) => createAction(actions.GET_LIST.FAILURE, {error})
 };
 

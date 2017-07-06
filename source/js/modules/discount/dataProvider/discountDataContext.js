@@ -10,7 +10,6 @@ import * as mapper from './discountMapper'
  * @param orderBy
  */
 export const getListDiscount = ({token, ...params}) => {
-	console.log(token, params);
 	return api.v1().retailpoint(token).catalog().simpleDiscount()
 		.get(mapper.listDiscount.toServer(params))
 		.then((response) => mapper.listDiscount.toClient(response.data));

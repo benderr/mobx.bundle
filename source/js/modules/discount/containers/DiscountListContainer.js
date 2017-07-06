@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router';
 import toJS from 'components/HOC/toJs';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
+import LoaderBlock from 'common/uiElements/LoaderBlock';
 
 import DiscountListComponent from '../components/DiscountListComponent'
 import * as selector from '../selectors/discountSelectors'
@@ -27,16 +28,28 @@ class DiscountListContainer extends React.Component {
 
 	onAddFormLayer() {
 		console.log('onAddFormLayer');
+
+		const {getListDiscount} = this.props;
+		getListDiscount({
+			column: 'name',
+			orderBy: 'asc',
+			q: 'code=="*sdfsd*"'
+		});
+	}
+
+	componentDidUpdate() {
+		debugger;
 	}
 
 	render() {
 		const {listState} = this.props;
-		const noItems = false;
 
-		console.log('DiscountListContainer', listState);
+		const noItems = listState.noItem;
+		const globalLoading = noItems === '';
 
 		return (
 			<div className="h100per">
+				{!globalLoading &&
 				<div className="title_panel">
 					<h1>Скидки</h1>
 					{!noItems &&
@@ -44,11 +57,11 @@ class DiscountListContainer extends React.Component {
 						<button className="button small icon-plus" onClick={() => this.onAddFormLayer()}>Добавить скидку
 						</button>
 					</div>}
-				</div>
+				</div>}
 
-				{!noItems && <DiscountListComponent />}
+				{!noItems && !globalLoading && <DiscountListComponent />}
 
-				{noItems &&
+				{noItems && !globalLoading &&
 				<div className="center_xy page_center_info page_center_info__discount0">
 					<i className="icon icon_discount"/>
 					<div className="title">Скидки не созданы</div>
@@ -58,6 +71,8 @@ class DiscountListContainer extends React.Component {
 						</button>
 					</div>
 				</div>}
+
+				<LoaderBlock loading={globalLoading} />
 			</div>
 		);
 	}

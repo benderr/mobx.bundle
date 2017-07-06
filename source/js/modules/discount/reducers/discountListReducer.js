@@ -5,6 +5,8 @@ export const initialState = Map({
 	loading: true,
 	errors: null,
 	success: null,
+	iRequest: 0,
+	noItem: '',
 
 	// список
 	list: List([]),
@@ -24,15 +26,24 @@ export const actionHandlers = {
 			errors: null,
 			success: null,
 
+			noItem: state.get('noItem'),
+			iRequest: state.get('iRequest') + 1,
+
 			column: props.column || initialState.get('column'),
 			orderBy: props.orderBy || initialState.get('orderBy')
 		})
 	},
-	[actions.GET_LIST.SUCCESS]: (state, response) => {
+	[actions.GET_LIST.SUCCESS]: (state, {response}) => {
+
+		let noItem = state.get('noItem') === ''
+			? !(state.get('iRequest') === 1 && response.data.length > 0)
+			: state.get('noItem');
+
 		return state.merge({
 			loading: false,
 			errors: null,
 			success: null,
+			noItem: noItem,
 
 			list: List(response.data),
 			pos: response.pos,
