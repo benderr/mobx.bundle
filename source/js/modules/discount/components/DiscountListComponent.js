@@ -1,5 +1,5 @@
 import React from 'react';
-import {Field} from 'redux-form/immutable';
+import LoaderBlock from 'common/uiElements/LoaderBlock';
 
 
 const columnList = [
@@ -31,7 +31,10 @@ const TableHeader = (props) => {
 const TableSearch = (props) => {
 	return (
 		<div className="table_row row_link_search">
-			<input type="search" className="small w100" placeholder="Наименование, код, роль или логин"/>
+			<input type="search"
+				   className="small w100"
+				   onChange={props.onFilterChanged}
+				   placeholder="Введите наименование" />
 		</div>
 	);
 };
@@ -46,7 +49,6 @@ const TableBody = (props) => {
 					valueText = (
 						<div className="discount_status">
 							<input name="stateIntegration" type="checkbox" id={`check_${col.code}_${i}`}
-								   /*checked={checkValue}*/
 								   onChange={() => props.onCheckActive(row)} />
 							<label htmlFor={`check_${col.code}_${i}`} className="label_check switcher">
 								<i className="icon"/>
@@ -67,8 +69,9 @@ class DiscountListComponent extends React.Component {
 	render() {
 		const {
 			listState,
-			onCheckActive, onOpenDetailLayout, onSortList
+			onFilterChanged, onCheckActive, onOpenDetailLayout, onSortList
 		} = this.props;
+		const noList = listState.list.length;
 
 		return (
 			<div className="widget_block">
@@ -76,10 +79,16 @@ class DiscountListComponent extends React.Component {
 					<TableHeader column={listState.column}
 								 orderBy={listState.orderBy}
 								 onSortList={onSortList} />
-					<TableSearch />
-					<TableBody list={listState.list}
+
+					<TableSearch onFilterChanged={onFilterChanged} />
+
+					{!listState.loading && <TableBody list={listState.list}
 							   onCheckActive={onCheckActive}
-							   onOpenDetailLayout={onOpenDetailLayout} />
+							   onOpenDetailLayout={onOpenDetailLayout} />}
+
+					{!noList && <div className='table_row center_xy'>По запросу ничего не найдено</div>}
+
+					<LoaderBlock loading={listState.loading} />
 				</div>
 			</div>
 		);

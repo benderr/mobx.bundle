@@ -20,10 +20,7 @@ class DiscountListContainer extends React.Component {
 
 	componentWillMount() {
 		const {getListDiscount} = this.props;
-		getListDiscount({
-			column: 'name',
-			orderBy: 'asc'
-		});
+		getListDiscount();
 	}
 
 	onAddFormLayer() {
@@ -41,6 +38,22 @@ class DiscountListContainer extends React.Component {
 
 	onCheckActive(code) {
 		console.log('onCheckActive', code)
+	}
+
+	onFilterChanged(e) {
+		let val = e.target.value;
+		const {getListDiscount, listState} = this.props;
+
+		if (val && val.length > 2) {
+			getListDiscount({
+				q: `name=="*${val}*"`
+			});
+		} else if (!val || val.length === 0) {
+			getListDiscount({
+				column: listState.column,
+				orderBy: listState.orderBy
+			});
+		}
 	}
 
 	render() {
@@ -63,6 +76,7 @@ class DiscountListContainer extends React.Component {
 
 				{!noItems && !globalLoading &&
 				<DiscountListComponent listState={listState}
+									   onFilterChanged={::this.onFilterChanged}
 									   onCheckActive={::this.onCheckActive}
 									   onSortList={::this.onSortList}
 									   onOpenDetailLayout={::this.onOpenDetailLayout}/>}

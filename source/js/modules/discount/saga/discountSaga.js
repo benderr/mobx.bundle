@@ -5,13 +5,12 @@ import * as action from '../actions/discountActions';
 import * as enums from '../enums/actions';
 
 
-function* getListSaga(params, initialRequest = false) {
+function* getListSaga(params) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
 		const data = yield call(dataContext.getListDiscount, {...params, token});
 		yield put(action.getListDiscount.success(data));
 	} catch (error) {
-		console.log('error saga', error);
 		yield put(action.getListDiscount.failure({
 			status: error.status,
 			data: error.data
