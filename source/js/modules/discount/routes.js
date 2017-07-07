@@ -9,14 +9,14 @@ export function getRoutes() {
 			exact: true,
 			component: DiscountListContainer
 		},
-		discountAdd: {
-			path: '/discount/:action',
+		discountEdit: {
+			path: '/discount/:action/:code',
 			exact: true,
 			isLayer: true,
 			layout: DiscountEditContainer
 		},
-		discountEdit: {
-			path: '/discount/:action/:code',
+		discountAdd: {
+			path: '/discount/:action',
 			exact: true,
 			isLayer: true,
 			layout: DiscountEditContainer

@@ -51,7 +51,6 @@ export const actionHandlers = {
 		})
 	},
 	[actions.GET_LIST.FAILURE]: (state, {error}) => {
-		console.log(actions.GET_LIST.FAILURE, {error});
 		return state.merge({
 			loading: false,
 			errors: fromJS(error),

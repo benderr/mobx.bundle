@@ -19,12 +19,15 @@ import * as actions from '../actions/discountActions';
 class DiscountListContainer extends React.Component {
 
 	componentWillMount() {
-		const {getListDiscount} = this.props;
-		getListDiscount();
+		const {getListDiscount, listState: {list}} = this.props;
+		if (!list.length) getListDiscount();
 	}
 
 	onAddFormLayer() {
 		console.log('onAddFormLayer');
+
+		const {push} = this.props;
+		push({pathname: '/discount/add'});
 	}
 
 	onOpenDetailLayout(row) {
