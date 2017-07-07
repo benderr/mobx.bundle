@@ -82,9 +82,9 @@ class DiscountListComponent extends React.Component {
 
 					<TableSearch onFilterChanged={onFilterChanged} />
 
-					{!listState.loading && <TableBody list={listState.list}
+					<TableBody list={listState.list}
 							   onCheckActive={onCheckActive}
-							   onOpenDetailLayout={onOpenDetailLayout} />}
+							   onOpenDetailLayout={onOpenDetailLayout} />
 
 					{!noList && <div className='table_row center_xy'>По запросу ничего не найдено</div>}
 

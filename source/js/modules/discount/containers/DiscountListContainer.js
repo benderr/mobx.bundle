@@ -24,14 +24,14 @@ class DiscountListContainer extends React.Component {
 	}
 
 	onAddFormLayer() {
-		console.log('onAddFormLayer');
-
 		const {push} = this.props;
-		push({pathname: '/discount/add'});
+		push({pathname: `/discount/add`});
 	}
 
 	onOpenDetailLayout(row) {
-		console.log('onOpenDetailLayout', row);
+		const {openDiscount, push} = this.props;
+		openDiscount(row);
+		push({pathname: `/discount/edit/${row.code}`});
 	}
 
 	onSortList(column, orderBy) {
@@ -112,7 +112,8 @@ function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			push,
-			getListDiscount: actions.getListDiscount.request
+			getListDiscount: actions.getListDiscount.request,
+			openDiscount: actions.openFromList
 		}, dispatch)
 	};
 }

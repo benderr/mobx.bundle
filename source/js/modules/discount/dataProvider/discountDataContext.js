@@ -9,9 +9,9 @@ import * as mapper from './discountMapper'
  * @param coll
  * @param orderBy
  */
-export const getListDiscount = ({token, ...params}) => {
+export const getListDiscount = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog().simpleDiscount()
-		.get(mapper.listDiscount.toServer(params))
+		.get(mapper.listDiscount.toServer(props))
 		.then((response) => mapper.listDiscount.toClient(response.data));
 };
 
@@ -21,7 +21,7 @@ export const getListDiscount = ({token, ...params}) => {
  * @param token
  * @param props
  */
-export const createDiscount = ({token, props}) => {
+export const createDiscount = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog()
 		.post(mapper.createDiscount(props));
 };
@@ -32,9 +32,9 @@ export const createDiscount = ({token, props}) => {
  * @param token
  * @param props
  */
-export const updateDiscount = ({token, props}) => {
+export const updateDiscount = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog()
-		.put(mapper.addDiscount(props));
+		.put(mapper.createDiscount(props));
 };
 
 /**
