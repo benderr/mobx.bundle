@@ -35,7 +35,6 @@ export const actionHandlers = {
 
 	// При создании новой скидки
 	[actions.CREATE.REQUEST]: (state, {discount}) => {
-		console.log(actions.CREATE.REQUEST, discount);
 		return state.setIn(['newItem'], Map({
 			loading: true,
 			errors: null,
@@ -46,7 +45,6 @@ export const actionHandlers = {
 		}))
 	},
 	[actions.CREATE.SUCCESS]: (state) => {
-		console.log(actions.CREATE.SUCCESS);
 		return state.setIn(['newItem'], Map({
 			loading: false,
 			errors: null,
@@ -57,7 +55,6 @@ export const actionHandlers = {
 		}))
 	},
 	[actions.CREATE.FAILURE]: (state, {error}) => {
-		console.log(actions.CREATE.FAILURE, error);
 		return state.setIn(['newItem'], Map({
 			loading: false,
 			errors: true,
@@ -65,11 +62,36 @@ export const actionHandlers = {
 		}))
 	},
 
-	// Удаление элемента списка
-	[actions.DELETE.REQUEST]: (state, {code}) => {
-		console.log(actions.DELETE.REQUEST, {code});
-		return state;
+	// При обновлении скидки
+	[actions.UPDATE.REQUEST]: (state, {discount}) => {
+		return state.setIn(['listItem', discount.code], Map({
+			loading: true,
+			errors: null,
+			success: null,
+
+			name: discount.name,
+			value: discount.value
+		}))
 	},
+	[actions.UPDATE.SUCCESS]: (state, {discount}) => {
+		return state.setIn(['listItem', discount.code], Map({
+			loading: false,
+			errors: null,
+			success: true,
+
+			name: '',
+			value: ''
+		}))
+	},
+	[actions.UPDATE.FAILURE]: (state, {error, discount}) => {
+		return state.setIn(['listItem', discount.code], Map({
+			loading: false,
+			errors: true,
+			success: null
+		}))
+	},
+
+	// Успешное удаление элемента списка
 	[actions.DELETE.SUCCESS]: (state, {code}) => {
 		return state.setIn(['listItem', code], Map({
 			loading: false,

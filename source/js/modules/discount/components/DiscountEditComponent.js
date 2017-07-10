@@ -35,7 +35,7 @@ class DiscountEditComponent extends React.Component {
 				<div className="page_bottom_panel">
 					<PrimaryButton type="submit" loading={loading}>Сохранить</PrimaryButton>
 					<a className="button middle wide clean" onClick={onCloseForm}>Отмена</a>
-					{!isNew && <button className="button middle wide clean mr44 f_right" onClick={onDeleteForm}>Удалить</button>}
+					{!isNew && <a className="button middle wide clean mr44 f_right" onClick={onDeleteForm}>Удалить</a>}
 				</div>
 			</form>
 		);

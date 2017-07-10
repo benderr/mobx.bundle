@@ -9,6 +9,7 @@ import {bindActionCreators} from 'redux'
 import * as selectors from '../selectors/discountSelectors'
 import * as actions from '../actions/discountActions'
 import DiscountEditComponent from '../components/DiscountEditComponent'
+import {ConfirmPopupService} from 'common/uiElements'
 
 
 @withRouter
@@ -41,10 +42,11 @@ class DiscountEditContainer extends DefaultLayerLayout {
 	}
 
 	onDeleteForm() {
-		console.log('onDeleteForm');
-
 		const {deleteDiscount, formState} = this.props;
-		deleteDiscount(formState.code);
+		this.deletePopup.open()
+			.then(() => {
+				deleteDiscount(formState.code);
+			});
 	}
 
 	render() {
@@ -64,6 +66,11 @@ class DiscountEditContainer extends DefaultLayerLayout {
 									   onDeleteForm={::this.onDeleteForm}
 									   onCloseForm={::this.onCloseForm}
 									   onSubmitForm={::this.onSubmitForm}/>
+				<ConfirmPopupService ref={p => this.deletePopup = p}
+									 title='Удалить скидку'
+									 text='Скидка будет удалена из списков скидок всех точек'
+									 okName="Подтвердить"
+									 cancelName="Отмена"/>
 			</article>
 		);
 	}
@@ -78,9 +85,6 @@ function mapStateToProps(state, ownProps) {
 		console.log('Загрузить элемент по коду', code);
 	}
 	const formState = (!isNew && editState.listItem[code]) ? editState.listItem[code] : editState.newItem;
-
-	// console.log('editState', editState);
-	// console.log('formState', formState);
 
 	return {isNew, action, code, editState, formState};
 }

@@ -49,6 +49,8 @@ class DiscountListContainer extends React.Component {
 
 		if (val && val.length > 2) {
 			getListDiscount({
+				column: listState.column,
+				orderBy: listState.orderBy,
 				q: `name=="*${val}*"`
 			});
 		} else if (!val || val.length === 0) {

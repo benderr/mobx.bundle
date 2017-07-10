@@ -58,9 +58,9 @@ const TableBody = (props) => {
 					break;
 				default: valueText = row[col.code];
 			}
-			return <div className={col.cssClass} onClick={() => !col.noClick && props.onOpenDetailLayout(row)} key={'col' + col.code}>{valueText}</div>
+			return <div className={col.cssClass} key={'col' + col.code}>{valueText}</div>
 		});
-		return <div className="table_row row_link" key={'row' + row.code}>{jsxCols}</div>
+		return <div className="table_row row_link" onClick={() => props.onOpenDetailLayout(row)} key={'row' + row.code}>{jsxCols}</div>
 	});
 	return <div>{jsxRows}</div>;
 };

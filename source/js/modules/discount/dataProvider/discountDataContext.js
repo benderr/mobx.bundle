@@ -34,7 +34,7 @@ export const createDiscount = ({token, ...props}) => {
  */
 export const updateDiscount = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog()
-		.put(mapper.createDiscount(props));
+		.put(mapper.updateDiscount(props));
 };
 
 /**

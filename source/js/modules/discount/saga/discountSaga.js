@@ -30,6 +30,7 @@ function* createDiscountSaga({discount}) {
 		yield put(notify.success('Данные успешно сохранены'));
 		yield put(action.getListDiscount.request());
 	} catch (error) {
+		yield put(notify.error('При удалении скидки произошла ошибка'));
 		yield put(action.createDiscount.failure({
 			status: error.status,
 			data: error.data
@@ -37,13 +38,22 @@ function* createDiscountSaga({discount}) {
 	}
 }
 
-// function* updateSaga() {
-// 	try {
-//
-// 	} catch (error) {
-//
-// 	}
-// }
+function* updateDiscountSaga({discount}) {
+	try {
+		const token = yield select(getCurrentRetailPointId);
+		yield call(dataContext.updateDiscount, {...discount, token});
+		yield put(action.updateDiscount.success(discount));
+
+		yield put(notify.success('Данные успешно сохранены'));
+		yield put(action.getListDiscount.request());
+	} catch (error) {
+		yield put(notify.error('При удалении скидки произошла ошибка'));
+		yield put(action.createDiscount.failure({
+			status: error.status,
+			data: error.data
+		}, discount));
+	}
+}
 
 function* deleteDiscountSaga({code}) {
 	try {
@@ -67,6 +77,7 @@ export default function*() {
 	yield [
 		takeEvery(enums.GET_LIST.REQUEST, getListSaga),
 		takeEvery(enums.CREATE.REQUEST, createDiscountSaga),
+		takeEvery(enums.UPDATE.REQUEST, updateDiscountSaga),
 		takeEvery(enums.DELETE.REQUEST, deleteDiscountSaga)
 	]
 }

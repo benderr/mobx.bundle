@@ -19,9 +19,9 @@ export const createDiscount = {
 };
 
 export const updateDiscount = {
-	request: (props) => createAction(actions.UPDATE.REQUEST, {props}),
-	success: () => createAction(actions.UPDATE.SUCCESS),
-	failure: (error) => createAction(actions.UPDATE.FAILURE, {error})
+	request: (discount) => createAction(actions.UPDATE.REQUEST, {discount}),
+	success: (discount) => createAction(actions.UPDATE.SUCCESS, {discount}),
+	failure: (error, discount) => createAction(actions.UPDATE.FAILURE, {error, discount})
 };
 
 export const deleteDiscount = {

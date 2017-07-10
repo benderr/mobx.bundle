@@ -27,6 +27,15 @@ export const createDiscount = (props) => ({
 	code: generateNumber().toString(),
 	name: props.name,
 	type: props.type || 'BUTTON',
-	value: parseInt(props.value),
+	value: props.value,
+	valueType: props.valueType || 'PERCENT'
+});
+
+export const updateDiscount = (props) => ({
+	catalogType: 'SIMPLE_DISCOUNT',
+	code: props.code,
+	name: props.name,
+	type: props.type || 'BUTTON',
+	value: props.value,
 	valueType: props.valueType || 'PERCENT'
 });
