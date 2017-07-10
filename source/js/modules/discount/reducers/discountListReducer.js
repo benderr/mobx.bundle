@@ -5,18 +5,17 @@ export const initialState = Map({
 	loading: true,
 	errors: null,
 	success: null,
-	iRequest: 0,
-	noItem: '',
-
-	listStep: 20,
+	iRequest: 0,		// счетчик кол-во раз рагрузили список
+	noItem: null,		// изначально неизвестно есть ли элементы
+	listStep: 20,		// кол-во элементов зв звпрос (постраничная загрузка)
 
 	// список
 	list: List([]),
-	pos: 0,
-	total_count: 0,
+	pos: 0,				// сдвиг элементов на странице
+	total_count: 0,		// всего элементов в БД
 
 	// сортировка
-	column: 'name',
+	column: 'name',		// значение сортировки по умолчанию
 	orderBy: 'asc',
 
 	// параметры фильтра
@@ -24,7 +23,7 @@ export const initialState = Map({
 });
 
 export const actionHandlers = {
-	// ...при изменении размера списка
+	// ...при изменении размера списка (сбрасываем начальное состояние кол-во запросов)
 	[actions.CREATE.SUCCESS]: (state) => {
 		return !state.get('list').size ? state.merge({iRequest: 0, noItem: ''}) : state;
 	},
@@ -50,9 +49,10 @@ export const actionHandlers = {
 		})
 	},
 	[actions.GET_LIST.SUCCESS]: (state, {response}) => {
-		console.log(actions.GET_LIST.SUCCESS, response);
 
-		let noItem = state.get('noItem') === ''
+		// если при первой загрузке (без фильтров) пришел результат - значит в БД есть скидки
+		// иначе показываем страницу что скидок нет
+		let noItem = state.get('noItem') === null
 			? !(state.get('iRequest') === 1 && response.data.length > 0)
 			: state.get('noItem');
 
@@ -65,7 +65,7 @@ export const actionHandlers = {
 			success: null,
 			noItem: noItem,
 
-			list: arList, // List(response.data),
+			list: arList,
 			pos: response.pos,
 			total_count: response.total_count
 		})

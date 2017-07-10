@@ -78,7 +78,7 @@ class DiscountListContainer extends React.Component {
 		const {listState} = this.props;
 
 		const noItems = listState.noItem;
-		const globalLoading = noItems === '';
+		const globalLoading = noItems === null;
 
 		return (
 			<div className="h100per">
@@ -117,7 +117,7 @@ class DiscountListContainer extends React.Component {
 	}
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
 	const listState = selector.getListState(state);
 	return {
 		listState

@@ -1,5 +1,5 @@
 import React from 'react';
-import LoaderBlock from 'common/uiElements/LoaderBlock';
+import PropTypes from 'prop-types';
 import InfinateScroll from 'common/uiElements/InfinateScroll';
 
 
@@ -96,5 +96,13 @@ class DiscountListComponent extends React.Component {
 	}
 }
 
+DiscountListComponent.propTypes = {
+	listState: PropTypes.object.isRequired,
+	onOpenDetailLayout: PropTypes.func.isRequired,
+	onSortList: PropTypes.func.isRequired,
+	onFilterChanged: PropTypes.func.isRequired,
+	onInfinateScroll: PropTypes.func.isRequired,
+	onCheckActive: PropTypes.func,
+};
 
 export default DiscountListComponent;

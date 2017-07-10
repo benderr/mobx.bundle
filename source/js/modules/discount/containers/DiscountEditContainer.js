@@ -36,8 +36,9 @@ class DiscountEditContainer extends DefaultLayerLayout {
 		closeLayer(isNew, formState);
 	}
 
-	onSubmitForm(isNew, props) {
-		const {createDiscount, updateDiscount} = this.props;
+	onSubmitForm(props) {
+		const {isNew, createDiscount, updateDiscount} = this.props;
+		props = props.toJS();
 		if (isNew)
 			createDiscount(props);
 		else

@@ -1,4 +1,4 @@
-import {Map, List, fromJS} from 'immutable';
+import {Map} from 'immutable';
 import * as actions from '../enums/actions';
 
 export const initialState = Map({
@@ -58,7 +58,7 @@ export const actionHandlers = {
 			value: ''
 		}))
 	},
-	[actions.CREATE.FAILURE]: (state, {error}) => {
+	[actions.CREATE.FAILURE]: (state) => {
 		return state.setIn(['newItem'], Map({
 			loading: false,
 			errors: true,
@@ -87,7 +87,7 @@ export const actionHandlers = {
 			value: ''
 		}))
 	},
-	[actions.UPDATE.FAILURE]: (state, {error, discount}) => {
+	[actions.UPDATE.FAILURE]: (state, {discount}) => {
 		return state.setIn(['listItem', discount.code], Map({
 			loading: false,
 			errors: true,
