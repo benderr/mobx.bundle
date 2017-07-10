@@ -90,7 +90,6 @@ class DiscountListComponent extends React.Component {
 					{!noList && <div className='table_row center_xy'>По запросу ничего не найдено</div>}
 
 					<InfinateScroll loadNext={onInfinateScroll} totalCount={listState.list.length} listLength={listState.listStep} loading={listState.loading}/>
-					<LoaderBlock loading={listState.loading} />
 				</div>
 			</div>
 		);
