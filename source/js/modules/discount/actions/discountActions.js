@@ -29,3 +29,9 @@ export const deleteDiscount = {
 	success: (code) => createAction(actions.DELETE.SUCCESS, {code}),
 	failure: (error) => createAction(actions.DELETE.FAILURE, {error})
 };
+
+export const loadDetailDiscount = {
+	request: (code) => createAction(actions.LOAD_DETAIL.REQUEST, {code}),
+	success: (code) => createAction(actions.LOAD_DETAIL.SUCCESS, {code}),
+	failure: (error) => createAction(actions.LOAD_DETAIL.FAILURE, {error})
+};

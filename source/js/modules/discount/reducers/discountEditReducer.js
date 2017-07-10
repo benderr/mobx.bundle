@@ -17,6 +17,10 @@ export const actionHandlers = {
 	// При открытие детального просмотра из списка
 	[actions.OPEN_FROM_LIST]: (state, {discount}) => {
 		return state.setIn(['listItem', discount.code], Map({
+			loading: false,
+			success: null,
+			errors: true,
+
 			code: discount.code,
 			name: discount.name,
 			value: discount.value
@@ -100,6 +104,15 @@ export const actionHandlers = {
 
 			name: '',
 			value: ''
+		}))
+	},
+
+	// дополнительная завгрузка элемента - детальный просмотр
+	[actions.LOAD_DETAIL.REQUEST]: (state, {code}) => {
+		return state.setIn(['listItem', code], Map({
+			loading: true,
+			success: null,
+			errors: null
 		}))
 	}
 };

@@ -43,7 +43,8 @@ class DiscountEditComponent extends React.Component {
 }
 
 DiscountEditComponent = reduxForm({
-	form: 'editDiscount'
+	form: 'editDiscount',
+	enableReinitialize: true
 })(DiscountEditComponent);
 
 

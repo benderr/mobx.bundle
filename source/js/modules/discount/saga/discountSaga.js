@@ -71,12 +71,26 @@ function* deleteDiscountSaga({code}) {
 	}
 }
 
+function* loadDetailDiscountSaga({code}) {
+	try {
+		const token = yield select(getCurrentRetailPointId);
+		const data = yield call(dataContext.getListDiscount, {q: `code=="*${code}*"`, token});
+
+		if (data.data.length && data.data[0]) {
+			yield put(action.openFromList(data.data[0]));
+		} else throw new Error();
+	} catch (error) {
+		yield put(notify.error('При загрузке скидки произошла ошибка'));
+	}
+}
+
 
 export default function*() {
 	yield [
 		takeEvery(enums.GET_LIST.REQUEST, getListSaga),
 		takeEvery(enums.CREATE.REQUEST, createDiscountSaga),
 		takeEvery(enums.UPDATE.REQUEST, updateDiscountSaga),
-		takeEvery(enums.DELETE.REQUEST, deleteDiscountSaga)
+		takeEvery(enums.DELETE.REQUEST, deleteDiscountSaga),
+		takeEvery(enums.LOAD_DETAIL.REQUEST, loadDetailDiscountSaga)
 	]
 }

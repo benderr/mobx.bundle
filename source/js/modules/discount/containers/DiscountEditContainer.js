@@ -18,6 +18,13 @@ import {ConfirmPopupService} from 'common/uiElements'
 @toJS
 class DiscountEditContainer extends DefaultLayerLayout {
 
+	componentWillMount() {
+		const {isLoading, loadDetailDiscount, code} = this.props;
+		if (isLoading) {
+			loadDetailDiscount(code);
+		}
+	}
+
 	componentWillUpdate() {
 		const {formState} = this.props;
 		if (formState.success)
@@ -79,14 +86,16 @@ class DiscountEditContainer extends DefaultLayerLayout {
 function mapStateToProps(state, ownProps) {
 	const {action, code} = ownProps.match.params;
 	const editState = selectors.getEditState(state).toJS();
+	let isLoading = false;
 
 	const isNew = !(action === 'edit' && code);
 	if (!isNew && !editState.listItem[code]) {
-		console.log('Загрузить элемент по коду', code);
+		editState.listItem[code] = editState.newItem;
+		isLoading = true;
 	}
 	const formState = (!isNew && editState.listItem[code]) ? editState.listItem[code] : editState.newItem;
 
-	return {isNew, action, code, editState, formState};
+	return {isNew, isLoading, action, code, editState, formState};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -95,6 +104,7 @@ function mapDispatchToProps(dispatch) {
 			createDiscount: actions.createDiscount.request,
 			updateDiscount: actions.updateDiscount.request,
 			deleteDiscount: actions.deleteDiscount.request,
+			loadDetailDiscount: actions.loadDetailDiscount.request,
 			closeLayer: actions.closeLayer
 		}, dispatch)
 	};
