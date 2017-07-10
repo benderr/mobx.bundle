@@ -4,7 +4,6 @@ import InfinateScroll from 'common/uiElements/InfinateScroll';
 
 
 const columnList = [
-	{code: 'number', cssClass: 'discount_id', name: '№'},
 	{code: 'code', cssClass: 'discount_id', name: 'Код', sort: true},
 	{code: 'name', cssClass: 'discount_name', name: 'Название', sort: true},
 	{code: 'value', cssClass: 'discount_size', name: 'Размер, %'},
@@ -46,9 +45,6 @@ const TableBody = (props) => {
 			let valueText = '';
 
 			switch (col.code) {
-				case ('number'):
-					valueText = i + 1;
-					break;
 				case ('activate'):
 					let checkValue = true;
 					valueText = (

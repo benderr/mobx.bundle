@@ -7,7 +7,6 @@ import * as action from '../actions/discountActions';
 import * as enums from '../enums/actions';
 
 
-
 function* getListSaga(params) {
 	try {
 		const token = yield select(getCurrentRetailPointId);

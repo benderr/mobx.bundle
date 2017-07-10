@@ -13,7 +13,6 @@ export const listDiscount = {
 	},
 	toClient: (response) => ({
 		data: response.data.map(item => ({
-			number: 0,
 			type: item.type,	// тип откуда была добавлена скидка (потом будут варианты)
 			code: item.code,
 			name: item.name,
