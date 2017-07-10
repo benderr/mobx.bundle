@@ -8,6 +8,8 @@ export const initialState = Map({
 	iRequest: 0,
 	noItem: '',
 
+	listStep: 20,
+
 	// список
 	list: List([]),
 	pos: 0,
@@ -42,15 +44,20 @@ export const actionHandlers = {
 
 			column: props.column || initialState.get('column'),
 			orderBy: props.orderBy || initialState.get('orderBy'),
+			pos: props.pos || initialState.get('pos'),
 
 			q: props.q || initialState.get('q')
 		})
 	},
 	[actions.GET_LIST.SUCCESS]: (state, {response}) => {
+		console.log(actions.GET_LIST.SUCCESS, response);
 
 		let noItem = state.get('noItem') === ''
 			? !(state.get('iRequest') === 1 && response.data.length > 0)
 			: state.get('noItem');
+
+		// бесконечный скроллинг
+		let arList = response.pos ? state.get('list').concat(fromJS(response.data)) : List(response.data);
 
 		return state.merge({
 			loading: false,
@@ -58,7 +65,7 @@ export const actionHandlers = {
 			success: null,
 			noItem: noItem,
 
-			list: List(response.data),
+			list: arList, // List(response.data),
 			pos: response.pos,
 			total_count: response.total_count
 		})

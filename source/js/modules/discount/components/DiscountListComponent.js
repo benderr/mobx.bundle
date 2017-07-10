@@ -1,8 +1,10 @@
 import React from 'react';
 import LoaderBlock from 'common/uiElements/LoaderBlock';
+import InfinateScroll from 'common/uiElements/InfinateScroll';
 
 
 const columnList = [
+	{code: 'number', cssClass: 'discount_id', name: '№'},
 	{code: 'code', cssClass: 'discount_id', name: 'Код', sort: true},
 	{code: 'name', cssClass: 'discount_name', name: 'Название', sort: true},
 	{code: 'value', cssClass: 'discount_size', name: 'Размер, %'},
@@ -44,6 +46,9 @@ const TableBody = (props) => {
 			let valueText = '';
 
 			switch (col.code) {
+				case ('number'):
+					valueText = i + 1;
+					break;
 				case ('activate'):
 					let checkValue = true;
 					valueText = (
@@ -69,7 +74,7 @@ class DiscountListComponent extends React.Component {
 	render() {
 		const {
 			listState,
-			onFilterChanged, onCheckActive, onOpenDetailLayout, onSortList
+			onFilterChanged, onInfinateScroll, onCheckActive, onOpenDetailLayout, onSortList
 		} = this.props;
 		const noList = listState.list.length;
 
@@ -88,6 +93,7 @@ class DiscountListComponent extends React.Component {
 
 					{!noList && <div className='table_row center_xy'>По запросу ничего не найдено</div>}
 
+					<InfinateScroll loadNext={onInfinateScroll} totalCount={listState.list.length} listLength={listState.listStep} loading={listState.loading}/>
 					<LoaderBlock loading={listState.loading} />
 				</div>
 			</div>

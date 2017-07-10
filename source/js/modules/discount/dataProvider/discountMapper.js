@@ -7,11 +7,13 @@ export const listDiscount = {
 		if (params.q) options.q = params.q;
 		if (params.column) options.sortField = params.column;
 		if (params.orderBy) options.sortDirection = params.orderBy;
+		if (params.pos) options.start = params.pos;
 
 		return options;
 	},
 	toClient: (response) => ({
 		data: response.data.map(item => ({
+			number: 0,
 			type: item.type,	// тип откуда была добавлена скидка (потом будут варианты)
 			code: item.code,
 			name: item.name,

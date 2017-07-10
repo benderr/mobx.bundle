@@ -61,6 +61,19 @@ class DiscountListContainer extends React.Component {
 		}
 	}
 
+	onInfinateScroll() {
+		const {getListDiscount, listState} = this.props;
+
+		if ((listState.pos + listState.listStep) < listState.total_count) {
+			getListDiscount({
+				column: listState.column,
+				orderBy: listState.orderBy,
+				pos: listState.pos + listState.listStep,
+				q: listState.q
+			});
+		}
+	}
+
 	render() {
 		const {listState} = this.props;
 
@@ -84,6 +97,7 @@ class DiscountListContainer extends React.Component {
 									   onFilterChanged={::this.onFilterChanged}
 									   onCheckActive={::this.onCheckActive}
 									   onSortList={::this.onSortList}
+									   onInfinateScroll={::this.onInfinateScroll}
 									   onOpenDetailLayout={::this.onOpenDetailLayout}/>}
 
 				{noItems && !globalLoading &&
