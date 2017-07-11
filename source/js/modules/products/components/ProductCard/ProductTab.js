@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {isRequired} from 'common/validators';
+import {isEmpty} from 'common/validators';
 import {InputField, AmountField, SelectField} from 'common/formElements/fields';
 import {
 	measureOptions,
@@ -8,6 +8,13 @@ import {
 	vatTagOptions
 } from '../../enums/productOptions';
 
+const minPriceValidate = (error) => (price, allValues) => {
+	const minPrice = allValues.get('minPrice');
+	if (!isEmpty(minPrice) && !isEmpty(price)) {
+		return minPrice > price ? error : undefined;
+	}
+	return undefined;
+};
 
 class ProductTab extends React.Component {
 	render() {
@@ -48,7 +55,8 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<AmountField name="price"
 									 class="w100"
-									 required="Укажите цену"/>
+									 validate={[minPriceValidate('Цена не должна быть меньше минимальной')]}
+						/>
 					</div>
 				</div>
 
@@ -56,8 +64,7 @@ class ProductTab extends React.Component {
 					<div class="property_label col three">Мин. цена</div>
 					<div class="property_value col six">
 						<AmountField name="minPrice"
-									 class="w100"
-									 required="Укажите мин. цену"/>
+									 class="w100"/>
 					</div>
 				</div>
 

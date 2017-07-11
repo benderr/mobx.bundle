@@ -80,3 +80,7 @@ export const toClientImportResult = data => {
 		))
 	}
 };
+
+export const toClientModifierGroup = group => {
+	return group;
+};

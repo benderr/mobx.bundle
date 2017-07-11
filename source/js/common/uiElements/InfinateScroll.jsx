@@ -10,12 +10,13 @@ class InfinateScroll extends React.Component {
         const {loading, loadNext, totalCount} = this.props;
         const listLength = this.props.listLength || 50;
         let className = 'table_row';
+        let loadingStyles = null;
         if (loading) {
             className += ' loading_block';
+            loadingStyles = {minHeight: '50px'};
         }
-        return (<div class={className}>
+        return (<div class={className} style={loadingStyles}>
             {totalCount >= listLength && <Waypoint
-                scrollableAncestor={window}
                 onEnter={loadNext}/>}
         </div>)
     }

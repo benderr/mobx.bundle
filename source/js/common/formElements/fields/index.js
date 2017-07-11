@@ -1,10 +1,11 @@
-import PhoneField from './PhoneField';
-import AmountField from './AmountField';
-import NumberField from './NumberField';
-import SelectField from './SelectField';
-import InputField from './InputField';
-import normalizeKpp from './normalizeKpp';
-import normalizeInn from './normalizeInn';
+import PhoneField from './PhoneField'
+import AmountField from './AmountField'
+import NumberField from './NumberField'
+import SelectField from './SelectField'
+import InputField from './InputField'
+import SwitchField from './SwitchField'
+import normalizeKpp from './normalizeKpp'
+import normalizeInn from './normalizeInn'
 
 export {
 	PhoneField,
@@ -12,6 +13,7 @@ export {
 	NumberField,
 	SelectField,
 	InputField,
+	SwitchField,
 
 	normalizeKpp,
 	normalizeInn

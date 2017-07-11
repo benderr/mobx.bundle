@@ -1,7 +1,7 @@
 import {createStore, compose} from 'redux';
-import { createBrowserHistory } from 'history' //todo добавить в package?
-import { connectRouter } from 'connected-react-router/immutable'
-import { combineReducers } from 'redux-immutable';
+import {createBrowserHistory} from 'history' //todo добавить в package?
+import {connectRouter} from 'connected-react-router/immutable'
+import {combineReducers} from 'redux-immutable';
 
 export default function ({middleware, reducers, initionalState, sagaMiddleware, sagas, history}) {
 
@@ -17,7 +17,17 @@ export default function ({middleware, reducers, initionalState, sagaMiddleware, 
 	// 	createHistory = require('history/lib/createMemoryHistory');
 	// }
 
-	const allReducers = combineReducers({...reducers});
+	const appReducers = combineReducers({...reducers});
+
+	//https://stackoverflow.com/questions/35622588/how-to-reset-the-state-of-a-redux-store/35641992#35641992
+	//очистка всего стора приложения, например при разлогивании
+	const allReducers = (state, action) => {
+		if (action.type === 'CLEAR_APP') {
+			state = undefined
+		}
+		return appReducers(state, action)
+	};
+
 
 	//finalCreateStore = reduxReactRouter({routes, createHistory})(finalCreateStore);
 	//finalCreateStore = compose(middleware)(finalCreateStore);

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Select} from 'common/uiElements';
-import {AmountField, InputField, PhoneField, NumberField, SelectField} from 'common/formElements/fields';
+import {AmountField, InputField, PhoneField, NumberField, SelectField, SwitchField} from 'common/formElements/fields';
 import {reduxForm} from 'common/formElements'
 import {connect} from 'react-redux';
 import {Field, focus, change, getFormValues} from 'redux-form/immutable';
@@ -8,23 +8,53 @@ import {isRequired} from 'common/validators'
 import modifierForm from 'modules/products/components/ProductCard/ModifierForm'
 import {withRouter} from 'react-router';
 import {ConfirmPopupService} from 'common/uiElements';
+import {notify} from 'common/uiElements/Notify';
 
-const testForm = ({handleSubmit}) => {
-	return (<form onSubmit={handleSubmit(() => {
-	})}>
 
-		<InputField name="name" validate={[isRequired('Тест')]}/>
-		<PhoneField name="phone" validate={[isRequired('Тест')]}/>
-		<AmountField name="price" type="text"
-					 validate={[isRequired('Укажите цену')]}/>
-		<NumberField name="number" validate={[isRequired('Тест')]}/>
-		<SelectField name="select" options={[{label: '1', value: '1'}, {label: '2', value: '2'}]}
-					 validate={[isRequired('Укажите')]}
-		/>
+class testForm extends React.Component {
+	handleSearch() {
+		this.setState({
+			groups: [{
+				label: new Date().getTime(),
+				value: '1'
+			},
+				{
+					label: new Date().getTime(),
+					value: '2'
+				}]
+		})
+	}
 
-		<button type="submit" className="button middle wide">отправить</button>
-	</form>)
-};
+	render() {
+		const {handleSubmit}=this.props;
+		const {groups} = this.state || {};
+		return (<form onSubmit={handleSubmit(() => {
+		})}>
+
+			<InputField name="name" validate={[isRequired('Тест')]}/>
+			<PhoneField name="phone" validate={[isRequired('Тест')]}/>
+			<AmountField name="price" type="text"
+						 validate={[isRequired('Укажите цену')]}/>
+			<NumberField name="number" validate={[isRequired('Тест')]}/>
+			<SelectField name="select" options={groups}
+						 searchable={true}
+						 validate={[isRequired('Укажите')]}
+						 onInputChange={::this.handleSearch}
+			/>
+
+			<SwitchField
+				name="requiredField" switchItems={[
+				{id: 'groupTypeRequired', label: 'Обязательный', value: "on"},
+				{id: 'groupTypeNonRequired', label: 'Не обязательный', value: "off"}
+			]}
+
+
+			/>
+
+			<button type="submit" className="button middle wide">отправить</button>
+		</form>)
+	}
+}
 
 const onSubmitFail = formName => (errors, dispatch) => {
 	if (errors) {
@@ -48,7 +78,7 @@ const TestForm = reduxForm({
 })(testForm);
 
 @withRouter
-@connect(mapStateProps)
+@connect(mapStateProps, mapDispatchToProps)
 class TestSelector extends React.Component {
 	constructor(props) {
 		super(props);
@@ -61,7 +91,25 @@ class TestSelector extends React.Component {
 	}
 
 	onCancel() {
+		this.setState({
+			id: 1
+		})
+	}
 
+	onSendNotify() {
+		this.props.dispatch(notify.success('Now you can see how easy it is to use notifications in React!'));
+	}
+
+	onSendNotify2() {
+		this.props.dispatch(notify.error('Now you can see how easy it is to use notifications in React!', 'Error'));
+	}
+
+	onSendNotify3() {
+		this.props.dispatch(notify.warning('Now you can see how easy it is to use notifications in React!', 'Warn'));
+	}
+
+	onSendNotify4() {
+		this.props.dispatch(notify.info('Now you can see how easy it is to use notifications in React!', 'Info'));
 	}
 
 	onRemove(elem) {
@@ -88,6 +136,9 @@ class TestSelector extends React.Component {
 			{value: 'two', label: 'Two'}
 		];
 
+		console.log('RENDER')
+
+
 		//let modifier = null;
 		//const ModifierForm = this.modifierForm;
 		const amount = this.props.formData ? this.props.formData.get('price') : 'null';
@@ -109,8 +160,15 @@ class TestSelector extends React.Component {
 
 				<br/>
 
-				<button className="button" onClick={() => this.onRemove({id: 1})}>Удалить что-то 1</button>
-				<button className="button" onClick={() => this.onRemove({id: 2})}>Удалить что-то 2</button>
+				<button className="button small" onClick={() => this.onRemove({id: 1})}>Удалить что-то 1</button>
+				<button className="button small" onClick={() => this.onRemove({id: 2})}>Удалить что-то 2</button>
+				<br/>
+				<br/>
+
+				<button className="button small" onClick={::this.onSendNotify}>Нотифай</button>
+				<button className="button small" onClick={::this.onSendNotify2}>Нотифай2</button>
+				<button className="button small" onClick={::this.onSendNotify3}>Нотифай3</button>
+				<button className="button small" onClick={::this.onSendNotify4}>Нотифай4</button>
 
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}
@@ -127,6 +185,10 @@ class TestSelector extends React.Component {
 function mapStateProps(state) {
 	const formData = getFormValues('testForm')(state);
 	return {formData};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {dispatch};
 }
 
 export default TestSelector

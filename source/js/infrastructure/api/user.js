@@ -22,4 +22,12 @@ export default (api) => {
 	 * Изменение пароля
 	 */
 	user.addResource('password');
+
+	/**
+	 * Интеграция МойСклад
+	 */
+	let moysklad = user.addResource('moysklad');
+	moysklad.addResource('state');
+	moysklad.addResource('enable');
+	moysklad.addResource('disable');
 };

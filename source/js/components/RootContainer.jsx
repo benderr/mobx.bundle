@@ -35,7 +35,7 @@ export default class RootContainer extends React.Component {
         let devTools = false;
         if (__DEV_TOOLS__ && !window.devToolsExtension) {
             const DevTools = require('../dev/DevTools.jsx').default;
-            devTools = (<DevTools></DevTools>)
+            devTools = (<DevTools />)
         }
 
         return devTools;

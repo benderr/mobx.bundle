@@ -3,7 +3,7 @@ import modifierShape from './modifierShape'
 const {shape, string, arrayOf, bool} = PropTypes;
 
 export default shape({
-	name: string.isRequired,
+	name: string,
 	required: bool,
 	modifiers: arrayOf(modifierShape)
 })

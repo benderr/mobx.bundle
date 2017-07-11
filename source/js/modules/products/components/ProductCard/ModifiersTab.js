@@ -3,8 +3,24 @@ import PropTypes from 'prop-types';
 import groupShape from './groupShape';
 
 class ModificationForm extends React.Component {
+
+	handleOpenModifier(e, {groupId, modifierId}) {
+		this.props.onOpenModifier({groupId, modifierId});
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
+	handleRemoveModifier(e, {groupId, modifierId}) {
+		this.props.onRemoveModifier({groupId, modifierId});
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
 	render() {
-		let {className, modifiers = [], onAddGroup, onOpenGroup, onOpenModifier, onAddModifier}=this.props;
+		let {
+			className, modifiers = [], onAddGroup, onOpenGroup, onAddModifier,
+			onToggleModifier,
+		}=this.props;
 
 		return (
 			<div className={className || ''}>
@@ -21,8 +37,21 @@ class ModificationForm extends React.Component {
 							{group.modifiers.map(m => (
 								<div key={m.id}
 									 className={m.selected ? 'selected' : ''}
-									 onClick={() => onOpenModifier({modifierId: m.id, groupId: group.id})}>
-									{m.name}</div>
+									 onClick={() => onToggleModifier({modifierId: m.id, groupId: group.id})}>
+									{m.name}
+									<div class="controls">
+										<a class="icon-pencil"
+										   onClick={e => this.handleOpenModifier(e, {
+											   modifierId: m.id,
+											   groupId: group.id
+										   })}></a>
+										<a class="icon-trash-bin"
+										   onClick={e => this.handleRemoveModifier(e, {
+											   modifierId: m.id,
+											   groupId: group.id
+										   })}></a>
+									</div>
+								</div>
 							))}
 							<div className="add_new_modificator"
 								 onClick={() => onAddModifier({groupId: group.id})}>+
@@ -40,7 +69,9 @@ ModificationForm.propTypes = {
 	onAddGroup: PropTypes.func.isRequired,
 	onOpenGroup: PropTypes.func.isRequired,
 	onAddModifier: PropTypes.func.isRequired,
-	onOpenModifier: PropTypes.func.isRequired
+	onOpenModifier: PropTypes.func.isRequired,
+	onRemoveModifier: PropTypes.func.isRequired,
+	onToggleModifier: PropTypes.func.isRequired
 };
 
 export default ModificationForm;

@@ -16,7 +16,7 @@ export const getProducts = {
 		filter,
 		sort
 	}),
-	success: (response) => createAction(actions.GET_PRODUCTS.SUCCESS, {response}),
+	success: (response, initialRequest) => createAction(actions.GET_PRODUCTS.SUCCESS, {response, initialRequest}),
 	failure: (error) => createAction(actions.GET_PRODUCTS.FAILURE, {error})
 };
 
@@ -37,6 +37,15 @@ export const saveProductDetails = {
 	}),
 	success: ({product}) => createAction(actions.SAVE_PRODUCT_DETAIL.SUCCESS, {product}),
 	failure: ({inventCode, error}) => createAction(actions.SAVE_PRODUCT_DETAIL.FAILURE, {inventCode, error})
+};
+
+export const removeProduct = {
+	request: ({point, inventCode}) => createAction(actions.REMOVE_PRODUCT.REQUEST, {
+		point,
+		inventCode
+	}),
+	success: ({point, inventCode}) => createAction(actions.REMOVE_PRODUCT.SUCCESS, {point, inventCode}),
+	failure: ({inventCode, point, error}) => createAction(actions.REMOVE_PRODUCT.FAILURE, {inventCode, point, error})
 };
 
 export const addProductToList = ({product}) => createAction(actions.ADD_PRODUCT_TO_LIST, {product});
@@ -64,10 +73,22 @@ export const removeModifier = ({inventCode, groupId, modifierId}) => createActio
 	modifierId
 });
 
+export const toggleModifier = ({inventCode, groupId, modifierId}) => createAction(actions.TOGGLE_MODIFIER, {
+	inventCode,
+	groupId,
+	modifierId
+});
+
 export const searchProducts = {
 	request: ({formKey, query}) => createAction(actions.SEARCH_PRODUCTS.REQUEST, {formKey, query}),
 	success: ({formKey, products}) => createAction(actions.SEARCH_PRODUCTS.SUCCESS, {formKey, products}),
 	failure: ({formKey, error}) => createAction(actions.SEARCH_PRODUCTS.FAILURE, {formKey, error})
+};
+
+export const searchGroups = {
+	request: ({formKey, query}) => createAction(actions.SEARCH_GROUPS.REQUEST, {formKey, query}),
+	success: ({formKey, groups}) => createAction(actions.SEARCH_GROUPS.SUCCESS, {formKey, groups}),
+	failure: ({formKey, error}) => createAction(actions.SEARCH_GROUPS.FAILURE, {formKey, error})
 };
 
 export const setDefaultSearchProduct = ({formKey, defaultsProduct}) => createAction(actions.SET_DEFAULT_SEARCH_PRODUCT, {

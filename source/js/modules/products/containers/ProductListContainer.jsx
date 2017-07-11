@@ -3,10 +3,16 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router'
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {getProducts, createProduct} from '../actions/productActions';
 import ProductList from '../components/ProductsList/ProductListComponent';
 import ProductActions from '../components/ProductsList/ProductActions';
-import {getProductsList, getProductListTotalCount, getProductLoading} from '../selectors/productsSelectors'
+import {
+    getProductsList,
+    getProductListTotalCount,
+    getProductLoading,
+    getNoProductsState
+} from '../selectors/productsSelectors'
 import toJs from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import {getSection} from 'modules/account/selectors/accountSelectors';
@@ -17,7 +23,6 @@ class ProductListContainer extends React.Component {
         this.start = 50;
         this.count = 50;
         this.filtred = false;
-        // this.getProductsList();
     }
 
     exportProduct() {
@@ -65,19 +70,41 @@ class ProductListContainer extends React.Component {
     }
 
     render() {
-        const {products, selectedPoint, loading} = this.props;
-        return (<div>
-            <div class="title_panel">
+        const {products, selectedPoint, loading, noProducts} = this.props;
+        const showPanel = !noProducts && !loading;
 
-                <h1>Все товары</h1>
+        return (
+            <div>
+                <div class="title_panel">
 
-                <ProductActions onCreateProduct={::this.createProduct}
-                                onExportProduct={::this.exportProduct}
-                />
-            </div>
-            <ProductList items={products} openProduct={::this.openProduct} selectedPoint={selectedPoint}
-                         loadNext={::this.getProductsList} onFilterChanged={::this.onFilterChanged} loading={loading}/>
-        </div>);
+                    <h1>Все товары</h1>
+
+                    {showPanel &&
+                    <ProductActions onCreateProduct={::this.createProduct}
+                                    onExportProduct={::this.exportProduct}/>}
+                </div>
+
+                {!noProducts &&
+                <ProductList items={products}
+                             openProduct={::this.openProduct}
+                             selectedPoint={selectedPoint}
+                             loadNext={::this.getProductsList}
+                             onFilterChanged={::this.onFilterChanged}
+                             loading={loading}/>
+                }
+
+                {noProducts &&
+                <div class="center_xy  page_center_info  page_center_info__products0">
+                    <i class="icon icon_box_empty"></i>
+                    <div class="title">Список товаров пуст</div>
+                    <p>Добавьте товар или импортируйте из своего файла</p>
+                    <div class="form_buttons  row">
+                        <button class="button small icon-plus" onClick={::this.createProduct}>Добавить товар</button>
+                        <Link class="button button_file_upload small light  ml8" to="/products/import">Импортировать из
+                            файла</Link>
+                    </div>
+                </div>}
+            </div>);
     }
 }
 
@@ -86,6 +113,7 @@ function mapStateToProps(state, ownProps) {
     return {
         //error: state.products.get('error'),
         products: getProductsList(state),
+        noProducts: getNoProductsState(state),
         productsTotalCount: getProductListTotalCount(state),
         loading: getProductLoading(state),
         token: getSection(state).get('token')

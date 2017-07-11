@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
-import productCard from '../components/ProductCard/ProductCard';
+import createProductCard from '../components/ProductCard/ProductCard';
 import * as productActions from '../actions/productActions'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
@@ -9,6 +9,8 @@ import {withRouter} from 'react-router'
 import {getProductView} from '../selectors/productsSelectors'
 import {LoaderBlock} from 'common/uiElements'
 import toJS from 'components/HOC/toJs'
+import {ConfirmPopupService} from 'common/uiElements';
+import {notify} from 'common/uiElements/Notify';
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
@@ -17,7 +19,8 @@ class EditProductContainer extends DefaultLayerLayout {
 
 	constructor(props) {
 		super(props);
-		this.productCard = productCard(this.props.inventCode);
+		this.productCard = createProductCard('productCard_' + this.props.inventCode);
+		this.state = {activeTab: 'info'};
 	}
 
 	componentWillReceiveProps(props) {
@@ -50,8 +53,8 @@ class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onRemoveProduct() {
-		const {productView:{product}, removeProduct} = this.props;
-		console.log('removing');
+		const {inventCode, point, removeProduct, dispatch} = this.props;
+		removeProduct({point, inventCode});
 	}
 
 	onAddGroup() {
@@ -74,11 +77,36 @@ class EditProductContainer extends DefaultLayerLayout {
 		history.push('/product/modifier', {inventCode, modifierId, groupId});
 	}
 
+	onRemoveModifier({modifierId, groupId}) {
+		const {inventCode, dispatch}=this.props;
+		this.removePopup.open()
+			.then(() => {
+				this.props.removeModifier({inventCode, groupId, modifierId});
+				dispatch(notify.success('Модификатор удален'));
+			});
+	}
+
+	onToggleModifier({modifierId, groupId}) {
+		const {inventCode}=this.props;
+		this.props.toggleModifier({inventCode, groupId, modifierId});
+	}
+
+	handleSubmitFail() {
+		const {activeTab}=this.state;
+		if (activeTab != 'info')
+			this.handleChangeTab('info');
+	}
+
+	handleChangeTab(tab) {
+		this.setState({activeTab: tab});
+	}
+
 	render() {
 
 		const {productView} = this.props;
-		const {loading, error, saving, product}= productView || {loading: true};
+		const {loading, error, saving, removing, product}= productView || {loading: true};
 		const ProductCard = this.productCard;
+		const {activeTab}=this.state;
 		const title = product && !product.isNew ? 'Редактирование товара' : 'Добавление товара';
 		return (
 			<article className="page" {...this.layerOptions}>
@@ -94,11 +122,24 @@ class EditProductContainer extends DefaultLayerLayout {
 							 onAddModifier={::this.onAddModifier}
 							 onOpenGroup={::this.onOpenGroup}
 							 onOpenModifier={::this.onOpenModifier}
+							 onRemoveModifier={::this.onRemoveModifier}
+							 onToggleModifier={::this.onToggleModifier}
 							 onRemove={::this.onRemoveProduct}
 							 saving={saving}
 							 product={product}
+							 removing={removing}
+							 error={error}
 							 initialValues={product}
+							 onChangeTab={::this.handleChangeTab}
+							 onSubmitFail={::this.handleSubmitFail}
+							 activeTab={activeTab}
 				/>}
+
+				<ConfirmPopupService
+					ref={p => this.removePopup = p}
+					okName="Подтвердить"
+					cancelName="Отмена"
+					title="Удаление модификатора"/>
 
 				<LoaderBlock loading={loading}/>
 				{!product && !loading && <span>Продукт не найден</span>}
@@ -128,7 +169,10 @@ function mapDispatchToProps(dispatch) {
 			getDetails: productActions.getProductDetails.request,
 			savingProduct: productActions.saveProductDetails.request,
 			setNewProduct: productActions.setNewProduct,
-			//removeProduct: productActions.removeProduct.request
-		}, dispatch)
+			removeProduct: productActions.removeProduct.request,
+			removeModifier: productActions.removeModifier,
+			toggleModifier: productActions.toggleModifier
+		}, dispatch),
+		dispatch
 	}
 }

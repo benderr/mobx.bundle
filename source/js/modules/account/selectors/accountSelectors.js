@@ -34,4 +34,8 @@ export const getCompany = createSelector([getAuthData], (info) => {
 
 export const getCurrentLocation = (state) => {
 	return state.getIn(['router', 'location']);
-}
+};
+
+export const getChangeServiceSection = (state) => {
+	return state.get('changeService');
+};
