@@ -13,8 +13,7 @@ function* getListContragentSaga(params) {
 		const data = yield call(dataContext.getListContragent, {token, ...params});
 		yield put(actions.getListContragent.success(data));
 	} catch (error) {
-		console.log('getListContragentSaga - error');
-		// yield put(notify.error('Не удалось загрузить контрагентов'));
+		yield put(notify.error('Не удалось загрузить контрагентов'));
 		// yield put(actions.getListContragent.failure({
 		// 	status: error.status,
 		// 	data: error.data

@@ -9,8 +9,8 @@ import * as mapper from './contragentDataMapper';
  */
 export const getListContragent = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog().contractor()
-		.get(mapper.getList.toServer(props))
-		.then(response => mapper.getList.toClient(response.data));
+		.get(mapper.getListContragent.toServer(props))
+		.then(response => mapper.getListContragent.toClient(response.data));
 };
 
 /**

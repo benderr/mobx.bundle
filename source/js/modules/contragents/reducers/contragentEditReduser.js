@@ -7,14 +7,14 @@ export const initialState = Map({
 		loading: false,
 		errors: null,
 		success: null,
-		isPassword: false,
+		isPassword: false,			// показывать пароль
+		isPasswordRequired: false,	// пароль обязателен
 
-		code: 'new',
+		code: null,					// метка нового пользователя
 		name: '',
 		locked: 'off',
-		login: '',
 		password: '',
-		roles: List([])
+		roles: List([])				// список ролей пользователя из опций
 	}),
 	listItem: Map({})
 });

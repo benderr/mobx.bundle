@@ -1,6 +1,6 @@
 import {generateNumber} from 'infrastructure/utils/uuidGenerator';
 
-export const getList = {
+export const getListContragent = {
 	toServer: (props) => {
 		let params = {};
 
