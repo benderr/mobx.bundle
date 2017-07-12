@@ -1,31 +1,32 @@
 import React from 'react';
+import ContragentListContainer from './containers/ContragentListContainer';
+import ContragentEditContainer from './containers/ContragentEditContainer';
+
 import TestContainer from './containers/TestContainer';
-import ListContainer from './containers/ListContainer';
-import EditContainer from './containers/EditContainer';
 
 export function getRoutes() {
 	return {
-		contragentsTest: {
-			path: '/contragents-test',
-			exact: true,
-			component: TestContainer
-		},
+		// contragentsTest: {
+		// 	path: '/contragents-test',
+		// 	exact: true,
+		// 	component: TestContainer
+		// },
 		contragents: {
 			path: '/contragents',
 			exact: true,
-			component: ListContainer
+			component: ContragentListContainer
 		},
 		contragentsEdit: {
 			path: '/contragents/:action/:code',
 			exact: true,
 			isLayer: true,
-			layout: EditContainer
+			layout: ContragentEditContainer
 		},
 		contragentsAdd: {
 			path: '/contragents/:action',
 			exact: true,
 			isLayer: true,
-			layout: EditContainer
+			layout: ContragentEditContainer
 		}
 	}
 }

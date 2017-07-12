@@ -1,13 +1,13 @@
 import {generateNumber} from 'infrastructure/utils/uuidGenerator';
 
-export const getListContragent = {
+export const getList = {
 	toServer: (props) => {
 		let params = {};
 
-		if (props.q) params.q = props.q;
+		if (props.q) params.q = `name=="*${props.q}*"`;
 		if (props.column) params.sortField = props.column;
 		if (props.orderBy) params.sortDirection = props.orderBy;
-		if (props.start) params.start = props.start;
+		if (props.pos) params.start = props.pos;
 
 		return params;
 	},
@@ -27,16 +27,20 @@ export const getListContragent = {
 	})
 };
 
-export const createContragent = {
-	toServer: (contragent) => {
-		return {
-			catalogType: 'CONTRACTOR',
-			code: contragent.code !== 'new' ? contragent.code : generateNumber().toString(),
-			locked: contragent.locked === 'off' ? 0 : 1,
-			login: '',
-			name: contragent.name,
-			password: contragent.password,
-			roles: contragent.roles || []
-		}
-	}
-}
+export const createContragent = (props) => ({
+	catalogType: 'CONTRACTOR',
+	code: generateNumber().toString(),
+	name: props.name,
+	locked: props.locked === 'off' ? 0 : 1,
+	password: props.password,
+	roles: props.roles || [],
+});
+
+export const updateContragent = (props) => ({
+	catalogType: 'CONTRACTOR',
+	code: props.code,
+	name: props.name,
+	locked: props.locked === 'off' ? 0 : 1,
+	password: props.password,
+	roles: props.roles || [],
+});

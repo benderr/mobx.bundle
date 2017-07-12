@@ -1,7 +1,7 @@
 import React from 'react';
 import {reduxForm, Field, FieldArray, formValueSelector} from 'redux-form/immutable';
 import {connect} from 'react-redux'
-import * as options from '../enums/contragentOptions';
+import * as options from '../enums/options';
 import toJS from 'components/HOC/toJs'
 
 let RolesForm = (props) => {

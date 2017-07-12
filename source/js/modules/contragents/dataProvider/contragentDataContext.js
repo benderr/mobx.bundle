@@ -3,21 +3,46 @@ import * as mapper from './contragentDataMapper';
 
 /**
  * Список контрагентов
+ * GET /api/v1/retail-point/<token>/catalog/CONTRACTOR?q=&sortField=name&sortDirection=asc
+ * @param token
+ * @param props
+ */
+export const getListContragent = ({token, ...props}) => {
+	return api.v1().retailpoint(token).catalog().contractor()
+		.get(mapper.getList.toServer(props))
+		.then(response => mapper.getList.toClient(response.data));
+};
+
+/**
+ * Добавить контрагента
+ * POST /api/v1/retail-point/<token>/catalog
+ * @param token
+ * @param props
  * @returns {*}
  */
-export function getList({token, q, column, orderBy, start}) {
-
-
-	return api.v1().retailpoint(token).catalog().contractor()
-		.get(mapper.getListContragent.toServer({q, column, orderBy, start}))
-		.then((response) => mapper.getListContragent.toClient(response.data));
-}
-
-export function create({token, contragent}) {
+export const createContragent = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog()
-		.post(mapper.createContragent.toServer(contragent));
-}
+		.post(mapper.createContragent(props))
+};
 
-export function update() {
+/**
+ * Обновить контрагента
+ * POST /api/v1/retail-point/<token>/catalog
+ * @param token
+ * @param props
+ * @returns {*}
+ */
+export const updateContragent = ({token, ...props}) => {
+	return api.v1().retailpoint(token).catalog()
+		.put(mapper.updateContragent(props))
+};
 
-}
+/**
+ * Удалить контрагента
+ * @param token
+ * @param code
+ */
+export const deleteContragent = ({token, code}) => {
+	return api.v1().retailpoint(token).catalog().simpleDiscount(code)
+		.delete();
+};

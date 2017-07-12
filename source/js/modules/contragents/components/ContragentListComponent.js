@@ -1,5 +1,7 @@
 import React from 'react'
-import * as oprions from '../enums/contragentOptions'
+import PropTypes from 'prop-types'
+import InfinateScroll from 'common/uiElements/InfinateScroll'
+import * as options from '../enums/options'
 
 
 const columnList = [
@@ -30,7 +32,11 @@ const TableHeader = (props) => {
 const TableSearch = (props) => {
 	return (
 		<div className="table_row row_link_search">
-			<input type="search" className="small w100" placeholder="Наименование, код, роль или логин" />
+			<input type="search"
+				   className="small w100"
+				   onChange={props.onFilterChanged}
+				   value={props.inputValue}
+				   placeholder="Введите наименование"/>
 		</div>
 	);
 };
@@ -45,7 +51,7 @@ const TableBody = (props) => {
 					break;
 				case ('roles'):
 					row.roles.forEach((role) => {
-						valueText += (valueText.length > 0 ? ', ' : '') + (oprions.roles[role].label || role);
+						valueText += (valueText.length > 0 ? ', ' : '') + (options.roles[role].label || role);
 					});
 					break;
 				default:
@@ -53,30 +59,51 @@ const TableBody = (props) => {
 			}
 			return <div className={col.cssClass} key={'col' + col.code}>{valueText}</div>
 		});
-		return <div className="table_row row_link" onClick={() => props.onOpenDetailLayout(row)} key={'row' + row.code}>{jsxCols}</div>
+		return <div className="table_row row_link" onClick={() => props.onOpenDetailLayout(row)}
+					key={'row' + row.code}>{jsxCols}</div>
 	});
 	return <div>{jsxRows}</div>;
 };
 
-
-class ListComponent extends React.Component {
+class ContragentListComponent extends React.Component {
 	render() {
-		const {listState, onOpenDetailLayout, onSortList} = this.props;
+		const {
+			listState,
+			onFilterChanged, onInfinateScroll, onOpenDetailLayout, onSortList
+		} = this.props;
+		const noList = listState.list.length;
 
 		return (
 			<div className="widget_block">
 				<div className="table table_contragents">
 					<TableHeader column={listState.column}
 								 orderBy={listState.orderBy}
-								 onSortList={onSortList} />
-					<TableSearch />
+								 onSortList={onSortList}/>
+
+					<TableSearch inputValue={listState.q} onFilterChanged={onFilterChanged}/>
+
 					<TableBody list={listState.list}
-							   onOpenDetailLayout={onOpenDetailLayout} />
+							   onOpenDetailLayout={onOpenDetailLayout}/>
+
+					{!noList && <div className='table_row center_xy'>По запросу ничего не найдено</div>}
+
+					<InfinateScroll loadNext={onInfinateScroll}
+									totalCount={listState.list.length}
+									listLength={listState.listStep}
+									loading={listState.loading}/>
 				</div>
 			</div>
 		);
 	}
 }
 
+ContragentListComponent.propTypes = {
+	listState: PropTypes.object.isRequired,
+	onOpenDetailLayout: PropTypes.func.isRequired,
+	onSortList: PropTypes.func.isRequired,
+	onFilterChanged: PropTypes.func.isRequired,
+	onInfinateScroll: PropTypes.func.isRequired
+};
 
-export default ListComponent;
+
+export default ContragentListComponent;

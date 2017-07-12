@@ -1,13 +1,12 @@
-import * as listReducer from './reducers/listReducer';
-import * as editReducer from './reducers/editReduser';
+import * as listReducer from './reducers/contragentListReducer'
+import * as editReducer from './reducers/contragentEditReduser'
 import * as routes  from './routes.js'
-import listSaga from './sagas/listSaga';
-import editSaga from './sagas/editSaga';
+import contragentSaga from './sagas/contragentSaga'
 
 export function getReducers(createReducer) {
 	return {
-		list: createReducer(listReducer.initialState, listReducer.actionHandlers),
-		edit: createReducer(editReducer.initialState, editReducer.actionHandlers)
+		listContragent: createReducer(listReducer.initialState, listReducer.actionHandlers),
+		editContragent: createReducer(editReducer.initialState, editReducer.actionHandlers)
 	}
 }
 
@@ -17,7 +16,6 @@ export function getRoutes() {
 
 export function getSagas() {
 	return [
-		listSaga(),
-		editSaga()
+		contragentSaga()
 	]
 }

@@ -23,5 +23,10 @@ export const roles = {
 };
 
 export const rolesCode = [
-	'CASHIER', 'CUSTOMER', 'EMPLOYEE', 'ADMINISTRATOR', 'SERVICE_PROVIDER', 'PROVIDER'
+	'CASHIER',
+	'CUSTOMER',
+	'EMPLOYEE',
+	'ADMINISTRATOR',
+	'SERVICE_PROVIDER',
+	'PROVIDER'
 ];
