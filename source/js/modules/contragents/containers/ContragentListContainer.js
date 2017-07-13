@@ -121,8 +121,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			push,
-			getListContragent: actions.getListContragent.request,
-			openContragent: actions.openFromList
+			getListContragent: actions.getListContragent.request
 		}, dispatch)
 	};
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import InfinateScroll from 'common/uiElements/InfinateScroll'
-import * as options from '../enums/options'
+import {ROLES} from '../enums/options'
 
 
 const columnList = [
@@ -51,7 +51,7 @@ const TableBody = (props) => {
 					break;
 				case ('roles'):
 					row.roles.forEach((role) => {
-						valueText += (valueText.length > 0 ? ', ' : '') + (options.roles[role].label || role);
+						valueText += (valueText.length > 0 ? ', ' : '') + (ROLES[role].label || role);
 					});
 					break;
 				default:

@@ -19,8 +19,7 @@ export const initialState = Map({
 	column: 'name',		// поле сортировки
 	orderBy: 'asc',		// направление сорт.
 
-	// параметры фильтра
-	q: ''
+	q: ''				// параметры фильтра
 });
 
 export const actionHandlers = {

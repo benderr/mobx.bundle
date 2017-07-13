@@ -1,4 +1,4 @@
-export const roles = {
+export const ROLES = {
 	CASHIER: {
 		label: 'Кассир',
 		password: true,
@@ -22,7 +22,7 @@ export const roles = {
 	}
 };
 
-export const rolesCode = [
+export const ROLES_CODE = [
 	'CASHIER',
 	'CUSTOMER',
 	'EMPLOYEE',

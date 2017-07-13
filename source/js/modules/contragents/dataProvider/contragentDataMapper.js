@@ -5,6 +5,7 @@ export const getListContragent = {
 		let params = {};
 
 		if (props.q) params.q = `name=="*${props.q}*"`;
+		if (props.qField) params.q = props.qField;
 		if (props.column) params.sortField = props.column;
 		if (props.orderBy) params.sortDirection = props.orderBy;
 		if (props.pos) params.start = props.pos;
@@ -26,21 +27,3 @@ export const getListContragent = {
 		total_count: response.total_count
 	})
 };
-
-export const createContragent = (props) => ({
-	catalogType: 'CONTRACTOR',
-	code: generateNumber().toString(),
-	name: props.name,
-	locked: props.locked === 'off' ? 0 : 1,
-	password: props.password,
-	roles: props.roles || [],
-});
-
-export const updateContragent = (props) => ({
-	catalogType: 'CONTRACTOR',
-	code: props.code,
-	name: props.name,
-	locked: props.locked === 'off' ? 0 : 1,
-	password: props.password,
-	roles: props.roles || [],
-});
