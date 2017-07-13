@@ -17,7 +17,6 @@ class InfinateScroll extends React.Component {
         }
         return (<div class={className} style={loadingStyles}>
             {totalCount >= listLength && <Waypoint
-                scrollableAncestor={window}
                 onEnter={loadNext}/>}
         </div>)
     }
