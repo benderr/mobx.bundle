@@ -9,7 +9,7 @@ import modifierForm from 'modules/products/components/ProductCard/ModifierForm'
 import {withRouter} from 'react-router';
 import {ConfirmPopupService} from 'common/uiElements';
 import {notify} from 'common/uiElements/Notify';
-
+import {schema, normalize} from 'normalizr';
 
 class testForm extends React.Component {
 	handleSearch() {
@@ -136,8 +136,9 @@ class TestSelector extends React.Component {
 			{value: 'two', label: 'Two'}
 		];
 
-		console.log('RENDER')
+		let tabs = testNormilizer();
 
+		console.log(tabs);
 
 		//let modifier = null;
 		//const ModifierForm = this.modifierForm;
@@ -170,6 +171,9 @@ class TestSelector extends React.Component {
 				<button className="button small" onClick={::this.onSendNotify3}>Нотифай3</button>
 				<button className="button small" onClick={::this.onSendNotify4}>Нотифай4</button>
 
+				<br/>
+				{JSON.stringify(tabs)}
+
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}
 					okName="Подтвердить"
@@ -189,6 +193,67 @@ function mapStateProps(state) {
 
 function mapDispatchToProps(dispatch) {
 	return {dispatch};
+}
+
+function testNormilizer() {
+	// const myData = {
+	// 	users: [
+	// 		{id: 1},
+	// 		{id: 2}
+	// 	]
+	// };
+	// const user = new schema.Entity('users');
+	// const mySchema = {users: [user]}
+	// var result = normalize(myData, mySchema);
+	// const data = [{id: '123', name: 'Jim'}, {id: '456', name: 'Jane'}];
+	// const userSchema = new schema.Entity('users');
+	// const userListSchema = [userSchema];
+	// const normalizedData = normalize(data, userListSchema);
+
+	const tabs = {
+		"data": [{
+			"code": "4f160fac-1556-44b6-8d74-031630dbcd53",
+			"name": "Товары",
+			"order": 4,
+			"hotKeys": [{
+				"name": "Доставка",
+				"barcode": "2311209624",
+				"actions": [{"actionType": "barcode", "barcode": "2311209624"}],
+				"row": 0,
+				"col": 0,
+				"width": 1,
+				"height": 1,
+				"color": "white"
+			},]
+		}, {
+			"code": "89d69b18-2f7c-4e5a-977b-c520266e0f26",
+			"name": "Новая",
+			"order": 2,
+			"hotKeys": [{
+				"name": "товар1111",
+				"barcode": "2012336615",
+				"actions": [{"actionType": "barcode", "barcode": "2012336615"}],
+				"row": 0,
+				"col": 3,
+				"width": 1,
+				"height": 1,
+				"color": null
+			}]
+		}], "pos": 0, "total_count": 2
+	}
+
+	tabs.data.forEach(s => s.hotKeys.forEach((k, i) => {
+		k.id = `${s.code}_${i}`;
+	}));
+	const hotKeysShema = new schema.Entity('hotKeys');
+	const tabSchema = new schema.Entity('tabs', {hotKeys: [hotKeysShema]}, {idAttribute: 'code'});
+	const tabListShema = [tabSchema];
+	let tabsNorm = normalize(tabs.data, tabListShema);
+
+	return {
+		before: tabs.data,
+		after: tabsNorm
+	};
 }
 
 export default TestSelector

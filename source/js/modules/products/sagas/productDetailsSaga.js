@@ -3,16 +3,15 @@ import {debounce} from 'redux-saga-debounce-effect';
 import * as actions from '../enums/actions';
 import * as productActions from '../actions/productActions';
 import * as dataContext from '../dataProvider/productDataContext';
-import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
+import {getPointId} from 'modules/core/selectors';
 import {generateNumber} from 'infrastructure/utils/uuidGenerator';
 import {push} from 'connected-react-router';
 import {notify} from 'common/uiElements/Notify';
 
-
 function* createProduct() {
 	const inventCode = generateNumber().toString();
 	yield setProductToLayer({inventCode});
-	const retailPointId = yield select(getCurrentRetailPointId);
+	const retailPointId = yield select(getPointId);
 	yield put(push({pathname: `/product/add/point/${retailPointId}/code/${inventCode}`}));
 }
 
@@ -63,19 +62,18 @@ function* saveProductDetailsProcess({product, point}) {
 
 function* searchProducts({formKey, query}) {
 	try {
-		const retailPointId = yield select(getCurrentRetailPointId);
-		const response = yield call(dataContext.getProducts, retailPointId, 0, 50, query);
+		const retailPointId = yield select(getPointId);
+		const response = yield call(dataContext.getProducts, retailPointId, 0, 50, {filter: query});
 		yield put(productActions.searchProducts.success({formKey, products: response.productsList}));
 	}
 	catch (error) {
-		console.log(error);
 		yield put(productActions.searchProducts.failure({formKey, error}));
 	}
 }
 
 function* searchGroups({formKey, query}) {
 	try {
-		const retailPointId = yield select(getCurrentRetailPointId);
+		const retailPointId = yield select(getPointId);
 		const response = yield call(dataContext.getModifierGroups, retailPointId, 0, 50, query);
 		yield put(productActions.searchGroups.success({formKey, groups: response.groupsList}));
 	}
@@ -90,7 +88,6 @@ function* removeProduct({point, inventCode}) {
 		yield put(productActions.removeProduct.success({inventCode}));
 	}
 	catch (error) {
-		console.log(error);
 		yield put(productActions.removeProduct.failure({inventCode, error}));
 	}
 }

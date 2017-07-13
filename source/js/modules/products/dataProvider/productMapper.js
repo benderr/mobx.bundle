@@ -56,6 +56,11 @@ export const toClient = (data) => {
 	return {pos: data.pos, totalCount: data.total_count, productsList};
 };
 
+export const toClientItemGroups = data => {
+	const categoryList = data.data.map(g => ({code: g.code, name: g.name}));
+	return {pos: data.pos, totalCount: data.total_count, categoryList};
+};
+
 export const toClientImportResult = data => {
 	const mapProduct = item => ({
 		barcode: item.inventItem.barcode,
