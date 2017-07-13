@@ -19,10 +19,24 @@ class HotKeyEditor extends React.Component {
 
 	componentWillReceiveProps(props) {
 		const {onSearchProducts, onSearchCategory, searchProduct, searchCategory, model}=props;
-		if (model.type === HOT_KEY_TYPE.CATEGORY && !searchCategory.categories)
-			onSearchCategory(model.name);
-		else if (model.type === HOT_KEY_TYPE.PRODUCT && !searchProduct.products)
-			onSearchProducts(model.barcode);
+		if (model.type === HOT_KEY_TYPE.CATEGORY) {
+			if (model.groupcode) {
+				const list = searchCategory.categories || [];
+				if (!list.some(s => s.code == model.groupcode))
+					onSearchCategory(model.name);
+			} else {
+				onSearchCategory('');
+			}
+		}
+		else if (model.type === HOT_KEY_TYPE.PRODUCT) {
+			if (model.barcode) {
+				const list2 = searchProduct.products || [];
+				if (!list2.some(s => s.barcode == model.barcode))
+					onSearchProducts(model.barcode);
+			} else {
+				onSearchProducts('');
+			}
+		}
 	}
 
 	handleClickOutside() {
