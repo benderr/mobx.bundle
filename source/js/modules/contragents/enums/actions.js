@@ -1,6 +1,8 @@
 import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 
 export const GET_LIST = createRequestTypes('CONTRAGENT.GET_LIST');
+export const CHECKED_CASHIER = 'CONTRAGENT.CHECKED_CASHIER';
+
 export const CREATE = createRequestTypes('CONTRAGENT.CREATE');
 export const UPDATE = createRequestTypes('CONTRAGENT.UPDATE');
 export const DELETE = createRequestTypes('CONTRAGENT.DELETE');

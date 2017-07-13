@@ -27,7 +27,23 @@ const TableHeader = (props) => {
 		else return <div key={head.code} className={head.cssClass}>{head.name}</div>
 	});
 
-	return <div className="table_head">{jsxHeader}</div>
+	return (
+		<div className="table_head">
+			{jsxHeader}
+
+			<div className="contragent_cashier_only">
+				<input type="checkbox"
+					   name="filter_cashier"
+					   onChange={props.onCheckedCashier}
+					   checked={props.isCashier}
+					   id="filter_cashier_checkbox" />
+				<label htmlFor="filter_cashier_checkbox" className="label_check switcher switcher__cashier_only">
+					<i className="icon"/>
+					<span>Только кассиры</span>
+				</label>
+			</div>
+		</div>
+	)
 };
 const TableSearch = (props) => {
 	return (
@@ -69,7 +85,7 @@ class ContragentListComponent extends React.Component {
 	render() {
 		const {
 			listState,
-			onFilterChanged, onInfinateScroll, onOpenDetailLayout, onSortList
+			onCheckedCashier, onFilterChanged, onInfinateScroll, onOpenDetailLayout, onSortList
 		} = this.props;
 		const noList = listState.list.length;
 
@@ -77,6 +93,8 @@ class ContragentListComponent extends React.Component {
 			<div className="widget_block">
 				<div className="table table_contragents">
 					<TableHeader column={listState.column}
+								 onCheckedCashier={onCheckedCashier}
+								 isCashier={listState.isCashier}
 								 orderBy={listState.orderBy}
 								 onSortList={onSortList}/>
 

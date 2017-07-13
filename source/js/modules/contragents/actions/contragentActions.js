@@ -7,6 +7,7 @@ export const getListContragent = {
 	success: (response) => createAction(actions.GET_LIST.SUCCESS, {response}),
 	failure: (error) => createAction(actions.GET_LIST.FAILURE, {error})
 };
+export const checkboxCashier = (checked) => createAction(actions.CHECKED_CASHIER, {checked});
 
 // Actions for EditReducer
 // ...

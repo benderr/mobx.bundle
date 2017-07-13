@@ -9,6 +9,7 @@ export const getListContragent = {
 		if (props.column) params.sortField = props.column;
 		if (props.orderBy) params.sortDirection = props.orderBy;
 		if (props.pos) params.start = props.pos;
+		if (props.isCashier) params.isCashier = props.isCashier
 
 		return params;
 	},

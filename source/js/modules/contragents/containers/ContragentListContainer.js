@@ -24,13 +24,13 @@ class ContragentListContainer extends React.Component {
 
 	onAddFormLayer() {
 		const {push} = this.props;
-		push({pathname: `/contragents/add`});
+		// push({pathname: `/contragents/add`});
 	}
 
 	onOpenDetailLayout(row) {
 		const {openContragent, push} = this.props;
-		openContragent(row);
-		push({pathname: `/contragents/edit/${row.code}`});
+		// openContragent(row);
+		// push({pathname: `/contragents/edit/${row.code}`});
 	}
 
 	onSortList(column, orderBy) {
@@ -46,12 +46,14 @@ class ContragentListContainer extends React.Component {
 			getListContragent({
 				column: listState.column,
 				orderBy: listState.orderBy,
-				q: val
+				q: val,
+				isCashier: listState.isCashier
 			});
 		} else if (!val || val.length === 0) {
 			getListContragent({
 				column: listState.column,
-				orderBy: listState.orderBy
+				orderBy: listState.orderBy,
+				isCashier: listState.isCashier
 			});
 		}
 	}
@@ -63,9 +65,23 @@ class ContragentListContainer extends React.Component {
 				column: listState.column,
 				orderBy: listState.orderBy,
 				pos: listState.pos + listState.listStep,
-				q: listState.q
+				q: listState.q,
+				isCashier: listState.isCashier
 			});
 		}
+	}
+
+	// CASHIER
+	onCheckedCashier() {
+		const {listState, getListContragent, checkboxCashier} = this.props;
+		// checkboxCashier(!listState.filterCashier);
+
+		getListContragent({
+			column: listState.column,
+			orderBy: listState.orderBy,
+			q: listState.q,
+			isCashier: !listState.isCashier
+		});
 	}
 
 	render() {
@@ -89,6 +105,7 @@ class ContragentListContainer extends React.Component {
 
 				{!noItems && !globalLoading &&
 				<ContragentListComponent listState={listState}
+										 onCheckedCashier={::this.onCheckedCashier}
 										 onOpenDetailLayout={::this.onOpenDetailLayout}
 										 onSortList={::this.onSortList}
 										 onFilterChanged={::this.onFilterChanged}
@@ -121,7 +138,8 @@ function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			push,
-			getListContragent: actions.getListContragent.request
+			getListContragent: actions.getListContragent.request,
+			checkboxCashier: actions.checkboxCashier
 		}, dispatch)
 	};
 }

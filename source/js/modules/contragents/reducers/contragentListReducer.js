@@ -19,7 +19,8 @@ export const initialState = Map({
 	column: 'name',		// поле сортировки
 	orderBy: 'asc',		// направление сорт.
 
-	q: ''				// параметры фильтра
+	q: '',				// параметры фильтра
+	isCashier: false
 });
 
 export const actionHandlers = {
@@ -45,7 +46,8 @@ export const actionHandlers = {
 			orderBy: props.orderBy || initialState.get('orderBy'),
 			pos: props.pos || initialState.get('pos'),
 
-			q: props.q || initialState.get('q')
+			q: props.q || initialState.get('q'),
+			isCashier: props.isCashier || false
 		})
 	},
 	[actions.GET_LIST.SUCCESS]: (state, {response}) => {
@@ -76,6 +78,12 @@ export const actionHandlers = {
 			errors: fromJS(error),
 			success: null
 		});
+	},
+
+	// Фильтр: Только кассиры
+	[actions.CHECKED_CASHIER]: (state, {checked}) => {
+		console.log(actions.CHECKED_CASHIER, checked);
+		return state.updateIn(['filterCashier'], view => checked);
 	}
 };
 
