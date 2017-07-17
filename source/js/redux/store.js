@@ -2,6 +2,7 @@ import {createStore, compose} from 'redux';
 import {createBrowserHistory} from 'history' //todo добавить в package?
 import {connectRouter} from 'connected-react-router/immutable'
 import {combineReducers} from 'redux-immutable';
+import Immutable from 'immutable';
 
 export default function ({middleware, reducers, initionalState, sagaMiddleware, sagas, history}) {
 
@@ -22,21 +23,27 @@ export default function ({middleware, reducers, initionalState, sagaMiddleware, 
 	//https://stackoverflow.com/questions/35622588/how-to-reset-the-state-of-a-redux-store/35641992#35641992
 	//очистка всего стора приложения, например при разлогивании
 	const allReducers = (state, action) => {
-		if (action.type === 'CLEAR_APP') {
+		if (action.type === '@@core/CLEAR_APP') {
 			state = undefined
 		}
 		return appReducers(state, action)
 	};
 
+	let enhancer;
+	if (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && !__DEV_TOOLS__) {
+		enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__(
+			...middleware
+		);
+	} else {
+		enhancer = compose(
+			...middleware
+		);
+	}
 
-	//finalCreateStore = reduxReactRouter({routes, createHistory})(finalCreateStore);
-	//finalCreateStore = compose(middleware)(finalCreateStore);
-
-	let finalCreateStore = compose(
-		...middleware
-	)(createStore);
-
-	const store = finalCreateStore(connectRouter(history)(allReducers), initionalState);
+	const store = createStore(connectRouter(history)(allReducers),
+		initionalState,
+		enhancer
+	);
 
 	const rootSaga = function*() {
 		yield sagas;

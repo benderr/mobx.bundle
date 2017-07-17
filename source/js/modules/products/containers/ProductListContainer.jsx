@@ -71,7 +71,7 @@ class ProductListContainer extends React.Component {
 
     render() {
         const {products, selectedPoint, loading, noProducts} = this.props;
-        const showPanel = !noProducts && !loading;
+        const showPanel = !noProducts;
 
         return (
             <div>

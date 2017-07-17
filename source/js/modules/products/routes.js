@@ -5,7 +5,6 @@ import ProductModifierGroupContainer from './containers/ProductModifierGroupCont
 import ProductModifierContainer from './containers/ProductModifierContainer';
 import ProductExportContainer from './containers/ProductExportContainer';
 import ProductImportContainer from './containers/ProductImportContainer';
-import TestSelector from 'components/TestSelector'
 
 export function getRoutes() {
 	return {
@@ -14,12 +13,6 @@ export function getRoutes() {
 			index: true,
 			exact: true,
 			component: ProductListContainer
-		},
-		testSelect: {
-			path: '/testselect',
-			exact: true,
-			allowAnonymous: true,
-			component: TestSelector
 		},
 		product: {
 			path: '/product/:action/point/:point/code/:inventCode',

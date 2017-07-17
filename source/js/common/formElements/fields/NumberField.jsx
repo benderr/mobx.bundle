@@ -7,11 +7,11 @@ import {getRequiredValidator} from '../validationHelpers/formFieldHelpers'
 
 class NumberField extends React.Component {
     render() {
-        const {required, requiredDisable, validate = [], ...props} =this.props;
+        const {required, requiredDisable, validate = [], component = InputRender, ...props} =this.props;
         const validators = [...getRequiredValidator({required, requiredDisable}), ...validate];
         return ( <Field type="tel"
                         validate={validators}
-                        component={InputRender}
+                        component={component}
                         parse={parseNumber}
                         {...props}/>)
     }
