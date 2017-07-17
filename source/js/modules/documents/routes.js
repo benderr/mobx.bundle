@@ -1,4 +1,5 @@
 import React from 'react';
+import {Redirect} from 'react-router'
 import ChequeListContainer from './containers/ChequeListContainer'
 import MoneyListContainer from './containers/MoneyListContainer'
 import IShopListContainer from './containers/IShopListContainer'
@@ -10,7 +11,7 @@ export function getRoutes() {
 		documentsChequeIndex: {
 			path: '/documents',
 			exact: true,
-			component: ChequeListContainer
+			component: () => <Redirect to="/documents/cheque"/>
 		},
 		documentsCheque: {
 			path: '/documents/cheque',
