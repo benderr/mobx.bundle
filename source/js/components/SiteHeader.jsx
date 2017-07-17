@@ -78,7 +78,7 @@ class SiteHeader extends React.Component {
                         <ul>
                             <SiteMenuLink to="/contragents" label="Контрагенты"/>
                             <SiteMenuLink to="/discount" label="Скидки"/>
-                            <SiteMenuLink to="/#" label="Документы"/>
+                            <SiteMenuLink to="/documents" label="Документы"/>
                             <SiteMenuLink to="/" exact={true} label="Товары"/>
                             <SiteMenuLink to="/#" label="Статистика"/>
                             <SiteMenuLink to="/#" label="Касса"/>
