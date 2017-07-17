@@ -24,7 +24,7 @@ class ContragentListContainer extends React.Component {
 
 	onAddFormLayer() {
 		const {push} = this.props;
-		// push({pathname: `/contragents/add`});
+		push({pathname: `/contragents/add`});
 	}
 
 	onOpenDetailLayout(row) {

@@ -10,4 +10,4 @@ export const getListContragent = {
 export const checkboxCashier = (checked) => createAction(actions.CHECKED_CASHIER, {checked});
 
 // Actions for EditReducer
-// ...
+export const OpenFromList = (contragent) => createAction(actions.OPEN_FROM_LIST, {contragent});
