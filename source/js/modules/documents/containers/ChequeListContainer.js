@@ -1,12 +1,18 @@
 import React from 'react'
-import DocumentPanel from './DocumentPanelContainer'
+
 
 class ChequeListContainer extends React.Component {
+
+	handleOpenFilter() {
+		console.log('handleOpenFilter');
+	}
 
 	render() {
 		return (
 			<div>
-				<DocumentPanel />
+				<TitlePanel>
+					<TitleActions onClick={::this.handleOpenFilter}/>
+				</TitlePanel>
 
 				<div className="widget_block">
 					<div className="table  table_docs">

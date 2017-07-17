@@ -1,12 +1,11 @@
 import React from 'react'
-import DocumentPanel from './DocumentPanelContainer'
+
 
 class ReportsContainer extends React.Component {
 
 	render() {
 		return (
 			<div>
-				<DocumentPanel />
 
 				<div className="widget_block  report_request_form">
 					<div>Выполнить отчет о продажах за период</div>

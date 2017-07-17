@@ -1,12 +1,62 @@
 import React from 'react'
-import DocumentPanel from './DocumentPanelContainer'
+import TitlePanel from '../components/TitlePanel'
+import TitleActions from '../components/TitleActions'
+import ListFilter from '../components/ListFilter';
 
 class ExternalListContainer extends React.Component {
+
+	handleOpenFilter() {
+		this.filter.open();
+	}
 
 	render() {
 		return (
 			<div>
-				<DocumentPanel />
+				<TitlePanel>
+					<TitleActions onClick={::this.handleOpenFilter}/>
+				</TitlePanel>
+
+				<ListFilter ref={filter => this.filter = filter}>
+					<div class="side_filter">
+						<div class="side_filter_name">Тип документа</div>
+						<ul>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff11" class="input_check"/>
+								<label for="ff11" class="label_check"><i
+									class="icon"></i><span>Продажа</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff2" class="input_check"/>
+								<label for="ff2" class="label_check"><i
+									class="icon"></i><span>Продажа по внешнему чеку</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff3" class="input_check"/>
+								<label for="ff3" class="label_check"><i
+									class="icon"></i><span>Возврат</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff4" class="input_check"/>
+								<label for="ff4" class="label_check"><i
+									class="icon"></i><span>Инвентаризация</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff5" class="input_check"/>
+								<label for="ff5" class="label_check"><i
+									class="icon"></i><span>Возврат поставщику</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff6" class="input_check"/>
+								<label for="ff6" class="label_check"><i
+									class="icon"></i><span>Чек возврата продажи</span></label>
+							</li>
+							<li>
+								<input type="checkbox" name="tfilter" id="ff6" class="input_check"/>
+								<label for="ff6" class="label_check"><i class="icon"></i><span>Заказ</span></label>
+							</li>
+						</ul>
+					</div>
+				</ListFilter>
 
 				<div className="widget_block">
 					<div className="table  table_docs">
@@ -20,7 +70,8 @@ class ExternalListContainer extends React.Component {
 						</div>
 
 						<div className="table_row  row_link_search">
-							<input type="search" className="small  w100" placeholder="Кассир, номер документа или сумма" value={'ExternalListContainer'} />
+							<input type="search" className="small  w100" placeholder="Кассир, номер документа или сумма"
+								   value={'ExternalListContainer'}/>
 						</div>
 
 						<div className="table_row  row_link">
