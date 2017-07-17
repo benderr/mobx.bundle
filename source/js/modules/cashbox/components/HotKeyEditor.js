@@ -8,9 +8,9 @@ import {HOT_KEY_TYPE, COLORS} from '../enums/enums'
 import {focus, change, formValues} from 'redux-form/immutable'
 import {isEmpty} from 'common/validators';
 import GridValidator from  '../helpers/GridValidator';
+import {ConfirmPopupService} from 'common/uiElements';
 
 const colorSet = Object.keys(COLORS).map(key => COLORS[key]);
-
 
 class HotKeyEditor extends React.Component {
 
@@ -50,6 +50,8 @@ class HotKeyEditor extends React.Component {
 	}
 
 	handleClickOutside() {
+		if (this.removePopup && this.removePopup.isOpen())
+			return;
 		this.props.onCancel && this.props.onCancel();
 	}
 
@@ -73,10 +75,15 @@ class HotKeyEditor extends React.Component {
 		this.props.change('name', category.name);
 	}
 
+	handleRemove() {
+		this.removePopup.open()
+			.then(() => this.props.onRemove(this.props.model.id));
+	}
+
 	render() {
 		const {
 			handleSubmit, position, model, searchProduct, searchCategory,
-			onCancel, onSave, onRemove, onSearchProducts, onSearchCategory, onChangePosition,
+			onCancel, onSave, onSearchProducts, onSearchCategory, onChangePosition,
 		}=this.props;
 
 		const heightValid = () => height => {
@@ -227,9 +234,16 @@ class HotKeyEditor extends React.Component {
 						<button class="button  small">Сохранить</button>
 						<button class="button  small  clean" type="button" onClick={onCancel}>Отмена</button>
 						{model && model.id &&
-						<button class="button  small  clean f_right" type="button" onClick={() => onRemove(model.id)}>
+						<button class="button  small  clean f_right" type="button" onClick={::this.handleRemove}>
 							Удалить</button>}
 					</div>
+
+
+					<ConfirmPopupService
+						ref={p => this.removePopup = p}
+						okName="Подтвердить"
+						cancelName="Отмена"
+						title="Удаление горячей клавиши"/>
 				</div>
 			</form>)
 	}
