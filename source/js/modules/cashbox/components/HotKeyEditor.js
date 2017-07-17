@@ -7,34 +7,44 @@ import enhanceWithClickOutside from 'react-click-outside'
 import {HOT_KEY_TYPE, COLORS} from '../enums/enums'
 import {focus, change, formValues} from 'redux-form/immutable'
 import {isEmpty} from 'common/validators';
+import GridValidator from  '../helpers/GridValidator';
 
 const colorSet = Object.keys(COLORS).map(key => COLORS[key]);
 
 
 class HotKeyEditor extends React.Component {
 
+	constructor(props) {
+		super(props);
+		const {gridSize}= props;
+		this.validator = new GridValidator(gridSize.width, gridSize.height);
+	}
+
 	componentDidMount() {
-		this.props.dispatch(focus(this.form, 'name'));
+		const {dispatch}= this.props;
+		dispatch(focus(this.form, 'name'));
 	}
 
 	componentWillReceiveProps(props) {
 		const {onSearchProducts, onSearchCategory, searchProduct, searchCategory, model}=props;
 		if (model.type === HOT_KEY_TYPE.CATEGORY) {
+			const list = searchCategory.categories || [];
 			if (model.groupcode) {
-				const list = searchCategory.categories || [];
 				if (!list.some(s => s.code == model.groupcode))
 					onSearchCategory(model.name);
 			} else {
-				onSearchCategory('');
+				if (list.length == 0)
+					onSearchCategory('');
 			}
 		}
 		else if (model.type === HOT_KEY_TYPE.PRODUCT) {
+			const list2 = searchProduct.products || [];
 			if (model.barcode) {
-				const list2 = searchProduct.products || [];
 				if (!list2.some(s => s.barcode == model.barcode))
 					onSearchProducts(model.barcode);
 			} else {
-				onSearchProducts('');
+				if (list2.length == 0)
+					onSearchProducts('');
 			}
 		}
 	}
@@ -65,45 +75,32 @@ class HotKeyEditor extends React.Component {
 
 	render() {
 		const {
-			handleSubmit, position, model, searchProduct, searchCategory, gridSize,
+			handleSubmit, position, model, searchProduct, searchCategory,
 			onCancel, onSave, onRemove, onSearchProducts, onSearchCategory, onChangePosition,
 		}=this.props;
-
-		const maxHeight = gridSize.height - model.row;
-		const maxWidth = gridSize.width - model.col;
-		const maxCol = gridSize.width - model.width;
-		const maxRow = gridSize.height - model.height;
 
 		const heightValid = () => height => {
 			if (isEmpty(height))
 				return undefined;
-			if (height > maxHeight)
-				return 'Не корректная высота';
-			return undefined;
+			return !this.validator.validHeight({row: model.row, height}) ? 'Не корректная высота' : undefined;
 		};
 
 		const widthValid = () => width => {
 			if (isEmpty(width))
 				return undefined;
-			if (width > maxWidth)
-				return 'Не корректная ширина';
-			return undefined;
+			return !this.validator.validWidth({col: model.col, width}) ? 'Не корректная ширина' : undefined;
 		};
 
 		const rowValid = () => row => {
 			if (isEmpty(row))
 				return undefined;
-			if (row > maxRow)
-				return 'Не корректная строка';
-			return undefined;
+			return !this.validator.validRow({row, height: model.height}) ? 'Не корректная строка' : undefined;
 		};
 
 		const colValid = () => col => {
 			if (isEmpty(col))
 				return undefined;
-			if (col > maxCol)
-				return 'Не корректная строка';
-			return undefined;
+			return !this.validator.validCol({col, width: model.width}) ? 'Не корректная столбец' : undefined;
 		};
 
 		return (
@@ -186,7 +183,7 @@ class HotKeyEditor extends React.Component {
 							<div class="cell_props">
 								<div class="label">Ширина</div>
 								<NumberField name="width"
-											 maxValue={maxWidth}
+											 maxValue={this.validator.maxWidth(model)}
 											 minValue={1}
 											 readonly="readonly"
 											 validate={[widthValid()]}
@@ -196,7 +193,7 @@ class HotKeyEditor extends React.Component {
 							<div class="cell_props">
 								<div class="label">Высота</div>
 								<NumberField name="height"
-											 maxValue={maxHeight}
+											 maxValue={this.validator.maxHeight(model)}
 											 minValue={1}
 											 validate={[heightValid()]}
 											 component={NumberCounterRender}/>
@@ -211,7 +208,7 @@ class HotKeyEditor extends React.Component {
 								<NumberField name="row"
 											 component={NumberCounterRender}
 											 validate={[rowValid()]}
-											 maxValue={maxRow}
+											 maxValue={this.validator.maxRow(model)}
 											 minValue={0}/>
 							</div>
 
@@ -220,7 +217,7 @@ class HotKeyEditor extends React.Component {
 								<NumberField name="col"
 											 component={NumberCounterRender}
 											 validate={[colValid()]}
-											 maxValue={maxCol}
+											 maxValue={this.validator.maxCol(model)}
 											 minValue={0}/>
 							</div>
 						</div>

@@ -6,14 +6,14 @@ import {uuid} from 'infrastructure/utils/uuidGenerator'
 export default {
 	[actions.ADD_KEY]: (state, {cords, tabCode}) => {
 		return state.setIn(['selectedKey'], fromJS({
-			id: '',
 			tabCode: tabCode,
 			color: DEFAULT_COLOR,
 			row: cords.row,
 			col: cords.col,
 			width: 1,
 			height: 1,
-			type: HOT_KEY_TYPE.PRODUCT
+			type: HOT_KEY_TYPE.PRODUCT,
+			tempId: cords.tempId
 		}))
 	},
 	[actions.SELECT_KEY]: (state, {id}) => {
@@ -32,20 +32,21 @@ export default {
 		return state.updateIn(['selectedKey'], k => k.merge(fromJS(key)));
 	},
 	[actions.SAVE_KEY]: (state, {key}) => {
-		if (key.id) {
-			const keyObj = fromJS(key);
+		key.tempId = null;
+		if (!key.id) {
+			key.id = uuid();
+			const keyObj1 = fromJS(key);
 			return state.update('selectedKey', () => null)
-				.updateIn(['keysActive', key.id], k => k.merge(keyObj))
-				.updateIn(['keysList', key.id], k => k.merge(keyObj));
+				.setIn(['keysActive', key.id], keyObj1)
+				.setIn(['keysList', key.id], keyObj1);
 		} else {
-			const id = uuid();
-			let keyNew = {...key};
-			keyNew.id = id;
-			keyNew = fromJS(keyNew);
+			const keyObj2 = fromJS(key);
 			return state.update('selectedKey', () => null)
-				.setIn(['keysActive', id], keyNew)
-				.setIn(['keysList', id], keyNew);
+				.mergeIn(['keysActive', key.id], keyObj2)
+				.mergeIn(['keysList', key.id], keyObj2);
 		}
+
+
 	},
 	[actions.SEARCH_PRODUCT.REQUEST]: (state) => {
 		return state.updateIn(['searchProductsResult', 'loading'], true, _ => true);
@@ -81,11 +82,20 @@ export default {
 	},
 	[actions.SET_CATEGORY_KEYS]: (state, {keys, finish}) => {
 		return state.merge({
+			freezeMode: true,
 			loadingProducts: !finish,
 			keysActive: fromJS(keys)
 		});
 	},
 	[actions.OPEN_CATEGORY]: (state) => {
-		return state.merge({loadingProducts: true});
+		return state.merge({
+			freezeMode: true,
+			loadingProducts: true
+		});
+	},
+	[actions.BACK_FROM_CATEGORY]: (state) => {
+		return state.merge({
+			freezeMode: false
+		});
 	}
 };

@@ -12,6 +12,7 @@ import {notify} from 'common/uiElements/Notify'
 import {initialize} from 'redux-form/immutable'
 import {debounce} from 'redux-saga-debounce-effect'
 import GridCreator from '../helpers/GridCreator'
+import GridValidator from '../helpers/GridValidator'
 import {HOT_KEY_TYPE, DEFAULT_COLOR} from '../enums/enums'
 
 //region tabs
@@ -159,6 +160,20 @@ function* saveKey({key}) {
 	yield call(saveTabAndHotKeys, key.tabCode);
 }
 
+function* checkDraggedKey({id, row, col, gridSize}) {
+	const validator = new GridValidator(gridSize.width, gridSize.height);
+	const keys = yield select(tabSelector.getActiveKeys);
+	const otherKeys = keys.filter(s => s.get('id') !== id).toJS();
+	const key = keys.find(s => s.get('id') === id).toJS();
+	if (key == null)
+		return;
+
+	const model = {...key, row, col};
+	if (validator.isValidCord(model) && !validator.intersect(model, otherKeys)) {
+		yield put(actions.saveKey({key: model}));
+	}
+}
+
 
 //region category
 function* openCategory({categoryId, gridSize, tabCode}) {
@@ -175,7 +190,6 @@ function* openCategory({categoryId, gridSize, tabCode}) {
 				type: HOT_KEY_TYPE.PRODUCT,
 				name: item.name,
 				color: DEFAULT_COLOR,
-				freeze: true,
 				tabCode: tabCode
 			})
 		});
@@ -203,6 +217,7 @@ export function* init() {
 		yield fork(debounceSearchCategory);
 		yield takeEvery(actionEnum.OPEN_CATEGORY, openCategory);
 		yield takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory);
+		yield takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey);
 
 		yield put(actions.getHotKeysList.request({start: 0, count: 50}));
 

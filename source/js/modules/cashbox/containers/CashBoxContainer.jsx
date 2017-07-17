@@ -10,13 +10,14 @@ import LoaderBlock from 'common/uiElements/LoaderBlock'
 import HotKeyEditor from '../components/HotKeyEditor'
 import * as tabSelector from '../selectors/tabSelector'
 import * as actions from '../actions/actionTypes'
-import {getCordsMask, isValidCord} from '../helpers/hotKeyHelper'
+import GridValidator from '../helpers/GridValidator'
 import {isValid, change, initialize, formValueSelector, focus} from 'redux-form/immutable'
 
 class CashBoxContainer extends React.Component {
     constructor(props) {
         super(props);
         const gridSize = {width: 10, height: 3};
+        this.validator = new GridValidator(gridSize.width, gridSize.height);
         this.state = {popupPosition: null, gridSize};
     }
 
@@ -40,6 +41,8 @@ class CashBoxContainer extends React.Component {
     }
 
     handleSelectEmptyKey(event, cords) {
+        if (this.props.freezeMode)
+            return;
         this.props.addKey({cords, tabCode: this.props.activeTab.code});
         this.handleOpenPopup(event.target);
     }
@@ -56,6 +59,8 @@ class CashBoxContainer extends React.Component {
     }
 
     handleSelectProduct(event, id) {
+        if (this.props.freezeMode)
+            return;
         this.props.selectKey({id});
         this.handleOpenPopup(event.target);
     }
@@ -128,8 +133,7 @@ class CashBoxContainer extends React.Component {
 
     handleChangeSelectedKey(form) {
         const key = form.toJS();
-        const gridSize = this.state.gridSize;
-        if (isValidCord(gridSize, key))
+        if (this.validator.isValidCord(key))
             this.props.updateSelectedKey({key});
     }
 
@@ -146,9 +150,43 @@ class CashBoxContainer extends React.Component {
         return document.querySelector('.gk_panel');
     }
 
+    handleKeyDragEnd(key, target) {
+        this.props.dragEndKey({
+            id: key.id,
+            row: target.model.row,
+            col: target.model.col,
+            gridSize: this.state.gridSize
+        });
+    }
+
+    handleValidateNewKey(allValues, props) {
+        const {keys}=this.props;
+        const {model}=props;
+        const key = {
+            width: allValues.get('width'),
+            height: allValues.get('height'),
+            col: allValues.get('col'),
+            row: allValues.get('row')
+        };
+        const otherKeys = model.id ? keys.filter(s => s.id != model.id) : keys;
+        const isValid = this.validator.isValidCord(key) && !this.validator.intersect(key, otherKeys);
+        if (!isValid) {
+            return {
+                width: 'Введите корректные данные',
+                height: 'Введите корректные данные',
+                col: 'Введите корректные данные',
+                row: 'Введите корректные данные'
+            }
+        }
+        return {};
+    }
+
     render() {
         const {popupPosition, gridSize}=this.state || {};
-        const {tabs, activeTab, keys, loading, error, selectedKey, searchProductState, searchCategoryState, loadingProducts}=this.props;
+        const {
+            tabs, activeTab, keys, loading, error, selectedKey, searchProductState, searchCategoryState,
+            loadingProducts, freezeMode
+        }=this.props;
 
         if (!loading && tabs && activeTab) {
             return (
@@ -166,8 +204,10 @@ class CashBoxContainer extends React.Component {
 
                     <CashBoxHotKeys gridSize={gridSize}
                                     keys={keys}
+                                    freezeMode={freezeMode}
                                     loadingProducts={loadingProducts}
                                     selectedKey={selectedKey}
+                                    onDragEnd={::this.handleKeyDragEnd}
                                     onSelectEmptyKey={::this.handleSelectEmptyKey}
                                     onBackFromCategory={::this.handleGoBackFromCategory}
                                     onOpenCategory={::this.handleOpenCategory}
@@ -183,6 +223,7 @@ class CashBoxContainer extends React.Component {
                                                     onSearchProducts={::this.handleSearchProduct}
                                                     onChangePosition={::this.handleCalcPosition}
                                                     onSave={::this.handleEditorSaveKey}
+                                                    validate={::this.handleValidateNewKey}
                                                     onCancel={::this.handleCancelEditKey}
                                                     onChange={::this.handleChangeSelectedKey}
                                                     onRemove={::this.handleRemoveEditKey}/>}
@@ -211,6 +252,7 @@ function mapStateToProps(state, ownProps) {
         error: cashBoxTabs.get('error'),
         loading: cashBoxTabs.get('loading'),
         loadingProducts: cashBoxTabs.get('loadingProducts'),
+        freezeMode: cashBoxTabs.get('freezeMode'),
         selectedKey: tabSelector.getSelectedKey(state),
         isValidToolbarForm: isValid(toolBarFormName)(state),
         searchProductState: tabSelector.getProducts(state),
@@ -234,6 +276,7 @@ function mapDispatchToProps(dispatch) {
             updateSelectedKey: actions.updateSelectedKey,
             searchProduct: actions.searchProduct.request,
             searchCategory: actions.searchCategory.request,
+            dragEndKey: actions.dragEndKey,
 
             openCategory: actions.openCategory,
             backFromCategory: actions.backFromCategory

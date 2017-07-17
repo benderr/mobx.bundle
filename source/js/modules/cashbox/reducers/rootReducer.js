@@ -13,7 +13,7 @@ export const initialState = Map({
 	tabActive: null, //редактируемая на данный момент таба
 	keysActive: Map({}), //редактируемые на данный момент клавиши
 	loadingProducts: false, //получение товаров для категории
-
+	freezeMode: false, //для категория только просмотр
 	selectedKey: null, //выбранный ключ
 	searchProductsResult: Map({}), //результаты поиска в выпадушке
 	searchGroupsResult: Map({})

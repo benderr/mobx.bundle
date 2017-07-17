@@ -15,6 +15,8 @@ export const CANCEL_KEY = 'CASHBOX.CANCEL_KEY';
 export const REMOVE_KEY = 'CASHBOX.REMOVE_KEY';
 
 export const UPDATE_SELECTED_KEY = 'CASHBOX.UPDATE_SELECTED_KEY';
+export const DRAG_END_KEY = 'CASHBOX.DRAG_END_KEY';
+export const SET_KEY_CORDS = 'CASHBOX.SET_KEY_CORDS';
 export const SEARCH_PRODUCT = createRequestTypes('CASHBOX.SEARCH_PRODUCT');
 export const SEARCH_CATEGORY = createRequestTypes('CASHBOX.SEARCH_CATEGORY');
 

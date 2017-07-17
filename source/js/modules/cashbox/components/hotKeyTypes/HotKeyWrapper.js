@@ -1,37 +1,39 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import * as hotKeyHelper from '../../helpers/hotKeyHelper'
 import KeyShape from '../KeyShape';
 import HotKeyProduct from './HotKeyProduct'
 import HotKeyCategory from './HotKeyCategory'
 import HotKeyBackFromCategory from './HotKeyBackFromCategory'
+import HotKeyEmpty from './HotKeyEmpty'
+import HoyKeyDropTarget from './HoyKeyDropTarget'
 import {HOT_KEY_TYPE} from '../../enums/enums';
 
-const HotKeyWrapper = ({model, selected, onSelectProduct, onOpenCategory, onBackFromCategory}) => {
-	const isSelected = selected && selected.id == model.id;
+const HotKeyWrapper = ({model, selected, ...props}) => {
+	const isSelected = selected && ((selected.id && selected.id === model.id)
+		|| (selected.tempId && selected.tempId === model.tempId));
 	if (isSelected) {
-		Object.keys(model).forEach(k => {
-			if (selected.hasOwnProperty(k))
-				model[k] = selected[k];
+		Object.keys(selected).forEach(k => {
+			if (k !== 'id')
+				model[k] = selected[k]
 		});
 	}
 	const cordClass = hotKeyHelper.generateWrapperClass(model.row, model.col, model.width, model.height);
 	const className = [cordClass, isSelected ? 'selected' : ''].join(' ');
 
 	if (model.type === HOT_KEY_TYPE.PRODUCT) {
-		return (<HotKeyProduct model={model}
-							   onSelectProduct={onSelectProduct}
-							   className={className}/>)
+		return (<HotKeyProduct model={model} className={className} {...props}/>)
 	}
 	else if (model.type === HOT_KEY_TYPE.CATEGORY) {
-		return (<HotKeyCategory model={model}
-								onSelectProduct={onSelectProduct}
-								onOpenCategory={onOpenCategory}
-								className={className}/>)
+		return (<HotKeyCategory model={model} className={className} {...props}/>)
 	}
 	else if (model.type === HOT_KEY_TYPE.BACK) {
-		return (<HotKeyBackFromCategory className={className}
-										onBackFromCategory={onBackFromCategory}/>)
+		return (<HotKeyBackFromCategory className={className} {...props} />)
+	}
+	else if (model.type === HOT_KEY_TYPE.EMPTY) {
+		return (<HotKeyEmpty className={className} {...props}/>)
+	}
+	else if (model.type === HOT_KEY_TYPE.DRAG) {
+		return (<HoyKeyDropTarget className={className} model={model} {...props}/>)
 	}
 
 	return null;
@@ -40,9 +42,6 @@ const HotKeyWrapper = ({model, selected, onSelectProduct, onOpenCategory, onBack
 HotKeyWrapper.propTypes = {
 	model: KeyShape.isRequired,
 	selected: KeyShape,
-	onSelectProduct: PropTypes.func.isRequired,
-	onOpenCategory: PropTypes.func.isRequired,
-	onBackFromCategory: PropTypes.func.isRequired,
 };
 
 export default HotKeyWrapper;

@@ -62,6 +62,7 @@ export const saveKey = ({key}) => createAction(actions.SAVE_KEY, {key});
 export const cancelKey = () => createAction(actions.CANCEL_KEY);
 export const removeKey = ({key}) => createAction(actions.REMOVE_KEY, {key});
 export const updateSelectedKey = ({key}) => createAction(actions.UPDATE_SELECTED_KEY, {key});
+export const dragEndKey = ({id, row, col, gridSize}) => createAction(actions.DRAG_END_KEY, {id, row, col, gridSize});
 
 export const searchProduct = {
 	request: ({query}) => createAction(actions.SEARCH_PRODUCT.REQUEST, {query}),

@@ -33,7 +33,7 @@ class CashBoxToolbar extends React.Component {
 					<div class="control">
 						Порядок:
 						<NumberField tipPlace="bottom" component={NumberCounterRender} name="order"
-									 required="Укажите порядок"/>
+									 required="Укажите порядок" minValue={0}/>
 					</div>
 
 					<div class="control">

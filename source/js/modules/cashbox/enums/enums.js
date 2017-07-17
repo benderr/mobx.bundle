@@ -1,7 +1,9 @@
 export const HOT_KEY_TYPE = {
 	PRODUCT: 'PRODUCT',
 	CATEGORY: 'CATEGORY',
-	BACK: 'BACK'
+	BACK: 'BACK',
+	EMPTY: 'EMPTY',
+	DRAG: 'DRAG'
 };
 
 export const COLORS = {

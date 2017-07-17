@@ -1,6 +1,7 @@
 import React from 'react'
 import {radValidateHoc, InputFocusable} from './validationHelpers'
 import {change} from 'redux-form/immutable'
+import {isEmpty} from 'common/validators';
 
 @radValidateHoc({tips: true})
 class NumberCounterRender extends React.Component {
@@ -11,13 +12,11 @@ class NumberCounterRender extends React.Component {
 	}
 
 	handleChangeByStep(direction) {
-		const {input, meta, step = 1, positive = true, maxValue = null, minValue = null}=this.props;
+		const {input, meta, step = 1, maxValue = null, minValue = null}=this.props;
 		let newVal = parseFloat(input.value || 0) + (step * direction);
-		if (newVal < 0 && positive)
-			newVal = 0;
-		if (maxValue && newVal > maxValue)
+		if (!isEmpty(maxValue) && newVal > maxValue)
 			return;
-		if (minValue && newVal < minValue)
+		if (!isEmpty(minValue) && newVal < minValue)
 			return;
 		meta.dispatch(change(meta.form, input.name, newVal))
 	}

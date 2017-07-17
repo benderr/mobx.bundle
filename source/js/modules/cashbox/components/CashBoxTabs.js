@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import TabShape from './TabShape'
 
 const CashBoxTabs = ({tabs, activeTab, onSelectTab, onAddTab}) => {
-	console.log('ACTIVE TAB', activeTab);
 	return (
 		<div class="tabs_flat  tabs_flat__stretch">
 			{tabs.map(s => {
