@@ -42,7 +42,7 @@ function* getProductDetailsProcess({point, inventCode}) {
 	}
 }
 
-function* saveProductDetailsProcess({product, point}) {
+export function* saveProductDetailsProcess({product, point}) {
 	try {
 		const saveProduct = product.isNew ? dataContext.addProduct : dataContext.saveProduct;
 		const updatedProduct = yield call(saveProduct, point, product);
