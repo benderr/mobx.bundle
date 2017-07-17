@@ -18,7 +18,7 @@ class ModifierForm extends React.Component {
 
 		return (
 
-			<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
+			<form onSubmit={handleSubmit(onSave)} className="poss">
 				<div class="page_content with_bottom_panel  content_padding">
 
 					<div class="form_group form_horizontal">

@@ -4,11 +4,14 @@ import * as actions from '../enums/actions';
 import * as retailPointsActions from '../../retailPoints/enums/actions';
 import * as productActions from '../actions/productActions';
 import * as dataContext from '../dataProvider/productDataContext';
-import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
+import {getPointId} from 'modules/core/selectors';
 
 function* getProductsProcess({retailPointId, start, count, filter, initialRequest = false}) {
 	try {
-		const response = yield call(dataContext.getProducts, retailPointId, start, count, filter);
+		const response = yield call(dataContext.getProducts, retailPointId, start, count, {filter});
+		yield call(dataContext.getProducts, retailPointId, start, count, {
+			groupId: "8fe4308a-a165-4bb7-ba61-b988d5386b03"
+		});
 		yield put(productActions.getProducts.success(response, initialRequest));
 	}
 	catch (e) {
@@ -26,7 +29,7 @@ function* importProducts({file}) {
 	try {
 		const response = yield call(dataContext.uploadProducts, file);
 		yield put(productActions.uploadImportProducts.success({response}));
-		const retailPointId = yield select(getCurrentRetailPointId);
+		const retailPointId = yield select(getPointId);
 		yield initProductsProcess({id: retailPointId});
 	}
 	catch (error) {
