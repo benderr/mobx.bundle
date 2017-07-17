@@ -23,6 +23,10 @@ class ModalPopup extends React.Component {
 		});
 	}
 
+	isOpen() {
+		return this.state.isOpen;
+	}
+
 	/**
 	 * закрыть попап
 	 */
@@ -33,14 +37,16 @@ class ModalPopup extends React.Component {
 	}
 
 	render() {
-		const {children, parentSelector = () => document.getElementById('root'),
-			onAfterOpen, shouldCloseOnOverlayClick, onRequestClose}=this.props;
+		const {
+			children, parentSelector = () => document.getElementById('root'),
+			onAfterOpen, shouldCloseOnOverlayClick, onRequestClose
+		}=this.props;
 		const {isOpen} = this.state || {};
 		return (<BaseModal isOpen={isOpen}
-								 parentSelector={parentSelector}
-								 onAfterOpen={onAfterOpen}
-								 shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
-								 onRequestClose={onRequestClose}>
+						   parentSelector={parentSelector}
+						   onAfterOpen={onAfterOpen}
+						   shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+						   onRequestClose={onRequestClose}>
 			{children}</BaseModal>);
 	}
 }

@@ -1,15 +1,32 @@
 import api from 'infrastructure/api/api'
-import {toClient, toClientProduct, toClientImportResult, toClientModifierGroup} from './productMapper';
+import {
+	toClient,
+	toClientProduct,
+	toClientImportResult,
+	toClientModifierGroup,
+	toClientItemGroups
+} from './productMapper';
 
-export const getProducts = (retailPointId, start, count, filter) => {
+export const getProducts = (retailPointId, start, count, {filter, groupId}) => {
 	let params = [];
 	if (filter)
 		params.push(`:quickSearch="${filter}"`);
+	if(groupId)
+		params.push(`groupId=="${groupId}"`);
 	let q = params.join(';');
-
 	return api.v1().retailpoint(retailPointId).catalog().inventory()
 		.get({start, count, q})
 		.then(response => toClient(response.data));
+};
+
+export const getItemGroups = (retailPointId, start, count, name) => {
+	let params = [];
+	if (name)
+		params.push(`name=="*${name}*"`);
+	let q = params.join(';');
+	return api.v1().retailpoint(retailPointId).catalog().itemGroups()
+		.get({start, count, q})
+		.then(response => toClientItemGroups(response.data));
 };
 
 export const getModifierGroups = (retailPointId, start, count) => {
@@ -17,7 +34,7 @@ export const getModifierGroups = (retailPointId, start, count) => {
 		.get({start, count})
 		.then(response => response.data)
 		.catch(() => {
-			return {
+			return { //todo доделать
 				groupsList: [
 					{
 						code: '1',

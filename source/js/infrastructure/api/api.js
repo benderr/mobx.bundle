@@ -2,7 +2,7 @@ import {createApi} from 'core/http/api';
 import base from './base';
 import user from './user';
 import retail from './retail';
-import product from './product';
+import catalog from './catalog';
 import {Http} from 'core/http/Http';
 import {Interceptors} from 'core/http/Interceptors';
 import tokenInterceptorCreator from '../interceptors/tokenInterceptor';
@@ -22,7 +22,7 @@ function initApi() {
 	base(api);
 	user(api);
 	retail(api);
-	product(api);
+	catalog(api);
 	return api;
 }
 
