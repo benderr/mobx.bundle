@@ -9,6 +9,7 @@ import ConfirmPopupService from './Dialogs/ConfirmPopupService';
 import * as Notify from './Notify';
 import Drop from './Drop';
 import DateFormat from './DateFormat';
+import AmountFormat from './AmountFormat'
 
 export {
 	PrimaryButton,
@@ -21,5 +22,6 @@ export {
 	Drop,
 	Button,
 	Notify,
-	DateFormat
+	DateFormat,
+	AmountFormat
 }

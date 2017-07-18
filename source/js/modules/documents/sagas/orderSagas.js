@@ -32,6 +32,9 @@ function* getOrders({start, count, filter = null, sortField, sortDirection, isFi
 		if (filter.actualSum) {
 			q.push(`actualSum=="${filter.actualSum}"`)
 		}
+		if (filter.id) {
+			q.push(`id=="${filter.id}"`);
+		}
 		q = q.join(';');
 
 		const isFirstRequest = isFirst && filter == null;

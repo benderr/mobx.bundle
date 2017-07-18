@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import OrderShape from './OrderShape'
-import {DateFormat} from 'common/uiElements'
+import {DateFormat, AmountFormat} from 'common/uiElements'
 class OrderList extends React.Component {
 
 	render() {
-		const {loading, onLoadNext, orders}=this.props;
+		const {loading, orders, onLoadNext, onOpenOrder}=this.props;
 		const notFound = !loading && orders.length == 0 ?
 			(<div class="searching_results">
 				<div class="light_block">По запросу ничего не найдено</div>
@@ -25,10 +25,10 @@ class OrderList extends React.Component {
 				</div>
 
 				{orders.map(order => {
-					return (<div class="table_row  row_link">
-						<div class="doc_date"><DateFormat date={order.beginDateTime}/></div>
+					return (<div class="table_row  row_link" onClick={() => onOpenOrder(order.id)}>
+						<div class="doc_date"><DateFormat value={order.beginDateTime}/></div>
 						<div class="doc_number">Документ №{order.docNum}</div>
-						<div class="doc_amount">{order.actualSum} ₽</div>
+						<div class="doc_amount"><AmountFormat value={order.actualSum}/></div>
 						<div class="doc_cashier">{order.cashier || 'Н/Д'}</div>
 						<div class="doc_comment">{order.description}</div>
 					</div>)
@@ -44,7 +44,8 @@ class OrderList extends React.Component {
 OrderList.propTypes = {
 	orders: PropTypes.arrayOf(OrderShape).isRequired,
 	loading: PropTypes.bool.isRequired,
-	onLoadNext: PropTypes.func.isRequired
+	onLoadNext: PropTypes.func.isRequired,
+	onOpenOrder: PropTypes.func.isRequired
 };
 
 export default OrderList;
