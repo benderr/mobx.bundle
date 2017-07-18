@@ -1,4 +1,7 @@
 import React from 'react'
+import TitlePanel from '../components/TitlePanel'
+import TitleActions from '../components/TitleActions'
+import ListFilter from '../components/ListFilter'
 
 
 class ChequeListContainer extends React.Component {

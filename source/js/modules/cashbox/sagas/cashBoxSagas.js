@@ -1,4 +1,4 @@
-import {call, put, take, fork, takeEvery, cancel, cancelled, select} from 'redux-saga/effects'
+import {call, put, fork, takeEvery, select} from 'redux-saga/effects'
 import * as actions from '../actions/actionTypes'
 import * as actionEnum from '../enums/actions'
 import * as dataContext from '../dataProvider/dataContext'

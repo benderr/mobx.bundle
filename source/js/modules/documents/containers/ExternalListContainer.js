@@ -1,19 +1,40 @@
 import React from 'react'
 import TitlePanel from '../components/TitlePanel'
 import TitleActions from '../components/TitleActions'
-import ListFilter from '../components/ListFilter';
+import ListFilter from '../components/ListFilter'
+import NoOrders from '../components/order/NoOrders'
+import OrderList from '../components/order/OrderList'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import toJS from 'components/HOC/toJs';
+import * as orderSelectors from '../selectors/orderSelectors'
+import * as actions from '../actions/orderActionTypes'
 
+@connect(mapStateToProps, mapDispatchToProps)
+@toJS
 class ExternalListContainer extends React.Component {
 
 	handleOpenFilter() {
 		this.filter.open();
 	}
 
+	handleAddOrder() {
+
+	}
+
+	handleLoadNext() {
+
+	}
+
 	render() {
+		const {noItems, orders, loading} = this.props;
+
 		return (
-			<div>
+			<div className="h100per">
 				<TitlePanel>
-					<TitleActions onClick={::this.handleOpenFilter}/>
+					<TitleActions onShowFilter={::this.handleOpenFilter}>
+						<a class="button  small  icon-plus" onClick={::this.handleAddOrder}>Добавить заказ</a>
+					</TitleActions>
 				</TitlePanel>
 
 				<ListFilter ref={filter => this.filter = filter}>
@@ -25,86 +46,37 @@ class ExternalListContainer extends React.Component {
 								<label for="ff11" class="label_check"><i
 									class="icon"></i><span>Продажа</span></label>
 							</li>
-							<li>
-								<input type="checkbox" name="tfilter" id="ff2" class="input_check"/>
-								<label for="ff2" class="label_check"><i
-									class="icon"></i><span>Продажа по внешнему чеку</span></label>
-							</li>
-							<li>
-								<input type="checkbox" name="tfilter" id="ff3" class="input_check"/>
-								<label for="ff3" class="label_check"><i
-									class="icon"></i><span>Возврат</span></label>
-							</li>
-							<li>
-								<input type="checkbox" name="tfilter" id="ff4" class="input_check"/>
-								<label for="ff4" class="label_check"><i
-									class="icon"></i><span>Инвентаризация</span></label>
-							</li>
-							<li>
-								<input type="checkbox" name="tfilter" id="ff5" class="input_check"/>
-								<label for="ff5" class="label_check"><i
-									class="icon"></i><span>Возврат поставщику</span></label>
-							</li>
-							<li>
-								<input type="checkbox" name="tfilter" id="ff6" class="input_check"/>
-								<label for="ff6" class="label_check"><i
-									class="icon"></i><span>Чек возврата продажи</span></label>
-							</li>
-							<li>
-								<input type="checkbox" name="tfilter" id="ff6" class="input_check"/>
-								<label for="ff6" class="label_check"><i class="icon"></i><span>Заказ</span></label>
-							</li>
 						</ul>
 					</div>
 				</ListFilter>
 
-				<div className="widget_block">
-					<div className="table  table_docs">
-						<div className="table_head">
-							<div className="doc_date">Дата создания</div>
-							<div className="doc_type">Тип документа</div>
-							<div className="doc_smena_number">Номер смены</div>
-							<div className="doc_number">Номер документа</div>
-							<div className="doc_amount">Сумма</div>
-							<div className="doc_cashier">Кассир</div>
-						</div>
-
-						<div className="table_row  row_link_search">
-							<input type="search" className="small  w100" placeholder="Кассир, номер документа или сумма"
-								   value={'ExternalListContainer'}/>
-						</div>
-
-						<div className="table_row  row_link">
-							<div className="doc_date">22.06.2016, 23:37:46</div>
-							<div className="doc_type">Возврат</div>
-							<div className="doc_smena_number">Смена №1</div>
-							<div className="doc_number">Документ №12</div>
-							<div className="doc_amount">106,00 ₽</div>
-							<div className="doc_cashier">Быцаева Любовь</div>
-						</div>
-						<div className="table_row  row_link">
-							<div className="doc_date">31.07.2016, 17:12:12</div>
-							<div className="doc_type">Продажа</div>
-							<div className="doc_smena_number">Смена №1</div>
-							<div className="doc_number">Документ №11</div>
-							<div className="doc_amount">396,00 ₽</div>
-							<div className="doc_cashier">Быцаева Любовь</div>
-						</div>
-						<div className="table_row  row_link">
-							<div className="doc_date">31.07.2016, 17:12:12</div>
-							<div className="doc_type">Продажа</div>
-							<div className="doc_smena_number">Смена №1</div>
-							<div className="doc_number">Документ №10</div>
-							<div className="doc_amount">396,00 ₽</div>
-							<div className="doc_cashier">Быцаева Любовь</div>
-						</div>
-					</div>
-				</div>
+				{noItems && <NoOrders onAddOrder={::this.handleAddOrder}/>}
+				{!noItems && <OrderList orders={orders}
+										loading={loading}
+										onLoadNext={::this.handleLoadNext}/>}
 
 			</div>
 		);
 	}
 
 }
+
+
+function mapStateToProps(state) {
+	return {
+		orders: orderSelectors.getOrders(state),
+		loading: orderSelectors.getLoader(state),
+		noItems: orderSelectors.getNoItems(state)
+	};
+}
+
+function mapDispatchToProps(dispatch) {
+	return {
+		...bindActionCreators({
+			loadMore: actions.getOrders.request
+		}, dispatch)
+	};
+}
+
 
 export default ExternalListContainer;
