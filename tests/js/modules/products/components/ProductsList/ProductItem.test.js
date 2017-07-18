@@ -14,18 +14,21 @@ describe('ProductItem Tests', () => {
 		}
 	}
 	test('Call openProduct', ()=>{
-		const firstProduct = getNewProductItem();
+		const product = getNewProductItem();
 		const selectedPoint = '1';
 		const loading = false;
 		const openProduct = jest.fn();
 		const renderedComponent = shallow(
-			<ProductItem item={ firstProduct } key={firstProduct.inventCode}
+			<ProductItem item={ product } key={product.inventCode}
 						 onProductClick={openProduct}/>
 		);
 		// Выведем отрендеренный компонент
-		console.log(renderedComponent.debug());
+		//console.log(renderedComponent.debug());
 		renderedComponent.find('div.row_link').simulate('click');
 		expect(openProduct).toHaveBeenCalled();
+
+		renderedComponent.find('div.row_link').simulate('click',product.inventCode, selectedPoint);
+		expect(openProduct).toHaveBeenLastCalledWith(product.inventCode, selectedPoint);
 
 	});
 });

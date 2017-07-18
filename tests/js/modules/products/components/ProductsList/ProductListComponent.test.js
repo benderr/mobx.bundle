@@ -24,7 +24,7 @@ describe('ProductList Tests', () => {
 						 onFilterChanged={jest.fn()} loading={loading}/>
 		);
 		// Выведем отрендеренный компонент
-		console.log(renderedComponent.debug());
+		//console.log(renderedComponent.debug());
 
 		expect(renderedComponent.find('div.center_xy').text()).toBe('По запросу ничего не найдено');
 	});
@@ -38,7 +38,7 @@ describe('ProductList Tests', () => {
 						 onFilterChanged={jest.fn()} loading={loading}/>
 		);
 		// Выведем отрендеренный компонент
-		console.log(renderedComponent.debug());
+		//console.log(renderedComponent.debug());
 
 		expect(renderedComponent.find('ProductItem').length).toBe(3);
 	});
