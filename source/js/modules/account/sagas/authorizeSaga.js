@@ -19,7 +19,6 @@ function* authorize(email, pass, redirectUrl) {
 		yield fork(retailPointsSaga.runRetailPoints);
 		yield put(push({pathname: redirectUrl || '/'}));
 	} catch (error) {
-		console.log('FAIL', error);
 		yield put(login.failure({
 			status: error.status,
 			data: error.data

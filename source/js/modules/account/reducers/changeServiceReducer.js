@@ -89,7 +89,6 @@ export const actionHandlers = {
 		});
 	},
 	[actions.CONNECT_INTEGRATION.FAILURE]: (state, action) => {
-		console.log('asdasdasd', action);
 		return state.merge({
 			loading: false,
 			success: false,

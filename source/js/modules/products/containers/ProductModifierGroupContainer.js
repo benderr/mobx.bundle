@@ -86,8 +86,6 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 	render() {
 		const {group, isRequiredGroup, searchGroupsState, modifiers}=this.props;
 
-		console.log('ProductModifierGroupContainer', searchGroupsState.groups);
-
 		const ModifierGroupForm = this.groupForm;
 		const {viewMode}=this.state || {};
 		const title = group ? 'Редактирование группы' : 'Добавление группы';

@@ -34,3 +34,6 @@ export const createOrder = {
 	failure: ({error}) => createAction(actions.CREATE_ORDER.FAILURE, {error})
 };
 
+export const addProduct = ({product}) => createAction(actions.ADD_PRODUCT, {product});
+export const removeProduct = ({id}) => createAction(actions.REMOVE_PRODUCT, {id});
+

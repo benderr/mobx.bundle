@@ -33,7 +33,7 @@ class RadRouteManager extends React.Component {
 	}
 
 	componentWillUnmount() {
-		console.log('RadRouteManager componentWillUnmount');
+		//console.log('RadRouteManager componentWillUnmount');
 	}
 
 	render() {

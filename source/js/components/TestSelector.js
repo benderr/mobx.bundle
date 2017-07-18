@@ -39,9 +39,16 @@ class testForm extends React.Component {
 			<NumberField name="number" validate={[isRequired('Тест')]}/>
 			<SelectField name="select" options={groups}
 						 searchable={true}
+						 placeholder="TEST"
+						 creatable={false}
 						 validate={[isRequired('Укажите')]}
-						 onInputChange={::this.handleSearch}
-			/>
+						 onInputChange={::this.handleSearch}/>
+			<SelectField name="select1" options={groups}
+						 searchable={true}
+						 creatable={true}
+						 placeholder="CREATABLE"
+						 validate={[isRequired('Укажите')]}
+						 onInputChange={::this.handleSearch}/>
 
 			<SwitchField
 				name="requiredField" switchItems={[

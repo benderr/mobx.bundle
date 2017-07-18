@@ -33,7 +33,6 @@ function* importProducts({file}) {
 		yield initProductsProcess({id: retailPointId});
 	}
 	catch (error) {
-		console.log(error);
 		yield put(productActions.uploadImportProducts.failure({error}));
 	}
 }

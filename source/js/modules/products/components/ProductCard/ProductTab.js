@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {isEmpty} from 'common/validators';
 import {InputField, AmountField, SelectField} from 'common/formElements/fields';
 import {
-	measureOptions,
-	alcoholOptions,
-	vatTagOptions
-} from '../../enums/productOptions';
+	VAT_TAG_OPTIONS,
+	ALCOHOL_OPTIONS,
+	MEASURE_OPTIONS
+} from 'modules/core/productEnums';
 
 const minPriceValidate = (error) => (price, allValues) => {
 	const minPrice = allValues.get('minPrice');
@@ -74,7 +73,7 @@ class ProductTab extends React.Component {
 						<SelectField class="w100"
 									 name="measure"
 									 clearable={false}
-									 options={measureOptions}
+									 options={MEASURE_OPTIONS}
 						/>
 					</div>
 				</div>
@@ -85,7 +84,7 @@ class ProductTab extends React.Component {
 						<SelectField class="w100"
 									 name="alcoholType"
 									 clearable={false}
-									 options={alcoholOptions}
+									 options={ALCOHOL_OPTIONS}
 						/>
 					</div>
 				</div>
@@ -96,7 +95,7 @@ class ProductTab extends React.Component {
 						<SelectField class="w100"
 									 name="vatTag"
 									 clearable={false}
-									 options={vatTagOptions}
+									 options={VAT_TAG_OPTIONS}
 						/>
 					</div>
 				</div>

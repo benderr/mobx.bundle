@@ -1,30 +1,62 @@
 import React from 'react'
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import toJS from 'components/HOC/toJs';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import {withRouter} from 'react-router'
+import toJS from 'components/HOC/toJs'
 import * as orderSelectors from '../selectors/orderSelectors'
 import * as actions from '../actions/orderActionTypes'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
-import {withRouter} from 'react-router'
+import OrderForm from '../components/order/OrderForm'
+
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS
 class OrderAddContainer extends DefaultLayerLayout {
 
-	render() {
-		const {loading, id} = this.props;
+	handleSave(props) {
+		this.props.createOrder({order: props.toJS()});
+	}
 
-		const title = 'Title';
+	componentWillReceiveProps(props) {
+		props.saved && this.closeLayer();
+	}
+
+	handleRemoveProduct(id) {
+		this.props.removeProduct({id});
+	}
+
+	handleAddProduct(product) {
+		this.props.addProduct({product})
+	}
+
+	render() {
+		const {saving, products, productOptions} = this.props;
+
 		return (
 			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
 					{this.getCloseButton()}
 					{this.getToggleButton()}
-					<h1>{!loading && title}</h1>
+					<h1>Создание заказа</h1>
 				</div>
-				<div>
-					{id}
+
+				<div class="page_content  with_bottom_panel">
+					<OrderForm class="poss"
+							   productOptions={productOptions}
+							   onAddProduct={::this.handleAddProduct}
+							   onRemoveProduct={::this.handleRemoveProduct}
+							   onSave={::this.handleSave}
+							   onCancel={::this.closeLayer}/>
+
+					<OrderProductTable canEdit={true}
+									   onRemove={::this.handleRemoveProduct}
+									   products={products}/>
+				</div>
+
+				<div className="page_bottom_panel">
+					<Button type="submit" className="button small wide" loading={saving}>Сохранить</Button>
+					<a className="button small wide clean" onClick={::this.closeLayer}>Отмена</a>
 				</div>
 			</article>
 		);
@@ -35,12 +67,17 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 function mapStateToProps(state, props) {
 	const {id, point, action:urlAction}=props.match.params;
-	return {id};
+
+	return {saving, saved, products, productOptions};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
-		...bindActionCreators({}, dispatch)
+		...bindActionCreators({
+			removeProduct: actions.removeProduct,
+			addProduct: actions.addProduct,
+			createOrder: actions.createOrder.request
+		}, dispatch)
 	};
 }
 

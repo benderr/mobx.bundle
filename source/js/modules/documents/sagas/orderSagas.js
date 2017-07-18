@@ -50,6 +50,7 @@ function* getOrders({start, count, filter = null, sortField, sortDirection, isFi
 
 export default function*() {
 	yield [
-		fork(subscribeToUrl, '/documents/external', init)
+		fork(subscribeToUrl, '/documents/external', init),
+		//fork(subscribeToUrl, '/documents/external', initAdd)
 	]
 }

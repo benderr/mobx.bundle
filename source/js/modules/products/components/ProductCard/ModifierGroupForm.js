@@ -21,8 +21,6 @@ class ModifierGroupForm extends React.Component {
 			group, isRequiredGroup, searchGroup, modifiers = [], viewMode
 		} = this.props;
 
-		console.log('ModifierGroupForm', searchGroup.groups);
-
 		return (
 			<form onSubmit={handleSubmit(onSave)} className="poss">
 				<div class="page_content with_bottom_panel  content_padding">

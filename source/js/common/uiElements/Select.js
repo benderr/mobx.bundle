@@ -1,4 +1,4 @@
-import * as Selector from 'react-select';
+import Selector, {Creatable} from 'react-select';
 import React from 'react';
 
 class Select extends React.Component {
@@ -6,14 +6,24 @@ class Select extends React.Component {
 		let {
 			searchable = false,
 			noResultsText = 'Введите текст поиска',
-			openOnFocus = false, ...props
+			openOnFocus = false,
+			creatable = false, ...props
 		}=this.props;
-		return (
-			<Selector ref={s => this.el = s}
-					  {...props}
-					  openOnFocus={openOnFocus}
-					  noResultsText={noResultsText}
-					  searchable={searchable}/>);
+		console.log('render selector', props.name);
+
+		if (creatable) {
+			return (<Creatable ref={s => this.el = s}
+							   {...props}
+							   openOnFocus={openOnFocus}
+							   noResultsText={noResultsText}
+							   searchable={searchable}/>);
+		}else{
+			return (<Selector ref={s => this.el = s}
+							   {...props}
+							   openOnFocus={openOnFocus}
+							   noResultsText={noResultsText}
+							   searchable={searchable}/>);
+		}
 	}
 
 	setFocus() {

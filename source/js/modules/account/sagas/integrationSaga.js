@@ -35,7 +35,6 @@ function* confirm({msLogin, msPassword}) {
 }
 
 function* disable() {
-	console.log('disabled - saga');
 	try {
 		yield call(accountDataContext.disabledIntegration);
 		yield put(disableIntegration.success());
