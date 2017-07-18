@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect} from 'react-router'
+import {Redirect} from 'react-router-dom';
 import ChequeListContainer from './containers/ChequeListContainer'
 import MoneyListContainer from './containers/MoneyListContainer'
 import IShopListContainer from './containers/IShopListContainer'

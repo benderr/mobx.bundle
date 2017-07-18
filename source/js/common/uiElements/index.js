@@ -8,6 +8,7 @@ import InfinateScroll from './InfinateScroll';
 import ConfirmPopupService from './Dialogs/ConfirmPopupService';
 import * as Notify from './Notify';
 import Drop from './Drop';
+import DateFormat from './DateFormat';
 
 export {
 	PrimaryButton,
@@ -19,5 +20,6 @@ export {
 	ConfirmPopupService,
 	Drop,
 	Button,
-	Notify
+	Notify,
+	DateFormat
 }

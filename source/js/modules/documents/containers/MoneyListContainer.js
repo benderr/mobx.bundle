@@ -1,12 +1,11 @@
 import React from 'react'
-import DocumentPanel from './DocumentPanelContainer'
 
 class MoneyListContainer extends React.Component {
 
 	render() {
 		return (
 			<div>
-				<DocumentPanel />
+
 
 				<div className="widget_block">
 					<div className="table  table_docs">

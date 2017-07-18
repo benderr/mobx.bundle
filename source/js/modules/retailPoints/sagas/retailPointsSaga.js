@@ -3,11 +3,19 @@ import {push} from 'connected-react-router';
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import * as retailPointSelectors from '../selectors/retailPointSelectors'
 import * as dataContext  from '../dataProvider/retialPointsDataContext'
-import {addRetailPoint, getRetailPoints, setRetailPoint, getRetailPoint, editRetailPoint, deleteRetailPoint} from '../actions/retailPointActions'
+import {
+	addRetailPoint,
+	getRetailPoints,
+	setRetailPoint,
+	getRetailPoint,
+	editRetailPoint,
+	deleteRetailPoint
+} from '../actions/retailPointActions'
 import localStorage from 'core/storage/localStorage'
 const currencyRetailPointKey = 'currencyRetailPointKey';
 import * as actions from '../enums/actions'
 import productSources from '../enums/productSourcesEnum'
+import * as coreActions from 'modules/core/actions'
 
 /**
  * Получение и установка торговых точек
@@ -16,6 +24,7 @@ export function* runRetailPoints() {
 	yield fork(fetchRetailPoints);
 	yield take(actions.GET_RETAIL_POINTS.SUCCESS);
 	yield call(setSelectedPoint);
+	yield put(coreActions.pointReady());
 }
 
 /**
@@ -76,7 +85,6 @@ function* editRetailPointProcess(payload) {
 	}
 
 }
-
 
 
 function* getRetailPointProcess(id) {

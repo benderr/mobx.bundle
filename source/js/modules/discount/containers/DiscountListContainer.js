@@ -80,6 +80,8 @@ class DiscountListContainer extends React.Component {
 		const noItems = listState.noItem;
 		const globalLoading = noItems === null;
 
+		console.log('render', listState);
+
 		return (
 			<div className="h100per">
 				{!globalLoading &&

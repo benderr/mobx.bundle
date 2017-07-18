@@ -80,8 +80,8 @@ class SiteHeader extends React.Component {
                             <SiteMenuLink to="/discount" label="Скидки"/>
                             <SiteMenuLink to="/documents" label="Документы"/>
                             <SiteMenuLink to="/" exact={true} label="Товары"/>
-                            <SiteMenuLink to="/#" label="Статистика"/>
-                            <SiteMenuLink to="/#" label="Касса"/>
+                            {/*<SiteMenuLink to="/#" label="Статистика"/>*/}
+                            <SiteMenuLink to="/hotkeys" label="Касса"/>
                         </ul>
                     </div>
                 </div>
@@ -89,7 +89,7 @@ class SiteHeader extends React.Component {
                 <div class="header_profile">
 
                     <div class="header_profile_name">
-                        <Drop position="bottom right">
+                        <Drop position="bottom left">
                             <a class="icon-pos drop-target" name="label"><span>{selectedPointName}</span></a>
 
                             <div class="drop-content">

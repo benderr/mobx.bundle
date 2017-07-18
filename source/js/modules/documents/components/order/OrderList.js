@@ -1,0 +1,50 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import OrderShape from './OrderShape'
+import {DateFormat} from 'common/uiElements'
+class OrderList extends React.Component {
+
+	render() {
+		const {loading, onLoadNext, orders}=this.props;
+		const notFound = !loading && orders.length == 0 ?
+			(<div class="searching_results">
+				<div class="light_block">По запросу ничего не найдено</div>
+			</div>) : null;
+
+		return (<div class="widget_block">
+			<div class="table  table_docs">
+				<div class="table_head">
+					<div class="doc_date">Дата создания</div>
+					<div class="doc_number">Номер документа</div>
+					<div class="doc_amount">Сумма</div>
+					<div class="doc_cashier">Кассир</div>
+					<div class="doc_comment">Комментарий</div>
+				</div>
+				<div class="table_row  row_link_search">
+					<input type="search" class="small  w100" placeholder="Кассир, номер документа или сумма"/>
+				</div>
+
+				{orders.map(order => {
+					return (<div class="table_row  row_link">
+						<div class="doc_date"><DateFormat date={order.beginDateTime}/></div>
+						<div class="doc_number">Документ №{order.docNum}</div>
+						<div class="doc_amount">{order.actualSum} ₽</div>
+						<div class="doc_cashier">{order.cashier || 'Н/Д'}</div>
+						<div class="doc_comment">{order.description}</div>
+					</div>)
+				})}
+
+				{notFound}
+				{/*<InfinateScroll loadNext={onLoadNext} totalCount={orders.length} listLength={50} loading={loading}/>*/}
+			</div>
+		</div>)
+	}
+}
+
+OrderList.propTypes = {
+	orders: PropTypes.arrayOf(OrderShape).isRequired,
+	loading: PropTypes.bool.isRequired,
+	onLoadNext: PropTypes.func.isRequired
+};
+
+export default OrderList;
