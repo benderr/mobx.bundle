@@ -3,9 +3,8 @@
  */
 import * as productActions from 'modules/products/actions/productActions';
 import * as actions from 'modules/products/enums/actions'
-//import productActionsMock from '../../../../../source/js/modules/products/actions/__mocks__/productActions'
 
-jest.mock('modules/products/actions/productActions');
+//jest.mock('modules/products/actions/productActions');
 
 describe('productActions',()=>{
 	test('saveModifier', () => {

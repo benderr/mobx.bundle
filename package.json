@@ -123,7 +123,6 @@
     "npm run lint-break-on-errors --silent"
   ],
   "jest": {
-    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "moduleFileExtensions": [
       "js",
       "jsx"

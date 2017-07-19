@@ -7,6 +7,7 @@ import EditProductContainer from 'modules/products/containers/EditProductContain
 import { MemoryRouter as Router } from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import {Map, List, fromJS} from 'immutable';
+import 'airbnb-js-shims/target/es2015';
 
 // jest.mock('modules/products/selectors/productsSelectors');
 
@@ -26,9 +27,13 @@ describe('EditProductContainer tests', ()=>{
 			urlAction: 'view',
 			inventCode: '123',
 			point: '321',
-			getDetails: jest.fn()
+			getDetails: jest.fn(),
+			layerId: '123123123',
+			onCloseLayer: jest.fn()
+		};
+		let body = document.body;
+		body.innerHTML = '<div class="poss" id="root"></div>';
 
-		}
 		const renderedComponent = mount(<Router><EditProductContainer {...props} store={store}/></Router>);
 		console.log(renderedComponent.debug());
 	})
