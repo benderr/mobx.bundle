@@ -3,6 +3,6 @@
  */
 const productActions = jest.genMockFromModule('modules/products/actions/productActions');
 productActions.saveModifier = function () {
-	return {type: 'PRODUCTS.SAVE_MODIFIER'};
+	return {type: 'PRODUCTS.SAVE_MODIFIER1'};
 }
 module.exports = productActions;

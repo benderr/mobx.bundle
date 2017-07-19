@@ -3,7 +3,7 @@
  */
 
 import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects';
-import * as actions from 'modules/products/enums/actions';
+//import * as actions from 'modules/products/enums/actions';
 import {saveProductDetailsProcess} from 'modules/products/sagas/productDetailsSaga';
 import * as dataContext from 'modules/products/dataProvider/productDataContext';
 import * as productActions from 'modules/products/actions/productActions';

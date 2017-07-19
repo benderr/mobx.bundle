@@ -18,6 +18,7 @@
     "hook-remove": "prepush remove"
   },
   "devDependencies": {
+    "airbnb-js-shims": "^1.2.0",
     "autoprefixer": "^6.5.3",
     "babel-core": "^6.7.2",
     "babel-eslint": "^7.1.0",
@@ -57,6 +58,7 @@
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.1.1",
     "redux-logger": "^2.7.4",
+    "redux-mock-store": "^1.2.3",
     "style-loader": "^0.13.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
@@ -118,6 +120,7 @@
     "npm run lint-break-on-errors --silent"
   ],
   "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "moduleFileExtensions": [
       "js",
       "jsx"
