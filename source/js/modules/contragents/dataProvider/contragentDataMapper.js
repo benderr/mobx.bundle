@@ -28,3 +28,12 @@ export const getListContragent = {
 		total_count: response.total_count
 	})
 };
+
+export const createToServerr = (props) => ({
+	catalogType: 'CONTRACTOR',
+	code: generateNumber().toString(),
+	locked: props.locked == 'off' ? 0 : 1,
+	name: props.name,
+	password: props.password,
+	roles: props.roles
+});

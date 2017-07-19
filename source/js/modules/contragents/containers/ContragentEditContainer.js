@@ -8,6 +8,7 @@ import {bindActionCreators} from 'redux'
 import {formValueSelector} from 'redux-form/immutable'
 
 import createEditComponent from '../components/ContragentEditComponent'
+import * as actions from '../actions/contragentActions'
 import * as selectors from '../selectors/contragentSelectors'
 import {ROLES} from '../enums/options'
 
@@ -22,6 +23,48 @@ class ContragentEditContainer extends DefaultLayerLayout {
 	constructor(props) {
 		super(props);
 		this.EditComponent = createEditComponent(getFormName(props.code))
+	}
+
+	componentDidUpdate() {
+		const {isNew, code, contragent} = this.props;
+
+		if (contragent.success) {
+			this.onCloseForm();
+		}
+	}
+
+	onSubmitForm(props) {
+		const {
+			createContragent,
+			isNew, code
+		} = this.props;
+
+		const propsForm = {
+			name: props.get('name'),
+			password: props.get('password'),
+			locked: props.get('locked'),
+			roles: props.get('roles').toJS().reduce((prev, val) => val.selected ? [...prev, val.name] : prev, [])
+		};
+
+		if (isNew) {
+			createContragent(propsForm);
+		} else {
+			console.log('update contragent');
+		}
+
+		console.log('onSubmitForm', propsForm);
+		console.log('> props', {isNew, code});
+	}
+
+	onDeleteContragent() {
+		const {isNew, code} = this.props;
+
+		console.log('onDeleteContragent');
+		console.log('> props', {isNew, code});
+	}
+
+	onCloseForm() {
+		this.closeLayer();
 	}
 
 	render() {
@@ -39,7 +82,10 @@ class ContragentEditContainer extends DefaultLayerLayout {
 				</div>
 
 				<EditComponent contragent={contragent}
-							   showPassword={showPassword} />
+							   showPassword={showPassword}
+							   onSubmitForm={::this.onSubmitForm}
+							   onCloseForm={::this.onCloseForm}
+							   onDeleteContragent={::this.onDeleteContragent} />
 			</article>
 		);
 	}
@@ -50,54 +96,24 @@ function mapStateToProps(state, ownProps) {
 	const editState = selectors.getEditSection(state);	// state для всех форм
 	const isNew = !(action === 'edit' && code);			// добавить/редактировать
 
-	code = '12312';
+	let showPassword = false;
 
-	const formSelector = formValueSelector(getFormName(code));
-	const roles = formSelector(state, 'roles');
+	code = isNew ? 'newItem' : code;
 
-	// const showPassword = roles.some(role => role.get('selected') && ROLES[role.get('name')].password);
+	const roles = formValueSelector(getFormName(code))(state, 'roles');
+	if (roles) {
+		showPassword = roles.some(role => role.get('selected') && ROLES[role.get('name')].password);
+	}
+
 	const contragent = editState.getIn([code]);
 
-	console.log('roles', roles);
-
-	return {action, code, isNew, contragent, showPassword: true};
-
-
-
-
-	// const formSelector = formValueSelector(getFormName(code));
-	// const roles = formSelector(state, 'roles');
-    //
-	// if (!isNew) {
-    //
-	// }
-    //
-	// const showPassword = true;
-    //
-	// const contragent = editState.getIn([code]);
-	// // const showPassword = roles.some(role => role.get('selected') && ROLES[role.get('name')].password);
-
-	// console.log('editState', editState);
-	// console.log('roles', roles);
-	// console.log('contragent', contragent);
-
-	// return {action, code, isNew, contragent, showPassword}
-
-
-	// // const editState = selectors.getEditState(state);
-	// const {action} = ownProps.match.params;
-	// let code = ownProps.match.params.code;
-    //
-	// const isNew = !(action === 'edit' && code);
-    //
-	// // const code = '123123123213';
-    //
-	// return {action, code};
+	return {action, code, isNew, contragent, showPassword};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
+			createContragent: actions.createContragent.request
 		}, dispatch)
 	};
 }

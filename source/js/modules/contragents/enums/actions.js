@@ -4,6 +4,7 @@ export const GET_LIST = createRequestTypes('CONTRAGENT.GET_LIST');
 export const CHECKED_CASHIER = 'CONTRAGENT.CHECKED_CASHIER';
 export const OPEN_FROM_LIST = 'CONTRAGENT.OPEN_FROM_LIST';
 
+export const CREATE_CONTRAGENT = 'CONTRAGENT.CREATE_CONTRAGENT';
 
 
 export const CREATE = createRequestTypes('CONTRAGENT.CREATE');

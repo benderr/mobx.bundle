@@ -28,13 +28,15 @@ class ContragentEditComponent extends React.Component {
 
 		const {
 			handleSubmit,
-			showPassword
+			contragent, showPassword,
+
+			onSubmitForm, onCloseForm, onDeleteContragent
 		} = this.props;
 
 		console.log('render.form');
 
 		return (
-			<form className="poss" onSubmit={handleSubmit(() => console.log('handleSubmit'))}>
+			<form className="poss" onSubmit={handleSubmit(onSubmitForm)}>
 				<div className="page_content page_content__contragents with_bottom_panel content_padding">
 					<FieldArray name="roles" component={ ({fields}) =>
 						<div className="contragent_role_select">
@@ -81,9 +83,9 @@ class ContragentEditComponent extends React.Component {
 				</div>
 
 				<div className="page_bottom_panel">
-					<PrimaryButton type="submit">Сохранить</PrimaryButton>
-					<a className="button middle wide clean">Отмена</a>
-					{!isNew && <a className="button middle wide clean mr44 f_right">Удалить</a>}
+					<PrimaryButton type="submit" loading={contragent.loading}>Сохранить</PrimaryButton>
+					<a className="button middle wide clean" onClick={onCloseForm}>Отмена</a>
+					{!isNew && <a className="button middle wide clean mr44 f_right" onClick={onDeleteContragent}>Удалить</a>}
 				</div>
 			</form>
 		)

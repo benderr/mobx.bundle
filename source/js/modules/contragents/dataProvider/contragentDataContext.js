@@ -12,3 +12,9 @@ export const getListContragent = ({token, ...props}) => {
 		.get(mapper.getListContragent.toServer(props))
 		.then(response => mapper.getListContragent.toClient(response.data));
 };
+
+
+export const createContragent = ({token, ...props}) => {
+	return api.v1().retailpoint(token).catalog()
+		.post(mapper.createToServerr(props));
+};
