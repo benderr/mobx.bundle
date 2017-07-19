@@ -19,7 +19,9 @@ class ProductListComponent extends React.Component {
                                                                onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
 
         const notFound = !loading && productItems.length == 0 ?
-            <div class='table_row  center_xy'>По запросу ничего не найдено</div> : null;
+            (<div class="searching_results">
+                <div class="light_block">По запросу ничего не найдено</div>
+            </div>) : null;
 
         return (
             <div class='widget_block' style={{minHeight: '100px'}}>

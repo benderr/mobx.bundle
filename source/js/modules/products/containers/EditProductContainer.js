@@ -159,7 +159,6 @@ export default EditProductContainer;
 function mapStateToProps(state, ownProps) {
 	const {inventCode, point, action:urlAction}=ownProps.match.params;
 	const productView = getProductView(inventCode)(state);
-	console.log('mapStateToProps', productView);
 	return {inventCode, point, productView, urlAction, history: ownProps.history};
 }
 
