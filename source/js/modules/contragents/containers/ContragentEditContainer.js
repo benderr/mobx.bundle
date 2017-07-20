@@ -25,6 +25,14 @@ class ContragentEditContainer extends DefaultLayerLayout {
 		this.EditComponent = createEditComponent(getFormName(props.code))
 	}
 
+	componentWillMount() {
+		const {isLoading, code, loadDetail} = this.props;
+
+		if (isLoading && code) {
+			loadDetail(code);
+		}
+	}
+
 	componentDidUpdate() {
 		const {isNew, code, contragent} = this.props;
 
@@ -35,7 +43,7 @@ class ContragentEditContainer extends DefaultLayerLayout {
 
 	onSubmitForm(props) {
 		const {
-			createContragent,
+			createContragent, updateContragent,
 			isNew, code
 		} = this.props;
 
@@ -49,11 +57,8 @@ class ContragentEditContainer extends DefaultLayerLayout {
 		if (isNew) {
 			createContragent(propsForm);
 		} else {
-			console.log('update contragent');
+			updateContragent({code, ...propsForm});
 		}
-
-		console.log('onSubmitForm', propsForm);
-		console.log('> props', {isNew, code});
 	}
 
 	onDeleteContragent() {
@@ -83,6 +88,7 @@ class ContragentEditContainer extends DefaultLayerLayout {
 
 				<EditComponent contragent={contragent}
 							   showPassword={showPassword}
+							   isNew={isNew}
 							   onSubmitForm={::this.onSubmitForm}
 							   onCloseForm={::this.onCloseForm}
 							   onDeleteContragent={::this.onDeleteContragent} />
@@ -96,24 +102,25 @@ function mapStateToProps(state, ownProps) {
 	const editState = selectors.getEditSection(state);	// state для всех форм
 	const isNew = !(action === 'edit' && code);			// добавить/редактировать
 
-	let showPassword = false;
-
 	code = isNew ? 'newItem' : code;
+	const contragent = editState.getIn([code]);
+	const isLoading = !contragent;
 
+	let showPassword = false;
 	const roles = formValueSelector(getFormName(code))(state, 'roles');
 	if (roles) {
 		showPassword = roles.some(role => role.get('selected') && ROLES[role.get('name')].password);
 	}
 
-	const contragent = editState.getIn([code]);
-
-	return {action, code, isNew, contragent, showPassword};
+	return {isLoading, action, code, isNew, contragent, showPassword};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			createContragent: actions.createContragent.request
+			createContragent: actions.createContragent.request,
+			updateContragent: actions.updateContragent.request,
+			loadDetail: actions.loadDetailContragent
 		}, dispatch)
 	};
 }

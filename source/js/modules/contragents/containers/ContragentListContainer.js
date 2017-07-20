@@ -29,8 +29,9 @@ class ContragentListContainer extends React.Component {
 
 	onOpenDetailLayout(row) {
 		const {openContragent, push} = this.props;
-		// openContragent(row);
-		// push({pathname: `/contragents/edit/${row.code}`});
+		openContragent(row);
+		// push({pathname: `/contragents/add`});
+		push({pathname: `/contragents/edit/${row.code}`});
 	}
 
 	onSortList(column, orderBy) {
@@ -139,7 +140,8 @@ function mapDispatchToProps(dispatch) {
 		...bindActionCreators({
 			push,
 			getListContragent: actions.getListContragent.request,
-			checkboxCashier: actions.checkboxCashier
+			checkboxCashier: actions.checkboxCashier,
+			openContragent: actions.openFromList
 		}, dispatch)
 	};
 }

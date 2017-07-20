@@ -8,11 +8,17 @@ export const getListContragent = {
 	failure: (error) => createAction(actions.GET_LIST.FAILURE, {error})
 };
 export const checkboxCashier = (checked) => createAction(actions.CHECKED_CASHIER, {checked});
+export const loadDetailContragent = (code) => createAction(actions.LOAD_DETAIL, {code});
 
 // Actions for EditReducer
-export const OpenFromList = (contragent) => createAction(actions.OPEN_FROM_LIST, {contragent});
+export const openFromList = (contragent) => createAction(actions.OPEN_FROM_LIST, {contragent});
 
 export const createContragent = {
 	request: (contragent) => createAction(actions.CREATE.REQUEST, {contragent}),
 	success: () => createAction(actions.CREATE.SUCCESS)
+};
+
+export const updateContragent = {
+	request: (contragent) => createAction(actions.UPDATE.REQUEST, {contragent}),
+	success: (code) => createAction(actions.UPDATE.SUCCESS, {code})
 };

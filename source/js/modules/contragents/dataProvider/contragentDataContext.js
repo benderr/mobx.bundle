@@ -16,5 +16,10 @@ export const getListContragent = ({token, ...props}) => {
 
 export const createContragent = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog()
-		.post(mapper.createToServerr(props));
+		.post(mapper.createUpdateToServerr(props));
+};
+
+export const updateContragent = ({token, ...props}) => {
+	return api.v1().retailpoint(token).catalog()
+		.put(mapper.createUpdateToServerr(props));
 };

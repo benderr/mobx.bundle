@@ -29,9 +29,9 @@ export const getListContragent = {
 	})
 };
 
-export const createToServerr = (props) => ({
+export const createUpdateToServerr = (props) => ({
 	catalogType: 'CONTRACTOR',
-	code: generateNumber().toString(),
+	code: props.code || generateNumber().toString(),
 	locked: props.locked == 'off' ? 0 : 1,
 	name: props.name,
 	password: props.password,

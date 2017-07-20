@@ -24,10 +24,8 @@ class ContragentEditComponent extends React.Component {
 	}
 
 	render() {
-		const isNew = true;
-
 		const {
-			handleSubmit,
+			handleSubmit, isNew,
 			contragent, showPassword,
 
 			onSubmitForm, onCloseForm, onDeleteContragent
