@@ -1,17 +1,17 @@
 /**
  * Created by RobertSabiryanov on 12.07.17.
  */
-import {Map, List, fromJS} from 'immutable';
+import {fromJS} from 'immutable';
 import * as productsReducer from 'modules/products/reducers/productsReducer';
 import * as actionEnums from 'modules/products/enums/actions'
 
 
 describe('productsReducer', () => {
 	test('default state', () => {
-		let expectedState = Map({
+		let expectedState = fromJS({
 			loading: true,
 			error: null,
-			productsList: List([]),
+			productsList: [],
 			productListTotalCount: 0,
 			noProducts: false
 		});
