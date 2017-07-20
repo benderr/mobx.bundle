@@ -6,7 +6,7 @@ import * as productActions from '../actions/productActions'
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router'
-import {getProductView} from 'modules/products/selectors/productsSelectors'
+import {getProductView} from '../selectors/productsSelectors'
 import {LoaderBlock} from 'common/uiElements'
 import toJS from 'components/HOC/toJs'
 import {ConfirmPopupService} from 'common/uiElements';
