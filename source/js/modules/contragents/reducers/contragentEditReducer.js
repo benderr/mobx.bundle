@@ -16,7 +16,6 @@ export const initialState = Map({
 
 export const actionHandlers = {
 	[actions.OPEN_FROM_LIST]: (state, {contragent}) => {
-		console.log(actions.OPEN_FROM_LIST, contragent);
 		return state.setIn([contragent.code], Map({
 			loading: false,
 			errors: null,
@@ -31,11 +30,10 @@ export const actionHandlers = {
 	},
 
 	[actions.LOAD_DETAIL]: (state, {code}) => {
-		console.log(code);
 		return state.setIn([code], Map({
 			loading: true,
 			errors: null,
-			success: true,
+			success: null,
 
 			code: code,
 			name: '',
@@ -82,7 +80,12 @@ export const actionHandlers = {
 		return state.setIn([code], Map({
 			loading: false,
 			errors: null,
-			success: true
+			success: true,
+
+			name: '',
+			password: '',
+			locked: 'off',
+			roles: List(fromJS([]))
 		}));
 	}
 };

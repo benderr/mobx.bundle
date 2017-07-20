@@ -10,7 +10,7 @@ import {ROLES, ROLES_CODE} from '../enums/options'
 
 
 class ContragentEditComponent extends React.Component {
-	componentDidMount() {
+	componentDidUpdate() {
 		const {contragent, dispatch, form} = this.props;
 		const formState = {...contragent};
 
@@ -27,11 +27,8 @@ class ContragentEditComponent extends React.Component {
 		const {
 			handleSubmit, isNew,
 			contragent, showPassword,
-
 			onSubmitForm, onCloseForm, onDeleteContragent
 		} = this.props;
-
-		console.log('render.form');
 
 		return (
 			<form className="poss" onSubmit={handleSubmit(onSubmitForm)}>
@@ -95,5 +92,7 @@ ContragentEditComponent.propTypes = {
 	showPassword: PropTypes.bool
 };
 
-
-export default formName => reduxForm({form: formName})(ContragentEditComponent);
+export default formName => reduxForm({
+	form: formName,
+	enableReinitialize: true
+})(ContragentEditComponent);

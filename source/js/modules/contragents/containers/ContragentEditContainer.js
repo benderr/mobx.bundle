@@ -28,11 +28,18 @@ class ContragentEditContainer extends DefaultLayerLayout {
 
 	componentWillMount() {
 		const {isLoading, code, loadDetail} = this.props;
-
-		if (isLoading && code) {
+		if (isLoading) {
 			loadDetail(code);
 		}
 	}
+
+	// shouldComponentUpdate(){
+	// 	const {contragent} = this.props;
+	// 	if (contragent.success) {
+	// 		return false;
+	// 	}
+	// 	return true;
+	// }
 
 	componentDidUpdate() {
 		const {contragent} = this.props;
@@ -111,8 +118,12 @@ function mapStateToProps(state, ownProps) {
 	const isNew = !(action === 'edit' && code);			// добавить/редактировать
 
 	code = isNew ? 'newItem' : code;
-	const contragent = editState.getIn([code]);
+	let contragent = editState.getIn([code]);
 	const isLoading = !contragent;
+
+	if (isLoading) {
+		contragent = editState.getIn(['newItem']);
+	}
 
 	let showPassword = false;
 	const roles = formValueSelector(getFormName(code))(state, 'roles');
@@ -120,7 +131,7 @@ function mapStateToProps(state, ownProps) {
 		showPassword = roles.some(role => role.get('selected') && ROLES[role.get('name')].password);
 	}
 
-	return {isLoading, action, code, isNew, contragent, showPassword};
+	return {isLoading, action, code, isNew, contragent, showPassword, editState};
 }
 
 function mapDispatchToProps(dispatch) {

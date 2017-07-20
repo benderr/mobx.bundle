@@ -47,12 +47,25 @@ function* deleteContragentSaga({code}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
 		yield call(dataContext.deleteContragent, {token, code});
-		yield put(actions.updateContragent.success(code));
+		yield put(actions.deleteContragent.success(code));
 
 		yield put(notify.success('Контрагент успешно удален'));
 		yield put(actions.getListContragent.request())
 	} catch (error) {
 		yield put(notify.error('При удалении произошла ошибка'));
+	}
+}
+
+function* loadDetailContragentSaga({code}) {
+	try {
+		const token = yield select(getCurrentRetailPointId);
+		const {data} = yield call(dataContext.getListContragent, {token, qField: `code=="${code}"`});
+
+		if (data.length && data[0]) {
+			yield put(actions.openFromList(data[0]));
+		} else throw new Error();
+	} catch (error) {
+		yield put(notify.error('Не удалось загрузить контрагента'));
 	}
 }
 
@@ -63,6 +76,6 @@ export default function*() {
 		takeEvery(enums.CREATE.REQUEST, createContragentSaga),
 		takeEvery(enums.UPDATE.REQUEST, updateContragentSaga),
 		takeEvery(enums.DELETE.REQUEST, deleteContragentSaga),
-		// takeEvery(enums.LOAD_DETAIL.REQUEST, loadDetailContragentSaga)
+		takeEvery(enums.LOAD_DETAIL, loadDetailContragentSaga)
 	]
 }

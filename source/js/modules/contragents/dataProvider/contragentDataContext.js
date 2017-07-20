@@ -25,7 +25,6 @@ export const updateContragent = ({token, ...props}) => {
 };
 
 export const deleteContragent = ({token, code}) => {
-	console.log({token, code});
 	return api.v1().retailpoint(token).catalog().contractor(code)
 		.delete();
 };

@@ -24,5 +24,6 @@ export const updateContragent = {
 };
 
 export const deleteContragent = {
-	request: (code) => createAction(actions.DELETE.REQUEST, {code})
+	request: (code) => createAction(actions.DELETE.REQUEST, {code}),
+	success: (code) => createAction(actions.DELETE.SUCCESS, {code})
 };
