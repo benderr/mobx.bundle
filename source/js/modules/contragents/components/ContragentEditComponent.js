@@ -10,7 +10,7 @@ import {ROLES, ROLES_CODE} from '../enums/options'
 
 
 class ContragentEditComponent extends React.Component {
-	componentDidUpdate() {
+	componentDidMount() {
 		const {contragent, dispatch, form} = this.props;
 		const formState = {...contragent};
 
@@ -93,6 +93,5 @@ ContragentEditComponent.propTypes = {
 };
 
 export default formName => reduxForm({
-	form: formName,
-	enableReinitialize: true
+	form: formName
 })(ContragentEditComponent);
