@@ -1,6 +1,7 @@
 import React from 'react'
 import {AmountInput} from 'common/uiElements';
 import {radValidateHoc, CustomFocusable} from './validationHelpers'
+import accounting from 'accounting';
 
 @radValidateHoc({tips: true})
 class AmountRender extends React.Component {

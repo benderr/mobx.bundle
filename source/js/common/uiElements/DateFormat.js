@@ -1,11 +1,23 @@
 import React from 'react'
 import dateHelper from '../helpers/dateHelper'
+import PropTypes from 'prop-types'
+const DateFormat = ({value, format = "clever", def = ''}) => {
+	let formatDate = value;
+	if (value && typeof value === 'string') {
+		formatDate = dateHelper.stringToDate(value);
+		if (isNaN(formatDate.getTime()))
+			formatDate = new Date(value);
+	}
 
-export default ({date, format = null, def = ''}) => {
-	let formatDate = date;
-	if (date && typeof date === 'string')
-		formatDate = dateHelper.stringToDate(date);
 	if (formatDate && formatDate instanceof Date)
-		return (<span>{dateHelper.dateFormat(formatDate, format)}</span>)
+		return (<span>{dateHelper.dateFormat(formatDate, format)}</span>);
 	return (<span>{def}</span>);
-}
+};
+
+DateFormat.propTypes = {
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.date]),
+	format: PropTypes.string,
+	def: PropTypes.string
+};
+
+export  default DateFormat;

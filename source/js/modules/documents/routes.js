@@ -4,6 +4,8 @@ import ChequeListContainer from './containers/ChequeListContainer'
 import MoneyListContainer from './containers/MoneyListContainer'
 import IShopListContainer from './containers/IShopListContainer'
 import ExternalListContainer from './containers/ExternalListContainer'
+import OrderViewContainer from './containers/OrderViewContainer'
+import OrderAddContainer from './containers/OrderAddContainer'
 import ReportsContainer from './containers/ReportsContainer'
 
 export function getRoutes() {
@@ -27,6 +29,18 @@ export function getRoutes() {
 			path: '/documents/external',
 			exact: true,
 			component: ExternalListContainer
+		},
+		documentsExternalView: {
+			path: '/documents/external/view/:point/:id',
+			exact: true,
+			layout: OrderViewContainer,
+			isLayer: true
+		},
+		documentsExternalAdd: {
+			path: '/documents/external/add',
+			exact: true,
+			layout: OrderAddContainer,
+			isLayer: true
 		},
 		documentsIShop: {
 			path: '/documents/ishop',

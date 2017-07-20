@@ -9,7 +9,10 @@ import {bindActionCreators} from 'redux';
 import toJS from 'components/HOC/toJs';
 import * as orderSelectors from '../selectors/orderSelectors'
 import * as actions from '../actions/orderActionTypes'
+import {push} from 'connected-react-router'
+import retailPointRequiredHOC from 'components/HOC/retailPointRequiredHOC'
 
+@retailPointRequiredHOC
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS
 class ExternalListContainer extends React.Component {
@@ -19,7 +22,12 @@ class ExternalListContainer extends React.Component {
 	}
 
 	handleAddOrder() {
+		this.props.push('/documents/external/add');
+	}
 
+	handleOpenOrder(id) {
+		const {push, selectedPoint} = this.props;
+		push(`/documents/external/view/${selectedPoint}/${id}`);
 	}
 
 	handleLoadNext() {
@@ -53,6 +61,7 @@ class ExternalListContainer extends React.Component {
 				{noItems && <NoOrders onAddOrder={::this.handleAddOrder}/>}
 				{!noItems && <OrderList orders={orders}
 										loading={loading}
+										onOpenOrder={::this.handleOpenOrder}
 										onLoadNext={::this.handleLoadNext}/>}
 
 			</div>
@@ -73,7 +82,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			loadMore: actions.getOrders.request
+			loadMore: actions.getOrders.request,
+			push: push
 		}, dispatch)
 	};
 }
