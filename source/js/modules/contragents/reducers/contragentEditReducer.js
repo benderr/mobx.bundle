@@ -73,4 +73,16 @@ export const actionHandlers = {
 			success: true
 		}));
 	},
+
+	// удаление контрагента
+	[actions.DELETE.REQUEST]: (state, {code}) => {
+		return state.setIn([code, 'loading'], true);
+	},
+	[actions.DELETE.SUCCESS]: (state, {code}) => {
+		return state.setIn([code], Map({
+			loading: false,
+			errors: null,
+			success: true
+		}));
+	}
 };

@@ -7,6 +7,7 @@ import retailPointHOC from 'components/HOC/retailPointRequiredHOC'
 import {bindActionCreators} from 'redux'
 import {formValueSelector} from 'redux-form/immutable'
 
+import {ConfirmPopupService} from 'common/uiElements'
 import createEditComponent from '../components/ContragentEditComponent'
 import * as actions from '../actions/contragentActions'
 import * as selectors from '../selectors/contragentSelectors'
@@ -34,7 +35,7 @@ class ContragentEditContainer extends DefaultLayerLayout {
 	}
 
 	componentDidUpdate() {
-		const {isNew, code, contragent} = this.props;
+		const {contragent} = this.props;
 
 		if (contragent.success) {
 			this.onCloseForm();
@@ -62,10 +63,12 @@ class ContragentEditContainer extends DefaultLayerLayout {
 	}
 
 	onDeleteContragent() {
-		const {isNew, code} = this.props;
+		const {deleteContragent, code} = this.props;
 
-		console.log('onDeleteContragent');
-		console.log('> props', {isNew, code});
+		this.deletePopup.open()
+			.then(() => {
+				deleteContragent(code);
+			});
 	}
 
 	onCloseForm() {
@@ -92,6 +95,11 @@ class ContragentEditContainer extends DefaultLayerLayout {
 							   onSubmitForm={::this.onSubmitForm}
 							   onCloseForm={::this.onCloseForm}
 							   onDeleteContragent={::this.onDeleteContragent} />
+				<ConfirmPopupService ref={p => this.deletePopup = p}
+									 title='Удаление контрагента'
+									 text='Контрагент будет удален из списка контрагентов всех точек'
+									 okName="Подтвердить"
+									 cancelName="Отмена"/>
 			</article>
 		);
 	}
@@ -120,6 +128,7 @@ function mapDispatchToProps(dispatch) {
 		...bindActionCreators({
 			createContragent: actions.createContragent.request,
 			updateContragent: actions.updateContragent.request,
+			deleteContragent: actions.deleteContragent.request,
 			loadDetail: actions.loadDetailContragent
 		}, dispatch)
 	};

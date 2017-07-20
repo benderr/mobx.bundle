@@ -22,3 +22,7 @@ export const updateContragent = {
 	request: (contragent) => createAction(actions.UPDATE.REQUEST, {contragent}),
 	success: (code) => createAction(actions.UPDATE.SUCCESS, {code})
 };
+
+export const deleteContragent = {
+	request: (code) => createAction(actions.DELETE.REQUEST, {code})
+};
