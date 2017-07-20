@@ -232,12 +232,6 @@ module.exports = {
 		},
 		//disableHostCheck: true
 	},
-	externals: {
-		cheerio: 'window',
-		'react/addons': 'react',
-		'react/lib/ExecutionEnvironment': 'react',
-		'react/lib/ReactContext': 'react',
-	},
 	// stylus: {
 	//     use: [require('nib')()],
 	//     import: ['~nib/lib/nib/index.styl']
