@@ -4,7 +4,7 @@ import {DateFormat, AmountFormat} from 'common/uiElements'
 
 
 const columnList = [
-	{code: 'beginDateTime', cssClass: 'doc_date', name: 'Дата создания', sort: true, fn},
+	{code: 'beginDateTime', cssClass: 'doc_date', name: 'Дата создания', sort: true},
 	{code: 'docType', cssClass: 'doc_type', name: 'Тип документа', sort: true},
 	// {code: '3', cssClass: 'doc_smena_number', name: 'Номер смены', sort: true},
 	{code: 'docNum', cssClass: 'doc_number', name: 'Номер документа', sort: true},
