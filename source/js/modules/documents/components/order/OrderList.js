@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import OrderShape from './OrderShape'
-import {DateFormat, AmountFormat, InfinateScroll} from 'common/uiElements'
+import {DateFormat, AmountFormat, InfinateScroll, SortLink} from 'common/uiElements'
 
 class OrderList extends React.Component {
 
 	render() {
-		const {loading, orders, onLoadNext, onOpenOrder, onChangeFilter, totalCount}=this.props;
+		const {loading, orders, totalCount, sortField, sortDirection,
+			onLoadNext, onOpenOrder, onChangeFilter, onSort}=this.props;
 		const notFound = !loading && orders.length == 0 ?
 			(<div class="searching_results">
 				<div class="light_block">По запросу ничего не найдено</div>
@@ -24,10 +25,26 @@ class OrderList extends React.Component {
 		return (<div class="widget_block">
 			<div class="table  table_docs">
 				<div class="table_head">
-					<div class="doc_date">Дата создания</div>
-					<div class="doc_number">Номер документа</div>
-					<div class="doc_amount">Сумма</div>
-					<div class="doc_cashier">Кассир</div>
+					<SortLink className="doc_date"
+							  field='beginDateTime'
+							  sortField={sortField}
+							  orderBy={sortDirection}
+							  onClick={onSort}>Дата создания</SortLink>
+					<SortLink className="doc_number"
+							  field='docNum'
+							  sortField={sortField}
+							  orderBy={sortDirection}
+							  onClick={onSort}>Номер документа</SortLink>
+					<SortLink className="doc_amount"
+							  field='actualSum'
+							  sortField={sortField}
+							  orderBy={sortDirection}
+							  onClick={onSort}>Сумма</SortLink>
+					<SortLink className="doc_cashier"
+							  field='cashier.name'
+							  sortField={sortField}
+							  orderBy={sortDirection}
+							  onClick={onSort}>Кассир</SortLink>
 					<div class="doc_comment">Комментарий</div>
 				</div>
 				<div class="table_row  row_link_search">
@@ -50,9 +67,12 @@ OrderList.propTypes = {
 	orders: PropTypes.arrayOf(OrderShape).isRequired,
 	totalCount: PropTypes.number,
 	loading: PropTypes.bool.isRequired,
+	sortField: PropTypes.string,
+	sortDirection: PropTypes.string,
 	onLoadNext: PropTypes.func.isRequired,
 	onOpenOrder: PropTypes.func.isRequired,
-	onChangeFilter: PropTypes.func.isRequired
+	onChangeFilter: PropTypes.func.isRequired,
+	onSort: PropTypes.func.isRequired
 };
 
 export default OrderList;
