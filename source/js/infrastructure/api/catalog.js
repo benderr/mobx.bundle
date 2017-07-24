@@ -5,5 +5,6 @@ export default (api) => {
 	api.v1().retailpoint().catalog().addResource('hotkeys', 'HOT_KEYS');
 	api.v1().retailpoint().catalog().addResource('itemGroups', 'ITEM_GROUP');
 	api.v1().retailpoint().catalog().addResource('simpleDiscount', 'SIMPLE_DISCOUNT');
+	api.v1().retailpoint().catalog().addResource('contractor', 'CONTRACTOR');
 	api.v1().addResource('uploadCatalog', 'upload-catalog');
 };

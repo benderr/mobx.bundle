@@ -1,10 +1,13 @@
 import * as orderReducers from './reducers/orderReducers'
-import * as routes  from './routes.js'
+import chequeReducers from './reducers/chequeReducers'
+import * as routes from './routes.js'
 import orderSagas from './sagas/orderSagas';
+import chequeSagas from './sagas/chequeSagas';
 
 export function getReducers(createReducer) {
 	return {
 		orders: createReducer(orderReducers.initialState, orderReducers.actionHandlers),
+		cheques: chequeReducers(createReducer),
 	}
 }
 
@@ -13,5 +16,8 @@ export function getRoutes() {
 }
 
 export function getSagas() {
-	return [orderSagas()]
+	return [
+		orderSagas(),
+		chequeSagas()
+	]
 }

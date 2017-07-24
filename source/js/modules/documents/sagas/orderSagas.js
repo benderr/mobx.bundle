@@ -14,6 +14,7 @@ import {debounce} from 'redux-saga-debounce-effect'
 function* init() {
 	yield takeLatest(actions.CREATE_ORDER.REQUEST, createOrder);
 	yield takeEvery(actions.GET_ORDERS.REQUEST, getOrders);
+	yield takeEvery(actions.GET_ORDER_DETAILS.REQUEST, getOrderDetails)
 	yield fork(debounceSearchOrders);
 }
 
@@ -69,6 +70,26 @@ function* getOrders() {
 	catch (error) {
 		logger.log(error);
 		yield put(actions.getOrders.failure({error}));
+	}
+}
+
+function* getOrderDetails({point, id}) {
+	try {
+
+		let q = ['shift.id==":external"', `id=="${id}"`];
+		q = q.join(';');
+
+		const {orders} = yield call(dataContext.getOrders, point, 0, 1, q);
+		if (orders.length > 0) {
+			yield put(actions.getOrderDetails.success({order: orders[0]}));
+		}
+		else {
+			yield put(actions.getOrderDetails.failure({id, error: 'Заказ не найден'}));
+		}
+	}
+	catch (error) {
+		logger.log(error);
+		yield put(actions.getOrderDetails.failure({id, error}));
 	}
 }
 

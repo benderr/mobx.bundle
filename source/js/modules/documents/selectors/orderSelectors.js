@@ -8,6 +8,7 @@ export const getOrders = createSelector([getSection], (section) => {
 	return section ? section.get('orders') : null;
 });
 
+
 export const getLoader = createSelector([getSection], (section) => {
 	return section ? section.get('loading') : false;
 });
@@ -27,10 +28,6 @@ export const getOrdersFilter = createSelector([getSection], (section) => {
 export const getOrdersTotalCount = createSelector([getOrdersFilter], (filter) => {
 	return filter.get('totalCount');
 });
-
-// export const getFormOrder = (state) => {
-// 	return getFormValues('orderForm')(state);
-// };
 
 export const getFormProducts = createSelector([getOrderFormSection], (section) => {
 	return section.get('products').toList();

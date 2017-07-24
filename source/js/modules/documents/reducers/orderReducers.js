@@ -25,7 +25,8 @@ export const initialState = Map({
 			error: null,
 			products: List([])
 		})
-	})
+	}),
+	orderViews: Map({})
 });
 
 const searchProductReducer = createRequestReducer(actions.SEARCH_PRODUCTS, ['createOrder', 'searchProductsResult'])
@@ -40,10 +41,6 @@ const searchProductReducer = createRequestReducer(actions.SEARCH_PRODUCTS, ['cre
 		error: null
 	}))
 	.get();
-
-const isEmpty = (val) => {
-	return val === '' || val === null || val === undefined;
-};
 
 export const actionHandlers = {
 	[actions.GET_ORDERS.REQUEST]: (state, action) => {
@@ -96,6 +93,15 @@ export const actionHandlers = {
 	[actions.CORRECT_FILTER]: (state, {pos}) => {
 		const count = state.getIn(['ordersFilter', 'count'], 0);
 		return state.setIn(['ordersFilter', 'start'], pos + count);
+	},
+	[actions.GET_ORDER_DETAILS.REQUEST]: (state, {id}) => {
+		return state.setIn(['orderViews', id], fromJS({loading: true}));
+	},
+	[actions.GET_ORDER_DETAILS.SUCCESS]: (state, {order}) => {
+		return state.mergeIn(['orderViews', order.id], fromJS({loading: false, order}));
+	},
+	[actions.GET_ORDER_DETAILS.FAILURE]: (state, {id, error}) => {
+		return state.mergeIn(['orderViews', id], fromJS({loading: false, error}));
 	},
 	...searchProductReducer,
 };
