@@ -10,6 +10,7 @@ import * as Notify from './Notify';
 import Drop from './Drop';
 import DateFormat from './DateFormat';
 import AmountFormat from './AmountFormat'
+import SortLink from './SortLink'
 
 export {
 	PrimaryButton,
@@ -23,5 +24,6 @@ export {
 	Button,
 	Notify,
 	DateFormat,
-	AmountFormat
+	AmountFormat,
+	SortLink
 }

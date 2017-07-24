@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {DateFormat, AmountFormat} from 'common/uiElements'
+import {DateFormat, AmountFormat, SortLink} from 'common/uiElements'
 
 
 const columnList = [
@@ -32,6 +32,7 @@ const TableHead = (props) => {
 
 	return <div className="table_head">{jsxHeader}</div>
 };
+
 const TableSearch = (props) => {
 	return (
 		<div className="table_row  row_link_search">
@@ -59,7 +60,8 @@ const TableBody = (props) => {
 				case ('cashier'):
 					valueText = row.cashier.name;
 					break;
-				default: valueText = row[col.code];
+				default:
+					valueText = row[col.code];
 			}
 
 			return <div className={col.cssClass} key={'col' + col.code}>{valueText}</div>
@@ -87,6 +89,15 @@ class ChequeList extends React.Component {
 					<TableHead onSortList={onHeadSortClick}
 							   column={sortField}
 							   orderBy={sortDirection}/>
+
+					<div className="table_head">
+						<SortLink sortField="beginDateTime"
+								  field={"beginDateTime"}
+								  orderBy="desc"
+								  onClick={() => console.log('click')}
+								  className="doc_date">Дата создания</SortLink>
+					</div>
+
 					<TableSearch onFilterChanged={onFilterChanged}
 								 inputValue={q}/>
 					<TableBody list={list}
