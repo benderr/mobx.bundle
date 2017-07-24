@@ -12,10 +12,7 @@ import toJS from 'components/HOC/toJs'
 import {ConfirmPopupService} from 'common/uiElements';
 import {notify} from 'common/uiElements/Notify';
 
-@withRouter
-@connect(mapStateToProps, mapDispatchToProps)
-@toJS
-class EditProductContainer extends DefaultLayerLayout {
+export class EditProductContainer extends DefaultLayerLayout {
 
 	constructor(props) {
 		super(props);
@@ -154,12 +151,9 @@ EditProductContainer.propTypes = {
 	productView: PropTypes.object,
 };
 
-export default EditProductContainer;
-
 function mapStateToProps(state, ownProps) {
 	const {inventCode, point, action:urlAction}=ownProps.match.params;
 	const productView = getProductView(inventCode)(state);
-	console.log('mapStateToProps', productView);
 	return {inventCode, point, productView, urlAction, history: ownProps.history};
 }
 
@@ -176,3 +170,5 @@ function mapDispatchToProps(dispatch) {
 		dispatch
 	}
 }
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(toJS(EditProductContainer)));

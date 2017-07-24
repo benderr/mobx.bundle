@@ -1,10 +1,10 @@
-import * as reducers from './reducers/reducers'
+import * as rootReducer from './reducers/rootReducer'
 import * as routes  from './routes.js'
-import sagas from './sagas/sagas';
+import sagas from './sagas/cashBoxSagas';
 
 export function getReducers(createReducer) {
 	return {
-		finance: createReducer(reducers.initialState, reducers.actionHandlers)
+		cashBoxTabs: createReducer(rootReducer.initialState, rootReducer.actionHandlers),
 	}
 }
 

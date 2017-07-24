@@ -1,6 +1,7 @@
 import {createSelector} from 'reselect'
+import {getPointId} from 'modules/core/selectors'
 
-export const getRetailPointsData = (state) => {
+const getRetailPointsData = (state) => {
 	return state.get('retailPointsData');
 };
 
@@ -8,9 +9,7 @@ export const getRetailPointList = createSelector([getRetailPointsData], rpData =
 	return rpData.get('retailPoints');
 });
 
-export const getCurrentRetailPointId = createSelector([getRetailPointsData], rpData => {
-	return rpData.get('selectedPointId');
-});
+export const getCurrentRetailPointId = getPointId;
 
 export const getRetailPointInLayer = createSelector([getRetailPointsData], rpData => {
 	return rpData.getIn(['retailPointInLayer'], null);

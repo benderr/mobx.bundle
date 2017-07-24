@@ -1,6 +1,3 @@
-/**
- * Created by RobertSabiryanov on 15.06.17.
- */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
@@ -70,7 +67,7 @@ class Drop extends React.Component {
             position: this.props.position
         };
         const opts = Object.assign({
-            target: this.refs.drop,
+            target: this.props.target || this.refs.drop,
         }, defaultOptions, outOptions);
         opts.content = (drop) => {
             return ReactDOM.render(this.getDropContent(), this.container);
@@ -83,6 +80,7 @@ class Drop extends React.Component {
         if (this.drop && this.drop.isOpened()) {
             this.drop.toggle();
         }
+        this.props.onClose && this.props.onClose();
     }
 
     destroyDrop() {
@@ -95,14 +93,17 @@ class Drop extends React.Component {
 
 
     render() {
-        return <div ref='drop'>
+        //ref={drop => this.drop = drop}
+        return <div ref="drop">
             {this.props.children}
         </div>
     }
 }
 
 Drop.propTypes = {
-    position: PropTypes.string
+    position: PropTypes.string,
+    target: PropTypes.object,
+    onClose: PropTypes.func
 };
 
 export default enhanceWithClickOutside(Drop)
