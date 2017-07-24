@@ -3,13 +3,27 @@ import {
 	REMOVE_MODIFIER, REMOVE_MODIFIER_GROUP, SEARCH_PRODUCTS, SEARCH_GROUPS,
 	SET_DEFAULT_SEARCH_PRODUCT, ADD_PRODUCT_DETAIL, REMOVE_PRODUCT, TOGGLE_MODIFIER
 } from '../enums/actions';
-import {Map, List, fromJS} from 'immutable';
+import {Map, fromJS} from 'immutable';
+import createRequestReducer from 'modules/core/reducers/createRequestReducer'
 
 export const initialState = Map({
 	productView: Map({}),
 	searchProductsResult: Map({}), //результаты поиска в выпадушке
 	searchGroupsResult: Map({}) //результаты поиска группы модификаторов в выпадушке
 });
+
+const searchProductReducer = createRequestReducer(SEARCH_PRODUCTS, ['searchProductsResult'])
+	.setRequest((data) => data.merge({loading: true}))
+	.setFailure((data, {error}) => data.merge({
+		loading: false,
+		error: fromJS(error)
+	}))
+	.setSuccess((data, {products}) => data.merge({
+		loading: false,
+		products: fromJS(products),
+		error: null
+	}))
+	.get();
 
 export const actionHandlers = {
 
@@ -132,24 +146,8 @@ export const actionHandlers = {
 		return state;
 	},
 
-	[SEARCH_PRODUCTS.REQUEST]: (state, {formKey}) => {
-		return state.updateIn(['searchProductsResult', formKey, 'loading'], _ => true);
-	},
+	...searchProductReducer,
 
-	[SEARCH_PRODUCTS.SUCCESS]: (state, {formKey, products}) => {
-		return state.updateIn(['searchProductsResult', formKey], data => data.merge({
-			loading: false,
-			products: fromJS(products),
-			error: null
-		}));
-	},
-
-	[SEARCH_PRODUCTS.FAILURE]: (state, {formKey, error}) => {
-		return state.updateIn(['searchProductsResult', formKey], data => data.merge({
-			loading: false,
-			error: fromJS(error)
-		}));
-	},
 
 	[SEARCH_GROUPS.REQUEST]: (state, {formKey}) => {
 		return state.updateIn(['searchGroupsResult', formKey], Map({groups: []}), data =>

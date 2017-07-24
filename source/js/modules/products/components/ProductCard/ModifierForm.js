@@ -32,6 +32,7 @@ class ModifierForm extends React.Component {
 										 onChange={onSelectProduct}
 										 valueKey="inventCode"
 										 labelKey="name"
+										 placeholder="Выберите товар"
 										 options={productList}
 										 required="Выберите товар"
 							/>

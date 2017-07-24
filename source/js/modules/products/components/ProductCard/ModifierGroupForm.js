@@ -86,6 +86,7 @@ class ModifierGroupForm extends React.Component {
 										 onChange={onSelectGroup}
 										 valueKey="code"
 										 labelKey="name"
+										 placeholder="Выберите группу"
 										 options={searchGroup.groups}
 										 required="Выберите группу"/>
 

@@ -10,7 +10,7 @@ const CURRENCY_LIST = {
 
 const AmountFormat = ({value, currency = 'RUR', def = ''}) => {
 	if (isEmpty(value))
-		return (<span>{def}</span>);
+		return def ? (<span>{def}</span>) : null;
 	const val = parseFloat(cleanValue(value));
 	const formatted = !isNaN(val) ? accounting.formatNumber(val, 2, " ") : def;
 	const cur = currency ? CURRENCY_LIST[currency] : '';

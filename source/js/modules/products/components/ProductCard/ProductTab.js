@@ -73,6 +73,7 @@ class ProductTab extends React.Component {
 						<SelectField class="w100"
 									 name="measure"
 									 clearable={false}
+									 placeholder="Ед. изм."
 									 options={MEASURE_OPTIONS}
 						/>
 					</div>
@@ -83,6 +84,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<SelectField class="w100"
 									 name="alcoholType"
+									 placeholder="Тип"
 									 clearable={false}
 									 options={ALCOHOL_OPTIONS}
 						/>
@@ -94,6 +96,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<SelectField class="w100"
 									 name="vatTag"
+									 placeholder="НДС"
 									 clearable={false}
 									 options={VAT_TAG_OPTIONS}
 						/>

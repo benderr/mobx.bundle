@@ -81,16 +81,18 @@ class SelectField extends React.Component {
 		valueKey: PropTypes.string,           // path of the label value in option objects
 		valueRenderer: PropTypes.func,        // valueRenderer: function (option) {}
 		wrapperStyle: PropTypes.object,       // optional style to apply to the component wrapper
-		creatable: PropTypes.bool 			  // если можно вводить свой вариант (текст)
+		creatable: PropTypes.bool, 			  // если можно вводить свой вариант (текст)
+		wrapperClassName: PropTypes.string    // стили для дива в который будет завернуть компонент при натягивании валидации
 	};
 
 	render() {
-		const {onChange, onBlur, required, requiredDisable, validate = [], ...props} = this.props;
+		const {onChange, onBlur, required, requiredDisable, validate = [], placeholder = '', ...props} = this.props;
 		const validators = [...getRequiredValidator({required, requiredDisable}), ...validate];
 
 		return ( <Field component={SelectRender}
 						onSelectChange={onChange}
 						onSelectBlur={onBlur}
+						placeholder={placeholder}
 						validate={validators}
 						{...props} />);
 	}

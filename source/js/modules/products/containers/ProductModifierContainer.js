@@ -60,7 +60,7 @@ class ProductModifierContainer extends DefaultLayerLayout {
 		const searchText = val || '';
 		if (searchText.length == 0 || searchText.length >= 2) {
 			const formKey = getSearchFormKey(this.formKey);
-			this.props.searchProducts({formKey, searchText});
+			this.props.searchProducts({formKey, query: searchText});
 		}
 	}
 

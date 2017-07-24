@@ -4,7 +4,7 @@ import orderSagas from './sagas/orderSagas';
 
 export function getReducers(createReducer) {
 	return {
-		orders: createReducer(orderReducers.initialState, orderReducers.actionHandlers)
+		orders: createReducer(orderReducers.initialState, orderReducers.actionHandlers),
 	}
 }
 

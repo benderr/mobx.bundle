@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toJS from 'components/HOC/toJs';
 import * as orderSelectors from '../selectors/orderSelectors'
-import * as actions from '../actions/orderActionTypes'
+import * as actions from '../actions/orderActions'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import {withRouter} from 'react-router'
 

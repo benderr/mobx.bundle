@@ -6,7 +6,7 @@ import AmountInput from './AmountInput';
 import Recaptcha from './Recaptcha';
 import InfinateScroll from './InfinateScroll';
 import ConfirmPopupService from './Dialogs/ConfirmPopupService';
-import * as Notify from './Notify';
+import {notify} from './Notify';
 import Drop from './Drop';
 import DateFormat from './DateFormat';
 import AmountFormat from './AmountFormat'
@@ -21,7 +21,7 @@ export {
 	ConfirmPopupService,
 	Drop,
 	Button,
-	Notify,
+	notify,
 	DateFormat,
 	AmountFormat
 }

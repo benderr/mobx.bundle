@@ -9,9 +9,6 @@ import {getPointId} from 'modules/core/selectors';
 function* getProductsProcess({retailPointId, start, count, filter, initialRequest = false}) {
 	try {
 		const response = yield call(dataContext.getProducts, retailPointId, start, count, {filter});
-		yield call(dataContext.getProducts, retailPointId, start, count, {
-			groupId: "8fe4308a-a165-4bb7-ba61-b988d5386b03"
-		});
 		yield put(productActions.getProducts.success(response, initialRequest));
 	}
 	catch (e) {

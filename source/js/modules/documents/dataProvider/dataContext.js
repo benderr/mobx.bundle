@@ -12,3 +12,8 @@ export function getOrders(retailPointId, start, count, q, sortField, sortDirecti
 			}
 		});
 }
+
+export function saveOrder(retailPointId, shiftType, order) {
+	return api.v1().retailpoint(retailPointId).shift(shiftType).cashdoc()
+		.post(order);
+}

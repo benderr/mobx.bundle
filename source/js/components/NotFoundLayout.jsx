@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../markup/stylus/404.styl';
+import '../../../../Markup.Common/markup/stylus/404.styl';
 import {withRouter} from 'react-router';
 
 const NotFoundLayout = () => {

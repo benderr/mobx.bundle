@@ -1,5 +1,5 @@
 import * as actions from '../enums/actions'
-import * as coreActions from 'modules/core/actionEnums'
+import * as coreActions from 'modules/core/actions'
 import {createAction} from 'infrastructure/helpers/actionHelpers'
 
 export const login = {

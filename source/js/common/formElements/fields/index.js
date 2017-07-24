@@ -2,6 +2,7 @@ import PhoneField from './PhoneField'
 import AmountField from './AmountField'
 import NumberField from './NumberField'
 import SelectField from './SelectField'
+import TextAreaField from './TextAreaField'
 import InputField from './InputField'
 import SwitchField from './SwitchField'
 import normalizeKpp from './normalizeKpp'
@@ -17,6 +18,7 @@ export {
 	SwitchField,
 	Field,
 	FieldArray,
+	TextAreaField,
 
 	normalizeKpp,
 	normalizeInn

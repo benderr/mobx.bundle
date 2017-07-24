@@ -1,25 +1,40 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {withRouter} from 'react-router'
 import toJS from 'components/HOC/toJs'
 import * as orderSelectors from '../selectors/orderSelectors'
-import * as actions from '../actions/orderActionTypes'
+import * as actions from '../actions/orderActions'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
-import OrderForm from '../components/order/OrderForm'
+import OrderProductForm from '../components/order/OrderProductForm'
+import OrderDetailForm from '../components/order/OrderDetailForm'
+import OrderProductTable from '../components/order/OrderProductTable'
+import {submit, reset} from 'redux-form/immutable'
+import {Button, notify} from 'common/uiElements'
+import {getDefault} from '../dataProvider/inventPositionFactory'
 
-
-@withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS
 class OrderAddContainer extends DefaultLayerLayout {
 
-	handleSave(props) {
-		this.props.createOrder({order: props.toJS()});
+	constructor(props) {
+		super(props);
+		this.state = {productFormState: getDefault()}
+	}
+
+	componentDidMount() {
+		super.componentDidMount();
+		const {resetForm, searchProducts, resetOrder}=this.props;
+		resetForm('orderForm');
+		resetForm('orderProductForm');
+		resetOrder();
+		searchProducts({query: ''});
 	}
 
 	componentWillReceiveProps(props) {
-		props.saved && this.closeLayer();
+		if (props.saved) {
+			this.props.resetOrder();
+			this.closeLayer();
+		}
 	}
 
 	handleRemoveProduct(id) {
@@ -27,14 +42,23 @@ class OrderAddContainer extends DefaultLayerLayout {
 	}
 
 	handleAddProduct(product) {
-		this.props.addProduct({product})
+		this.props.addProduct({product: product.toJS()});
+	}
+
+	handleCreateOrder(props) {
+		const {products, dispatch, createOrder}=this.props;
+		createOrder({order: props.toJS(), products});
+	}
+
+	handleOrderFormSubmit() {
+		this.props.submitForm('orderForm');
 	}
 
 	render() {
-		const {saving, products, productOptions} = this.props;
+		const {saving, products, productSearchState, totalSum} = this.props;
 
 		return (
-			<article className="page" {...this.layerOptions}>
+			<article className="page page__kassa_w900" {...this.layerOptions}>
 				<div className="page_header">
 					{this.getCloseButton()}
 					{this.getToggleButton()}
@@ -42,21 +66,24 @@ class OrderAddContainer extends DefaultLayerLayout {
 				</div>
 
 				<div class="page_content  with_bottom_panel">
-					<OrderForm class="poss"
-							   productOptions={productOptions}
-							   onAddProduct={::this.handleAddProduct}
-							   onRemoveProduct={::this.handleRemoveProduct}
-							   onSave={::this.handleSave}
-							   onCancel={::this.closeLayer}/>
-
+					<OrderDetailForm onSave={::this.handleCreateOrder}
+									 onSubmit={::this.handleCreateOrder}/>
+					<OrderProductForm className="light_block"
+									  productSearchState={productSearchState}
+									  initialValues={this.state.productFormState}
+									  onSave={::this.handleAddProduct}/>
 					<OrderProductTable canEdit={true}
+									   totalSum={totalSum}
 									   onRemove={::this.handleRemoveProduct}
 									   products={products}/>
 				</div>
 
 				<div className="page_bottom_panel">
-					<Button type="submit" className="button small wide" loading={saving}>Сохранить</Button>
-					<a className="button small wide clean" onClick={::this.closeLayer}>Отмена</a>
+					<Button onClick={::this.handleOrderFormSubmit}
+							className="button small wide"
+							loading={saving}>Сохранить</Button>
+					<a className="button small wide clean"
+					   onClick={::this.closeLayer}>Отмена</a>
 				</div>
 			</article>
 		);
@@ -66,17 +93,25 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 
 function mapStateToProps(state, props) {
-	const {id, point, action:urlAction}=props.match.params;
+	const {saving, saved} = orderSelectors.getFormFlags(state);
+	const products = orderSelectors.getFormProducts(state);
+	const productSearchState = orderSelectors.getFormSearchProducts(state);
+	const totalSum = orderSelectors.getFormTotalSum(state);
 
-	return {saving, saved, products, productOptions};
+	return {saving, saved, products, totalSum, productSearchState};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			removeProduct: actions.removeProduct,
+			resetForm: reset,
+			submitForm: submit,
 			addProduct: actions.addProduct,
-			createOrder: actions.createOrder.request
+			createOrder: actions.createOrder.request,
+			searchProducts: actions.searchProducts.request,
+			resetOrder: actions.resetOrder,
+			dispatch
 		}, dispatch)
 	};
 }

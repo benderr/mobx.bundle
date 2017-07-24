@@ -14,7 +14,8 @@ const Button = ({loading, className, type, ...props}) => {
 Button.propTypes = {
 	loading: PropTypes.bool,
 	className: PropTypes.string,
-	type: PropTypes.string
+	type: PropTypes.string,
+	onClick: PropTypes.func
 };
 
 

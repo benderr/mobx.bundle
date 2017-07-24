@@ -7,22 +7,27 @@ class Select extends React.Component {
 			searchable = false,
 			noResultsText = 'Введите текст поиска',
 			openOnFocus = false,
-			creatable = false, ...props
+			creatable = false,
+			promptTextCreator = label => `Создать: ${label}`,
+			onBlurResetsInput = false,
+			...props
 		}=this.props;
-		console.log('render selector', props.name);
 
 		if (creatable) {
 			return (<Creatable ref={s => this.el = s}
 							   {...props}
+							   onBlurResetsInput={onBlurResetsInput}
+							   promptTextCreator={promptTextCreator}
 							   openOnFocus={openOnFocus}
 							   noResultsText={noResultsText}
 							   searchable={searchable}/>);
-		}else{
+		} else {
 			return (<Selector ref={s => this.el = s}
-							   {...props}
-							   openOnFocus={openOnFocus}
-							   noResultsText={noResultsText}
-							   searchable={searchable}/>);
+							  {...props}
+							  onBlurResetsInput={onBlurResetsInput}
+							  openOnFocus={openOnFocus}
+							  noResultsText={noResultsText}
+							  searchable={searchable}/>);
 		}
 	}
 

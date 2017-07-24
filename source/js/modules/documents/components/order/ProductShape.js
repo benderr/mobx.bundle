@@ -7,7 +7,8 @@ export default PropTypes.shape({
 	measure: PropTypes.oneOf(MEASURE_OPTIONS.map(s => s.value)),
 	vatTag: PropTypes.oneOf(VAT_TAG_OPTIONS.map(s => s.value)),
 	price: PropTypes.number.isRequired,
-	baseSum: PropTypes.number.isRequired,
+	baseSum: PropTypes.number,
+	posSum: PropTypes.number,
 	quantity: PropTypes.number.isRequired,
 	description: PropTypes.string
 });

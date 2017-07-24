@@ -1,7 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const TitleActions = ({onShowFilter, showFilter, children}) => {
+const TitleActions = ({
+	onShowFilter = () => {
+	}, showFilter = false, children
+}) => {
 	return (
 		<div className="title_actions">
 			{children}
@@ -16,7 +19,7 @@ const TitleActions = ({onShowFilter, showFilter, children}) => {
 };
 
 TitleActions.propTypes = {
-	onShowFilter: PropTypes.func.isRequired,
+	onShowFilter: PropTypes.func,
 	showFilter: PropTypes.bool
 };
 

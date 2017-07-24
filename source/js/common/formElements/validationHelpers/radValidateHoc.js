@@ -83,7 +83,7 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 
 			render() {
 				const {
-					meta:{touched, error, warning, active, dirty, valid, visited, submitFailed}, hideTips
+					meta:{touched, error, warning, active, dirty, valid, visited, submitFailed}, hideTips, wrapperClassName = ''
 				}=this.props;
 
 				const tooltip = this.getTooltipConfig({id: this.tooltipId, error});
@@ -103,7 +103,7 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 				if (tips && !hideTips) {
 					const showErrorMessage = this.showTooltipError();
 					return (
-						<div >
+						<div className={wrapperClassName}>
 							<WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
 											  validator={validator}/>
 							{showErrorMessage &&
