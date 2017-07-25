@@ -31,8 +31,8 @@ export const toClientProduct = (item) => {
 		measure: item.measure,
 		minPrice: item.minPrice,
 		name: item.name,
-		optionalModifiers: item.optionalModifiers,
-		optionalNoModifiers: item.optionalNoModifiers,
+		//optionalModifiers: item.optionalModifiers,
+		//optionalNoModifiers: item.optionalNoModifiers,
 		options: item.options,
 		packCapacity: item.packCapacity,
 		packingMode: item.packingMode,
@@ -41,8 +41,8 @@ export const toClientProduct = (item) => {
 		productVCode: item.productVCode,
 		remainDate: item.remainDate,
 		remainInStock: item.remainInStock,
-		requiredModifiers: item.requiredModifiers,
-		modifiers: mapModifiers(item.requiredModifiers),//todo выпилить
+		//requiredModifiers: item.requiredModifiers,
+		//modifiers: mapModifiers(item.requiredModifiers),//todo выпилить
 		sellRestrictPeriods: item.sellRestrictPeriods,
 		shortName: item.shortName,
 		vatTag: item.vatTag,

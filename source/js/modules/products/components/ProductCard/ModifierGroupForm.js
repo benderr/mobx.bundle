@@ -2,7 +2,8 @@ import React from 'react';
 import {reduxForm} from 'common/formElements';
 import {InputField, SwitchField, SelectField} from 'common/formElements/fields'
 import PropTypes from 'prop-types';
-import {PrimaryButton} from 'common/uiElements'
+import {PrimaryButton, Button, LoaderPanel} from 'common/uiElements'
+import GROUP_TYPE from '../../enums/modifierGroupType';
 
 const VIEW_MODE = {
 	NEW: 'new',
@@ -15,16 +16,29 @@ class ModifierGroupForm extends React.Component {
 		this.props.onChangeViewMode(e.target.value);
 	}
 
+	handleSelectGroup(group) {
+		const {change, searchGroup:{groups}, onSearchGroups}=this.props;
+		if (group == null) {
+			groups.length <= 1 && onSearchGroups('');
+			change('modifiers', []);
+		}
+		else {
+			change('name', group.name);
+			change('modifiers', group.modifiers);
+		}
+	}
+
 	render() {
 		const {
-			handleSubmit, onSave, onCancel, onRemove, onSearchGroups, onSelectGroup,
-			group, isRequiredGroup, searchGroup, modifiers = [], viewMode
+			handleSubmit, onSave, onCancel, onRemove, onSearchGroups,
+			group, isRequiredGroup, searchGroup, modifiers, viewMode
 		} = this.props;
 
 		return (
 			<form onSubmit={handleSubmit(onSave)} className="poss">
-				<div class="page_content with_bottom_panel  content_padding">
-					{!group && <div class="form_group  mb40">
+				<LoaderPanel className='page_content with_bottom_panel  content_padding'
+							 loading={group.saving || group.removing}>
+					{group.isNew && <div class="form_group  mb40">
 						<input type="radio" onChange={::this.handleChangeViewMode}
 							   id="viewModeNew"
 							   name="viewMode"
@@ -52,9 +66,9 @@ class ModifierGroupForm extends React.Component {
 					{viewMode === VIEW_MODE.NEW && <div class="form_group  form_horizontal">
 						<div class="property_label col">Тип группы</div>
 						<div class="property_value col  w55">
-							<SwitchField name="requiredField" switchItems={[
-								{id: 'groupTypeRequired', label: 'Обязательный', value: "on"},
-								{id: 'groupTypeNonRequired', label: 'Не обязательный', value: "off"}
+							<SwitchField name="modifierGroupType" switchItems={[
+								{id: 'groupTypeRequired', label: 'Обязательный', value: GROUP_TYPE.REQUIRED},
+								{id: 'groupTypeNonRequired', label: 'Не обязательный', value: GROUP_TYPE.OPTIONAL}
 							]}/>
 
 							{isRequiredGroup &&
@@ -83,7 +97,7 @@ class ModifierGroupForm extends React.Component {
 										 searchable={true}
 										 isLoading={searchGroup.loading}
 										 onInputChange={onSearchGroups}
-										 onChange={onSelectGroup}
+										 onChange={::this.handleSelectGroup}
 										 valueKey="code"
 										 labelKey="name"
 										 placeholder="Выберите группу"
@@ -92,7 +106,7 @@ class ModifierGroupForm extends React.Component {
 
 							<div class="modificators_group">
 								<div class="modificators_wrapper">
-									{modifiers.map((s, i) =>
+									{modifiers && modifiers.map((s, i) =>
 										(<div className={s.selected ? 'selected' : ''} key={i}>
 											{s.name}
 										</div>))}
@@ -103,11 +117,12 @@ class ModifierGroupForm extends React.Component {
 					}
 
 
-				</div>
+				</LoaderPanel>
 				<div class="page_bottom_panel">
-					<PrimaryButton type="submit">Сохранить</PrimaryButton>
+					<PrimaryButton loading={group.saving} type="submit">Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					{group && <a class="button middle wide clean mr44 f_right" onClick={onRemove}>Удалить</a>}
+					{!group.isNew &&
+					<Button class="button middle wide clean mr44 f_right" onClick={onRemove}>Удалить</Button>}
 				</div>
 			</form>
 		)
@@ -118,13 +133,11 @@ ModifierGroupForm.propTypes = {
 	onSave: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
 	group: PropTypes.shape({
-		name: PropTypes.string.isRequired,
-		required: PropTypes.bool.isRequired
+		name: PropTypes.string
 	}),
 	onCancel: PropTypes.func.isRequired,
 	isRequiredGroup: PropTypes.bool.isRequired,
 	onSearchGroups: PropTypes.func.isRequired,
-	onSelectGroup: PropTypes.func.isRequired,
 	onChangeViewMode: PropTypes.func.isRequired,
 	searchGroup: PropTypes.shape({
 		loading: PropTypes.bool.isRequired,

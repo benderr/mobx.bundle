@@ -61,9 +61,10 @@ class DefaultLayerLayout extends React.Component {
 
 	getElement() {
 		if (!this.el) {
-			throw 'Отсутствует layerOptions в article-элементе слоя';
+			console.warn('Отсутствует layerOptions в article-элементе слоя');
+			return ReactDOM.findDOMNode(this);
 		}
-		return this.el; //ReactDOM.findDOMNode(this);
+		return this.el;
 	}
 
 	layerOptions = {

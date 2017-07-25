@@ -1,7 +1,7 @@
 import React from 'react';
 import {reduxForm} from 'common/formElements';
 import PropTypes from 'prop-types';
-import {PrimaryButton} from 'common/uiElements';
+import {PrimaryButton, LoaderPanel} from 'common/uiElements';
 import ModifiersTab from './ModifiersTab';
 import ProductTab from './ProductTab';
 import {ConfirmPopupService} from 'common/uiElements';
@@ -14,19 +14,19 @@ class ProductCard extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, onChangeTab, onSave, saving, product, error, onCancel, removing, activeTab} = this.props;
-		const submit = (props) => {
-			onSave(props);
-		};
+		const {
+			handleSubmit, onChangeTab, onSave, onCancel,
+			saving, product, error, removing, activeTab, modifierGroups
+		} = this.props;
 
 		const isActiveInfo = activeTab == 'info';
 		const isEdit = product && !product.isNew;
-		const formClasses = ['poss', removing ? 'loading_block' : ''].join(' ');
+		//const formClasses = ['poss', removing ? 'loading_block' : ''].join(' ');
 		const tabInfoClasses = ['tab', isActiveInfo ? 'tab__active' : ''].join(' ');
 		const tabModClasses = ['tab', !isActiveInfo ? 'tab__active' : ''].join(' ');
 		return (
-			<form onSubmit={handleSubmit(submit)} className={formClasses}>
-				<div class="page_content with_bottom_panel  content_padding">
+			<form onSubmit={handleSubmit(onSave)} className="poss">
+				<LoaderPanel class="page_content with_bottom_panel  content_padding" loading={saving || removing}>
 
 					<div class="tabs_flat">
 						<a onClick={() => onChangeTab('info')} className={tabInfoClasses}>Информация</a>
@@ -34,7 +34,7 @@ class ProductCard extends React.Component {
 					</div>
 					<ProductTab className={!isActiveInfo ? 'hidden' : ''}/>
 					<ModifiersTab
-						modifiers={product.modifiers}
+						modifiers={modifierGroups}
 						onAddGroup={this.props.onAddGroup}
 						onOpenGroup={this.props.onOpenGroup}
 						onAddModifier={this.props.onAddModifier}
@@ -42,7 +42,7 @@ class ProductCard extends React.Component {
 						onRemoveModifier={this.props.onRemoveModifier}
 						onToggleModifier={this.props.onToggleModifier}
 						className={isActiveInfo ? 'hidden' : ''}/>
-				</div>
+				</LoaderPanel>
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit" loading={saving}>Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
@@ -60,14 +60,17 @@ class ProductCard extends React.Component {
 }
 
 ProductCard.propTypes = {
-	onSave: PropTypes.func.isRequired,
 	initialValues: PropTypes.object.isRequired, //todo shape
 	product: PropTypes.object.isRequired,
-	onCancel: PropTypes.func.isRequired,
-	onRemove: PropTypes.func.isRequired,
 	saving: PropTypes.bool,
 	removing: PropTypes.bool,
 	error: PropTypes.object,
+	activeTab: PropTypes.oneOf(['info', 'mod']),
+	modifierGroups: PropTypes.array,
+
+	onSave: PropTypes.func.isRequired,
+	onCancel: PropTypes.func.isRequired,
+	onRemove: PropTypes.func.isRequired,
 	onAddGroup: PropTypes.func.isRequired,
 	onOpenGroup: PropTypes.func.isRequired,
 	onAddModifier: PropTypes.func.isRequired,
@@ -75,7 +78,6 @@ ProductCard.propTypes = {
 	onToggleModifier: PropTypes.func.isRequired,
 	onRemoveModifier: PropTypes.func.isRequired,
 	onChangeTab: PropTypes.func.isRequired,
-	activeTab: PropTypes.oneOf(['info', 'mod'])
 };
 
 export default (formKey) => reduxForm({form: formKey})(ProductCard);

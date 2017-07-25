@@ -11,11 +11,13 @@ const focusOnFailed = (errors, form, dispatch) => {
 export const reduxForm = ({form, onSubmitFail:initialSubmitFailed, ...initialProps}) => (Component) => {
 	const FormComponent = _reduxForm({form, ...initialProps})(Component);
 	class ReduxForm extends React.Component {
-		handleSubmitFailed(errors, dispatch, ...other) {
+		handleSubmitFailed(errors, dispatch, submitError, ...other) {
 			const {onSubmitFail:propsSubmitFailed}=this.props;
 			focusOnFailed(errors, form, dispatch);
 			propsSubmitFailed && propsSubmitFailed(errors, dispatch, ...other);
-			initialSubmitFailed && initialSubmitFailed(errors, dispatch, ...other)
+			initialSubmitFailed && initialSubmitFailed(errors, dispatch, ...other);
+			if (!propsSubmitFailed && !initialSubmitFailed)
+				throw submitError;
 		}
 
 		render() {

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import groupShape from './groupShape';
+import MODIFIER_GROUP_TYPE from '../../enums/modifierGroupType'
 
 class ModificationForm extends React.Component {
 
@@ -10,8 +11,8 @@ class ModificationForm extends React.Component {
 		e.stopPropagation();
 	}
 
-	handleRemoveModifier(e, {groupId, modifierId}) {
-		this.props.onRemoveModifier({groupId, modifierId});
+	handleRemoveModifier(e, props) {
+		this.props.onRemoveModifier(props);
 		e.preventDefault();
 		e.stopPropagation();
 	}
@@ -24,37 +25,37 @@ class ModificationForm extends React.Component {
 
 		return (
 			<div className={className || ''}>
-				<a className="icon-plus  add_modificators_group" onClick={() => onAddGroup()}>Добавить
+				<a className="icon-plus  add_modificators_group" onClick={onAddGroup}>Добавить
 					группу</a>
 
 				{modifiers.map(group => (
-					<div className="modificators_group" key={group.id}>
+					<div className="modificators_group" key={group.code}>
 						<div className="modificators_group_title">{group.name}
-							<a className="icon-pencil" onClick={() => onOpenGroup(group.id)}></a>
+							<a className="icon-pencil" onClick={() => onOpenGroup(group.code)}></a>
 						</div>
 
 						<div className="modificators_wrapper">
 							{group.modifiers.map(m => (
 								<div key={m.id}
 									 className={m.selected ? 'selected' : ''}
-									 onClick={() => onToggleModifier({modifierId: m.id, groupId: group.id})}>
+									 onClick={() => onToggleModifier({modifierId: m.id, groupCode: group.code})}>
 									{m.name}
 									<div class="controls">
 										<a class="icon-pencil"
 										   onClick={e => this.handleOpenModifier(e, {
 											   modifierId: m.id,
-											   groupId: group.id
+											   groupCode: group.code
 										   })}></a>
 										<a class="icon-trash-bin"
 										   onClick={e => this.handleRemoveModifier(e, {
 											   modifierId: m.id,
-											   groupId: group.id
+											   groupCode: group.code
 										   })}></a>
 									</div>
 								</div>
 							))}
 							<div className="add_new_modificator"
-								 onClick={() => onAddModifier({groupId: group.id})}>+
+								 onClick={() => onAddModifier({groupCode: group.code})}>+
 							</div>
 						</div>
 					</div>

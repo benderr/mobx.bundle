@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
 import * as productActions from '../actions/productActions';
+import * as modifierActions from '../actions/modifierActions';
 import {bindActionCreators} from 'redux';
 import * as productSelectors from '../selectors/productsSelectors';
 import {connect} from 'react-redux';
@@ -61,20 +62,6 @@ class ProductModifierContainer extends DefaultLayerLayout {
 		if (searchText.length == 0 || searchText.length >= 2) {
 			const formKey = getSearchFormKey(this.formKey);
 			this.props.searchProducts({formKey, query: searchText});
-		}
-	}
-
-	onIncreaseQty() {
-		const {formData, changeField} = this.props;
-		const qty = formData && formData.qty ? ++formData.qty : 1;
-		changeField(this.formKey, 'qty', qty);
-	}
-
-	onDecreaseQty() {
-		const {formData, changeField} = this.props;
-		if (formData) {
-			const qty = formData.qty > 1 ? --formData.qty : 1;
-			changeField(this.formKey, 'qty', qty);
 		}
 	}
 
@@ -139,8 +126,6 @@ class ProductModifierContainer extends DefaultLayerLayout {
 							  onSelectProduct={::this.onSelectProduct}
 							  productList={searchProductsView.products || []}
 							  isLoadingProducts={isLoadingProducts}
-							  onIncreaseQty={::this.onIncreaseQty}
-							  onDecreaseQty={::this.onDecreaseQty}
 				/>
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}
@@ -172,7 +157,7 @@ function mapStateToProps(state, ownProps) {
 	let modifier = null;
 
 	if (groupId && productView && modifierId) {
-		modifier = productSelectors.getProductModifier(state, inventCode, groupId, modifierId);
+		//modifier = productSelectors.getProductModifier(state, inventCode, groupId, modifierId);
 	}
 
 	//form
@@ -188,8 +173,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			save: productActions.saveModifier,
-			remove: productActions.removeModifier,
+			save: modifierActions.saveModifier,
+			remove: modifierActions.removeModifier,
 			searchProducts: productActions.searchProducts.request,
 			setDefaultSearchProduct: productActions.setDefaultSearchProduct,
 			changeField: change
