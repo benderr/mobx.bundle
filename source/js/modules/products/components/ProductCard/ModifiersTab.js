@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import groupShape from './groupShape';
 import MODIFIER_GROUP_TYPE from '../../enums/modifierGroupType'
 
-class ModificationForm extends React.Component {
+class ModifiersTab extends React.Component {
 
-	handleOpenModifier(e, {groupId, modifierId}) {
-		this.props.onOpenModifier({groupId, modifierId});
+	handleOpenModifier(e, props) {
+		this.props.onOpenModifier(props);
 		e.preventDefault();
 		e.stopPropagation();
 	}
@@ -19,12 +19,12 @@ class ModificationForm extends React.Component {
 
 	render() {
 		let {
-			className, modifiers = [], onAddGroup, onOpenGroup, onAddModifier,
+			className='', modifiers = [], onAddGroup, onOpenGroup, onAddModifier,
 			onToggleModifier,
 		}=this.props;
 
 		return (
-			<div className={className || ''}>
+			<div className={className}>
 				<a className="icon-plus  add_modificators_group" onClick={onAddGroup}>Добавить
 					группу</a>
 
@@ -36,19 +36,19 @@ class ModificationForm extends React.Component {
 
 						<div className="modificators_wrapper">
 							{group.modifiers.map(m => (
-								<div key={m.id}
+								<div key={m.code}
 									 className={m.selected ? 'selected' : ''}
-									 onClick={() => onToggleModifier({modifierId: m.id, groupCode: group.code})}>
+									 onClick={() => onToggleModifier({modifierCode: m.code, groupCode: group.code})}>
 									{m.name}
 									<div class="controls">
 										<a class="icon-pencil"
 										   onClick={e => this.handleOpenModifier(e, {
-											   modifierId: m.id,
+											   modifierCode: m.code,
 											   groupCode: group.code
 										   })}></a>
 										<a class="icon-trash-bin"
 										   onClick={e => this.handleRemoveModifier(e, {
-											   modifierId: m.id,
+											   modifierCode: m.code,
 											   groupCode: group.code
 										   })}></a>
 									</div>
@@ -64,7 +64,7 @@ class ModificationForm extends React.Component {
 	}
 }
 
-ModificationForm.propTypes = {
+ModifiersTab.propTypes = {
 	className: PropTypes.string,
 	modifiers: PropTypes.arrayOf(groupShape),
 	onAddGroup: PropTypes.func.isRequired,
@@ -75,4 +75,4 @@ ModificationForm.propTypes = {
 	onToggleModifier: PropTypes.func.isRequired
 };
 
-export default ModificationForm;
+export default ModifiersTab;

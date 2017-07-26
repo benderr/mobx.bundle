@@ -2,27 +2,36 @@ import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects'
 import {debounce} from 'redux-saga-debounce-effect'
 import * as actions from '../enums/actions'
 import * as modifierActions from '../actions/modifierActions'
+import * as modifierSelectors from '../selectors/modifierSelectors'
 import * as dataContext from '../dataProvider/productDataContext'
 import {getPointId} from 'modules/core/selectors'
 import {push} from 'connected-react-router'
 import {notify} from 'common/uiElements/Notify'
-import logger from 'infrastructure/utils/logger'
-import CATALOG_TYPE from '../enums/catalogType'
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import GROUP_TYPE from '../enums/modifierGroupType'
 
-export function* saveModifierGroup({group, point}) {
+export function* saveModifierGroup({group, point, meta}) {
 	try {
-		const saveGroup = group.isNew ? dataContext.addModifierGroup : dataContext.saveModifierGroup;
-		const groupToServer = {catalogType: CATALOG_TYPE.MODIFIER_GROUP, ...group};
-		if (!groupToServer.modifiers)
-			groupToServer.modifiers = [];
-		const result = yield call(saveGroup, point, groupToServer);
+		if (group.isNew) {
+			group.modifiers = [];
+			yield call(dataContext.addModifierGroup, point, group);
+		} else {
+			yield call(dataContext.saveModifierGroup, point, group);
+		}
+
 		yield put(modifierActions.saveGroup.success({group: group}));
-		yield put(notify.success(group.isNew ? 'Группа добавлена' : 'Группа обновлена'));
+		if (!meta) {
+			yield put(notify.success(group.isNew ? 'Группа добавлена' : 'Группа обновлена'));
+		} else {
+			yield put(notify.success(meta.success));
+		}
 	}
 	catch (error) {
-		yield put(notify.error('Не удалось сохранить группу', 'Ошибка'));
+		if (!meta) {
+			yield put(notify.error('Не удалось сохранить группу', 'Ошибка'));
+		} else {
+			yield put(notify.error(meta.error));
+		}
 		yield put(modifierActions.saveGroup.failure({groupCode: group.code, error}));
 	}
 }
@@ -66,11 +75,20 @@ function* openGroup({groupCode, inventCode, point}) {
 	yield put(push('/product/group', {groupCode, point}));
 }
 
+function* updateGroup({groupCode, point, meta}) {
+	const groupImtbl = yield select(modifierSelectors.getGroupByCode(groupCode));
+	if (!groupImtbl)
+		return;
+	const group = groupImtbl.toJS();
+	yield call(saveModifierGroup, {group, point, meta})
+}
+
 export default function*() {
 	yield [
 		takeEvery(actions.SAVE_MODIFIER_GROUP.REQUEST, saveModifierGroup),
 		debounce(actions.SEARCH_GROUPS.REQUEST, searchGroups),
 		takeEvery(actions.REMOVE_MODIFIER_GROUP.REQUEST, removeModifierGroup),
-		takeEvery(actions.OPEN_GROUP, openGroup)
+		takeEvery(actions.OPEN_GROUP, openGroup),
+		takeEvery(actions.UPDATE_GROUP, updateGroup)
 	]
 }

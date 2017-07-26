@@ -20,3 +20,9 @@ export const getGroups = (inventCode) => createSelector([getSection], data => {
 export const getGroupByCode = (groupCode) => createSelector([getSection], data => {
 	return data.getIn(['groups', groupCode]);
 });
+
+export const getModifierByCode = (groupCode, modifierCode) => createSelector([getSection], data => {
+	const modifiers = data.getIn(['groups', groupCode, 'modifiers']);
+	const modifier = modifiers ? modifiers.filter(s => s.get('code') == modifierCode) : null;
+	return modifier ? modifier.get(0) : null;
+});

@@ -39,7 +39,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onSaveProduct(productProps) {
-		const {productView:{product}, savingProduct} = this.props;
+		const {productView:{product}, saveProduct} = this.props;
 		let editProduct = Object.assign({}, product);
 		editProduct.name = productProps.get('name');
 		editProduct.barcode = productProps.get('barcode');
@@ -49,7 +49,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 		editProduct.alcoholType = productProps.get('alcoholType');
 		editProduct.vatTag = productProps.get('vatTag');
 		editProduct.requiredModifiers = product.modifiers;
-		savingProduct({point: this.props.point, product: editProduct});
+		saveProduct({point: this.props.point, product: editProduct});
 	}
 
 	onRemoveProduct() {
@@ -58,23 +58,23 @@ export class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onAddGroup() {
-		const {point, openGroup}=this.props;
-		openGroup({point});
+		const {point, openGroup, inventCode}=this.props;
+		openGroup({point, inventCode});
 	}
 
 	onOpenGroup(groupCode) {
-		const {point, openGroup}=this.props;
-		openGroup({groupCode, point});
+		const {point, openGroup, inventCode}=this.props;
+		openGroup({groupCode, point, inventCode});
 	}
 
 	onAddModifier({groupCode}) {
 		const {point, push}=this.props;
-		push('/product/modifier', {point, groupCode});
+		push('/product/modifier', {groupCode, point});
 	}
 
-	onOpenModifier({modifierId, groupId}) {
-		const {inventCode, push}=this.props;
-		push('/product/modifier', {inventCode, modifierId, groupId});
+	onOpenModifier({modifierCode, groupCode}) {
+		const {point, push}=this.props;
+		push('/product/modifier', {modifierCode, groupCode, point});
 	}
 
 	onRemoveModifier({modifierId, groupCode}) {
@@ -167,7 +167,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			getDetails: productActions.getProductDetails.request,
-			savingProduct: productActions.saveProductDetails.request,
+			saveProduct: productActions.saveProductDetails.request,
 			setNewProduct: productActions.setNewProduct,
 			removeProduct: productActions.removeProduct.request,
 			removeModifier: modifierActions.removeModifier,

@@ -9,7 +9,8 @@ import {
 	toClientProduct,
 	toClientImportResult,
 	toClientModifierGroup,
-	toClientItemGroups
+	toClientItemGroups,
+	toServerModifierGroup
 } from './productMapper';
 
 export const getProducts = (retailPointId, start, count, {filter, groupId}) => {
@@ -35,11 +36,13 @@ export const getItemGroups = (retailPointId, start, count, name) => {
 };
 
 export const addModifierGroup = (retailPointId, group) => {
-	return api.v1().retailpoint(retailPointId).catalog().post(group);
+	const serverGroup = toServerModifierGroup(group);
+	return api.v1().retailpoint(retailPointId).catalog().post(serverGroup);
 };
 
 export const saveModifierGroup = (retailPointId, group) => {
-	return api.v1().retailpoint(retailPointId).catalog().put(group);
+	const serverGroup = toServerModifierGroup(group);
+	return api.v1().retailpoint(retailPointId).catalog().put(serverGroup);
 };
 
 export const getModifierGroupsByProduct = (retailPointId, inventCode) => {
@@ -47,8 +50,9 @@ export const getModifierGroupsByProduct = (retailPointId, inventCode) => {
 	return api.v1().retailpoint(retailPointId).catalog().modifierGroups()
 		.get({start: 0, count: 1000, q})
 		.then(response => {
-			const data = normalize(response.data.data, groupListSchema);
-			return data.entities.groups;
+			const groups = response.data.data.map(toClientModifierGroup);
+			const normalizeGroups = normalize(groups, groupListSchema);
+			return normalizeGroups.entities.groups;
 		});
 };
 

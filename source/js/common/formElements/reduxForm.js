@@ -1,5 +1,6 @@
 import {reduxForm as _reduxForm, focus} from 'redux-form/immutable'
 import React from 'react';
+import logger from 'infrastructure/utils/logger'
 
 const focusOnFailed = (errors, form, dispatch) => {
 	if (errors) {
@@ -17,7 +18,7 @@ export const reduxForm = ({form, onSubmitFail:initialSubmitFailed, ...initialPro
 			propsSubmitFailed && propsSubmitFailed(errors, dispatch, ...other);
 			initialSubmitFailed && initialSubmitFailed(errors, dispatch, ...other);
 			if (!propsSubmitFailed && !initialSubmitFailed)
-				throw submitError;
+				logger.warn(submitError)
 		}
 
 		render() {

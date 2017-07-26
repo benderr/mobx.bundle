@@ -21,40 +21,40 @@ class ProductCard extends React.Component {
 
 		const isActiveInfo = activeTab == 'info';
 		const isEdit = product && !product.isNew;
-		//const formClasses = ['poss', removing ? 'loading_block' : ''].join(' ');
 		const tabInfoClasses = ['tab', isActiveInfo ? 'tab__active' : ''].join(' ');
 		const tabModClasses = ['tab', !isActiveInfo ? 'tab__active' : ''].join(' ');
 		return (
-			<form onSubmit={handleSubmit(onSave)} className="poss">
-				<LoaderPanel class="page_content with_bottom_panel  content_padding" loading={saving || removing}>
-
-					<div class="tabs_flat">
-						<a onClick={() => onChangeTab('info')} className={tabInfoClasses}>Информация</a>
-						<a onClick={() => onChangeTab('mod')} className={tabModClasses}>Модификаторы</a>
+			<LoaderPanel loading={removing}>
+				<form onSubmit={handleSubmit(onSave)} className="poss">
+					<div class="page_content with_bottom_panel  content_padding">
+						<div class="tabs_flat">
+							<a onClick={() => onChangeTab('info')} className={tabInfoClasses}>Информация</a>
+							<a onClick={() => onChangeTab('mod')} className={tabModClasses}>Модификаторы</a>
+						</div>
+						<ProductTab className={!isActiveInfo ? 'hidden' : ''}/>
+						<ModifiersTab
+							modifiers={modifierGroups}
+							onAddGroup={this.props.onAddGroup}
+							onOpenGroup={this.props.onOpenGroup}
+							onAddModifier={this.props.onAddModifier}
+							onOpenModifier={this.props.onOpenModifier}
+							onRemoveModifier={this.props.onRemoveModifier}
+							onToggleModifier={this.props.onToggleModifier}
+							className={isActiveInfo ? 'hidden' : ''}/>
 					</div>
-					<ProductTab className={!isActiveInfo ? 'hidden' : ''}/>
-					<ModifiersTab
-						modifiers={modifierGroups}
-						onAddGroup={this.props.onAddGroup}
-						onOpenGroup={this.props.onOpenGroup}
-						onAddModifier={this.props.onAddModifier}
-						onOpenModifier={this.props.onOpenModifier}
-						onRemoveModifier={this.props.onRemoveModifier}
-						onToggleModifier={this.props.onToggleModifier}
-						className={isActiveInfo ? 'hidden' : ''}/>
-				</LoaderPanel>
-				<div class="page_bottom_panel">
-					<PrimaryButton type="submit" loading={saving}>Сохранить</PrimaryButton>
-					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					{isEdit &&
-					<a class="button middle wide clean mr44 f_right" onClick={::this.handleRemove}>Удалить</a>}
-				</div>
-				<ConfirmPopupService
-					ref={p => this.removePopup = p}
-					okName="Подтвердить"
-					cancelName="Отмена"
-					title="Удаление товара"/>
-			</form>
+					<div class="page_bottom_panel">
+						<PrimaryButton type="submit" loading={saving}>Сохранить</PrimaryButton>
+						<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
+						{isEdit &&
+						<a class="button middle wide clean mr44 f_right" onClick={::this.handleRemove}>Удалить</a>}
+					</div>
+					<ConfirmPopupService
+						ref={p => this.removePopup = p}
+						okName="Подтвердить"
+						cancelName="Отмена"
+						title="Удаление товара"/>
+				</form>
+			</LoaderPanel>
 		)
 	}
 }

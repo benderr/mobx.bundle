@@ -10,10 +10,11 @@ import {withRouter} from 'react-router'
 import modifierGroupForm from '../components/ProductCard/ModifierGroupForm'
 import toJS from 'components/HOC/toJs'
 import {change, formValueSelector} from 'redux-form/immutable'
-import {ConfirmPopupService} from 'common/uiElements'
-import {notify} from 'common/uiElements/Notify'
-import {uuid} from 'infrastructure/utils/uuidGenerator'
+import {ConfirmPopupService, LoaderBlock} from 'common/uiElements'
+
+
 import GROUP_TYPE from '../enums/modifierGroupType'
+
 const VIEW_MODE = {NEW: 'new', COPY: 'copy'}
 
 @withRouter
@@ -40,16 +41,9 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 		saveGroup({point, group: editGroup});
 	}
 
-	componentDidMount() {
-		super.componentDidMount();
-		console.log('componentDidMount');
-	}
-
 	componentWillReceiveProps(props) {
-		console.log('componentWillReceiveProps');
-
 		const {group}=props;
-		if (!group || group.saved || group.removed) {
+		if (!group || group.saved) {
 			this.onCancel();
 		}
 	}
@@ -80,13 +74,9 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 
 	render() {
 		const {group, isRequiredGroup, searchGroupsState, modifiers}=this.props;
-
-		if (!group)
-			return null;
-
 		const ModifierGroupForm = this.groupForm;
 		const {viewMode}=this.state || {};
-		const title = group.isNew ? 'Добавление группы' : 'Редактирование группы';
+		const title = group && group.isNew ? 'Добавление группы' : 'Редактирование группы';
 
 		return (
 			<article className="page page__add_mod_group" {...this.layerOptions}>
@@ -95,19 +85,20 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 					{this.getToggleButton()}
 					<h1>{title}</h1>
 				</div>
-				<ModifierGroupForm initialValues={group}
-								   onSave={::this.onSaveGroup}
-								   onRemove={::this.handleRemoveGroup}
-								   onCancel={::this.onCancel}
-								   onSearchGroups={::this.handleSearchGroups}
-								   onChangeViewMode={::this.handleChangeViewMode}
+				{!group && <LoaderBlock loading={true}/>}
+				{group && <ModifierGroupForm initialValues={group}
+											 onSave={::this.onSaveGroup}
+											 onRemove={::this.handleRemoveGroup}
+											 onCancel={::this.onCancel}
+											 onSearchGroups={::this.handleSearchGroups}
+											 onChangeViewMode={::this.handleChangeViewMode}
 
-								   isRequiredGroup={isRequiredGroup}
-								   searchGroup={searchGroupsState}
-								   modifiers={modifiers}
-								   viewMode={viewMode}
-								   group={group}
-				/>
+											 isRequiredGroup={isRequiredGroup}
+											 searchGroup={searchGroupsState}
+											 modifiers={modifiers}
+											 viewMode={viewMode}
+											 group={group}
+				/>}
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}
 					okName="Подтвердить"

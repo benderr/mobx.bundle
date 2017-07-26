@@ -16,17 +16,14 @@ export const removeGroup = {
 };
 
 export const updateGroup = ({groupCode, point}) => createAction(actions.UPDATE_GROUP, {
-	groupCode,
-	point
+	groupCode, point
 });
 
 export const addNewGroup = ({group}) => createAction(actions.ADD_PRODUCT_MODIFIER_GROUP, {group});
 export const openGroup = ({groupCode, point, inventCode}) => createAction(actions.OPEN_GROUP, {
-	groupCode,
-	point,
-	inventCode
+	groupCode, point, inventCode
 });
-export const groupReady=({groupCode})=>createAction(actions.GROUP_READY, {groupCode});
+export const groupReady = ({groupCode}) => createAction(actions.GROUP_READY, {groupCode});
 
 export const saveModifier = ({groupCode, modifier}) => createAction(actions.SAVE_MODIFIER, {
 	groupCode,

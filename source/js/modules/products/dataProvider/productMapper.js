@@ -1,17 +1,7 @@
-export const toClientProduct = (item) => {
-	function mapModifiers(modifiers) {
-		return (modifiers || []).map((group, i) => {
-			group.id = i + 1;
-			group.required = true;
-			group.modifiers = (group.modifiers || []).map((m, j) => {
-				m.id = j + 1;
-				m.selected = m.base;
-				return m;
-			});
+import {uuid} from 'infrastructure/utils/uuidGenerator'
+import CATALOG_TYPE from '../enums/catalogType'
 
-			return group;
-		});
-	}
+export const toClientProduct = (item) => {
 
 	return {
 		accountingQuantity: item.accountingQuantity,
@@ -87,5 +77,27 @@ export const toClientImportResult = data => {
 };
 
 export const toClientModifierGroup = group => {
+	group.modifiers = (group.modifiers || []).map((m) => {
+		m.code = uuid();
+		m.selected = m.base;
+		m.groupCode = group.code;
+		return m;
+	});
 	return group;
 };
+
+export const toServerModifierGroup = group => {
+	const serverGroup = {...group, catalogType: CATALOG_TYPE.MODIFIER_GROUP};
+	serverGroup.modifiers = (group.modifiers || []).map(m =>
+		({
+			name: m.name,
+			goodsName: m.goodsName,
+			barcode: m.barcode,
+			qty: m.qty,
+			price: m.price,
+			base: m.selected || false
+		}));
+
+	return serverGroup;
+};
+

@@ -27,7 +27,6 @@ export const actionHandlers = {
 	[actions.SAVE_MODIFIER_GROUP.REQUEST]: (state, {group}) => {
 		return state.mergeIn(['groups', group.code], fromJS({saving: true}));
 	},
-
 	[actions.SAVE_MODIFIER_GROUP.SUCCESS]: (state, {group}) => {
 		return state.mergeIn(['groups', group.code], fromJS({
 			...group,
@@ -36,7 +35,6 @@ export const actionHandlers = {
 			saving: false
 		}))
 	},
-
 	[actions.SAVE_MODIFIER_GROUP.FAILURE]: (state, {groupCode, error}) => {
 		return state.mergeIn(['groups', groupCode], fromJS({
 			saved: false,
@@ -44,17 +42,13 @@ export const actionHandlers = {
 			savingError: error
 		}))
 	},
-
 	[actions.REMOVE_MODIFIER_GROUP.REQUEST]: (state, {groupCode}) => {
 		return state.mergeIn(['groups', groupCode], fromJS({
 			removing: true
 		}));
 	},
 	[actions.REMOVE_MODIFIER_GROUP.SUCCESS]: (state, {groupCode}) => {
-		return state.mergeIn(['groups', groupCode], fromJS({
-			removed: true,
-			removing: false
-		}));
+		return state.deleteIn(['groups', groupCode]);
 	},
 	[actions.REMOVE_MODIFIER_GROUP.FAILURE]: (state, {groupCode, error}) => {
 		return state.mergeIn(['groups', groupCode], fromJS({
@@ -65,7 +59,7 @@ export const actionHandlers = {
 	[actions.SAVE_MODIFIER]: (state, {groupCode, modifier}) => {
 		if (modifier.isNew) {
 			const modifierEntry = state.getIn(['groups', groupCode, 'modifiers'])
-				.findEntry(s => s.get('id') == modifier.code);
+				.findEntry(s => s.get('code') == modifier.code);
 			if (modifierEntry) {
 				return state.updateIn(['groups', groupCode, 'modifiers', modifierEntry[0]],
 					m => m.merge(fromJS(modifier)))
@@ -84,7 +78,7 @@ export const actionHandlers = {
 
 	[actions.TOGGLE_MODIFIER]: (state, {groupCode, modifierCode}) => {
 		const modifierEntry = state.getIn(['groups', groupCode, 'modifiers'])
-			.findEntry(s => s.get('id') == modifierCode);
+			.findEntry(s => s.get('code') == modifierCode);
 		if (modifierEntry) {
 			return state.updateIn(['groups', groupCode, 'modifiers', modifierEntry[0]],
 				modifier => modifier.merge(fromJS({selected: !modifier.get('selected')}))
@@ -93,7 +87,6 @@ export const actionHandlers = {
 
 		return state;
 	},
-
 	[actions.SEARCH_GROUPS.REQUEST]: (state, {formKey}) => {
 		return state.updateIn(['searchGroupsResult', formKey], Map({groups: []}), data =>
 			data.merge({
@@ -101,7 +94,6 @@ export const actionHandlers = {
 				error: null
 			}));
 	},
-
 	[actions.SEARCH_GROUPS.SUCCESS]: (state, {formKey, groups}) => {
 		return state.updateIn(['searchGroupsResult', formKey], data => data.merge({
 			loading: false,
@@ -109,14 +101,12 @@ export const actionHandlers = {
 			error: null
 		}));
 	},
-
 	[actions.SEARCH_GROUPS.FAILURE]: (state, {formKey, error}) => {
 		return state.updateIn(['searchGroupsResult', formKey], data => data.merge({
 			loading: false,
 			error: fromJS(error)
 		}));
-	},
-
+	}
 };
 
 export default (createReducer) => createReducer(initialState, actionHandlers);
