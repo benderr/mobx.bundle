@@ -9,22 +9,21 @@ class InfinateScroll extends React.Component {
     render() {
         const {loading, loadNext, totalCount} = this.props;
         const listLength = this.props.listLength || 50;
-        let className = 'table_row';
-        let loadingStyles = null;
+        const className = ['table_row'];
+        const showWaypoint = totalCount > listLength;
+
         if (loading) {
-            className += ' loading_block';
-            loadingStyles = {minHeight: '50px'};
+            className.push('loading_block  loading_block__h40');
         }
-        return (<div class={className} style={loadingStyles}>
-            {totalCount >= listLength && <Waypoint
-                onEnter={loadNext}/>}
+        return (<div class={className.join(' ')}>
+            {showWaypoint && <Waypoint onEnter={loadNext}/>}
         </div>)
     }
 }
 
 InfinateScroll.propTypes = {
     loadNext: PropTypes.func.isRequired, //функция которая будет вызвана для подгрузки последующих элементов
-    totalCount: PropTypes.number.isRequired, //общее максимально количество элементов в списке
+    totalCount: PropTypes.number, //общее максимально количество элементов в списке
     loading: PropTypes.bool, //флаг, который говорит о том, что идет подгрузка
     listLength: PropTypes.number //количество элементов на 1 экране списка, по умолчанию 50
 };

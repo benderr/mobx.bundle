@@ -32,7 +32,6 @@ function* registerUser({user}) {
 		yield call(registerDataContext.register, user);
 		yield put(register.success());
 	} catch (error) {
-		console.log('REG FAIL', error);
 		yield put(register.failure({
 			status: error.status,
 			data: error.data

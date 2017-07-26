@@ -1,46 +1,71 @@
-import {call, put, select, take, fork, takeEvery} from 'redux-saga/effects'
-import {subscribeToUrl} from 'modules/core/sagas'
-import * as actionEnum from '../enums/orderActions'
-import * as actions from '../actions/orderActionTypes'
+import {call, put, select, take, fork, takeEvery, takeLatest} from 'redux-saga/effects'
+import subscribeToUrl from 'modules/core/sagas/subscribeToUrl'
+import * as actions from '../actions/orderActions'
+import * as selectors from '../selectors/orderSelectors'
 import {getPointId} from 'modules/core/selectors'
+import {notify} from 'common/uiElements/Notify';
 import * as dataContext from '../dataProvider/dataContext'
 import logger from 'infrastructure/utils/logger'
+import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSaga';
+import {SHIFT_TYPE} from '../enums'
+import {uuid} from 'infrastructure/utils/uuidGenerator'
+import {debounce} from 'redux-saga-debounce-effect'
 
-export function* init() {
-	yield takeEvery(actionEnum.GET_ORDERS.REQUEST, getOrders);
-
-	yield put(actions.getOrders.request({
-		start: 0,
-		count: 50,
-		sortField: 'beginDateTime',
-		sortDirection: 'desc',
-		isFirst: true
-	})); //todo брать из localStorage
+function* init() {
+	yield takeLatest(actions.CREATE_ORDER.REQUEST, createOrder);
+	yield takeEvery(actions.GET_ORDERS.REQUEST, getOrders);
+	yield takeEvery(actions.GET_ORDER_DETAILS.REQUEST, getOrderDetails)
+	yield fork(debounceSearchOrders);
 }
 
-function* getOrders({start, count, filter = null, sortField, sortDirection, isFirst = false}) {
+function* debounceSearchOrders() {
+	yield debounce(actions.SEARCH_ORDERS, getOrders);
+}
+
+function* createOrder({order, products}) {
+	if (!products || products.length == 0) {
+		yield put(notify.error('Добавьте продукты'));
+		yield put(actions.createOrder.failure({error: 'Добавьте продукты'}));
+	} else {
+		try {
+			const document = {};
+			const actualSum = yield select(selectors.getFormTotalSum);
+			const retailPointId = yield select(getPointId);
+
+			document.id = uuid();
+			document.actualSum = actualSum;
+			document.baseSum = actualSum;
+			document.beginDateTime = order.beginDateTime;
+			document.docType = order.docType;
+			document.status = order.status;
+			document.docNum = order.docNum;
+			document.description = order.description;
+			document.inventPositions = products;
+
+			yield call(dataContext.saveOrder, retailPointId, SHIFT_TYPE.EXTERNAL, document);
+			yield put(actions.createOrder.success({order: document}));
+		} catch (error) {
+			yield put(actions.createOrder.failure({error}));
+		}
+	}
+}
+
+function* getOrders() {
 	try {
+		let filterModel = yield select(selectors.getOrdersFilter);
+		const {filter, start, count, sortField, sortDirection, totalCount:total}=filterModel.toJS();
+
 		const retailPointId = yield select(getPointId);
 		let q = ['shift.id==":external"'];
-		filter = filter || {};
-		if (filter.cashier) {
-			q.push(`cashier.name==*${filter.cashier}*`)
+		if (filter) {
+			q.push(`docNum=="*${filter}*"`)
 		}
-		if (filter.docNum) {
-			q.push(`docNum=="${filter.docNum}"`)
-		}
-		if (filter.actualSum) {
-			q.push(`actualSum=="${filter.actualSum}"`)
-		}
-		if (filter.id) {
-			q.push(`id=="${filter.id}"`);
-		}
+
 		q = q.join(';');
 
-		const isFirstRequest = isFirst && filter == null;
-
 		const {pos, totalCount, orders} = yield call(dataContext.getOrders, retailPointId, start, count, q, sortField, sortDirection);
-		yield put(actions.getOrders.success({pos, totalCount, orders, isFirst: isFirstRequest}));
+		yield put(actions.getOrders.success({pos, totalCount, orders}));
+		yield put(actions.correctFilter({pos}));
 	}
 	catch (error) {
 		logger.log(error);
@@ -48,8 +73,32 @@ function* getOrders({start, count, filter = null, sortField, sortDirection, isFi
 	}
 }
 
+function* getOrderDetails({point, id}) {
+	try {
+
+		let q = ['shift.id==":external"', `id=="${id}"`];
+		q = q.join(';');
+
+		const {orders} = yield call(dataContext.getOrders, point, 0, 1, q);
+		if (orders.length > 0) {
+			yield put(actions.getOrderDetails.success({order: orders[0]}));
+		}
+		else {
+			yield put(actions.getOrderDetails.failure({id, error: 'Заказ не найден'}));
+		}
+	}
+	catch (error) {
+		logger.log(error);
+		yield put(actions.getOrderDetails.failure({id, error}));
+	}
+}
+
+const searchProduct = createSearchProductsSaga(actions.SEARCH_PRODUCTS);
+
 export default function*() {
 	yield [
-		fork(subscribeToUrl, '/documents/external', init)
+		//fork(subscribeToUrl, ['/documents/external', '/documents/external/add'], init),
+		fork(init),
+		searchProduct
 	]
 }

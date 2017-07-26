@@ -1,40 +1,53 @@
 import React from 'react';
-import {Field} from 'redux-form/immutable';
 import {reduxForm} from 'common/formElements';
 import PropTypes from 'prop-types';
 import {PrimaryButton} from 'common/uiElements';
-import {AmountField, NumberField, SelectField, InputField} from 'common/formElements/fields'
+import {NumberCounterRender} from 'common/formElements';
+import {AmountField, NumberField, SelectField, InputField, Field} from 'common/formElements/fields'
 import modifierShape from './modifierShape';
 
 
 class ModifierForm extends React.Component {
 
+	handleSelectProduct(product) {
+		const {change, onSearchProducts, searchProductsView:{products}}=this.props;
+		if (product == null) {
+			change('goodsName', '');
+			if (products.length <= 1)
+				onSearchProducts('');
+		}
+		else {
+			change('name', product.name);
+			change('goodsName', product.name);
+			change('price', product.price);
+		}
+	}
+
 	render() {
 		const {
-			handleSubmit, onSave, onCancel, modifier,
-			productList, isLoadingProducts, onSearchProducts, onSelectProduct,
-			onIncreaseQty, onDecreaseQty, onRemove
+			handleSubmit, onSave, onCancel, initialValues,
+			searchProductsView, onSearchProducts, onRemove
 		} = this.props;
 
 		return (
 
 			<form onSubmit={handleSubmit(onSave)} className="poss">
+				<Field name="goodsName" component="input" class="hidden"/>
 				<div class="page_content with_bottom_panel  content_padding">
 
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Товар</div>
 						<div class="property_value col nine">
-
 							<SelectField name="barcode" className="w100"
 										 searchable={true}
-										 isLoading={isLoadingProducts}
+										 isLoading={searchProductsView.loading}
 										 onInputChange={onSearchProducts}
-										 onChange={onSelectProduct}
+										 onChange={::this.handleSelectProduct}
 										 valueKey="inventCode"
 										 labelKey="name"
-										 options={productList}
-										 required="Выберите товар"
-							/>
+										 placeholder="Выберите товар"
+										 options={searchProductsView.products}
+										 required="Выберите товар"/>
 						</div>
 					</div>
 
@@ -50,19 +63,15 @@ class ModifierForm extends React.Component {
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Кол-во</div>
 						<div class="property_value col nine">
-							<div class="counter">
-								<a class="count_ctrl" onClick={onDecreaseQty}>&minus;</a>
-								<NumberField name="qty" type="text"
-											 required="Укажите количество"/>
-								<a class="count_ctrl" onClick={onIncreaseQty}>+</a>
-							</div>
+							<NumberField name="qty" type="text" component={NumberCounterRender}
+										 required="Укажите количество" minValue={1}/>
 						</div>
 					</div>
 
 					<div class="form_group form_horizontal">
 						<div class="property_label col w100px">Цена</div>
 						<div class="property_value col add_modificators_price">
-							<AmountField name="price" />
+							<AmountField name="price"/>
 						</div>
 						<div class="property_label  col  one"><span class="cur rur"><span>р.</span></span></div>
 					</div>
@@ -81,7 +90,7 @@ class ModifierForm extends React.Component {
 				<div class="page_bottom_panel">
 					<PrimaryButton type="submit">Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
-					{modifier.id && <a class="button middle wide clean f_right" onClick={onRemove}>Удалить</a>}
+					{!initialValues.isNew && <a class="button middle wide clean f_right" onClick={onRemove}>Удалить</a>}
 				</div>
 			</form>
 		)
@@ -92,13 +101,9 @@ ModifierForm.propTypes = {
 	onSave: PropTypes.func.isRequired,
 	onRemove: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
-	modifier: modifierShape,
-	productList: PropTypes.array.isRequired,
-	isLoadingProducts: PropTypes.bool.isRequired,
-	onSearchProducts: PropTypes.func.isRequired,
-	onSelectProduct: PropTypes.func.isRequired,
-	onIncreaseQty: PropTypes.func.isRequired,
-	onDecreaseQty: PropTypes.func.isRequired
+	initialValues: modifierShape,
+	searchProductsView: PropTypes.any,
+	onSearchProducts: PropTypes.func.isRequired
 };
 
 export default (key) => reduxForm({form: key})(ModifierForm);

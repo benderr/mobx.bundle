@@ -51,8 +51,6 @@ class GridValidator {
 		const maskOther = getCordsMask(this.width, this.height, keys);
 		const maskCurrent = getCordsMask(this.width, this.height, [key]);
 
-		console.log(maskOther, maskCurrent);
-
 		let valid = true;
 		let i = 0;
 		while (valid && i <= maskOther.length - 1) {

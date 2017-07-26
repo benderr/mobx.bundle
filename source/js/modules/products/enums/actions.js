@@ -20,8 +20,15 @@ export const REMOVE_MODIFIER = 'PRODUCTS.REMOVE_MODIFIER'; //удалить мо
 export const TOGGLE_MODIFIER = 'PRODUCTS.TOGGLE_MODIFIER'; //чекинг модификатора
 
 //MODIFIERS GROUPS
-export const SAVE_MODIFIER_GROUP = 'PRODUCTS.SAVE_MODIFIER_GROUP'; //сохранить группу модификатора
-export const REMOVE_MODIFIER_GROUP = 'PRODUCTS.REMOVE_MODIFIER_GROUP'; //удалить группу модификатора
+export const SAVE_MODIFIER_GROUP = createRequestTypes('PRODUCTS.SAVE_MODIFIER_GROUP'); //сохранить группу модификатора
+export const REMOVE_MODIFIER_GROUP = createRequestTypes('PRODUCTS.REMOVE_MODIFIER_GROUP'); //удалить группу модификатора
+export const SET_PRODUCT_MODIFIER_GROUPS = 'PRODUCTS.SET_PRODUCT_MODIFIER_GROUPS';
+export const ADD_PRODUCT_MODIFIER_GROUP = 'PRODUCTS.ADD_PRODUCT_MODIFIER_GROUP';
+export const UPDATE_GROUP = 'UPDATE_GROUP';
+export const OPEN_GROUP = 'PRODUCTS.OPEN_GROUP';
+export const GROUP_READY = 'PRODUCTS.GROUP_READY';
+export const OPEN_MODIFIER = 'PRODUCTS.OPEN_MODIFIER';
+
 
 //PRODUCT LAYER
 export const CREATE_PRODUCT = 'PRODUCTS.CREATE_PRODUCT'; //Создание балванки для нового продукта

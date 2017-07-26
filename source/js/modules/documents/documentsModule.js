@@ -7,7 +7,6 @@ import chequeSagas from './sagas/chequeSagas';
 export function getReducers(createReducer) {
 	return {
 		orders: createReducer(orderReducers.initialState, orderReducers.actionHandlers),
-
 		cheques: chequeReducers(createReducer),
 	}
 }

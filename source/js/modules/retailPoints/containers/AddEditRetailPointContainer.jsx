@@ -60,13 +60,7 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
             .then(() => {
                 deleteRetailPoint(id);
                 this.closeLayer();
-            })
-            .catch(({close}) => {
-                if (close)
-                    console.log('closing for element ', elem);
-                else
-                    console.log('canceling for element ', elem);
-            })
+            });
     }
 
     render() {

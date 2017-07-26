@@ -3,4 +3,4 @@ export const toClientOrder = order => {
 		order.beginDateTime = new Date(order.beginDateTime);
 
 	return order;
-}
+};

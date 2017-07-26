@@ -15,7 +15,7 @@ const DateFormat = ({value, format = "clever", def = ''}) => {
 };
 
 DateFormat.propTypes = {
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.date]),
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Date)]),
 	format: PropTypes.string,
 	def: PropTypes.string
 };

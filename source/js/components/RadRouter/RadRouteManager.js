@@ -15,6 +15,8 @@ class RadRouteManager extends React.Component {
 	pageLocation = this.props.location;
 
 	destroyLayer({layerId}) {
+		if (!this.layers.some(s => s.layerId == layerId))
+			return;
 		this.layers = this.layers.filter(s => s.layerId != layerId);
 		//если слоев не осталось, то не нужно переходить назад
 		if (this.layers.length != 0) {
@@ -26,6 +28,7 @@ class RadRouteManager extends React.Component {
 			loc.state = {returnToPage: true};
 			this.props.history.replace(loc);
 		}
+
 	}
 
 	getExistLayer(location) {
@@ -33,7 +36,7 @@ class RadRouteManager extends React.Component {
 	}
 
 	componentWillUnmount() {
-		console.log('RadRouteManager componentWillUnmount');
+		//console.log('RadRouteManager componentWillUnmount');
 	}
 
 	render() {
