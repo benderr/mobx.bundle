@@ -13,6 +13,18 @@ export function getOrders(retailPointId, start, count, q, sortField, sortDirecti
 		});
 }
 
+export function getMoneyDocs(retailPointId, start, count, q, sortField, sortDirection) {
+	return api.v1().retailpoint(retailPointId).moneyDocs()
+		.get({start, count, q, sortField, sortDirection})
+		.then(response => {
+			return {
+				orders: (response.data.data || []).map(mapper.toClientOrder),
+				pos: response.data.pos,
+				totalCount: response.data.total_count
+			}
+		});
+}
+
 export function saveOrder(retailPointId, shiftType, order) {
 	return api.v1().retailpoint(retailPointId).shift(shiftType).cashdoc()
 		.post(order);

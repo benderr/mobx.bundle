@@ -17,7 +17,7 @@ function* getChequeSaga({q='', filter = null, sortField, sortDirection, isFirst 
 
 
 		//region Search box
-		let query = ['shift.id==":external"'];
+		let query = ['shift.id!=":external"'];
 		filter = filter || {};
 
 		if (q.length)
