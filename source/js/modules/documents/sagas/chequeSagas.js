@@ -8,7 +8,7 @@ import * as chequeActions from '../actions/chequeActions'
 import {getSectionPos, getSectionStep} from '../selectors/chequeSelectors'
 
 
-function* getChequeSaga({filter = null, sortField, sortDirection, isFirst = false}) {
+function* getChequeSaga({q='', filter = null, sortField, sortDirection, isFirst = false}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
 
@@ -17,14 +17,17 @@ function* getChequeSaga({filter = null, sortField, sortDirection, isFirst = fals
 
 
 		//region Search box
-		let q = ['shift.id==":external"'];
+		let query = ['shift.id==":external"'];
 		filter = filter || {};
 
-		q = q.join(';');
+		if (q.length)
+			query.push(`docNum="*${q}*"`);
+
+		query = query.join(';');
 		//endregion
 
 		const isFirstRequest = isFirst;
-		const {pos, totalCount, orders} = yield call(dataContext.getOrders, token, posOpt, stepOpt, q, sortField, sortDirection);
+		const {pos, totalCount, orders} = yield call(dataContext.getOrders, token, posOpt, stepOpt, q = query, sortField, sortDirection);
 
 		yield put(chequeActions.getCheque.success({
 			pos: pos,

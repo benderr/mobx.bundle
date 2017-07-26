@@ -7,6 +7,7 @@ import ExternalListContainer from './containers/ExternalListContainer'
 import OrderViewContainer from './containers/OrderViewContainer'
 import OrderAddContainer from './containers/OrderAddContainer'
 import ReportsContainer from './containers/ReportsContainer'
+import ChequeFilterContainer from './containers/ChequeFilterContainer'
 
 export function getRoutes() {
 	return {
@@ -19,6 +20,12 @@ export function getRoutes() {
 			path: '/documents/cheque',
 			exact: true,
 			component: ChequeListContainer
+		},
+		documentsChequeFilter: {
+			path: '/documents/cheque/filter',
+			exact: true,
+			layout: ChequeFilterContainer,
+			isLayer: true
 		},
 		documentsMoney: {
 			path: '/documents/money',

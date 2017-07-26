@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router';
 import toJS from 'components/HOC/toJs';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
-import LoaderBlock from 'common/uiElements/LoaderBlock';
 import TitlePanel from '../components/TitlePanel'
 import TitleActions from '../components/TitleActions'
 
@@ -31,7 +30,8 @@ class ChequeListContainer extends React.Component {
 	}
 
 	handleOpenFilter() {
-		console.log('handleOpenFilter');
+		const {push} = this.props;
+		push({pathname: `/documents/cheque/filter`});
 	}
 
 	onHeadSortClick(field, by) {
@@ -57,10 +57,6 @@ class ChequeListContainer extends React.Component {
 		}
 	}
 
-	onBodyItemClick(item) {
-		console.log('onBodyItemClick', item);
-	}
-
 	onInfinateScroll() {
 		const {getListCheque, listState} = this.props;
 		if ((listState.pos + listState.listStep) < listState.total_count) {
@@ -81,7 +77,7 @@ class ChequeListContainer extends React.Component {
 		return (
 			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
 				<TitlePanel>
-					<TitleActions onShowFilter={::this.handleOpenFilter}/>
+					<TitleActions onShowFilter={::this.handleOpenFilter} showFilter={true}/>
 				</TitlePanel>
 
 				{!globalLoading && !noItems &&
