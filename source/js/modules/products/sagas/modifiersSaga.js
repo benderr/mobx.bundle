@@ -1,7 +1,8 @@
-import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects'
-import {debounce} from 'redux-saga-debounce-effect'
+import {call, put, take, takeLatest, takeEvery, select, fork} from 'redux-saga/effects'
+import {debounce, debounceFor} from 'redux-saga-debounce-effect'
 import * as actions from '../enums/actions'
 import * as modifierActions from '../actions/modifierActions'
+import * as layerActions from '../actions/layerActions'
 import * as modifierSelectors from '../selectors/modifierSelectors'
 import * as dataContext from '../dataProvider/productDataContext'
 import {getPointId} from 'modules/core/selectors'
@@ -22,14 +23,14 @@ export function* saveModifierGroup({group, point, meta}) {
 		yield put(modifierActions.saveGroup.success({group: group}));
 		if (!meta) {
 			yield put(notify.success(group.isNew ? 'Группа добавлена' : 'Группа обновлена'));
-		} else {
+		} else if (meta.success) {
 			yield put(notify.success(meta.success));
 		}
 	}
 	catch (error) {
 		if (!meta) {
 			yield put(notify.error('Не удалось сохранить группу', 'Ошибка'));
-		} else {
+		} else if (meta.error) {
 			yield put(notify.error(meta.error));
 		}
 		yield put(modifierActions.saveGroup.failure({groupCode: group.code, error}));
@@ -75,12 +76,23 @@ function* openGroup({groupCode, inventCode, point}) {
 	yield put(push('/product/group', {groupCode, point}));
 }
 
-function* updateGroup({groupCode, point, meta}) {
+function* updateGroup({groupCode, point, meta, layerId}) {
 	const groupImtbl = yield select(modifierSelectors.getGroupByCode(groupCode));
 	if (!groupImtbl)
 		return;
+
 	const group = groupImtbl.toJS();
-	yield call(saveModifierGroup, {group, point, meta})
+	if (layerId) {
+		yield fork(updateLayer, layerId);
+	}
+	yield put(modifierActions.saveGroup.request({group, point, meta}));
+}
+
+function* updateLayer(layerId) {
+	yield take(actions.SAVE_MODIFIER_GROUP.REQUEST);
+	yield put(layerActions.updateLayer({layerId, saving: true}));
+	yield take(actions.SAVE_MODIFIER_GROUP.SUCCESS);
+	yield put(layerActions.updateLayer({layerId, saving: false, closed: true}));
 }
 
 export default function*() {
@@ -89,6 +101,7 @@ export default function*() {
 		debounce(actions.SEARCH_GROUPS.REQUEST, searchGroups),
 		takeEvery(actions.REMOVE_MODIFIER_GROUP.REQUEST, removeModifierGroup),
 		takeEvery(actions.OPEN_GROUP, openGroup),
-		takeEvery(actions.UPDATE_GROUP, updateGroup)
+		takeLatest(actions.UPDATE_GROUP, updateGroup),
+		debounceFor(actions.UPDATE_GROUP_DEBOUNCE, updateGroup, 1000)
 	]
 }

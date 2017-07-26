@@ -2,7 +2,7 @@ import * as actions from '../enums/actions';
 import {createAction} from 'infrastructure/helpers/actionHelpers';
 
 export const saveGroup = {
-	request: ({group, point}) => createAction(actions.SAVE_MODIFIER_GROUP.REQUEST, {group, point}),
+	request: ({group, point, meta}) => createAction(actions.SAVE_MODIFIER_GROUP.REQUEST, {group, point, meta}),
 	success: ({group}) => createAction(actions.SAVE_MODIFIER_GROUP.SUCCESS, {group}),
 	failure: ({groupCode, error}) => createAction(actions.SAVE_MODIFIER_GROUP.FAILURE, {groupCode, error})
 };
@@ -15,8 +15,11 @@ export const removeGroup = {
 	failure: ({groupCode, error}) => createAction(actions.REMOVE_MODIFIER_GROUP.FAILURE, {groupCode, error})
 };
 
-export const updateGroup = ({groupCode, point}) => createAction(actions.UPDATE_GROUP, {
-	groupCode, point
+export const updateGroup = ({groupCode, point, meta, layerId}) => createAction(actions.UPDATE_GROUP, {
+	groupCode, point, meta, layerId
+});
+export const updateGroupDebounce = ({groupCode, point, meta, layerId}) => createAction(actions.UPDATE_GROUP_DEBOUNCE, {
+	groupCode, point, meta, layerId
 });
 
 export const addNewGroup = ({group}) => createAction(actions.ADD_PRODUCT_MODIFIER_GROUP, {group});

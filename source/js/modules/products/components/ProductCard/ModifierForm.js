@@ -25,7 +25,7 @@ class ModifierForm extends React.Component {
 
 	render() {
 		const {
-			handleSubmit, onSave, onCancel, initialValues,
+			handleSubmit, onSave, onCancel, initialValues, saving,
 			searchProductsView, onSearchProducts, onRemove
 		} = this.props;
 
@@ -88,7 +88,7 @@ class ModifierForm extends React.Component {
 
 				</div>
 				<div class="page_bottom_panel">
-					<PrimaryButton type="submit">Сохранить</PrimaryButton>
+					<PrimaryButton type="submit" loading={saving}>Сохранить</PrimaryButton>
 					<a class="button middle wide clean" onClick={onCancel}>Отмена</a>
 					{!initialValues.isNew && <a class="button middle wide clean f_right" onClick={onRemove}>Удалить</a>}
 				</div>
@@ -102,6 +102,7 @@ ModifierForm.propTypes = {
 	onRemove: PropTypes.func.isRequired,
 	onCancel: PropTypes.func.isRequired,
 	initialValues: modifierShape,
+	saving: PropTypes.bool,
 	searchProductsView: PropTypes.any,
 	onSearchProducts: PropTypes.func.isRequired
 };

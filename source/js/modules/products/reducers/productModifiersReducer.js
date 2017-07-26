@@ -57,18 +57,15 @@ export const actionHandlers = {
 		}));
 	},
 	[actions.SAVE_MODIFIER]: (state, {groupCode, modifier}) => {
-		if (modifier.isNew) {
-			const modifierEntry = state.getIn(['groups', groupCode, 'modifiers'])
-				.findEntry(s => s.get('code') == modifier.code);
-			if (modifierEntry) {
-				return state.updateIn(['groups', groupCode, 'modifiers', modifierEntry[0]],
-					m => m.merge(fromJS(modifier)))
-			}
+		const modifierEntry = state.getIn(['groups', groupCode, 'modifiers'])
+			.findEntry(s => s.get('code') == modifier.code);
+
+		const modifierImtbl = fromJS(modifier);
+		if (modifierEntry) {
+			return state.mergeIn(['groups', groupCode, 'modifiers', modifierEntry[0]], modifierImtbl)
 		} else {
-			return state.updateIn(['groups', groupCode, 'modifiers'],
-				list => list.push(fromJS(modifier)));
+			return state.updateIn(['groups', groupCode, 'modifiers'], list => list.push(modifierImtbl));
 		}
-		return state;
 	},
 
 	[actions.REMOVE_MODIFIER]: (state, {groupCode, modifierCode}) => {
