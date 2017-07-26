@@ -4,7 +4,7 @@ import * as chequeActions from '../enums/chequeActions';
 
 
 export const initialState = Map({
-	loading: false,
+	loading: true,
 	success: null,
 	error: null,
 
@@ -18,8 +18,8 @@ export const initialState = Map({
 	noItems: null,
 
 	// сортировка
-	sortField: 'beginDateTime',		// поле сортировки
-	sortDirection: 'asc',	// направление сортировки
+	sortField: 'beginDateTime',	// поле сортировки
+	sortDirection: 'desc',		// направление сортировки
 
 	// поиск и фильтр
 	isFilter: false,		// флаг применения фильтра

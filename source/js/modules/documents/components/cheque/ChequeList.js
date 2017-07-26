@@ -26,12 +26,7 @@ class ChequeList extends React.Component {
 								  onClick={onHeadSortClick}
 								  field="docType"
 								  className="doc_type">Тип документа</SortLink>
-						<SortLink sortField={sortField}
-								  orderBy={sortDirection}
-								  onClick={onHeadSortClick}
-								  field="shift.shiftNum"
-								  className="doc_smena_number">Номер смены</SortLink>
-
+						<div className="doc_smena_number">Номер смены</div>
 						<SortLink sortField={sortField}
 								  orderBy={sortDirection}
 								  onClick={onHeadSortClick}
@@ -58,7 +53,7 @@ class ChequeList extends React.Component {
 					{list.map((Item, i) =>
 						<div className="table_row"
 							 key={`row_${Item.id}`}>
-							<div className="doc_date">{i+1} <DateFormat value={Item.beginDateTime}/></div>
+							<div className="doc_date"><DateFormat value={Item.beginDateTime}/></div>
 							<div className="doc_type">{DOC_TYPES[Item.docType] || NOT_VALUE}</div>
 							<div className="doc_smena_number">{Item.shift && ''+Item.shift.shiftNum ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}</div>
 							<div className="doc_number">Документ №{Item.docNum}</div>
