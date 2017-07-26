@@ -21,30 +21,82 @@ import * as actions from '../actions/chequeActions'
 class ChequeListContainer extends React.Component {
 
 	componentWillMount() {
-		const {getListCheque} = this.props;
+		const {getListCheque, listState} = this.props;
 
-		getListCheque({});
+		getListCheque({
+			isFirst: true,
+			sortField: listState.sortField,
+			sortDirection: listState.sortDirection
+		});
 	}
 
 	handleOpenFilter() {
 		console.log('handleOpenFilter');
 	}
 
+	onHeadSortClick(field, by) {
+		const {getListCheque, listState} = this.props;
+		getListCheque({sortField: field, sortDirection: by, q: listState.q});
+	}
+
+	onFilterChanged(e) {
+		let val = e.target.value;
+		const {getListCheque, listState} = this.props;
+
+		if (val && val.length > 0) {
+			getListCheque({
+				sortField: listState.sortField,
+				sortDirection: listState.sortDirection,
+				q: val
+			});
+		} else if (!val || val.length === 0) {
+			getListCheque({
+				sortField: listState.sortField,
+				sortDirection: listState.sortDirection
+			});
+		}
+	}
+
+	onBodyItemClick(item) {
+		console.log('onBodyItemClick', item);
+	}
+
+	onInfinateScroll() {
+		const {getListCheque, listState} = this.props;
+		if ((listState.pos + listState.listStep) < listState.total_count) {
+			getListCheque({
+				sortField: listState.sortField,
+				sortDirection: listState.sortDirection,
+				pos: listState.pos + listState.listStep,
+				q: listState.q
+			});
+		}
+	}
+
 	render() {
 		const {listState} = this.props;
+		const noItems = listState.noItems;
+		const globalLoading = noItems === null;
 
 		return (
-			<div>
+			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
 				<TitlePanel>
 					<TitleActions onShowFilter={::this.handleOpenFilter}/>
 				</TitlePanel>
 
+				{!globalLoading && !noItems &&
 				<ChequeList listState={listState}
+							onHeadSortClick={::this.onHeadSortClick}
+							onFilterChanged={::this.onFilterChanged}
 
-							onHeadSortClick={(column, orderBy) => console.log('onHeadSortClick', {column, orderBy})}
-							onFilterChanged={(event) => console.log('onFilterChanged', {event})}
-							onBodyItemClick={(item) => console.log('onBodyItemClick', {item})} />
-				
+							onInfinateScroll={::this.onInfinateScroll}/>}
+
+				{!globalLoading && noItems &&
+				<div className="center_xy page_center_info page_center_info__orders0">
+					<i className="icon icon_orders"/>
+					<div className="title">Чеки отсутствуют</div>
+				</div>}
+
 			</div>
 		);
 	}
