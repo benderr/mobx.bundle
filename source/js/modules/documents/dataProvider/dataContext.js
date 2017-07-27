@@ -17,3 +17,21 @@ export function saveOrder(retailPointId, shiftType, order) {
 	return api.v1().retailpoint(retailPointId).shift(shiftType).cashdoc()
 		.post(order);
 }
+
+export function getShopDocuments(retailPointId, start, count, q, sortField, sortDirection) {
+	return api.fn().v1().retailpoint(retailPointId).docs()
+		.get({start, count, q, sortField, sortDirection})
+		.then(response => {
+			return {
+				documents: (response.data.data || []).map(mapper.toClientDocumentFromList),
+				pos: response.data.pos,
+				totalCount: response.data.total_count
+			}
+		});
+}
+
+export function getShopDocumentDetail(retailPointId, id) {
+	return api.fn().v1().retailpoint(retailPointId).docs(id)
+		.get()
+		.then(response => mapper.toClientDocumentDetails(response.data));
+}
