@@ -4,7 +4,7 @@ import {bindActionCreators} from 'redux'
 import toJS from 'components/HOC/toJs'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import {withRouter} from 'react-router'
-import {LoaderPanel, DateFormat} from 'common/uiElements'
+import {LoaderPanel, DateFormat, ConfirmPopupService} from 'common/uiElements'
 import ShopDocView from  '../components/ishop/ShopDocView'
 import * as selectors from '../selectors/shopDocsSelectors'
 import * as actions from '../actions/shopDocsActions'
@@ -31,7 +31,8 @@ class ShopDocViewContainer extends DefaultLayerLayout {
 	}
 
 	handleResend() {
-
+		const {id, point, resend}=this.props;
+		this.resendPopup.open().then(() => resend({id, point}));
 	}
 
 	renderStatus(status, creationDateTime) {
@@ -61,6 +62,10 @@ class ShopDocViewContainer extends DefaultLayerLayout {
 					</LoaderPanel>
 				</div>
 
+				<ConfirmPopupService ref={p => this.resendPopup = p}
+									 cancelName="Отмена"
+									 okName="Подтвердить"
+									 text="Обратите внимание, перепроводить документ следует только в том случае, если он отсутствует в ОФД. Проверить наличие документа можно в личном кабинете ОФД"/>
 			</article>
 		);
 	}
@@ -80,7 +85,8 @@ function mapStateToProps(state, props) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			getDocumentDetails: actions.getDocumentDetails.request
+			getDocumentDetails: actions.getDocumentDetails.request,
+			resend: actions.reSendDocument.request
 		}, dispatch)
 	};
 }

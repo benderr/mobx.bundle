@@ -24,7 +24,7 @@ export const toClientDocumentDetails = doc => {
 	};
 
 	if (doc.status) {
-		item.status = 'WAIT_FOR_CALLBACK';
+		item.status = 'FAILED';
 		item.fnState = doc.status.fnState;
 		item.fiscalInfo = mapFiscalInfo(doc.status.fiscalInfo);
 		item.error = 'some error'; //doc.status.message;
@@ -59,16 +59,16 @@ function isValidNumber(num) {
 function mapFiscalInfo(info) {
 	if (!info)
 		return {
-			shiftNumber: 'shiftNumber',
-			checkNumber: 'checkNumber',
-			kktNumber: 'kktNumber',
-			fnNumber: 'fnNumber',
-			fnDocNumber: 'fnDocNumber',
-			fnDocMark: 'fnDocMark',
-			date: 'date',
-			sum: 'sum',
-			checkType: 'checkType',
-			qr: 'qr'
+			shiftNumber: 123,
+			checkNumber: 123,
+			kktNumber: 'string',
+			fnNumber: 'string',
+			fnDocNumber: 123,
+			fnDocMark: 123,
+			date: 'string',
+			sum: 123,
+			checkType: 'string',
+			qr: 'string'
 		};
 	return {
 		shiftNumber: info.shiftNumber,

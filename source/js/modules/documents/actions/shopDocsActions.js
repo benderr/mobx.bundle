@@ -30,7 +30,7 @@ export const getDocumentDetails = {
 	failure: ({id, error}) => createAction(GET_DOCUMENT_DETAILS.FAILURE, {id, error})
 };
 export const reSendDocument = {
-	request: ({code, point}) => createAction(RESEND_DOCUMENT.REQUEST, {code, point}),
-	success: ({code}) => createAction(RESEND_DOCUMENT.SUCCESS, {code}),
-	failure: ({code, error}) => createAction(RESEND_DOCUMENT.FAILURE, {code, error})
+	request: ({id, point}) => createAction(RESEND_DOCUMENT.REQUEST, {id, point}),
+	success: ({id}) => createAction(RESEND_DOCUMENT.SUCCESS, {id}),
+	failure: ({id, error}) => createAction(RESEND_DOCUMENT.FAILURE, {id, error})
 };
