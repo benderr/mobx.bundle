@@ -107,6 +107,10 @@ const rules = [
 		test: /\.styl$/,
 		//include: imgPath,
 		loader: 'style-loader!css-loader!stylus-loader?resolve url',
+	},
+	{
+		test: /\.css$/,
+		use: [ 'style-loader', 'css-loader' ]
 	}
 ];
 
