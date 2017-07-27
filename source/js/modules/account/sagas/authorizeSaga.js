@@ -42,9 +42,9 @@ function* watchLogout() {
 }
 
 function* logout() {
+	yield put(push(signInLocation));
 	yield call(dataContext.logout);
 	yield call(localStorage.removeItem, xToken);
-	yield put(push(signInLocation));
 	yield put(clearApp());
 	yield put(checkingAccessStop());
 }
