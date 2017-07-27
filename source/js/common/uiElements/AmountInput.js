@@ -74,7 +74,7 @@ class AmountInput extends React.Component {
 	}
 
 	componentWillReceiveProps(props) {
-		if (props && props.value) {
+		if (props) {
 			const {viewValue, value, startPos}=this.parseValue(props.value);
 			this.setState({viewValue, value, startPos});
 		}
@@ -109,7 +109,7 @@ class AmountInput extends React.Component {
 
 	parseValue(val) {
 		const el = this.el;
-		if (val === undefined)
+		if (val === undefined || val === null)
 			val = '';
 
 		if (!val.replace)

@@ -1,7 +1,7 @@
 import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects';
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
 import {notify} from 'common/uiElements/Notify';
-
+import logger from 'infrastructure/utils/logger'
 import * as dataContext from '../dataProvider/discountDataContext';
 import * as action from '../actions/discountActions';
 import * as enums from '../enums/actions';
@@ -13,6 +13,7 @@ function* getListSaga(params) {
 		const data = yield call(dataContext.getListDiscount, {...params, token});
 		yield put(action.getListDiscount.success(data));
 	} catch (error) {
+		logger.log(error);
 		yield put(action.getListDiscount.failure({
 			status: error.status,
 			data: error.data

@@ -13,7 +13,7 @@ class RadLayerManager extends React.Component {
 
 
 	componentWillUnmount() {
-		console.log('RadLayerManager Unmount');
+		//console.log('RadLayerManager Unmount');
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {

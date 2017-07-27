@@ -16,6 +16,10 @@ class DefaultLayerLayout extends React.Component {
 		el.classList.remove(className); //todo возможно потребуется заменить методы если где то не поддерживается
 	}
 
+	getLayerId() {
+		return this.props.layerId;
+	}
+
 	closeLayer() {
 		const el = this.el;
 		if (el) {
@@ -61,9 +65,10 @@ class DefaultLayerLayout extends React.Component {
 
 	getElement() {
 		if (!this.el) {
-			throw 'Отсутствует layerOptions в article-элементе слоя';
+			console.warn('Отсутствует layerOptions в article-элементе слоя');
+			return ReactDOM.findDOMNode(this);
 		}
-		return this.el; //ReactDOM.findDOMNode(this);
+		return this.el;
 	}
 
 	layerOptions = {

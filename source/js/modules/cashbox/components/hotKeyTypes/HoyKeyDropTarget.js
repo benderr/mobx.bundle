@@ -17,12 +17,8 @@ const boxTarget = {
 			const otherKeys = keys.filter(s => s.id !== sourceModel.id);
 			const sourceKey = keys.find(s => s.id === sourceModel.id);
 			const newKey = {...sourceKey, row: model.row, col: model.col};
-
-
 			const isValid = validator.isValidCord(newKey);
 			const isNotIntersect = isValid && !validator.intersect(newKey, otherKeys);
-
-			console.log(sourceModel, model, newKey, isValid, isNotIntersect);
 			return isValid && isNotIntersect;
 		}
 		return true

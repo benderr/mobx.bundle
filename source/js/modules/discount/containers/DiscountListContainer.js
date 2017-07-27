@@ -18,7 +18,7 @@ import * as actions from '../actions/discountActions';
 @toJS
 class DiscountListContainer extends React.Component {
 
-	componentWillMount() {
+	componentDidMount() {
 		const {getListDiscount, listState: {list}} = this.props;
 		if (!list.length) getListDiscount();
 	}
@@ -64,6 +64,8 @@ class DiscountListContainer extends React.Component {
 	onInfinateScroll() {
 		const {getListDiscount, listState} = this.props;
 
+		console.log('qwe')
+
 		if ((listState.pos + listState.listStep) < listState.total_count) {
 			getListDiscount({
 				column: listState.column,
@@ -79,6 +81,8 @@ class DiscountListContainer extends React.Component {
 
 		const noItems = listState.noItem;
 		const globalLoading = noItems === null;
+
+		console.log('render', listState);
 
 		return (
 			<div className="h100per">

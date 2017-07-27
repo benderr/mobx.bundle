@@ -1,16 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
-import createProductCard from '../components/ProductCard/ProductCard';
-import * as productActions from '../actions/productActions'
-import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
-import {getProductView} from '../selectors/productsSelectors'
 import {LoaderBlock} from 'common/uiElements'
 import toJS from 'components/HOC/toJs'
-import {ConfirmPopupService} from 'common/uiElements';
-import {notify} from 'common/uiElements/Notify';
+import {ConfirmPopupService} from 'common/uiElements'
+import {notify} from 'common/uiElements/Notify'
+import {push} from 'connected-react-router'
+import createProductCard from '../components/ProductCard/ProductCard'
+import * as productActions from '../actions/productActions'
+import * as modifierActions from '../actions/modifierActions'
+import * as productsSelectors from '../selectors/productsSelectors'
+import * as modifierSelectors from '../selectors/modifierSelectors'
 
 export class EditProductContainer extends DefaultLayerLayout {
 
@@ -36,7 +39,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onSaveProduct(productProps) {
-		const {productView:{product}, savingProduct} = this.props;
+		const {productView:{product}, saveProduct} = this.props;
 		let editProduct = Object.assign({}, product);
 		editProduct.name = productProps.get('name');
 		editProduct.barcode = productProps.get('barcode');
@@ -46,46 +49,50 @@ export class EditProductContainer extends DefaultLayerLayout {
 		editProduct.alcoholType = productProps.get('alcoholType');
 		editProduct.vatTag = productProps.get('vatTag');
 		editProduct.requiredModifiers = product.modifiers;
-		savingProduct({point: this.props.point, product: editProduct});
+		saveProduct({point: this.props.point, product: editProduct});
 	}
 
 	onRemoveProduct() {
-		const {inventCode, point, removeProduct, dispatch} = this.props;
+		const {inventCode, point, removeProduct} = this.props;
 		removeProduct({point, inventCode});
 	}
 
 	onAddGroup() {
-		const {inventCode, history}=this.props;
-		history.push('/product/group', {inventCode});
+		const {point, openGroup, inventCode}=this.props;
+		openGroup({point, inventCode});
 	}
 
-	onOpenGroup(id) {
-		const {inventCode, history}=this.props;
-		history.push('/product/group', {inventCode, groupId: id});
+	onOpenGroup(groupCode) {
+		const {point, openGroup, inventCode}=this.props;
+		openGroup({groupCode, point, inventCode});
 	}
 
-	onAddModifier({groupId}) {
-		const {inventCode, history}=this.props;
-		history.push('/product/modifier', {inventCode, groupId});
+	onAddModifier({groupCode}) {
+		const {point, push}=this.props;
+		push('/product/modifier', {groupCode, point});
 	}
 
-	onOpenModifier({modifierId, groupId}) {
-		const {inventCode, history}=this.props;
-		history.push('/product/modifier', {inventCode, modifierId, groupId});
+	onOpenModifier({modifierCode, groupCode}) {
+		const {point, push}=this.props;
+		push('/product/modifier', {modifierCode, groupCode, point});
 	}
 
-	onRemoveModifier({modifierId, groupId}) {
-		const {inventCode, dispatch}=this.props;
+	onRemoveModifier({modifierCode, groupCode}) {
 		this.removePopup.open()
 			.then(() => {
-				this.props.removeModifier({inventCode, groupId, modifierId});
-				dispatch(notify.success('Модификатор удален'));
+				this.props.removeModifier({groupCode, modifierCode});
+				this.saveGroupChanges(groupCode, {error: 'Не удалось удалить модификатор'});
 			});
 	}
 
-	onToggleModifier({modifierId, groupId}) {
-		const {inventCode}=this.props;
-		this.props.toggleModifier({inventCode, groupId, modifierId});
+	onToggleModifier({modifierCode, groupCode}) {
+		this.props.toggleModifier({groupCode, modifierCode});
+		this.saveGroupChanges(groupCode);
+	}
+
+	saveGroupChanges(groupCode, meta = {success: '', error: ''}) {
+		const {updateGroup, point}=this.props;
+		updateGroup({groupCode, point, meta});
 	}
 
 	handleSubmitFail() {
@@ -100,7 +107,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 
 	render() {
 
-		const {productView} = this.props;
+		const {productView, modifierGroups} = this.props;
 		const {loading, error, saving, removing, product}= productView || {loading: true};
 		const ProductCard = this.productCard;
 		const {activeTab}=this.state;
@@ -126,6 +133,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 							 product={product}
 							 removing={removing}
 							 error={error}
+							 modifierGroups={modifierGroups}
 							 initialValues={product}
 							 onChangeTab={::this.handleChangeTab}
 							 onSubmitFail={::this.handleSubmitFail}
@@ -153,19 +161,23 @@ EditProductContainer.propTypes = {
 
 function mapStateToProps(state, ownProps) {
 	const {inventCode, point, action:urlAction}=ownProps.match.params;
-	const productView = getProductView(inventCode)(state);
-	return {inventCode, point, productView, urlAction, history: ownProps.history};
+	const productView = productsSelectors.getProductView(inventCode)(state);
+	const modifierGroups = modifierSelectors.getGroups(inventCode)(state);
+	return {inventCode, point, productView, urlAction, modifierGroups};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			getDetails: productActions.getProductDetails.request,
-			savingProduct: productActions.saveProductDetails.request,
+			saveProduct: productActions.saveProductDetails.request,
 			setNewProduct: productActions.setNewProduct,
 			removeProduct: productActions.removeProduct.request,
-			removeModifier: productActions.removeModifier,
-			toggleModifier: productActions.toggleModifier
+			removeModifier: modifierActions.removeModifier,
+			toggleModifier: modifierActions.toggleModifier,
+			updateGroup: modifierActions.updateGroupDebounce,
+			openGroup: modifierActions.openGroup,
+			push: push
 		}, dispatch),
 		dispatch
 	}

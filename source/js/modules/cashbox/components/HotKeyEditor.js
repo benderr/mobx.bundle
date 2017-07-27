@@ -68,7 +68,7 @@ class HotKeyEditor extends React.Component {
 	}
 
 	handleSelectProduct(product) {
-		this.props.change('name', product.name);
+		product && this.props.change('name', product.name);
 	}
 
 	handleSelectCategory(category) {

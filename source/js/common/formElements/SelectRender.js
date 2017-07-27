@@ -12,7 +12,7 @@ class SelectRender extends React.Component {
 
 	render() {
 		const {
-			input:fieldInput, label, className, validator: {tooltip, addClassName},
+			input:fieldInput, className, validator: {tooltip, addClassName},
 			onSelectChange, onSelectBlur, valueKey = 'value', required, ...selectOptions
 		}=this.props;
 
@@ -35,16 +35,15 @@ class SelectRender extends React.Component {
 		};
 
 		const classNames = [className || '', addClassName || ''].join(' ');
-
 		return (<Select ref={s => this.focusator.init(s)}
 						className={classNames}
 						{...input}
 						{...selectOptions}
 						inputProps={{...tooltip}}
+
 						valueKey={valueKey}
 						onChange={onChangeSelect}
 						onBlur={onBlurSelect}
-						placeholder={label || ''}
 		/>);
 	}
 }

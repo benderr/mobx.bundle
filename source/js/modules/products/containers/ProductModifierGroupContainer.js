@@ -1,19 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
+import {bindActionCreators} from 'redux'
 import * as productActions from '../actions/productActions'
-import {bindActionCreators} from 'redux';
-import * as productSelectors from '../selectors/productsSelectors'
+import * as modifierActions from '../actions/modifierActions'
+import * as modifierSelectors from '../selectors/modifierSelectors'
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router'
 import modifierGroupForm from '../components/ProductCard/ModifierGroupForm'
 import toJS from 'components/HOC/toJs'
-import {change, formValueSelector} from 'redux-form/immutable';
-import {ConfirmPopupService} from 'common/uiElements';
-import {notify} from 'common/uiElements/Notify';
+import {change, formValueSelector} from 'redux-form/immutable'
+import {ConfirmPopupService, LoaderBlock} from 'common/uiElements'
 
-const VIEW_MODE = {NEW: 'new', COPY: 'copy'};
-const REQUIRED = {ON: 'on', OFF: 'off'}; //костыль, т.к. <input radio /> т.к. он не понимает bool
+
+import GROUP_TYPE from '../enums/modifierGroupType'
+
+const VIEW_MODE = {NEW: 'new', COPY: 'copy'}
+
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS
@@ -25,25 +28,24 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 		this.state = {viewMode: VIEW_MODE.NEW};
 	}
 
-	componentDidMount() {
-		super.componentDidMount();
-		const {hasProduct}=this.props;
-		if (!hasProduct)
-			this.onCancel();
-	}
-
 	onSaveGroup(formProps) {
-		const {saveGroup, group, inventCode, dispatch}=this.props;
-
+		const {saveGroup, group, point}=this.props;
 		const editGroup = {
-			id: group ? group.id : null,
+			code: group.code,
+			inventCode: group.inventCode,
+			isNew: group.isNew,
 			name: formProps.get('name'),
-			required: formProps.get('requiredField') == REQUIRED.ON,
+			modifierGroupType: formProps.get('modifierGroupType'),
 			modifiers: formProps.get('modifiers')
 		};
-		saveGroup({inventCode, group: editGroup});
-		this.closeLayer();
-		dispatch(notify.success(group && group.id ? 'Группа обновлена' : 'Группа добавлена'));
+		saveGroup({point, group: editGroup});
+	}
+
+	componentWillReceiveProps(props) {
+		const {group}=props;
+		if (!group || group.saved) {
+			this.onCancel();
+		}
 	}
 
 	onCancel() {
@@ -52,28 +54,15 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 
 	handleRemoveGroup() {
 		this.removePopup.open().then(() => {
-			const {removeGroup, group, inventCode, dispatch}=this.props;
-			removeGroup({inventCode, groupId: group.id});
-			this.closeLayer();
-			dispatch(notify.success('Группа удалена'));
+			const {removeGroup, group, point}=this.props;
+			removeGroup({point, groupCode: group.code});
 		});
-	}
-
-	handleSelectGroup(group) {
-		const {changeField, formKey, searchGroupsState:{groups}}=this.props;
-		if (group == null) {
-			groups.length <= 1 && this.handleSearchGroups('');
-			changeField(formKey, 'modifiers', []);
-		}
-		else {
-			changeField(formKey, 'name', group.name);
-			changeField(formKey, 'modifiers', group.modifiers);
-		}
 	}
 
 	handleChangeViewMode(mode) {
 		this.setState({viewMode: mode});
-		this.handleSearchGroups('');
+		if (mode === VIEW_MODE.COPY)
+			this.handleSearchGroups('');
 	}
 
 	handleSearchGroups(val) {
@@ -85,16 +74,10 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 
 	render() {
 		const {group, isRequiredGroup, searchGroupsState, modifiers}=this.props;
-
-		console.log('ProductModifierGroupContainer', searchGroupsState.groups);
-
 		const ModifierGroupForm = this.groupForm;
 		const {viewMode}=this.state || {};
-		const title = group ? 'Редактирование группы' : 'Добавление группы';
-		const initialState = group ? {
-				...group,
-				requiredField: group.required ? REQUIRED.ON : REQUIRED.OFF
-			} : {requiredField: REQUIRED.ON};
+		const title = group && group.isNew ? 'Добавление группы' : 'Редактирование группы';
+
 		return (
 			<article className="page page__add_mod_group" {...this.layerOptions}>
 				<div className="page_header">
@@ -102,20 +85,20 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 					{this.getToggleButton()}
 					<h1>{title}</h1>
 				</div>
-				<ModifierGroupForm initialValues={initialState}
-								   onSave={::this.onSaveGroup}
-								   onRemove={::this.handleRemoveGroup}
-								   onCancel={::this.onCancel}
-								   onSearchGroups={::this.handleSearchGroups}
-								   onSelectGroup={::this.handleSelectGroup}
-								   onChangeViewMode={::this.handleChangeViewMode}
+				{!group && <LoaderBlock loading={true}/>}
+				{group && <ModifierGroupForm initialValues={group}
+											 onSave={::this.onSaveGroup}
+											 onRemove={::this.handleRemoveGroup}
+											 onCancel={::this.onCancel}
+											 onSearchGroups={::this.handleSearchGroups}
+											 onChangeViewMode={::this.handleChangeViewMode}
 
-								   isRequiredGroup={isRequiredGroup}
-								   searchGroup={searchGroupsState}
-								   modifiers={modifiers}
-								   viewMode={viewMode}
-								   group={group}
-				/>
+											 isRequiredGroup={isRequiredGroup}
+											 searchGroup={searchGroupsState}
+											 modifiers={modifiers}
+											 viewMode={viewMode}
+											 group={group}
+				/>}
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}
 					okName="Подтвердить"
@@ -126,45 +109,33 @@ class ProductModifierGroupContainer extends DefaultLayerLayout {
 	}
 }
 
-ProductModifierGroupContainer.propTypes = {
-	group: PropTypes.object,
-	hasProduct: PropTypes.bool,
-	inventCode: PropTypes.string,
-	history: PropTypes.object
-};
-
 export default ProductModifierGroupContainer;
 
 function mapStateToProps(state, ownProps) {
-	const {location, history}=ownProps;
-	const {inventCode, groupId} = location.state || {};
-
-	const hasProduct = !!inventCode;
-	let group = null;
-
-	if (groupId) {
-		group = productSelectors.getProductGroup(state, inventCode, groupId);
-	}
-
-	const formKey = 'modifier_group_' + inventCode;
-	const searchGroupsState = productSelectors.getSearchGroups(formKey)(state);
-	const isRequiredGroup = hasProduct ? formValueSelector(formKey)(state, 'requiredField') == REQUIRED.ON : false;
-	const modifiers = hasProduct ? formValueSelector(formKey)(state, 'modifiers') : [];
+	const {location}=ownProps;
+	const {groupCode, point} = location.state || {};
+	const group = modifierSelectors.getGroupByCode(groupCode)(state);
+	const formKey = 'modifier_group_' + groupCode;
+	const searchGroupsState = modifierSelectors.getSearchGroups(formKey)(state);
+	const isRequiredGroup = formValueSelector(formKey)(state, 'modifierGroupType') == GROUP_TYPE.REQUIRED;
+	const modifiers = formValueSelector(formKey)(state, 'modifiers');
 
 	return {
-		hasProduct, history, inventCode,
-		group, isRequiredGroup, searchGroupsState,
-		formKey, modifiers
+		point,
+		group,
+		isRequiredGroup,
+		searchGroupsState,
+		formKey,
+		modifiers
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			saveGroup: productActions.saveModifierGroup,
-			removeGroup: productActions.removeModifierGroup,
-			searchGroups: productActions.searchGroups.request,
-			changeField: change,
+			saveGroup: modifierActions.saveGroup.request,
+			removeGroup: modifierActions.removeGroup.request,
+			searchGroups: modifierActions.searchGroups.request
 		}, dispatch),
 		dispatch
 	}

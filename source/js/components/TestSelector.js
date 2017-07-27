@@ -1,6 +1,15 @@
 import React from 'react';
 import {Select} from 'common/uiElements';
-import {AmountField, InputField, PhoneField, NumberField, SelectField, SwitchField} from 'common/formElements/fields';
+import {Creatable} from 'react-select';
+import {
+	AmountField,
+	InputField,
+	PhoneField,
+	NumberField,
+	SelectField,
+	SwitchField,
+	TextAreaField
+} from 'common/formElements/fields';
 import {reduxForm} from 'common/formElements'
 import {connect} from 'react-redux';
 import {Field, focus, change, getFormValues} from 'redux-form/immutable';
@@ -11,6 +20,37 @@ import {ConfirmPopupService} from 'common/uiElements';
 import {notify} from 'common/uiElements/Notify';
 import {schema, normalize} from 'normalizr';
 
+class smallForm extends React.Component {
+	handleSearch() {
+		this.setState({
+			groups: [{
+				label: new Date().getTime(),
+				value: '1'
+			},
+				{
+					label: new Date().getTime(),
+					value: '2'
+				}]
+		})
+	}
+
+	render() {
+		const {handleSubmit}=this.props;
+		const {groups} = this.state || {};
+		return (<form onSubmit={handleSubmit(() => {
+			console.log('submit small');
+		})}>
+			<div className="form_group form_horizontal">
+				<InputField name="name" validate={[isRequired('Тест')]}/>
+
+				<TextAreaField name="text" class="w100" required="Заполните поле"/>
+			</div>
+			<button type="submit" className="button middle wide light">отправить small</button>
+		</form>)
+	}
+}
+
+const SmallForm = reduxForm({form: 'smallForm'})(smallForm);
 
 class testForm extends React.Component {
 	handleSearch() {
@@ -30,6 +70,7 @@ class testForm extends React.Component {
 		const {handleSubmit}=this.props;
 		const {groups} = this.state || {};
 		return (<form onSubmit={handleSubmit(() => {
+			console.log('submit testform');
 		})}>
 
 			<InputField name="name" validate={[isRequired('Тест')]}/>
@@ -39,18 +80,27 @@ class testForm extends React.Component {
 			<NumberField name="number" validate={[isRequired('Тест')]}/>
 			<SelectField name="select" options={groups}
 						 searchable={true}
+						 placeholder="TEST"
+						 creatable={false}
 						 validate={[isRequired('Укажите')]}
-						 onInputChange={::this.handleSearch}
-			/>
+						 onInputChange={::this.handleSearch}/>
+			<SelectField name="select1" options={groups}
+						 searchable={true}
+						 creatable={true}
+						 placeholder="FORM SELECT"
+						 validate={[isRequired('Укажите')]}
+						 onInputChange={::this.handleSearch}/>
 
 			<SwitchField
 				name="requiredField" switchItems={[
 				{id: 'groupTypeRequired', label: 'Обязательный', value: "on"},
 				{id: 'groupTypeNonRequired', label: 'Не обязательный', value: "off"}
-			]}
+			]}/>
 
+			<br/>
 
-			/>
+			Форма в форме
+			<br/>
 
 			<button type="submit" className="button middle wide">отправить</button>
 		</form>)
@@ -77,6 +127,7 @@ const TestForm = reduxForm({
 	form: 'testForm',
 	onSubmitFail: onSubmitFail('testForm')
 })(testForm);
+
 
 @withRouter
 @connect(mapStateProps, mapDispatchToProps)
@@ -131,6 +182,12 @@ class TestSelector extends React.Component {
 		this.setState({selected: val ? val.value : null})
 	}
 
+	logChange2(val) {
+		//console.log("Selected: ", val);
+		this.setState({val: val})
+	}
+
+
 	render() {
 		var options = [
 			{value: 'one', label: 'One'},
@@ -155,9 +212,18 @@ class TestSelector extends React.Component {
 
 				<br/>
 
+				<Creatable name="form-field-name11"
+						   placeholder=""
+						   searchable={true}
+						   creatable={true}
+
+						   value={this.state.val}
+						   onChange={::this.logChange2} options={options}/>
+
 
 				<div className="poss" style={{maxWidth: '400px'}}>
 					<TestForm />
+					<SmallForm />
 				</div>
 
 				<br/>

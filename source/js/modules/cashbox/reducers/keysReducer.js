@@ -2,6 +2,20 @@ import {Map, List, fromJS} from 'immutable';
 import * as actions from '../enums/actions';
 import {DEFAULT_COLOR, HOT_KEY_TYPE} from '../enums/enums'
 import {uuid} from 'infrastructure/utils/uuidGenerator'
+import createRequestReducer from 'modules/core/reducers/createRequestReducer'
+
+const searchProductReducer = createRequestReducer(actions.SEARCH_PRODUCT, ['searchProductsResult'])
+	.setRequest((data) => data.merge({loading: true}))
+	.setFailure((data, {error}) => data.merge({
+		loading: false,
+		error: fromJS(error)
+	}))
+	.setSuccess((data, {products}) => data.merge({
+		loading: false,
+		products: fromJS(products),
+		error: null
+	}))
+	.get();
 
 export default {
 	[actions.ADD_KEY]: (state, {cords, tabCode}) => {
@@ -48,22 +62,9 @@ export default {
 
 
 	},
-	[actions.SEARCH_PRODUCT.REQUEST]: (state) => {
-		return state.updateIn(['searchProductsResult', 'loading'], true, _ => true);
-	},
-	[actions.SEARCH_PRODUCT.SUCCESS]: (state, {products}) => {
-		return state.updateIn(['searchProductsResult'], data => data.merge({
-			loading: false,
-			products: fromJS(products),
-			error: null
-		}));
-	},
-	[actions.SEARCH_PRODUCT.FAILURE]: (state, {error}) => {
-		return state.updateIn(['searchProductsResult'], data => data.merge({
-			loading: false,
-			error: fromJS(error)
-		}));
-	},
+
+	...searchProductReducer,
+
 	[actions.SEARCH_CATEGORY.REQUEST]: (state) => {
 		return state.updateIn(['searchGroupsResult', 'loading'], true, _ => true);
 	},

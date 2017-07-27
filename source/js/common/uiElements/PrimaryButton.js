@@ -9,7 +9,8 @@ const PrimaryButton = ({children, ...props}) => {
 PrimaryButton.propTypes = {
 	loading: PropTypes.bool,
 	className: PropTypes.string,
-	type: PropTypes.string
+	type: PropTypes.string,
+	disabled: PropTypes.bool
 };
 
 

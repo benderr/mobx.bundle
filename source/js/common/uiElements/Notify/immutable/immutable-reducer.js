@@ -6,7 +6,7 @@ export const initialState = List([]);
 export const actionHandlers = {
 
 	[SHOW_NOTIFICATION]: (state = initialState, {type, uid, ...rest}) => {
-		const notifyEntry = state.findEntry(s => s.uid == uid);
+		const notifyEntry = state.findEntry(s => s.get('uid') == uid);
 		if (notifyEntry) {
 			return state.updateIn([notifyEntry[0]], notify =>
 				notify.merge(fromJS({...rest})))

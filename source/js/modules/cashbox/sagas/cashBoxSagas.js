@@ -1,4 +1,4 @@
-import {call, put, take, fork, takeEvery, cancel, cancelled, select} from 'redux-saga/effects'
+import {call, put, fork, takeEvery, select} from 'redux-saga/effects'
 import * as actions from '../actions/actionTypes'
 import * as actionEnum from '../enums/actions'
 import * as dataContext from '../dataProvider/dataContext'
@@ -6,7 +6,7 @@ import * as productDataContext from 'modules/products/dataProvider/productDataCo
 import logger from 'infrastructure/utils/logger'
 import {getPointId} from 'modules/core/selectors'
 import * as tabSelector from '../selectors/tabSelector'
-import {subscribeToUrl} from 'modules/core/sagas'
+import subscribeToUrl from 'modules/core/sagas/subscribeToUrl'
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import {notify} from 'common/uiElements/Notify'
 import {initialize} from 'redux-form/immutable'
@@ -14,7 +14,7 @@ import {debounce} from 'redux-saga-debounce-effect'
 import GridCreator from '../helpers/GridCreator'
 import GridValidator from '../helpers/GridValidator'
 import {HOT_KEY_TYPE, DEFAULT_COLOR} from '../enums/enums'
-
+import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSaga'
 //region tabs
 
 function* getTabs({start, count}) {
@@ -122,21 +122,6 @@ function* debounceSaveTab() {
 
 //region keys
 
-function* searchProduct({query = ''}) {
-	try {
-		const retailPointId = yield select(getPointId);
-		const response = yield call(productDataContext.getProducts, retailPointId, 0, 50, {filter: query});
-		yield put(actions.searchProduct.success({products: response.productsList}));
-	}
-	catch (error) {
-		yield put(actions.searchProduct.failure({error}));
-	}
-}
-
-function* debounceSearchProduct() {
-	yield debounce(actionEnum.SEARCH_PRODUCT.REQUEST, searchProduct);
-}
-
 function* searchCategory({query = ''}) {
 	try {
 		const retailPointId = yield select(getPointId);
@@ -174,6 +159,11 @@ function* checkDraggedKey({id, row, col, gridSize}) {
 	}
 }
 
+const searchProductQuery = createSearchProductsSaga(actionEnum.SEARCH_PRODUCT);
+function* debounceSearchProduct() {
+	yield searchProductQuery;
+}
+
 
 //region category
 function* openCategory({categoryId, gridSize, tabCode}) {
@@ -205,6 +195,7 @@ function* backFromCategory({tabCode}) {
 	yield put(actions.selectTab({code: tabCode}));
 }
 
+
 export function* init() {
 	try {
 		yield takeEvery(actionEnum.GET_HOT_KEYS.REQUEST, getTabs);
@@ -213,8 +204,8 @@ export function* init() {
 		yield takeEvery(actionEnum.REMOVE_TAB.REQUEST, removeTab);
 		yield fork(debounceSaveTab);
 		yield fork(debounceSaveKey);
-		yield fork(debounceSearchProduct);
 		yield fork(debounceSearchCategory);
+		yield fork(debounceSearchProduct);
 		yield takeEvery(actionEnum.OPEN_CATEGORY, openCategory);
 		yield takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory);
 		yield takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey);
