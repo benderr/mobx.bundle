@@ -2,7 +2,8 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import ChequeListContainer from './containers/ChequeListContainer'
 import MoneyListContainer from './containers/MoneyListContainer'
-import IShopListContainer from './containers/IShopListContainer'
+import IShopDocsContainer from './containers/ShopDocsContainer'
+import ShopDocViewContainer from './containers/ShopDocViewContainer'
 import ExternalListContainer from './containers/ExternalListContainer'
 import OrderViewContainer from './containers/OrderViewContainer'
 import OrderAddContainer from './containers/OrderAddContainer'
@@ -45,7 +46,13 @@ export function getRoutes() {
 		documentsIShop: {
 			path: '/documents/ishop',
 			exact: true,
-			component: IShopListContainer
+			component: IShopDocsContainer
+		},
+		documentsIShopView: {
+			path: '/documents/ishop/view/:point/:id',
+			exact: true,
+			layout: ShopDocViewContainer,
+			isLayer: true
 		},
 		documentsReports: {
 			path: '/documents/reports',
