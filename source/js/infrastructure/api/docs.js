@@ -1,3 +1,4 @@
 export default (api) => {
-	api.fn().v1().retailpoint().addResource('docs');
+	const docs=api.fn().v1().retailpoint().addResource('docs');
+	docs.addResource('requeue','re-queue');
 };

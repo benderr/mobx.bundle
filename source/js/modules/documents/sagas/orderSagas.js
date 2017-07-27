@@ -56,11 +56,12 @@ function* getOrders() {
 		const {filter, start, count, sortField, sortDirection, totalCount:total}=filterModel.toJS();
 
 		const retailPointId = yield select(getPointId);
-		let q = [`shift.id=="${SHIFT_TYPE.EXTERNAL}"`];
+		let q = [];
 		if (filter) {
-			q.push(`docNum=="*${filter}*"`)
+			q.push(`:quickSearch="${filter}"`)
 		}
 
+		q.push(`shift.id=="${SHIFT_TYPE.EXTERNAL}"`);
 		q = q.join(';');
 
 		const {pos, totalCount, orders} = yield call(dataContext.getOrders, retailPointId, start, count, q, sortField, sortDirection);
@@ -75,17 +76,8 @@ function* getOrders() {
 
 function* getOrderDetails({point, id}) {
 	try {
-
-		let q = ['shift.id==":external"', `id=="${id}"`];
-		q = q.join(';');
-
-		const {orders} = yield call(dataContext.getOrders, point, 0, 1, q);
-		if (orders.length > 0) {
-			yield put(actions.getOrderDetails.success({order: orders[0]}));
-		}
-		else {
-			yield put(actions.getOrderDetails.failure({id, error: 'Заказ не найден'}));
-		}
+		const order = yield call(dataContext.getOrder, point, SHIFT_TYPE.EXTERNAL, id);
+		yield put(actions.getOrderDetails.success({order}));
 	}
 	catch (error) {
 		logger.log(error);

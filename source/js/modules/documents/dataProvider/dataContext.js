@@ -13,6 +13,13 @@ export function getOrders(retailPointId, start, count, q, sortField, sortDirecti
 		});
 }
 
+export function getOrder(retailPointId, shiftType, orderId) {
+	return api.v1().retailpoint(retailPointId)
+		.shift(shiftType).cashdoc(orderId).get()
+		.then(response => mapper.toClientOrder(response.data));
+}
+
+
 export function saveOrder(retailPointId, shiftType, order) {
 	return api.v1().retailpoint(retailPointId).shift(shiftType).cashdoc()
 		.post(order);
@@ -34,4 +41,9 @@ export function getShopDocumentDetail(retailPointId, id) {
 	return api.fn().v1().retailpoint(retailPointId).docs(id)
 		.get()
 		.then(response => mapper.toClientDocumentDetails(response.data));
+}
+
+export function requeueDocument(retailPointId, id) {
+	return api.fn().v1().retailpoint(retailPointId)
+		.docs(id).requeue().post();
 }

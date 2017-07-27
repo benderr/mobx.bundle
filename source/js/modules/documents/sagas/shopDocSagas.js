@@ -1,15 +1,15 @@
-import {call, put, select, take, fork, takeEvery, takeLatest} from 'redux-saga/effects'
+import {call, put, select, fork, takeEvery} from 'redux-saga/effects'
 import * as actions from '../actions/shopDocsActions'
 import * as selectors from '../selectors/shopDocsSelectors'
 import {getPointId} from 'modules/core/selectors'
 import * as dataContext from '../dataProvider/dataContext'
 import logger from 'infrastructure/utils/logger'
-import {SHIFT_TYPE} from '../enums'
 import {debounce} from 'redux-saga-debounce-effect'
 
 function* init() {
 	yield takeEvery(actions.GET_DOCUMENTS.REQUEST, getDocuments);
 	yield takeEvery(actions.GET_DOCUMENT_DETAILS.REQUEST, getDocumentsDetails);
+	yield takeEvery(actions.RESEND_DOCUMENT.REQUEST, resendDocument);
 	yield fork(debounceSearchDocuments);
 }
 
@@ -24,9 +24,12 @@ function* getDocuments() {
 
 		const retailPointId = yield select(getPointId);
 		let q = [];
-		if (filter && filter.query) {
-			q.push(`docNum=="*${filter.query}*"`); //переделать на quickSearch
+		if (filter) {
+			filter.query && q.push(`:quickSearch="${filter.query}"`); //переделать на quickSearch
+			filter.sale && q.push(`:quickSearch="${filter.sale}"`);
+			filter.refund && q.push(`:quickSearch="${filter.refund}"`);
 		}
+
 
 		q = q.join(';');
 
@@ -54,6 +57,18 @@ function* getDocumentsDetails({point, id}) {
 	catch (error) {
 		logger.log(error);
 		yield put(actions.getDocumentDetails.failure({id, error}));
+	}
+}
+
+function* resendDocument({point, id}) {
+	try {
+		const document = yield call(dataContext.requeueDocument, point, id);
+		yield put(actions.getDocumentDetails.success({document}));
+		yield put(actions.getDocumentDetails.request({id, point}));
+	}
+	catch (error) {
+		logger.log(error);
+		yield put(actions.reSendDocument.failure({id, error}));
 	}
 }
 

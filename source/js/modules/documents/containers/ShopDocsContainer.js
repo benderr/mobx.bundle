@@ -60,6 +60,26 @@ class ShopDocsContainer extends React.Component {
 		}
 	}
 
+	handleChangeFilterSale(event) {
+		this.setFilter({
+			restart: true,
+			filter: {
+				sale: event.target.value
+			}
+		});
+		this.props.getDocuments();
+	}
+
+	handleChangeFilterRefund(event) {
+		this.setFilter({
+			restart: true,
+			filter: {
+				refund: event.target.value
+			}
+		});
+		this.props.getDocuments();
+	}
+
 	handleSortList(sortField = 'beginDateTime', sortDirection = 'desc') {
 		this.setFilter({sortField, sortDirection, restart: true});
 		this.props.getDocuments();
@@ -85,7 +105,27 @@ class ShopDocsContainer extends React.Component {
 						</a>
 					</TitleActions>
 				</TitlePanel>
-				<ListFilter ref={f => this.filter = f}> Фильтр</ListFilter>
+				<ListFilter ref={f => this.filter = f}>
+					<div class="side_filter mt0">
+						<div class="side_filter_name">Тип документа</div>
+						<ul>
+							<li>
+								<input onChange={::this.handleChangeFilterSale} type="checkbox" id="checkboxSale" class="input_check"/>
+								<label for="checkboxSale" class="label_check">
+									<i class="icon"></i>
+									<span>Продажа</span>
+								</label>
+							</li>
+							<li>
+								<input type="checkbox" onChange={::this.handleChangeFilterRefund} id="checkboxReturn" class="input_check"/>
+								<label for="checkboxReturn" class="label_check">
+									<i class="icon"></i>
+									<span>Возврат</span>
+								</label>
+							</li>
+						</ul>
+					</div>
+				</ListFilter>
 
 				{noItems && <NoShopDocs />}
 				{!noItems && <ShopDocs documents={documents}

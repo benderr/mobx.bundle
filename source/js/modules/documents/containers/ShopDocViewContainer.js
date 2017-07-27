@@ -11,7 +11,7 @@ import * as actions from '../actions/shopDocsActions'
 import {getDocStatusName, getDocTypeName, DOCUMENT_STATUS} from '../enums'
 
 const statusCssClass = {
-	[DOCUMENT_STATUS.QUEUED]: 'info_label__vozvrat_processing',
+	[DOCUMENT_STATUS.QUEUED]: 'info_label__vozvrat_queue',
 	[DOCUMENT_STATUS.PENDING]: 'info_label__vozvrat_processing',
 	[DOCUMENT_STATUS.FAILED]: 'info_label__vozvrat_error',
 	[DOCUMENT_STATUS.PRINTED]: 'info_label__vozvrat_done',
