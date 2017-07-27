@@ -16,6 +16,10 @@ class DefaultLayerLayout extends React.Component {
 		el.classList.remove(className); //todo возможно потребуется заменить методы если где то не поддерживается
 	}
 
+	getLayerId() {
+		return this.props.layerId;
+	}
+
 	closeLayer() {
 		const el = this.el;
 		if (el) {

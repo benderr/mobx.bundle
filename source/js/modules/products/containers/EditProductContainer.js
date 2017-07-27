@@ -77,19 +77,22 @@ export class EditProductContainer extends DefaultLayerLayout {
 		push('/product/modifier', {modifierCode, groupCode, point});
 	}
 
-	onRemoveModifier({modifierId, groupCode}) {
-		const {removeModifier, updateGroup, point}=this.props;
+	onRemoveModifier({modifierCode, groupCode}) {
 		this.removePopup.open()
 			.then(() => {
-				removeModifier({groupCode, modifierCode: modifierId});
-				updateGroup({point, groupCode})
+				this.props.removeModifier({groupCode, modifierCode});
+				this.saveGroupChanges(groupCode, {error: 'Не удалось удалить модификатор'});
 			});
 	}
 
-	onToggleModifier({modifierId, groupCode}) {
-		const {point, updateGroup, toggleModifier}=this.props;
-		toggleModifier({groupCode, modifierId});
-		updateGroup({groupCode, point});
+	onToggleModifier({modifierCode, groupCode}) {
+		this.props.toggleModifier({groupCode, modifierCode});
+		this.saveGroupChanges(groupCode);
+	}
+
+	saveGroupChanges(groupCode, meta = {success: '', error: ''}) {
+		const {updateGroup, point}=this.props;
+		updateGroup({groupCode, point, meta});
 	}
 
 	handleSubmitFail() {
@@ -172,7 +175,7 @@ function mapDispatchToProps(dispatch) {
 			removeProduct: productActions.removeProduct.request,
 			removeModifier: modifierActions.removeModifier,
 			toggleModifier: modifierActions.toggleModifier,
-			updateGroup: modifierActions.updateGroup,
+			updateGroup: modifierActions.updateGroupDebounce,
 			openGroup: modifierActions.openGroup,
 			push: push
 		}, dispatch),
