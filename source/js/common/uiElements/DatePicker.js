@@ -1,7 +1,6 @@
 import React from 'react'
 import {Field} from 'redux-form/immutable'
 import {getRequiredValidator} from 'common/formElements/validationHelpers/formFieldHelpers'
-import inputFieldShape from 'common/formElements/fields/inputFieldShape'
 
 import moment from 'moment'
 import ReactDatePicker from 'react-datepicker'
