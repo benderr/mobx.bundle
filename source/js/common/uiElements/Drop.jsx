@@ -42,10 +42,16 @@ class Drop extends React.Component {
 
     componentDidMount() {
         this.initDrop();
+        this.props.setInstance && this.props.setInstance(this);
+    }
+
+    isOpen() {
+        return this.drop && this.drop.isOpened();
     }
 
     componentWillUnmount() {
         this.destroyDrop();
+        this.props.setInstance(null);
     }
 
     getDropContent() {

@@ -11,6 +11,8 @@ import TitleActions from '../components/TitleActions'
 import ChequeList from '../components/cheque/ChequeList'
 import * as selectors from '../selectors/chequeSelectors'
 import * as actions from '../actions/chequeActions'
+import ListFilter from "../components/ListFilter";
+import ChequeFilter from "../components/cheque/ChequeFilter";
 
 
 @withRouter
@@ -30,8 +32,8 @@ class ChequeListContainer extends React.Component {
 	}
 
 	handleOpenFilter() {
-		const {push} = this.props;
-		push({pathname: `/documents/cheque/filter`});
+		console.log('handleOpenFilter', this.filter);
+		this.filter && this.filter.open();
 	}
 
 	onHeadSortClick(field, by) {
@@ -69,6 +71,11 @@ class ChequeListContainer extends React.Component {
 		}
 	}
 
+	isClosableFilter(){
+		if(!this.chequeFilter)
+			return true;
+		return this.chequeFilter.isClosable();
+	}
 	render() {
 		const {listState} = this.props;
 		const noItems = listState.noItems;
@@ -77,8 +84,22 @@ class ChequeListContainer extends React.Component {
 		return (
 			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
 				<TitlePanel>
-					<TitleActions onShowFilter={::this.handleOpenFilter} showFilter={true}/>
+					<TitleActions showFilter={false}>
+						<a className="button small light icon-filter show_filter_panel  right20"
+						   onClick={::this.handleOpenFilter}>Фильтры</a>
+						<a className="button white icon-filter show_filter_panel float  right20"
+						   onClick={::this.handleOpenFilter}>
+							<span className="filter_count"/>
+						</a>
+					</TitleActions>
 				</TitlePanel>
+
+				<ListFilter setInstance={f => this.filter=f}
+							isClosable={::this.isClosableFilter}
+							ignoreCloseSelect="date-select">
+					<div><ChequeFilter ref={f => this.chequeFilter=f}/></div>
+				</ListFilter>
+
 
 				{!globalLoading && !noItems &&
 				<ChequeList listState={listState}
