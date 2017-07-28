@@ -26,8 +26,7 @@ function* getDocuments() {
 		let q = [];
 		if (filter) {
 			filter.query && q.push(`:quickSearch="${filter.query}"`); //переделать на quickSearch
-			filter.sale && q.push(`:quickSearch="${filter.sale}"`);
-			filter.refund && q.push(`:quickSearch="${filter.refund}"`);
+			filter.docType && q.push(`docType=="${filter.docType}"`);
 		}
 
 

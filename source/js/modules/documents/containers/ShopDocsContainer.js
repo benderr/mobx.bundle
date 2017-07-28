@@ -12,7 +12,9 @@ import NoShopDocs from '../components/ishop/NoShopDocs'
 import ShopDocs from '../components/ishop/ShopDocs'
 import * as shopDocsSelectors from '../selectors/shopDocsSelectors'
 import * as actions from '../actions/shopDocsActions'
-
+import {DOCUMENT_TYPE} from '../enums'
+import {LoaderPanel} from 'common/uiElements'
+import DocumentsFilter from '../components/ishop/DocumentsFilter'
 
 @retailPointRequiredHOC
 @connect(mapStateToProps, mapDispatchToProps)
@@ -60,24 +62,43 @@ class ShopDocsContainer extends React.Component {
 		}
 	}
 
-	handleChangeFilterSale(event) {
+	handleChangeFilterDocType(event, type) {
 		this.setFilter({
 			restart: true,
 			filter: {
-				sale: event.target.value
+				docType: event.target.checked ? type : null
 			}
 		});
 		this.props.getDocuments();
 	}
 
-	handleChangeFilterRefund(event) {
+	handleChangeFilterStatus(event, status) {
+		let selectedStates = this.props.selectedStates || [];
+		const isSelected = selectedStates.indexOf(status) == -1;
+		if (isSelected && event.target.checked)
+			return;
+
+		if (event.target.checked) {
+			selectedStates.push(status);
+		} else {
+			selectedStates = selectedStates.filter(s => s != status);
+		}
+
 		this.setFilter({
 			restart: true,
 			filter: {
-				refund: event.target.value
+				selectedStates: selectedStates
 			}
 		});
 		this.props.getDocuments();
+	}
+
+	handleChangeDateFrom(dateFrom){
+
+	}
+
+	handleChangeDateTo(dateTo){
+
 	}
 
 	handleSortList(sortField = 'beginDateTime', sortDirection = 'desc') {
@@ -90,44 +111,42 @@ class ShopDocsContainer extends React.Component {
 		push(`/documents/ishop/view/${selectedPoint}/${id}`);
 	}
 
+
+	renderFilterIsSet() {
+		const {docType, selectedStates}=this.props;
+		if (docType)
+			return (<span class="filter_count"></span>);
+		return null;
+	}
+
 	render() {
-		const {noItems, documents, loading, totalCount, sortField, sortDirection} = this.props;
+		const {noItems, documents, loading, totalCount, sortField, sortDirection, docType, selectedState} = this.props;
 
 		return (
 			<div className="h100per">
 				<TitlePanel>
 					<TitleActions showFilter={false}>
 						<a class="button small light icon-filter show_filter_panel  right20"
-						   onClick={::this.handleOpenFilter}>Фильтры</a>
+						   onClick={::this.handleOpenFilter}>
+							Фильтры
+							{this.renderFilterIsSet()}
+						</a>
 						<a class="button white icon-filter show_filter_panel float  right20"
 						   onClick={::this.handleOpenFilter}>
-							<span class="filter_count"></span>
+							{this.renderFilterIsSet()}
 						</a>
 					</TitleActions>
 				</TitlePanel>
 				<ListFilter ref={f => this.filter = f}>
-					<div class="side_filter mt0">
-						<div class="side_filter_name">Тип документа</div>
-						<ul>
-							<li>
-								<input onChange={::this.handleChangeFilterSale} type="checkbox" id="checkboxSale" class="input_check"/>
-								<label for="checkboxSale" class="label_check">
-									<i class="icon"></i>
-									<span>Продажа</span>
-								</label>
-							</li>
-							<li>
-								<input type="checkbox" onChange={::this.handleChangeFilterRefund} id="checkboxReturn" class="input_check"/>
-								<label for="checkboxReturn" class="label_check">
-									<i class="icon"></i>
-									<span>Возврат</span>
-								</label>
-							</li>
-						</ul>
-					</div>
+					<DocumentsFilter onChangeDocType={::this.handleChangeFilterDocType}
+									 onChangeStatus={::this.handleChangeFilterStatus}
+									 docType={docType} selectedState={selectedState}
+									 onChangeDateFrom={::this.handleChangeDateFrom}
+									 onChangeDateTo={::this.handleChangeDateTo}/>
 				</ListFilter>
 
-				{noItems && <NoShopDocs />}
+				{noItems && !loading && <NoShopDocs />}
+				{noItems && loading && <LoaderPanel loading={loading}/>}
 				{!noItems && <ShopDocs documents={documents}
 									   loading={loading}
 									   totalCount={totalCount}
@@ -152,7 +171,8 @@ function mapStateToProps(state) {
 		noItems: shopDocsSelectors.getNoItems(state),
 		totalCount: shopDocsSelectors.getTotalCount(state),
 		sortField: shopDocsSelectors.getFilter(state).get('sortField'),
-		sortDirection: shopDocsSelectors.getFilter(state).get('sortDirection')
+		sortDirection: shopDocsSelectors.getFilter(state).get('sortDirection'),
+		docType: shopDocsSelectors.getFilter(state).getIn(['filter', 'docType'])
 	};
 }
 

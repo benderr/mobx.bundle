@@ -66,21 +66,13 @@ class SiteHeader extends React.Component {
                     <a href="#">Модульбанк</a>
                 </div>
 
-                {/*<div class="header_search">*/}
-
-                {/*<input type="search" value="" placeholder="" class="drop-target" data-position="top left"/>*/}
-
-                {/*<div class="name">Поиск</div>*/}
-                {/*</div>*/}
-
-                <div class="header_menu free_items" style={{left: '80px'}}>
+                <div class="header_menu free_items">
                     <div class="header_menu_inner">
                         <ul>
                             <SiteMenuLink to="/contragents" label="Контрагенты"/>
                             <SiteMenuLink to="/discount" label="Скидки"/>
                             <SiteMenuLink to="/documents" label="Документы"/>
                             <SiteMenuLink to="/" exact={true} label="Товары"/>
-                            {/*<SiteMenuLink to="/#" label="Статистика"/>*/}
                             <SiteMenuLink to="/hotkeys" label="Касса"/>
                         </ul>
                     </div>
