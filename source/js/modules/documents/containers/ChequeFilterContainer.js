@@ -4,6 +4,7 @@ import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
 import toJS from 'components/HOC/toJs'
 import {bindActionCreators} from 'redux'
+import ListFilter from "../components/ListFilter";
 
 
 @withRouter
@@ -16,7 +17,7 @@ class ChequeFilterContainer extends DefaultLayerLayout {
 
 		return (
 			<article className="page" {...this.layerOptions}>
-				<div className="filter_panel right0">
+				<ListFilter>
 
 					<div className="side_filter  mt0">
 						<div className="side_filter_name">Период</div>
@@ -55,7 +56,7 @@ class ChequeFilterContainer extends DefaultLayerLayout {
 							</li>
 						</ul>
 					</div>
-				</div>
+				</ListFilter>
 			</article>
 		)
 	}

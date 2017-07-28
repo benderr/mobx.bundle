@@ -3,6 +3,7 @@ import React from 'react';
 import TestSelector from 'components/TestSelector'
 import TestSelector2 from 'components/TestSelector2'
 import TestDrag from './containers/TestDrag'
+import DatePicker2 from './containers/DatePicker2'
 
 export function getRoutes() {
 	return {
@@ -23,6 +24,11 @@ export function getRoutes() {
 			exact: true,
 			allowAnonymous: true,
 			component: TestDrag
+		},
+		testDatePicker2: {
+			path: '/test-datepicker2',
+			exact: true,
+			component: DatePicker2
 		}
 	}
 }

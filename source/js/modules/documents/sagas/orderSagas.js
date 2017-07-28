@@ -56,7 +56,7 @@ function* getOrders() {
 		const {filter, start, count, sortField, sortDirection, totalCount:total}=filterModel.toJS();
 
 		const retailPointId = yield select(getPointId);
-		let q = ['shift.id==":external"'];
+		let q = [`shift.id=="${SHIFT_TYPE.EXTERNAL}"`];
 		if (filter) {
 			q.push(`docNum=="*${filter}*"`)
 		}

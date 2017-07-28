@@ -1,6 +1,6 @@
 import {Map, List, fromJS} from 'immutable'
 import logger from 'infrastructure/utils/logger'
-import * as enums from '../enums/moneyActions'
+import * as enums from '../actions/moneyActions'
 
 
 export const initialState = Map({
