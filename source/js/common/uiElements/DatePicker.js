@@ -11,11 +11,6 @@ import 'react-datepicker/dist/react-datepicker.css'
 const DEFAULT_DATE_FORMAT = 'DD.MM.YYYY';
 
 class DatePickerRender extends React.Component {
-	constructor(props) {
-		super(props);
-		moment.locale('ru');
-	}
-
 	handleChange(date) {
 		this.props.input.onChange(moment(date).format(DEFAULT_DATE_FORMAT))
 	}
@@ -44,8 +39,6 @@ const DatePicker = ({required, requiredDisable, validate = [], ...props}) => {
 				  component={DatePickerRender}
 				  {...props} />
 };
-
-DatePicker.propTypes = inputFieldShape;
 
 
 export default DatePicker;
