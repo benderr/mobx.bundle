@@ -40,29 +40,30 @@ class ChequeFilter extends React.Component {
 							</div>
 						</div>
 					</Drop>
-
-					{/*<DatePickerRender/>*/}
 				</div>
 
 				<div className="side_filter">
 					<div className="side_filter_name">Тип документа</div>
-
 					<ul>
 						<li>
-							<input type="checkbox" name="tfilter" id="ff11" className="input_check"/>
-							<label htmlFor="ff11" className="label_check">
+							<input type="checkbox" name="type_SALE" id="t1" className="input_check"/>
+							<label htmlFor="t1" className="label_check">
 								<i className="icon"/>
 								<span>Продажа</span>
 							</label>
 						</li>
 						<li>
-							<input type="checkbox" name="tfilter" id="ff11" className="input_check"/>
-							<label htmlFor="ff11" className="label_check">
+							<input type="checkbox" name="type_RETURN" id="t2" className="input_check"/>
+							<label htmlFor="t2" className="label_check">
 								<i className="icon"/>
-								<span>Продажа</span>
+								<span>Возврат</span>
 							</label>
 						</li>
 					</ul>
+				</div>
+
+				<div className="side_filter">
+					<a>Очистить</a>
 				</div>
 			</div>
 		)

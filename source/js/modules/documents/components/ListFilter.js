@@ -9,11 +9,11 @@ class ListFilter extends React.Component {
 	}
 
 	componentDidMount() {
-		this.props.setInstance(this);
+		this.props.setInstance && this.props.setInstance(this);
 	}
 
 	componentWillUnmount() {
-		this.props.setInstance(null);
+		this.props.setInstance && this.props.setInstance(this);
 	}
 
 	close() {
