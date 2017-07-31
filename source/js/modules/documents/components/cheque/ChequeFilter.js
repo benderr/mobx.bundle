@@ -1,6 +1,6 @@
 import React from 'react';
 import {Drop} from 'common/uiElements';
-import DatePickerRender from "common/uiElements/DatePickerRender";
+//import DatePickerRender from "common/uiElements/DatePickerRender";
 import ListFilter from '../ListFilter'
 
 class ChequeFilter extends React.Component {
@@ -19,7 +19,7 @@ class ChequeFilter extends React.Component {
 				<div className="side_filter mt0">
 					<div className="side_filter_name">Период</div>
 
-					<Drop position="bottom right" setInstance={drop=>this.drop=drop}>
+					<Drop drop={{position: "bottom right"}} setInstance={drop=>this.drop=drop}>
 						<a className="drop-target icon-date button light small">с 12 апреля по 12 мая</a>
 						<div className="drop-content" data-ignore="no-close-date-selector">
 							<div className="drop-content-inner dashboard-period-choose">

@@ -3,7 +3,8 @@ import React from 'react';
 import TestSelector from 'components/TestSelector'
 import TestSelector2 from 'components/TestSelector2'
 import TestDrag from './containers/TestDrag'
-import DatePicker2 from './containers/DatePicker2'
+//import DatePicker2 from './containers/DatePicker2'
+import TestSelectorDate from 'components/TestSelectorDate'
 
 export function getRoutes() {
 	return {
@@ -25,10 +26,15 @@ export function getRoutes() {
 			allowAnonymous: true,
 			component: TestDrag
 		},
-		testDatePicker2: {
-			path: '/test-datepicker2',
+		// testDatePicker2: {
+		// 	path: '/test-datepicker2',
+		// 	exact: true,
+		// 	component: DatePicker2
+		// },
+		testDate: {
+			path: '/testdate',
 			exact: true,
-			component: DatePicker2
+			component: TestSelectorDate
 		}
 	}
 }

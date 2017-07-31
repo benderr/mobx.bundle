@@ -12,6 +12,8 @@ import DateFormat from './DateFormat';
 import AmountFormat from './AmountFormat'
 import SortLink from './SortLink'
 import LoaderPanel from './LoaderPanel';
+import DatePickerRange from './DatePickerRange'
+import DatePicker from './DatePicker'
 
 export {
 	PrimaryButton,
@@ -27,5 +29,7 @@ export {
 	DateFormat,
 	AmountFormat,
 	SortLink,
-	LoaderPanel
+	LoaderPanel,
+	DatePickerRange,
+	DatePicker
 }

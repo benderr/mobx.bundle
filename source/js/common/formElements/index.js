@@ -5,6 +5,7 @@ import {reduxForm} from './reduxForm';
 import * as Fields from './fields';
 import ColorPickerRender from './ColorPickerRender'
 import NumberCounterRender from './NumberCounterRender'
+import DatePickerRender from './DatePickerRender'
 export {
 	InputRender,
 	SelectRender,
@@ -12,5 +13,6 @@ export {
 	reduxForm,
 	Fields,
 	ColorPickerRender,
-	NumberCounterRender
+	NumberCounterRender,
+	DatePickerRender
 };

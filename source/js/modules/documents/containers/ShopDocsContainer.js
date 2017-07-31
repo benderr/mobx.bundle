@@ -119,6 +119,12 @@ class ShopDocsContainer extends React.Component {
 		return null;
 	}
 
+	isClosableFilter() {
+		if (!this.docFilter)
+			return true;
+		return this.docFilter.isClosable();
+	}
+
 	render() {
 		const {noItems, documents, loading, totalCount, sortField, sortDirection, docType, selectedStates} = this.props;
 
@@ -137,8 +143,11 @@ class ShopDocsContainer extends React.Component {
 						</a>
 					</TitleActions>
 				</TitlePanel>
-				<ListFilter ref={f => this.filter = f}>
-					<DocumentsFilter onChangeDocType={::this.handleChangeFilterDocType}
+				<ListFilter setInstance={f => this.filter = f}
+							isClosable={::this.isClosableFilter}
+							ignoreCloseSelect="date-select">
+					<DocumentsFilter ref={f => this.docFilter = f}
+									 onChangeDocType={::this.handleChangeFilterDocType}
 									 onChangeStatus={::this.handleChangeFilterStatus}
 									 docType={docType}
 									 selectedState={selectedStates}
