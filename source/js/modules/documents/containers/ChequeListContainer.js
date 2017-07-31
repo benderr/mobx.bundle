@@ -5,13 +5,14 @@ import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router';
 import toJS from 'components/HOC/toJs';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
-import LoaderBlock from 'common/uiElements/LoaderBlock';
 import TitlePanel from '../components/TitlePanel'
 import TitleActions from '../components/TitleActions'
 
 import ChequeList from '../components/cheque/ChequeList'
 import * as selectors from '../selectors/chequeSelectors'
 import * as actions from '../actions/chequeActions'
+import ListFilter from "../components/ListFilter";
+import ChequeFilter from "../components/cheque/ChequeFilter";
 
 
 @withRouter
@@ -21,30 +22,98 @@ import * as actions from '../actions/chequeActions'
 class ChequeListContainer extends React.Component {
 
 	componentWillMount() {
-		const {getListCheque} = this.props;
+		const {getListCheque, listState} = this.props;
 
-		getListCheque({});
+		getListCheque({
+			isFirst: true,
+			sortField: listState.sortField,
+			sortDirection: listState.sortDirection
+		});
 	}
 
 	handleOpenFilter() {
-		console.log('handleOpenFilter');
+		console.log('handleOpenFilter', this.filter);
+		this.filter && this.filter.open();
 	}
 
+	onHeadSortClick(field, by) {
+		const {getListCheque, listState} = this.props;
+		getListCheque({sortField: field, sortDirection: by, q: listState.q});
+	}
+
+	onFilterChanged(e) {
+		let val = e.target.value;
+		const {getListCheque, listState} = this.props;
+
+		if (val && val.length > 0) {
+			getListCheque({
+				sortField: listState.sortField,
+				sortDirection: listState.sortDirection,
+				q: val
+			});
+		} else if (!val || val.length === 0) {
+			getListCheque({
+				sortField: listState.sortField,
+				sortDirection: listState.sortDirection
+			});
+		}
+	}
+
+	onInfinateScroll() {
+		const {getListCheque, listState} = this.props;
+		if ((listState.pos + listState.listStep) < listState.total_count) {
+			getListCheque({
+				sortField: listState.sortField,
+				sortDirection: listState.sortDirection,
+				pos: listState.pos + listState.listStep,
+				q: listState.q
+			});
+		}
+	}
+
+	isClosableFilter(){
+		if(!this.chequeFilter)
+			return true;
+		return this.chequeFilter.isClosable();
+	}
 	render() {
 		const {listState} = this.props;
+		const noItems = listState.noItems;
+		const globalLoading = noItems === null;
 
 		return (
-			<div>
+			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
 				<TitlePanel>
-					<TitleActions onShowFilter={::this.handleOpenFilter}/>
+					<TitleActions showFilter={false}>
+						<a className="button small light icon-filter show_filter_panel  right20"
+						   onClick={::this.handleOpenFilter}>Фильтры</a>
+						<a className="button white icon-filter show_filter_panel float  right20"
+						   onClick={::this.handleOpenFilter}>
+							<span className="filter_count"/>
+						</a>
+					</TitleActions>
 				</TitlePanel>
 
-				<ChequeList listState={listState}
+				<ListFilter setInstance={f => this.filter=f}
+							isClosable={::this.isClosableFilter}
+							ignoreCloseSelect="date-select">
+					<div><ChequeFilter ref={f => this.chequeFilter=f}/></div>
+				</ListFilter>
 
-							onHeadSortClick={(column, orderBy) => console.log('onHeadSortClick', {column, orderBy})}
-							onFilterChanged={(event) => console.log('onFilterChanged', {event})}
-							onBodyItemClick={(item) => console.log('onBodyItemClick', {item})} />
-				
+
+				{!globalLoading && !noItems &&
+				<ChequeList listState={listState}
+							onHeadSortClick={::this.onHeadSortClick}
+							onFilterChanged={::this.onFilterChanged}
+
+							onInfinateScroll={::this.onInfinateScroll}/>}
+
+				{!globalLoading && noItems &&
+				<div className="center_xy page_center_info page_center_info__orders0">
+					<i className="icon icon_orders"/>
+					<div className="title">Чеки отсутствуют</div>
+				</div>}
+
 			</div>
 		);
 	}
