@@ -96,7 +96,7 @@ class ChequeListContainer extends React.Component {
 
 				<ListFilter setInstance={f => this.filter=f}
 							isClosable={::this.isClosableFilter}
-							ignoreCloseSelect="date-select">
+							ignoreCloseSelect="no-close-date-selector">
 					<div><ChequeFilter ref={f => this.chequeFilter=f}/></div>
 				</ListFilter>
 

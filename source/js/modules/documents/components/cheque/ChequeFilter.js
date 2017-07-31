@@ -1,7 +1,7 @@
 import React from 'react';
 import {Drop} from 'common/uiElements';
-import DatePickerRender from "common/uiElements/DatePickerRender";
-import ListFilter from '../ListFilter'
+import DatePiker from 'react-datepicker'
+
 
 class ChequeFilter extends React.Component {
 
@@ -24,19 +24,17 @@ class ChequeFilter extends React.Component {
 						<div className="drop-content" data-ignore="no-close-date-selector">
 							<div className="drop-content-inner dashboard-period-choose">
 								<ul className="drop-menu">
-									<li><a onClick={::this.onClickPeriod('30_DAYS')}>Последние 30 дней</a></li>
-									<li><a onClick={::this.onClickPeriod('THIS_WEEK')}>Текущая неделя</a></li>
-									<li><a onClick={::this.onClickPeriod('30_DAYS')}>Текущий месяц</a></li>
-									<li><a onClick={::this.onClickPeriod('30_DAYS')}>Текущий квартал</a></li>
-									<li><a onClick={::this.onClickPeriod('30_DAYS')}>Весь год</a></li>
+									<li onClick={() => this.onClickPeriod('30_DAYS')}><a>Последние 30 дней</a></li>
+									<li><a>Текущая неделя</a></li>
+									<li><a>Текущий месяц</a></li>
+									<li><a>Текущий квартал</a></li>
+									<li><a>Весь год</a></li>
 								</ul>
 								<div className="drop-date-choose">
 									<div className="filter_date_value">
-										<input type="text" name="" id=""
-											   className="datetimepicker filter_date_input small date_from"/>
-										<input type="text" name="" id=""
-											   className="datetimepicker filter_date_input small date_to"/>
-										<button className="button small">Ок</button>
+										<DatePiker className="datetimepicker filter_date_input small date_from" />
+										<DatePiker className="datetimepicker filter_date_input small date_to" />
+										<button className="button small" onClick={() => this.onClickPeriod('RAND_PERIOD')}>Ок</button>
 									</div>
 								</div>
 							</div>

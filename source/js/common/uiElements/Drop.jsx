@@ -82,7 +82,10 @@ class Drop extends React.Component {
         this.drop = new TetherDrop(opts);
     }
 
-    handleClickOutside() {
+    handleClickOutside(e) {
+        if (e.target.localName == 'input')
+            return false;
+
         if (this.drop && this.drop.isOpened()) {
             this.drop.toggle();
         }

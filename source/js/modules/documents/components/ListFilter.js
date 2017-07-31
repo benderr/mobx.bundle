@@ -37,7 +37,7 @@ class ListFilter extends React.Component {
 	}
 
 	handleClickOutside(e) {
-		if (!searchParentsIgnore(e, this.props.ignoreAttr))
+		if (!searchParentsIgnore(e, this.props.ignoreCloseSelect))
 			return false;
 
 		this.close();
@@ -48,8 +48,9 @@ class ListFilter extends React.Component {
 				return true;
 			let target = event.target;
 
-			while (target !== null) {
-				if (target.attributes && target.attributes['data-ignore'] && target.attributes['data-ignore'].nodeValue === dataIgnore) {
+			while (target != null) {
+				// e.target.parentNode.parentNode.parentNode.parentNode.attributes['data-ignore'].nodeValue
+				if (target.attributes && target.attributes['data-ignore'] && target.attributes['data-ignore'].nodeValue == dataIgnore) {
 					return false;
 				}
 				target = target.parentNode;
