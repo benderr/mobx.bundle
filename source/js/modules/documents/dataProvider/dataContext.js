@@ -47,3 +47,10 @@ export function getShopDocumentDetail(retailPointId, id) {
 		.get()
 		.then(response => mapper.toClientDocumentDetails(response.data));
 }
+
+// GET /v1/retail-point/{retailPointId}/downloadSalesReport
+export function getDownloadSalesReport(token, beginDate, endDate) {
+	return api.v1().retailpoint(token).downloadSalesReport().get({
+		beginDate, endDate
+	});
+}
