@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types'
-import react from 'react'
+import React from 'react'
 
 const FilterCheckBox = ({checked, onChange, id, label}) => {
 	return (<li><input onChange={onChange}

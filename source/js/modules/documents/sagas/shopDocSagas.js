@@ -4,7 +4,7 @@ import * as selectors from '../selectors/shopDocsSelectors'
 import {getPointId} from 'modules/core/selectors'
 import * as dataContext from '../dataProvider/dataContext'
 import logger from 'infrastructure/utils/logger'
-import {debounce} from 'redux-saga-debounce-effect'
+import {debounceFor} from 'redux-saga-debounce-effect'
 
 function* init() {
 	yield takeEvery(actions.GET_DOCUMENTS.REQUEST, getDocuments);
@@ -14,7 +14,7 @@ function* init() {
 }
 
 function* debounceSearchDocuments() {
-	yield debounce(actions.SEARCH_DOCUMENTS, getDocuments);
+	yield debounceFor(actions.SEARCH_DOCUMENTS, getDocuments, 1000);
 }
 
 function* getDocuments() {
@@ -24,11 +24,12 @@ function* getDocuments() {
 
 		const retailPointId = yield select(getPointId);
 		let q = [];
+		let statuses = filter.selectedStates || [];
 		if (filter) {
 			filter.query && q.push(`:quickSearch="${filter.query}"`); //переделать на quickSearch
 			filter.docType && q.push(`docType=="${filter.docType}"`);
+			statuses.length > 0 && q.push(`status in (${statuses.join(',')})`)
 		}
-
 
 		q = q.join(';');
 

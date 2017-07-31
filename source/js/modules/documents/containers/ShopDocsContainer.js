@@ -69,12 +69,12 @@ class ShopDocsContainer extends React.Component {
 				docType: event.target.checked ? type : null
 			}
 		});
-		this.props.getDocuments();
+		this.props.searchDocuments();
 	}
 
 	handleChangeFilterStatus(event, status) {
 		let selectedStates = this.props.selectedStates || [];
-		const isSelected = selectedStates.indexOf(status) == -1;
+		const isSelected = selectedStates.indexOf(status) >= 0;
 		if (isSelected && event.target.checked)
 			return;
 
@@ -90,14 +90,14 @@ class ShopDocsContainer extends React.Component {
 				selectedStates: selectedStates
 			}
 		});
-		this.props.getDocuments();
+		this.props.searchDocuments();
 	}
 
-	handleChangeDateFrom(dateFrom){
+	handleChangeDateFrom(dateFrom) {
 
 	}
 
-	handleChangeDateTo(dateTo){
+	handleChangeDateTo(dateTo) {
 
 	}
 
@@ -120,7 +120,7 @@ class ShopDocsContainer extends React.Component {
 	}
 
 	render() {
-		const {noItems, documents, loading, totalCount, sortField, sortDirection, docType, selectedState} = this.props;
+		const {noItems, documents, loading, totalCount, sortField, sortDirection, docType, selectedStates} = this.props;
 
 		return (
 			<div className="h100per">
@@ -140,7 +140,8 @@ class ShopDocsContainer extends React.Component {
 				<ListFilter ref={f => this.filter = f}>
 					<DocumentsFilter onChangeDocType={::this.handleChangeFilterDocType}
 									 onChangeStatus={::this.handleChangeFilterStatus}
-									 docType={docType} selectedState={selectedState}
+									 docType={docType}
+									 selectedState={selectedStates}
 									 onChangeDateFrom={::this.handleChangeDateFrom}
 									 onChangeDateTo={::this.handleChangeDateTo}/>
 				</ListFilter>
@@ -172,7 +173,8 @@ function mapStateToProps(state) {
 		totalCount: shopDocsSelectors.getTotalCount(state),
 		sortField: shopDocsSelectors.getFilter(state).get('sortField'),
 		sortDirection: shopDocsSelectors.getFilter(state).get('sortDirection'),
-		docType: shopDocsSelectors.getFilter(state).getIn(['filter', 'docType'])
+		docType: shopDocsSelectors.getFilter(state).getIn(['filter', 'docType']),
+		selectedStates: shopDocsSelectors.getFilter(state).getIn(['filter', 'selectedStates'])
 	};
 }
 

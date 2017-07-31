@@ -9,7 +9,13 @@ export const initialState = Map({
 	docsFilter: Map({
 		start: 0,
 		totalCount: null,
-		count: null
+		count: null,
+		filter: Map({
+			docType: null,
+			selectedStates: null,
+			dateFrom: null,
+			dateTo: null
+		})
 	}),
 	docViews: Map({})
 });
@@ -34,13 +40,30 @@ export const actionHandlers = {
 	},
 
 	[actions.SET_FILTER]: (state, {filter}) => {
+		const oldFilter = state.getIn(['docsFilter']).toJS();
 		if (filter.restart) {
-			const newFilter = filter;
-			newFilter.start = 0;
-			newFilter.totalCount = null;
-			return state.mergeIn(['docsFilter'], fromJS(newFilter));
+			oldFilter.start = 0;
+			oldFilter.totalCount = null;
 		}
-		return state.mergeIn(['docsFilter'], fromJS(filter));
+
+		if (filter.count !== undefined)
+			oldFilter.count = filter.count;
+
+		if (filter.filter) {
+			Object.keys(filter.filter).forEach(key => {
+				oldFilter.filter[key] = filter.filter[key];
+			});
+		}
+
+		const test = fromJS(oldFilter);
+		return state.mergeIn(['docsFilter'], fromJS(oldFilter));
+		// if (filter.filter) {
+		// 	//const innerFilter = fromJS(filter.filter);
+		// 	//return state.mergeIn(['docsFilter', 'filter'], innerFilter)
+		// 	return state.mergeDeepIn(['docsFilter'], filterImtbl);
+		// } else {
+		// 	return state.mergeIn(['docsFilter'], filterImtbl);
+		// }
 	},
 	[actions.CORRECT_FILTER]: (state, {pos}) => {
 		const count = state.getIn(['docsFilter', 'count'], 0);
