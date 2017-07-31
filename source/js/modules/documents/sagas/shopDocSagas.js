@@ -5,6 +5,7 @@ import {getPointId} from 'modules/core/selectors'
 import * as dataContext from '../dataProvider/dataContext'
 import logger from 'infrastructure/utils/logger'
 import {debounceFor} from 'redux-saga-debounce-effect'
+import dateHelper from 'common/helpers/dateHelper'
 
 function* init() {
 	yield takeEvery(actions.GET_DOCUMENTS.REQUEST, getDocuments);
@@ -28,7 +29,10 @@ function* getDocuments() {
 		if (filter) {
 			filter.query && q.push(`:quickSearch="${filter.query}"`); //переделать на quickSearch
 			filter.docType && q.push(`docType=="${filter.docType}"`);
-			statuses.length > 0 && q.push(`status in (${statuses.join(',')})`)
+			statuses.length > 0 && q.push(`currentState=in=(${statuses.join(',')})`)
+			filter.dateFrom && q.push(`checkoutDateTime=ge="${dateHelper.dateFormat(filter.dateFrom, 'yyyy-mm-dd')}"`);
+			filter.dateTo && q.push(`checkoutDateTime=le="${dateHelper.dateFormat(filter.dateTo, 'yyyy-mm-dd')}"`);
+
 		}
 
 		q = q.join(';');

@@ -2,21 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import TetherDrop from 'tether-drop';
-import enhanceWithClickOutside from 'react-click-outside';
-
-
-// const defaultOptions = {
-//     position: 'bottom left',
-//     openOn: 'click',
-//     constrainToWindow: true,
-//     constrainToScrollParent: true,
-//     classes: 'drop-theme-basic',
-//     hoverOpenDelay: 0,
-//     hoverCloseDelay: 50,
-//     focusDelay: 0,
-//     blurDelay: 50,
-//     tetherOptions: {},
-// };
 
 // attachment="top center"
 // constraints={[{
@@ -122,13 +107,6 @@ class Drop extends React.Component {
         });
     }
 
-    handleClickOutside() {
-        // if (this.drop && this.drop.isOpened()) {
-        //     this.drop.toggle();
-        // }
-        // this.props.onClose && this.props.onClose();
-    }
-
     destroyDrop() {
         if (this.drop) {
             ReactDOM.unmountComponentAtNode(this.container);
@@ -157,4 +135,4 @@ Drop.propTypes = {
     onClose: PropTypes.func
 };
 
-export default enhanceWithClickOutside(Drop)
+export default Drop

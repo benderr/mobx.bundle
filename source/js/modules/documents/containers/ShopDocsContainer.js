@@ -23,7 +23,7 @@ class ShopDocsContainer extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {pageSize: 15};
+		this.state = {pageSize: 50};
 	}
 
 	setFilter(filter) {
@@ -93,12 +93,15 @@ class ShopDocsContainer extends React.Component {
 		this.props.searchDocuments();
 	}
 
-	handleChangeDateFrom(dateFrom) {
-
-	}
-
-	handleChangeDateTo(dateTo) {
-
+	handleChangeDate(range) {
+		this.setFilter({
+			restart: true,
+			filter: {
+				dateFrom: range.dateFrom,
+				dateTo: range.dateTo
+			}
+		});
+		this.props.searchDocuments();
 	}
 
 	handleSortList(sortField = 'beginDateTime', sortDirection = 'desc') {
@@ -113,8 +116,9 @@ class ShopDocsContainer extends React.Component {
 
 
 	renderFilterIsSet() {
-		const {docType, selectedStates}=this.props;
-		if (docType)
+		const {docType, selectedStates, dateFrom, dateTo}=this.props;
+		if (docType || (selectedStates && selectedStates.length > 0) ||
+			dateFrom || dateTo)
 			return (<span class="filter_count"></span>);
 		return null;
 	}
@@ -126,7 +130,10 @@ class ShopDocsContainer extends React.Component {
 	}
 
 	render() {
-		const {noItems, documents, loading, totalCount, sortField, sortDirection, docType, selectedStates} = this.props;
+		const {
+			noItems, documents, loading, totalCount, sortField, sortDirection,
+			docType, selectedStates, dateFrom, dateTo
+		} = this.props;
 
 		return (
 			<div className="h100per">
@@ -149,10 +156,12 @@ class ShopDocsContainer extends React.Component {
 					<DocumentsFilter ref={f => this.docFilter = f}
 									 onChangeDocType={::this.handleChangeFilterDocType}
 									 onChangeStatus={::this.handleChangeFilterStatus}
+									 onChangeDate={::this.handleChangeDate}
+									 dateFrom={dateFrom}
+									 dateTo={dateTo}
 									 docType={docType}
 									 selectedState={selectedStates}
-									 onChangeDateFrom={::this.handleChangeDateFrom}
-									 onChangeDateTo={::this.handleChangeDateTo}/>
+					/>
 				</ListFilter>
 
 				{noItems && !loading && <NoShopDocs />}
@@ -183,7 +192,9 @@ function mapStateToProps(state) {
 		sortField: shopDocsSelectors.getFilter(state).get('sortField'),
 		sortDirection: shopDocsSelectors.getFilter(state).get('sortDirection'),
 		docType: shopDocsSelectors.getFilter(state).getIn(['filter', 'docType']),
-		selectedStates: shopDocsSelectors.getFilter(state).getIn(['filter', 'selectedStates'])
+		selectedStates: shopDocsSelectors.getFilter(state).getIn(['filter', 'selectedStates']),
+		dateFrom: shopDocsSelectors.getFilter(state).getIn(['filter', 'dateFrom']),
+		dateTo: shopDocsSelectors.getFilter(state).getIn(['filter', 'dateTo'])
 	};
 }
 

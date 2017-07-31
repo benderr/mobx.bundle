@@ -54,16 +54,7 @@ export const actionHandlers = {
 				oldFilter.filter[key] = filter.filter[key];
 			});
 		}
-
-		const test = fromJS(oldFilter);
 		return state.mergeIn(['docsFilter'], fromJS(oldFilter));
-		// if (filter.filter) {
-		// 	//const innerFilter = fromJS(filter.filter);
-		// 	//return state.mergeIn(['docsFilter', 'filter'], innerFilter)
-		// 	return state.mergeDeepIn(['docsFilter'], filterImtbl);
-		// } else {
-		// 	return state.mergeIn(['docsFilter'], filterImtbl);
-		// }
 	},
 	[actions.CORRECT_FILTER]: (state, {pos}) => {
 		const count = state.getIn(['docsFilter', 'count'], 0);

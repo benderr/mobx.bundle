@@ -38,7 +38,8 @@ function getDateRangeByPeriod(period) {
 class DatePickerRange extends React.Component {
 	static defaultProps = {
 		onChange: () => {
-		}
+		},
+		ignoreDropCloseAttr: ''
 	};
 
 	initDropInstance(drop) {
@@ -75,13 +76,22 @@ class DatePickerRange extends React.Component {
 
 	render() {
 
-		const {ignoreDropCloseAttr = '', dateFrom, dateTo, position = "bottom left"}=this.props;
+		const {ignoreDropCloseAttr, dateFrom, dateTo, position = "bottom left"}=this.props;
 
 		const dateFromStr = dateFrom ? dateHelper.dateFormat(dateFrom, 'd mmmm:R') : '';
 		const dateToStr = dateTo ? dateHelper.dateFormat(dateTo, 'd mmmm:R') : '';
-		const title = dateFrom && dateTo ? `с ${dateFromStr} по ${dateToStr}` : 'Выберите период';
 
-		return (<Drop drop={{position: position}} setInstance={::this.initDropInstance}>
+		let title = 'Выберите период';
+		if (dateFrom || dateTo) {
+			title = '';
+			if (dateFrom)
+				title = `с ${dateFromStr} `;
+			if (dateTo)
+				title += `по ${dateToStr}`;
+		}
+
+		return (<Drop drop={{position: position}}
+					  setInstance={::this.initDropInstance}>
 			<a className="drop-target icon-date button light small">{title}</a>
 			<div className="drop-content" data-ignore={ignoreDropCloseAttr}>
 				<div className="drop-content-inner dashboard-period-choose">

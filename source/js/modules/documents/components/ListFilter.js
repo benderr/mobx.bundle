@@ -16,7 +16,10 @@ class ListFilter extends React.Component {
 		this.props.setInstance(null);
 	}
 
-	close() {
+	close(e) {
+		if (e && !this.searchParentsIgnore(e))
+			return false;
+
 		if (!this.isOpen())
 			return;
 
@@ -36,26 +39,22 @@ class ListFilter extends React.Component {
 		});
 	}
 
-	handleClickOutside(e) {
-		if (!searchParentsIgnore(e, this.props.ignoreAttr))
-			return false;
-
-		this.close();
-
-
-		function searchParentsIgnore(event, dataIgnore = false) {
-			if (!dataIgnore)
-				return true;
-			let target = event.target;
-
-			while (target !== null) {
-				if (target.attributes && target.attributes['data-ignore'] && target.attributes['data-ignore'].nodeValue === dataIgnore) {
-					return false;
-				}
-				target = target.parentNode;
-			}
+	searchParentsIgnore(event) {
+		const dataIgnore = this.props.ignoreCloseSelect
+		if (!dataIgnore)
 			return true;
+		let target = event.target;
+		while (target !== null) {
+			if (target.attributes && target.attributes['data-ignore'] && target.attributes['data-ignore'].nodeValue === dataIgnore) {
+				return false;
+			}
+			target = target.parentNode;
 		}
+		return true;
+	}
+
+	handleClickOutside(e) {
+		this.close(e);
 	}
 
 	onMouseLeave() {
