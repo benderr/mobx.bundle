@@ -54,8 +54,15 @@ class OrderAddContainer extends DefaultLayerLayout {
 		this.props.submitForm('orderForm');
 	}
 
+	handleSearchProducts(val) {
+		const searchText = val || '';
+		if (searchText.length == 0 || searchText.length >= 2) {
+			this.props.searchProducts({query: searchText});
+		}
+	}
+
 	render() {
-		const {saving, products, productSearchState, totalSum} = this.props;
+		const {saving, products, productSearchState, searchProducts, totalSum} = this.props;
 
 		return (
 			<article className="page page__kassa_w900" {...this.layerOptions}>
@@ -71,6 +78,7 @@ class OrderAddContainer extends DefaultLayerLayout {
 					<OrderProductForm className="light_block"
 									  productSearchState={productSearchState}
 									  initialValues={this.state.productFormState}
+									  onSearchProducts={::this.handleSearchProducts}
 									  onSave={::this.handleAddProduct}/>
 					<OrderProductTable canEdit={true}
 									   totalSum={totalSum}
