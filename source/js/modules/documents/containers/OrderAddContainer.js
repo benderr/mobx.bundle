@@ -67,6 +67,7 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 				<div class="page_content  with_bottom_panel">
 					<OrderDetailForm onSave={::this.handleCreateOrder}
+									 className='order_number_commentary'
 									 onSubmit={::this.handleCreateOrder}/>
 					<OrderProductForm className="light_block"
 									  productSearchState={productSearchState}

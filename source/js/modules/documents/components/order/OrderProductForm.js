@@ -45,52 +45,56 @@ class OrderProductForm extends React.Component {
 					<Field className="hidden" name="barcode" component="input"/>
 					<Field className="hidden" name="minPrice" component="input"/>
 
-					<SelectField required="Укажите полное наименование товара"
-								 options={products}
-								 wrapperClassName="add_order_form__product"
-								 searchable={true}
-								 isLoading={loading}
-								 tipPlace="top"
-								 placeholder="Товар"
-								 className="small"
-								 labelKey="name"
-								 valueKey="inventCode"
-								 clearable={true}
-								 creatable={true}
-								 newOptionCreator={::this.newOptionCreator}
-								 onChange={::this.handleSelectProduct}
-								 name="inventCode"/>
+					<div class="add_order_form__product input_group_title">
+						<div class="input_title">Товар</div>
+						<SelectField required="Укажите полное наименование товара"
+									 options={products}
+									 wrapperClassName=""
+									 searchable={true}
+									 isLoading={loading}
+									 tipPlace="top"
+									 className="small"
+									 labelKey="name"
+									 valueKey="inventCode"
+									 clearable={true}
+									 creatable={true}
+									 newOptionCreator={::this.newOptionCreator}
+									 onChange={::this.handleSelectProduct}
+									 name="inventCode"/>
+					</div>
 
-					<AmountField required="Укажите цену товара"
-								 label="Цена"
-								 name="price"
-								 tipPlace="top"
-								 class="small"
-								 wrapperClassName="add_order_form__price"/>
+					<div class="add_order_form__price input_group_title">
+						<div class="input_title">Цена</div>
+						<AmountField required="Укажите цену товара"
+									 name="price"
+									 tipPlace="top"
+									 class="small"/>
+					</div>
 
-					<NumberField label="Кол-во"
-								 name="quantity"
-								 class="small"
-								 wrapperClassName="add_order_form__amount"/>
-
-					<SelectField name="measure"
-								 clearable={false}
-								 placeholder="Ед. изм."
-								 wrapperClassName="add_order_form__units"
-								 className="small"
-								 options={MEASURE_OPTIONS}/>
-
-					<SelectField name="vatTag"
-								 clearable={false}
-								 placeholder="НДС"
-								 wrapperClassName="add_order_form__nds"
-								 className="small"
-								 options={VAT_TAG_OPTIONS}/>
-
-					<InputField label="Комментарий"
-								class="small"
-								name="description"
-								wrapperClassName="add_order_form__comment"/>
+					<div class="add_order_form__amount input_group_title">
+						<div class="input_title">Кол-во</div>
+						<NumberField name="quantity"
+									 class="small" />
+					</div>
+					<div class="add_order_form__units input_group_title">
+						<div class="input_title">Ед. изм.</div>
+						<SelectField name="measure"
+									 clearable={false}
+									 className="small"
+									 options={MEASURE_OPTIONS}/>
+					</div>
+					<div class="add_order_form__nds input_group_title">
+						<div class="input_title">НДС</div>
+						<SelectField name="vatTag"
+									 clearable={false}
+									 className="small"
+									 options={VAT_TAG_OPTIONS}/>
+					</div>
+					<div class="add_order_form__comment input_group_title">
+						<div class="input_title">Комментарий</div>
+						<InputField class="small"
+									name="description"/>
+					</div>
 				</div>
 
 				<button class="button  small  wide  light">Добавить</button>
