@@ -1,10 +1,10 @@
 import React from 'react'
 import {DatePickerRange} from 'common/uiElements'
-import CheckBox from '../FilterCheckBox'
-import {DOCUMENT_TYPE, getDocTypeName} from '../../enums'
+import CheckBox from './FilterCheckBox'
+import {DOCUMENT_TYPE, getDocTypeName} from '../enums'
 
 
-class ChequeFilter extends React.Component {
+class ChequeMoneyFilter extends React.Component {
 	isClosable() {
 		return !(this.drop && this.drop.isOpen());
 	}
@@ -46,4 +46,4 @@ class ChequeFilter extends React.Component {
 }
 
 
-export default ChequeFilter;
+export default ChequeMoneyFilter;

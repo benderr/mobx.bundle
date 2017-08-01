@@ -2,7 +2,6 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {push} from 'connected-react-router';
 import toJS from 'components/HOC/toJs';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import TitlePanel from '../components/TitlePanel'
@@ -11,8 +10,8 @@ import TitleActions from '../components/TitleActions'
 import ChequeList from '../components/cheque/ChequeList'
 import * as selectors from '../selectors/chequeSelectors'
 import * as actions from '../actions/chequeActions'
-import ListFilter from "../components/ListFilter";
-import ChequeFilter from "../components/cheque/ChequeFilter";
+import ListFilter from "../components/ListFilter"
+import ChequeMoneyFilter from "../components/ChequeMoneyFilter"
 
 
 @withRouter
@@ -117,20 +116,20 @@ class ChequeListContainer extends React.Component {
 		return (
 			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
 				<TitlePanel>
-					<TitleActions showFilter={false}>
+					{!noItems && <TitleActions showFilter={false}>
 						<a className="button small light icon-filter show_filter_panel  right20"
 						   onClick={::this.handleOpenFilter}>Фильтры</a>
 						<a className="button white icon-filter show_filter_panel float  right20"
 						   onClick={::this.handleOpenFilter}>
 							<span className="filter_count"/>
 						</a>
-					</TitleActions>
+					</TitleActions>}
 				</TitlePanel>
 
 				<ListFilter setInstance={f => this.filter = f}
 							isClosable={::this.isClosableFilter}
 							ignoreCloseSelect="no-close-date-selector">
-					<ChequeFilter ref={f => this.chequeFilter = f}
+					<ChequeMoneyFilter ref={f => this.chequeFilter = f}
 								  onChangeDocType={::this.handleChangeFilterDocType}
 								  onChangeDate={::this.handleChangeDate}
 								  dateFrom={dateFrom}
@@ -165,7 +164,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			push,
 			getListCheque: actions.getCheque.request,
 			setFilterProps: actions.setFilterProps
 		}, dispatch)

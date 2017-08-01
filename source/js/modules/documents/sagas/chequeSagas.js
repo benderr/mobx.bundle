@@ -60,9 +60,9 @@ function* getFiltered(props) {
 		if (q.length) query.push(`docNum="*${q}*"`);
 
 		if (dateFrom instanceof Date)
-			query.push(`checkoutDateTime=ge="${dateHelper.dateFormat(dateFrom, 'yyyy-mm-dd')}"`);
+			query.push(`checkoutDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
 		if (dateTo instanceof Date)
-			query.push(`checkoutDateTime=le="${dateHelper.dateFormat(dateTo, 'yyyy-mm-dd')}"`);
+			query.push(`checkoutDateTime=le="${dateHelper.dateFormat(dateTo, 'isoUtcDateTime')}"`);
 		if (docType.length)
 			query.push(`docType=="${docType[0]}"`);
 
