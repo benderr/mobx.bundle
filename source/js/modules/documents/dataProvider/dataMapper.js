@@ -24,10 +24,10 @@ export const toClientDocumentDetails = doc => {
 	};
 
 	if (doc.status) {
-		item.status = 'FAILED';
+		item.status = 'PENDING'//doc.status.status;
 		item.fnState = doc.status.fnState;
 		item.fiscalInfo = mapFiscalInfo(doc.status.fiscalInfo);
-		item.error = 'some error'; //doc.status.message;
+		item.error = doc.status.message;
 	} else {
 		item.status = 'UNKNOWN';
 	}
@@ -58,18 +58,7 @@ function isValidNumber(num) {
 
 function mapFiscalInfo(info) {
 	if (!info)
-		return {
-			shiftNumber: 123,
-			checkNumber: 123,
-			kktNumber: 'string',
-			fnNumber: 'string',
-			fnDocNumber: 123,
-			fnDocMark: 123,
-			date: 'string',
-			sum: 123,
-			checkType: 'string',
-			qr: 'string'
-		};
+		return null;
 	return {
 		shiftNumber: info.shiftNumber,
 		checkNumber: info.checkNumber,

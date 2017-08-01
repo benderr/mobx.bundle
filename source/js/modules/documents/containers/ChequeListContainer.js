@@ -76,10 +76,20 @@ class ChequeListContainer extends React.Component {
 			return true;
 		return this.chequeFilter.isClosable();
 	}
+
+	handleChangeFilterDocType() {
+
+	}
+
+	handleChangeDate() {
+
+	}
+
 	render() {
-		const {listState} = this.props;
+		const {listState, dateFrom, dateTo, docType} = this.props;
 		const noItems = listState.noItems;
 		const globalLoading = noItems === null;
+
 
 		return (
 			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
@@ -97,7 +107,13 @@ class ChequeListContainer extends React.Component {
 				<ListFilter setInstance={f => this.filter=f}
 							isClosable={::this.isClosableFilter}
 							ignoreCloseSelect="no-close-date-selector">
-					<div><ChequeFilter ref={f => this.chequeFilter=f}/></div>
+					<ChequeFilter ref={f => this.chequeFilter=f}
+									   onChangeDocType={::this.handleChangeFilterDocType}
+									   onChangeDate={::this.handleChangeDate}
+									   dateFrom={dateFrom}
+									   dateTo={dateTo}
+									   docType={docType}
+					/>
 				</ListFilter>
 
 

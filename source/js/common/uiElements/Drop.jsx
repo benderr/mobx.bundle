@@ -34,6 +34,21 @@ class Drop extends React.Component {
         }
     }
 
+    static defaultProps = {
+        drop: {
+            position: 'bottom left',
+            openOn: 'click',
+            constrainToWindow: true,
+            constrainToScrollParent: true,
+            classes: 'drop-theme-basic',
+            hoverOpenDelay: 0,
+            hoverCloseDelay: 50,
+            focusDelay: 0,
+            blurDelay: 50,
+            tetherOptions: {},
+        }
+    };
+
     reposition() {
         if (this.drop) {
             this.drop.position();
@@ -47,6 +62,10 @@ class Drop extends React.Component {
 
     isOpen() {
         return this.drop && this.drop.isOpened();
+    }
+
+    close() {
+        return this.drop && this.drop.close();
     }
 
     componentWillUnmount() {
@@ -69,27 +88,38 @@ class Drop extends React.Component {
 
     initDrop() {
 
-        const outOptions = {
-            position: this.props.position
-        };
+        const outOptions = this.props.drop;
         const opts = Object.assign({
-            target: this.props.target || this.refs.drop,
-        }, defaultOptions, outOptions);
-        opts.content = (drop) => {
-            return ReactDOM.render(this.getDropContent(), this.container);
-        };
+            target: this.refs.drop,
+        }, outOptions);
 
+        opts.content = () => {
+            const content = this.getDropContent();
+            const component = React.cloneElement(content, content.props, this.bindCloseEvent(content));
+            return ReactDOM.render(component, this.container);
+        };
         this.drop = new TetherDrop(opts);
     }
 
-    handleClickOutside(e) {
-        if (e.target.localName == 'input')
-            return false;
-
-        if (this.drop && this.drop.isOpened()) {
-            this.drop.toggle();
-        }
-        this.props.onClose && this.props.onClose();
+    bindCloseEvent(content) {
+        const self = this;
+        return React.Children.map(content, c => {
+            if (c && c.props) {
+                let props = null;
+                let children = c.props.children ? this.bindCloseEvent(c.props.children) : null;
+                if (c.props["data-close"]) {
+                    props = {
+                        onClick: () => {
+                            self.close();
+                            c.props.onClick && c.props.onClick();
+                        }
+                    };
+                }
+                if (children || props)
+                    return React.cloneElement(c, props, children);
+            }
+            return c
+        });
     }
 
     destroyDrop() {
@@ -102,17 +132,22 @@ class Drop extends React.Component {
 
 
     render() {
-        //ref={drop => this.drop = drop}
-        return <div ref="drop">
-            {this.props.children}
-        </div>
+        let targetLink = null;
+        React.Children.forEach(this.props.children, child => {
+            if (child.props.className.indexOf('drop-target') > -1) {
+                targetLink = child;
+            }
+        });
+
+        return React.cloneElement(targetLink, {
+            ref: 'drop'
+        });
     }
 }
 
 Drop.propTypes = {
-    position: PropTypes.string,
-    target: PropTypes.object,
+    drop: PropTypes.object,
     onClose: PropTypes.func
 };
 
-export default enhanceWithClickOutside(Drop)
+export default Drop

@@ -1,9 +1,14 @@
 import React from 'react';
-import {Drop} from 'common/uiElements';
-import DatePiker from 'react-datepicker'
+import {DatePickerRange} from 'common/uiElements';
 
+import {Drop} from 'common/uiElements';
+// import DatePickerRender from "common/uiElements/DatePickerRender";
+// import ListFilter from '../ListFilter'
 
 class ChequeFilter extends React.Component {
+	isClosable() {
+		return !(this.drop && this.drop.isOpen());
+	}
 
 	onClickPeriod(type) {
 		console.log('type', type);
@@ -14,36 +19,25 @@ class ChequeFilter extends React.Component {
 	}
 
 	render() {
+		const {ignoreCloseSelect = '', dateFrom = new Date(), dateTo = new Date(),
+			onChangeDate = (a) => console.log(a)
+		} = this.props;
+
 		return (
 			<div>
 				<div className="side_filter mt0">
-					<div className="side_filter_name">Период</div>
+					<div className="side_filter_name">Тип документа</div>
+					<DatePickerRange ignoreDropCloseAttr={ignoreCloseSelect}
+									 dateFrom={dateFrom}
+									 dateTo={dateTo}
+									 onChange={onChangeDate}
+									 setDropInstance={drop => this.drop = drop}/>
 
-					<Drop position="bottom right" setInstance={drop=>this.drop=drop}>
-						<a className="drop-target icon-date button light small">с 12 апреля по 12 мая</a>
-						<div className="drop-content" data-ignore="no-close-date-selector">
-							<div className="drop-content-inner dashboard-period-choose">
-								<ul className="drop-menu">
-									<li onClick={() => this.onClickPeriod('30_DAYS')}><a>Последние 30 дней</a></li>
-									<li><a>Текущая неделя</a></li>
-									<li><a>Текущий месяц</a></li>
-									<li><a>Текущий квартал</a></li>
-									<li><a>Весь год</a></li>
-								</ul>
-								<div className="drop-date-choose">
-									<div className="filter_date_value">
-										<DatePiker className="datetimepicker filter_date_input small date_from" />
-										<DatePiker className="datetimepicker filter_date_input small date_to" />
-										<button className="button small" onClick={() => this.onClickPeriod('RAND_PERIOD')}>Ок</button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</Drop>
 				</div>
 
 				<div className="side_filter">
 					<div className="side_filter_name">Тип документа</div>
+
 					<ul>
 						<li>
 							<input type="checkbox" name="type_SALE" id="t1" className="input_check"/>

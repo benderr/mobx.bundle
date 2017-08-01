@@ -1,7 +1,7 @@
 import React from 'react'
 import {reduxForm} from 'common/formElements'
 
-import DatePicker from 'common/uiElements/DatePicker'
+//import DatePicker from 'common/uiElements/DatePicker'
 import DatePickerField from 'common/uiElements/DatePickerField'
 import DatePickerRender from 'common/uiElements/DatePickerRender'
 

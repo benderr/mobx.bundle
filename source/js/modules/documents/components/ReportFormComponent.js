@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {reduxForm} from 'common/formElements'
 
-import {InputField} from 'common/formElements/fields'
-import DatePickerField from "common/uiElements/DatePickerField";
+import {InputField, DatePickerField} from 'common/formElements/fields'
+// import DatePickerField from  "" //"common/uiElements/DatePickerField";
 
 
 class ReportFormComponent extends React.Component {

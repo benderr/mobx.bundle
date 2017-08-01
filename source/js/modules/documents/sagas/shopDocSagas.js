@@ -1,20 +1,21 @@
-import {call, put, select, take, fork, takeEvery, takeLatest} from 'redux-saga/effects'
+import {call, put, select, fork, takeEvery} from 'redux-saga/effects'
 import * as actions from '../actions/shopDocsActions'
 import * as selectors from '../selectors/shopDocsSelectors'
 import {getPointId} from 'modules/core/selectors'
 import * as dataContext from '../dataProvider/dataContext'
 import logger from 'infrastructure/utils/logger'
-import {SHIFT_TYPE} from '../enums'
-import {debounce} from 'redux-saga-debounce-effect'
+import {debounceFor} from 'redux-saga-debounce-effect'
+import dateHelper from 'common/helpers/dateHelper'
 
 function* init() {
 	yield takeEvery(actions.GET_DOCUMENTS.REQUEST, getDocuments);
 	yield takeEvery(actions.GET_DOCUMENT_DETAILS.REQUEST, getDocumentsDetails);
+	yield takeEvery(actions.RESEND_DOCUMENT.REQUEST, resendDocument);
 	yield fork(debounceSearchDocuments);
 }
 
 function* debounceSearchDocuments() {
-	yield debounce(actions.SEARCH_DOCUMENTS, getDocuments);
+	yield debounceFor(actions.SEARCH_DOCUMENTS, getDocuments, 1000);
 }
 
 function* getDocuments() {
@@ -24,8 +25,14 @@ function* getDocuments() {
 
 		const retailPointId = yield select(getPointId);
 		let q = [];
-		if (filter && filter.query) {
-			q.push(`docNum=="*${filter.query}*"`); //переделать на quickSearch
+		let statuses = filter.selectedStates || [];
+		if (filter) {
+			filter.query && q.push(`:quickSearch="${filter.query}"`); //переделать на quickSearch
+			filter.docType && q.push(`docType=="${filter.docType}"`);
+			statuses.length > 0 && q.push(`currentState=in=(${statuses.join(',')})`)
+			filter.dateFrom && q.push(`checkoutDateTime=ge="${dateHelper.dateFormat(filter.dateFrom, 'yyyy-mm-dd')}"`);
+			filter.dateTo && q.push(`checkoutDateTime=le="${dateHelper.dateFormat(filter.dateTo, 'yyyy-mm-dd')}"`);
+
 		}
 
 		q = q.join(';');
@@ -54,6 +61,18 @@ function* getDocumentsDetails({point, id}) {
 	catch (error) {
 		logger.log(error);
 		yield put(actions.getDocumentDetails.failure({id, error}));
+	}
+}
+
+function* resendDocument({point, id}) {
+	try {
+		const document = yield call(dataContext.requeueDocument, point, id);
+		yield put(actions.getDocumentDetails.success({document}));
+		yield put(actions.getDocumentDetails.request({id, point}));
+	}
+	catch (error) {
+		logger.log(error);
+		yield put(actions.reSendDocument.failure({id, error}));
 	}
 }
 
