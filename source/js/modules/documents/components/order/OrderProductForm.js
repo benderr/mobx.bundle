@@ -35,7 +35,7 @@ class OrderProductForm extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, onSave, productSearchState:{loading, products, error}, className = ''} = this.props;
+		const {handleSubmit, productSearchState:{loading, products, error}, className = ''} = this.props;
 
 		return (
 			<form className={className} onSubmit={handleSubmit(::this.handleSave)}>
