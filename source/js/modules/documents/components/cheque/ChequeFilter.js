@@ -1,7 +1,7 @@
 import React from 'react'
 import {DatePickerRange} from 'common/uiElements'
 import CheckBox from '../FilterCheckBox'
-import {DOCUMENT_TYPE, DOCUMENT_STATUS, getDocTypeName} from '../../enums'
+import {DOCUMENT_TYPE, getDocTypeName} from '../../enums'
 
 
 class ChequeFilter extends React.Component {

@@ -1,10 +1,6 @@
 import {Map, List, fromJS} from 'immutable';
 import * as enums from '../actions/chequeActions';
-// import * as
-import dateHelper from "common/helpers/dateHelper"
-import {DOCUMENT_TYPE} from '../enums'
 
-const {startDate, stopDate} = dateHelper.getCurrentWeekDates(new Date());
 
 export const initialState = Map({
 	loading: true,
@@ -43,9 +39,6 @@ export const actionHandlers = {
 			errors: null,
 			success: null,
 
-			// noItems: isFirst && totalCount == 0,
-			// iRequest: state.get('iRequest') + 1,
-
 			sortField: props.sortField || initialState.get('sortField'),
 			sortDirection: props.sortDirection || initialState.get('sortDirection'),
 			pos: props.pos || initialState.get('pos'),
@@ -74,6 +67,7 @@ export const actionHandlers = {
 
 	// Установка параметров фильтра
 	[enums.SET_FILTER]: (state, props) => {
+		console.log('>> ', enums.SET_FILTER);
 		return state.mergeIn(['docsFilter'], fromJS(props));
 	}
 };

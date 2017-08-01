@@ -13,7 +13,6 @@ import * as selectors from '../selectors/chequeSelectors'
 import * as actions from '../actions/chequeActions'
 import ListFilter from "../components/ListFilter";
 import ChequeFilter from "../components/cheque/ChequeFilter";
-import dateHelper from "common/helpers/dateHelper";
 
 
 @withRouter

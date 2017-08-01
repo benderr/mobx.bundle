@@ -30,7 +30,6 @@ export function getSagas() {
 		orderSagas(),
 		chequeSagas(),
 		moneySaga(),
-		chequeSagas(),
 		shopDocSagas(),
 		reportSaga()
 	]
