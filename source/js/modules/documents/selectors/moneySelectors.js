@@ -6,3 +6,7 @@ export const getMoney = (state) => {
 
 export const getSectionPos = createSelector([getMoney], money => money.get('pos'));
 export const getSectionStep = createSelector([getMoney], money => money.get('listStep'));
+
+export const getSectionState = createSelector([getMoney], money => {
+	return money;
+});

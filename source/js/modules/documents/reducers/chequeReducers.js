@@ -1,6 +1,5 @@
 import {Map, List, fromJS} from 'immutable';
-
-import * as chequeActions from '../enums/chequeActions';
+import * as enums from '../actions/chequeActions';
 
 
 export const initialState = Map({
@@ -8,13 +7,13 @@ export const initialState = Map({
 	success: null,
 	error: null,
 
-	list: List([]),			// список элементов
-	details: Map({}),		// детальный просмотр элементов
+	list: List([]),				// список элементов
+	details: Map({}),			// детальный просмотр элементов
 
 	// постраничная навигация
-	pos: 0,					// сдвиг элементов на странице
-	total_count: 0,			// всего элементов в БД
-	listStep: 50,			// кол-во элементов за раз
+	pos: 0,						// сдвиг элементов на странице
+	total_count: 0,				// всего элементов в БД
+	listStep: 50,				// кол-во элементов за раз
 	noItems: null,
 
 	// сортировка
@@ -22,20 +21,23 @@ export const initialState = Map({
 	sortDirection: 'desc',		// направление сортировки
 
 	// поиск и фильтр
-	isFilter: false,		// флаг применения фильтра
-	q: ''					// строка поиска
+	q: '',						// строка поиска
+	isFilter: false,			// флаг применения фильтра
+
+	docsFilter: Map({
+		dateFrom: null,		// дата От
+		dateTo: null,			// дата До
+		docType: []
+	})
 });
 
 export const actionHandlers = {
 	// получение списка элементов
-	[chequeActions.GET_CHEQUE.REQUEST]: (state, props) => {
+	[enums.GET_CHEQUE.REQUEST]: (state, props) => {
 		return state.merge({
 			loading: true,
 			errors: null,
 			success: null,
-
-			// noItems: isFirst && totalCount == 0,
-			// iRequest: state.get('iRequest') + 1,
 
 			sortField: props.sortField || initialState.get('sortField'),
 			sortDirection: props.sortDirection || initialState.get('sortDirection'),
@@ -44,9 +46,7 @@ export const actionHandlers = {
 			q: props.q || initialState.get('q')
 		})
 	},
-	[chequeActions.GET_CHEQUE.SUCCESS]: (state, {pos, totalCount, list, isFirst}) => {
-		console.log(chequeActions.GET_CHEQUE.SUCCESS, {pos, totalCount, list, isFirst});
-
+	[enums.GET_CHEQUE.SUCCESS]: (state, {pos, totalCount, list, isFirst}) => {
 		// бесконечный скроллинг
 		let arList = pos ? state.get('list').concat(fromJS(list)) : List(list);
 
@@ -60,9 +60,15 @@ export const actionHandlers = {
 			list: arList
 		});
 	},
-	[chequeActions.GET_CHEQUE.FAILURE]: (state) => {
-		console.log(chequeActions.GET_CHEQUE.FAILURE, {error});
+	[enums.GET_CHEQUE.FAILURE]: (state) => {
+		console.log(enums.GET_CHEQUE.FAILURE, {error});
 		return state;
+	},
+
+	// Установка параметров фильтра
+	[enums.SET_FILTER]: (state, props) => {
+		console.log('>> ', enums.SET_FILTER);
+		return state.mergeIn(['docsFilter'], fromJS(props));
 	}
 };
 

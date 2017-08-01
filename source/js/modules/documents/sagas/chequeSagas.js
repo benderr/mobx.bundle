@@ -1,20 +1,22 @@
 import {call, put, select, take, fork, takeEvery} from 'redux-saga/effects'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import logger from 'infrastructure/utils/logger'
+import dateHelper from 'common/helpers/dateHelper'
+import {notify} from 'common/uiElements/Notify'
 
 import * as dataContext from '../dataProvider/dataContext'
-import * as enums from '../enums/chequeActions'
 import * as chequeActions from '../actions/chequeActions'
-import {getSectionPos, getSectionStep} from '../selectors/chequeSelectors'
+import {getSectionPos, getSectionState, getSectionStep} from '../selectors/chequeSelectors'
 
 
-function* getChequeSaga({q='', filter = null, sortField, sortDirection, isFirst = false}) {
+function* getChequeSaga({q = '', filter = null, sortField, sortDirection, isFirst = false, ...props}) {
+	console.log(q, filter, sortField, sortDirection, isFirst, props);
+
 	try {
 		const token = yield select(getCurrentRetailPointId);
 
 		let posOpt = yield select(getSectionPos);
 		let stepOpt = yield select(getSectionStep);
-
 
 		//region Search box
 		let query = ['shift.id!=":external"'];
@@ -37,14 +39,54 @@ function* getChequeSaga({q='', filter = null, sortField, sortDirection, isFirst 
 		}));
 
 	} catch (error) {
+		notify.error('При загрузке списка произошла ошибка');
 		logger.log(error);
-		// yield put(chequeActions.getCheque.failure({error}));
+	}
+}
+
+function* getFiltered(props) {
+
+	try {
+		const token = yield select(getCurrentRetailPointId);
+		let stateImmutable = yield select(getSectionState);
+
+		stateImmutable = stateImmutable.toJS();
+
+		const {dateFrom = null, dateTo = null, docType = []} = props;
+		const {sortField, sortDirection, q = '', pos: optPos, listStep} = stateImmutable;
+
+		// ...
+		let query = ['shift.id!=":external"'];
+		if (q.length) query.push(`docNum="*${q}*"`);
+
+		if (dateFrom instanceof Date)
+			query.push(`checkoutDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
+		if (dateTo instanceof Date)
+			query.push(`checkoutDateTime=le="${dateHelper.dateFormat(dateTo, 'isoUtcDateTime')}"`);
+		if (docType.length)
+			query.push(`docType=="${docType[0]}"`);
+
+		query = query.join(';');
+		// ...
+
+		const {
+			pos, totalCount, orders
+		} = yield call(dataContext.getOrders, token, optPos, listStep, query, sortField, sortDirection);
+		yield put(chequeActions.getCheque.success({
+			pos: pos,
+			totalCount: totalCount,
+			list: orders
+		}));
+	} catch (error) {
+		notify.error('При загрузке списка произошла ошибка');
+		logger.log(error);
 	}
 }
 
 
 export default function* () {
 	yield [
-		takeEvery(enums.GET_CHEQUE.REQUEST, getChequeSaga)
+		takeEvery(chequeActions.GET_CHEQUE.REQUEST, getChequeSaga),
+		takeEvery(chequeActions.SET_FILTER, getFiltered),
 	]
 }

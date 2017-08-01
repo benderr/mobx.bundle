@@ -11,3 +11,7 @@ export const getSectionPos = createSelector([getSection], cheques => {
 export const getSectionStep = createSelector([getSection], cheques => {
 	return cheques.get('listStep');
 });
+
+export const getSectionState = createSelector([getSection], cheques => {
+	return cheques;
+});
