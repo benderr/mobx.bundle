@@ -18,7 +18,7 @@ class OrderDetailForm extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, onSave, className = ''} = this.props;
+		const {handleSubmit, onSave, className} = this.props;
 
 		return (
 			<form className={className} onSubmit={handleSubmit(onSave)}>
@@ -26,23 +26,13 @@ class OrderDetailForm extends React.Component {
 				<Field name="docType" component="input" class="hidden"/>
 				<Field name="status" component="input" class="hidden"/>
 
-				<div class="form_group form_horizontal">
-					<div class="property_label col w100px">Номер заказа</div>
-					<div class="property_value col nine">
-						<InputField label="Номер заказа"
-									name="docNum"
-									required="Введите номер заказа"
-									class="w100"/>
-					</div>
-				</div>
-				<div class="form_group form_horizontal">
-					<div class="property_label col w100px">Комментарий</div>
-					<div class="property_value col nine">
-						<TextAreaField label="Комментарий"
-									   name="description"
-									   class="w100"/>
-					</div>
-				</div>
+				<div class="label">Номер заказа</div>
+				<InputField name="docNum"
+							required="Введите номер заказа"
+							class="order_number"/>
+				<TextAreaField label="Комментарий"
+							   name="description"
+							   class="order_commentary"/>
 			</form>
 		);
 	}
