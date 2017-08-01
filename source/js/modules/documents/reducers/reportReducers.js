@@ -3,27 +3,33 @@ import * as enums from '../actions/reportActions'
 
 
 export const initialState = Map({
-
-	beginDate: {},
-	endDate: {},
-	fromEmail: '',
-
-	isFromEmail: false
+	sending: false,
+	sent: false,
+	error: null
 });
+
 export const actionHandlers = {
 	[enums.SALES_REPORT.REQUEST]: (state, props) => {
-		console.log(enums.SALES_REPORT.REQUEST, props);
-		
 		return state.merge({
-			beginDate: props.beginDate,
-			endDate: props.endDate,
-			fromEmail: props.fromEmail
+			sending: true,
+			sent: false,
+			error: null
 		});
 	},
-
-	[enums.CHECK_EMAIL]: (state, {val}) => {
-		return state.updateIn(['isFromEmail'], v => val);
-	}
+	[enums.SALES_REPORT.SUCCESS]: (state, props) => {
+		return state.merge({
+			sending: false,
+			sent: true
+		});
+	},
+	[enums.SALES_REPORT.FAILURE]: (state, {error}) => {
+		return state.merge({
+			sending: false,
+			sent: true,
+			error: fromJS(error)
+		});
+	},
+	[enums.RESET]: () => initialState
 };
 
 

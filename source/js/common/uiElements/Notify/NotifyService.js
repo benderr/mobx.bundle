@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as actions from './actions';
 import NotifySystem from 'react-notification-system';
-import {connect} from 'react-redux';
 
 class NotifyService extends React.Component {
 
@@ -155,6 +154,4 @@ NotifyService.propTypes = {
 	allowHTML: PropTypes.bool
 };
 
-export default connect(null, (dispatch) => ({
-	dispatch
-}))(NotifyService)
+export default NotifyService;

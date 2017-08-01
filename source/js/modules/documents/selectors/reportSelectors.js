@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
 
-export const getReport = (state) => {
+export const getSection = (state) => {
 	return state.get('report');
 };

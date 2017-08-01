@@ -1,9 +1,7 @@
-/**
- * Created by RobertSabiryanov on 11.05.17.
- */
 import React from 'react';
 import PropTypes from 'prop-types';
 import ProductShape from './ProductShape';
+import {AmountFormat} from 'common/uiElements'
 
 class ProductItem extends React.Component {
     render() {
@@ -11,7 +9,7 @@ class ProductItem extends React.Component {
         return (<div class='table_row   row_link' onClick={onProductClick}>
             <div class='product_id'>{item.inventCode}</div>
             <div class='product_name'>{item.name}</div>
-            <div class='product_price'>{item.price}</div>
+            <div class='product_price'><AmountFormat value={item.price} /></div>
         </div>);
     }
 }

@@ -40,7 +40,7 @@ class OrderProductForm extends React.Component {
 		return (
 			<form className={className} onSubmit={handleSubmit(::this.handleSave)}>
 				<div class="add_order_form">
-					<Field className="hidden" name="isNew" component="checkbox"/>
+					<Field className="hidden" name="isNew" component="input" type="checkbox"/>
 					<Field className="hidden" name="name" component="input"/>
 					<Field className="hidden" name="barcode" component="input"/>
 					<Field className="hidden" name="minPrice" component="input"/>

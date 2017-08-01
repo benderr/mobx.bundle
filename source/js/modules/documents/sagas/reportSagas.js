@@ -1,36 +1,29 @@
 import {call, put, select, takeEvery} from 'redux-saga/effects'
-import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
-import moment from 'moment'
-
+import {getPointId} from 'modules/core/selectors'
+import * as actions from '../actions/reportActions'
 import * as dataContext from '../dataProvider/dataContext'
 import * as enums from '../actions/reportActions'
+import dateHelper from 'common/helpers/dateHelper'
+import {notify} from 'common/uiElements'
+import {reset} from 'redux-form/immutable'
 
-
-function* salesReportSaga({beginDate, endDate, fromEmail}) {
+function* salesReportSaga({beginDate, endDate, email}) {
 	try {
-		beginDate = moment(beginDate, "DD.MM.YYYY").format('YYYY-MM-DD');
-		endDate = moment(endDate, "DD.MM.YYYY").format('YYYY-MM-DD');
-
-		const token = yield select(getCurrentRetailPointId);
-
-		const downloadLink = document.createElement("a");
-		downloadLink.href = `/api/v1/retail-point/${token}/downloadSalesReport?beginDate=${beginDate}&endDate=${endDate}`;
-		//downloadLink.download = "report.xls";
-		downloadLink.target = "_blank";
-		document.body.appendChild(downloadLink);
-		downloadLink.click();
-		// document.body.removeChild(downloadLink);
-
-		console.log(downloadLink);
-
-		const data = yield call(dataContext.getDownloadSalesReport, token, beginDate, endDate);
-		console.log('result saga', data);
+		const point = yield select(getPointId);
+		const beginDateStr = dateHelper.dateFormat(beginDate, 'isoUtcDateTime');
+		const endDateStr = dateHelper.dateFormat(endDate, 'isoUtcDateTime');
+		const data = yield call(dataContext.salesReport, point, beginDateStr, endDateStr, email);
+		yield put(actions.salesReport.success(data));
+		yield put(notify.success('Отчет отправлен по адресу ' + email));
+		yield put(actions.resetForm());
+		yield put(reset('report_form'));
 	} catch (error) {
-		console.log(error);
+		yield put(notify.error('Не удалось отправить отчет', 'Ошибка'));
+		yield put(actions.salesReport.failure({error: error && error.data ? error.data : error}));
 	}
 }
 
-export default function* () {
+export default function*() {
 	yield [
 		takeEvery(enums.SALES_REPORT.REQUEST, salesReportSaga)
 	]

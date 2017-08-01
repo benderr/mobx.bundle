@@ -3,6 +3,7 @@ import {Field} from 'redux-form/immutable'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
 import 'jquery-datetimepicker/build/jquery.datetimepicker.full'
+import {isEmpty} from 'common/validators'
 
 $.datetimepicker.setLocale('ru');
 
@@ -15,9 +16,6 @@ const datePickerOptions = ['value', 'lang', 'format', 'formatDate', 'formatTime'
 
 class DatePicker extends React.Component {
 	static defaultProps = {
-		// format: 'd.m.Y',
-		// formatTime: 'h:mm a',
-		// formatDate: 'DD.MM.YYYY',
 		formatDate: 'd.m.Y',
 		format: 'd.m.Y',
 		yearStart: 2000,
@@ -34,25 +32,30 @@ class DatePicker extends React.Component {
 		}
 	};
 
-	constructor(props) {
-		super(props);
-		this.state = {value: props.value ? new Date(props.value.getTime()) : null};
-	}
-
 	setFocus() {
 		this.input && this.input.focus();
 	}
 
 	getValue() {
-		return this.state ? this.state.value : null
+		return this.$input ? this.$input.datetimepicker('getValue') : null
 	}
 
 	handleChange(date) {
-		var newValue = date ? new Date(date.getTime()) : null;
-		this.setState({
-			value: newValue
-		});
-		this.props.onChange && this.props.onChange(newValue);
+		this.props.onChange && this.props.onChange(date);
+	}
+
+	componentWillReceiveProps(props) {
+		if (props) {
+			if (!this.isEqualDates(props.value, this.getValue())) {
+				if (this.$input) {
+					if (props.value) {
+						this.$input.datetimepicker({value: props.value});
+					} else {
+						this.$input.datetimepicker('reset');
+					}
+				}
+			}
+		}
 	}
 
 	componentDidMount() {
@@ -64,14 +67,14 @@ class DatePicker extends React.Component {
 		const options = this.getDatePickerOptions();
 
 		options.onChangeDateTime = (dp, $input, event) => {
-			if (!self.isEqualDates(dp, self.state.value))
+			if (!self.isEqualDates(dp, self.props.value))
 				self.handleChange(dp);
 		};
 		this.$input = $input.datetimepicker(options);
 	}
 
 	isEqualDates(a, b) {
-		return (a && b && a.getTime() === b.getTime()) || a === b;
+		return (a && b && a.getTime() === b.getTime()) || a === b || (isEmpty(a) && isEmpty(b));
 	}
 
 	getDatePickerOptions() {
@@ -83,22 +86,27 @@ class DatePicker extends React.Component {
 		}, {});
 	}
 
-	render() {
-		const {className, name = 'no', disabled, ...props}=this.props;
-		const classNames = ['datetimepicker', className || ''].join(' ');
-
-		const otherProps = Object.keys(props).reduce((all, key) => {
-			if (datePickerOptions.indexOf(key) == -1) {
+	excludePickerProps(props) {
+		return Object.keys(props).reduce((all, key) => {
+			if (datePickerOptions.indexOf(key) == -1 || key == 'id') {
 				all[key] = props[key];
 			}
 			return all;
 		}, {});
+	}
+
+	render() {
+		const {className, name = 'no', ...props}=this.props;
+		const classNames = ['datetimepicker', className || ''].join(' ');
+
+		const notPickerProps = this.excludePickerProps(props);
+		delete notPickerProps.onChange;
 
 		return (
 			<input type="text"
 				   name={name}
-				   {...otherProps}
-				   disabled={disabled}
+				   {...notPickerProps}
+				   id={this.props.id}
 				   ref={input => this.input = input}
 				   className={classNames}/>
 		);

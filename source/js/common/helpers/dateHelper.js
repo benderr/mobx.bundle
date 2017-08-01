@@ -3,9 +3,15 @@ const isString = (value) => {
 	return false
 };
 
+const _compare = (str1, str2) => {
+	return typeof(str1) === 'string' && typeof(str2) === 'string' && str1.toLowerCase() === str2.toLowerCase();
+}
+
 export default {
 
 	currentLocal: 'ru',
+	validParts: /[dDjlNSwzWFmMntLoYyaABgGhHisueTIOPZcrU]/g,
+	separators: /[ \-+\/\.T:@]/g,
 
 	masks: {
 		"default": "dd mmm yyyy",
@@ -27,7 +33,8 @@ export default {
 		time: "HH:MM",
 		clever: "clever",
 		cleverDate: 'cleverDate',
-		dateTime: 'dd.mm.yyyy HH:MM'
+		dateTime: 'dd.mm.yyyy HH:MM',
+		serverFormat: 'yyyy-mm-dd'
 	},
 
 	i18n: {
@@ -36,7 +43,9 @@ export default {
 			monthName: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
 			yesterday: 'Вчера',
 			today: 'Сегодня',
-			dateSeparator: '.'
+			dateSeparator: '.',
+			months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь',
+				'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
 		}
 	},
 
@@ -393,6 +402,127 @@ export default {
 
 	daysInMonth(date){
 		return 33 - new Date(date.getFullYear(), date.getMonth(), 33).getDate(); //такой вот хак для вычисления количества дней в месяце
+	},
+
+	parseDate: function (vDate, vFormat) {
+		var self = this, vFormatParts, vDateParts, i, vDateFlag = false, vTimeFlag = false, vDatePart, iDatePart,
+			vMonth, vMeriIndex, vMeriOffset, len, mer,
+			out = {date: null, year: null, month: null, day: null, hour: 0, min: 0, sec: 0};
+		const vSettings = {
+			months: self.i18n.ru.months,
+			monthsShort: self.i18n.ru.months.map(n => n.substring(0, 3))
+		};
+
+		if (!vDate) {
+			return undefined;
+		}
+		if (vDate instanceof Date) {
+			return vDate;
+		}
+		if (typeof vDate === 'number') {
+			return new Date(vDate);
+		}
+		if (vFormat === 'U') {
+			i = parseInt(vDate);
+			return i ? new Date(i * 1000) : vDate;
+		}
+		if (typeof vDate !== 'string') {
+			return '';
+		}
+		vFormatParts = vFormat.match(self.validParts);
+		if (!vFormatParts || vFormatParts.length === 0) {
+			throw new Error("Invalid date format definition.");
+		}
+		vDateParts = vDate.replace(self.separators, '\0').split('\0');
+		for (i = 0; i < vDateParts.length; i++) {
+			vDatePart = vDateParts[i];
+			iDatePart = parseInt(vDatePart);
+			switch (vFormatParts[i]) {
+				case 'y':
+				case 'Y':
+					len = vDatePart.length;
+					if (len === 2) {
+						out.year = parseInt((iDatePart < 70 ? '20' : '19') + vDatePart);
+					} else if (len === 4) {
+						out.year = iDatePart;
+					}
+					vDateFlag = true;
+					break;
+				case 'm':
+				case 'n':
+				case 'M':
+				case 'F':
+					if (isNaN(vDatePart)) {
+						vMonth = vSettings.monthsShort.indexOf(vDatePart);
+						if (vMonth > -1) {
+							out.month = vMonth + 1;
+						}
+						vMonth = vSettings.months.indexOf(vDatePart);
+						if (vMonth > -1) {
+							out.month = vMonth + 1;
+						}
+					} else {
+						if (iDatePart >= 1 && iDatePart <= 12) {
+							out.month = iDatePart;
+						}
+					}
+					vDateFlag = true;
+					break;
+				case 'd':
+				case 'j':
+					if (iDatePart >= 1 && iDatePart <= 31) {
+						out.day = iDatePart;
+					}
+					vDateFlag = true;
+					break;
+				case 'g':
+				case 'h':
+					vMeriIndex = (vFormatParts.indexOf('a') > -1) ? vFormatParts.indexOf('a') :
+						(vFormatParts.indexOf('A') > -1) ? vFormatParts.indexOf('A') : -1;
+					mer = vDateParts[vMeriIndex];
+					if (vMeriIndex > -1) {
+						vMeriOffset = _compare(mer, vSettings.meridiem[0]) ? 0 :
+							(_compare(mer, vSettings.meridiem[1]) ? 12 : -1);
+						if (iDatePart >= 1 && iDatePart <= 12 && vMeriOffset > -1) {
+							out.hour = iDatePart + vMeriOffset - 1;
+						} else if (iDatePart >= 0 && iDatePart <= 23) {
+							out.hour = iDatePart;
+						}
+					} else if (iDatePart >= 0 && iDatePart <= 23) {
+						out.hour = iDatePart;
+					}
+					vTimeFlag = true;
+					break;
+				case 'G':
+				case 'H':
+					if (iDatePart >= 0 && iDatePart <= 23) {
+						out.hour = iDatePart;
+					}
+					vTimeFlag = true;
+					break;
+				case 'i':
+					if (iDatePart >= 0 && iDatePart <= 59) {
+						out.min = iDatePart;
+					}
+					vTimeFlag = true;
+					break;
+				case 's':
+					if (iDatePart >= 0 && iDatePart <= 59) {
+						out.sec = iDatePart;
+					}
+					vTimeFlag = true;
+					break;
+			}
+		}
+		if (vDateFlag === true && out.year && out.month && out.day) {
+			out.date = new Date(out.year, out.month - 1, out.day, out.hour, out.min, out.sec, 0);
+		} else {
+			if (vTimeFlag !== true) {
+				return false;
+			}
+			out.date = new Date(0, 0, 0, out.hour, out.min, out.sec, 0);
+		}
+		return out.date;
 	}
 
 }

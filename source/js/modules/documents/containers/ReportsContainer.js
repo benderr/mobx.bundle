@@ -1,97 +1,110 @@
 import React from 'react'
-import {withRouter} from 'react-router';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import toJS from 'components/HOC/toJs';
-import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
+import {connect} from 'react-redux'
+import {bindActionCreators} from 'redux'
+import toJS from 'components/HOC/toJs'
+import retailPointHOC from 'components/HOC/retailPointRequiredHOC'
 import TitlePanel from '../components/TitlePanel'
 import ReportForm from '../components/ReportFormComponent'
-import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
-import moment from 'moment'
-
-import {getSection} from 'modules/account/selectors/accountSelectors'
+import * as accountSelector from 'modules/account/selectors/accountSelectors'
 import * as selectors from '../selectors/reportSelectors'
 import * as actions from '../actions/reportActions'
+import {formValueSelector, reset} from 'redux-form/immutable'
+import dateHelper from 'common/helpers/dateHelper'
+import {getRetailPointList} from 'modules/retailPoints/selectors/retailPointSelectors'
 
-
-@withRouter
-@connect(mapStateToProps, mapDispatchToProps)
 @retailPointHOC
+@connect(mapStateToProps, mapDispatchToProps)
 @toJS
 class ReportsContainer extends React.Component {
 
-	onSubmitForm(props) {
-		const {reportState, token} = this.props;
-
-		if (!reportState.isFromEmail) {	// скачать отчет
-			const t = getCurrentRetailPointId;
-			console.log('t', t);
-
-
-			// const beginDate = moment(props.get('beginDate'), "DD.MM.YYYY").format();
-			// const endDate = moment(props.get('endDate'), "DD.MM.YYYY").format();
-            //
-			// const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
-			// const downloadLink = document.createElement("a");
-			// const values = atob(token).split(':');
-			// const email = values[0];
-			// const password = values[1];
-            //
-			// // GET /v1/retail-point/{retailPointId}/downloadSalesReport
-			// downloadLink.href = `/api/v1/retail-point/${token}/downloadSalesReport?beginDate=${beginDate}&endDate=${endDate}`;
-			// downloadLink.download = "report.xls";
-            //
-			// console.log(downloadLink);
-            //
-			// document.body.appendChild(downloadLink);
-			// downloadLink.click();
-			// document.body.removeChild(downloadLink);
-
-		} else {						// отправить на EMail
-
-		}
-
-
-		const {salesReportAction} = this.props;
-		salesReportAction({
-			beginDate: props.get('beginDate'),
-			endDate: props.get('endDate'),
-			fromEmail: props.get('fromEmail') || ''
-		});
+	componentDidMount() {
+		this.props.resetForm();
 	}
 
-	onCheckForEMail() {
-		const {onCheckForEMail, reportState} = this.props;
-		onCheckForEMail(!reportState.isFromEmail);
+	getCurrentPointName() {
+		const {points, selectedPoint}=this.props;
+		if (selectedPoint && points) {
+			const point = points.filter(point => point.id === selectedPoint)[0];
+			return point ? point.name : '';
+		}
+		return '';
+	}
+
+	onSubmitForm(props) {
+		const {salesReportAction, sending, selectedPoint, token, reset} = this.props;
+		if (sending)
+			return;
+		const form = props.toJS();
+
+		if (form.sendToEmail) {	// скачать отчет
+			salesReportAction({
+				beginDate: form.beginDate,
+				endDate: form.endDate,
+				email: form.email
+			});
+		} else {
+			const downloadLink = document.createElement("a");
+			const beginDateStr = dateHelper.dateFormat(form.beginDate, 'isoUtcDateTime');
+			const endDateStr = dateHelper.dateFormat(form.endDate, 'isoUtcDateTime');
+
+			const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
+			const values = atob(token).split(':');
+			const email = values[0];
+			const password = values[1];
+			const today = new Date();
+			const pointName = this.getCurrentPointName();
+
+			downloadLink.href = `${protocol}//${email}:${password}@${host}/api/v1/retail-point/${selectedPoint}/downloadSalesReport?beginDate=${beginDateStr}&endDate=${endDateStr}`;
+
+			downloadLink.download = `${pointName}_${dateHelper.dateFormat(today, 'yyyy-mm-dd')}.xls`;
+			downloadLink.target = "_blank";
+			document.body.appendChild(downloadLink);
+			downloadLink.click();
+			document.body.removeChild(downloadLink);
+			reset('report_form');
+		}
 	}
 
 	render() {
-		const {reportState} = this.props;
+		const {sendToEmail, sending, formErrors} = this.props;
 
 		return (
 			<div>
 				<TitlePanel/>
-				<ReportForm reportState={reportState}
-							onCheckForEMail={::this.onCheckForEMail}
-							onSubmitForm={::this.onSubmitForm} />
+				<ReportForm sendToEmail={sendToEmail}
+							sending={sending}
+							error={formErrors}
+							className="widget_block  report_request_form"
+							onSubmitForm={::this.onSubmitForm}/>
 			</div>
 		);
 	}
 
 }
 
-function mapStateToProps(state, ownProps) {
-	const reportState = selectors.getReport(state);
-	const token = getSection(state).get('token');
+const reportFormSelector = formValueSelector('report_form');
 
-	return {reportState, token};
+function mapStateToProps(state, ownProps) {
+	const report = selectors.getSection(state);
+	const token = accountSelector.getSection(state).get('token');
+	const sendToEmail = reportFormSelector(state, 'sendToEmail');
+	const points = getRetailPointList(state);
+	return {
+		sending: report.get('sending'),
+		sent: report.get('sent'),
+		formErrors: report.get('error'),
+		sendToEmail,
+		token,
+		points
+	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			salesReportAction: actions.salesReport.request,
-			onCheckForEMail: actions.onCheckForEMail
+			resetForm: actions.resetForm,
+			reset: reset
 		}, dispatch)
 	};
 }
