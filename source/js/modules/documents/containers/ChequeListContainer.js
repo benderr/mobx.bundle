@@ -13,6 +13,7 @@ import * as selectors from '../selectors/chequeSelectors'
 import * as actions from '../actions/chequeActions'
 import ListFilter from "../components/ListFilter";
 import ChequeFilter from "../components/cheque/ChequeFilter";
+import dateHelper from "common/helpers/dateHelper";
 
 
 @withRouter
@@ -20,7 +21,6 @@ import ChequeFilter from "../components/cheque/ChequeFilter";
 @retailPointHOC
 @toJS
 class ChequeListContainer extends React.Component {
-
 	componentWillMount() {
 		const {getListCheque, listState} = this.props;
 
@@ -29,11 +29,6 @@ class ChequeListContainer extends React.Component {
 			sortField: listState.sortField,
 			sortDirection: listState.sortDirection
 		});
-	}
-
-	handleOpenFilter() {
-		console.log('handleOpenFilter', this.filter);
-		this.filter && this.filter.open();
 	}
 
 	onHeadSortClick(field, by) {
@@ -71,25 +66,54 @@ class ChequeListContainer extends React.Component {
 		}
 	}
 
-	isClosableFilter(){
-		if(!this.chequeFilter)
+
+	// region Filtered
+
+	handleOpenFilter() {
+		this.filter && this.filter.open();
+	}
+
+	isClosableFilter() {
+		if (!this.chequeFilter)
 			return true;
 		return this.chequeFilter.isClosable();
 	}
 
-	handleChangeFilterDocType() {
-
+	handleChangeDate(date) {
+		const {setFilterProps, listState: {docsFilter}} = this.props;
+		setFilterProps({
+			dateFrom: date.dateFrom,
+			dateTo: date.dateTo,
+			docType: docsFilter.docType
+		});
 	}
 
-	handleChangeDate() {
+	handleChangeFilterDocType(e, type) {
+		const {setFilterProps, listState: {docsFilter}} = this.props;
 
+		let state = {
+			dateFrom: docsFilter.dateFrom,
+			dateTo: docsFilter.dateTo,
+			docType: docsFilter.docType
+		};
+		let pos = state.docType.indexOf(type);
+
+		if (pos >= 0) {
+			state.docType.splice(pos, 1);
+		} else {
+			state.docType.push(type);
+		}
+
+		setFilterProps(state);
 	}
+
+	// endregion Filtered
 
 	render() {
-		const {listState, dateFrom, dateTo, docType} = this.props;
+		const {listState} = this.props;
+		const {dateFrom, dateTo, docType} = listState.docsFilter;
 		const noItems = listState.noItems;
 		const globalLoading = noItems === null;
-
 
 		return (
 			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
@@ -104,18 +128,17 @@ class ChequeListContainer extends React.Component {
 					</TitleActions>
 				</TitlePanel>
 
-				<ListFilter setInstance={f => this.filter=f}
+				<ListFilter setInstance={f => this.filter = f}
 							isClosable={::this.isClosableFilter}
 							ignoreCloseSelect="no-close-date-selector">
-					<ChequeFilter ref={f => this.chequeFilter=f}
-									   onChangeDocType={::this.handleChangeFilterDocType}
-									   onChangeDate={::this.handleChangeDate}
-									   dateFrom={dateFrom}
-									   dateTo={dateTo}
-									   docType={docType}
+					<ChequeFilter ref={f => this.chequeFilter = f}
+								  onChangeDocType={::this.handleChangeFilterDocType}
+								  onChangeDate={::this.handleChangeDate}
+								  dateFrom={dateFrom}
+								  dateTo={dateTo}
+								  docType={docType}
 					/>
 				</ListFilter>
-
 
 				{!globalLoading && !noItems &&
 				<ChequeList listState={listState}
@@ -133,23 +156,19 @@ class ChequeListContainer extends React.Component {
 			</div>
 		);
 	}
-
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
 	const listState = selectors.getSection(state);
-
-	return {
-		listState
-	};
+	return {listState};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			push,
-
-			getListCheque: actions.getCheque.request
+			getListCheque: actions.getCheque.request,
+			setFilterProps: actions.setFilterProps
 		}, dispatch)
 	};
 }

@@ -3,7 +3,6 @@ import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPoin
 import logger from 'infrastructure/utils/logger'
 
 import * as dataContext from '../dataProvider/dataContext'
-import * as enums from '../enums/chequeActions'
 import * as chequeActions from '../actions/chequeActions'
 import {getSectionPos, getSectionStep} from '../selectors/chequeSelectors'
 
@@ -45,6 +44,6 @@ function* getChequeSaga({q='', filter = null, sortField, sortDirection, isFirst 
 
 export default function* () {
 	yield [
-		takeEvery(enums.GET_CHEQUE.REQUEST, getChequeSaga)
+		takeEvery(chequeActions.GET_CHEQUE.REQUEST, getChequeSaga)
 	]
 }
