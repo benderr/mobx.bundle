@@ -34,7 +34,7 @@ export default {
 		clever: "clever",
 		cleverDate: 'cleverDate',
 		dateTime: 'dd.mm.yyyy HH:MM',
-		serverFormat: 'yyyy-mm-dd'
+		serverDateTime: "yyyy-mm-dd'T'HH:MM:ss'Z'"
 	},
 
 	i18n: {
@@ -220,6 +220,13 @@ export default {
 		else {
 			return false;
 		}
+	},
+
+	setEndDate(date){
+		date.setHours(23);
+		date.setMinutes(59);
+		date.setSeconds(59);
+		return date;
 	},
 
 	dateFormat(date, format, alternativeFormat, dateTimeNow){

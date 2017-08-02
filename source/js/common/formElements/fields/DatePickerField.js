@@ -22,7 +22,8 @@ const DatePickerField = ({required, requiredDisable, validate = [], ...props}) =
 };
 
 DatePickerField.propTypes = {
-	wrapperClassName: PropTypes.string
+	wrapperClassName: PropTypes.string,
+	tipPlace: PropTypes.string
 };
 
 

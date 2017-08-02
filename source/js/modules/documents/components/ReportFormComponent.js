@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {reduxForm} from 'common/formElements'
 import {Button} from 'common/uiElements'
 import {InputField, DatePickerField, Field} from 'common/formElements/fields'
+import {focus} from 'redux-form/immutable'
 
 class ReportFormComponent extends React.Component {
 
@@ -17,11 +18,13 @@ class ReportFormComponent extends React.Component {
 					<DatePickerField wrapperClassName="from-to"
 									 required="Укажите период"
 									 className="small date_from"
+									 tipPlace="top"
 									 name="beginDate"/>
 					по
 					<DatePickerField wrapperClassName="from-to"
 									 required="Укажите период"
 									 className="small date_to"
+									 tipPlace="top"
 									 name="endDate"/>
 				</div>
 

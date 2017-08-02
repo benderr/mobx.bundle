@@ -16,7 +16,7 @@ import {focus} from 'redux-form/immutable'
  */
 function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 	return (WrappedComponent) => {
-		return class radValidateHOC extends React.Component {
+		class radValidateTooltip extends React.Component {
 
 			constructor(props, context) {
 				super(props, context);
@@ -68,7 +68,6 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 
 			getTooltipProps() {
 				const self = this;
-				const {tipPlace = 'right'}=this.props;
 				return {
 					html: true,
 					multiline: true,
@@ -76,7 +75,7 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 					type: 'error',
 					event: 'focus',
 					eventOff: 'blur keydown',
-					place: tipPlace,
+					place: this.props.tipPlace || 'right',
 					delayHide: 200
 				}
 			}
@@ -117,7 +116,10 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 
 			}
 		}
+
+		return radValidateTooltip;
 	}
 }
+
 
 export default radValidate;

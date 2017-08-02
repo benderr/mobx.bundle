@@ -10,8 +10,8 @@ import {reset} from 'redux-form/immutable'
 function* salesReportSaga({beginDate, endDate, email}) {
 	try {
 		const point = yield select(getPointId);
-		const beginDateStr = dateHelper.dateFormat(beginDate, 'isoUtcDateTime');
-		const endDateStr = dateHelper.dateFormat(endDate, 'isoUtcDateTime');
+		const beginDateStr = dateHelper.dateFormat(beginDate, "serverDateTime");
+		const endDateStr = dateHelper.dateFormat(dateHelper.setEndDate(endDate), 'serverDateTime');
 		const data = yield call(dataContext.salesReport, point, beginDateStr, endDateStr, email);
 		yield put(actions.salesReport.success(data));
 		yield put(notify.success('Отчет отправлен по адресу ' + email));

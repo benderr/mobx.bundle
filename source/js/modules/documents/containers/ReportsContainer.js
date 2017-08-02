@@ -44,8 +44,8 @@ class ReportsContainer extends React.Component {
 			});
 		} else {
 			const downloadLink = document.createElement("a");
-			const beginDateStr = dateHelper.dateFormat(form.beginDate, 'isoUtcDateTime');
-			const endDateStr = dateHelper.dateFormat(form.endDate, 'isoUtcDateTime');
+			const beginDateStr = dateHelper.dateFormat(form.beginDate, 'serverDateTime');
+			const endDateStr = dateHelper.dateFormat(dateHelper.setEndDate(form.endDate), 'serverDateTime');
 
 			const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
 			const values = atob(token).split(':');
