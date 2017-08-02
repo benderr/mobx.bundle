@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Field} from 'redux-form/immutable'
 import {getRequiredValidator} from 'common/formElements/validationHelpers/formFieldHelpers'
 import DatePickerRender from '../DatePickerRender'
@@ -20,7 +21,9 @@ const DatePickerField = ({required, requiredDisable, validate = [], ...props}) =
 				  {...props} />
 };
 
-DatePickerField.propTypes = {};
+DatePickerField.propTypes = {
+	wrapperClassName: PropTypes.string
+};
 
 
 export default DatePickerField;

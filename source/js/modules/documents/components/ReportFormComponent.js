@@ -14,9 +14,15 @@ class ReportFormComponent extends React.Component {
 				<div>Выполнить отчет о продажах за период</div>
 				<div className="date_selection">
 					c
-					<DatePickerField required="Укажите период" className="small date_from" name="beginDate"/>
+					<DatePickerField wrapperClassName="from-to"
+									 required="Укажите период"
+									 className="small date_from"
+									 name="beginDate"/>
 					по
-					<DatePickerField required="Укажите период" className="small date_to" name="endDate"/>
+					<DatePickerField wrapperClassName="from-to"
+									 required="Укажите период"
+									 className="small date_to"
+									 name="endDate"/>
 				</div>
 
 				<div className="send_to_email">
