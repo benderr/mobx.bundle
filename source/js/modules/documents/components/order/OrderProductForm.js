@@ -35,12 +35,15 @@ class OrderProductForm extends React.Component {
 	}
 
 	render() {
-		const {handleSubmit, productSearchState:{loading, products, error}, className = ''} = this.props;
+		const {
+			handleSubmit, productSearchState:{loading, products, error},
+			className = '', onSearchProducts
+		} = this.props;
 
 		return (
 			<form className={className} onSubmit={handleSubmit(::this.handleSave)}>
 				<div class="add_order_form">
-					<Field className="hidden" name="isNew" component="checkbox"/>
+					<Field className="hidden" name="isNew" component="input" type="checkbox"/>
 					<Field className="hidden" name="name" component="input"/>
 					<Field className="hidden" name="barcode" component="input"/>
 					<Field className="hidden" name="minPrice" component="input"/>
@@ -58,6 +61,7 @@ class OrderProductForm extends React.Component {
 									 valueKey="inventCode"
 									 clearable={true}
 									 creatable={true}
+									 onInputChange={onSearchProducts}
 									 newOptionCreator={::this.newOptionCreator}
 									 onChange={::this.handleSelectProduct}
 									 name="inventCode"/>
@@ -114,6 +118,7 @@ OrderProductForm.propTypes = {
 			name: PropTypes.string.isRequired
 		}))
 	}),
+	onSearchProducts: PropTypes.func,
 	className: PropTypes.string
 };
 

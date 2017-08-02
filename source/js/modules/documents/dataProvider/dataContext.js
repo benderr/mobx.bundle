@@ -55,6 +55,12 @@ export function getShopDocumentDetail(retailPointId, id) {
 		.then(response => mapper.toClientDocumentDetails(response.data));
 }
 
+export function salesReport(token, beginDate, endDate, email) {
+	return api.v1().retailpoint(token).salesReport().get({
+		beginDate, endDate, email
+	});
+}
+
 export function requeueDocument(retailPointId, id) {
 	return api.fn().v1().retailpoint(retailPointId)
 		.docs(id).requeue().post();

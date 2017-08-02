@@ -1,0 +1,58 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+import {reduxForm} from 'common/formElements'
+import {Button} from 'common/uiElements'
+import {InputField, DatePickerField, Field} from 'common/formElements/fields'
+
+class ReportFormComponent extends React.Component {
+
+	render() {
+		const {handleSubmit, sendToEmail, onSubmitForm, sending, className, formErrors} = this.props;
+		return (
+			<form onSubmit={handleSubmit(onSubmitForm)} className={className}>
+
+				<div>Выполнить отчет о продажах за период</div>
+				<div className="date_selection">
+					c
+					<DatePickerField required="Укажите период" className="small date_from" name="beginDate"/>
+					по
+					<DatePickerField required="Укажите период" className="small date_to" name="endDate"/>
+				</div>
+
+				<div className="send_to_email">
+					<Field component="input" type="checkbox"
+						   name="sendToEmail"
+						   id="reportSendToEmail"/>
+					<label htmlFor="reportSendToEmail" className="label_check">
+						<i className="icon"/>
+						<span>Отправить отчет на электронную почту</span>
+					</label>
+					{sendToEmail && <div class="send_to_address">
+						<InputField className="small"
+									name="email"
+									type="email"
+									label="Ваш электронный адрес"
+									required="Укажите электронную почту"/>
+					</div>}
+				</div>
+				<div className="form_buttons">
+					<Button type="submit" loading={sending} className="button middle">Сформировать</Button>
+				</div>
+			</form>
+		)
+	}
+}
+
+ReportFormComponent.propTypes = {
+	sendToEmail: PropTypes.bool,
+	sending: PropTypes.bool.isRequired,
+	onSubmitForm: PropTypes.func,
+	formErrors: PropTypes.any
+};
+
+ReportFormComponent = reduxForm({
+	form: 'report_form'
+})(ReportFormComponent);
+
+
+export default ReportFormComponent;

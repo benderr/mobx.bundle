@@ -12,8 +12,7 @@ import {getAppReady} from 'modules/account/selectors/accountSelectors'
 
 @withRouter
 @connect((state) => ({
-	appReady: getAppReady(state),
-	notifications: state.get('notifications')
+	appReady: getAppReady(state)
 }))
 class AppContainer extends React.Component {
 	static propTypes = {
@@ -32,7 +31,7 @@ class AppContainer extends React.Component {
 				{this.props.appReady &&
 				<RadRouter defaultLayerLayout={DefaultLayerLayout} defaultLayout={InternalLayout}
 						   routes={this.props.routes} notFound={NotFoundLayout}/>}
-				<NotifyService notifications={this.props.notifications}/>
+				<NotifyService />
 			</div>
 		);
 	}

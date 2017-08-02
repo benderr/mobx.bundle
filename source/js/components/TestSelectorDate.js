@@ -22,29 +22,33 @@ class Form extends React.Component {
 		}, 5000);
 	}
 
+	handleReset() {
+		this.props.reset();
+	}
+
 	render() {
 		const save = (props) => {
 			console.log('submit testform', props);
 			this.setState({ff: 1});
 		};
 		const {handleSubmit}=this.props;
-		const {options} = this.state;
 
 		return (<form onSubmit={handleSubmit(save)}>
 
-			<DatePickerField name="date1" required="Укажите дату"/>
+			{/*<DatePickerField name="date1" required="Укажите дату"/>*/}
 
-			<div className="w100 m_top_10"></div>
+			{/*<div className="w100 m_top_10"></div>*/}
 
-			<DatePickerField name="date2" required="Укажите дату"/>
+			{/*<DatePickerField name="date2" required="Укажите дату"/>*/}
 
-			<div className="w100 m_top_10"></div>
+			{/*<div className="w100 m_top_10"></div>*/}
 
 			<DatePickerField name="date3" required="Укажите дату"/>
 
 			<div className="w100 m_top_10"></div>
 
 			<button type="submit" className="button middle wide">отправить</button>
+			<button type="button" onClick={::this.handleReset} className="button middle wide clean">сбросить</button>
 		</form>)
 	}
 }
@@ -92,23 +96,24 @@ class TestSelector extends React.Component {
 
 	render() {
 
+		const {formData}=this.props;
+
+		console.log(formData);
 
 		return (
 			<div class="widget_block">
-				<DatePicker value={this.state.date1} onChange={::this.handleChange}/>
-				<div className="w100 m_top_20"></div>
+				{/*<DatePicker value={this.state.date1} onChange={::this.handleChange}/>*/}
+				{/*<div className="w100 m_top_20"></div>*/}
 
-				<DatePickerRange dateFrom={this.state.range.d1}
-								 dateTo={this.state.range.d2}
-								 onChange={::this.handleChangeRange}
-				/>
+				{/*<DatePickerRange dateFrom={this.state.range.d1}*/}
+				{/*dateTo={this.state.range.d2}*/}
+				{/*onChange={::this.handleChangeRange} />*/}
 				<div className="w100 m_top_20"></div>
 
 				<div class="form-group">
-					<h2>Форма</h2>
-					<DateForm initialValues={{date1: new Date()}}/>
+				<h2>Форма</h2>
+				<DateForm initialValues={{date1: new Date()}}/>
 				</div>
-
 			</div>
 		);
 	}
