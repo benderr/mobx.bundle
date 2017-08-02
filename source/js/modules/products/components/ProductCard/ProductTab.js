@@ -50,7 +50,7 @@ class ProductTab extends React.Component {
 				</div>
 
 				<div class="form_group form_horizontal">
-					<div class="property_label col three">Цена *</div>
+					<div class="property_label col three">Цена</div>
 					<div class="property_value col six">
 						<AmountField name="price"
 									 class="w100"
