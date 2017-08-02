@@ -17,7 +17,7 @@ const minPriceValidate = (error) => (price, allValues) => {
 
 class ProductTab extends React.Component {
 	render() {
-		const {className}=this.props;
+		const {className, isEdit}=this.props;
 
 		return (
 			<div className={className}>
@@ -34,7 +34,7 @@ class ProductTab extends React.Component {
 				<div class="form_group form_horizontal">
 					<div class="property_label col three">Код *</div>
 					<div class="property_value col six">
-						<InputField name="inventCode"
+						<InputField name="inventCode" disabled={isEdit}
 									class="w100"
 									required="Укажите код"/>
 					</div>

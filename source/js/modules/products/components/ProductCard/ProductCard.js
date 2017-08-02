@@ -31,7 +31,8 @@ class ProductCard extends React.Component {
 							<a onClick={() => onChangeTab('info')} className={tabInfoClasses}>Информация</a>
 							<a onClick={() => onChangeTab('mod')} className={tabModClasses}>Модификаторы</a>
 						</div>
-						<ProductTab className={!isActiveInfo ? 'hidden' : ''}/>
+						<ProductTab isEdit={isEdit}
+									className={!isActiveInfo ? 'hidden' : ''}/>
 						<ModifiersTab
 							modifiers={modifierGroups}
 							onAddGroup={this.props.onAddGroup}

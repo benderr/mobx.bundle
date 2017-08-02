@@ -55,7 +55,7 @@ class SiteHeader extends React.Component {
 
         const pointsBlock = selectedPointId && points ? points.filter(point => point.id !== selectedPointId)
                 .map(point => (
-                    <li key={'listitem_' + point.id} onClick={() => onSelectPoint(point.id)}><a>{point.name}</a></li>))
+                    <li data-close="true" key={'listitem_' + point.id} onClick={() => onSelectPoint(point.id)}><a>{point.name}</a></li>))
             : null;
 
 
@@ -88,7 +88,7 @@ class SiteHeader extends React.Component {
                                 <div class="drop-content-inner">
                                     <ul class="drop-menu f_small">
                                         {pointsBlock}
-                                        <li><a class="icon-settings" onClick={::this.openRetailPointsList}>Все точки
+                                        <li><a class="icon-settings" data-close="true" onClick={::this.openRetailPointsList}>Все точки
                                             продаж</a></li>
                                     </ul>
                                 </div>

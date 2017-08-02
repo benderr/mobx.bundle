@@ -66,26 +66,6 @@ export const getModifierGroups = (retailPointId, start, count) => {
 	return api.v1().retailpoint(retailPointId).catalog().modifierGroups()
 		.get({start, count})
 		.then(response => response.data);
-	// .catch(() => {
-	// 	return { //todo доделать
-	// 		groupsList: [
-	// 			{
-	// 				code: '1',
-	// 				name: new Date().getTime().toString(),
-	// 				modifiers: [
-	// 					{
-	// 						selected: true,
-	// 						name: 'Lol'
-	// 					}
-	// 				].map((s, i) => ({
-	// 					selected: s.selected,
-	// 					name: s.name,
-	// 					id: i + 1
-	// 				}))
-	// 			}
-	// 		]
-	// 	}
-	// })
 };
 
 

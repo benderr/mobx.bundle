@@ -9,7 +9,7 @@ export const toClientProduct = (item) => {
 		alcVolume: item.alcVolume,
 		alcoholType: item.alcoholType,
 		articul: item.articul,
-		barcode: item.barсode || item.inventCode,
+		barcode: item.barcode || item.inventCode,
 		barcodes: item.barcodes,
 		defaultQuantity: item.defaultQuantity,
 		deptCode: item.deptCode,
