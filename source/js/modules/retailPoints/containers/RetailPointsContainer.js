@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom'
 import {push} from 'connected-react-router'
 import {bindActionCreators} from 'redux';
 import toJs from 'components/HOC/toJs'
 import {getRetailPointList, getCurrentRetailPointId} from '../selectors/retailPointSelectors'
 import RetailPointList from '../components/RetailPointList/RetailPointList';
 import * as retailPointActions from '../actions/retailPointActions';
-
+import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 
 const mapActions = dispatch => ({
 	onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch),
@@ -22,6 +21,7 @@ const mapState = state => ({
 });
 
 @connect(mapState, mapActions)
+@retailPointHOC
 @toJs
 class RetailPointsContainer extends React.Component {
 

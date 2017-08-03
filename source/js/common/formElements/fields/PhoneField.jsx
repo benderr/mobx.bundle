@@ -14,7 +14,7 @@ class PhoneField extends React.Component {
         const {required, requiredDisable, validate = [], ...props} =this.props;
         const validators = [...getRequiredValidator({required, requiredDisable}), ...validate];
 
-        return ( <Field type="tel" maxLength="10"
+        return ( <Field type="tel" maxLength="13"
                         component={InputRender} //todo добавить валидатор для правильного формата телефона
                         format={normalizePhone}
                         validate={validators}

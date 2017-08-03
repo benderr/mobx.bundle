@@ -9,6 +9,7 @@ import * as accountSelector from 'modules/account/selectors/accountSelectors'
 import * as selectors from '../selectors/reportSelectors'
 import * as actions from '../actions/reportActions'
 import {formValueSelector, reset} from 'redux-form/immutable'
+import {decrypt} from 'infrastructure/utils/tokenCrypt'
 import dateHelper from 'common/helpers/dateHelper'
 import {getRetailPointList} from 'modules/retailPoints/selectors/retailPointSelectors'
 
@@ -48,14 +49,11 @@ class ReportsContainer extends React.Component {
 			const endDateStr = dateHelper.dateFormat(dateHelper.setEndDate(form.endDate), 'serverDateTime');
 
 			const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
-			const values = atob(token).split(':');
-			const email = values[0];
-			const password = values[1];
+			const {email, password}=decrypt(token);
 			const today = new Date();
 			const pointName = this.getCurrentPointName();
 
 			downloadLink.href = `${protocol}//${email}:${password}@${host}/api/v1/retail-point/${selectedPoint}/downloadSalesReport?beginDate=${beginDateStr}&endDate=${endDateStr}`;
-
 			downloadLink.download = `${pointName}_${dateHelper.dateFormat(today, 'yyyy-mm-dd')}.xls`;
 			downloadLink.target = "_blank";
 			document.body.appendChild(downloadLink);
@@ -86,7 +84,7 @@ const reportFormSelector = formValueSelector('report_form');
 
 function mapStateToProps(state, ownProps) {
 	const report = selectors.getSection(state);
-	const token = accountSelector.getSection(state).get('token');
+	const token = accountSelector.getToken(state);
 	const sendToEmail = reportFormSelector(state, 'sendToEmail');
 	const points = getRetailPointList(state);
 	return {

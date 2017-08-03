@@ -14,11 +14,12 @@ class InputRender extends React.Component {
 		disabled: false,
 		readOnly: false,
 		className: '',
-		addClassName: ''
+		addClassName: '',
+		maxLength: 255
 	};
 
 	render() {
-		const {input, label, className, type, validator, disabled, readOnly}=this.props;
+		const {input, label, className, type, validator, disabled, readOnly, maxLength}=this.props;
 		const {tooltip, addClassName}=validator;
 		const classNames = [className, addClassName].join(' ');
 		return (
@@ -29,6 +30,7 @@ class InputRender extends React.Component {
 				   type={type}
 				   disabled={disabled}
 				   readOnly={readOnly}
+				   maxLength={maxLength == 0 ? 100000 : maxLength}
 				   {...tooltip} />
 		);
 	}

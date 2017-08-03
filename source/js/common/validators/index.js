@@ -1,13 +1,19 @@
 const EMAIL_REGEXP = /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9-])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+$/;
 
-export const validEmail = (email, required = false) => {
+export const validEmail = (email) => {
 	if ((email || '').length == 0)
-		return !required;
+		return true;
 	return EMAIL_REGEXP.test(email);
 };
 
-export const validChars = (string) => {
+export const onlyCyr = (string) => {
 	return /^[а-яА-ЯёЁ][а-яА-ЯёЁ\-\s]*$/.test(string);
+};
+
+export const firstSymbolCyr = str => {
+	if (str && str.length >= 1)
+		return /^[а-яА-ЯёЁ]$/.test(str.charAt(0));
+	return true;
 };
 
 export const validPassword = (password) => {
@@ -72,5 +78,9 @@ export const isCorrectKpp = (val) => {
 	if (!val)
 		return true;
 	return val.length === 9;
+};
+
+export const validator = (errorText, validateCondition) => (...props) => {
+	return !validateCondition(...props) ? errorText : undefined;
 };
 

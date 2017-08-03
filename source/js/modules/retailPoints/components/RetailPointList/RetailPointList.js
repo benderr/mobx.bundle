@@ -24,9 +24,6 @@ class RetailPointList extends React.Component {
 						<div class="pos_amount">Сумма продаж</div>
 						<div class="pos_action">Действия</div>
 					</div>
-					{/*<div class="table_row  row_link_search">*/}
-					{/*<input type="search" class="small  w100" placeholder="Поиск по точкам продаж"/>*/}
-					{/*</div>*/}
 					{points.map(point => (
 						<RetailPointListItem key={'listitem_' + point.id}
 											 point={point}

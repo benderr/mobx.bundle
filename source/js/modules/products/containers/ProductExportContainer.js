@@ -3,17 +3,16 @@ import {connect} from 'react-redux';
 import toJs from 'components/HOC/toJs';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
-import {getSection} from 'modules/account/selectors/accountSelectors';
+import {getToken} from 'modules/account/selectors/accountSelectors';
 import PropTypes from 'prop-types';
+import {decrypt} from 'infrastructure/utils/tokenCrypt'
 
 class ProductExportContainer extends DefaultLayerLayout {
 	handleDownload() {
 		const {token}=this.props;
 		const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
 		const downloadLink = document.createElement("a");
-		const values = atob(token).split(':');
-		const email = values[0];
-		const password = values[1];
+		const {email, password}=decrypt(token);
 		downloadLink.href = `${protocol}//${email}:${password}@${host}/api/v1/download-catalog`;
 		downloadLink.download = "catalog.xls";
 		document.body.appendChild(downloadLink);
@@ -49,4 +48,4 @@ ProductExportContainer.propTypes = {
 	selectedPoint: PropTypes.string.isRequired,
 };
 
-export default connect((state) => ({token: getSection(state).get('token')}))(retailPointHOC(toJs(ProductExportContainer)));
+export default connect((state) => ({token: getToken(state)}))(retailPointHOC(toJs(ProductExportContainer)));

@@ -13,7 +13,7 @@ const SignInForm = props => {
 		if (!error)
 			return '';
 		if (error.status == 401)
-			return 'Неверный E-mail или пароль!';
+			return 'Неверная электронная почта или пароль!';
 		return 'Произошла неизвестная ошибка.'
 	};
 
@@ -52,7 +52,7 @@ const SignInForm = props => {
 
 					<div className="form_buttons">
 						{!loading && <button className="button" type="submit">Войти</button>}
-						{loading && <button className="button loading_block" disabled="disabled"></button>}
+						{loading && <button className="button loading_block" type="button"></button>}
 					</div>
 				</div>
 			</div>

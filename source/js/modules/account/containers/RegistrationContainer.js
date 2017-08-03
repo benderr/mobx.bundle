@@ -19,7 +19,6 @@ class RegistrationContainer extends React.Component {
 	}
 
 	onCaptchaChange(value) {
-		debugger
 		this.setState({
 			captcha: value
 		});

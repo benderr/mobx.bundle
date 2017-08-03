@@ -16,6 +16,10 @@ export const getChangePasswordSection = (state) => {
 	return state.get('changePassword');
 };
 
+export const getToken = createSelector([getSection], (section) => {
+	return section.get('token');
+});
+
 export const getAuthData = createSelector([getSection], (section) => {
 	return section ? section.get('authData') : null;
 });

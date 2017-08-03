@@ -9,16 +9,16 @@ const ForgotForm = props => {
 	const {handleSubmit, loading, isSent, onSendEmail, errors} = props;
 
 	const getError = (error) => {
-		if (!error)
-			return '';
-		return 'Мы не можем вам отправить ссылку для восстановления пароля. Пожалуйста, проверьте введенный адрес электронной почты.'
+		if (error.status == 404)
+			return 'Мы не можем вам отправить ссылку для восстановления пароля. Пожалуйста, проверьте введенный адрес электронной почты.'
+		return 'Произошла неизвестная ошибка.'
 	};
 
 	return (
 		<form onSubmit={handleSubmit(onSendEmail)}>
 			<div className="login_content">
-				<p class="mb24">Для восстановления пароля укажите электронную почту, которую вы указали при
-					регистрации</p>
+				{!isSent && <p class="mb24">Для восстановления пароля укажите электронную почту, которую вы указали при
+					регистрации</p>}
 				{!isSent && <div class="form_group">
 					<div class="input_group light w100">
 						<InputField name="email"

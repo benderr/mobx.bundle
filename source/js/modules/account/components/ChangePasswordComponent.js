@@ -19,15 +19,18 @@ const isValidPasswordLength = text => (value) => {
 };
 
 const ChangePasswordComponent = props => {
-	const {handleSubmit, onChangePassword, formState:{loading, success, errors}}= props;
+	const {handleSubmit, onChangePassword, formState:{loading, success, error}}= props;
 
-	const getError = (error) => {
-		if (!error)
-			return '';
-		if (error.status == 401)
-			return 'Неверный E-mail или пароль!';
-		return 'Произошла неизвестная ошибка.'
-	};
+	{/*const getError = (error) => {*/}
+		{/*if (!error) {*/}
+			{/*return '';*/}
+		{/*}*/}
+		{/*if (error.status == 401 ||*/}
+	// 		(error.data && error.data.message == "Current password didn't match")) {
+	// 		return 'Неверный пароль!';
+	// 	}
+	// 	return 'Произошла неизвестная ошибка.'
+	// };
 
 	return (
 		<form onSubmit={handleSubmit(onChangePassword)}>
@@ -68,7 +71,7 @@ const ChangePasswordComponent = props => {
 				</div>
 			</div>
 
-			<div className="form_error">{getError(errors)}</div>
+			{/*<div className="form_error">{getError(error)}</div>*/}
 			<div class="form_buttons  row">
 				<div class="property_label col">&nbsp;</div>
 				<div class="property_value col">

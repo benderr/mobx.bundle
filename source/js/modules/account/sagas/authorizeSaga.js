@@ -6,18 +6,18 @@ import * as dataContext  from '../dataProvider/accountDataContext'
 import * as accountSelectors from '../selectors/accountSelectors'
 import {push} from 'connected-react-router'
 import * as retailPointsSaga from '../../retailPoints/sagas/retailPointsSaga'
-
+import {encrypt} from 'infrastructure/utils/tokenCrypt'
 const xToken = 'X-TOKEN';
 const signInLocation = {pathname: '/signin'};
 
 function* authorize(email, pass, redirectUrl) {
 	try {
-		const token = btoa(`${email}:${pass}`);
+		const token = encrypt(email, pass);
 		const profile = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success({profile, token}));
 		yield fork(retailPointsSaga.runRetailPoints);
-		yield put(push({pathname: redirectUrl || '/'}));
+		yield put(push({pathname: redirectUrl && redirectUrl != '/' ? redirectUrl : '/retail-points'}));
 	} catch (error) {
 		yield put(login.failure({
 			status: error.status,
@@ -25,6 +25,7 @@ function* authorize(email, pass, redirectUrl) {
 		}));
 	}
 }
+
 
 function* watchLogin() {
 	while (true) {
