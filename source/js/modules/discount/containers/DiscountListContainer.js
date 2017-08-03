@@ -19,8 +19,14 @@ import * as actions from '../actions/discountActions';
 class DiscountListContainer extends React.Component {
 
 	componentDidMount() {
-		const {getListDiscount, listState: {list}} = this.props;
-		if (!list.length) getListDiscount();
+		const {getListDiscount} = this.props;
+		getListDiscount();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		const {getListDiscount, selectedPoint} = this.props;
+		if (selectedPoint !== nextProps.selectedPoint)
+			getListDiscount();
 	}
 
 	onAddFormLayer() {
@@ -40,7 +46,7 @@ class DiscountListContainer extends React.Component {
 	}
 
 	onCheckActive(code) {
-		console.log('onCheckActive', code)
+		// console.log('onCheckActive', code)
 	}
 
 	onFilterChanged(e) {
@@ -64,7 +70,7 @@ class DiscountListContainer extends React.Component {
 	onInfinateScroll() {
 		const {getListDiscount, listState} = this.props;
 
-		console.log('qwe')
+		// console.log('qwe')
 
 		if ((listState.pos + listState.listStep) < listState.total_count) {
 			getListDiscount({
@@ -82,7 +88,7 @@ class DiscountListContainer extends React.Component {
 		const noItems = listState.noItem;
 		const globalLoading = noItems === null;
 
-		console.log('render', listState);
+		// console.log('render', listState);
 
 		return (
 			<div className="h100per">
