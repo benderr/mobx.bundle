@@ -2,23 +2,18 @@ import * as actions from '../enums/actions';
 import {createAction} from 'infrastructure/helpers/actionHelpers';
 
 export const getProducts = {
-	request: (retailPointId, start, count, filter, sort) => createAction(actions.GET_PRODUCTS.REQUEST, {
-		retailPointId,
-		start,
-		count,
-		filter,
-		sort
+	request: () => createAction(actions.GET_PRODUCTS.REQUEST),
+	success: ({pos, totalCount, productsList}) => createAction(actions.GET_PRODUCTS.SUCCESS, {
+		pos,
+		totalCount,
+		productsList
 	}),
-	requestWithFilter: (retailPointId, start, count, filter, sort) => createAction(actions.GET_FILTRED_PRODUCTS.REQUEST, {
-		retailPointId,
-		start,
-		count,
-		filter,
-		sort
-	}),
-	success: (response, initialRequest) => createAction(actions.GET_PRODUCTS.SUCCESS, {response, initialRequest}),
 	failure: (error) => createAction(actions.GET_PRODUCTS.FAILURE, {error})
 };
+
+export const searchProductList = () => createAction(actions.SEARCH_PRODUCT_IN_LIST);
+export const setFilter = ({filter}) => createAction(actions.SET_FILTER, {filter});
+export const correctFilter = ({pos}) => createAction(actions.CORRECT_FILTER, {pos});
 
 export const getProductDetails = {
 	request: ({inventCode, point}) => createAction(actions.GET_PRODUCT_DETAIL.REQUEST, {

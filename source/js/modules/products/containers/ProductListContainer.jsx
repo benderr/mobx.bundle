@@ -4,33 +4,36 @@ import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router'
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
-import {getProducts, createProduct} from '../actions/productActions';
+import {getProducts, createProduct, searchProductList, setFilter} from '../actions/productActions';
 import ProductList from '../components/ProductsList/ProductListComponent';
 import ProductActions from '../components/ProductsList/ProductActions';
 import {
     getProductsList,
     getProductListTotalCount,
     getProductLoading,
-    getNoProductsState
+    getNoProductsState,
+    getTotalCount,
+    getFilter,
+    getProductListError
 } from '../selectors/productsSelectors'
 import toJs from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import {getToken} from 'modules/account/selectors/accountSelectors';
-import {decrypt} from 'infrastructure/utils/tokenCrypt'
+import {LoaderPanel} from 'common/uiElements'
 
 class ProductListContainer extends React.Component {
 
-    componentDidMount() {
-        this.start = 50;
-        this.count = 50;
-        this.filtred = false;
-    }
+    static defaultProps = {
+        pageSize: 50
+    };
 
     exportProduct() {
         const {token}=this.props;
         const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
         const downloadLink = document.createElement("a");
-        const {email, password}=decrypt(token);
+        const values = atob(token).split(':');
+        const email = values[0];
+        const password = values[1];
         downloadLink.href = `${protocol}//${email}:${password}@${host}/api/v1/download-catalog`;
         downloadLink.download = "catalog.xls";
         document.body.appendChild(downloadLink);
@@ -42,34 +45,56 @@ class ProductListContainer extends React.Component {
         this.props.createProduct();
     }
 
-    openProduct(code, point) {
-        const {push}=this.props;
-        push({pathname: `/product/view/point/${point}/code/${code}`});
+    openProduct(code) {
+        const {push, selectedPoint}=this.props;
+        push({pathname: `/product/view/point/${selectedPoint}/code/${code}`});
     }
 
-    getProductsList() {
-        const {selectedPoint, getProducts, productsTotalCount} = this.props;
+    componentDidMount() {
+        this.setFilter({
+            restart: true,
+            filter: '',
+            count: this.props.pageSize,
+            sortField: 'name',
+            sortDirection: 'asc'
+        });
+        this.props.getProducts();
+    }
 
-        if (productsTotalCount >= this.start) {
-            getProducts(selectedPoint, this.start, this.count);
-            this.start += this.count;
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.selectedPoint != this.props.selectedPoint) {
+            this.setFilter({restart: true});
+            this.props.getProducts();
         }
     }
 
-    onFilterChanged(event) {
+    handleLoadMore() {
+        this.props.getProducts();
+    }
+
+    setFilter(filter) {
+        this.props.setFilter({filter});
+    }
+
+    handleChangeFilter(event) {
         let value = event.target.value;
-        const {selectedPoint, getProductsByFilter} = this.props;
-        this.start = 0;
         if (value && value.length > 2) {
-            this.filtred = true;
-            getProductsByFilter(selectedPoint, this.start, this.count, value);
-        } else if (!value && this.filtred) {
-            getProductsByFilter(selectedPoint, this.start, this.count);
+            this.setFilter({restart: true, filter: value});
+            this.props.searchProductList();
+        } else if (!value) {
+            this.setFilter({restart: true, filter: ''});
+            this.props.searchProductList();
         }
     }
+
+    handleSortChange(sortField, sortDirection) {
+        this.setFilter({sortField, sortDirection, restart: true});
+        this.props.getProducts();
+    }
+
 
     render() {
-        const {products, selectedPoint, loading, noProducts} = this.props;
+        const {products, loading, noProducts, totalCount, sortField, sortDirection, error} = this.props;
         const showPanel = !noProducts;
 
         return (
@@ -85,14 +110,17 @@ class ProductListContainer extends React.Component {
 
                 {!noProducts &&
                 <ProductList items={products}
+                             loading={loading}
+                             totalCount={totalCount}
+                             sortField={sortField}
+                             sortDirection={sortDirection}
                              openProduct={::this.openProduct}
-                             selectedPoint={selectedPoint}
-                             loadNext={::this.getProductsList}
-                             onFilterChanged={::this.onFilterChanged}
-                             loading={loading}/>
+                             onLoadNext={::this.handleLoadMore}
+                             onFilterChanged={::this.handleChangeFilter}
+                             onSortChanged={::this.handleSortChange}/>
                 }
 
-                {noProducts &&
+                {noProducts && !loading &&
                 <div class="center_xy  page_center_info  page_center_info__products0">
                     <i class="icon icon_box_empty"></i>
                     <div class="title">Список товаров пуст</div>
@@ -103,6 +131,8 @@ class ProductListContainer extends React.Component {
                             файла</Link>
                     </div>
                 </div>}
+                {noProducts && loading && <LoaderPanel loading={loading}/>}
+                {error && <div className="info info_error">При получении списка произошла ошибка</div>}
             </div>);
     }
 }
@@ -110,12 +140,15 @@ class ProductListContainer extends React.Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        //error: state.products.get('error'),
+        error: getProductListError(state),
         products: getProductsList(state),
         noProducts: getNoProductsState(state),
         productsTotalCount: getProductListTotalCount(state),
         loading: getProductLoading(state),
-        token: getToken(state)
+        token: getToken(state),
+        totalCount: getTotalCount(state),
+        sortField: getFilter(state).get('sortField'),
+        sortDirection: getFilter(state).get('sortDirection'),
     }
 }
 
@@ -124,8 +157,9 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         ...bindActionCreators({
+            setFilter: setFilter,
             getProducts: getProducts.request,
-            getProductsByFilter: getProducts.requestWithFilter,
+            searchProductList: searchProductList,
             push: push,
             createProduct: createProduct
         }, dispatch)

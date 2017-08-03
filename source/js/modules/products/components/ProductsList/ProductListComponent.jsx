@@ -4,7 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 const {arrayOf} = PropTypes;
-
+import {SortLink} from 'common/uiElements'
 import ProductShape from './ProductShape';
 import ProductItem from './ProductItem';
 
@@ -14,9 +14,12 @@ import {InfinateScroll} from 'common/uiElements'
 class ProductListComponent extends React.Component {
 
     render() {
-        const {items, openProduct, selectedPoint, loadNext, onFilterChanged, onSortChanged, loading} = this.props;
+        const {
+            items, loading, onLoadNext, sortField, sortDirection, totalCount,
+            onFilterChanged, onSortChanged, openProduct,
+        } = this.props;
         const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
-                                                               onProductClick={() => openProduct(product.inventCode, selectedPoint)}/>);
+                                                               onProductClick={() => openProduct(product.inventCode)}/>);
 
         const notFound = !loading && productItems.length == 0 ?
             (<div class="searching_results">
@@ -27,9 +30,18 @@ class ProductListComponent extends React.Component {
             <div class='widget_block' style={{minHeight: '100px'}}>
                 <div class='table  table_products'>
                     <div class='table_head'>
-                        <div class='product_id'>Код</div>
-                        <div class='product_name'>Наименование</div>
-                        <div class='product_price'>Цена</div>
+                        <SortLink className='product_id' field='inventCode'
+                                  sortField={sortField}
+                                  orderBy={sortDirection}
+                                  onClick={onSortChanged}>Код</SortLink>
+                        <SortLink className='product_name' field='name'
+                                  sortField={sortField}
+                                  orderBy={sortDirection}
+                                  onClick={onSortChanged}>Наименование</SortLink>
+                        <SortLink className='product_price' field='price'
+                                  sortField={sortField}
+                                  orderBy={sortDirection}
+                                  onClick={onSortChanged}>Цена</SortLink>
                     </div>
                     <div class='table_row  row_link_search'>
                         <input
@@ -40,7 +52,10 @@ class ProductListComponent extends React.Component {
                     </div>
                     {productItems}
                     {notFound}
-                    <InfinateScroll loadNext={loadNext} totalCount={items.length} listLength={50} loading={loading}/>
+                    <InfinateScroll loadNext={onLoadNext}
+                                    totalCount={totalCount}
+                                    listLength={items.length}
+                                    loading={loading}/>
                 </div>
             </div>
         );
@@ -50,10 +65,13 @@ class ProductListComponent extends React.Component {
 ProductListComponent.propTypes = {
     items: arrayOf(ProductShape).isRequired,
     openProduct: PropTypes.func.isRequired,
-    selectedPoint: PropTypes.string.isRequired,
-    loadNext: PropTypes.func,
     onFilterChanged: PropTypes.func.isRequired,
-    loading: PropTypes.bool
-}
+    onSortChanged: PropTypes.func.isRequired,
+    onLoadNext: PropTypes.func.isRequired,
+    loading: PropTypes.bool,
+    totalCount: PropTypes.number,
+    sortField: PropTypes.string,
+    sortDirection: PropTypes.string,
+};
 
 export default ProductListComponent;

@@ -1,6 +1,6 @@
 import {
-	GET_PRODUCTS, GET_FILTRED_PRODUCTS, RESET_PRODUCTS_LIST,
-	ADD_PRODUCT_TO_LIST, UPDATE_PRODUCT_IN_LIST, REMOVE_PRODUCT
+	GET_PRODUCTS, SEARCH_PRODUCT_IN_LIST, RESET_PRODUCTS_LIST,
+	ADD_PRODUCT_TO_LIST, UPDATE_PRODUCT_IN_LIST, REMOVE_PRODUCT, SET_FILTER, CORRECT_FILTER
 } from '../enums/actions';
 import {Map, List, fromJS} from 'immutable';
 
@@ -9,7 +9,13 @@ export const initialState = Map({
 	error: null,
 	productsList: List([]),
 	productListTotalCount: 0,
-	noProducts: false
+	noProducts: false,
+	productsFilter: Map({
+		start: 0,
+		totalCount: null,
+		count: null,
+		filter: ''
+	})
 });
 
 export const actionHandlers = {
@@ -20,25 +26,38 @@ export const actionHandlers = {
 			error: null
 		});
 	},
-
-	[GET_FILTRED_PRODUCTS.REQUEST]: (state) => {
-		return state.merge({
-			loading: true,
-			error: null,
-			noProducts: false,
-			productsList: List([]),
-		});
+	[SEARCH_PRODUCT_IN_LIST]: (state, action) => {
+		return state.merge({loading: true, error: null});
 	},
 
-	[GET_PRODUCTS.SUCCESS]: (state, {response, initialRequest = false}) => {
-		const products = state.get('productsList').concat(fromJS(response.productsList));
+	[SET_FILTER]: (state, {filter}) => {
+		const oldFilter = state.getIn(['productsFilter']).toJS();
+		if (filter.restart) {
+			oldFilter.start = 0;
+			oldFilter.totalCount = null;
+		}
+
+		Object.keys(filter).forEach(key => {
+			oldFilter[key] = filter[key];
+		});
+
+		return state.mergeIn(['productsFilter'], fromJS(oldFilter));
+	},
+
+	[CORRECT_FILTER]: (state, {pos}) => {
+		const count = state.getIn(['productsFilter', 'count'], 0);
+		return state.setIn(['docsFilter', 'start'], pos + count);
+	},
+
+	[GET_PRODUCTS.SUCCESS]: (state, {pos, totalCount, productsList}) => {
+		const filter = state.getIn(['productsFilter', 'filter']);
 		return state.merge({
 			loading: false,
 			error: null,
-			productsList: products,
-			noProducts: initialRequest && products.size == 0,
-			productListTotalCount: response.totalCount
-		});
+			productsList: pos > 0 ? state.get('productsList').concat(fromJS(productsList)) : fromJS(productsList),
+			noProducts: !filter && totalCount == 0,
+			productListTotalCount: totalCount
+		}).setIn(['productsFilter', 'totalCount'], totalCount);
 	},
 
 	[GET_PRODUCTS.FAILURE]: (state, action) => {

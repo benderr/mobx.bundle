@@ -177,7 +177,12 @@ function* openCategory({categoryId, gridSize, tabCode}) {
 
 	try {
 		const retailPointId = yield select(getPointId);
-		const response = yield call(productDataContext.getProducts, retailPointId, 0, 50, {groupId: categoryId});
+		const response = yield call(productDataContext.getProducts, {
+			retailPointId,
+			start: 0,
+			count: grid.getLimit(),
+			groupId: categoryId
+		});
 
 		response.productsList.forEach(item => {
 			grid.add({

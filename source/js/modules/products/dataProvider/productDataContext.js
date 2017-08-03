@@ -13,15 +13,15 @@ import {
 	toServerModifierGroup
 } from './productMapper';
 
-export const getProducts = (retailPointId, start, count, {filter, groupId}) => {
+export const getProducts = ({retailPointId, start, count, filter, groupId, sortField = 'name', sortDirection = 'asc'}) => {
 	let params = [];
 	if (filter)
-		params.push(`:quickSearch="${filter}"`);
+		params.push(`::quickSearch="${filter}"`);
 	if (groupId)
 		params.push(`groupId=="${groupId}"`);
 	let q = params.join(';');
 	return api.v1().retailpoint(retailPointId).catalog().inventory()
-		.get({start, count, q})
+		.get({start, count, q, sortDirection, sortField})
 		.then(response => toClient(response.data));
 };
 

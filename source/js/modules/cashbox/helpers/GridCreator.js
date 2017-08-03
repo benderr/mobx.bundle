@@ -11,6 +11,10 @@ class GridCreator {
 		this.height = height;
 	}
 
+	getLimit() {
+		return this.width * this.height;
+	}
+
 	add(props) {
 		if (this.grid.length === this.width * this.height)
 			return;

@@ -1,33 +1,38 @@
 import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects';
-import {debounce} from 'redux-saga-debounce-effect';
+import {debounceFor} from 'redux-saga-debounce-effect';
 import * as actions from '../enums/actions';
-import * as retailPointsActions from '../../retailPoints/enums/actions';
 import * as productActions from '../actions/productActions';
 import * as dataContext from '../dataProvider/productDataContext';
 import {getPointId} from 'modules/core/selectors';
+import * as selectors from '../selectors/productsSelectors'
 
-function* getProductsProcess({retailPointId, start, count, filter, initialRequest = false}) {
+function* getProducts() {
 	try {
-		const response = yield call(dataContext.getProducts, retailPointId, start, count, {filter});
-		yield put(productActions.getProducts.success(response, initialRequest));
+		let filterModel = yield select(selectors.getFilter);
+		const {filter, start, count, sortField, sortDirection}=filterModel.toJS();
+		const retailPointId = yield select(getPointId);
+
+		const {pos, totalCount, productsList} = yield call(dataContext.getProducts, {
+			retailPointId,
+			start,
+			count,
+			filter,
+			sortField,
+			sortDirection
+		});
+		yield put(productActions.getProducts.success({pos, totalCount, productsList}));
+		yield put(productActions.correctFilter({pos}));
 	}
-	catch (e) {
-		yield put(productActions.getProducts.failure(e));
+	catch (error) {
+		yield put(productActions.getProducts.failure(error));
 	}
 }
-
-function* initProductsProcess({id}) {
-	yield put(productActions.resetProductsList());
-	yield getProductsProcess({retailPointId: id, start: 0, count: 50, initialRequest: true});
-}
-
 
 function* importProducts({file}) {
 	try {
 		const response = yield call(dataContext.uploadProducts, file);
 		yield put(productActions.uploadImportProducts.success({response}));
-		const retailPointId = yield select(getPointId);
-		yield initProductsProcess({id: retailPointId});
+		yield call(getProducts);
 	}
 	catch (error) {
 		yield put(productActions.uploadImportProducts.failure({error}));
@@ -36,9 +41,8 @@ function* importProducts({file}) {
 
 export default function*() {
 	yield [
-		takeEvery(retailPointsActions.SET_RETAIL_POINT, initProductsProcess),
-		takeLatest(actions.GET_PRODUCTS.REQUEST, getProductsProcess),
-		debounce(actions.GET_FILTRED_PRODUCTS.REQUEST, getProductsProcess),
+		takeLatest(actions.GET_PRODUCTS.REQUEST, getProducts),
+		debounceFor(actions.SEARCH_PRODUCT_IN_LIST, getProducts, 700),
 		takeEvery(actions.IMPORT_PRODUCTS.REQUEST, importProducts)
 	]
 }

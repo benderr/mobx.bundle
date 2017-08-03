@@ -33,10 +33,22 @@ export const getProductLoading = createSelector([getProductsData], data => {
 	return data.get('loading');
 });
 
+export const getProductListError = createSelector([getProductsData], data => {
+	return data.get('error');
+});
+
 export const getSearchProducts = (formKey) => createSelector([getProductDetailSection], data => {
 	return data.getIn(['searchProductsResult', formKey], Map({
 		loading: false,
 		products: List([]),
 		error: null
 	}));
+});
+
+export const getFilter = createSelector([getProductsData], (section) => {
+	return section.get('productsFilter');
+});
+
+export const getTotalCount = createSelector([getFilter], (filter) => {
+	return filter.get('totalCount');
 });

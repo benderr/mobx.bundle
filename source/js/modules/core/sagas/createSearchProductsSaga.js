@@ -14,7 +14,7 @@ export default (ACTION) => {
 		logger.log('starting search');
 		try {
 			const retailPointId = yield select(getPointId);
-			const response = yield call(dataContext.getProducts, retailPointId, 0, 50, {filter: query});
+			const response = yield call(dataContext.getProducts, {retailPointId, start: 0, count: 100, filter: query});
 			yield put(searchSuccess({...props, products: response.productsList}));
 		}
 		catch (error) {

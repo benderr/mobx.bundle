@@ -41,7 +41,7 @@ describe('productDataContext tests', () => {
 		let start = 0;
 		let count = 50;
 		let filter = 'name';
-		return dataContext.getProducts(retailPointId, start, count, {filter}).then((actualResult) => {
+		return dataContext.getProducts({retailPointId, start, count, filter}).then((actualResult) => {
 			expect(actualResult).toBeTruthy();
 			expect(mockFunc).toBeCalled();
 			expect(mockFunc).toBeCalledWith({start:start, count:count, q:':quickSearch="name"'});
