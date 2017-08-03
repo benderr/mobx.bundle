@@ -27,10 +27,7 @@ class ExternalListContainer extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.selectedPoint != this.props.selectedPoint) {
-			this.setFilter({
-				restart: true,
-				count: this.state.pageSize
-			});
+			this.setFilter({restart: true});
 			this.props.getOrders();
 		}
 	}
