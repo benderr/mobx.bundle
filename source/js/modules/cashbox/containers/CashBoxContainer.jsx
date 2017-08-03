@@ -21,6 +21,16 @@ class CashBoxContainer extends React.Component {
         this.state = {popupPosition: null, gridSize};
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.selectedPoint != this.props.selectedPoint) {
+            this.props.getHotKeysList({start: 0, count: 100});
+        }
+    }
+
+    componentDidMount() {
+        this.props.getHotKeysList({start: 0, count: 100});
+    }
+
     handleAddTab() {
         this.props.newTab();
     }
@@ -263,6 +273,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         ...bindActionCreators({
+            getHotKeysList: actions.getHotKeysList.request,
+
             selectTab: actions.selectTab,
             removeTab: actions.removeTab.request,
             newTab: actions.newTab,

@@ -36,11 +36,11 @@ class CashBoxToolbar extends React.Component {
 									 required="Укажите порядок" minValue={0}/>
 					</div>
 
-					<div class="control">
-						<Field component="input" id="showStatsId" type="checkbox" name="showStats"/>
-						<label for="showStatsId" class="label_check  switcher"><i
-							class="icon"></i><span>Показывать статистику</span></label>
-					</div>
+					{/*<div class="control">*/}
+						{/*<Field component="input" id="showStatsId" type="checkbox" name="showStats"/>*/}
+						{/*<label for="showStatsId" class="label_check  switcher"><i*/}
+							{/*class="icon"></i><span>Показывать статистику</span></label>*/}
+					{/*</div>*/}
 
 					<div class="control">
 						<button type="button" class="button  clean  small" onClick={::this.handleRemove}>Удалить вкладку

@@ -73,15 +73,17 @@ function* removeTab({code}) {
 }
 
 function* setTabs({pos, totalCount, tabList}) {
-	const tabs = tabList.entities.tabs;
+	const tabs = tabList.entities.tabs || {};
 	const tabArray = tabList.result || [];
 	const keys = tabList.entities.hotKeys || {};
+	//устанавливаем список табов и клавиш
+	yield put(actions.setTabs({tabs, keys, totalCount, pos}));
 
 	if (tabArray.length == 0) {
-		yield newTab();
+		const tab = yield call(newTab);
+		const updatedTabs = {[tab.code]: tab};
+		yield put(actions.setTabs({tabs: updatedTabs, keys, totalCount, pos}));
 	} else {
-		//устанавливаем список табов и клавиш
-		yield put(actions.setTabs({tabs, keys, totalCount, pos}));
 		//устанавливаем первую табу
 		const tab = Object.keys(tabs).reduce((tab, key) => {
 			if (tab == null)
@@ -111,9 +113,11 @@ function* newTab() {
 		yield call(dataContext.saveTab, retailPointId, tab);
 	} catch (e) {
 		yield put(notify.error('Не удалось создать вкладку'));
+
 		//yield put(actions.createTab.request({tab}));
 		//todo delay save tab?
 	}
+	return tab;
 }
 
 function* debounceSaveTab() {
@@ -196,31 +200,42 @@ function* backFromCategory({tabCode}) {
 }
 
 
-export function* init() {
-	try {
-		yield takeEvery(actionEnum.GET_HOT_KEYS.REQUEST, getTabs);
-		yield takeEvery(actionEnum.GET_HOT_KEYS.SUCCESS, setTabs);
-		yield takeEvery(actionEnum.NEW_TAB, newTab);
-		yield takeEvery(actionEnum.REMOVE_TAB.REQUEST, removeTab);
-		yield fork(debounceSaveTab);
-		yield fork(debounceSaveKey);
-		yield fork(debounceSearchCategory);
-		yield fork(debounceSearchProduct);
-		yield takeEvery(actionEnum.OPEN_CATEGORY, openCategory);
-		yield takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory);
-		yield takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey);
-
-		yield put(actions.getHotKeysList.request({start: 0, count: 50}));
-
-	} catch (ee) {
-		logger.log('cashbox init saga', ee);
-	} finally {
-		logger.log('task finally');
-	}
-}
+// export function* init() {
+// 	try {
+// 		yield takeEvery(actionEnum.GET_HOT_KEYS.REQUEST, getTabs);
+// 		yield takeEvery(actionEnum.GET_HOT_KEYS.SUCCESS, setTabs);
+// 		yield takeEvery(actionEnum.NEW_TAB, newTab);
+// 		yield takeEvery(actionEnum.REMOVE_TAB.REQUEST, removeTab);
+// 		yield fork(debounceSaveTab);
+// 		yield fork(debounceSaveKey);
+// 		yield fork(debounceSearchCategory);
+// 		yield fork(debounceSearchProduct);
+// 		yield takeEvery(actionEnum.OPEN_CATEGORY, openCategory);
+// 		yield takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory);
+// 		yield takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey);
+//
+// 		yield put(actions.getHotKeysList.request({start: 0, count: 50}));
+//
+// 	} catch (ee) {
+// 		logger.log('cashbox init saga', ee);
+// 	} finally {
+// 		logger.log('task finally');
+// 	}
+// }
 
 export default function*() {
 	yield [
-		fork(subscribeToUrl, '/hotkeys', init)
+		//fork(subscribeToUrl, '/hotkeys', init)
+		takeEvery(actionEnum.GET_HOT_KEYS.REQUEST, getTabs),
+		takeEvery(actionEnum.GET_HOT_KEYS.SUCCESS, setTabs),
+		takeEvery(actionEnum.NEW_TAB, newTab),
+		takeEvery(actionEnum.REMOVE_TAB.REQUEST, removeTab),
+		fork(debounceSaveTab),
+		fork(debounceSaveKey),
+		fork(debounceSearchCategory),
+		fork(debounceSearchProduct),
+		takeEvery(actionEnum.OPEN_CATEGORY, openCategory),
+		takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory),
+		takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey)
 	]
 }

@@ -12,7 +12,6 @@ import NoShopDocs from '../components/ishop/NoShopDocs'
 import ShopDocs from '../components/ishop/ShopDocs'
 import * as shopDocsSelectors from '../selectors/shopDocsSelectors'
 import * as actions from '../actions/shopDocsActions'
-import {DOCUMENT_TYPE} from '../enums'
 import {LoaderPanel} from 'common/uiElements'
 import DocumentsFilter from '../components/ishop/DocumentsFilter'
 
@@ -24,6 +23,13 @@ class ShopDocsContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {pageSize: 50};
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.selectedPoint != this.props.selectedPoint) {
+			this.setFilter({restart: true});
+			this.props.getDocuments();
+		}
 	}
 
 	setFilter(filter) {
