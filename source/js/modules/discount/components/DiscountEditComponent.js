@@ -4,6 +4,10 @@ import {reduxForm} from 'common/formElements'
 import {InputField, NumberField} from 'common/formElements/fields'
 import {PrimaryButton} from 'common/uiElements'
 
+const discountValueValidate = (error) => (val, oVal) => {
+	const v = parseFloat(val);
+	return !(v < 0.01 || v > 100) ? undefined : error;
+};
 
 class DiscountEditComponent extends React.Component {
 	render() {
@@ -26,7 +30,8 @@ class DiscountEditComponent extends React.Component {
 						<div className="property_label col three">Размер, %</div>
 						<div className="property_value col four">
 							<NumberField className="w100" name="value"
-										 required="Укажите размер скидки"/>
+										 required="Укажите размер скидки"
+										 validate={[discountValueValidate('Допустима скидка от 0 до 100%')]}/>
 						</div>
 					</div>
 
