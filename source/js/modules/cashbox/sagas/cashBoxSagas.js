@@ -73,15 +73,17 @@ function* removeTab({code}) {
 }
 
 function* setTabs({pos, totalCount, tabList}) {
-	const tabs = tabList.entities.tabs;
+	const tabs = tabList.entities.tabs || {};
 	const tabArray = tabList.result || [];
 	const keys = tabList.entities.hotKeys || {};
+	//устанавливаем список табов и клавиш
+	yield put(actions.setTabs({tabs, keys, totalCount, pos}));
 
 	if (tabArray.length == 0) {
-		yield newTab();
+		const tab = yield call(newTab);
+		const updatedTabs = {[tab.code]: tab};
+		yield put(actions.setTabs({tabs: updatedTabs, keys, totalCount, pos}));
 	} else {
-		//устанавливаем список табов и клавиш
-		yield put(actions.setTabs({tabs, keys, totalCount, pos}));
 		//устанавливаем первую табу
 		const tab = Object.keys(tabs).reduce((tab, key) => {
 			if (tab == null)
@@ -111,9 +113,11 @@ function* newTab() {
 		yield call(dataContext.saveTab, retailPointId, tab);
 	} catch (e) {
 		yield put(notify.error('Не удалось создать вкладку'));
+
 		//yield put(actions.createTab.request({tab}));
 		//todo delay save tab?
 	}
+	return tab;
 }
 
 function* debounceSaveTab() {
