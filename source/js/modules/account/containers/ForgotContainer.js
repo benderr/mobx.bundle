@@ -7,7 +7,7 @@ import {getForgotSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
 import {Link} from 'react-router-dom';
 import ModulHeader from 'components/ModulHeader';
-import styles from 'components/ExternalLayoutStyles';
+// import styles from 'components/ExternalLayoutStyles';
 
 
 class ForgotContainer extends React.Component {
