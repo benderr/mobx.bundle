@@ -6,8 +6,7 @@ import InfinateScroll from 'common/uiElements/InfinateScroll';
 const columnList = [
 	{code: 'code', cssClass: 'discount_id', name: 'Код', sort: true},
 	{code: 'name', cssClass: 'discount_name', name: 'Название', sort: true},
-	{code: 'value', cssClass: 'discount_size', name: 'Размер, %'},
-	// {code: 'activate', cssClass: 'discount_status', name: 'Активность', noClick: true}
+	{code: 'value', cssClass: 'discount_size', name: 'Размер, %', sort: true}
 ];
 
 const TableHeader = (props) => {
