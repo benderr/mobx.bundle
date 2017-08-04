@@ -92,10 +92,10 @@ class ContragentListComponent extends React.Component {
 		return (
 			<div className="widget_block">
 				<div className="table table_contragents">
-					<TableHeader column={listState.column}
+					<TableHeader column={listState.sortField}
+								 orderBy={listState.sortDirection}
 								 onCheckedCashier={onCheckedCashier}
 								 isCashier={listState.isCashier}
-								 orderBy={listState.orderBy}
 								 onSortList={onSortList}/>
 
 					<TableSearch inputValue={listState.q} onFilterChanged={onFilterChanged}/>

@@ -1,14 +1,15 @@
 import {Map, List, fromJS} from 'immutable';
-import * as actions from '../enums/actions';
+import * as actEnums from '../actions/contragentActions'
+
 
 export const initialState = Map({
 	loading: true,
 	errors: null,
 	success: null,
 
-	iRequest: 0,		// счетчик кол-во раз рагрузили список
-	noItem: null,		// изначально неизвестно есть ли элементы
-	listStep: 20,		// кол-во элементов зв звпрос (постраничная загрузка)
+	// iRequest: 0,		// счетчик кол-во раз рагрузили список
+	noItems: null,		// изначально неизвестно есть ли элементы
+	countStep: 20,		// кол-во элементов зв звпрос (постраничная загрузка)
 
 	// список
 	list: List([]),
@@ -16,74 +17,46 @@ export const initialState = Map({
 	total_count: 0,		// всего элементов в БД
 
 	// сортировка
-	column: 'name',		// поле сортировки
-	orderBy: 'asc',		// направление сорт.
+	sortField: 'name',		// поле сортировки
+	sortDirection: 'asc',		// направление сорт.
 
 	q: '',				// параметры фильтра
 	isCashier: false
 });
 
 export const actionHandlers = {
-	// ...при изменении размера списка (сбрасываем начальное состояние кол-во запросов)
-	[actions.CREATE.SUCCESS]: (state) => {
-		return !state.get('list').size ? state.merge({iRequest: 0, noItem: ''}) : state;
-	},
-	[actions.DELETE.SUCCESS]: (state) => {
-		return state.get('list').size == 1 ? state.merge({iRequest: 0, noItem: ''}) : state;
-	},
-
-	// Список элементов
-	[actions.GET_LIST.REQUEST]: (state, props) => {
+	[actEnums.GET_LIST.REQUEST]: (state, req) => {
 		return state.merge({
 			loading: true,
 			errors: null,
 			success: null,
 
-			noItem: state.get('noItem'),
-			iRequest: state.get('iRequest') + 1,
-
-			column: props.column || initialState.get('column'),
-			orderBy: props.orderBy || initialState.get('orderBy'),
-			pos: props.pos || initialState.get('pos'),
-
-			q: props.q || initialState.get('q'),
-			isCashier: props.isCashier || false
-		})
+			sortField: req.sortField || state.get('sortField'),
+			sortDirection: req.sortDirection || state.get('sortDirection'),
+			q: req.q !== undefined ? req.q : state.get('q'),
+			isCashier: req.isCashier !== undefined ? req.isCashier : state.get('isCashier')
+		});
 	},
-	[actions.GET_LIST.SUCCESS]: (state, {response}) => {
-
-		// если при первой загрузке (без фильтров) пришел результат - значит в БД есть скидки
-		// иначе показываем страницу что скидок нет
-		let noItem = state.get('noItem') === null
-			? !(state.get('iRequest') === 1 && response.data.length > 0)
-			: state.get('noItem');
-
-		// бесконечный скроллинг
-		let arList = response.pos ? state.get('list').concat(fromJS(response.data)) : List(response.data);
-
+	[actEnums.GET_LIST.SUCCESS]: (state, res) => {
+		const arList = res.pos ? state.get('list').concat(fromJS(res.list)) : List(res.list);
 		return state.merge({
 			loading: false,
 			errors: null,
-			success: null,
-			noItem: noItem,
+			success: true,
 
 			list: arList,
-			pos: response.pos,
-			total_count: response.total_count
-		})
-	},
-	[actions.GET_LIST.FAILURE]: (state, {error}) => {
-		return state.merge({
-			loading: false,
-			errors: fromJS(error),
-			success: null
+			pos: res.pos,
+			total_count: res.total_count,
+
+			noItems: res.noItems
 		});
 	},
-
-	// Фильтр: Только кассиры
-	[actions.CHECKED_CASHIER]: (state, {checked}) => {
-		console.log(actions.CHECKED_CASHIER, checked);
-		return state.updateIn(['filterCashier'], view => checked);
+	[actEnums.GET_LIST.FAILURE]: (state, request) => {
+		return state.merge({
+			loading: false,
+			errors: true,
+			success: null
+		});
 	}
 };
 

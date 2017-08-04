@@ -14,14 +14,15 @@ export const getListContragent = ({token, ...props}) => {
 };
 
 
-export const createContragent = ({token, ...props}) => {
-	return api.v1().retailpoint(token).catalog()
-		.post(mapper.createUpdateToServerr(props));
-};
+export const editContragent = ({token, isNew, ...props}) => {
+	const apiUrl = api.v1().retailpoint(token).catalog();
+	const mapperData = mapper.editContragentToServer({isNew, ...props});
 
-export const updateContragent = ({token, ...props}) => {
-	return api.v1().retailpoint(token).catalog()
-		.put(mapper.createUpdateToServerr(props));
+	if (isNew) {
+		return apiUrl.post(mapperData);
+	} else {
+		return apiUrl.put(mapperData);
+	}
 };
 
 export const deleteContragent = ({token, code}) => {
