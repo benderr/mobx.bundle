@@ -69,7 +69,7 @@ class ProductImportReport extends React.Component {
 		const failed = this.renderFailed();
 
 		return (<div>
-			<div class="page_center_info  page_center_info__import_report">
+			<div class="center_xy page_center_info  page_center_info__import_report">
 				<i class="icon icon_box_complete"></i>
 				<div class="title">Справочник обновлен</div>
 
