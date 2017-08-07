@@ -32,13 +32,14 @@ class DiscountEditComponent extends React.Component {
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Наименование</div>
 						<div className="property_value col nine">
-							<InputField className="w100" name="name" required="Укажите наименование" />
+							<InputField className="w100" name="name" required="Укажите наименование" autocomplete="off" />
 						</div>
 					</div>
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Размер, %</div>
 						<div className="property_value col four">
 							<NumberField className="w100" name="value"
+										 autocomplete="off"
 										 required="Укажите размер скидки"
 										 validate={[discountValueValidate('Допустима скидка от 0 до 100%')]}/>
 						</div>

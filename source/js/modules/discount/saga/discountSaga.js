@@ -41,9 +41,7 @@ function* editDiscountSaga({code, ...discount}) {
 			code,
 			isNew: code === 'newItem',
 			name: discount.name,
-			password: discount.password,
-			locked: discount.locked,
-			roles: discount.roles
+			value: discount.value
 		});
 		yield put(actEnums.getListDiscount.request({isFirst: true}));
 		yield put(actEnums.editDiscount.success({code}));

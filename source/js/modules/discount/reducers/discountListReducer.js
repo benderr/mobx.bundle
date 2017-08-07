@@ -24,8 +24,6 @@ export const initialState = Map({
 
 export const actionHandlers = {
 	[actEnums.GET_LIST.REQUEST]: (state, req) => {
-		console.log('GET_LIST.REQUEST', req);
-
 		let props = {};
 
 		if (req.isFirst) {
@@ -46,8 +44,6 @@ export const actionHandlers = {
 		});
 	},
 	[actEnums.GET_LIST.SUCCESS]: (state, res) => {
-		console.log('GET_LIST.SUCCESS', res);
-
 		const arList = res.pos ? state.get('list').concat(fromJS(res.list)) : List(res.list);
 		return state.merge({
 			loading: false,
