@@ -1,29 +1,28 @@
-import * as actions from '../enums/actions';
+import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 import {createAction} from 'infrastructure/helpers/actionHelpers'
 
-// Actions for ListReducer
-export const getListContragent = {
-	request: (props) => createAction(actions.GET_LIST.REQUEST, {column: 'name', orderBy:'asc', ...props}),
-	success: (response) => createAction(actions.GET_LIST.SUCCESS, {response}),
-	failure: (error) => createAction(actions.GET_LIST.FAILURE, {error})
-};
-export const checkboxCashier = (checked) => createAction(actions.CHECKED_CASHIER, {checked});
-export const loadDetailContragent = (code) => createAction(actions.LOAD_DETAIL, {code});
 
-// Actions for EditReducer
-export const openFromList = (contragent) => createAction(actions.OPEN_FROM_LIST, {contragent});
+// Enums
+export const GET_LIST = createRequestTypes('CONTRAGENTS.GET_LIST');
+export const OPEN_FROM_STATE = 'CONTRAGENTS.OPEN_FROM_LIST';
+export const LOAD_DETAIL = 'CONTRAGENTS.LOAD_DETAIL';
 
-export const createContragent = {
-	request: (contragent) => createAction(actions.CREATE.REQUEST, {contragent}),
-	success: () => createAction(actions.CREATE.SUCCESS)
-};
+export const EDIT_CONTRAGENT = createRequestTypes('CONTRAGENTS.EDIT_CONTRAGENT');
+export const DELETE_CONTRAGENT = 'CONTRAGENTS.DELETE_CONTRAGENT';
 
-export const updateContragent = {
-	request: (contragent) => createAction(actions.UPDATE.REQUEST, {contragent}),
-	success: (code) => createAction(actions.UPDATE.SUCCESS, {code})
+
+// Actions
+export const getListContragents = {
+	request: (req) => createAction(GET_LIST.REQUEST, req),
+	success: (res) => createAction(GET_LIST.SUCCESS, res),
+	failure: (err) => createAction(GET_LIST.FAILURE)
 };
 
-export const deleteContragent = {
-	request: (code) => createAction(actions.DELETE.REQUEST, {code}),
-	success: (code) => createAction(actions.DELETE.SUCCESS, {code})
+export const openContragent = (contragent) => createAction(OPEN_FROM_STATE, contragent);
+export const loadingDetail = ({code}) => createAction(LOAD_DETAIL, {code});
+export const editContragent = {
+	request: (req) => createAction(EDIT_CONTRAGENT.REQUEST, req),
+	success: (res) => createAction(EDIT_CONTRAGENT.SUCCESS, res),
+	failure: (code) => createAction(EDIT_CONTRAGENT.FAILURE, code)
 };
+export const deleteContragent = (code) => createAction(DELETE_CONTRAGENT, {code});

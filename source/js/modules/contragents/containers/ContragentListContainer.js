@@ -2,9 +2,9 @@ import React from 'react';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {push} from 'connected-react-router';
-import toJS from 'components/HOC/toJs';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
+import toJS from 'components/HOC/toJs';
+import {push} from 'connected-react-router';
 import LoaderBlock from 'common/uiElements/LoaderBlock';
 
 import * as selectors from '../selectors/contragentSelectors'
@@ -18,77 +18,59 @@ import ContragentListComponent from '../components/ContragentListComponent'
 @toJS
 class ContragentListContainer extends React.Component {
 	componentWillMount() {
-		const {getListContragent, listState: {list, error}} = this.props;
-		if (!list.length && error == null) getListContragent();
+		this.props.getListContragent({isFirst: true});
 	}
 
+	componentWillReceiveProps(nextProps) {
+		const {getListContragent, selectedPoint} = this.props;
+		if (selectedPoint !== nextProps.selectedPoint)
+			getListContragent();
+	}
+
+	// добавить контрагента
 	onAddFormLayer() {
 		const {push} = this.props;
 		push({pathname: `/contragents/add`});
 	}
 
-	onOpenDetailLayout(row) {
+	// детальный просмотр контрагента
+	onOpenDetailLayout(item) {
 		const {openContragent, push} = this.props;
-		openContragent(row);
-		// push({pathname: `/contragents/add`});
-		push({pathname: `/contragents/edit/${row.code}`});
+		openContragent(item);
+		push({pathname: `/contragents/edit/${item.code}`});
 	}
 
-	onSortList(column, orderBy) {
-		const {getListContragent, listState} = this.props;
-		getListContragent({column, orderBy, q: listState.q});
+	// сортировка по столбцам
+	onSortList(sortField, sortDirection) {
+		this.props.getListContragent({sortField, sortDirection});
 	}
 
-	onFilterChanged(e) {
+	// поиск по названию
+	onSearchByName(e) {
 		let val = e.target.value;
-		const {getListContragent, listState} = this.props;
-
-		if (val && val.length > 0) {
-			getListContragent({
-				column: listState.column,
-				orderBy: listState.orderBy,
-				q: val,
-				isCashier: listState.isCashier
-			});
-		} else if (!val || val.length === 0) {
-			getListContragent({
-				column: listState.column,
-				orderBy: listState.orderBy,
-				isCashier: listState.isCashier
-			});
-		}
+		this.props.getListContragent({q: val});
 	}
 
+	// бесконечный скроллинг
 	onInfinateScroll() {
-		const {getListContragent, listState} = this.props;
-		if ((listState.pos + listState.listStep) < listState.total_count) {
-			getListContragent({
-				column: listState.column,
-				orderBy: listState.orderBy,
-				pos: listState.pos + listState.listStep,
-				q: listState.q,
-				isCashier: listState.isCashier
-			});
+		const {getListContragent, listState: {pos, countStep, total_count}} = this.props;
+		if ((pos + countStep) < total_count) {
+			getListContragent({step: true});
 		}
 	}
 
-	// CASHIER
+	// переключатель: Только кассиры
 	onCheckedCashier() {
-		const {listState, getListContragent, checkboxCashier} = this.props;
-		// checkboxCashier(!listState.filterCashier);
-
+		const {getListContragent, listState: {isCashier}} = this.props;
 		getListContragent({
-			column: listState.column,
-			orderBy: listState.orderBy,
-			q: listState.q,
-			isCashier: !listState.isCashier
+			isCashier: !isCashier
 		});
 	}
 
 	render() {
 		const {listState} = this.props;
 
-		const noItems = listState.noItem;
+		const noItems = listState.noItems;
 		const globalLoading = noItems === null;
 
 		return (
@@ -96,28 +78,28 @@ class ContragentListContainer extends React.Component {
 				{!globalLoading &&
 				<div className="title_panel">
 					<h1>Контрагенты</h1>
-
 					{!noItems &&
 					<div className="title_actions">
 						<button className="button small icon-plus"
-								onClick={() => this.onAddFormLayer()}>Добавить контрагента</button>
+								onClick={() => this.onAddFormLayer()}>Добавить контрагента
+						</button>
 					</div>}
 				</div>}
 
-				{!noItems && !globalLoading &&
+				{!globalLoading && !noItems &&
 				<ContragentListComponent listState={listState}
-										 onCheckedCashier={::this.onCheckedCashier}
 										 onOpenDetailLayout={::this.onOpenDetailLayout}
 										 onSortList={::this.onSortList}
-										 onFilterChanged={::this.onFilterChanged}
-										 onInfinateScroll={::this.onInfinateScroll} />}
+										 onFilterChanged={::this.onSearchByName}
+										 onInfinateScroll={::this.onInfinateScroll}
+										 onCheckedCashier={::this.onCheckedCashier}/>}
 
-				{noItems && !globalLoading &&
+				{!globalLoading && noItems &&
 				<div className="center_xy page_center_info page_center_info__contragents0">
 					<div className="title">Контрагенты не заданы</div>
 					<div className="form_buttons row">
-						<button className="button small icon-plus" onClick={() => this.onAddFormLayer()}>Добавить
-							контрагента
+						<button className="button small icon-plus"
+								onClick={() => this.onAddFormLayer()}>Добавить контрагента
 						</button>
 					</div>
 				</div>}
@@ -128,20 +110,17 @@ class ContragentListContainer extends React.Component {
 	}
 }
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state) {
 	const listState = selectors.getListSection(state);
-	return {
-		listState
-	};
+	return {listState};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
 			push,
-			getListContragent: actions.getListContragent.request,
-			checkboxCashier: actions.checkboxCashier,
-			openContragent: actions.openFromList
+			getListContragent: actions.getListContragents.request,
+			openContragent: actions.openContragent
 		}, dispatch)
 	};
 }

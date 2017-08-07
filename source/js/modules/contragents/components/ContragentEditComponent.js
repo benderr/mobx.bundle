@@ -10,7 +10,7 @@ import {ROLES, ROLES_CODE} from '../enums/options'
 
 
 class ContragentEditComponent extends React.Component {
-	componentDidMount() {
+	componentWillMount() {
 		const {contragent, dispatch, form} = this.props;
 		const formState = {...contragent};
 
@@ -33,7 +33,7 @@ class ContragentEditComponent extends React.Component {
 		return (
 			<form className="poss" onSubmit={handleSubmit(onSubmitForm)}>
 				<div className="page_content page_content__contragents with_bottom_panel content_padding">
-					<FieldArray name="roles" component={ ({fields}) =>
+					<FieldArray name="roles" component={({fields}) =>
 						<div className="contragent_role_select">
 							{fields.map((role, indexRole) =>
 								<span key={indexRole}>
@@ -80,7 +80,8 @@ class ContragentEditComponent extends React.Component {
 				<div className="page_bottom_panel">
 					<PrimaryButton type="submit" loading={contragent.loading}>Сохранить</PrimaryButton>
 					<a className="button middle wide clean" onClick={onCloseForm}>Отмена</a>
-					{!isNew && <a className="button middle wide clean mr44 f_right" onClick={onDeleteContragent}>Удалить</a>}
+					{!isNew &&
+					<a className="button middle wide clean mr44 f_right" onClick={onDeleteContragent}>Удалить</a>}
 				</div>
 			</form>
 		)
