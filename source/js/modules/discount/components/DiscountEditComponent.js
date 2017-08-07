@@ -22,7 +22,7 @@ class DiscountEditComponent extends React.Component {
 	render() {
 		const {
 			handleSubmit,
-			isNew, onSubmitForm, onCloseForm, onDeleteDiscount, discount
+			isNew, onSubmitForm, onCloseForm, onDeleteDiscount, discount: {loading}
 		} = this.props;
 
 		return (
@@ -32,25 +32,32 @@ class DiscountEditComponent extends React.Component {
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Наименование</div>
 						<div className="property_value col nine">
-							<InputField className="w100" name="name" required="Укажите наименование" autocomplete="off" />
+							<InputField
+								className="w100"
+								name="name"
+								required="Укажите наименование"
+								autocomplete="off"/>
 						</div>
 					</div>
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Размер, %</div>
 						<div className="property_value col four">
-							<NumberField className="w100" name="value"
-										 autocomplete="off"
-										 required="Укажите размер скидки"
-										 validate={[discountValueValidate('Допустима скидка от 0 до 100%')]}/>
+							<NumberField
+								className="w100"
+								name="value"
+								autocomplete="off"
+								required="Укажите размер скидки"
+								validate={[discountValueValidate('Допустима скидка от 0 до 100%')]}/>
 						</div>
 					</div>
 
 				</div>
 
 				<div className="page_bottom_panel">
-					<PrimaryButton type="submit" loading={discount.loading}>Сохранить</PrimaryButton>
+					<PrimaryButton type="submit" loading={loading}>Сохранить</PrimaryButton>
 					<a className="button middle wide clean" onClick={onCloseForm}>Отмена</a>
-					{!isNew && <a className="button middle wide clean mr44 f_right" onClick={onDeleteDiscount}>Удалить</a>}
+					{!isNew &&
+					<a className="button middle wide clean mr44 f_right" onClick={onDeleteDiscount}>Удалить</a>}
 				</div>
 			</form>
 		);
@@ -59,6 +66,11 @@ class DiscountEditComponent extends React.Component {
 
 DiscountEditComponent.propTypes = {
 	isNew: PropTypes.bool.isRequired,
+	discount: PropTypes.shape({
+		loading: PropTypes.bool,
+		name: PropTypes.string,
+		value: PropTypes.string
+	}),
 	onSubmitForm: PropTypes.func.isRequired,
 	onCloseForm: PropTypes.func.isRequired,
 	onDeleteDiscount: PropTypes.func.isRequired

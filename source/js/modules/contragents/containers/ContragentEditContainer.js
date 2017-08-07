@@ -120,7 +120,7 @@ function mapStateToProps(state, ownProps) {
 		showPassword = roles.some(role => role.get('selected') && ROLES[role.get('name')].password);
 	}
 
-	return {isLoading, action, code, isNew, contragent, showPassword, editState};
+	return {isLoading, code, isNew, contragent, showPassword};
 }
 
 function mapDispatchToProps(dispatch) {

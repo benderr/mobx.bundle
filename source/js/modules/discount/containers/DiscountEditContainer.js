@@ -109,7 +109,7 @@ function mapStateToProps(state, ownProps) {
 		discount = editState.getIn(['newItem']);
 	}
 
-	return {isLoading, action, code, isNew, discount, editState};
+	return {isLoading, code, isNew, discount};
 }
 
 function mapDispatchToProps(dispatch) {

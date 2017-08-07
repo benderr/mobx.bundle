@@ -27,7 +27,7 @@ function* getListDiscountSaga({isFirst = false, step = false}) {
 			noItems: isFirst ? !(response.data.length) : propState.noItems
 		}))
 	} catch (error) {
-		notify.error('При загрузке скидок произошла ошибка');
+		yield put(notify.error('При загрузке скидок произошла ошибка', 'Ошибка'));
 		yield put(actEnums.getListDiscount.failure(error));
 	}
 }
@@ -46,9 +46,9 @@ function* editDiscountSaga({code, ...discount}) {
 		yield put(actEnums.getListDiscount.request({isFirst: true}));
 		yield put(actEnums.editDiscount.success({code}));
 
-		notify.success('Скидка успешно сохранена');
+		yield put(notify.success(code === 'newItem' ? 'Данные сохранены' : 'Данные обновлены'));
 	} catch (error) {
-		notify.error('При сохранении скидки произошла ошибка');
+		yield put(notify.error('При сохранении скидки произошла ошибка', 'Ошибка'));
 		yield put(actEnums.editDiscount.failure(code));
 	}
 }
@@ -64,9 +64,9 @@ function* deleteDiscountSaga({code}) {
 		yield put(actEnums.getListDiscount.request({isFirst: true}));
 		yield put(actEnums.editDiscount.success({code}));
 
-		notify.info('Скидка успешно удалена');
+		yield put(notify.info('Скидка успешно удалена'));
 	} catch (error) {
-		notify.error('При удалении скидки произошла ошибка');
+		yield put(notify.error('При удалении скидки произошла ошибка', 'Ошибка'));
 		yield put(actEnums.editDiscount.failure(code));
 	}
 }
@@ -84,7 +84,7 @@ function* getByCodeDiscountSaga({code}) {
 			yield put(actEnums.openDiscount(data[0]))
 		} else throw new Error();
 	} catch (error) {
-		notify.error('При загрузке скидки произошла ошибка');
+		yield put(notify.error('При загрузке скидки произошла ошибка', 'Ошибка'));
 	}
 }
 

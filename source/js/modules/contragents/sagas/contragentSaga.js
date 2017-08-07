@@ -28,7 +28,7 @@ function* getListContragentSaga({isFirst = false, step = false}) {
 			noItems: 		isFirst ? !(response.data.length) : propState.noItems
 		}));
 	} catch (error) {
-		notify.error('При загрузке контрагентов произошла ошибка');
+		yield put(notify.error('При загрузке контрагентов произошла ошибка', 'Ошибка'));
 		yield put(actEnums.getListContragents.failure(error));
 	}
 }
@@ -49,9 +49,9 @@ function* editContragentSaga({code, ...contragent}) {
 		yield put(actEnums.getListContragents.request({isFirst: true}));
 		yield put(actEnums.editContragent.success({code}));
 
-		notify.success('Контрагент успешно сохранен');
+		yield put(notify.success('Контрагент успешно сохранен'));
 	} catch (error) {
-		notify.error('При сохранении контрагента произошла ошибка');
+		yield put(notify.error('При сохранении контрагента произошла ошибка', 'Ошибка'));
 		yield put(actEnums.editContragent.failure(code));
 	}
 }
@@ -67,9 +67,9 @@ function* deleteContragentSaga({code}) {
 		yield put(actEnums.getListContragents.request({isFirst: true}));
 		yield put(actEnums.editContragent.success({code}));
 
-		notify.info('Контрагент успешно удален');
+		yield put(notify.info('Контрагент успешно удален'));
 	} catch (error) {
-		notify.error('При удалении контрагента произошла ошибка');
+		yield put(notify.error('При удалении контрагента произошла ошибка', 'Ошибка'));
 		yield put(actEnums.editContragent.failure(code));
 	}
 }
@@ -87,7 +87,7 @@ function* getByCodeContragentSaga({code}) {
 			yield put(actEnums.openContragent(data[0]))
 		} else throw new Error();
 	} catch (error) {
-		notify.error('При загрузке контрагента произошла ошибка');
+		yield put(notify.error('При загрузке контрагента произошла ошибка'));
 	}
 }
 

@@ -26,7 +26,7 @@ class ContragentEditComponent extends React.Component {
 	render() {
 		const {
 			handleSubmit, isNew,
-			contragent, showPassword,
+			contragent: {loading}, showPassword,
 			onSubmitForm, onCloseForm, onDeleteContragent
 		} = this.props;
 
@@ -38,11 +38,12 @@ class ContragentEditComponent extends React.Component {
 							{fields.map((role, indexRole) =>
 								<span key={indexRole}>
 
-									<Field name={`${role}.selected`}
-										   type="checkbox"
-										   component="input"
-										   autocomplete="off"
-										   id={`roleId_${indexRole}`}/>
+									<Field
+										name={`${role}.selected`}
+										type="checkbox"
+										component="input"
+										autocomplete="off"
+										id={`roleId_${indexRole}`}/>
 
 									<label htmlFor={`roleId_${indexRole}`} className="label_check">
 										<i className="icon"/>
@@ -80,7 +81,7 @@ class ContragentEditComponent extends React.Component {
 				</div>
 
 				<div className="page_bottom_panel">
-					<PrimaryButton type="submit" loading={contragent.loading}>Сохранить</PrimaryButton>
+					<PrimaryButton type="submit" loading={loading}>Сохранить</PrimaryButton>
 					<a className="button middle wide clean" onClick={onCloseForm}>Отмена</a>
 					{!isNew &&
 					<a className="button middle wide clean mr44 f_right" onClick={onDeleteContragent}>Удалить</a>}
@@ -91,7 +92,17 @@ class ContragentEditComponent extends React.Component {
 }
 
 ContragentEditComponent.propTypes = {
-	contragent: PropTypes.object,
+	isNew: PropTypes.bool,
+	discount: PropTypes.shape({
+		loading: PropTypes.bool,
+		name: PropTypes.string,
+		password: PropTypes.string,
+		roles: PropTypes.array,
+		locked: PropTypes.string
+	}),
+	onSubmitForm: PropTypes.func,
+	onCloseForm: PropTypes.func,
+	onDeleteDiscount: PropTypes.func,
 	showPassword: PropTypes.bool
 };
 
