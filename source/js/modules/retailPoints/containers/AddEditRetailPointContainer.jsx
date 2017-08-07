@@ -76,8 +76,12 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
                     {this.getToggleButton()}
                     <h1>{h1Title}</h1>
                 </div>
-                <RetailPointForm onSave={::this.onSave} onCancel={::this.closeLayer} loading={loading} points={points}
-                                 retailPoint={retailPoint} onDelete={::this.onDelete}/>
+                <RetailPointForm onSave={::this.onSave}
+                                 onCancel={::this.closeLayer}
+                                 loading={loading}
+                                 points={points}
+                                 retailPoint={retailPoint}
+                                 onDelete={::this.onDelete}/>
                 <ConfirmPopupService
                     ref={p => this.confirmPopup = p}
                     okName="Подтвердить"
