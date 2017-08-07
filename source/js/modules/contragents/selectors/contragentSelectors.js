@@ -5,7 +5,15 @@ export const getListSection = (state) => {
 };
 
 export const getListPropsState = createSelector([getListSection], state => {
-	return state.toJS();
+	return {
+		sortField:		state.get('sortField'),
+		sortDirection:	state.get('sortDirection'),
+		countStep:		state.get('countStep'),
+		q:				state.get('q'),
+		pos:			state.get('pos'),
+		isCashier:		state.get('isCashier'),
+		noItems:		state.get('noItems')
+	}
 });
 
 export const getEditSection = (state) => {

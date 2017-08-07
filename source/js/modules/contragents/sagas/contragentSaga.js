@@ -7,7 +7,7 @@ import {getListPropsState} from '../selectors/contragentSelectors'
 import * as dataContext from '../dataProvider/contragentDataContext'
 
 
-function* getListContragentSaga({isFirst = false, step = false, loadDetail = false}) {
+function* getListContragentSaga({isFirst = false, step = false}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
 		const propState = yield select(getListPropsState);
@@ -40,11 +40,11 @@ function* editContragentSaga({code, ...contragent}) {
 		yield call(dataContext.editContragent, {
 			token,
 			code,
-			isNew: code === 'newItem',
-			name: contragent.name,
-			password: contragent.password,
-			locked: contragent.locked === 'off' ? 0 : 1,
-			roles: contragent.roles || []
+			isNew:			code === 'newItem',
+			name:			contragent.name,
+			password:		contragent.password,
+			locked:			contragent.locked,
+			roles:			contragent.roles
 		});
 		yield put(actEnums.getListContragents.request({isFirst: true}));
 		yield put(actEnums.editContragent.success({code}));

@@ -13,16 +13,14 @@ export const getListContragent = {
 		return params;
 	},
 	toClient: (response) => ({
-		data: (response.data || []).map(res => {
-			return {
-				code: res.code,
-				locked: res.locked ? "on" : "off",
-				login: res.login,
-				name: res.name,
-				password: res.password,
-				roles: res.roles || []
-			}
-		}),
+		data: (response.data || []).map(res => ({
+			code: res.code,
+			locked: res.locked ? "on" : "off",
+			login: res.login,
+			name: res.name,
+			password: res.password,
+			roles: res.roles || []
+		})),
 		pos: response.pos,
 		total_count: response.total_count
 	})
@@ -34,5 +32,5 @@ export const editContragentToServer = ({isNew, ...props}) => ({
 	locked: props.locked === 'off' ? 0 : 1,
 	name: props.name,
 	password: props.password,
-	roles: props.roles
+	roles: props.roles  || []
 });
