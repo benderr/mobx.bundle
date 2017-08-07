@@ -6,6 +6,7 @@ import retailPointHOC from 'components/HOC/retailPointRequiredHOC'
 import toJS from 'components/HOC/toJs'
 import {bindActionCreators} from 'redux'
 import {formValueSelector} from 'redux-form/immutable'
+import LoaderBlock from 'common/uiElements/LoaderBlock'
 
 import * as selectors from '../selectors/contragentSelectors'
 import * as actions from '../actions/contragentActions'
@@ -64,7 +65,7 @@ class ContragentEditContainer extends DefaultLayerLayout {
 	}
 
 	render() {
-		const {isNew, contragent, showPassword} = this.props;
+		const {isNew, contragent, showPassword, isLoading} = this.props;
 		const title = isNew ? 'Создание контрагента' : 'Редактирование контрагента';
 
 		const EditComponent = this.EditComponent;
@@ -77,6 +78,7 @@ class ContragentEditContainer extends DefaultLayerLayout {
 					<h1>{title}</h1>
 				</div>
 
+				{!isLoading &&
 				<EditComponent
 					contragent={contragent}
 					initialValues={contragent}
@@ -84,7 +86,7 @@ class ContragentEditContainer extends DefaultLayerLayout {
 					isNew={isNew}
 					onSubmitForm={::this.onSubmitForm}
 					onCloseForm={::this.onCloseForm}
-					onDeleteContragent={::this.onDeleteContragent}/>
+					onDeleteContragent={::this.onDeleteContragent}/>}
 
 				<ConfirmPopupService
 					ref={p => this.deletePopup = p}
@@ -92,6 +94,8 @@ class ContragentEditContainer extends DefaultLayerLayout {
 					text='Контрагент будет удален из списка контрагентов всех точек'
 					okName="Подтвердить"
 					cancelName="Отмена"/>
+
+				<LoaderBlock loading={isLoading} />
 			</article>
 		)
 	}
