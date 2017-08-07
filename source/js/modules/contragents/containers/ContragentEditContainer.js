@@ -2,15 +2,16 @@ import React from 'react'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
-import toJS from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC'
+import toJS from 'components/HOC/toJs'
 import {bindActionCreators} from 'redux'
 import {formValueSelector} from 'redux-form/immutable'
+import LoaderBlock from 'common/uiElements/LoaderBlock'
 
-import {ConfirmPopupService} from 'common/uiElements'
-import createEditComponent from '../components/ContragentEditComponent'
-import * as actions from '../actions/contragentActions'
 import * as selectors from '../selectors/contragentSelectors'
+import * as actions from '../actions/contragentActions'
+import createEditComponent from '../components/ContragentEditComponent'
+import {ConfirmPopupService} from 'common/uiElements'
 import {ROLES} from '../enums/options'
 
 const getFormName = code => `editContragent_${code}`;
@@ -27,33 +28,19 @@ class ContragentEditContainer extends DefaultLayerLayout {
 	}
 
 	componentWillMount() {
-		const {isLoading, code, loadDetail} = this.props;
-		if (isLoading) {
-			loadDetail(code);
-		}
+		const {isLoading, code, loadingDetail} = this.props;
+		if (isLoading)
+			loadingDetail({code});
 	}
-
-	// shouldComponentUpdate(){
-	// 	const {contragent} = this.props;
-	// 	if (contragent.success) {
-	// 		return false;
-	// 	}
-	// 	return true;
-	// }
 
 	componentDidUpdate() {
-		const {contragent} = this.props;
-
-		if (contragent.success) {
+		if (this.props.contragent.success)
 			this.onCloseForm();
-		}
 	}
 
+	// при отправке формы
 	onSubmitForm(props) {
-		const {
-			createContragent, updateContragent,
-			isNew, code
-		} = this.props;
+		const {editContragent, code} = this.props;
 
 		const propsForm = {
 			name: props.get('name'),
@@ -62,33 +49,28 @@ class ContragentEditContainer extends DefaultLayerLayout {
 			roles: props.get('roles').toJS().reduce((prev, val) => val.selected ? [...prev, val.name] : prev, [])
 		};
 
-		if (isNew) {
-			createContragent(propsForm);
-		} else {
-			updateContragent({code, ...propsForm});
-		}
+		editContragent({code, ...propsForm});
 	}
 
+	// при удалении контрагента
 	onDeleteContragent() {
 		const {deleteContragent, code} = this.props;
-
 		this.deletePopup.open()
-			.then(() => {
-				deleteContragent(code);
-			});
+			.then(() => deleteContragent(code));
 	}
 
+	// закрытие слоя
 	onCloseForm() {
 		this.closeLayer();
 	}
 
 	render() {
-		const {isNew, contragent, showPassword} = this.props;
+		const {isNew, contragent, showPassword, isLoading} = this.props;
 		const title = isNew ? 'Создание контрагента' : 'Редактирование контрагента';
 
 		const EditComponent = this.EditComponent;
 
-		return(
+		return (
 			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
 					{this.getCloseButton()}
@@ -96,19 +78,26 @@ class ContragentEditContainer extends DefaultLayerLayout {
 					<h1>{title}</h1>
 				</div>
 
-				<EditComponent contragent={contragent}
-							   showPassword={showPassword}
-							   isNew={isNew}
-							   onSubmitForm={::this.onSubmitForm}
-							   onCloseForm={::this.onCloseForm}
-							   onDeleteContragent={::this.onDeleteContragent} />
-				<ConfirmPopupService ref={p => this.deletePopup = p}
-									 title='Удаление контрагента'
-									 text='Контрагент будет удален из списка контрагентов всех точек'
-									 okName="Подтвердить"
-									 cancelName="Отмена"/>
+				{!isLoading &&
+				<EditComponent
+					contragent={contragent}
+					initialValues={contragent}
+					showPassword={showPassword}
+					isNew={isNew}
+					onSubmitForm={::this.onSubmitForm}
+					onCloseForm={::this.onCloseForm}
+					onDeleteContragent={::this.onDeleteContragent}/>}
+
+				<ConfirmPopupService
+					ref={p => this.deletePopup = p}
+					title='Удаление контрагента'
+					text='Контрагент будет удален из списка контрагентов всех точек'
+					okName="Подтвердить"
+					cancelName="Отмена"/>
+
+				<LoaderBlock loading={isLoading} />
 			</article>
-		);
+		)
 	}
 }
 
@@ -137,10 +126,9 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			createContragent: actions.createContragent.request,
-			updateContragent: actions.updateContragent.request,
-			deleteContragent: actions.deleteContragent.request,
-			loadDetail: actions.loadDetailContragent
+			editContragent: actions.editContragent.request,
+			deleteContragent: actions.deleteContragent,
+			loadingDetail: actions.loadingDetail
 		}, dispatch)
 	};
 }

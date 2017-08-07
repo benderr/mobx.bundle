@@ -1,81 +1,102 @@
-import {call, put, take, fork, takeEvery, select} from 'redux-saga/effects'
+import {call, put, takeEvery, select, throttle} from 'redux-saga/effects'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import {notify} from 'common/uiElements/Notify'
 
-import * as actions from '../actions/contragentActions'
+import * as actEnums from '../actions/contragentActions'
+import {getListPropsState} from '../selectors/contragentSelectors'
 import * as dataContext from '../dataProvider/contragentDataContext'
-import * as enums from '../enums/actions'
 
 
-function* getListContragentSaga(params) {
+function* getListContragentSaga({isFirst = false, step = false, loadDetail = false}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		const data = yield call(dataContext.getListContragent, {token, ...params});
-		yield put(actions.getListContragent.success(data));
+		const propState = yield select(getListPropsState);
+
+		const response = yield call(dataContext.getListContragent, {
+			token,
+			sortField: 		propState.sortField,
+			sortDirection: 	propState.sortDirection,
+			count: 			propState.countStep,
+			q: 				propState.q ? `name=="*${propState.q}*"` : false,
+			pos: 			step ? propState.pos + propState.countStep : 0,
+			isCashier:		propState.isCashier
+		});
+		yield put(actEnums.getListContragents.success({
+			list: 			response.data,
+			pos: 			response.pos,
+			total_count:	response.total_count,
+			noItems: 		isFirst ? !(response.data.length) : propState.noItems
+		}));
 	} catch (error) {
-		yield put(notify.error('Не удалось загрузить контрагентов'));
+		notify.error('При загрузке контрагентов произошла ошибка');
+		yield put(actEnums.getListContragents.failure(error));
 	}
 }
 
-function* createContragentSaga({contragent}) {
+function* editContragentSaga({code, ...contragent}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		yield call(dataContext.createContragent, {token, ...contragent});
-		yield put(actions.createContragent.success());
 
-		yield put(notify.success('Контрагент успешно создан'));
-		yield put(actions.getListContragent.request())
+		yield call(dataContext.editContragent, {
+			token,
+			code,
+			isNew: code === 'newItem',
+			name: contragent.name,
+			password: contragent.password,
+			locked: contragent.locked === 'off' ? 0 : 1,
+			roles: contragent.roles || []
+		});
+		yield put(actEnums.getListContragents.request({isFirst: true}));
+		yield put(actEnums.editContragent.success({code}));
+
+		notify.success('Контрагент успешно сохранен');
 	} catch (error) {
-		yield put(notify.error('При сохранении произошла ошибка'));
-	}
-}
-
-function* updateContragentSaga({contragent}) {
-	try {
-		const token = yield select(getCurrentRetailPointId);
-		yield call(dataContext.updateContragent, {token, ...contragent});
-		yield put(actions.updateContragent.success(contragent.code));
-
-		yield put(notify.success('Контрагент успешно обновлен'));
-		yield put(actions.getListContragent.request())
-	} catch (error) {
-		yield put(notify.error('При сохранении произошла ошибка'));
+		notify.error('При сохранении контрагента произошла ошибка');
+		yield put(actEnums.editContragent.failure(code));
 	}
 }
 
 function* deleteContragentSaga({code}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		yield call(dataContext.deleteContragent, {token, code});
-		yield put(actions.deleteContragent.success(code));
 
-		yield put(notify.success('Контрагент успешно удален'));
-		yield put(actions.getListContragent.request())
+		yield call(dataContext.deleteContragent, {
+			token,
+			code
+		});
+		yield put(actEnums.getListContragents.request({isFirst: true}));
+		yield put(actEnums.editContragent.success({code}));
+
+		notify.info('Контрагент успешно удален');
 	} catch (error) {
-		yield put(notify.error('При удалении произошла ошибка'));
+		notify.error('При удалении контрагента произошла ошибка');
+		yield put(actEnums.editContragent.failure(code));
 	}
 }
 
-function* loadDetailContragentSaga({code}) {
+function* getByCodeContragentSaga({code}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		const {data} = yield call(dataContext.getListContragent, {token, qField: `code=="${code}"`});
+
+		const {data} = yield call(dataContext.getListContragent, {
+			token,
+			q: `code=="${code}"`
+		});
 
 		if (data.length && data[0]) {
-			yield put(actions.openFromList(data[0]));
+			yield put(actEnums.openContragent(data[0]))
 		} else throw new Error();
 	} catch (error) {
-		yield put(notify.error('Не удалось загрузить контрагента'));
+		notify.error('При загрузке контрагента произошла ошибка');
 	}
 }
 
 
 export default function*() {
 	yield [
-		takeEvery(enums.GET_LIST.REQUEST, getListContragentSaga),
-		takeEvery(enums.CREATE.REQUEST, createContragentSaga),
-		takeEvery(enums.UPDATE.REQUEST, updateContragentSaga),
-		takeEvery(enums.DELETE.REQUEST, deleteContragentSaga),
-		takeEvery(enums.LOAD_DETAIL, loadDetailContragentSaga)
+		throttle(300, actEnums.GET_LIST.REQUEST, getListContragentSaga),
+		takeEvery(actEnums.EDIT_CONTRAGENT.REQUEST, editContragentSaga),
+		takeEvery(actEnums.DELETE_CONTRAGENT, deleteContragentSaga),
+		takeEvery(actEnums.LOAD_DETAIL, getByCodeContragentSaga)
 	]
 }
