@@ -24,7 +24,7 @@ class ContragentListContainer extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		const {getListContragent, selectedPoint} = this.props;
 		if (selectedPoint !== nextProps.selectedPoint)
-			getListContragent();
+			getListContragent({isFirst: true});
 	}
 
 	// добавить контрагента

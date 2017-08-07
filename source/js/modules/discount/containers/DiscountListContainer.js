@@ -24,7 +24,7 @@ class DiscountListContainer extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		const {getListDiscount, selectedPoint} = this.props;
 		if (selectedPoint !== nextProps.selectedPoint)
-			getListDiscount();
+			getListDiscount({isFirst: true});
 	}
 
 	// Добавить скидку
