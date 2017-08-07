@@ -46,7 +46,7 @@ export const actionHandlers = {
 
 	[CORRECT_FILTER]: (state, {pos}) => {
 		const count = state.getIn(['productsFilter', 'count'], 0);
-		return state.setIn(['docsFilter', 'start'], pos + count);
+		return state.setIn(['productsFilter', 'start'], pos + count);
 	},
 
 	[GET_PRODUCTS.SUCCESS]: (state, {pos, totalCount, productsList}) => {
