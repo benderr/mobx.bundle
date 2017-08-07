@@ -1,15 +1,15 @@
 import React from 'react';
 import {withRouter} from 'react-router';
 import {connect} from 'react-redux';
+import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
+import toJS from 'components/HOC/toJs';
 import {bindActionCreators} from 'redux';
 import {push} from 'connected-react-router';
-import toJS from 'components/HOC/toJs';
-import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
-import LoaderBlock from 'common/uiElements/LoaderBlock';
+import LoaderBlock from 'common/uiElements/LoaderBlock'
 
+import * as selectors from '../selectors/discountSelectors'
+import * as actions from '../actions/discountActions'
 import DiscountListComponent from '../components/DiscountListComponent'
-import * as selector from '../selectors/discountSelectors'
-import * as actions from '../actions/discountActions';
 
 
 @withRouter
@@ -17,10 +17,8 @@ import * as actions from '../actions/discountActions';
 @retailPointHOC
 @toJS
 class DiscountListContainer extends React.Component {
-
-	componentDidMount() {
-		const {getListDiscount} = this.props;
-		getListDiscount();
+	componentWillMount() {
+		this.props.getListDiscount({isFirst: true});
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -29,66 +27,43 @@ class DiscountListContainer extends React.Component {
 			getListDiscount();
 	}
 
+	// Добавить скидку
 	onAddFormLayer() {
-		const {push} = this.props;
-		push({pathname: `/discount/add`});
+		this.props.push({pathname: `/discount/add`});
 	}
 
-	onOpenDetailLayout(row) {
+	// детальный просмотр контрагента
+	onOpenDetailLayout(item) {
 		const {openDiscount, push} = this.props;
-		openDiscount(row);
-		push({pathname: `/discount/edit/${row.code}`});
+
+		openDiscount(item);
+		push({pathname: `/discount/edit/${item.code}`});
 	}
 
-	onSortList(column, orderBy) {
-		const {getListDiscount} = this.props;
-		getListDiscount({column, orderBy});
+	// сортировка по столбцам
+	onSortList(sortField, sortDirection) {
+		this.props.getListDiscount({sortField, sortDirection});
 	}
 
-	onCheckActive(code) {
-		// console.log('onCheckActive', code)
-	}
-
-	onFilterChanged(e) {
+	// поиск по названию
+	onSearchByName(e) {
 		let val = e.target.value;
-		const {getListDiscount, listState} = this.props;
-
-		if (val && val.length > 2) {
-			getListDiscount({
-				column: listState.column,
-				orderBy: listState.orderBy,
-				q: `name=="*${val}*"`
-			});
-		} else if (!val || val.length === 0) {
-			getListDiscount({
-				column: listState.column,
-				orderBy: listState.orderBy
-			});
-		}
+		this.props.getListDiscount({q: val});
 	}
 
+	// бесконечный скроллинг
 	onInfinateScroll() {
-		const {getListDiscount, listState} = this.props;
-
-		// console.log('qwe')
-
-		if ((listState.pos + listState.listStep) < listState.total_count) {
-			getListDiscount({
-				column: listState.column,
-				orderBy: listState.orderBy,
-				pos: listState.pos + listState.listStep,
-				q: listState.q
-			});
+		const {getListDiscount, listState: {pos, countStep, total_count}} = this.props;
+		if ((pos + countStep) < total_count) {
+			getListDiscount({step: true});
 		}
 	}
 
 	render() {
 		const {listState} = this.props;
 
-		const noItems = listState.noItem;
+		const noItems = listState.noItems;
 		const globalLoading = noItems === null;
-
-		// console.log('render', listState);
 
 		return (
 			<div className="h100per">
@@ -97,26 +72,28 @@ class DiscountListContainer extends React.Component {
 					<h1>Скидки</h1>
 					{!noItems &&
 					<div className="title_actions">
-						<button className="button small icon-plus" onClick={() => this.onAddFormLayer()}>Добавить скидку
+						<button className="button small icon-plus"
+								onClick={() => this.onAddFormLayer()}>Добавить скидку
 						</button>
 					</div>}
 				</div>}
 
-				{!noItems && !globalLoading &&
-				<DiscountListComponent listState={listState}
-									   onFilterChanged={::this.onFilterChanged}
-									   onCheckActive={::this.onCheckActive}
-									   onSortList={::this.onSortList}
-									   onInfinateScroll={::this.onInfinateScroll}
-									   onOpenDetailLayout={::this.onOpenDetailLayout}/>}
+				{!globalLoading && !noItems &&
+				<DiscountListComponent
+					listState={listState}
+					onOpenDetailLayout={::this.onOpenDetailLayout}
+					onSortList={::this.onSortList}
+					onFilterChanged={::this.onSearchByName}
+					onInfinateScroll={::this.onInfinateScroll}/>}
 
-				{noItems && !globalLoading &&
+				{!globalLoading && noItems &&
 				<div className="center_xy page_center_info page_center_info__discount0">
 					<i className="icon icon_discount"/>
 					<div className="title">Скидки не созданы</div>
 					<p>Скидки можно применять ко всему чеку на кассе</p>
 					<div className="form_buttons row">
-						<button className="button small icon-plus" onClick={() => this.onAddFormLayer()}>Добавить скидку
+						<button className="button small icon-plus"
+								onClick={() => this.onAddFormLayer()}>Добавить скидку
 						</button>
 					</div>
 				</div>}
@@ -128,10 +105,8 @@ class DiscountListContainer extends React.Component {
 }
 
 function mapStateToProps(state) {
-	const listState = selector.getListState(state);
-	return {
-		listState
-	};
+	const listState = selectors.getListState(state);
+	return {listState};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -139,7 +114,7 @@ function mapDispatchToProps(dispatch) {
 		...bindActionCreators({
 			push,
 			getListDiscount: actions.getListDiscount.request,
-			openDiscount: actions.openFromList
+			openDiscount: actions.openDiscount
 		}, dispatch)
 	};
 }

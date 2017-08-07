@@ -36,7 +36,7 @@ const TableHeader = (props) => {
 					   name="filter_cashier"
 					   onChange={props.onCheckedCashier}
 					   checked={props.isCashier}
-					   id="filter_cashier_checkbox" />
+					   id="filter_cashier_checkbox"/>
 				<label htmlFor="filter_cashier_checkbox" className="label_check switcher switcher__cashier_only">
 					<i className="icon"/>
 					<span>Только кассиры</span>
@@ -92,23 +92,28 @@ class ContragentListComponent extends React.Component {
 		return (
 			<div className="widget_block">
 				<div className="table table_contragents">
-					<TableHeader column={listState.sortField}
-								 orderBy={listState.sortDirection}
-								 onCheckedCashier={onCheckedCashier}
-								 isCashier={listState.isCashier}
-								 onSortList={onSortList}/>
+					<TableHeader
+						column={listState.sortField}
+						orderBy={listState.sortDirection}
+						onCheckedCashier={onCheckedCashier}
+						isCashier={listState.isCashier}
+						onSortList={onSortList}/>
 
-					<TableSearch inputValue={listState.q} onFilterChanged={onFilterChanged}/>
+					<TableSearch
+						inputValue={listState.q}
+						onFilterChanged={onFilterChanged}/>
 
-					<TableBody list={listState.list}
-							   onOpenDetailLayout={onOpenDetailLayout}/>
+					<TableBody
+						list={listState.list}
+						onOpenDetailLayout={onOpenDetailLayout}/>
 
 					{!noList && <div className='table_row center_xy'>По запросу ничего не найдено</div>}
 
-					<InfinateScroll loadNext={onInfinateScroll}
-									totalCount={listState.list.length}
-									listLength={listState.listStep}
-									loading={listState.loading}/>
+					<InfinateScroll
+						loadNext={onInfinateScroll}
+						totalCount={listState.total_count}
+						listLength={listState.list.length}
+						loading={listState.loading}/>
 				</div>
 			</div>
 		);

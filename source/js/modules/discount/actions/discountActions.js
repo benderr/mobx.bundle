@@ -1,37 +1,28 @@
-import * as actions from '../enums/actions';
+import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 import {createAction} from 'infrastructure/helpers/actionHelpers'
 
-// Actions for ListReducer
+
+// Enums
+export const GET_LIST = createRequestTypes('DISCOUNT.GET_LIST');
+export const OPEN_FROM_STATE = 'DISCOUNT.OPEN_FROM_STATE';
+export const LOAD_DETAIL = 'DISCOUNT.LOAD_DETAIL';
+
+export const EDIT_DISCOUNT = createRequestTypes('DISCOUNT.EDIT_DISCOUNT');
+export const DELETE_DISCOUNT = 'DISCOUNT.DELETE_DISCOUNT';
+
+
+// Actions
 export const getListDiscount = {
-	request: (props) => createAction(actions.GET_LIST.REQUEST, {column: 'name', orderBy:'asc', ...props}),
-	success: (response) => createAction(actions.GET_LIST.SUCCESS, {response}),
-	failure: (error) => createAction(actions.GET_LIST.FAILURE, {error})
+	request: (req) => createAction(GET_LIST.REQUEST, req),
+	success: (res) => createAction(GET_LIST.SUCCESS, res),
+	failure: (err) => createAction(GET_LIST.FAILURE)
 };
 
-// Actions for EditReducer
-export const openFromList = (discount) => createAction(actions.OPEN_FROM_LIST, {discount});
-export const closeLayer = (isNew, formState) => createAction(actions.CLOSE_LAYER, {isNew, formState});
-
-export const createDiscount = {
-	request: (discount) => createAction(actions.CREATE.REQUEST, {discount}),
-	success: () => createAction(actions.CREATE.SUCCESS),
-	failure: (error) => createAction(actions.CREATE.FAILURE, {error})
+export const openDiscount = (discount) => createAction(OPEN_FROM_STATE, discount);
+export const loadingDetail = ({code}) => createAction(LOAD_DETAIL, {code});
+export const editDiscount = {
+	request: (req) => createAction(EDIT_DISCOUNT.REQUEST, req),
+	success: (res) => createAction(EDIT_DISCOUNT.SUCCESS, res),
+	failure: (code) => createAction(EDIT_DISCOUNT.FAILURE, code)
 };
-
-export const updateDiscount = {
-	request: (discount) => createAction(actions.UPDATE.REQUEST, {discount}),
-	success: (discount) => createAction(actions.UPDATE.SUCCESS, {discount}),
-	failure: (error, discount) => createAction(actions.UPDATE.FAILURE, {error, discount})
-};
-
-export const deleteDiscount = {
-	request: (code) => createAction(actions.DELETE.REQUEST, {code}),
-	success: (code) => createAction(actions.DELETE.SUCCESS, {code}),
-	failure: (error) => createAction(actions.DELETE.FAILURE, {error})
-};
-
-export const loadDetailDiscount = {
-	request: (code) => createAction(actions.LOAD_DETAIL.REQUEST, {code}),
-	success: (code) => createAction(actions.LOAD_DETAIL.SUCCESS, {code}),
-	failure: (error) => createAction(actions.LOAD_DETAIL.FAILURE, {error})
-};
+export const deleteDiscount = (code) => createAction(DELETE_DISCOUNT, {code});

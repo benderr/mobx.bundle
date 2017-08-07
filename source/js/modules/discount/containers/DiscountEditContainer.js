@@ -2,14 +2,17 @@ import React from 'react'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import {withRouter} from 'react-router'
 import {connect} from 'react-redux'
-import toJS from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC'
+import toJS from 'components/HOC/toJs'
 import {bindActionCreators} from 'redux'
+import LoaderBlock from 'common/uiElements/LoaderBlock'
 
 import * as selectors from '../selectors/discountSelectors'
 import * as actions from '../actions/discountActions'
-import DiscountEditComponent from '../components/DiscountEditComponent'
+import createEditComponent from '../components/DiscountEditComponent'
 import {ConfirmPopupService} from 'common/uiElements'
+
+const getFormName = code => `editDiscount_${code}`;
 
 
 @withRouter
@@ -17,49 +20,51 @@ import {ConfirmPopupService} from 'common/uiElements'
 @retailPointHOC
 @toJS
 class DiscountEditContainer extends DefaultLayerLayout {
+	constructor(props) {
+		super(props);
+		this.EditComponent = createEditComponent(getFormName(props.code))
+	}
 
 	componentWillMount() {
-		const {isLoading, loadDetailDiscount, code} = this.props;
-		if (isLoading) {
-			loadDetailDiscount(code);
-		}
+		const {isLoading, code, loadingDetail} = this.props;
+		if (isLoading)
+			loadingDetail({code});
 	}
 
-	componentWillUpdate() {
-		const {formState} = this.props;
-		if (formState.success)
-			this.closeLayer();
+	componentDidUpdate() {
+		if (this.props.discount.success)
+			this.onCloseForm();
 	}
 
-	componentWillUnmount() {
-		const {isNew, formState, closeLayer} = this.props;
-		closeLayer(isNew, formState);
-	}
-
+	// при отправке формы
 	onSubmitForm(props) {
-		const {isNew, createDiscount, updateDiscount} = this.props;
-		props = props.toJS();
-		if (isNew)
-			createDiscount(props);
-		else
-			updateDiscount(props);
+		const {editDiscount, code} = this.props;
+
+		const propsForm = {
+			name: props.get('name'),
+			value: props.get('value')
+		};
+
+		editDiscount({code, ...propsForm});
 	}
 
+	// при удалении скидки
+	onDeleteDiscount() {
+		const {deleteDiscount, code} = this.props;
+		this.deletePopup.open()
+			.then(() => deleteDiscount(code));
+	}
+
+	// закрытие слоя
 	onCloseForm() {
 		this.closeLayer();
 	}
 
-	onDeleteForm() {
-		const {deleteDiscount, formState} = this.props;
-		this.deletePopup.open()
-			.then(() => {
-				deleteDiscount(formState.code);
-			});
-	}
-
 	render() {
-		const {isNew, formState} = this.props;
+		const {isNew, discount, isLoading} = this.props;
 		const title = isNew ? 'Создание скидки' : 'Редактирование скидки';
+
+		const EditComponent = this.EditComponent;
 
 		return (
 			<article className="page" {...this.layerOptions}>
@@ -68,45 +73,51 @@ class DiscountEditContainer extends DefaultLayerLayout {
 					{this.getToggleButton()}
 					<h1>{title}</h1>
 				</div>
-				<DiscountEditComponent formState={formState}
-									   isNew={isNew}
-									   initialValues={formState}
-									   onDeleteForm={::this.onDeleteForm}
-									   onCloseForm={::this.onCloseForm}
-									   onSubmitForm={::this.onSubmitForm}/>
-				<ConfirmPopupService ref={p => this.deletePopup = p}
-									 title='Удалить скидку'
-									 text='Скидка будет удалена из списков скидок всех точек'
-									 okName="Подтвердить"
-									 cancelName="Отмена"/>
+
+				{!isLoading &&
+				<EditComponent
+					discount={discount}
+					initialValues={discount}
+					isNew={isNew}
+					onSubmitForm={::this.onSubmitForm}
+					onCloseForm={::this.onCloseForm}
+					onDeleteDiscount={::this.onDeleteDiscount} />}
+
+				<ConfirmPopupService
+					ref={p => this.deletePopup = p}
+					title='Удалить скидку'
+					text='Скидка будет удалена из списков скидок всех точек'
+					okName="Подтвердить"
+					cancelName="Отмена"/>
+
+				<LoaderBlock loading={isLoading} />
 			</article>
 		);
 	}
 }
 
 function mapStateToProps(state, ownProps) {
-	const {action, code} = ownProps.match.params;
-	const editState = selectors.getEditState(state).toJS();
-	let isLoading = false;
-
+	let {action, code} = ownProps.match.params;			// параметры URL
+	const editState = selectors.getEditState(state);	// state для всех форм
 	const isNew = !(action === 'edit' && code);
-	if (!isNew && !editState.listItem[code]) {
-		editState.listItem[code] = editState.newItem;
-		isLoading = true;
-	}
-	const formState = (!isNew && editState.listItem[code]) ? editState.listItem[code] : editState.newItem;
 
-	return {isNew, isLoading, action, code, editState, formState};
+	code = isNew ? 'newItem' : code;
+	let discount = editState.getIn([code]);
+	const isLoading = !discount;
+
+	if (isLoading) {
+		discount = editState.getIn(['newItem']);
+	}
+
+	return {isLoading, action, code, isNew, discount, editState};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			createDiscount: actions.createDiscount.request,
-			updateDiscount: actions.updateDiscount.request,
-			deleteDiscount: actions.deleteDiscount.request,
-			loadDetailDiscount: actions.loadDetailDiscount.request,
-			closeLayer: actions.closeLayer
+			editDiscount: actions.editDiscount.request,
+			deleteDiscount: actions.deleteDiscount,
+			loadingDetail: actions.loadingDetail
 		}, dispatch)
 	};
 }

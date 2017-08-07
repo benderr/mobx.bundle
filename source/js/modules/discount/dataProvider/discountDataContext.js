@@ -6,6 +6,7 @@ import * as mapper from './discountMapper'
  * @url GET /api/v1/retail-point/<token>/catalog/SIMPLE_DISCOUNT?q=&sortField=name&sortDirection=asc
  * @param token
  * @param props
+ * @returns {*|axios.Promise}
  */
 export const getListDiscount = ({token, ...props}) => {
 	return api.v1().retailpoint(token).catalog().simpleDiscount()
@@ -14,32 +15,30 @@ export const getListDiscount = ({token, ...props}) => {
 };
 
 /**
- * Дабавляет новую скидку
- * @url POST /api/v1/retail-point/<token>/catalog
+ * Дабавляет/Обновляет скидку
+ * @url POST/PUT /api/v1/retail-point/<token>/catalog
  * @param token
+ * @param isNew		- bool добавить/обновить
  * @param props
+ * @returns {*|axios.Promise}
  */
-export const createDiscount = ({token, ...props}) => {
-	return api.v1().retailpoint(token).catalog()
-		.post(mapper.createDiscount(props));
-};
+export const editDiscount = ({token, isNew, ...props}) => {
+	const apiUrl = api.v1().retailpoint(token).catalog();
+	const mapperData = mapper.editDiscountToServer({isNew, ...props});
 
-/**
- * Обновляет существующею скидку
- * @url PUT /api/v1/retail-point/<token>/catalog
- * @param token
- * @param props
- */
-export const updateDiscount = ({token, ...props}) => {
-	return api.v1().retailpoint(token).catalog()
-		.put(mapper.updateDiscount(props));
+	if (isNew) {
+		return apiUrl.post(mapperData);
+	} else {
+		return apiUrl.put(mapperData);
+	}
 };
 
 /**
  * Удаляет скидку по коду
- * @url DELETE /api/v1/retail-point/<token>/catalog/SIMPLE_DISCOUNT/944825461
+ * @url DELETE /api/v1/retail-point/<token>/catalog/SIMPLE_DISCOUNT/<code>
  * @param token
  * @param code
+ * @returns {*|axios.Promise}
  */
 export const deleteDiscount = ({token, code}) => {
 	return api.v1().retailpoint(token).catalog().simpleDiscount(code)

@@ -29,8 +29,7 @@ class ContragentListContainer extends React.Component {
 
 	// добавить контрагента
 	onAddFormLayer() {
-		const {push} = this.props;
-		push({pathname: `/contragents/add`});
+		this.props.push({pathname: `/contragents/add`});
 	}
 
 	// детальный просмотр контрагента
@@ -87,12 +86,13 @@ class ContragentListContainer extends React.Component {
 				</div>}
 
 				{!globalLoading && !noItems &&
-				<ContragentListComponent listState={listState}
-										 onOpenDetailLayout={::this.onOpenDetailLayout}
-										 onSortList={::this.onSortList}
-										 onFilterChanged={::this.onSearchByName}
-										 onInfinateScroll={::this.onInfinateScroll}
-										 onCheckedCashier={::this.onCheckedCashier}/>}
+				<ContragentListComponent
+					listState={listState}
+					onOpenDetailLayout={::this.onOpenDetailLayout}
+					onSortList={::this.onSortList}
+					onFilterChanged={::this.onSearchByName}
+					onInfinateScroll={::this.onInfinateScroll}
+					onCheckedCashier={::this.onCheckedCashier}/>}
 
 				{!globalLoading && noItems &&
 				<div className="center_xy page_center_info page_center_info__contragents0">

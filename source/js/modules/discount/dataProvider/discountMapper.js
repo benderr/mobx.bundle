@@ -1,19 +1,20 @@
 import {generateNumber} from 'infrastructure/utils/uuidGenerator';
 
 export const listDiscount = {
-	toServer: (params) => {
-		let options = {};
+	toServer: (props) => {
+		let params = {};
 
-		if (params.q) options.q = params.q;
-		if (params.column) options.sortField = params.column;
-		if (params.orderBy) options.sortDirection = params.orderBy;
-		if (params.pos) options.start = params.pos;
+		if (props.q) params.q = props.q;
+		if (props.sortField) params.sortField = props.sortField;
+		if (props.sortDirection) params.sortDirection = props.sortDirection;
+		if (props.pos) params.start = props.pos;
+		if (props.count) params.count = props.count;
 
-		return options;
+		return params;
 	},
 	toClient: (response) => ({
 		data: response.data.map(item => ({
-			type: item.type,	// тип откуда была добавлена скидка (потом будут варианты)
+			typeFrom: item.type,	// тип откуда была добавлена скидка (потом будут варианты)
 			code: item.code,
 			name: item.name,
 			value: item.value
@@ -23,20 +24,11 @@ export const listDiscount = {
 	})
 };
 
-export const createDiscount = (props) => ({
+export const editDiscountToServer = ({isNew, ...props}) => ({
 	catalogType: 'SIMPLE_DISCOUNT',
-	code: generateNumber().toString(),
+	code: isNew ? generateNumber().toString() : props.code,
 	name: props.name,
-	type: props.type || 'BUTTON',
 	value: props.value,
-	valueType: props.valueType || 'PERCENT'
-});
-
-export const updateDiscount = (props) => ({
-	catalogType: 'SIMPLE_DISCOUNT',
-	code: props.code,
-	name: props.name,
-	type: props.type || 'BUTTON',
-	value: props.value,
+	type: props.typeFrom || 'BUTTON',
 	valueType: props.valueType || 'PERCENT'
 });

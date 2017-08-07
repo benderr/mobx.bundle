@@ -1,97 +1,101 @@
-import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects';
-import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors';
-import {notify} from 'common/uiElements/Notify';
-import logger from 'infrastructure/utils/logger'
-import * as dataContext from '../dataProvider/discountDataContext';
-import * as action from '../actions/discountActions';
-import * as enums from '../enums/actions';
+import {call, put, takeEvery, select, throttle} from 'redux-saga/effects'
+import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
+import {notify} from 'common/uiElements/Notify'
+
+import * as actEnums from '../actions/discountActions'
+import {getListPropsState} from '../selectors/discountSelectors'
+import * as dataContext from '../dataProvider/discountDataContext'
 
 
-function* getListSaga(params) {
+function* getListDiscountSaga({isFirst = false, step = false}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		const data = yield call(dataContext.getListDiscount, {...params, token});
-		yield put(action.getListDiscount.success(data));
+		const propState = yield select(getListPropsState);
+
+		const response = yield call(dataContext.getListDiscount, {
+			token,
+			sortField: propState.sortField,
+			sortDirection: propState.sortDirection,
+			count: propState.countStep,
+			q: propState.q ? `name=="*${propState.q}*"` : '',
+			pos: step ? propState.pos + propState.countStep : 0
+		});
+		yield put(actEnums.getListDiscount.success({
+			list: response.data,
+			pos: response.pos,
+			total_count: response.total_count,
+			noItems: isFirst ? !(response.data.length) : propState.noItems
+		}))
 	} catch (error) {
-		logger.log(error);
-		yield put(action.getListDiscount.failure({
-			status: error.status,
-			data: error.data
-		}));
+		notify.error('При загрузке скидок произошла ошибка');
+		yield put(actEnums.getListDiscount.failure(error));
 	}
 }
 
-function* createDiscountSaga({discount}) {
+function* editDiscountSaga({code, ...discount}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		yield call(dataContext.createDiscount, {...discount, token});
-		yield put(action.createDiscount.success());
 
-		yield put(notify.success('Данные успешно сохранены'));
-		yield put(action.getListDiscount.request());
+		yield call(dataContext.editDiscount, {
+			token,
+			code,
+			isNew: code === 'newItem',
+			name: discount.name,
+			password: discount.password,
+			locked: discount.locked,
+			roles: discount.roles
+		});
+		yield put(actEnums.getListDiscount.request({isFirst: true}));
+		yield put(actEnums.editDiscount.success({code}));
+
+		notify.success('Скидка успешно сохранена');
 	} catch (error) {
-		yield put(notify.error('При удалении скидки произошла ошибка'));
-		yield put(action.createDiscount.failure({
-			status: error.status,
-			data: error.data
-		}));
-	}
-}
-
-function* updateDiscountSaga({discount}) {
-	try {
-		const token = yield select(getCurrentRetailPointId);
-		yield call(dataContext.updateDiscount, {...discount, token});
-		yield put(action.updateDiscount.success(discount));
-
-		yield put(notify.success('Данные успешно сохранены'));
-		yield put(action.getListDiscount.request());
-	} catch (error) {
-		yield put(notify.error('При удалении скидки произошла ошибка'));
-		yield put(action.createDiscount.failure({
-			status: error.status,
-			data: error.data
-		}, discount));
+		notify.error('При сохранении скидки произошла ошибка');
+		yield put(actEnums.editDiscount.failure(code));
 	}
 }
 
 function* deleteDiscountSaga({code}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		yield call(dataContext.deleteDiscount, {token, code});
-		yield put(action.deleteDiscount.success(code));
 
-		yield put(notify.success('Скидка успешно удалена'));
-		yield put(action.getListDiscount.request());
+		yield call(dataContext.deleteDiscount, {
+			token,
+			code
+		});
+		yield put(actEnums.getListDiscount.request({isFirst: true}));
+		yield put(actEnums.editDiscount.success({code}));
+
+		notify.info('Скидка успешно удалена');
 	} catch (error) {
-		yield put(notify.error('При удалении скидки произошла ошибка'));
-		yield put(action.createDiscount.failure({
-			status: error.status,
-			data: error.data
-		}));
+		notify.error('При удалении скидки произошла ошибка');
+		yield put(actEnums.editDiscount.failure(code));
 	}
 }
 
-function* loadDetailDiscountSaga({code}) {
+function* getByCodeDiscountSaga({code}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
-		const data = yield call(dataContext.getListDiscount, {q: `code=="*${code}*"`, token});
 
-		if (data.data.length && data.data[0]) {
-			yield put(action.openFromList(data.data[0]));
+		const {data} = yield call(dataContext.getListDiscount, {
+			token,
+			q: `code=="${code}"`
+		});
+
+		if (data.length && data[0]) {
+			yield put(actEnums.openDiscount(data[0]))
 		} else throw new Error();
 	} catch (error) {
-		yield put(notify.error('При загрузке скидки произошла ошибка'));
+		notify.error('При загрузке скидки произошла ошибка');
 	}
 }
 
 
-export default function*() {
+export default function* () {
 	yield [
-		takeEvery(enums.GET_LIST.REQUEST, getListSaga),
-		takeEvery(enums.CREATE.REQUEST, createDiscountSaga),
-		takeEvery(enums.UPDATE.REQUEST, updateDiscountSaga),
-		takeEvery(enums.DELETE.REQUEST, deleteDiscountSaga),
-		takeEvery(enums.LOAD_DETAIL.REQUEST, loadDetailDiscountSaga)
+		throttle(300, actEnums.GET_LIST.REQUEST, getListDiscountSaga),
+		takeEvery(actEnums.EDIT_DISCOUNT.REQUEST, editDiscountSaga),
+		takeEvery(actEnums.DELETE_DISCOUNT, deleteDiscountSaga),
+		takeEvery(actEnums.LOAD_DETAIL, getByCodeDiscountSaga)
 	]
 }

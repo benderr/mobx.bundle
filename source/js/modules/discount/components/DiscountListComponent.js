@@ -34,7 +34,7 @@ const TableSearch = (props) => {
 			<input type="search"
 				   className="small w100"
 				   onChange={props.onFilterChanged}
-				   placeholder="Введите наименование" />
+				   placeholder="Введите наименование"/>
 		</div>
 	);
 };
@@ -44,23 +44,13 @@ const TableBody = (props) => {
 			let valueText = '';
 
 			switch (col.code) {
-				case ('activate'):
-					let checkValue = true;
-					valueText = (
-						<div className="discount_status">
-							<input name="stateIntegration" type="checkbox" id={`check_${col.code}_${i}`}
-								   onChange={() => props.onCheckActive(row)} />
-							<label htmlFor={`check_${col.code}_${i}`} className="label_check switcher">
-								<i className="icon"/>
-							</label>
-						</div>
-					);
-					break;
-				default: valueText = row[col.code];
+				default:
+					valueText = row[col.code];
 			}
-			return <div className={col.cssClass} key={'col' + col.code}>{valueText}</div>
+			return <div className={col.cssClass} key={`col_${col.code}`}>{valueText}</div>
 		});
-		return <div className="table_row row_link" onClick={() => props.onOpenDetailLayout(row)} key={'row' + row.code}>{jsxCols}</div>
+		return <div className="table_row row_link" onClick={() => props.onOpenDetailLayout(row)}
+					key={`row_${row.code}_${i}`}>{jsxCols}</div>
 	});
 	return <div>{jsxRows}</div>;
 };
@@ -69,26 +59,32 @@ class DiscountListComponent extends React.Component {
 	render() {
 		const {
 			listState,
-			onFilterChanged, onInfinateScroll, onCheckActive, onOpenDetailLayout, onSortList
+			onFilterChanged, onInfinateScroll, onOpenDetailLayout, onSortList
 		} = this.props;
 		const noList = listState.list.length;
 
 		return (
 			<div className="widget_block">
 				<div className="table table_discount">
-					<TableHeader column={listState.column}
-								 orderBy={listState.orderBy}
-								 onSortList={onSortList} />
+					<TableHeader
+						column={listState.sortField}
+						orderBy={listState.sortDirection}
+						onSortList={onSortList}/>
 
-					<TableSearch onFilterChanged={onFilterChanged} />
+					<TableSearch
+						onFilterChanged={onFilterChanged}/>
 
-					<TableBody list={listState.list}
-							   onCheckActive={onCheckActive}
-							   onOpenDetailLayout={onOpenDetailLayout} />
+					<TableBody
+						list={listState.list}
+						onOpenDetailLayout={onOpenDetailLayout}/>
 
 					{!noList && <div className='table_row center_xy'>По запросу ничего не найдено</div>}
 
-					<InfinateScroll loadNext={onInfinateScroll} totalCount={listState.list.length} listLength={listState.listStep} loading={listState.loading}/>
+					<InfinateScroll
+						loadNext={onInfinateScroll}
+						totalCount={listState.total_count}
+						listLength={listState.list.length}
+						loading={listState.loading}/>
 				</div>
 			</div>
 		);
@@ -100,8 +96,7 @@ DiscountListComponent.propTypes = {
 	onOpenDetailLayout: PropTypes.func.isRequired,
 	onSortList: PropTypes.func.isRequired,
 	onFilterChanged: PropTypes.func.isRequired,
-	onInfinateScroll: PropTypes.func.isRequired,
-	onCheckActive: PropTypes.func,
+	onInfinateScroll: PropTypes.func.isRequired
 };
 
 export default DiscountListComponent;

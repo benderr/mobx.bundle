@@ -1,79 +1,70 @@
-import {Map, List, fromJS} from 'immutable';
-import * as actions from '../enums/actions';
+import {Map, List, fromJS} from 'immutable'
+import * as actEnums from '../actions/discountActions'
+
 
 export const initialState = Map({
 	loading: true,
 	errors: null,
 	success: null,
-	iRequest: 0,		// счетчик кол-во раз рагрузили список
-	noItem: null,		// изначально неизвестно есть ли элементы
-	listStep: 20,		// кол-во элементов зв звпрос (постраничная загрузка)
+
+	noItems: null,			// изначально неизвестно есть ли элементы
+	countStep: 20,			// кол-во элементов зв звпрос (постраничная загрузка)
 
 	// список
 	list: List([]),
-	pos: 0,				// сдвиг элементов на странице
-	total_count: 0,		// всего элементов в БД
+	pos: 0,					// сдвиг элементов на странице
+	total_count: 0,			// всего элементов в БД
 
 	// сортировка
-	column: 'name',		// значение сортировки по умолчанию
-	orderBy: 'asc',
+	sortField: 'name',		// поле сортировки
+	sortDirection: 'asc',	// направление сорт.
 
-	// параметры фильтра
-	q: ''
+	q: ''					// параметры фильтра
 });
 
 export const actionHandlers = {
-	// ...при изменении размера списка (сбрасываем начальное состояние кол-во запросов)
-	[actions.CREATE.SUCCESS]: (state) => {
-		return !state.get('list').size ? state.merge({iRequest: 0, noItem: ''}) : state;
-	},
-	[actions.DELETE.SUCCESS]: (state) => {
-		return state.get('list').size == 1 ? state.merge({iRequest: 0, noItem: ''}) : state;
-	},
+	[actEnums.GET_LIST.REQUEST]: (state, req) => {
+		console.log('GET_LIST.REQUEST', req);
 
-	// Список элементов
-	[actions.GET_LIST.REQUEST]: (state, props) => {
+		let props = {};
+
+		if (req.isFirst) {
+			props.sortField = initialState.get('sortField');
+			props.sortDirection = initialState.get('sortDirection');
+			props.q = initialState.get('q');
+		} else {
+			props.sortField = req.sortField || state.get('sortField');
+			props.sortDirection = req.sortDirection || state.get('sortDirection');
+			props.q = req.q !== undefined ? req.q : state.get('q');
+		}
+
 		return state.merge({
 			loading: true,
 			errors: null,
 			success: null,
-
-			noItem: state.get('noItem'),
-			iRequest: state.get('iRequest') + 1,
-
-			column: props.column || initialState.get('column'),
-			orderBy: props.orderBy || initialState.get('orderBy'),
-			pos: props.pos || initialState.get('pos'),
-
-			q: props.q || initialState.get('q')
-		})
+			...props
+		});
 	},
-	[actions.GET_LIST.SUCCESS]: (state, {response}) => {
+	[actEnums.GET_LIST.SUCCESS]: (state, res) => {
+		console.log('GET_LIST.SUCCESS', res);
 
-		// если при первой загрузке (без фильтров) пришел результат - значит в БД есть скидки
-		// иначе показываем страницу что скидок нет
-		let noItem = state.get('noItem') === null
-			? !(state.get('iRequest') === 1 && response.data.length > 0)
-			: state.get('noItem');
-
-		// бесконечный скроллинг
-		let arList = response.pos ? state.get('list').concat(fromJS(response.data)) : List(response.data);
-
+		const arList = res.pos ? state.get('list').concat(fromJS(res.list)) : List(res.list);
 		return state.merge({
 			loading: false,
 			errors: null,
-			success: null,
-			noItem: noItem,
+			success: true,
 
 			list: arList,
-			pos: response.pos,
-			total_count: response.total_count
-		})
+			pos: res.pos,
+			total_count: res.total_count,
+
+			noItems: res.noItems
+		});
 	},
-	[actions.GET_LIST.FAILURE]: (state, {error}) => {
+	[actEnums.GET_LIST.FAILURE]: (state) => {
 		return state.merge({
 			loading: false,
-			errors: fromJS(error),
+			errors: true,
 			success: null
 		});
 	}

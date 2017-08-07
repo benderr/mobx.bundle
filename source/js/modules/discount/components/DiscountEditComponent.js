@@ -3,17 +3,26 @@ import PropTypes from 'prop-types'
 import {reduxForm} from 'common/formElements'
 import {InputField, NumberField} from 'common/formElements/fields'
 import {PrimaryButton} from 'common/uiElements'
+import {initialize} from 'redux-form/immutable'
 
-const discountValueValidate = (error) => (val, oVal) => {
+const discountValueValidate = (error) => (val) => {
 	const v = parseFloat(val);
-	return !(v < 0.01 || v > 100) ? undefined : error;
+	return !(v < 0 || v > 100) ? undefined : error;
 };
 
+
 class DiscountEditComponent extends React.Component {
+	componentWillMount() {
+		const {discount, dispatch, form} = this.props;
+		const formState = {...discount};
+
+		dispatch(initialize(form, formState, false));
+	}
+
 	render() {
 		const {
 			handleSubmit,
-			isNew, onSubmitForm, onCloseForm, onDeleteForm, formState
+			isNew, onSubmitForm, onCloseForm, onDeleteDiscount, discount
 		} = this.props;
 
 		return (
@@ -38,27 +47,23 @@ class DiscountEditComponent extends React.Component {
 				</div>
 
 				<div className="page_bottom_panel">
-					<PrimaryButton type="submit" loading={formState.loading}>Сохранить</PrimaryButton>
+					<PrimaryButton type="submit" loading={discount.loading}>Сохранить</PrimaryButton>
 					<a className="button middle wide clean" onClick={onCloseForm}>Отмена</a>
-					{!isNew && <a className="button middle wide clean mr44 f_right" onClick={onDeleteForm}>Удалить</a>}
+					{!isNew && <a className="button middle wide clean mr44 f_right" onClick={onDeleteDiscount}>Удалить</a>}
 				</div>
 			</form>
 		);
 	}
 }
 
-DiscountEditComponent = reduxForm({
-	form: 'editDiscount',
-	enableReinitialize: true
-})(DiscountEditComponent);
-
 DiscountEditComponent.propTypes = {
 	isNew: PropTypes.bool.isRequired,
 	onSubmitForm: PropTypes.func.isRequired,
 	onCloseForm: PropTypes.func.isRequired,
-	onDeleteForm: PropTypes.func.isRequired,
-	formState: PropTypes.object.isRequired
+	onDeleteDiscount: PropTypes.func.isRequired
 };
 
-
-export default DiscountEditComponent;
+export default formName => reduxForm({
+	form: formName,
+	enableReinitialize: true
+})(DiscountEditComponent);
