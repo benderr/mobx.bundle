@@ -2,7 +2,7 @@ import React from 'react'
 import {Field} from 'redux-form/immutable'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import 'jquery-datetimepicker/build/jquery.datetimepicker.full'
+import 'jquery-datetimepicker'
 import {isEmpty} from 'common/validators'
 
 $.datetimepicker.setLocale('ru');

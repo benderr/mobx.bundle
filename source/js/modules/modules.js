@@ -18,3 +18,8 @@ export const DocumentsModule = DocumentsModule1;
 
 
 export default [TestSelector, AccountModule, ProductsModule, RetailPointsModule, Contragents, DiscountModule,DocumentsModule,CashboxModule];
+
+export const loginModules = [
+	AccountModule,
+	RetailPointsModule
+];

@@ -1,7 +1,7 @@
 import {createStore, compose} from 'redux';
 import {createBrowserHistory} from 'history' //todo добавить в package?
 import {connectRouter} from 'connected-react-router/immutable'
-import {combineReducers} from 'redux-immutable';
+import {combineReducers} from 'redux-immutablejs';
 import Immutable from 'immutable';
 
 export default function ({middleware, reducers, initionalState, sagaMiddleware, sagas, history}) {

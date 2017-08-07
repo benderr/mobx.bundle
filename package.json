@@ -96,11 +96,9 @@
     "react-waypoint": "^7.0.3",
     "redux": "^3.3.1",
     "redux-form": "^6.8.0",
-    "redux-immutable": "^4.0.0",
     "redux-immutablejs": "0.0.8",
     "redux-saga": "^0.14.4",
     "redux-saga-debounce-effect": "^0.2.2",
-    "redux-thunk": "^2.0.1",
     "reselect": "^3.0.0",
     "tether-drop": "^1.4.2"
   },
