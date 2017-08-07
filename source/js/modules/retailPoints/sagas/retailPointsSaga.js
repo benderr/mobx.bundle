@@ -48,6 +48,14 @@ function* setSelectedPoint() {
 	}
 }
 
+function* selectNewPoint({id}) {
+	const points = yield select(retailPointSelectors.getRetailPointList);
+	const point = points.find(s => s.get('id') == id);
+	if (point) {
+		localStorage.setItem(currencyRetailPointKey, id);
+	}
+}
+
 /**
  * Получение списка ТТ
  */
@@ -140,5 +148,6 @@ export default function*() {
 		takeEvery(actions.CREATE_RETAIL_POINT, createRetailPointProcess),
 		takeEvery(actions.EDIT_RETAIL_POINT.REQUEST, editRetailPointProcess),
 		takeEvery(actions.DELETE_RETAIL_POINT.REQUEST, deleteRetailPointProcess),
+		takeEvery(actions.SET_RETAIL_POINT, selectNewPoint),
 	]
 }
