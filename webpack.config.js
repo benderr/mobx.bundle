@@ -9,7 +9,7 @@ module.exports = {
 	context: config.jsSourcePath,
 	entry: {
 		app: './index.js',
-		login: './login.js',
+		signin: './signin.js',
 		vendors: [
 			'babel-polyfill',
 			'es6-promise',

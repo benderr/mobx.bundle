@@ -16,7 +16,7 @@ const plugins = [
 
 	new WebpackChunkHash(),
 	new CommonsChunkPlugin({
-		name: ["vendors", "manifest", "app", "login"],
+		name: ["vendors", "manifest", "app", "signin"],
 		minChunks: Infinity,
 		filename: '[name]-[hash].js'
 	}),
@@ -24,6 +24,7 @@ const plugins = [
 		filename: "chunk-manifest.json",
 		manifestVariable: "webpackManifest"
 	}),
+	new webpack.NoErrorsPlugin(),
 	new webpack.DefinePlugin({
 		'process.env': {
 			NODE_ENV: JSON.stringify(config.NODE_ENV),
@@ -42,10 +43,10 @@ const plugins = [
 		chunks: ['vendors', 'manifest', "app"]
 	}),
 	new HtmlWebpackPlugin({
-		template: path.join(config.sourcePath, 'login.html'),
+		template: path.join(config.sourcePath, 'signin.html'),
 		path: config.buildPath,
-		filename: 'login.html',
-		chunks: ['vendors', 'manifest', "login"]
+		filename: 'signin.html',
+		chunks: ['vendors', 'manifest', "signin"]
 	}),
 	new webpack.LoaderOptionsPlugin({
 		options: {
