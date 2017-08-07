@@ -10,7 +10,7 @@ import {ROLES, ROLES_CODE} from '../enums/options'
 
 
 class ContragentEditComponent extends React.Component {
-	componentDidMount() {
+	componentWillMount() {
 		const {contragent, dispatch, form} = this.props;
 		const formState = {...contragent};
 
