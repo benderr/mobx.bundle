@@ -23,6 +23,12 @@ class ChequeListContainer extends React.Component {
 		this.props.getListCheque({isFirst: true});
 	}
 
+	componentWillReceiveProps(nextProps) {
+		const {getListCheque, selectedPoint} = this.props;
+		if (selectedPoint !== nextProps.selectedPoint)
+			getListCheque({isFirst: true});
+	}
+
 	// открытие фильтра
 	handleOpenFilter() {
 		this.filter && this.filter.open();
@@ -130,7 +136,7 @@ class ChequeListContainer extends React.Component {
 					onInfinateScroll={::this.onInfinateScroll}/>}
 
 				{!globalLoading && noItems &&
-				<div className="center_xy page_center_info page_center_info__orders0">
+				<div className={`center_xy page_center_info page_center_info__orders0 ${listState.loading ? 'loading_block' : ''}`}>
 					<i className="icon icon_orders"/>
 					<div className="title">Чеки отсутствуют</div>
 				</div>}
