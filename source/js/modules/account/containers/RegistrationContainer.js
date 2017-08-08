@@ -1,7 +1,7 @@
 import React from 'react';
 import RegistrationForm from '../components/RegistrationForm'
 import {connect} from 'react-redux';
-import {register} from '../actions/accountActions'
+import {register, registerReset} from '../actions/accountActions'
 import {bindActionCreators} from 'redux';
 import {getRegistrationSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
@@ -18,6 +18,10 @@ class RegistrationContainer extends React.Component {
 			captchaReady: false,
 			formInitialValues: {agreement: true}
 		};
+	}
+
+	componentDidMount() {
+		this.props.registerReset();
 	}
 
 	onCaptchaChange(value) {
@@ -147,6 +151,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
 	return {
-		register: bindActionCreators(register.request, dispatch)
+		register: bindActionCreators(register.request, dispatch),
+		registerReset: bindActionCreators(registerReset, dispatch)
 	}
 }

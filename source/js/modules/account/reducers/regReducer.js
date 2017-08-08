@@ -8,7 +8,9 @@ export const initialState = Map({
 });
 
 export const actionHandlers = {
-
+	[actions.REGISTER_RESET]: () => {
+		return initialState;
+	},
 	[actions.REGISTER.REQUEST]: (state) => {
 		return state.merge({
 			loading: true,
