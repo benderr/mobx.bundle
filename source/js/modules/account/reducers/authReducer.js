@@ -38,14 +38,14 @@ export const actionHandlers = {
 		});
 	},
 
-	[LOGOUT]: (state, action) => {
-		return state.merge({
-			loading: false,
-			authError: null,
-			authData: null,
-			token: null
-		});
-	},
+	// [LOGOUT]: (state, action) => {
+	// 	return state.merge({
+	// 		loading: false,
+	// 		authError: null,
+	// 		authData: null,
+	// 		token: null
+	// 	});
+	// },
 
 	[CHECKING_ACCESS_START]: (state, action) => {
 		return state.merge({appReady: false});

@@ -10,39 +10,6 @@ Boilerplate для проектов с использованием React+Redux+
 5. Реализовать механизм подключения модульного создания actions/reducers и их автоматического подключения к store
 # React and Redux, Webpack 2 boilerplate
 
-## Features
-
-- [x] React
-- [x] React router
-- [x] Redux
-- [x] Redux Thunk
-- [x] Redux Dev Tools
-- [x] Immutable reducer data
-- [x] Webpack 2 (development and production config)
-- [x] Hot Module Replacement
-- [x] Babel - static props, decorators
-- [x] SASS with autoprefixing
-- [x] Webpack dashboard
-- [x] Linting
-- [x] Included `es6-promise` and `isomorphic-fetch`
-- [x] Preview production build
-- [x] File imports relative to the app root
-- [x] Git hooks - lint before push
-
-## TODO
-
-- [ ] Tree shaking build
-- [ ] Switch to [redux-saga](https://github.com/redux-saga/redux-saga)
-- [ ] Universal rendering
-- [ ] Server async data
-- [ ] Internationalization
-
-Other nice to have features
-
-- [ ] Generating icon font from SVGs
-- [ ] Modernizr
-- [ ] Google analytics
-- [ ] Error reporting (not sure if this should be the part of the boilerplate)
 
 ## Setup
 
@@ -58,15 +25,6 @@ $ npm install
 $ npm start
 ```
 
-Visit `http://localhost:3000/` from your browser of choice.
-Server is visible from the local network as well.
-
-![Running in the iTerm2](http://i.imgur.com/IxamMBh.png)
-
-It is using [webpack dashboard](https://github.com/FormidableLabs/webpack-dashboard), so please note the following:
-
-**OS X Terminal.app users:** Make sure that **View → Allow Mouse Reporting** is enabled, otherwise scrolling through logs and modules won't work. If your version of Terminal.app doesn't have this feature, you may want to check out an alternative such as [iTerm2](https://www.iterm2.com/).
-
 ## Build (production)
 
 Build will be placed in the `build` folder.
@@ -74,6 +32,9 @@ Build will be placed in the `build` folder.
 ```
 $ npm run build
 ```
+
+Сайт поделен на два приложения, index и signin, index - основное приложение, работа внутри личного кабиента, signin - отвечает за авторизацию, регистрацию и раздел "забыли пароль"
+Чтобы сайт корректно работал с двумя приложениями необходимо корректно настроить nginx, пример конфигурации можно посмотреть в файле nginx.conf
 
 If your app is not running on the server root you should change `publicPath` at two places.
 
@@ -131,30 +92,3 @@ npm run hook-remove
 ```
 
 
-
------
-
-## Changelog
-
-#### 0.1.1
-
-* Fixed running it on Windows machines
-
-#### 0.1.0
-
-* Updated `webpack` to a stable version
-
-#### 0.0.3
-
-* Added pre-push git hook
-* Added `preview` task
-
-#### 0.0.2
-
-* Added Redux Dev Tools.
-* Renamed `client` to `source`
-* Made sure `logger` and `DevTools` are loaded only in development
-
-#### 0.0.1
-
-Initial release

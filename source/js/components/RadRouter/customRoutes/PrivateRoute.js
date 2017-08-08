@@ -2,6 +2,7 @@ import React from 'react'
 import {Redirect} from 'react-router-dom'
 import {connect} from 'react-redux';
 import {getAuthData} from 'modules/account/selectors/accountSelectors'
+import {LoaderPanel} from 'common/uiElements'
 
 export default (RouteComponent) => {
 
@@ -12,11 +13,10 @@ export default (RouteComponent) => {
 
 			if (authData != null)
 				return (<RouteComponent {...props}/>);
-			else
-				return (<Redirect to={{
-					pathname: '/signin',
-					state: {from: props.location}
-				}}/>);
+			else {
+				setTimeout(() => window.location.href = '/signin', 500);
+				return (<LoaderPanel loading={true}/>)
+			}
 		}
 	}
 

@@ -1,7 +1,6 @@
 import logger from 'dev/logger';
 import thunk from 'redux-thunk';
 import {applyMiddleware} from 'redux';
-import DevTools from 'dev/DevTools.jsx';
 import createSagaMiddleware from 'redux-saga';
 //import {routerMiddleware} from 'react-router-redux'
 //import {browserHistory} from 'react-router'
@@ -32,8 +31,10 @@ export function getMiddlewares(modules, history) {
 		middlewares.push(logger);
 	}
 
-	if (__DEV_TOOLS__)
+	if (__DEV_TOOLS__) {
+		const DevTools = require('../dev/DevTools.jsx').default;
 		composerFuncs.push(DevTools.instrument());
+	}
 
 	return [
 		applyMiddleware(...middlewares),

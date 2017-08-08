@@ -6,7 +6,6 @@ import {bindActionCreators} from 'redux';
 import {getSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
 import ModulHeader from 'components/ModulHeader';
-import styles from 'components/ExternalLayoutStyles';
 
 const SignInContainer = props => {
     const {loading, login, redirectUrl, errors}=props;
