@@ -7,6 +7,8 @@ const devServer = {
 		rewrites: [
 			//{ from: /^\/$/, to: '/index.html' },
 			{ from: /^\/signin/, to: '/signin.html' },
+			{ from: /^\/registration/, to: '/signin.html' },
+			{ from: /^\/forgot/, to: '/signin.html' },
 			{ from: /./, to: '/index.html' }
 		]
 	},

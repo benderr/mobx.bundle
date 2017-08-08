@@ -1,6 +1,6 @@
 import React from 'react';
 import {reduxForm} from 'common/formElements';
-import {InputField, PhoneField} from 'common/formElements/fields';
+import {InputField, PhoneField, Field} from 'common/formElements/fields';
 import {
 	validEmail, validPassword, validPasswordLength,
 	onlyCyr, firstSymbolCyr, validator
@@ -143,6 +143,17 @@ class RegistrationForm extends React.Component {
 							expiredCallback={onCaptchaChange}
 							onloadCallback={onCaptchaLoad}/>
 					</div>
+
+					<div class="form_group">
+						<div class="input_group_title w100">
+							<Field id="agreement" name="selected" type="checkbox" component="input"/>
+							<label for="agreement" className="label_check f_small">
+								<i className="icon"></i>
+								<span>Предоставляю ООО «Аванпост» согласие на <a>обработку персональных данных</a></span>
+							</label>
+						</div>
+					</div>
+
 
 					{defaultErrorText && <div className="form_error">{defaultErrorText}</div>}
 
