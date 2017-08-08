@@ -6,7 +6,8 @@ export const initialState = Map({
 	authError: null,
 	authData: null,
 	appReady: false,
-	token: null
+	token: null,
+	logout: false
 });
 
 export const actionHandlers = {
@@ -22,7 +23,7 @@ export const actionHandlers = {
 
 	[LOGIN.SUCCESS]: (state, {profile, token}) => {
 		return state.merge({
-			loading: false,
+			//loading: false,
 			authError: null,
 			authData: fromJS(profile),
 			token: token
@@ -38,14 +39,9 @@ export const actionHandlers = {
 		});
 	},
 
-	// [LOGOUT]: (state, action) => {
-	// 	return state.merge({
-	// 		loading: false,
-	// 		authError: null,
-	// 		authData: null,
-	// 		token: null
-	// 	});
-	// },
+	[LOGOUT]: (state, action) => {
+		return state.merge({logout: true});
+	},
 
 	[CHECKING_ACCESS_START]: (state, action) => {
 		return state.merge({appReady: false});

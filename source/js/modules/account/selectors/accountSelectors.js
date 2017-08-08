@@ -24,6 +24,10 @@ export const getAuthData = createSelector([getSection], (section) => {
 	return section ? section.get('authData') : null;
 });
 
+export const getLogoutState = createSelector([getSection], (section) => {
+	return section ? section.get('logout') : null;
+});
+
 export const getAppReady = createSelector([getSection], (app) => {
 	return app ? app.get('appReady') : false;
 });

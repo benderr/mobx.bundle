@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Link} from 'react-router-dom';
 import {logOut} from 'modules/account/actions/loginActions'
+import {getLogoutState} from 'modules/account/selectors/accountSelectors'
 import {Route} from 'react-router'
 import {Drop} from 'common/uiElements';
 import toJs from 'components/HOC/toJs'
@@ -22,6 +23,7 @@ const SiteMenuLink = ({label, to, exact}) => (
 const mapStateToProps = (state) => ({
     selectedPointId: getCurrentRetailPointId(state),
     points: getRetailPointList(state),
+    logoutState: getLogoutState(state)
 });
 
 const mapActionsToProps = dispatch => ({
@@ -50,7 +52,7 @@ class SiteHeader extends React.Component {
     }
 
     render() {
-        const {selectedPointId, points, onSelectPoint, logOut} = this.props;
+        const {selectedPointId, points, onSelectPoint, logOut, logoutState} = this.props;
         const selectedPointName = this.getSelectedPointName(selectedPointId, points);
 
         const pointsBlock = selectedPointId && points ? points.filter(point => point.id !== selectedPointId)
@@ -100,7 +102,8 @@ class SiteHeader extends React.Component {
                         <Link to="/settings" class="icon-settings"></Link>
                     </div>
                     <div class="header_profile_logout">
-                        <a onClick={logOut} class="icon-logout"></a>
+                        {!logoutState && <a onClick={logOut} class="icon-logout"></a>}
+                        {logoutState && <a class="loading_block"></a>}
                     </div>
                 </div>
             </header>
