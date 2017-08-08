@@ -1,4 +1,4 @@
-import {call, put, select, take, fork, takeEvery, throttle} from 'redux-saga/effects'
+import {call, put, select, throttle} from 'redux-saga/effects'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import {notify} from 'common/uiElements/Notify'
 
@@ -29,7 +29,7 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 		if (propState.q.length)
 			query.push(`:quickSearch="${propState.q}"`);
 
-		query.push('shift.id==":external"');	// TODO: Чеки 'shift.id!=":external"'
+		query.push('shift.id!=":external"');	// Для теста: 'shift.id==":external"'
 		query = query.join(';');
 		// endregion
 
