@@ -17,10 +17,15 @@ class RegistrationForm extends React.Component {
 		}
 	}
 
+	openAgreement(event) {
+		this.props.onOpenAgreement();
+		event.preventDefault();
+	}
+
 	render() {
 		const {
 			handleSubmit, loading, onRegister, onCaptchaChange, onCaptchaLoad,
-			errors, regData, captchaReady, captcha
+			errors, regData, captchaReady, captcha, agreementSelected
 		} = this.props;
 		let existEmail = false;
 		let defaultErrorText = '';
@@ -49,6 +54,8 @@ class RegistrationForm extends React.Component {
 		};
 
 		parseError(errors);
+
+		const isEnableRegistration = !loading && agreementSelected && captchaReady && captcha;
 
 		return (
 			<form onSubmit={handleSubmit(onRegister)} noValidate={true} autoComplete={false}>
@@ -146,10 +153,10 @@ class RegistrationForm extends React.Component {
 
 					<div class="form_group">
 						<div class="input_group_title w100">
-							<Field id="agreement" name="selected" type="checkbox" component="input"/>
+							<Field id="agreement" name="agreement" type="checkbox" component="input"/>
 							<label for="agreement" className="label_check f_small">
 								<i className="icon"></i>
-								<span>Предоставляю ООО «Аванпост» согласие на <a>обработку персональных данных</a></span>
+								<span>Предоставляю ООО «Аванпост» согласие на <a onClick={::this.openAgreement}>обработку персональных данных</a></span>
 							</label>
 						</div>
 					</div>
@@ -158,7 +165,7 @@ class RegistrationForm extends React.Component {
 					{defaultErrorText && <div className="form_error">{defaultErrorText}</div>}
 
 					{!regData && <div class="form_buttons">
-						<button disabled={loading || !captchaReady || !captcha} className="button" type="submit">
+						<button disabled={!isEnableRegistration} className="button" type="submit">
 							Зарегистрироваться
 						</button>
 					</div>
@@ -186,7 +193,9 @@ RegistrationForm.propTypes = {
 	onRegister: PropTypes.func.isRequired,
 	onCaptchaChange: PropTypes.func.isRequired,
 	onCaptchaLoad: PropTypes.func.isRequired,
+	onOpenAgreement: PropTypes.func.isRequired,
 	regData: PropTypes.bool,
+	agreementSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
 	errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
 
