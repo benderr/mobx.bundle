@@ -6,9 +6,6 @@ const rules = [
 	{
 		test: /\.(js|jsx)$/,
 		exclude: /node_modules/,
-		// exclude: [
-		// 		path.resolve(__dirname, "../node_modules")
-		// ],
 		use: [
 			'babel-loader',
 		]

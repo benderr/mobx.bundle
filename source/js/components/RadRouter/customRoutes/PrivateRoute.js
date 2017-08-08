@@ -14,11 +14,8 @@ export default (RouteComponent) => {
 			if (authData != null)
 				return (<RouteComponent {...props}/>);
 			else {
-				//window.location.href = '/signin'
-				setTimeout(() => {
-					window.location.href = '/signin'
-				}, 500);
-				return (<LoaderPanel loading={true} />)
+				setTimeout(() => window.location.href = '/signin', 500);
+				return (<LoaderPanel loading={true}/>)
 			}
 		}
 	}

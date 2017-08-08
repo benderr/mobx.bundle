@@ -15,11 +15,6 @@ const CommonsChunkPlugin = require("../node_modules/webpack/lib/optimize/Commons
 const plugins = [
 
 	new WebpackChunkHash(),
-	// new CommonsChunkPlugin({
-	// 	name: ["vendors", "manifest", "signin", "app"],
-	// 	minChunks: Infinity,
-	// 	filename: '[name]-[hash].js'
-	// }),
 	new CommonsChunkPlugin({
 		// The order of this array matters
 		names: ["common", "vendor"],
@@ -29,12 +24,6 @@ const plugins = [
 		name: "manifest",
 		minChunks: Infinity
 	}),
-	// new CommonsChunkPlugin({
-	// 	name: "commons",
-	// 	minChunks: Infinity,
-	// 	filename: '[name]-[hash].js',
-	// 	chunks: ["signin", "app"]
-	// }),
 	new ChunkManifestPlugin({
 		filename: "manifest.json",
 		manifestVariable: "webpackManifest"

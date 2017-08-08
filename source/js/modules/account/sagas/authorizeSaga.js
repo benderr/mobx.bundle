@@ -4,7 +4,6 @@ import {login, checkingAccessStart, checkingAccessStop, clearApp} from '../actio
 import localStorage from 'core/storage/localStorage'
 import * as dataContext  from '../dataProvider/accountDataContext'
 import * as accountSelectors from '../selectors/accountSelectors'
-import {push} from 'connected-react-router'
 import * as retailPointsSaga from '../../retailPoints/sagas/retailPointsSaga'
 import {encrypt} from 'infrastructure/utils/tokenCrypt'
 const xToken = 'X-TOKEN';
@@ -16,7 +15,6 @@ function* authorize(email, pass, redirectUrl) {
 		const profile = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success({profile, token}));
-		//yield fork(retailPointsSaga.runRetailPoints);
 		window.location.href = redirectUrl && redirectUrl != '/' ? redirectUrl : '/retail-points';
 	} catch (error) {
 		yield put(login.failure({
@@ -43,11 +41,9 @@ function* watchLogout() {
 }
 
 function* logout() {
-	//yield put(push(signInLocation));
 	yield call(dataContext.logout);
 	yield call(localStorage.removeItem, xToken);
 	yield put(clearApp());
-	//yield put(checkingAccessStop());
 	window.location.href = signInLocation.pathname;
 }
 
