@@ -1,3 +1,4 @@
+
 export const toClientOrder = order => {
 	if (order.beginDateTime)
 		order.beginDateTime = new Date(order.beginDateTime);
@@ -24,7 +25,7 @@ export const toClientDocumentDetails = doc => {
 	};
 
 	if (doc.status) {
-		item.status = 'PENDING'//doc.status.status;
+		item.status = doc.status.status;
 		item.fnState = doc.status.fnState;
 		item.fiscalInfo = mapFiscalInfo(doc.status.fiscalInfo);
 		item.error = doc.status.message;
