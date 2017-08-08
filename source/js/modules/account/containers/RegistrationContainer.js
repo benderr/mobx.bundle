@@ -7,7 +7,6 @@ import {getRegistrationSection} from '../selectors/accountSelectors'
 import toJs from 'components/HOC/toJs';
 import {Link} from 'react-router-dom';
 import ModulHeader from 'components/ModulHeader';
-import styles from 'components/ExternalLayoutStyles';
 
 class RegistrationContainer extends React.Component {
 	constructor(props) {
