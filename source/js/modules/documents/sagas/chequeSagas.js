@@ -10,8 +10,6 @@ import {getSectionPos, getSectionState, getSectionStep} from '../selectors/chequ
 
 
 function* getChequeSaga({q = '', filter = null, sortField, sortDirection, isFirst = false, ...props}) {
-	console.log(q, filter, sortField, sortDirection, isFirst, props);
-
 	try {
 		const token = yield select(getCurrentRetailPointId);
 
