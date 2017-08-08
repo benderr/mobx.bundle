@@ -7,7 +7,6 @@ module.exports = [
 	'react-router',
 	'react-router-dom',
 	'react',
-	'redux-thunk',
 	'redux',
 	'axios',
 	'accounting',
