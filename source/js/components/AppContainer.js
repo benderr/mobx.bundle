@@ -20,6 +20,10 @@ class AppContainer extends React.Component {
 		routes: PropTypes.array.isRequired
 	};
 
+	componentDidMount() {
+		$('#root').removeClass('loading_block');
+	}
+
 	render() {
 		let className = 'poss';
 		if (!this.props.appReady) {
