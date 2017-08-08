@@ -10,7 +10,7 @@ export const initialState = Map({
 	filter: Map({			// параметры фильтра
 		dateFrom: null,		// дата От
 		dateTo: null,		// дата До
-		docType: []
+		docType: List([])
 	}),
 	isFilter: false,		// флаг применения фильтра
 
@@ -31,8 +31,6 @@ export const initialState = Map({
 
 export const actionHandlers = {
 	[actEnums.GET_LIST.REQUEST]: (state, req) => {
-		console.log(actEnums.GET_LIST.REQUEST, req);
-
 		let props = {};
 
 		if (req.isFirst) {
@@ -57,7 +55,6 @@ export const actionHandlers = {
 			errors: null,
 			success: true,
 
-			filter: res.filter,
 			isFilter: res.isFilter,
 
 			list: arList,
@@ -73,6 +70,11 @@ export const actionHandlers = {
 			errors: true,
 			success: null
 		});
+	},
+
+	// установка параметров фильтра
+	[actEnums.SET_FILTER_PARAMS]: (state, props) => {
+		return state.mergeIn(['filter'], fromJS(props));
 	}
 };
 

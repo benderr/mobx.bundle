@@ -5,6 +5,7 @@ import {notify} from 'common/uiElements/Notify'
 import * as actEnums from '../actions/chequeActions'
 import * as dataContext from '../dataProvider/dataContext'
 import {getListPropsState} from '../selectors/chequeSelectors'
+import dateHelper from 'common/helpers/dateHelper'
 
 
 function* getListChequeSaga({isFirst = false, step = false}) {
@@ -14,18 +15,19 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 
 		// region: query params
 		let query = [];
+		const {dateFrom, dateTo, docType} = propState.filter;
+
+		if (dateFrom instanceof Date)
+			query.push(`beginDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
+		if (dateTo instanceof Date)
+			query.push(`beginDateTime=le="${dateHelper.dateFormat(dateTo, 'isoUtcDateTime')}"`);
+		if (docType.length)
+			query.push(`docType=="${docType[0]}"`);
+
+		const isFilter = !!(query.length);
 
 		if (propState.q.length)
 			query.push(`:quickSearch="${propState.q}"`);
-
-		/*
-		if (dateFrom instanceof Date)
-			query.push(`checkoutDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
-		if (dateTo instanceof Date)
-			query.push(`checkoutDateTime=le="${dateHelper.dateFormat(dateTo, 'isoUtcDateTime')}"`);
-		if (docType.length)
-			query.push(`docType=="${docType[0]}"`);
-		*/
 
 		query.push('shift.id==":external"');	// TODO: Чеки 'shift.id!=":external"'
 		query = query.join(';');
@@ -43,7 +45,9 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 			list: response.orders,
 			pos: response.pos,
 			total_count: response.totalCount,
-			noItems: isFirst ? !(response.orders.length) : propState.noItems
+			noItems: isFirst ? !(response.orders.length) : propState.noItems,
+			filter: propState.filter,
+			isFilter
 		}));
 	} catch (error) {
 		yield put(notify.error('При загрузке данных произошла ошибка', 'Ошибка'));

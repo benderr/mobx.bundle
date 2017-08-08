@@ -95,7 +95,6 @@ ChequeList.propTypes = {
 
 	onHeadSortClick: PropTypes.func.isRequired,		// при клике на имя столбца
 	onFilterChanged: PropTypes.func.isRequired,		// при вводе в поле поиска
-	// onBodyItemClick: PropTypes.func.isRequired,		// при клике элемент таблицы
 
 };
 

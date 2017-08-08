@@ -13,7 +13,7 @@ class ChequeMoneyFilter extends React.Component {
 		const {
 			ignoreCloseSelect,
 			dateFrom, dateTo, docType,
-			onChangeDate, onChangeDocType
+			onChangeDate, onChangeDocType, onClearFilter
 		} = this.props;
 
 		return (
@@ -39,6 +39,10 @@ class ChequeMoneyFilter extends React.Component {
 								  id={`id_${DOCUMENT_TYPE.RETURN}`}
 								  label={getDocTypeName(DOCUMENT_TYPE.RETURN)}/>
 					</ul>
+				</div>
+
+				<div className="side_filter">
+					<a className="link_dashed" onClick={onClearFilter}><span>Очистить</span></a>
 				</div>
 			</div>
 		)

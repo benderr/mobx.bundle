@@ -11,6 +11,7 @@ import ListFilter from "../components/ListFilter"
 import * as selectors from '../selectors/chequeSelectors'
 import * as actions from '../actions/chequeActions'
 import ChequeList from '../components/cheque/ChequeList'
+import ChequeMoneyFilter from '../components/ChequeMoneyFilter'
 
 
 @withRouter
@@ -45,29 +46,80 @@ class ChequeListContainer extends React.Component {
 		}
 	}
 
+	// region: filter options
+	isClosableFilter() {
+		if (!this.chequeFilter)
+			return true;
+		return this.chequeFilter.isClosable();
+	}
+
+	handleChangeFilterDocType(e, type) {
+		const {getListCheque, setFilterParams, listState: {filter}} = this.props;
+
+		let props = {
+			dateFrom: filter.dateFrom,
+			dateTo: filter.dateTo,
+			docType: []
+		};
+		props.docType.push(type);
+
+		setFilterParams(props);
+		getListCheque();
+	}
+
+	handleChangeDate(date) {
+		const {getListCheque, setFilterParams, listState: {filter}} = this.props;
+		setFilterParams({
+			dateFrom: date.dateFrom,
+			dateTo: date.dateTo,
+			docType: filter.docType
+		});
+		getListCheque();
+	}
+
+	onClearFilter() {
+		const {getListCheque, setFilterParams} = this.props;
+
+		setFilterParams({
+			dateFrom: null,
+			dateTo: null,
+			docType: []
+		});
+		getListCheque();
+	}
+	// endregion
+
 	render() {
 		const {listState} = this.props;
-		const {noItems} = listState;
+		const {noItems, filter, isFilter} = listState;
 		const globalLoading = noItems === null;
-
-		console.log('render.listState', listState);
 
 		return (
 			<div className="h100per">
 				<TitlePanel>
 					{!noItems &&
 					<TitleActions>
-						<a className="button small light icon-filter show_filter_panel  right20"
-						   onClick={::this.handleOpenFilter}>Фильтры</a>
-						<a className="button white icon-filter show_filter_panel float  right20"
+						<a className="button small light icon-filter show_filter_panel right20"
+						   onClick={::this.handleOpenFilter}>Фильтры{isFilter && <span className="filter_count"/>}</a>
+						<a className="button white icon-filter show_filter_panel float right20"
 						   onClick={::this.handleOpenFilter}>
 							<span className="filter_count"/>
 						</a>
 					</TitleActions>}
 				</TitlePanel>
 
-				<ListFilter setInstance={f => this.filter = f}>
-
+				<ListFilter
+					setInstance={f => this.filter = f}
+					isClosable={::this.isClosableFilter}
+					ignoreCloseSelect="no-close-date-selector">
+					<ChequeMoneyFilter
+						ref={f => this.chequeFilter = f}
+						onChangeDocType={::this.handleChangeFilterDocType}
+						onChangeDate={::this.handleChangeDate}
+						onClearFilter={::this.onClearFilter}
+						dateFrom={filter.dateFrom}
+						dateTo={filter.dateTo}
+						docType={filter.docType} />
 				</ListFilter>
 
 				{!globalLoading && !noItems &&
@@ -95,7 +147,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			getListCheque: actions.getListCheque.request
+			getListCheque: actions.getListCheque.request,
+			setFilterParams: actions.setFilterParams
 		}, dispatch)
 	};
 }
