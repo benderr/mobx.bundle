@@ -8,6 +8,8 @@ export const getListPropsState = createSelector([getChequesSection], state => ({
 	sortField:		state.get('sortField'),
 	sortDirection:	state.get('sortDirection'),
 	countStep:		state.get('countStep'),
+	pos:			state.get('pos'),
+	q:				state.get('q'),
 	filter:			state.get('filter'),
 	noItems:		state.get('noItems')
 }));

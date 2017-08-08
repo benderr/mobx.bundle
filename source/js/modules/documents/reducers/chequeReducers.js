@@ -38,7 +38,9 @@ export const actionHandlers = {
 		if (req.isFirst) {
 
 		} else {
-
+			props.sortField = req.sortField || state.get('sortField');
+			props.sortDirection = req.sortDirection || state.get('sortDirection');
+			props.q = req.q !== undefined ? req.q : state.get('q');
 		}
 
 		return state.merge({
@@ -49,8 +51,6 @@ export const actionHandlers = {
 		});
 	},
 	[actEnums.GET_LIST.SUCCESS]: (state, res) => {
-		console.log(actEnums.GET_LIST.SUCCESS, res);
-
 		const arList = res.pos ? state.get('list').concat(fromJS(res.list)) : List(res.list);
 		return state.merge({
 			loading: false,
@@ -68,8 +68,6 @@ export const actionHandlers = {
 		});
 	},
 	[actEnums.GET_LIST.FAILURE]: (state) => {
-		console.log(actEnums.GET_LIST.FAILURE);
-
 		return state.merge({
 			loading: false,
 			errors: true,

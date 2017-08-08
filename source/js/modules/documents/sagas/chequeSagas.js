@@ -13,7 +13,10 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 		const propState = yield select(getListPropsState);
 
 		// region: query params
-		let query = ['shift.id==":external"']; // TODO: Чеки 'shift.id!=":external"'
+		let query = [];
+
+		if (propState.q.length)
+			query.push(`:quickSearch="${propState.q}"`);
 
 		/*
 		if (dateFrom instanceof Date)
@@ -24,6 +27,7 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 			query.push(`docType=="${docType[0]}"`);
 		*/
 
+		query.push('shift.id==":external"');	// TODO: Чеки 'shift.id!=":external"'
 		query = query.join(';');
 		// endregion
 

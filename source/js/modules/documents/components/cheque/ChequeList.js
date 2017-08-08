@@ -10,38 +10,44 @@ class ChequeList extends React.Component {
 			listState,
 			onHeadSortClick, onFilterChanged, onInfinateScroll
 		} = this.props;
-		const {list, sortField, sortDirection, q, listStep, loading} = listState;
+		const {list, sortField, sortDirection, q, loading} = listState;
+
 		return (
 			<div className="widget_block">
 				<div className="table table_docs">
 
 					<div className="table_head">
-						<SortLink sortField={sortField}
-								  orderBy={sortDirection}
-								  onClick={onHeadSortClick}
-								  field="beginDateTime"
-								  className="doc_date">Дата создания</SortLink>
-						<SortLink sortField={sortField}
-								  orderBy={sortDirection}
-								  onClick={onHeadSortClick}
-								  field="docType"
-								  className="doc_type">Тип документа</SortLink>
+						<SortLink
+							sortField={sortField}
+							orderBy={sortDirection}
+							onClick={onHeadSortClick}
+							field="beginDateTime"
+							className="doc_date">Дата создания</SortLink>
+						<SortLink
+							sortField={sortField}
+							orderBy={sortDirection}
+							onClick={onHeadSortClick}
+							field="docType"
+							className="doc_type">Тип документа</SortLink>
 						<div className="doc_smena_number">Номер смены</div>
-						<SortLink sortField={sortField}
-								  orderBy={sortDirection}
-								  onClick={onHeadSortClick}
-								  field="docNum"
-								  className="doc_number">Номер документа</SortLink>
-						<SortLink sortField={sortField}
-								  orderBy={sortDirection}
-								  onClick={onHeadSortClick}
-								  field="actualSum"
-								  className="doc_amount">Сумма</SortLink>
-						<SortLink sortField={sortField}
-								  orderBy={sortDirection}
-								  onClick={onHeadSortClick}
-								  field="cashier.name"
-								  className="doc_cashier">Кассир</SortLink>
+						<SortLink
+							sortField={sortField}
+							orderBy={sortDirection}
+							onClick={onHeadSortClick}
+							field="docNum"
+							className="doc_number">Номер документа</SortLink>
+						<SortLink
+							sortField={sortField}
+							orderBy={sortDirection}
+							onClick={onHeadSortClick}
+							field="actualSum"
+							className="doc_amount">Сумма</SortLink>
+						<SortLink
+							sortField={sortField}
+							orderBy={sortDirection}
+							onClick={onHeadSortClick}
+							field="cashier.name"
+							className="doc_cashier">Кассир</SortLink>
 					</div>
 
 					<div className="table_row  row_link_search">
@@ -55,7 +61,8 @@ class ChequeList extends React.Component {
 							 key={`row_${Item.id}`}>
 							<div className="doc_date"><DateFormat value={Item.beginDateTime}/></div>
 							<div className="doc_type">{DOC_TYPES[Item.docType] || NOT_VALUE}</div>
-							<div className="doc_smena_number">{Item.shift && ''+Item.shift.shiftNum ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}</div>
+							<div
+								className="doc_smena_number">{Item.shift && '' + Item.shift.shiftNum ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}</div>
 							<div className="doc_number">Документ №{Item.docNum}</div>
 							<div className="doc_amount"><AmountFormat value={Item.actualSum}/></div>
 							<div className="doc_cashier">{Item.cashier ? Item.cashier.name : NOT_VALUE}</div>
@@ -67,10 +74,11 @@ class ChequeList extends React.Component {
 						<div className="light_block">По запросу ничего не найдено</div>
 					</div>}
 
-					<InfinateScroll loadNext={onInfinateScroll}
-									totalCount={list.length}
-									listLength={listStep}
-									loading={loading}/>
+					<InfinateScroll
+						loadNext={onInfinateScroll}
+						totalCount={listState.total_count}
+						listLength={list.length}
+						loading={listState.loading}/>
 				</div>
 			</div>
 		)
