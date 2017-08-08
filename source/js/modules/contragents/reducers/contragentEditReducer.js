@@ -16,7 +16,6 @@ export const initialState = Map({
 
 export const actionHandlers = {
 	[actEnums.OPEN_FROM_STATE]: (state, {code, ...contragent}) => {
-		console.log(actEnums.OPEN_FROM_STATE, contragent);
 		return state.setIn([code], Map({
 			loading: false,
 			errors: null,
