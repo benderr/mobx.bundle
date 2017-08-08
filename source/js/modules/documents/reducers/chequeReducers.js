@@ -1,75 +1,82 @@
 import {Map, List, fromJS} from 'immutable';
-import * as enums from '../actions/chequeActions';
+import * as actEnums from '../actions/chequeActions'
 
 
 export const initialState = Map({
 	loading: true,
+	errors: null,
 	success: null,
-	error: null,
 
-	list: List([]),				// список элементов
-	details: Map({}),			// детальный просмотр элементов
+	filter: Map({			// параметры фильтра
+		dateFrom: null,		// дата От
+		dateTo: null,		// дата До
+		docType: List([])
+	}),
+	isFilter: false,		// флаг применения фильтра
 
-	// постраничная навигация
-	pos: 0,						// сдвиг элементов на странице
-	total_count: 0,				// всего элементов в БД
-	listStep: 50,				// кол-во элементов за раз
-	noItems: null,
+	noItems: null,			// изначально неизвестно есть ли элементы
+	countStep: 20,			// кол-во элементов зв звпрос (постраничная загрузка)
+
+	// список
+	list: List([]),
+	pos: 0,					// сдвиг элементов на странице
+	total_count: 0,			// всего элементов в БД
 
 	// сортировка
 	sortField: 'beginDateTime',	// поле сортировки
-	sortDirection: 'desc',		// направление сортировки
+	sortDirection: 'desc',		// направление сорт.
 
-	// поиск и фильтр
-	q: '',						// строка поиска
-	isFilter: false,			// флаг применения фильтра
-
-	docsFilter: Map({
-		dateFrom: null,		// дата От
-		dateTo: null,			// дата До
-		docType: []
-	})
+	q: ''					// параметры фильтра
 });
 
 export const actionHandlers = {
-	// получение списка элементов
-	[enums.GET_CHEQUE.REQUEST]: (state, props) => {
+	[actEnums.GET_LIST.REQUEST]: (state, req) => {
+		let props = {};
+
+		if (req.isFirst) {
+
+		} else {
+			props.sortField = req.sortField || state.get('sortField');
+			props.sortDirection = req.sortDirection || state.get('sortDirection');
+			props.q = req.q !== undefined ? req.q : state.get('q');
+		}
+
 		return state.merge({
 			loading: true,
 			errors: null,
 			success: null,
-
-			sortField: props.sortField || initialState.get('sortField'),
-			sortDirection: props.sortDirection || initialState.get('sortDirection'),
-			pos: props.pos || initialState.get('pos'),
-
-			q: props.q || initialState.get('q')
-		})
-	},
-	[enums.GET_CHEQUE.SUCCESS]: (state, {pos, totalCount, list, isFirst}) => {
-		// бесконечный скроллинг
-		let arList = pos ? state.get('list').concat(fromJS(list)) : List(list);
-
-		return state.merge({
-			loading: false,
-
-			noItems: isFirst && list.length == 0,
-
-			pos,
-			total_count: totalCount,
-			list: arList
+			...props
 		});
 	},
-	[enums.GET_CHEQUE.FAILURE]: (state) => {
-		console.log(enums.GET_CHEQUE.FAILURE, {error});
-		return state;
+	[actEnums.GET_LIST.SUCCESS]: (state, res) => {
+		const arList = res.pos ? state.get('list').concat(fromJS(res.list)) : List(res.list);
+		return state.merge({
+			loading: false,
+			errors: null,
+			success: true,
+
+			isFilter: res.isFilter,
+
+			list: arList,
+			pos: res.pos,
+			total_count: res.total_count,
+
+			noItems: res.noItems
+		});
+	},
+	[actEnums.GET_LIST.FAILURE]: (state) => {
+		return state.merge({
+			loading: false,
+			errors: true,
+			success: null
+		});
 	},
 
-	// Установка параметров фильтра
-	[enums.SET_FILTER]: (state, props) => {
-		console.log('>> ', enums.SET_FILTER);
-		return state.mergeIn(['docsFilter'], fromJS(props));
+	// установка параметров фильтра
+	[actEnums.SET_FILTER_PARAMS]: (state, props) => {
+		return state.mergeIn(['filter'], fromJS(props));
 	}
 };
+
 
 export default (createReducer) => createReducer(initialState, actionHandlers);

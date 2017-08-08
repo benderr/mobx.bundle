@@ -2,14 +2,13 @@ import {createAction} from 'infrastructure/helpers/actionHelpers'
 import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 
 // Enums
-export const GET_CHEQUE = createRequestTypes('DOCUMENTS_CHEQUE.GET_CHEQUE');
-export const SET_FILTER = 'DOCUMENTS_CHEQUE.SET_FILTER';
+export const GET_LIST = createRequestTypes('DOCUMENTS_CHEQUE.GET_LIST');
+export const SET_FILTER_PARAMS = 'DOCUMENTS_CHEQUE.SET_FILTER_PARAMS';
 
 // Actions
-export const getCheque = {
-	request: (props) => createAction(GET_CHEQUE.REQUEST, {...props}),
-	success: ({pos, totalCount, list, isFirst}) => createAction(GET_CHEQUE.SUCCESS, {pos, totalCount, list, isFirst}),
-	failure: (error) => createAction(GET_CHEQUE.FAILURE, {error})
+export const getListCheque = {
+	request: (req) => createAction(GET_LIST.REQUEST, req),
+	success: (res) => createAction(GET_LIST.SUCCESS, res),
+	failure: (err) => createAction(GET_LIST.FAILURE)
 };
-
-export const setFilterProps = (props) => createAction(SET_FILTER, props);
+export const setFilterParams = (props) => createAction(SET_FILTER_PARAMS, props);
