@@ -15,16 +15,34 @@ const CommonsChunkPlugin = require("../node_modules/webpack/lib/optimize/Commons
 const plugins = [
 
 	new WebpackChunkHash(),
+	// new CommonsChunkPlugin({
+	// 	name: ["vendors", "manifest", "signin", "app"],
+	// 	minChunks: Infinity,
+	// 	filename: '[name]-[hash].js'
+	// }),
 	new CommonsChunkPlugin({
-		name: ["vendors", "manifest", "app", "signin"],
-		minChunks: Infinity,
-		filename: '[name]-[hash].js'
+		// The order of this array matters
+		names: ["common", "vendor"],
+		minChunks: 2
 	}),
+	new CommonsChunkPlugin({
+		name: "manifest",
+		minChunks: Infinity
+	}),
+	// new CommonsChunkPlugin({
+	// 	name: "commons",
+	// 	minChunks: Infinity,
+	// 	filename: '[name]-[hash].js',
+	// 	chunks: ["signin", "app"]
+	// }),
 	new ChunkManifestPlugin({
-		filename: "chunk-manifest.json",
+		filename: "manifest.json",
 		manifestVariable: "webpackManifest"
 	}),
-	new webpack.NoErrorsPlugin(),
+	new webpack.NoEmitOnErrorsPlugin(),
+	new webpack.ProvidePlugin({
+		$: 'jquery'
+	}),
 	new webpack.DefinePlugin({
 		'process.env': {
 			NODE_ENV: JSON.stringify(config.NODE_ENV),
@@ -40,13 +58,13 @@ const plugins = [
 		template: path.join(config.sourcePath, 'index.html'),
 		path: config.buildPath,
 		filename: 'index.html',
-		chunks: ['vendors', 'manifest', "app"]
+		chunks: ["app", "common", "vendor", "manifest"]
 	}),
 	new HtmlWebpackPlugin({
 		template: path.join(config.sourcePath, 'signin.html'),
 		path: config.buildPath,
 		filename: 'signin.html',
-		chunks: ['vendors', 'manifest', "signin"]
+		chunks: ["signin", "common", "vendor", "manifest"]
 	}),
 	new webpack.LoaderOptionsPlugin({
 		options: {
@@ -96,17 +114,6 @@ if (config.IS_PRODUCTION) {
 		}),
 		new ExtractTextPlugin('[name]-[hash].css')
 	);
-
-	// Production rules
-	// rules.push(
-	//   {
-	//     test: /\.scss$/,
-	//     loader: ExtractTextPlugin.extract({
-	//       fallback: 'style-loader',
-	//       use: 'css-loader!postcss-loader!sass-loader',
-	//     }),
-	//   }
-	// );
 } else {
 	// Development plugins
 	plugins.push(
@@ -114,26 +121,6 @@ if (config.IS_PRODUCTION) {
 		new DashboardPlugin(),
 		new webpack.NamedModulesPlugin()
 	);
-	//new ExtractTextPlugin('style-[hash].css')
-
-	// Development rules
-	// rules.push(
-	//   {
-	//     test: /\.scss$/,
-	//     exclude: /node_modules/,
-	//     use: [
-	//       'style-loader',
-	//       // Using source maps breaks urls in the CSS loader
-	//       // https://github.com/webpack/css-loader/issues/232
-	//       // This comment solves it, but breaks testing from a local network
-	//       // https://github.com/webpack/css-loader/issues/232#issuecomment-240449998
-	//       // 'css-loader?sourceMap',
-	//       'css-loader',
-	//       'postcss-loader',
-	//       'sass-loader?sourceMap',
-	//     ],
-	//   }
-	// );
 }
 
 module.exports = plugins;

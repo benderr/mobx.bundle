@@ -1,11 +1,7 @@
 import React from 'react'
 import {Field} from 'redux-form/immutable'
 import PropTypes from 'prop-types'
-import $ from 'jquery'
-import 'jquery-datetimepicker'
 import {isEmpty} from 'common/validators'
-
-$.datetimepicker.setLocale('ru');
 
 //дополнить при необходимости
 const datePickerOptions = ['value', 'lang', 'format', 'formatDate', 'formatTime', 'step',
@@ -31,6 +27,11 @@ class DatePicker extends React.Component {
 		onChange: function (maskValue, value, event) {/*no-op*/
 		}
 	};
+
+	constructor(props) {
+		super(props);
+		$.datetimepicker.setLocale('ru');
+	}
 
 	setFocus() {
 		this.input && this.input.focus();

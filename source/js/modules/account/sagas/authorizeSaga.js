@@ -16,8 +16,8 @@ function* authorize(email, pass, redirectUrl) {
 		const profile = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success({profile, token}));
-		yield fork(retailPointsSaga.runRetailPoints);
-		yield put(push({pathname: redirectUrl && redirectUrl != '/' ? redirectUrl : '/retail-points'}));
+		//yield fork(retailPointsSaga.runRetailPoints);
+		window.location.href = redirectUrl && redirectUrl != '/' ? redirectUrl : '/retail-points';
 	} catch (error) {
 		yield put(login.failure({
 			status: error.status,
@@ -43,11 +43,12 @@ function* watchLogout() {
 }
 
 function* logout() {
-	yield put(push(signInLocation));
+	//yield put(push(signInLocation));
 	yield call(dataContext.logout);
 	yield call(localStorage.removeItem, xToken);
 	yield put(clearApp());
-	yield put(checkingAccessStop());
+	//yield put(checkingAccessStop());
+	window.location.href = signInLocation.pathname;
 }
 
 function* initApp() {
@@ -64,7 +65,7 @@ function* initApp() {
 
 				const location = yield  select(accountSelectors.getCurrentLocation);
 				if (location.get('pathname') == '/signin')
-					yield put(push({pathname: '/'}));
+					window.location.href = '/';
 
 				yield fork(retailPointsSaga.runRetailPoints);
 			}
@@ -76,19 +77,15 @@ function* initApp() {
 	} catch (err) {
 		yield put(checkingAccessStop());
 		yield put(login.failure(err));
-		yield put(push(signInLocation));
+		window.location.href = signInLocation.pathname;
 		yield call(localStorage.removeItem, xToken);
 	}
-}
-
-function* startApp() {
-	yield fork(initApp);
 }
 
 
 export default function*() {
 	yield [
-		fork(startApp),
+		fork(initApp),
 		fork(watchLogin),
 		fork(watchLogout)
 	]

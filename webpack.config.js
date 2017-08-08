@@ -1,53 +1,24 @@
 const webpack = require('webpack');
 const config = require('./webpack/constants');
+const vendor = require('./webpack/vendors');
 const plugins = require('./webpack/plugins');
 const rules = require('./webpack/rules');
 const devServer = require('./webpack/devServer');
+const appConfig = require('./config/config');
+
+const buildEntryPoint = (point) => {
+	if (config.IS_PRODUCTION)
+		return point;
+	return [point, 'webpack/hot/only-dev-server', `webpack-dev-server/client?http://${appConfig.host}:${appConfig.port}`];
+}
 
 module.exports = {
 	devtool: config.IS_PRODUCTION ? 'source-map' : 'eval-source-map',
 	context: config.jsSourcePath,
 	entry: {
-		app: './index.js',
-		signin: './signin.js',
-		vendors: [
-			'babel-polyfill',
-			'es6-promise',
-			'immutable',
-			'react-dom',
-			'react-redux',
-			'react-router',
-			'react-router-dom',
-			'react',
-			'redux-thunk',
-			'redux',
-			'axios',
-			'accounting',
-			'connected-react-router',
-			'jquery-datetimepicker',
-			'node-uuid',
-			'normalizr',
-			'path-to-regexp',
-			'prop-types',
-			'q',
-			'react-click-outside',
-			'react-dnd',
-			'react-dnd-html5-backend',
-			'react-modal',
-			'react-notification-system',
-			'react-select',
-			'react-tooltip',
-			'react-waypoint',
-			'redux-immutablejs',
-			'redux-saga',
-			'redux-saga-debounce-effect',
-			'reselect',
-			'tether-drop',
-			'redux-form/immutable',
-			'connected-react-router/immutable',
-			'jquery',
-			'jquery-datetimepicker/build/jquery.datetimepicker.full'
-		],
+		vendor: vendor,
+		app: buildEntryPoint('./index'),
+		signin: buildEntryPoint('./signin'),
 	},
 	output: {
 		path: config.buildPath,

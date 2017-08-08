@@ -3,7 +3,13 @@ const appConfig = require('../config/config');
 
 const devServer = {
 	contentBase: config.IS_PRODUCTION ? config.buildPath : config.sourcePath,
-	historyApiFallback: true,
+	historyApiFallback: {
+		rewrites: [
+			//{ from: /^\/$/, to: '/index.html' },
+			{ from: /^\/signin/, to: '/signin.html' },
+			{ from: /./, to: '/index.html' }
+		]
+	},
 	port: 3000,
 	compress: config.IS_PRODUCTION,
 	inline: !config.IS_PRODUCTION,
