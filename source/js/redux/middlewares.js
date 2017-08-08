@@ -1,5 +1,5 @@
 import logger from 'dev/logger';
-import thunk from 'redux-thunk';
+//import thunk from 'redux-thunk';
 import {applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga';
 //import {routerMiddleware} from 'react-router-redux'
