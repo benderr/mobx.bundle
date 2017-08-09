@@ -1,4 +1,4 @@
-import {call, put, takeEvery, select} from 'redux-saga/effects'
+import {call, put, takeEvery, select, all} from 'redux-saga/effects'
 import * as actions from '../enums/actions';
 import {getToken} from '../selectors/accountSelectors'
 import * as registerDataContext from '../dataProvider/accountDataContext';
@@ -69,9 +69,9 @@ function* registerUser({user}) {
 }
 
 export default function*() {
-	yield [
+	yield all([
 		takeEvery(actions.REGISTER.REQUEST, registerUser),
 		takeEvery(actions.FORGOT.REQUEST, forgotPassword),
 		takeEvery(actions.CHANGE_PASSWORD.REQUEST, changePass)
-	]
+	]);
 }

@@ -1,4 +1,4 @@
-import {call, put, select, fork, take, takeEvery} from 'redux-saga/effects'
+import {call, put, select, fork, take, takeEvery, all} from 'redux-saga/effects'
 import {push} from 'connected-react-router';
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import * as retailPointSelectors from '../selectors/retailPointSelectors'
@@ -140,7 +140,7 @@ function* deleteRetailPointProcess({id}) {
 }
 
 export default function*() {
-	yield [
+	yield all([
 		//takeEvery(retailPointsActions.GET_RETAIL_POINTS.REQUEST, runRetailPoints)
 		takeEvery(actions.ADD_RETAIL_POINT.REQUEST, addRetailPointProcess),
 		takeEvery(actions.GET_RETAIL_POINT.REQUEST, getRetailPointProcess),
@@ -149,5 +149,5 @@ export default function*() {
 		takeEvery(actions.EDIT_RETAIL_POINT.REQUEST, editRetailPointProcess),
 		takeEvery(actions.DELETE_RETAIL_POINT.REQUEST, deleteRetailPointProcess),
 		takeEvery(actions.SET_RETAIL_POINT, selectNewPoint),
-	]
+	])
 }

@@ -1,4 +1,4 @@
-import {call, put, takeEvery, select} from 'redux-saga/effects'
+import {call, put, takeEvery, select, all} from 'redux-saga/effects'
 import {debounce} from 'redux-saga-debounce-effect'
 import * as actions from '../enums/actions'
 import * as productActions from '../actions/productActions'
@@ -43,8 +43,12 @@ function* getProductDetails({point, inventCode}) {
 		yield put(productActions.getProductDetails.success({product}));
 	}
 	catch (error) {
-		logger.log(error);
-		yield put(productActions.getProductDetails.failure({inventCode, error}));
+		if (error && error.data && error.data.status >= 400) {
+			//logger.log(error);
+			yield put(productActions.getProductDetails.failure({inventCode, error: error.data}));
+		} else {
+			throw error;
+		}
 	}
 }
 
@@ -81,12 +85,12 @@ function* removeProduct({point, inventCode}) {
 const searchProduct = createSearchProductsSaga(actions.SEARCH_PRODUCTS);
 
 export default function*() {
-	yield [
+	yield all([
 		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetails),
 		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
 		takeEvery(actions.CREATE_PRODUCT, createProduct),
 		takeEvery(actions.SET_NEW_PRODUCT, setProductToLayer),
 		searchProduct,
 		takeEvery(actions.REMOVE_PRODUCT.REQUEST, removeProduct),
-	]
+	])
 }

@@ -97,7 +97,7 @@
     "redux": "^3.3.1",
     "redux-form": "^6.8.0",
     "redux-immutablejs": "0.0.8",
-    "redux-saga": "^0.14.4",
+    "redux-saga": "^0.15.4",
     "redux-saga-debounce-effect": "^0.2.2",
     "reselect": "^3.0.0",
     "tether-drop": "^1.4.2"

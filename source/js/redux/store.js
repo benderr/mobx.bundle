@@ -2,9 +2,8 @@ import {createStore, compose} from 'redux';
 import {createBrowserHistory} from 'history' //todo добавить в package?
 import {connectRouter} from 'connected-react-router/immutable'
 import {combineReducers} from 'redux-immutablejs';
-import Immutable from 'immutable';
 
-export default function ({middleware, reducers, initionalState, sagaMiddleware, sagas, history}) {
+export default function ({middleware, reducers, initionalState, history}) {
 
 	//let createHistory;
 
@@ -40,18 +39,10 @@ export default function ({middleware, reducers, initionalState, sagaMiddleware, 
 		);
 	}
 
-	const store = createStore(connectRouter(history)(allReducers),
+	return createStore(connectRouter(history)(allReducers),
 		initionalState,
 		enhancer
 	);
-
-	const rootSaga = function*() {
-		yield sagas;
-	};
-
-	sagaMiddleware.run(rootSaga);
-
-	return store;
 }
 
 
