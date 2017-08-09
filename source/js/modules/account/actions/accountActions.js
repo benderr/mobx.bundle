@@ -14,6 +14,7 @@ export const forgot = {
 };
 
 export const forgotReset = () => createAction(actions.FORGOT_RESET);
+export const registerReset = () => createAction(actions.REGISTER_RESET);
 
 export const changePassword = {
 	request: ({oldPassword, newPassword}) => createAction(actions.CHANGE_PASSWORD.REQUEST, {oldPassword, newPassword}),
