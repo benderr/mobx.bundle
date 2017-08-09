@@ -8,6 +8,7 @@ export const CHECKING_ACCESS_STOP = 'ACCOUNT.CHECKING_ACCESS_STOP';
 
 //регистрация
 export const REGISTER = createRequestTypes('ACCOUNT.REGISTER');
+export const REGISTER_RESET = 'ACCOUNT.REGISTER_RESET';
 //восстановление пароля
 export const FORGOT = createRequestTypes('ACCOUNT.FORGOT');
 export const FORGOT_RESET = 'ACCOUNT.FORGOT_RESET';

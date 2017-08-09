@@ -6,6 +6,7 @@ import AmountInput from './AmountInput';
 import Recaptcha from './Recaptcha';
 import InfinateScroll from './InfinateScroll';
 import ConfirmPopupService from './Dialogs/ConfirmPopupService';
+import ContentPopupService from './Dialogs/ContentPopupService';
 import {notify} from './Notify';
 import Drop from './Drop';
 import DateFormat from './DateFormat';
@@ -31,5 +32,6 @@ export {
 	SortLink,
 	LoaderPanel,
 	DatePickerRange,
-	DatePicker
+	DatePicker,
+	ContentPopupService
 }
