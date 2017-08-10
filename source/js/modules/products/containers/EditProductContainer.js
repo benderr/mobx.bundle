@@ -117,7 +117,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 		if (error.status == 404)
 			return {title: 'Товар не найден', message: 'Не удалось получить данные по товару'};
 
-		return {title: 'Ошибка', message: 'Произошла ошибка при получении данных'};
+		return {message: 'Произошла неизвестная ошибка'};
 	}
 
 	render() {
@@ -128,7 +128,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 		const {activeTab}=this.state;
 		let title = product && !product.isNew ? 'Редактирование товара' : 'Добавление товара';
 		const errorModel = this.getErrorMessage();
-		if (errorModel) {
+		if (errorModel && errorModel.title) {
 			title = errorModel.title;
 		}
 
