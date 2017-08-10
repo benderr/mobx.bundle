@@ -18,9 +18,9 @@ export default function getMiddlewares(modules, ...customMiddleWares) {
 			middlewares.push(module.getMiddlewares());
 	});
 
-	if (__DEV__ && __LOGGER__) {
-		middlewares.push(logger);
-	}
+	// if (__DEV__ && __LOGGER__) {
+	// 	middlewares.push(logger);
+	// }
 
 	if (__DEV_TOOLS__) {
 		const DevTools = require('../dev/DevTools.jsx').default;

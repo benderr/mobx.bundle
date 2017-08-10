@@ -1,4 +1,3 @@
-import * as TestSelector1 from './testSelectors'
 import * as Contragents1 from './contragents/contragentsModule'
 import * as ProductsModule1 from './products/productsModule'
 import * as CashboxModule1 from './cashbox'
@@ -8,11 +7,17 @@ import * as AccountModule from './account/accountModule'
 import * as RetailPointsModule from './retailPoints/retailsPointModule'
 import * as CoreModule from './core/coreModule'
 
-export const TestSelector = TestSelector1;
 export const Contragents = Contragents1;
 export const ProductsModule = ProductsModule1;
 export const CashboxModule = CashboxModule1;
 export const DiscountModule = DiscountModule1;
 export const DocumentsModule = DocumentsModule1;
 
-export default [CoreModule, AccountModule, RetailPointsModule, TestSelector, ProductsModule, Contragents, DiscountModule, DocumentsModule, CashboxModule];
+const modules = [CoreModule, AccountModule, RetailPointsModule, ProductsModule, Contragents, DiscountModule, DocumentsModule, CashboxModule];
+
+if (__DEV__) {
+	const TestSelector = require('./testSelectors');
+	modules.push(TestSelector)
+}
+
+export default modules;

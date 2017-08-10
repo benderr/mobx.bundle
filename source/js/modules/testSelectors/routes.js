@@ -5,6 +5,7 @@ import TestSelector2 from 'components/TestSelector2'
 import TestDrag from './containers/TestDrag'
 //import DatePicker2 from './containers/DatePicker2'
 import TestSelectorDate from 'components/TestSelectorDate'
+import TestAmount from 'components/TestAmount'
 
 export function getRoutes() {
 	return {
@@ -35,6 +36,11 @@ export function getRoutes() {
 			path: '/testdate',
 			exact: true,
 			component: TestSelectorDate
+		},
+		testAmount: {
+			path: '/testamount',
+			exact: true,
+			component: TestAmount
 		}
 	}
 }

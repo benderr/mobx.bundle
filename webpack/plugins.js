@@ -37,11 +37,9 @@ const plugins = [
 			NODE_ENV: JSON.stringify(config.NODE_ENV),
 		},
 		__API_URL__: JSON.stringify(appConfig.apiConfig.apiUrl),
-		__DEV__: true,
-		__LOGGER__: false,
+		__DEV__: config.IS_DEVELOPMENT,
 		__DEV_TOOLS__: false,
-		__CLIENT__: true,
-		__BASE_PATH__: '/'
+		__CLIENT__: true
 	}),
 	new HtmlWebpackPlugin({
 		template: path.join(config.sourcePath, 'index.html'),

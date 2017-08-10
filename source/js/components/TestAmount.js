@@ -1,9 +1,6 @@
 import React from 'react';
-import {Select, DatePickerRange, DatePicker} from 'common/uiElements';
-import Selector from 'react-select';
-import {
-	DatePickerField
-} from 'common/formElements/fields';
+import {AmountInput} from 'common/uiElements';
+import {AmountField} from 'common/formElements/fields';
 import {reduxForm} from 'common/formElements'
 import {connect} from 'react-redux';
 import {Field, focus, change, getFormValues} from 'redux-form/immutable';
@@ -13,13 +10,7 @@ import {withRouter} from 'react-router';
 class Form extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {options: []}
-	}
-
-	componentDidMount() {
-		setTimeout(() => {
-
-		}, 5000);
+		this.state = {options: [], price: 12}
 	}
 
 	handleReset() {
@@ -35,17 +26,9 @@ class Form extends React.Component {
 
 		return (<form onSubmit={handleSubmit(save)}>
 
-			{/*<DatePickerField name="date1" required="Укажите дату"/>*/}
-
-			{/*<div className="w100 m_top_10"></div>*/}
-
-			{/*<DatePickerField name="date2" required="Укажите дату"/>*/}
-
-			{/*<div className="w100 m_top_10"></div>*/}
-
-			<DatePickerField name="date3" required="Укажите дату"/>
 
 			<div className="w100 m_top_10"></div>
+			<AmountField name="price" required="test"/>
 
 			<button type="submit" className="button middle wide">отправить</button>
 			<button type="button" onClick={::this.handleReset} className="button middle wide clean">сбросить</button>
@@ -53,8 +36,8 @@ class Form extends React.Component {
 	}
 }
 
-const DateForm = reduxForm({
-	form: 'testForm'
+const TestAmountForm = reduxForm({
+	form: 'testForm1'
 })(Form);
 
 
@@ -64,35 +47,21 @@ class TestSelector extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			selected: "", options: [
-				{value: 'one', label: 'One'},
-				{value: 'two', label: 'Two'}
-			],
-			date1: null,
-			range: {
-				d1: new Date(),
-				d2: new Date()
-			}
+			amount: 1
 		};
-		//this.modifierForm = modifierForm(1, 2);
 	}
 
-	handleChange(d) {
+	handleChange(val, e) {
 		this.setState({
-			date1: d
-		});
-		console.log('handleChange', d);
-	}
-
-	handleChangeRange(range) {
-		this.setState({
-			range: {
-				d1: range.dateFrom,
-				d2: range.dateTo
-			}
+			amount: val
 		});
 	}
 
+	handleChange2(val, e) {
+		this.setState({
+			amount2: val
+		});
+	}
 
 	render() {
 
@@ -102,17 +71,14 @@ class TestSelector extends React.Component {
 
 		return (
 			<div class="widget_block">
-				<DatePicker value={this.state.date1} onChange={::this.handleChange}/>
+				{/*<AmountInput value={this.state.amount} onChange={::this.handleChange}/>*/}
 				<div className="w100 m_top_20"></div>
-
-				<DatePickerRange dateFrom={this.state.range.d1}
-				dateTo={this.state.range.d2}
-				onChange={::this.handleChangeRange} />
+				<AmountInput value={this.state.amount2} onChange={::this.handleChange2}/>
 				<div className="w100 m_top_20"></div>
 
 				<div class="form-group">
-				<h2>Форма</h2>
-				<DateForm initialValues={{date1: new Date()}}/>
+					<h2>Форма 2</h2>
+					<TestAmountForm initialValues={{price: 12}}/>
 				</div>
 			</div>
 		);

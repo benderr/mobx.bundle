@@ -1,5 +1,6 @@
 import React from 'react';
 import accounting from 'accounting';
+import PropTypes from 'prop-types'
 
 accounting.settings = {
 	number: {
@@ -29,12 +30,9 @@ function trimValidLength(str, char) {
 
 function cleanValue(val, ignoreSpace = true) {
 	let res = ignoreSpace ? val.replace(/[^0-9\.,]+/g, '') : val.replace(/[^0-9\., ]+/g, '');
-	return res.replace(',', '.');
+	return res.replace(',', '.').replace('-', '');
 }
 
-function format(val) {
-	return accounting.formatNumber(parseFloat(cleanValue(val)), 2, " ");
-}
 
 function calculateStart(start, originValue, formattedValue) {
 	const substr = originValue.substring(0, start).replace(/ /g, '');
@@ -47,19 +45,24 @@ function calculateStart(start, originValue, formattedValue) {
 	return match && match[0].length || 0;
 }
 
+function parseFloatOrNull(val) {
+	const result = parseFloat(cleanValue(val));
+	return isNaN(result) ? null : result;
+}
+
 class AmountInput extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			viewValue: '',
-			value: ''
+			viewValue: ''
 		};
 	}
 
 	static defaultProps = {
-		onChange: function (maskValue, value, event) {/*no-op*/
-		}
+		onChange: (value, event) => {
+		}, /*no-op*/
+		type: 'text'
 	};
 
 	setFocus() {
@@ -67,16 +70,19 @@ class AmountInput extends React.Component {
 	}
 
 	componentDidMount() {
-		if (this.props.value) {
-			const {viewValue, value, startPos}=this.parseValue(this.props.value);
-			this.setState({viewValue, value, startPos});
-		}
+		const {viewValue, startPos}=this.parseValue(this.props.value);
+		this.setState({viewValue, startPos});
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevState.startPos != this.state.startPos)
+			this.setSelectionRange(this.state.startPos);
 	}
 
 	componentWillReceiveProps(props) {
-		if (props) {
-			const {viewValue, value, startPos}=this.parseValue(props.value);
-			this.setState({viewValue, value, startPos});
+		if (props && props.value != this.props.value) {
+			const {viewValue, startPos}=this.parseValue(props.value);
+			this.setState({viewValue, startPos});
 		}
 	}
 
@@ -102,27 +108,23 @@ class AmountInput extends React.Component {
 			startPos = el.selectionStart - 1;
 		}
 
-		this.setState({isDeleting, startPos}, () => {
-			this.setSelectionRange(startPos);
-		});
+		this.setState({isDeleting, startPos});
+		this.props.onKeyDown && this.props.onKeyDown(e);
 	}
 
 	parseValue(val) {
 		const el = this.el;
+		const {isDeleting} = this.state;
+
 		if (val === undefined || val === null)
 			val = '';
 
 		if (!val.replace)
 			val = val.toString();
 
-		let isDeleting = this.state.isDeleting;
-
-		let clean = cleanValue(val, false).replace('-', '');
-
-		clean = trimValidLength(clean, '.');
-
-		const formattedValue = format(clean);
-		const value = parseFloat(cleanValue(formattedValue));
+		const clean = trimValidLength(cleanValue(val, false), '.');
+		const value = parseFloatOrNull(clean);
+		const formattedValue = value ? accounting.formatNumber(value, 2, " ") : '';
 
 		let startPos = el.selectionStart;
 
@@ -130,7 +132,7 @@ class AmountInput extends React.Component {
 			startPos = calculateStart(el.selectionStart, clean, formattedValue);
 		}
 
-		let viewValue = '';
+		let viewValue = formattedValue;
 
 		if (!value) {
 			if (!(/^0[,.]?0*/.test(val))) {
@@ -152,21 +154,18 @@ class AmountInput extends React.Component {
 					}
 				}
 			}
-		} else {
-			viewValue = formattedValue;
 		}
 
-		return {startPos, viewValue, value};
+		return {startPos, viewValue};
 	}
 
 	handleChange(event) {
-		event.preventDefault();
+		//event.preventDefault();
 		let val = event.target.value;
-		const {viewValue, value, startPos}=this.parseValue(val);
-		this.setState({viewValue, value, startPos}, () => {
-			this.setSelectionRange(startPos);
-			this.props.onChange(viewValue, value, event);
-		});
+		const {viewValue, startPos}=this.parseValue(val);
+		this.setSelectionRange(startPos);
+		this.setState({viewValue, startPos});
+		this.props.onChange(viewValue, event);
 	}
 
 	setSelectionRange(startPos) {
@@ -177,19 +176,25 @@ class AmountInput extends React.Component {
 
 
 	render() {
-		const {onChange, onKeyDown, type, ...props}=this.props;
+		let props = {...this.props};
+		delete props.onChange;
+		delete props.onKeyDown;
+		delete props.value;
 
 		return (
 			<input
 				{...props}
 				ref={input => this.el = input}
-				type={type || 'text'}
 				value={this.state.viewValue}
 				onKeyDown={::this.handleKeyDown}
-				onChange={::this.handleChange}
-			/>
+				onChange={::this.handleChange}/>
 		)
 	}
 }
+
+AmountInput.propTypes = {
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	onChange: PropTypes.func.isRequired
+};
 
 export default AmountInput;
