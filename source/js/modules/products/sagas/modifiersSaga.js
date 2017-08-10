@@ -1,4 +1,4 @@
-import {call, put, take, takeLatest, takeEvery, select, fork} from 'redux-saga/effects'
+import {call, put, take, takeLatest, takeEvery, select, fork, all} from 'redux-saga/effects'
 import {debounce, debounceFor} from 'redux-saga-debounce-effect'
 import * as actions from '../enums/actions'
 import * as modifierActions from '../actions/modifierActions'
@@ -34,6 +34,7 @@ export function* saveModifierGroup({group, point, meta}) {
 			yield put(notify.error(meta.error));
 		}
 		yield put(modifierActions.saveGroup.failure({groupCode: group.code, error}));
+
 	}
 }
 
@@ -96,12 +97,12 @@ function* updateLayer(layerId) {
 }
 
 export default function*() {
-	yield [
+	yield all([
 		takeEvery(actions.SAVE_MODIFIER_GROUP.REQUEST, saveModifierGroup),
 		debounce(actions.SEARCH_GROUPS.REQUEST, searchGroups),
 		takeEvery(actions.REMOVE_MODIFIER_GROUP.REQUEST, removeModifierGroup),
 		takeEvery(actions.OPEN_GROUP, openGroup),
 		takeLatest(actions.UPDATE_GROUP, updateGroup),
 		debounceFor(actions.UPDATE_GROUP_DEBOUNCE, updateGroup, 1000)
-	]
+	])
 }

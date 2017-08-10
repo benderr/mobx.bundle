@@ -1,6 +1,6 @@
-import * as AccountModule1 from './account/accountModule'
-import * as RetailPointsModule1 from './retailPoints/retailsPointModule'
-export const AccountModule = AccountModule1;
-export const RetailPointsModule = RetailPointsModule1;
+import * as AccountModule from './account/accountModule'
+import * as RetailPointsModule from './retailPoints/retailsPointModule'
+import * as CoreModule from './core/coreModule'
 
-export default [AccountModule, RetailPointsModule];
+
+export default [AccountModule, RetailPointsModule, CoreModule];

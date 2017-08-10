@@ -1,4 +1,4 @@
-import {call, put, select, takeEvery} from 'redux-saga/effects'
+import {call, put, select, takeEvery, all} from 'redux-saga/effects'
 import {getPointId} from 'modules/core/selectors'
 import * as actions from '../actions/reportActions'
 import * as dataContext from '../dataProvider/dataContext'
@@ -6,6 +6,7 @@ import * as enums from '../actions/reportActions'
 import dateHelper from 'common/helpers/dateHelper'
 import {notify} from 'common/uiElements'
 import {reset} from 'redux-form/immutable'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 function* salesReportSaga({beginDate, endDate, email}) {
 	try {
@@ -20,11 +21,13 @@ function* salesReportSaga({beginDate, endDate, email}) {
 	} catch (error) {
 		yield put(notify.error('Не удалось отправить отчет', 'Ошибка'));
 		yield put(actions.salesReport.failure({error: error && error.data ? error.data : error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
 export default function*() {
-	yield [
+	yield all([
 		takeEvery(enums.SALES_REPORT.REQUEST, salesReportSaga)
-	]
+	])
 }

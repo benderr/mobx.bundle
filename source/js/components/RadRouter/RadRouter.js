@@ -13,6 +13,10 @@ class RadRouter extends React.Component {
 		defaultLayerLayout: PropTypes.func
 	};
 
+	componentWillUnmount() {
+		console.log('RadRouter componentWillUnmount');
+	}
+
 	constructor(props, context) {
 		super(props, context);
 		this.allRoutes = routeHelpers.transformRoutes(props.routes, props.defaultLayout, props.defaultLayerLayout);

@@ -16,7 +16,7 @@ const currencyRetailPointKey = 'currencyRetailPointKey';
 import * as actions from '../enums/actions'
 import productSources from '../enums/productSourcesEnum'
 import * as coreActions from 'modules/core/actions'
-
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 /**
  * Получение и установка торговых точек
  */
@@ -102,6 +102,8 @@ function* getRetailPointProcess(id) {
 	}
 	catch (error) {
 		yield put(getRetailPoint.failure(error));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 

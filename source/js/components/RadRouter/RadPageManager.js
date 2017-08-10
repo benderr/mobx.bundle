@@ -15,6 +15,10 @@ class RadPageManager extends React.Component {
 		location: PropTypes.object.isRequired
 	};
 
+	componentWillUnmount() {
+		console.log('RadPageManager componentWillUnmount');
+	}
+
 	shouldComponentUpdate(nextProps, nextState) {
 		const {location, routes, pageLocation}=nextProps;
 		const {returnToPage} = location.state || {};

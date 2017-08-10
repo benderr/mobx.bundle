@@ -1,4 +1,4 @@
-import {call, put, select, throttle} from 'redux-saga/effects'
+import {call, put, select, throttle, all} from 'redux-saga/effects'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import {notify} from 'common/uiElements/Notify'
 
@@ -57,7 +57,7 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 
 
 export default function* () {
-	yield [
+	yield all([
 		throttle(300, actEnums.GET_LIST.REQUEST, getListChequeSaga)
-	]
+	])
 }

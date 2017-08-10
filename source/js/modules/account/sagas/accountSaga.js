@@ -6,6 +6,7 @@ import {register, forgot, changePassword} from '../actions/accountActions';
 import {notify} from 'common/uiElements'
 import {encrypt, decrypt} from 'infrastructure/utils/tokenCrypt'
 import localStorage from 'core/storage/localStorage'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 const getError = (error) => {
 	if (!error) {
@@ -27,6 +28,8 @@ function* forgotPassword({email}) {
 			status: error.status,
 			data: error.data
 		}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -41,11 +44,12 @@ function* changePass({oldPassword, newPassword}) {
 		if (message) {
 			yield put(notify.error(message));
 		}
-
 		yield put(changePassword.failure({
 			status: error.status,
 			data: error.data
 		}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -65,6 +69,8 @@ function* registerUser({user}) {
 			status: error.status,
 			data: error.data
 		}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 

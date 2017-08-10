@@ -1,4 +1,4 @@
-import {call, put, select, takeEvery} from 'redux-saga/effects'
+import {call, put, select, takeEvery, all} from 'redux-saga/effects'
 import logger from 'infrastructure/utils/logger'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import dateHelper from 'common/helpers/dateHelper'
@@ -76,9 +76,9 @@ function* getFiltered(props) {
 	}
 }
 
-export default function* () {
-	yield [
+export default function*() {
+	yield all([
 		takeEvery(moneyActions.GET_MONEY.REQUEST, getMoneySaga),
 		takeEvery(moneyActions.SET_FILTER, getFiltered)
-	]
+	])
 }

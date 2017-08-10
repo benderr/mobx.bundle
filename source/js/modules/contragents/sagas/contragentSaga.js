@@ -1,11 +1,11 @@
-import {call, put, takeEvery, select, throttle} from 'redux-saga/effects'
+import {call, put, takeEvery, select, throttle, all} from 'redux-saga/effects'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import {notify} from 'common/uiElements/Notify'
 
 import * as actEnums from '../actions/contragentActions'
 import {getListPropsState} from '../selectors/contragentSelectors'
 import * as dataContext from '../dataProvider/contragentDataContext'
-
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 function* getListContragentSaga({isFirst = false, step = false}) {
 	try {
@@ -30,6 +30,8 @@ function* getListContragentSaga({isFirst = false, step = false}) {
 	} catch (error) {
 		yield put(notify.error('При загрузке контрагентов произошла ошибка', 'Ошибка'));
 		yield put(actEnums.getListContragents.failure(error));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -53,6 +55,8 @@ function* editContragentSaga({code, ...contragent}) {
 	} catch (error) {
 		yield put(notify.error('При сохранении контрагента произошла ошибка', 'Ошибка'));
 		yield put(actEnums.editContragent.failure(code));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -93,10 +97,10 @@ function* getByCodeContragentSaga({code}) {
 
 
 export default function*() {
-	yield [
+	yield all([
 		throttle(300, actEnums.GET_LIST.REQUEST, getListContragentSaga),
 		takeEvery(actEnums.EDIT_CONTRAGENT.REQUEST, editContragentSaga),
 		takeEvery(actEnums.DELETE_CONTRAGENT, deleteContragentSaga),
 		takeEvery(actEnums.LOAD_DETAIL, getByCodeContragentSaga)
-	]
+	])
 }

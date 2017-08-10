@@ -4,7 +4,9 @@ import * as ProductsModule1 from './products/productsModule'
 import * as CashboxModule1 from './cashbox'
 import * as DocumentsModule1 from './documents/documentsModule'
 import * as DiscountModule1 from './discount/discountModule';
-import signInModules from './signInModules';
+import * as AccountModule from './account/accountModule'
+import * as RetailPointsModule from './retailPoints/retailsPointModule'
+import * as CoreModule from './core/coreModule'
 
 export const TestSelector = TestSelector1;
 export const Contragents = Contragents1;
@@ -13,4 +15,4 @@ export const CashboxModule = CashboxModule1;
 export const DiscountModule = DiscountModule1;
 export const DocumentsModule = DocumentsModule1;
 
-export default [...signInModules, TestSelector, ProductsModule, Contragents, DiscountModule, DocumentsModule, CashboxModule];
+export default [CoreModule, AccountModule, RetailPointsModule, TestSelector, ProductsModule, Contragents, DiscountModule, DocumentsModule, CashboxModule];

@@ -1,4 +1,4 @@
-import {call, put, select, take, fork, takeEvery, takeLatest} from 'redux-saga/effects'
+import {call, put, select, take, fork, takeEvery, takeLatest, all} from 'redux-saga/effects'
 import subscribeToUrl from 'modules/core/sagas/subscribeToUrl'
 import * as actions from '../actions/orderActions'
 import * as selectors from '../selectors/orderSelectors'
@@ -10,6 +10,7 @@ import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSag
 import {SHIFT_TYPE} from '../enums'
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import {debounce} from 'redux-saga-debounce-effect'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 function* init() {
 	yield takeLatest(actions.CREATE_ORDER.REQUEST, createOrder);
@@ -46,6 +47,8 @@ function* createOrder({order, products}) {
 			yield put(actions.createOrder.success({order: document}));
 		} catch (error) {
 			yield put(actions.createOrder.failure({error}));
+			if (!isServerError(error))
+				throw error;
 		}
 	}
 }
@@ -82,15 +85,17 @@ function* getOrderDetails({point, id}) {
 	catch (error) {
 		logger.log(error);
 		yield put(actions.getOrderDetails.failure({id, error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
 const searchProduct = createSearchProductsSaga(actions.SEARCH_PRODUCTS);
 
 export default function*() {
-	yield [
+	yield all([
 		//fork(subscribeToUrl, ['/documents/external', '/documents/external/add'], init),
 		fork(init),
 		searchProduct
-	]
+	])
 }

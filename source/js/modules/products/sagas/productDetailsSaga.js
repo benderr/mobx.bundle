@@ -11,6 +11,7 @@ import {notify} from 'common/uiElements/Notify'
 import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSaga'
 import logger from 'infrastructure/utils/logger'
 import CATALOG_TYPE from '../enums/catalogType'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 function* createProduct() {
 	const inventCode = generateNumber().toString();
@@ -43,12 +44,9 @@ function* getProductDetails({point, inventCode}) {
 		yield put(productActions.getProductDetails.success({product}));
 	}
 	catch (error) {
-		if (error && error.data && error.data.status >= 400) {
-			//logger.log(error);
-			yield put(productActions.getProductDetails.failure({inventCode, error: error.data}));
-		} else {
+		yield put(productActions.getProductDetails.failure({inventCode, error: error.data}));
+		if (!isServerError(error))
 			throw error;
-		}
 	}
 }
 
@@ -69,6 +67,8 @@ export function* saveProductDetailsProcess({product, point}) {
 	catch (error) {
 		yield put(notify.error('Не удалось сохранить товар'));
 		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -79,6 +79,8 @@ function* removeProduct({point, inventCode}) {
 	}
 	catch (error) {
 		yield put(productActions.removeProduct.failure({inventCode, error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 

@@ -24,6 +24,14 @@ class AppContainer extends React.Component {
 		$('#root').removeClass('loading_block');
 	}
 
+	componentWillUnmount() {
+		console.log('AppContainer componentWillUnmount');
+	}
+
+	componentWillReceiveProps(props) {
+		console.log('APP PROPS', this.props, props);
+	}
+
 	render() {
 		let className = 'poss';
 		if (!this.props.appReady) {

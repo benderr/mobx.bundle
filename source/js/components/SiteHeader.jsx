@@ -44,7 +44,7 @@ class SiteHeader extends React.Component {
     }
 
     getSelectedPointName(selectedPointId, points) {
-        if (selectedPointId && points) {
+        if (selectedPointId && points && points.length) {
             const selectedPoint = points.filter(point => point.id === selectedPointId)[0];
             return selectedPoint.name;
         }

@@ -24,13 +24,8 @@ function getRootSaga(modules) {
 export default function configureRedux(modules, initState) {
 
 	const history = createBrowserHistory();
-	const sagaMiddleware = createSagaMiddleware({
-		onError: (error) => {
-			logger.error('TROLOLO', error);
-		}
-	});
+	const sagaMiddleware = createSagaMiddleware();
 	const routes = getRoutes(modules);
-	const sagas = getRootSaga(modules);
 
 	const store = createStore(
 		{
@@ -44,13 +39,13 @@ export default function configureRedux(modules, initState) {
 	function runSagas() {
 		const task = sagaMiddleware.run(getRootSaga(modules));
 		task.done.catch(error => {
-			logger.error('OLOLO', error);
+			logger.error('Ошибка в saga', error);
 			runSagas();
+			store.dispatch({type: '@@core/GLOBAL_SAGA_ERROR', error});
 		});
 	}
 
 	runSagas();
-
 
 	return {store, routes, history};
 }
