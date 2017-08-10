@@ -25,8 +25,8 @@ function* debounceSearchOrders() {
 
 function* createOrder({order, products}) {
 	if (!products || products.length == 0) {
-		yield put(notify.error('Добавьте продукты'));
-		yield put(actions.createOrder.failure({error: 'Добавьте продукты'}));
+		yield put(notify.error('Добавьте товары'));
+		yield put(actions.createOrder.failure({error: 'Добавьте товары'}));
 	} else {
 		try {
 			const document = {};

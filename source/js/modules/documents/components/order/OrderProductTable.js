@@ -13,7 +13,7 @@ const OrderProductTable = ({products, canEdit, onRemove, totalSum}) => {
 												  canEdit={canEdit}
 												  onRemove={() => onRemove(row.id)}/>)}
 			{!hasProducts && <div class="table_row ">
-				{canEdit && <div class="info warning center_xy w100">Добавьте продукты</div>}
+				{canEdit && <div class="info warning center_xy w100">Добавьте товары</div>}
 				{!canEdit && <div class="info center_xy w100">Список пуст</div>}
 			</div>
 			}
