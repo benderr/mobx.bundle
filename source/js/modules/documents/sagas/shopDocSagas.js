@@ -1,4 +1,4 @@
-import {call, put, select, fork, takeEvery} from 'redux-saga/effects'
+import {call, put, select, fork, takeEvery, all} from 'redux-saga/effects'
 import * as actions from '../actions/shopDocsActions'
 import * as selectors from '../selectors/shopDocsSelectors'
 import {getPointId} from 'modules/core/selectors'
@@ -6,7 +6,7 @@ import * as dataContext from '../dataProvider/dataContext'
 import logger from 'infrastructure/utils/logger'
 import {debounceFor} from 'redux-saga-debounce-effect'
 import dateHelper from 'common/helpers/dateHelper'
-
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 function* init() {
 	yield takeEvery(actions.GET_DOCUMENTS.REQUEST, getDocuments);
 	yield takeEvery(actions.GET_DOCUMENT_DETAILS.REQUEST, getDocumentsDetails);
@@ -61,6 +61,8 @@ function* getDocumentsDetails({point, id}) {
 	catch (error) {
 		logger.log(error);
 		yield put(actions.getDocumentDetails.failure({id, error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -77,7 +79,7 @@ function* resendDocument({point, id}) {
 }
 
 export default function*() {
-	yield [
+	yield all([
 		fork(init)
-	]
+	])
 }

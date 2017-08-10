@@ -1,4 +1,4 @@
-import {call, put, fork, takeEvery, select} from 'redux-saga/effects'
+import {call, put, fork, takeEvery, select, all} from 'redux-saga/effects'
 import * as actions from '../actions/actionTypes'
 import * as actionEnum from '../enums/actions'
 import * as dataContext from '../dataProvider/dataContext'
@@ -6,7 +6,6 @@ import * as productDataContext from 'modules/products/dataProvider/productDataCo
 import logger from 'infrastructure/utils/logger'
 import {getPointId} from 'modules/core/selectors'
 import * as tabSelector from '../selectors/tabSelector'
-import subscribeToUrl from 'modules/core/sagas/subscribeToUrl'
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import {notify} from 'common/uiElements/Notify'
 import {initialize} from 'redux-form/immutable'
@@ -15,6 +14,7 @@ import GridCreator from '../helpers/GridCreator'
 import GridValidator from '../helpers/GridValidator'
 import {HOT_KEY_TYPE, DEFAULT_COLOR} from '../enums/enums'
 import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSaga'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 //region tabs
 
 function* getTabs({start, count}) {
@@ -26,6 +26,8 @@ function* getTabs({start, count}) {
 	catch (error) {
 		logger.log(error);
 		yield put(actions.getHotKeysList.failure({error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -48,6 +50,8 @@ function* saveTabAndHotKeys(tabCode) {
 		logger.log(error);
 		yield put(notify.error('Не удалось сохранить вкладку'));
 		yield put(actions.saveTab.failure({tabCode, error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -69,6 +73,8 @@ function* removeTab({code}) {
 		logger.log(error);
 		yield put(notify.error('Не удалось удалить вкладку'));
 		yield put(actions.removeTab.failure({error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -113,9 +119,10 @@ function* newTab() {
 		yield call(dataContext.saveTab, retailPointId, tab);
 	} catch (e) {
 		yield put(notify.error('Не удалось создать вкладку'));
-
 		//yield put(actions.createTab.request({tab}));
 		//todo delay save tab?
+		if (!isServerError(e))
+			throw e;
 	}
 	return tab;
 }
@@ -197,6 +204,8 @@ function* openCategory({categoryId, gridSize, tabCode}) {
 	catch (error) {
 		yield put(actions.setCategoryKeys({keys: grid.getResult(), finish: true}));
 		yield put(notify.error('Не удалось получить товары для категории'));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -204,32 +213,8 @@ function* backFromCategory({tabCode}) {
 	yield put(actions.selectTab({code: tabCode}));
 }
 
-
-// export function* init() {
-// 	try {
-// 		yield takeEvery(actionEnum.GET_HOT_KEYS.REQUEST, getTabs);
-// 		yield takeEvery(actionEnum.GET_HOT_KEYS.SUCCESS, setTabs);
-// 		yield takeEvery(actionEnum.NEW_TAB, newTab);
-// 		yield takeEvery(actionEnum.REMOVE_TAB.REQUEST, removeTab);
-// 		yield fork(debounceSaveTab);
-// 		yield fork(debounceSaveKey);
-// 		yield fork(debounceSearchCategory);
-// 		yield fork(debounceSearchProduct);
-// 		yield takeEvery(actionEnum.OPEN_CATEGORY, openCategory);
-// 		yield takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory);
-// 		yield takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey);
-//
-// 		yield put(actions.getHotKeysList.request({start: 0, count: 50}));
-//
-// 	} catch (ee) {
-// 		logger.log('cashbox init saga', ee);
-// 	} finally {
-// 		logger.log('task finally');
-// 	}
-// }
-
 export default function*() {
-	yield [
+	yield all([
 		//fork(subscribeToUrl, '/hotkeys', init)
 		takeEvery(actionEnum.GET_HOT_KEYS.REQUEST, getTabs),
 		takeEvery(actionEnum.GET_HOT_KEYS.SUCCESS, setTabs),
@@ -242,5 +227,5 @@ export default function*() {
 		takeEvery(actionEnum.OPEN_CATEGORY, openCategory),
 		takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory),
 		takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey)
-	]
+	])
 }

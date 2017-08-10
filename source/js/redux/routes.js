@@ -13,7 +13,7 @@ import React from 'react';
  * 				если layout: null, то рендерится без мастера
  */
 
-export default function getRoutes(modules, store) {
+export default function getRoutes(modules) {
 	return modules.filter((m) => isFunc(m.getRoutes))
 		.reduce((routes, module) => {
 			const routesObject = module.getRoutes();

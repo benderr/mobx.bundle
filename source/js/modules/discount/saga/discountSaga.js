@@ -1,11 +1,11 @@
-import {call, put, takeEvery, select, throttle} from 'redux-saga/effects'
+import {call, put, takeEvery, select, throttle, all} from 'redux-saga/effects'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import {notify} from 'common/uiElements/Notify'
 
 import * as actEnums from '../actions/discountActions'
 import {getListPropsState} from '../selectors/discountSelectors'
 import * as dataContext from '../dataProvider/discountDataContext'
-
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 function* getListDiscountSaga({isFirst = false, step = false}) {
 	try {
@@ -85,15 +85,17 @@ function* getByCodeDiscountSaga({code}) {
 		} else throw new Error();
 	} catch (error) {
 		yield put(notify.error('При загрузке скидки произошла ошибка', 'Ошибка'));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
 
 export default function* () {
-	yield [
+	yield all([
 		throttle(300, actEnums.GET_LIST.REQUEST, getListDiscountSaga),
 		takeEvery(actEnums.EDIT_DISCOUNT.REQUEST, editDiscountSaga),
 		takeEvery(actEnums.DELETE_DISCOUNT, deleteDiscountSaga),
 		takeEvery(actEnums.LOAD_DETAIL, getByCodeDiscountSaga)
-	]
+	])
 }

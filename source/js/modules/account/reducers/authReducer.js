@@ -1,5 +1,5 @@
 import {Map, fromJS} from 'immutable';
-import {LOGIN, LOGOUT, CHECKING_ACCESS_STOP, CHECKING_ACCESS_START} from '../enums/actions';
+import {LOGIN, LOGOUT, CHECKING_ACCESS_STOP, CHECKING_ACCESS_START, LOGIN_RESET} from '../enums/actions';
 
 export const initialState = Map({
 	loading: false,
@@ -41,6 +41,13 @@ export const actionHandlers = {
 
 	[LOGOUT]: (state, action) => {
 		return state.merge({logout: true});
+	},
+
+	[LOGIN_RESET]: (state, action) => {
+		return state.merge({
+			loading: false,
+			authError: null
+		});
 	},
 
 	[CHECKING_ACCESS_START]: (state, action) => {

@@ -27,14 +27,14 @@ export function getRoutes() {
 			component: ForgotContainer,
 			layout: null
 		},
-		settings:{
-			path:'/settings/:tab',
+		settings: {
+			path: '/settings/:tab',
 			exact: false,
 			isLayer: true,
 			layout: SettingsContainer
 		},
-		settings2:{
-			path:'/settings',
+		settings2: {
+			path: '/settings',
 			exact: true,
 			isLayer: true,
 			layout: SettingsContainer

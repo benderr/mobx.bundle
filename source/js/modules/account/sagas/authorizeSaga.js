@@ -1,7 +1,8 @@
-import {call, put, take, fork, cancel, takeEvery, select} from 'redux-saga/effects'
+import {call, put, take, fork, cancel, takeEvery, select, all} from 'redux-saga/effects'
 import {LOGIN, LOGOUT} from '../enums/actions'
 import {login, checkingAccessStart, checkingAccessStop, clearApp} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 import * as dataContext  from '../dataProvider/accountDataContext'
 import * as accountSelectors from '../selectors/accountSelectors'
 import * as retailPointsSaga from '../../retailPoints/sagas/retailPointsSaga'
@@ -21,6 +22,9 @@ function* authorize(email, pass, redirectUrl) {
 			status: error.status,
 			data: error.data
 		}));
+		if (!isServerError(error)) {
+			throw error;
+		}
 	}
 }
 
@@ -49,6 +53,9 @@ function* logout() {
 
 function* initApp() {
 	try {
+		const appReady = yield select(accountSelectors.getAppReady);
+		if (appReady)
+			return;
 		yield put(checkingAccessStart());
 		let authData = yield select(accountSelectors.getAuthData);
 
@@ -80,9 +87,14 @@ function* initApp() {
 
 
 export default function*() {
-	yield [
-		fork(initApp),
-		fork(watchLogin),
-		fork(watchLogout)
-	]
+	try {
+		yield all([
+			fork(initApp),
+			fork(watchLogin),
+			fork(watchLogout)
+		])
+	}
+	catch (ex) {
+		alert(ex);
+	}
 }

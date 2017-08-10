@@ -1,4 +1,4 @@
-import {call, put, takeEvery} from 'redux-saga/effects';
+import {call, put, takeEvery,all} from 'redux-saga/effects';
 import * as actions from '../enums/actions';
 import * as accountDataContext from '../dataProvider/accountDataContext';
 import {getStateIntegration, connectIntegration, confirmIntegration, disableIntegration} from '../actions/accountActions';
@@ -44,10 +44,10 @@ function* disable() {
 }
 
 export default function*() {
-	yield [
+	yield all([
 		takeEvery(actions.GET_STATE_INTEGRATION.REQUEST, getState),
 		takeEvery(actions.CONNECT_INTEGRATION.REQUEST, connect),
 		takeEvery(actions.CONFIRM_INTEGRATION.REQUEST, confirm),
 		takeEvery(actions.DISABLE_INTEGRATION.REQUEST, disable)
-	]
+	])
 }

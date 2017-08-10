@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import * as routeHelpers from './routeHelpers';
 import RadPageManager from './RadPageManager';
 import RadLayerManager from './RadLayerManager';
+import logger from 'infrastructure/utils/logger'
 
 class RadRouteManager extends React.Component {
 	static propTypes = {
@@ -36,7 +37,7 @@ class RadRouteManager extends React.Component {
 	}
 
 	componentWillUnmount() {
-		//console.log('RadRouteManager componentWillUnmount');
+		logger.log('RadRouteManager componentWillUnmount');
 	}
 
 	render() {

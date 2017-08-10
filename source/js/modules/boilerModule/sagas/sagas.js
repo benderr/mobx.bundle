@@ -1,11 +1,11 @@
-import {call, put, take, fork, takeEvery} from 'redux-saga/effects'
+import {call, put, take, fork, takeEvery, all} from 'redux-saga/effects'
 
 export function* watchRepeatTransaction() {
 
 }
 
 export default function*() {
-	yield [
+	yield all([
 		fork(watchRepeatTransaction)
-	]
+	])
 }

@@ -1,4 +1,4 @@
-import {call, put, takeEvery, select} from 'redux-saga/effects'
+import {call, put, takeEvery, select, all} from 'redux-saga/effects'
 import {debounce} from 'redux-saga-debounce-effect'
 import * as actions from '../enums/actions'
 import * as productActions from '../actions/productActions'
@@ -11,6 +11,7 @@ import {notify} from 'common/uiElements/Notify'
 import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSaga'
 import logger from 'infrastructure/utils/logger'
 import CATALOG_TYPE from '../enums/catalogType'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 function* createProduct() {
 	const inventCode = generateNumber().toString();
@@ -43,8 +44,9 @@ function* getProductDetails({point, inventCode}) {
 		yield put(productActions.getProductDetails.success({product}));
 	}
 	catch (error) {
-		logger.log(error);
-		yield put(productActions.getProductDetails.failure({inventCode, error}));
+		yield put(productActions.getProductDetails.failure({inventCode, error: error.data}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -65,6 +67,8 @@ export function* saveProductDetailsProcess({product, point}) {
 	catch (error) {
 		yield put(notify.error('Не удалось сохранить товар'));
 		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -75,18 +79,20 @@ function* removeProduct({point, inventCode}) {
 	}
 	catch (error) {
 		yield put(productActions.removeProduct.failure({inventCode, error}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
 const searchProduct = createSearchProductsSaga(actions.SEARCH_PRODUCTS);
 
 export default function*() {
-	yield [
+	yield all([
 		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetails),
 		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
 		takeEvery(actions.CREATE_PRODUCT, createProduct),
 		takeEvery(actions.SET_NEW_PRODUCT, setProductToLayer),
 		searchProduct,
 		takeEvery(actions.REMOVE_PRODUCT.REQUEST, removeProduct),
-	]
+	])
 }

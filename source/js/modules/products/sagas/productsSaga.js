@@ -1,10 +1,11 @@
-import {call, put, takeLatest, takeEvery, select} from 'redux-saga/effects';
+import {call, put, takeLatest, takeEvery, select, all} from 'redux-saga/effects';
 import {debounceFor} from 'redux-saga-debounce-effect';
 import * as actions from '../enums/actions';
 import * as productActions from '../actions/productActions';
 import * as dataContext from '../dataProvider/productDataContext';
 import {getPointId} from 'modules/core/selectors';
 import * as selectors from '../selectors/productsSelectors'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
 
 function* getProducts() {
 	try {
@@ -25,6 +26,8 @@ function* getProducts() {
 	}
 	catch (error) {
 		yield put(productActions.getProducts.failure(error));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -40,9 +43,9 @@ function* importProducts({file}) {
 }
 
 export default function*() {
-	yield [
+	yield all([
 		takeLatest(actions.GET_PRODUCTS.REQUEST, getProducts),
 		debounceFor(actions.SEARCH_PRODUCT_IN_LIST, getProducts, 700),
 		takeEvery(actions.IMPORT_PRODUCTS.REQUEST, importProducts)
-	]
+	])
 }

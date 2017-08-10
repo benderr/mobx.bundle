@@ -105,13 +105,33 @@ export class EditProductContainer extends DefaultLayerLayout {
 		this.setState({activeTab: tab});
 	}
 
+	getErrorMessage() {
+		const {error, product, loading} = this.props.productView || {loading: true, error: null};
+		if (!error) {
+			if (!product && !loading) {
+				return {message: 'Товар не найден', title: 'Товар не найден'};
+			}
+			return null;
+		}
+
+		if (error.status == 404)
+			return {title: 'Товар не найден', message: 'Не удалось получить данные по товару'};
+
+		return {message: 'Произошла неизвестная ошибка'};
+	}
+
 	render() {
 
 		const {productView, modifierGroups} = this.props;
 		const {loading, error, saving, removing, product}= productView || {loading: true};
 		const ProductCard = this.productCard;
 		const {activeTab}=this.state;
-		const title = product && !product.isNew ? 'Редактирование товара' : 'Добавление товара';
+		let title = product && !product.isNew ? 'Редактирование товара' : 'Добавление товара';
+		const errorModel = this.getErrorMessage();
+		if (errorModel && errorModel.title) {
+			title = errorModel.title;
+		}
+
 		return (
 			<article className="page" {...this.layerOptions}>
 				<div className="page_header">
@@ -137,8 +157,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 							 initialValues={product}
 							 onChangeTab={::this.handleChangeTab}
 							 onSubmitFail={::this.handleSubmitFail}
-							 activeTab={activeTab}
-				/>}
+							 activeTab={activeTab}/>}
 
 				<ConfirmPopupService
 					ref={p => this.removePopup = p}
@@ -147,7 +166,10 @@ export class EditProductContainer extends DefaultLayerLayout {
 					title="Удаление модификатора"/>
 
 				<LoaderBlock loading={loading}/>
-				{!product && !loading && <span>Продукт не найден</span>}
+				{errorModel &&
+				<div class="page_content">
+					<div class="center_xy  page_center_info"><h1 class="c_error">{errorModel.message}</h1></div>
+				</div>}
 			</article>
 		);
 	}
