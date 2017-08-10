@@ -10,7 +10,7 @@ export function getRoutes() {
 			path: '/signin',
 			exact: true,
 			allowAnonymous: true,
-			component: props => <SignInContainer {...props}/>,
+			component: SignInContainer,
 			layout: null
 		},
 		registration: {

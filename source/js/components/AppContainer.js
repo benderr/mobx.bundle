@@ -9,6 +9,7 @@ import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import RadRouter from 'components/RadRouter/RadRouter';
 import {NotifyService} from 'common/uiElements/Notify/immutable';
 import {getAppReady} from 'modules/account/selectors/accountSelectors'
+import logger from 'infrastructure/utils/logger'
 
 @withRouter
 @connect((state) => ({
@@ -25,11 +26,7 @@ class AppContainer extends React.Component {
 	}
 
 	componentWillUnmount() {
-		console.log('AppContainer componentWillUnmount');
-	}
-
-	componentWillReceiveProps(props) {
-		console.log('APP PROPS', this.props, props);
+		logger.log('AppContainer componentWillUnmount');
 	}
 
 	render() {

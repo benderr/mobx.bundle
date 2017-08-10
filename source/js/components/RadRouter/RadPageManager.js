@@ -2,6 +2,7 @@ import React from 'react'
 import {Switch} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import {isLayerPage, generateRouteComponent} from './routeHelpers'
+import logger from 'infrastructure/utils/logger'
 
 class RadPageManager extends React.Component {
 
@@ -16,7 +17,7 @@ class RadPageManager extends React.Component {
 	};
 
 	componentWillUnmount() {
-		console.log('RadPageManager componentWillUnmount');
+		logger.log('RadPageManager componentWillUnmount');
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {

@@ -3,7 +3,7 @@ import {withRouter} from 'react-router'
 import PropTypes from 'prop-types';
 import RadRouteManager from './RadRouteManager'
 import * as routeHelpers from './routeHelpers'
-
+import logger from 'infrastructure/utils/logger'
 @withRouter
 class RadRouter extends React.Component {
 	static propTypes = {
@@ -14,7 +14,7 @@ class RadRouter extends React.Component {
 	};
 
 	componentWillUnmount() {
-		console.log('RadRouter componentWillUnmount');
+		logger.log('RadRouter componentWillUnmount');
 	}
 
 	constructor(props, context) {
