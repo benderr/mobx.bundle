@@ -67,6 +67,12 @@ class OrderProductForm extends React.Component {
 									 name="inventCode"/>
 					</div>
 
+					<div class="add_order_form__comment input_group_title">
+						<div class="input_title">Комментарий</div>
+						<InputField class="small"
+									name="description"/>
+					</div>
+
 					<div class="add_order_form__price input_group_title">
 						<div class="input_title">Цена</div>
 						<AmountField required="Укажите цену товара"
@@ -93,11 +99,6 @@ class OrderProductForm extends React.Component {
 									 clearable={false}
 									 className="small"
 									 options={VAT_TAG_OPTIONS}/>
-					</div>
-					<div class="add_order_form__comment input_group_title">
-						<div class="input_title">Комментарий</div>
-						<InputField class="small"
-									name="description"/>
 					</div>
 				</div>
 
