@@ -19,7 +19,7 @@ import ChequeMoneyFilter from '../components/ChequeMoneyFilter'
 @retailPointHOC
 @toJS
 class ChequeListContainer extends React.Component {
-	componentWillMount() {
+	componentDidMount() {
 		this.props.getListCheque({isFirst: true});
 	}
 
