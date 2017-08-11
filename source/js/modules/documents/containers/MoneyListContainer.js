@@ -14,7 +14,6 @@ import ListFilter from "../components/ListFilter"
 import ChequeMoneyFilter from "../components/ChequeMoneyFilter"
 
 
-
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS
@@ -28,6 +27,17 @@ class MoneyListContainer extends React.Component {
 			sortField: listState.sortField,
 			sortDirection: listState.sortDirection
 		});
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.selectedPoint != this.props.selectedPoint) {
+			const {getListMoney, listState} = this.props;
+			getListMoney({
+				isFirst: true,
+				sortField: listState.sortField,
+				sortDirection: listState.sortDirection
+			});
+		}
 	}
 
 	onHeadSortClick(field, by) {
@@ -141,10 +151,10 @@ class MoneyListContainer extends React.Component {
 
 				{!globalLoading && !noItems &&
 				<MoneyList listState={listState}
-							onHeadSortClick={::this.onHeadSortClick}
-							onFilterChanged={::this.onFilterChanged}
+						   onHeadSortClick={::this.onHeadSortClick}
+						   onFilterChanged={::this.onFilterChanged}
 
-							onInfinateScroll={::this.onInfinateScroll}/>}
+						   onInfinateScroll={::this.onInfinateScroll}/>}
 
 				{!globalLoading && noItems &&
 				<div className="center_xy page_center_info page_center_info__orders0">

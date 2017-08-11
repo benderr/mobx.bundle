@@ -8,7 +8,7 @@ import {Route} from 'react-router'
 import {Drop} from 'common/uiElements';
 import toJs from 'components/HOC/toJs'
 import {push} from 'connected-react-router'
-
+import {ConfirmPopupService} from 'common/uiElements'
 import {getCurrentRetailPointId, getRetailPointList} from 'modules/retailPoints/selectors/retailPointSelectors'
 import * as retailPointActions from 'modules/retailPoints/actions/retailPointActions';
 
@@ -65,7 +65,7 @@ class SiteHeader extends React.Component {
     }
 
     render() {
-        const {selectedPointId, logOut, logoutState, loading} = this.props;
+        const {selectedPointId, logoutState, loading, logOut} = this.props;
         const hasPoint = selectedPointId && !loading;
 
         return (
