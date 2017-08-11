@@ -1,8 +1,8 @@
 module.exports = {
 	apiConfig: {
-		url: 'http://react1.modulbank.ru',
+		url: 'http://react.modulbank.ru',
 		apiUrl: '/api'
 	},
-	host:'react1.modulbank.ru',
+	host:'react.modulbank.ru',
 	port: 3000
 }

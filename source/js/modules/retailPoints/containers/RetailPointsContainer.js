@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import {push} from 'connected-react-router'
 import {bindActionCreators} from 'redux';
 import toJs from 'components/HOC/toJs'
-import {getRetailPointList, getCurrentRetailPointId} from '../selectors/retailPointSelectors'
+import {LoaderPanel} from 'common/uiElements'
+import {getRetailPointList, getCurrentRetailPointId, getRetailPointListLoading} from '../selectors/retailPointSelectors'
 import RetailPointList from '../components/RetailPointList/RetailPointList';
 import * as retailPointActions from '../actions/retailPointActions';
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
@@ -12,17 +13,18 @@ const mapActions = dispatch => ({
 	onSelectPoint: bindActionCreators(retailPointActions.setRetailPoint, dispatch),
 	push: bindActionCreators(push, dispatch),
 	createRetailPoint: bindActionCreators(retailPointActions.createRetailPoint, dispatch),
+	getRetailPoints: bindActionCreators(retailPointActions.getRetailPoints.request)
 });
 
 const mapState = state => ({
 	points: getRetailPointList(state),
 	selectedPointId: getCurrentRetailPointId(state),
-
+	loading: getRetailPointListLoading(state)
 });
 
 @connect(mapState, mapActions)
-@retailPointHOC
 @toJs
+@retailPointHOC
 class RetailPointsContainer extends React.Component {
 
 	openPoint(id) {
@@ -31,29 +33,21 @@ class RetailPointsContainer extends React.Component {
 	}
 
 	render() {
-		const {points, selectedPointId, onSelectPoint, createRetailPoint} = this.props;
-		if (points && points.length > 0) {
-			return (<div>
-				<div class="title_panel">
-					<h1>Точки продаж</h1>
-					<div class="title_actions">
-						<button class="button small icon-plus" onClick={createRetailPoint}>Добавить точку</button>
-					</div>
+		const {points, selectedPointId, onSelectPoint, createRetailPoint, loading} = this.props;
+		return (<div>
+			<div class="title_panel">
+				<h1>Точки продаж</h1>
+				<div class="title_actions">
+					<button class="button small icon-plus" onClick={createRetailPoint}>Добавить точку</button>
 				</div>
-				<RetailPointList points={points} selectedPointId={selectedPointId} onSelectPoint={onSelectPoint}
+			</div>
+			<LoaderPanel className='' loading={loading}>
+				<RetailPointList points={points}
+								 selectedPointId={selectedPointId}
+								 onSelectPoint={onSelectPoint}
 								 onItemClick={::this.openPoint}/>
-			</div>);
-		} else {
-			return (<div class="pos_0">
-				<div class="pos_0_inner">
-					<i class="icon-pos"></i>
-					<p style={{fontSize: '18px'}}>У вас еще нет торговых точек</p>
-					<p style={{fontSize: '14px'}}>Для добавления товаров необходима добавить точку продаж</p>
-					<button class="button small icon-plus mt28" onClick={createRetailPoint}>Добавить точку продаж
-					</button>
-				</div>
-			</div>);
-		}
+			</LoaderPanel>
+		</div>);
 	}
 }
 

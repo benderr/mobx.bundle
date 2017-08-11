@@ -26,7 +26,7 @@ function* setProductToLayer({inventCode}) {
 		price: null,
 		alcoholType: 'NO_ALCOHOL',
 		barcode: inventCode,
-		minPrice: 0,
+		minPrice: null,
 		measure: 'pcs',
 		vatTag: "0",
 		catalogType: CATALOG_TYPE.INVENTORY,

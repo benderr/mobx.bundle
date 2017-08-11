@@ -32,9 +32,9 @@ export function* runRetailPoints() {
  */
 function* setSelectedPoint() {
 	const selectedPoint = yield select(retailPointSelectors.getCurrentRetailPointId);
+	const points = yield select(retailPointSelectors.getRetailPointList);
 
-	if (!selectedPoint) {
-		const points = yield select(retailPointSelectors.getRetailPointList);
+	if (!selectedPoint || !points.some(s => s.get('id') == selectedPoint)) {
 		if (points.size > 0) {
 			let pointId = localStorage.getItem(currencyRetailPointKey);
 			//сначала смотрим тот который localStorage
@@ -53,6 +53,8 @@ function* selectNewPoint({id}) {
 	const point = points.find(s => s.get('id') == id);
 	if (point) {
 		localStorage.setItem(currencyRetailPointKey, id);
+	} else {
+		localStorage.setItem(currencyRetailPointKey, null);
 	}
 }
 
@@ -75,6 +77,13 @@ function* addRetailPointProcess(payload) {
 		let point = payload.point;
 		const newPoint = yield call(dataContext.addRetailPoint, point);
 		yield put(addRetailPoint.success(newPoint));
+
+		const points = yield select(retailPointSelectors.getRetailPointList);
+		if (!points || points.size == 0)
+			runRetailPoints();
+		if (points.size == 1) {
+			yield put(setRetailPoint(point.id))
+		}
 	}
 	catch (error) {
 		yield put(addRetailPoint.failure(error));
@@ -133,7 +142,22 @@ function* createRetailPointProcess() {
 function* deleteRetailPointProcess({id}) {
 	try {
 		const res = yield call(dataContext.deleteRetailPoint, {id});
+
+		const selectedPoint = yield select(retailPointSelectors.getCurrentRetailPointId);
+		const points = yield select(retailPointSelectors.getRetailPointList);
+
+		//переключаем
+		if (selectedPoint == id) {
+			const otherPoint = points.filter(s => s.get('id') != id).first();
+			if (otherPoint) {
+				yield put(setRetailPoint(otherPoint.get('id')))
+			} else {
+				yield put(setRetailPoint(null))
+			}
+		}
+
 		yield put(deleteRetailPoint.success(res));
+
 	}
 	catch (error) {
 		yield put(deleteRetailPoint.failure(error));

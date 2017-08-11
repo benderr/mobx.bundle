@@ -13,9 +13,8 @@ class RetailPointList extends React.Component {
 	};
 
 	render() {
-		const {points, selectedPointId, onSelectPoint, onItemClick} = this.props;
+		const {points = [], selectedPointId, onSelectPoint, onItemClick} = this.props;
 		return (
-
 			<div class='widget_block'>
 				<div class='table  table_pos'>
 					<div class='table_head'>

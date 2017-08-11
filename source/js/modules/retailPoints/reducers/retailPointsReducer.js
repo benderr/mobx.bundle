@@ -126,7 +126,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			error: null,
-			retailPoints: state.get('retailPoints').delete(index),
+			retailPoints: state.get('retailPoints').delete(index)
 		})
 		.deleteIn(['retailPointInLayer', action.response])
 	},

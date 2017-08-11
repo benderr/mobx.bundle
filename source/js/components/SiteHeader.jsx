@@ -43,23 +43,30 @@ class SiteHeader extends React.Component {
         push({pathname: '/retail-points/'});
     }
 
-    getSelectedPointName(selectedPointId, points) {
+    renderSelectedPointName() {
+        const {selectedPointId, points, loading} = this.props;
         if (selectedPointId && points && points.length) {
             const selectedPoint = points.filter(point => point.id === selectedPointId)[0];
             return selectedPoint.name;
         }
-        return '-';
+        if (!loading)
+            return 'Точки';
+        return '';
+    }
+
+    renderPoints() {
+        const {selectedPointId, points, onSelectPoint} = this.props;
+
+        return selectedPointId && points ? points.filter(point => point.id !== selectedPointId)
+                .map(point => (
+                    <li data-close="true" key={'listitem_' + point.id} onClick={() => onSelectPoint(point.id)}>
+                        <a>{point.name}</a></li>))
+            : null;
     }
 
     render() {
-        const {selectedPointId, points, onSelectPoint, logOut, logoutState} = this.props;
-        const selectedPointName = this.getSelectedPointName(selectedPointId, points);
-
-        const pointsBlock = selectedPointId && points ? points.filter(point => point.id !== selectedPointId)
-                .map(point => (
-                    <li data-close="true" key={'listitem_' + point.id} onClick={() => onSelectPoint(point.id)}><a>{point.name}</a></li>))
-            : null;
-
+        const {selectedPointId, logOut, logoutState, loading} = this.props;
+        const hasPoint = selectedPointId && !loading;
 
         return (
 
@@ -83,19 +90,24 @@ class SiteHeader extends React.Component {
                 <div class="header_profile">
 
                     <div class="header_profile_name">
-                        <Drop drop={{position: "bottom left"}}>
-                            <a class="icon-pos drop-target" name="label"><span>{selectedPointName}</span></a>
+                        {!hasPoint && <Link class="icon-pos drop-target"
+                                            to='/retail-points'><span>{this.renderSelectedPointName()}</span></Link>}
+
+                        {hasPoint && <Drop drop={{position: "bottom left"}}>
+                            <a class="icon-pos drop-target"
+                               name="label"><span>{this.renderSelectedPointName()}</span></a>
 
                             <div class="drop-content">
                                 <div class="drop-content-inner">
                                     <ul class="drop-menu f_small">
-                                        {pointsBlock}
-                                        <li><a class="icon-settings" data-close="true" onClick={::this.openRetailPointsList}>Все точки
+                                        {this.renderPoints()}
+                                        <li><a class="icon-settings" data-close="true"
+                                               onClick={::this.openRetailPointsList}>Все точки
                                             продаж</a></li>
                                     </ul>
                                 </div>
                             </div>
-                        </Drop>
+                        </Drop>}
                     </div>
 
                     <div class="header_profile_settigs">

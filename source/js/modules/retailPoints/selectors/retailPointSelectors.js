@@ -15,4 +15,8 @@ export const getRetailPointInLayer = createSelector([getRetailPointsData], rpDat
 	return rpData.getIn(['retailPointInLayer'], null);
 });
 
+export const getRetailPointListLoading = createSelector([getRetailPointsData], rpData => {
+	return rpData.get('loading');
+});
+
 
