@@ -1,8 +1,13 @@
-import {call, put, takeEvery,all} from 'redux-saga/effects';
+import {call, put, takeEvery, all} from 'redux-saga/effects';
 import * as actions from '../enums/actions';
 import * as accountDataContext from '../dataProvider/accountDataContext';
-import {getStateIntegration, connectIntegration, confirmIntegration, disableIntegration} from '../actions/accountActions';
-
+import {
+	getStateIntegration,
+	connectIntegration,
+	confirmIntegration,
+	disableIntegration
+} from '../actions/accountActions';
+import {isServerError}  from 'infrastructure/helpers/errorHelper'
 
 function* getState() {
 	try {
@@ -13,6 +18,8 @@ function* getState() {
 			status: error.status,
 			data: error.data
 		}));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -22,6 +29,8 @@ function* connect({msLogin, msPassword}) {
 		yield put(connectIntegration.success());
 	} catch (error) {
 		yield put(connectIntegration.failure(error));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
@@ -31,6 +40,8 @@ function* confirm({msLogin, msPassword}) {
 		yield put(confirmIntegration.success());
 	} catch (error) {
 		yield put(connectIntegration.failure(error));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 

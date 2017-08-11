@@ -3,12 +3,13 @@ import * as actions from '../enums/actions';
 
 export const initialState = Map({
 	loading: false,
-	errors: null,
+	connectErrors: null,
 	success: null,
 	checked: false,
 	stateIntegration: false,
 	msLogin: '',
-	msPassword: ''
+	msPassword: '',
+	stateErrors: null
 });
 
 export const actionHandlers = {
@@ -17,20 +18,22 @@ export const actionHandlers = {
 	[actions.GET_STATE_INTEGRATION.REQUEST]: (state) => {
 		return state.merge({
 			loading: true,
-			errors: null,
+			connectErrors: null,
+			stateErrors: null,
 			success: null,
 			checked: false,
 			stateIntegration: false,
 			msLogin: '',
-			msPassword: ''
+			msPassword: '',
+			disableStateErrors: null
 		});
 	},
 	[actions.GET_STATE_INTEGRATION.SUCCESS]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: null,
 			success: null,
 			checked: false,
+			stateErrors: null,
 			stateIntegration: action.response.msIntegrationEnabled,
 			msLogin: action.response.msLogin,
 			msPassword: ''
@@ -39,7 +42,7 @@ export const actionHandlers = {
 	[actions.GET_STATE_INTEGRATION.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: fromJS(action.error),
+			stateErrors: fromJS(action.error),
 			success: null,
 			checked: false,
 			stateIntegration: false,
@@ -52,10 +55,12 @@ export const actionHandlers = {
 	[actions.UPDATE_STATE_INTEGRATION]: (state, active) => {
 		return state.merge({
 			loading: false,
-			errors: null,
+			connectErrors: null,
 			success: null,
+			stateErrors: null,
 			checked: false,
-			stateIntegration: active.stateIntegration
+			stateIntegration: active.stateIntegration,
+			disableStateErrors: null
 		});
 	},
 
@@ -63,9 +68,11 @@ export const actionHandlers = {
 	[actions.DEFAULT_STATE_INTEGRATION]: (state) => {
 		return state.merge({
 			loading: false,
-			errors: null,
+			connectErrors: null,
 			success: null,
 			checked: false,
+			stateErrors: null,
+			disableStateErrors: null
 		});
 	},
 
@@ -73,7 +80,7 @@ export const actionHandlers = {
 	[actions.CONNECT_INTEGRATION.REQUEST]: (state, action) => {
 		return state.merge({
 			loading: true,
-			errors: null,
+			connectErrors: null,
 			success: null,
 			checked: false,
 			msLogin: action.msLogin,
@@ -83,7 +90,7 @@ export const actionHandlers = {
 	[actions.CONNECT_INTEGRATION.SUCCESS]: (state) => {
 		return state.merge({
 			loading: false,
-			errors: null,
+			connectErrors: null,
 			success: false,
 			checked: true
 		});
@@ -92,7 +99,7 @@ export const actionHandlers = {
 		return state.merge({
 			loading: false,
 			success: false,
-			errors: fromJS(action.error),
+			connectErrors: fromJS(action.error),
 			checked: false
 		});
 	},
@@ -101,7 +108,7 @@ export const actionHandlers = {
 	[actions.CONFIRM_INTEGRATION.REQUEST]: (state, action) => {
 		return state.merge({
 			loading: true,
-			errors: null,
+			connectErrors: null,
 			success: null,
 			checked: false,
 			msLogin: action.msLogin,
@@ -111,7 +118,7 @@ export const actionHandlers = {
 	[actions.CONFIRM_INTEGRATION.SUCCESS]: (state) => {
 		return state.merge({
 			loading: false,
-			errors: null,
+			connectErrors: null,
 			success: true,
 			checked: false,
 			stateIntegration: true,
@@ -121,7 +128,7 @@ export const actionHandlers = {
 	[actions.CONFIRM_INTEGRATION.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: fromJS(action.error),
+			connectErrors: fromJS(action.error),
 			success: null,
 			checked: false,
 			stateIntegration: true,
@@ -134,6 +141,9 @@ export const actionHandlers = {
 		return state.merge({
 			loading: true,
 			errors: null,
+			stateErrors: null,
+			disableStateErrors: null,
+			connectErrors: null,
 			success: null,
 			checked: false,
 			stateIntegration: false
@@ -142,9 +152,11 @@ export const actionHandlers = {
 	[actions.DISABLE_INTEGRATION.SUCCESS]: (state) => {
 		return state.merge({
 			loading: false,
-			errors: null,
+			disableStateErrors: null,
+			connectErrors: null,
 			success: true,
 			checked: false,
+			stateErrors: null,
 			stateIntegration: false,
 			msLogin: '',
 			msPassword: ''
@@ -153,7 +165,7 @@ export const actionHandlers = {
 	[actions.DISABLE_INTEGRATION.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			errors: fromJS(action.error),
+			disableStateErrors: fromJS(action.error),
 			success: null,
 			checked: false,
 			stateIntegration: false

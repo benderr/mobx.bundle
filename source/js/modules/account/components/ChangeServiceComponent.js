@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {InputField} from 'common/formElements/fields';
 import PropTypes from 'prop-types';
 import {ConfirmPopupService} from 'common/uiElements';
-import {LoaderBlock} from 'common/uiElements';
+import {LoaderPanel, Button} from 'common/uiElements';
 
 const isValidateLogin = val => /^admin@./i.test(val);
 const validateLogin = (text) => (val) => !isValidateLogin(val) ? text : undefined;
@@ -31,6 +31,22 @@ class ChangeServiceComponent extends React.Component {
 		onDefStateIntegration();
 	}
 
+	renderError() {
+		const {formState:{disableStateErrors, connectErrors, stateErrors}} =this.props;
+		let errorText = '';
+		if (stateErrors) {
+			errorText = 'Ошибка при получении состояния интеграции'
+		} else if (disableStateErrors) {
+			errorText = 'Ошибка при выполнении операции'
+		} else if (connectErrors) {
+			errorText = 'Не удалось установить соединение';
+		}
+
+		if (errorText)
+			return (<div className="info_error">{errorText}</div>);
+		return null;
+	}
+
 	render() {
 		const {
 			handleSubmit, onChangeService, onCheckIntegration,
@@ -38,8 +54,8 @@ class ChangeServiceComponent extends React.Component {
 		} = this.props;
 
 		return (
-			<div>
-				{!loading && <form onSubmit={handleSubmit(onChangeService)}>
+			<LoaderPanel loading={loading}>
+				<form onSubmit={handleSubmit(onChangeService)}>
 					<div className="form_group form_horizontal">
 						<input name="stateIntegration" type="checkbox" id="34"
 							   checked={stateIntegration}
@@ -68,13 +84,13 @@ class ChangeServiceComponent extends React.Component {
 						</div>
 					</div>}
 
-					{errors && <div className="info_error">Не удалось установить соединение</div>}
+					{this.renderError()}
 					{success && <div className="info">Настройки сохранены</div>}
 
 					<div className="form_buttons row">
-						<button className="button middle" disabled={loading}>
+						<Button type="submit" className="button middle" disabled={loading}>
 							Проверить и сохранить
-						</button>
+						</Button>
 					</div>
 					<ConfirmPopupService
 						ref={p => this.removePopup = p}
@@ -82,9 +98,8 @@ class ChangeServiceComponent extends React.Component {
 						text="При интеграции с сервисом МойСклад, созданная структура торговых точек в Личном кабинете будет заменена на структуру МойСклад"
 						okName="Подтвердить"
 						cancelName="Отмена"/>
-				</form>}
-				<LoaderBlock loading={loading}/>
-			</div>
+				</form>
+			</LoaderPanel>
 		);
 	}
 }
