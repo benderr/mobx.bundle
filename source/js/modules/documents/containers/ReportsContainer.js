@@ -59,7 +59,7 @@ class ReportsContainer extends React.Component {
 			document.body.appendChild(downloadLink);
 			downloadLink.click();
 			document.body.removeChild(downloadLink);
-			reset('report_form');
+			//reset('report_form');
 		}
 	}
 
