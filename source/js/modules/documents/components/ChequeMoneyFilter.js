@@ -30,11 +30,11 @@ class ChequeMoneyFilter extends React.Component {
 				<div className="side_filter">
 					<div className="side_filter_name">Тип документа</div>
 					<ul>
-						<CheckBox checked={docType.indexOf(DOCUMENT_TYPE.SALE) >= 0}
+						<CheckBox checked={docType == DOCUMENT_TYPE.SALE}
 								  onChange={event => onChangeDocType(event, DOCUMENT_TYPE.SALE)}
 								  id={`id_${DOCUMENT_TYPE.SALE}`}
 								  label={getDocTypeName(DOCUMENT_TYPE.SALE)}/>
-						<CheckBox checked={docType.indexOf(DOCUMENT_TYPE.RETURN) >= 0}
+						<CheckBox checked={docType == DOCUMENT_TYPE.RETURN}
 								  onChange={event => onChangeDocType(event, DOCUMENT_TYPE.RETURN)}
 								  id={`id_${DOCUMENT_TYPE.RETURN}`}
 								  label={getDocTypeName(DOCUMENT_TYPE.RETURN)}/>

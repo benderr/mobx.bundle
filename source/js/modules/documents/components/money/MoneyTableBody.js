@@ -1,12 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {DateFormat, AmountFormat} from 'common/uiElements'
-import {DOC_TYPES, NOT_VALUE} from "../../enums/optionsDocument"
-
+import {NOT_VALUE} from "../../enums/optionsDocument"
+import {DOCUMENT_TYPE_NAMES} from "../../../documents/enums"
 
 const MoneyTableBody = ({list}) => {
-	console.log(list);
-
 	return (
 		<div>
 			{list.map(Item =>
@@ -15,7 +13,7 @@ const MoneyTableBody = ({list}) => {
 						<DateFormat value={Item.dateCreated}/>
 					</div>
 					<div className="doc_type">
-						{Item.type ? DOC_TYPES[Item.type] || NOT_VALUE : Item.type}
+						{Item.type ? DOCUMENT_TYPE_NAMES[Item.type] || NOT_VALUE : Item.type}
 					</div>
 					<div className="doc_smena_number">
 						{Item.shiftDoc && toString(Item.shiftDoc.shiftNum) ? `Смена №${Item.shiftDoc.shiftNum}` : NOT_VALUE}
@@ -41,8 +39,8 @@ const MoneyTableBody = ({list}) => {
 MoneyTableBody.propTypes = {
 	list: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.any.isRequired,
-		beginDateTime: PropTypes.instanceOf(Date),
-		docType: PropTypes.any,
+		dateCreated: PropTypes.instanceOf(Date),
+		type: PropTypes.any,
 		docNum: PropTypes.any,
 		actualSum: PropTypes.any,
 		cashier: PropTypes.any,

@@ -7,6 +7,7 @@ import {bindActionCreators} from 'redux'
 import TitlePanel from '../components/TitlePanel'
 import TitleActions from '../components/TitleActions'
 import ListFilter from "../components/ListFilter"
+import {LoaderPanel} from 'common/uiElements'
 
 import * as selectors from '../selectors/chequeSelectors'
 import * as actions from '../actions/chequeActions'
@@ -40,8 +41,9 @@ class ChequeListContainer extends React.Component {
 
 	// поиск по названию
 	onFilterChanged(e) {
-		let val = e.target.value;
-		this.props.getListCheque({q: val});
+		const {getListCheque, setFilterParams} = this.props;
+		setFilterParams({q: e.target.value});
+		getListCheque();
 	}
 
 	// бесконечный скроллинг
@@ -59,26 +61,17 @@ class ChequeListContainer extends React.Component {
 		return this.chequeFilter.isClosable();
 	}
 
-	handleChangeFilterDocType(e, type) {
-		const {getListCheque, setFilterParams, listState: {filter}} = this.props;
-
-		let props = {
-			dateFrom: filter.dateFrom,
-			dateTo: filter.dateTo,
-			docType: []
-		};
-		props.docType.push(type);
-
-		setFilterParams(props);
+	handleChangeFilterDocType(event, type) {
+		const {getListCheque, setFilterParams} = this.props;
+		setFilterParams({docType: event.target.checked ? type : null});
 		getListCheque();
 	}
 
 	handleChangeDate(date) {
-		const {getListCheque, setFilterParams, listState: {filter}} = this.props;
+		const {getListCheque, setFilterParams} = this.props;
 		setFilterParams({
 			dateFrom: date.dateFrom,
-			dateTo: date.dateTo,
-			docType: filter.docType
+			dateTo: date.dateTo
 		});
 		getListCheque();
 	}
@@ -89,15 +82,16 @@ class ChequeListContainer extends React.Component {
 		setFilterParams({
 			dateFrom: null,
 			dateTo: null,
-			docType: []
+			docType: null
 		});
 		getListCheque();
 	}
+
 	// endregion
 
 	render() {
-		const {listState} = this.props;
-		const {noItems, filter, isFilter} = listState;
+		const {listState, isFilter, searchText} = this.props;
+		const {noItems, filter} = listState;
 		const globalLoading = noItems === null;
 
 		return (
@@ -125,21 +119,25 @@ class ChequeListContainer extends React.Component {
 						onClearFilter={::this.onClearFilter}
 						dateFrom={filter.dateFrom}
 						dateTo={filter.dateTo}
-						docType={filter.docType} />
+						docType={filter.docType}/>
 				</ListFilter>
 
-				{!globalLoading && !noItems &&
-				<ChequeList
-					listState={listState}
-					onHeadSortClick={::this.onSortList}
-					onFilterChanged={::this.onFilterChanged}
-					onInfinateScroll={::this.onInfinateScroll}/>}
+				<LoaderPanel loading={globalLoading}>
+					{!globalLoading && !noItems &&
+					<ChequeList
+						listState={listState}
+						searchText={searchText}
+						onHeadSortClick={::this.onSortList}
+						onFilterChanged={::this.onFilterChanged}
+						onInfinateScroll={::this.onInfinateScroll}/>}
 
-				{!globalLoading && noItems &&
-				<div className={`center_xy page_center_info page_center_info__orders0 ${listState.loading ? 'loading_block' : ''}`}>
-					<i className="icon icon_orders"/>
-					<div className="title">Чеки отсутствуют</div>
-				</div>}
+					{!globalLoading && noItems &&
+					<div
+						className={`center_xy page_center_info page_center_info__orders0 ${listState.loading ? 'loading_block' : ''}`}>
+						<i className="icon icon_orders"/>
+						<div className="title">Чеки отсутствуют</div>
+					</div>}
+				</LoaderPanel>
 			</div>
 		)
 	}
@@ -147,7 +145,10 @@ class ChequeListContainer extends React.Component {
 
 function mapStateToProps(state) {
 	const listState = selectors.getChequesSection(state);
-	return {listState};
+	const isFilter = selectors.isFilteredList(state);
+	const filter = selectors.getFilter(state);
+	const searchText = filter.get('q');
+	return {listState, isFilter, searchText};
 }
 
 function mapDispatchToProps(dispatch) {

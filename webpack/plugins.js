@@ -30,7 +30,8 @@ const plugins = [
 	}),
 	new webpack.NoEmitOnErrorsPlugin(),
 	new webpack.ProvidePlugin({
-		$: 'jquery'
+		$: 'jquery',
+		logger: ['infrastructure/utils/logger', 'default']
 	}),
 	new webpack.DefinePlugin({
 		'process.env': {

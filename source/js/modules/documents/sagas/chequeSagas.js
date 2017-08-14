@@ -6,7 +6,7 @@ import * as actEnums from '../actions/chequeActions'
 import * as dataContext from '../dataProvider/dataContext'
 import {getListPropsState} from '../selectors/chequeSelectors'
 import dateHelper from 'common/helpers/dateHelper'
-
+import {DOCUMENT_TYPE} from '../enums'
 
 function* getListChequeSaga({isFirst = false, step = false}) {
 	try {
@@ -15,19 +15,24 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 
 		// region: query params
 		let query = [];
-		const {dateFrom, dateTo, docType} = propState.filter;
+		const {dateFrom, dateTo, docType, q} = propState.filter;
 
-		if (dateFrom instanceof Date)
+		if (dateFrom instanceof Date) {
 			query.push(`beginDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
-		if (dateTo instanceof Date)
+		}
+		if (dateTo instanceof Date) {
 			query.push(`beginDateTime=le="${dateHelper.dateFormat(dateTo, 'isoUtcDateTime')}"`);
-		if (docType.length)
-			query.push(`docType=="${docType[0]}"`);
+		}
+		if (docType) {
+			const docTypes = docType == DOCUMENT_TYPE.RETURN ?
+				[DOCUMENT_TYPE.RETURN, DOCUMENT_TYPE.RETURN_BY_SALE] : [DOCUMENT_TYPE.SALE];
 
-		const isFilter = !!(query.length);
+			query.push(`docType=in=(${docTypes.join(',')})`)
+		}
 
-		if (propState.q.length)
+		if (q && q.length) {
 			query.push(`:quickSearch="${propState.q}"`);
+		}
 
 		query.push('shift.id!=":external"');	// Для теста: 'shift.id==":external"'
 		query = query.join(';');
@@ -46,17 +51,17 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 			pos: response.pos,
 			total_count: response.totalCount,
 			noItems: isFirst ? !(response.orders.length) : propState.noItems,
-			filter: propState.filter,
-			isFilter
+			filter: propState.filter
 		}));
 	} catch (error) {
 		yield put(notify.error('При загрузке данных произошла ошибка', 'Ошибка'));
+		logger.log(error);
 		yield put(actEnums.getListCheque.failure());
 	}
 }
 
 
-export default function* () {
+export default function*() {
 	yield all([
 		throttle(300, actEnums.GET_LIST.REQUEST, getListChequeSaga)
 	])
