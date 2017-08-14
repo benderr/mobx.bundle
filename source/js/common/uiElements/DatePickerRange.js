@@ -5,6 +5,8 @@ import {Drop} from 'common/uiElements';
 import DatePicker from './DatePicker'
 
 const PERIOD = {
+	TODAY: 'TODAY',
+	YESTERDAY: 'YESTERDAY',
 	LAST_30: 'LAST_30',
 	LAST_WEEK: 'LAST_WEEK',
 	LAST_MONTH: 'LAST_MONTH',
@@ -15,6 +17,13 @@ const PERIOD = {
 function getDateRangeByPeriod(period) {
 	let range;
 	switch (period) {
+		case PERIOD.YESTERDAY:
+			const yesterday = dateHelper.getYesterday();
+			range = dateHelper.getDateRange(yesterday);
+			break;
+		case PERIOD.TODAY:
+			range = dateHelper.getDateRange(new Date());
+			break;
 		case PERIOD.LAST_30:
 			range = dateHelper.getLast30DaysDates(new Date());
 			break;
@@ -97,6 +106,9 @@ class DatePickerRange extends React.Component {
 				<div className="drop-content-inner dashboard-period-choose">
 
 					<ul className="drop-menu">
+						<li><a data-close="true" onClick={() => this.handleSelectPeriod(PERIOD.TODAY)}>Сегодня</a></li>
+						<li><a data-close="true" onClick={() => this.handleSelectPeriod(PERIOD.YESTERDAY)}>Вчера</a>
+						</li>
 						<li><a data-close="true" onClick={() => this.handleSelectPeriod(PERIOD.LAST_30)}>Последние 30
 							дней</a></li>
 						<li><a data-close="true" onClick={() => this.handleSelectPeriod(PERIOD.LAST_WEEK)}>Текущая
