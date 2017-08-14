@@ -80,7 +80,7 @@ class RetailPointForm extends React.Component {
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">КПП</div>
                     <div class="property_value col w35">
-                        <InputField name="kpp" type="text" maxlength="9"
+                        <InputField name="settings.egaisSettings.kpp" type="text" maxlength="9"
                                     class="w100"
                                     validate={[isRequiredKpp('Укажите КПП', isIP), validateKpp('КПП должен содержать 9 цифр')]}
                                     normalize={normalizeKpp} disabled={isIP}/>

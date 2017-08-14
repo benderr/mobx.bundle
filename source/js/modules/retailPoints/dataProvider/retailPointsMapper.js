@@ -12,7 +12,7 @@ export const toServer = (point) => {
 			},
 			checkSettings: {},
 			egaisSettings: {
-				kpp: point.kpp,
+				kpp: point.settings.egaisSettings.kpp,
 			},
 			fiscalServiceEnabled: point.settings.fiscalServiceEnabled
 		},

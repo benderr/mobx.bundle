@@ -40,7 +40,7 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
             address: props.get('address'),
             phone: props.get('phone'),
             inn: props.get('inn'),
-            kpp: props.get('kpp'),
+
             mock: {
                 enabled: props.get('demoProducts'),
             },
@@ -49,6 +49,9 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
             id: props.get('id'),
             isNew: props.get('isNew'),
             settings: {
+                egaisSettings: {
+                    kpp: props.getIn(['settings', 'egaisSettings', 'kpp']),
+                },
                 fiscalServiceEnabled: props.getIn(['settings', 'fiscalServiceEnabled'])
             }
         };
