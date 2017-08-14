@@ -98,14 +98,9 @@ class ChequeListContainer extends React.Component {
 			<div className="h100per">
 				<TitlePanel>
 					{!noItems &&
-					<TitleActions>
-						<a className="button small light icon-filter show_filter_panel right20"
-						   onClick={::this.handleOpenFilter}>Фильтры{isFilter && <span className="filter_count"/>}</a>
-						<a className="button white icon-filter show_filter_panel float right20"
-						   onClick={::this.handleOpenFilter}>
-							<span className="filter_count"/>
-						</a>
-					</TitleActions>}
+					<TitleActions isFiltered={isFilter}
+								  onShowFilter={::this.handleOpenFilter}
+								  showButtons={true} />}
 				</TitlePanel>
 
 				<ListFilter

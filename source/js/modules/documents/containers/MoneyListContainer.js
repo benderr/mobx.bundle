@@ -127,14 +127,8 @@ class MoneyListContainer extends React.Component {
 		return (
 			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
 				<TitlePanel>
-					{true && <TitleActions showFilter={false}>
-						<a className="button small light icon-filter show_filter_panel  right20"
-						   onClick={::this.handleOpenFilter}>Фильтры</a>
-						<a className="button white icon-filter show_filter_panel float  right20"
-						   onClick={::this.handleOpenFilter}>
-							<span className="filter_count"/>
-						</a>
-					</TitleActions>}
+					<TitleActions showButtons={true}
+								  onShowFilter={::this.handleOpenFilter}/>
 				</TitlePanel>
 
 				<ListFilter setInstance={f => this.filter = f}
