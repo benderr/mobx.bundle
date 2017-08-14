@@ -143,7 +143,7 @@ class AmountInput extends React.Component {
 						viewValue = '';
 				}
 				else {
-					if (!val || val === '0' || parseFloat(val) == 0) {
+					if (!val || val === '0' || val === '0,') {
 						viewValue = '0,';
 						startPos = 2;
 					} else if (!val || val === '0,0') {

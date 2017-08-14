@@ -14,6 +14,7 @@ export const toServer = (point) => {
 			egaisSettings: {
 				kpp: point.kpp,
 			},
+			fiscalServiceEnabled: point.settings.fiscalServiceEnabled
 		},
 		payments: {
 			mock: {enabled: point.mock.enabled},
