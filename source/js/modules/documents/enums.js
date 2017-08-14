@@ -22,12 +22,14 @@ export const DOCUMENT_STATUS_NAMES = {
 
 export const DOCUMENT_TYPE = {
 	SALE: 'SALE',
-	RETURN: 'RETURN'
+	RETURN: 'RETURN',
+	RETURN_BY_SALE: 'RETURN_BY_SALE'
 };
 
 export const DOCUMENT_TYPE_NAMES = {
 	[DOCUMENT_TYPE.SALE]: 'Продажа',
-	[DOCUMENT_TYPE.RETURN]: 'Возврат'
+	[DOCUMENT_TYPE.RETURN]: 'Возврат',
+	[DOCUMENT_TYPE.RETURN_BY_SALE]: 'Возврат'
 };
 
 export const getDocStatusName = status => {

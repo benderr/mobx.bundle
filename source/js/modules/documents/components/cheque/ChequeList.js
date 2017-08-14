@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {DateFormat, AmountFormat, SortLink, InfinateScroll} from 'common/uiElements'
-import {DOC_TYPES, NOT_VALUE} from "../../enums/optionsDocument"
+import {NOT_VALUE} from "../../enums/optionsDocument"
+import {DOCUMENT_TYPE_NAMES} from "../../../documents/enums"
 
 class ChequeList extends React.Component {
 
 	render() {
 		const {
-			listState,
+			listState, searchText,
 			onHeadSortClick, onFilterChanged, onInfinateScroll
 		} = this.props;
-		const {list, sortField, sortDirection, q, loading} = listState;
+		const {list, sortField, sortDirection, loading} = listState;
 
 		return (
 			<div className="widget_block">
@@ -52,7 +53,7 @@ class ChequeList extends React.Component {
 
 					<div className="table_row  row_link_search">
 						<input type="search" className="small w100"
-							   onChange={onFilterChanged} value={q}
+							   onChange={onFilterChanged} value={searchText}
 							   placeholder="Введите наименование"/>
 					</div>
 
@@ -60,7 +61,7 @@ class ChequeList extends React.Component {
 						<div className="table_row"
 							 key={`row_${Item.id}`}>
 							<div className="doc_date"><DateFormat value={Item.beginDateTime}/></div>
-							<div className="doc_type">{DOC_TYPES[Item.docType] || NOT_VALUE}</div>
+							<div className="doc_type">{DOCUMENT_TYPE_NAMES[Item.docType] || NOT_VALUE}</div>
 							<div
 								className="doc_smena_number">{Item.shift && '' + Item.shift.shiftNum ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}</div>
 							<div className="doc_number">Документ №{Item.docNum}</div>
@@ -90,8 +91,9 @@ ChequeList.propTypes = {
 		list: PropTypes.array.isRequired,			// список элементов
 		sortField: PropTypes.string.isRequired,		// поле сортировки
 		sortDirection: PropTypes.string.isRequired,	// направление сортировки
-		q: PropTypes.string.isRequired, 			// поле поиска
 	}),
+
+	searchText: PropTypes.string, 			// поле поиска
 
 	onHeadSortClick: PropTypes.func.isRequired,		// при клике на имя столбца
 	onFilterChanged: PropTypes.func.isRequired,		// при вводе в поле поиска

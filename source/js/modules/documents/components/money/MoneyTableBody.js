@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {DateFormat, AmountFormat} from 'common/uiElements'
-import {DOC_TYPES, NOT_VALUE} from "../../enums/optionsDocument"
-
+import {NOT_VALUE} from "../../enums/optionsDocument"
+import {DOCUMENT_TYPE_NAMES} from "../../../documents/enums"
 
 const MoneyTableBody = ({list}) => {
 	return (
@@ -13,7 +13,7 @@ const MoneyTableBody = ({list}) => {
 						<DateFormat value={Item.beginDateTime}/>
 					</div>
 					<div className="doc_type">
-						{Item.docType ? DOC_TYPES[Item.docType] || NOT_VALUE : Item.docType}
+						{Item.docType ? DOCUMENT_TYPE_NAMES[Item.docType] || NOT_VALUE : Item.docType}
 					</div>
 					<div className="doc_smena_number">
 						{Item.shift && toString(Item.shift.shiftNum) ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}
