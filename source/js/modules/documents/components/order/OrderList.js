@@ -18,7 +18,7 @@ class OrderList extends React.Component {
 				<div class="doc_date"><DateFormat value={order.beginDateTime} format="dd.mm.yyyy HH:MM"/></div>
 				<div class="doc_number">{order.docNum}</div>
 				<div class="doc_amount"><AmountFormat value={order.actualSum}/></div>
-				<div class="doc_cashier">{order.cashier || 'Н/Д'}</div>
+				{/*<div class="doc_cashier">{order.cashier || 'Н/Д'}</div>*/}
 				<div class="doc_comment">{order.description}</div>
 			</div>));
 
@@ -40,16 +40,16 @@ class OrderList extends React.Component {
 							  sortField={sortField}
 							  orderBy={sortDirection}
 							  onClick={onSort}>Сумма</SortLink>
-					<SortLink className="doc_cashier"
-							  field='cashier.name'
-							  sortField={sortField}
-							  orderBy={sortDirection}
-							  onClick={onSort}>Кассир</SortLink>
+					{/*<SortLink className="doc_cashier"*/}
+							  {/*field='cashier.name'*/}
+							  {/*sortField={sortField}*/}
+							  {/*orderBy={sortDirection}*/}
+							  {/*onClick={onSort}>Кассир</SortLink>*/}
 					<div class="doc_comment">Комментарий</div>
 				</div>
 				<div class="table_row  row_link_search">
 					<input type="search" class="small  w100"
-						   placeholder="Кассир, номер документа или сумма"
+						   placeholder="Номер документа или сумма"
 						   onChange={onChangeFilter}/>
 				</div>
 				{orderRows}
