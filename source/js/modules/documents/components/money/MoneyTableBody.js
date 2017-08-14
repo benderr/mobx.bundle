@@ -5,24 +5,26 @@ import {DOC_TYPES, NOT_VALUE} from "../../enums/optionsDocument"
 
 
 const MoneyTableBody = ({list}) => {
+	console.log(list);
+
 	return (
 		<div>
 			{list.map(Item =>
 				<div className="table_row" key={`row_${Item.id}`}>
 					<div className="doc_date">
-						<DateFormat value={Item.beginDateTime}/>
+						<DateFormat value={Item.dateCreated}/>
 					</div>
 					<div className="doc_type">
-						{Item.docType ? DOC_TYPES[Item.docType] || NOT_VALUE : Item.docType}
+						{Item.type ? DOC_TYPES[Item.type] || NOT_VALUE : Item.type}
 					</div>
 					<div className="doc_smena_number">
-						{Item.shift && toString(Item.shift.shiftNum) ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}
+						{Item.shiftDoc && toString(Item.shiftDoc.shiftNum) ? `Смена №${Item.shiftDoc.shiftNum}` : NOT_VALUE}
 					</div>
 					<div className="doc_number">
 						Документ №{Item.docNum}
 					</div>
 					<div className="doc_amount">
-						<AmountFormat value={Item.actualSum}/>
+						<AmountFormat value={Item.sum}/>
 					</div>
 					<div className="doc_cashier">
 						{Item.cashier ? Item.cashier.name : NOT_VALUE}

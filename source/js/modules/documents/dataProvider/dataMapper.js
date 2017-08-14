@@ -2,6 +2,8 @@
 export const toClientOrder = order => {
 	if (order.beginDateTime)
 		order.beginDateTime = new Date(order.beginDateTime);
+	if (order.dateCreated)
+		order.dateCreated = new Date(order.dateCreated);
 
 	return order;
 };
