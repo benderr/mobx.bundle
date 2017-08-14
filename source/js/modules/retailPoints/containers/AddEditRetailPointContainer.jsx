@@ -6,7 +6,13 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toJs from 'components/HOC/toJs'
 
-import {addRetailPoint, setEmptyRetailPointInLayer, getRetailPoint, editRetailPoint, deleteRetailPoint} from '../actions/retailPointActions';
+import {
+    addRetailPoint,
+    setEmptyRetailPointInLayer,
+    getRetailPoint,
+    editRetailPoint,
+    deleteRetailPoint
+} from '../actions/retailPointActions';
 import {getRetailPointList, getRetailPointInLayer} from '../selectors/retailPointSelectors';
 
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
@@ -42,19 +48,22 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
             source: props.get('retailPoints'),
             id: props.get('id'),
             isNew: props.get('isNew'),
+            settings: {
+                fiscalServiceEnabled: props.getIn(['settings', 'fiscalServiceEnabled'])
+            }
         };
 
         const {addRetailPoint, editRetailPoint} = this.props;
-        if(retailPoint.isNew){
+        if (retailPoint.isNew) {
             addRetailPoint(retailPoint);
-        }else {
+        } else {
             editRetailPoint(retailPoint);
         }
 
         this.closeLayer();
     }
 
-    onDelete(){
+    onDelete() {
         const {id, deleteRetailPoint} = this.props;
         this.confirmPopup.open()
             .then(() => {
@@ -64,9 +73,10 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
     }
 
     render() {
-        const {id, loading, points, initialValues} = this.props;
-        const retailPoint = initialValues[id] && initialValues[id].retailPoint;
-
+        const {id, points, initialValues} = this.props;
+        const layer = initialValues[id];
+        const retailPoint = layer && layer.retailPoint;
+        const loading = layer && layer.loading;
         const h1Title = retailPoint && retailPoint.isNew ? 'Добавление точки продаж' : 'Редактирование точки продаж';
 
         return (

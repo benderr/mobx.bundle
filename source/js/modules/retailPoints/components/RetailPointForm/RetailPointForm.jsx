@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
 import {Field, formValueSelector, change} from 'redux-form/immutable';
 import {reduxForm} from 'common/formElements';
+import {LoaderPanel} from 'common/uiElements';
 import {PhoneField, InputField, normalizeKpp, normalizeInn} from 'common/formElements/fields';
 import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators';
 import RetailPointShape from '../RetailPointShape';
@@ -28,11 +29,11 @@ class RetailPointForm extends React.Component {
     }
 
     render() {
-        const {onSave, onCancel, onDelete, points} = this.props;
+        const {onSave, onCancel, onDelete, points, loading} = this.props;
         const {handleSubmit, submitting, isIP, productsSource, showProductSources, showDelete} = this.props;
 
-        return (<form onSubmit={handleSubmit(onSave)} style={{position: 'static'}}>
-            <div class="page_content  with_bottom_panel  content_padding">
+        return (<form onSubmit={handleSubmit(onSave)} className="poss">
+            <LoaderPanel loading={loading} class="page_content  with_bottom_panel  content_padding">
 
                 {showProductSources &&
                 <NextPointSettings points={points} productsSource={productsSource}/>}
@@ -50,8 +51,8 @@ class RetailPointForm extends React.Component {
                     <div class="property_label col three">Адрес</div>
                     <div class="property_value col nine">
                         <InputField name="address" type="text" maxLength="255"
-                               class="w100"
-                               validate={[isRequired('Укажите адрес торговой точки')]}/>
+                                    class="w100"
+                                    validate={[isRequired('Укажите адрес торговой точки')]}/>
                     </div>
                 </div>
 
@@ -70,9 +71,9 @@ class RetailPointForm extends React.Component {
                     <div class="property_label col three">ИНН</div>
                     <div class="property_value col w35">
                         <InputField name="inn" type="text" maxLength="12"
-                               class="w100"
-                               validate={[isRequired('Укажите ИНН'), validateInn('Не совпадают контрольные цифры ИНН')]}
-                               normalize={normalizeInn}/>
+                                    class="w100"
+                                    validate={[isRequired('Укажите ИНН'), validateInn('Не совпадают контрольные цифры ИНН')]}
+                                    normalize={normalizeInn}/>
                     </div>
                 </div>
 
@@ -80,16 +81,27 @@ class RetailPointForm extends React.Component {
                     <div class="property_label col three">КПП</div>
                     <div class="property_value col w35">
                         <InputField name="kpp" type="text" maxlength="9"
-                               class="w100"
-                               validate={[isRequiredKpp('Укажите КПП', isIP), validateKpp('КПП должен содержать 9 цифр')]}
-                               normalize={normalizeKpp} disabled={isIP}/>
+                                    class="w100"
+                                    validate={[isRequiredKpp('Укажите КПП', isIP), validateKpp('КПП должен содержать 9 цифр')]}
+                                    normalize={normalizeKpp} disabled={isIP}/>
                     </div>
                 </div>
+
+                <div class="form_group form_horizontal mt24">
+                    <div class="property_value col nine">
+                        <Field id="fiscalServiceEnabled" name="settings.fiscalServiceEnabled" type="checkbox" component="input"/>
+                        <label for="fiscalServiceEnabled" className="label_check">
+                            <i className="icon"></i>
+                            <span className="f_small">Использовать для печати документов интернет-магазина</span>
+                        </label>
+                    </div>
+                </div>
+
                 {productsSource === 'BLANK' && <div class="form_group form_horizontal mt24">
                     <Field name="demoProducts" id="demoProducts" component="input" type="checkbox"/>
                     <label for="demoProducts" class="label_check"><i class="icon"></i><span class="f_small">Заполнить демо-товарами</span></label>
                 </div>}
-            </div>
+            </LoaderPanel>
             <div class="page_bottom_panel">
                 <button disabled={submitting} className="button middle wide" type="submit">Сохранить
                 </button>
