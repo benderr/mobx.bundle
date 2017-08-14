@@ -10,19 +10,19 @@ const MoneyTableBody = ({list}) => {
 			{list.map(Item =>
 				<div className="table_row" key={`row_${Item.id}`}>
 					<div className="doc_date">
-						<DateFormat value={Item.beginDateTime}/>
+						<DateFormat value={Item.dateCreated}/>
 					</div>
 					<div className="doc_type">
-						{Item.docType ? DOCUMENT_TYPE_NAMES[Item.docType] || NOT_VALUE : Item.docType}
+						{Item.type ? DOCUMENT_TYPE_NAMES[Item.type] || NOT_VALUE : Item.type}
 					</div>
 					<div className="doc_smena_number">
-						{Item.shift && toString(Item.shift.shiftNum) ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}
+						{Item.shiftDoc && toString(Item.shiftDoc.shiftNum) ? `Смена №${Item.shiftDoc.shiftNum}` : NOT_VALUE}
 					</div>
 					<div className="doc_number">
 						Документ №{Item.docNum}
 					</div>
 					<div className="doc_amount">
-						<AmountFormat value={Item.actualSum}/>
+						<AmountFormat value={Item.sum}/>
 					</div>
 					<div className="doc_cashier">
 						{Item.cashier ? Item.cashier.name : NOT_VALUE}
@@ -39,8 +39,8 @@ const MoneyTableBody = ({list}) => {
 MoneyTableBody.propTypes = {
 	list: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.any.isRequired,
-		beginDateTime: PropTypes.instanceOf(Date),
-		docType: PropTypes.any,
+		dateCreated: PropTypes.instanceOf(Date),
+		type: PropTypes.any,
 		docNum: PropTypes.any,
 		actualSum: PropTypes.any,
 		cashier: PropTypes.any,
