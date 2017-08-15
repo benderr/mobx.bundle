@@ -72,8 +72,9 @@ class DefaultLayerLayout extends React.Component {
 	}
 
 	layerOptions = {
-		ref: el => this.el = el
-	};
+		ref: el => this.el = el,
+		'data-layer': this.props.layerId
+	}
 
 	render() {
 		return (

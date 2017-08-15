@@ -10,95 +10,172 @@ class RadRouteManager extends React.Component {
 		routes: PropTypes.object.isRequired,
 		notFound: PropTypes.func,
 		location: PropTypes.object.isRequired,
-		history: PropTypes.object.isRequired
+		history: PropTypes.object.isRequired,
+		layersLimit: PropTypes.number
 	};
-	layers = [];
-	pageLocation = this.props.location;
+
+	static defaultProps = {
+		layersLimit: 5
+	};
+
+	constructor(props) {
+		super(props);
+		this.state = {
+			layers: [],
+			currentPage: props.location
+		};
+	}
+
+	set currentPage(currentPage) {
+		this.setState({currentPage, needUpdate: true});
+	}
+
+	get currentPage() {
+		return this.state.currentPage;
+	}
+
+	set layers(layers) {
+		this.setState({layers, needUpdate: true});
+	}
+
+	get layers() {
+		return this.state.layers.map(s => s);
+	}
+
+	isCurrentLocation(location) {
+		return this.currentPage.pathname == location.pathname;
+	}
+
+	createLayer(location) {
+		return {
+			location,
+			layerId: 'layer_' + routeHelpers.getRandomKey()
+		};
+	}
+
+	getLayerByLocation(location) {
+		return this.layers.filter(s => s.location.pathname == location.pathname)[0];
+	}
+
+	getLastLayer() {
+		return this.layers.length > 0 ? this.layers[0] : null;
+	}
+
+	resolveLocation(location) {
+		logger.log('RadRouteManager componentWillReceiveProps');
+		const self = this;
+		this.setState({needUpdate: false});
+
+		const routes = this.props.routes;
+		let layers = this.layers;
+		const isLayer = routeHelpers.isLayerPage(routes.layerRoutes, location);
+
+
+		if (isLayer) {
+			if (this.isCurrentLocation(location)) {
+				//если слой это первая загружаемая страница, то устанавливаем задний фон дефолтную страницу
+				this.currentPage = {pathname: '/'};
+				//logger.log('RadRouteManager setCurrentPage base');
+			}
+
+			if (this.layers.length >= this.props.layersLimit) {
+				layers.splice(0, 1, this.createLayer(location));
+				this.layers = layers;
+				//logger.log('RadRouteManager setLayers = replace');
+			} else {
+				const locationLayer = this.getLayerByLocation(location);
+				if (locationLayer) { //слой с таким урл уже есть в массиве
+					const lastLayer = this.getLastLayer();
+					if (lastLayer != locationLayer) {
+						layers = layers.filter(s => s != locationLayer);
+						layers.unshift(this.createLayer(location));
+						//logger.log('RadRouteManager setLayers = refresh');
+						this.layers = layers;
+
+					} else {
+						locationLayer.location = location;
+						this.layers = layers;
+					}
+				}
+				else {
+					layers.unshift(this.createLayer(location));
+					//logger.log('RadRouteManager setLayers = new');
+					this.layers = layers;
+				}
+			}
+		} else {
+			this.layers.forEach(layer => self.hideLayer(layer.layerId));
+			setTimeout(() => self.layers = [], 500);
+			this.currentPage = location;
+		}
+	}
 
 	destroyLayer({layerId}) {
 		if (!this.layers.some(s => s.layerId == layerId))
 			return;
-		this.layers = this.layers.filter(s => s.layerId != layerId);
+
+		const layers = this.layers.filter(s => s.layerId != layerId);
+		this.layers = layers;
+
 		//если слоев не осталось, то не нужно переходить назад
-		if (this.layers.length != 0) {
-			this.props.history.goBack();
+		if (layers.length != 0) {
+			this.props.history.replace(layers[0].location);
 		}
 		else {
-			//this.props.history.goBack();
-			let loc = {...this.pageLocation};
+			let loc = {...this.state.currentPage};
 			loc.state = {returnToPage: true};
 			this.props.history.replace(loc);
 		}
-
 	}
 
-	getExistLayer(location) {
-		return this.layers.filter(s => s.location.pathname == location.pathname)[0]
+	hideLayer(layerId) {
+		const el = $(`[data-layer=${layerId}]`);
+		if (el) {
+			el.removeClass('open');
+			el.addClass('hide');
+		}
+	}
+
+	componentDidMount() {
+		const self = this;
+		$(window).keyup(function (e) {
+			if (e.keyCode == 27) {
+				const lastLayer = self.getLastLayer();
+				lastLayer && self.hideLayer(lastLayer.layerId);
+				setTimeout(() => self.destroyLayer({layerId: lastLayer.layerId}), 400);
+			}
+		})
 	}
 
 	componentWillUnmount() {
 		logger.log('RadRouteManager componentWillUnmount');
 	}
 
+	shouldComponentUpdate(props, state) {
+		return state.needUpdate;
+	}
+
+	componentWillMount() {
+		this.resolveLocation(this.props.location);
+	}
+
+	componentWillReceiveProps({location}) {
+		this.resolveLocation(location);
+	}
+
 	render() {
 		const {location, notFound, routes}=this.props;
-
-		const isLayer = routeHelpers.isLayerPage(routes.layerRoutes, location);
-
-		let currentPageLocation;
-
-		if (isLayer) {
-			if (this.pageLocation.pathname == location.pathname) {
-				this.pageLocation = currentPageLocation = {pathname: '/'};
-			} else {
-				currentPageLocation = this.pageLocation;
-			}
-		} else {
-			this.pageLocation = currentPageLocation = location;
-		}
-
-
-		if (isLayer) {
-
-			this.layers.forEach(s => {
-				s.needUpdate = false;
-			});
-
-			function createLayer() {
-				return {
-					location,
-					layerId: 'layer_' + routeHelpers.getRandomKey(),
-					needUpdate: true
-				};
-			}
-
-			if (this.layers.length >= 5) {
-				this.layers.splice(0, 1, createLayer());
-			} else {
-				const locationLayer = this.getExistLayer(location);
-				if (!locationLayer) {
-					this.layers.unshift(createLayer());
-				}
-				else {
-					if (!routeHelpers.equalLocations(locationLayer.location, location)) {
-						locationLayer.location = location;
-						locationLayer.needUpdate = true;
-					}
-				}
-			}
-		} else {
-			this.layers = [];
-		}
-
+		const {currentPage, layers} =this.state;
+		logger.log('RadRouteManager render');
 		return (
 			<div className="poss">
 				<RadPageManager
-					pageLocation={currentPageLocation}
+					pageLocation={currentPage}
 					location={location}
 					routes={routes}
 					notFound={notFound}/>
 
-				{this.layers.map((layer) => (
+				{layers.map(layer => (
 					<RadLayerManager key={layer.layerId}
 									 {...layer}
 									 routes={routes.layerRoutes}
@@ -109,5 +186,6 @@ class RadRouteManager extends React.Component {
 		);
 	}
 }
+
 
 export default RadRouteManager;
