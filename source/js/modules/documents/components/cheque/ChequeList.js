@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {DateFormat, AmountFormat, SortLink, InfinateScroll} from 'common/uiElements'
+import {DateFormat, AmountFormat, SortLink, InfinateScroll, LoaderPanel} from 'common/uiElements'
 import {NOT_VALUE} from "../../enums/optionsDocument"
 import {DOCUMENT_TYPE_NAMES} from "../../../documents/enums"
 
@@ -57,18 +57,20 @@ class ChequeList extends React.Component {
 							   placeholder="Введите наименование"/>
 					</div>
 
-					{list.map((Item, i) =>
-						<div className="table_row"
-							 key={`row_${Item.id}`}>
-							<div className="doc_date"><DateFormat value={Item.beginDateTime}/></div>
-							<div className="doc_type">{DOCUMENT_TYPE_NAMES[Item.docType] || NOT_VALUE}</div>
-							<div
-								className="doc_smena_number">{Item.shift && '' + Item.shift.shiftNum ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}</div>
-							<div className="doc_number">Документ №{Item.docNum}</div>
-							<div className="doc_amount"><AmountFormat value={Item.actualSum}/></div>
-							<div className="doc_cashier">{Item.cashier ? Item.cashier.name : NOT_VALUE}</div>
-						</div>
-					)}
+					<LoaderPanel loading={listState.loading} className=''>
+						{list.map((Item, i) =>
+							<div className="table_row"
+								 key={`row_${Item.id}`}>
+								<div className="doc_date"><DateFormat value={Item.beginDateTime}/></div>
+								<div className="doc_type">{DOCUMENT_TYPE_NAMES[Item.docType] || NOT_VALUE}</div>
+								<div
+									className="doc_smena_number">{Item.shift && '' + Item.shift.shiftNum ? `Смена №${Item.shift.shiftNum}` : NOT_VALUE}</div>
+								<div className="doc_number">Документ №{Item.docNum}</div>
+								<div className="doc_amount"><AmountFormat value={Item.actualSum}/></div>
+								<div className="doc_cashier">{Item.cashier ? Item.cashier.name : NOT_VALUE}</div>
+							</div>
+						)}
+					</LoaderPanel>
 
 					{!list.length && !loading &&
 					<div className="searching_results">
@@ -78,8 +80,7 @@ class ChequeList extends React.Component {
 					<InfinateScroll
 						loadNext={onInfinateScroll}
 						totalCount={listState.total_count}
-						listLength={list.length}
-						loading={listState.loading}/>
+						listLength={list.length}/>
 				</div>
 			</div>
 		)

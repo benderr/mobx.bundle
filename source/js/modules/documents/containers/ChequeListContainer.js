@@ -100,7 +100,7 @@ class ChequeListContainer extends React.Component {
 					{!noItems &&
 					<TitleActions isFiltered={isFilter}
 								  onShowFilter={::this.handleOpenFilter}
-								  showButtons={true} />}
+								  showButtons={true}/>}
 				</TitlePanel>
 
 				<ListFilter
@@ -117,22 +117,22 @@ class ChequeListContainer extends React.Component {
 						docType={filter.docType}/>
 				</ListFilter>
 
-				<LoaderPanel loading={globalLoading}>
-					{!globalLoading && !noItems &&
-					<ChequeList
-						listState={listState}
-						searchText={searchText}
-						onHeadSortClick={::this.onSortList}
-						onFilterChanged={::this.onFilterChanged}
-						onInfinateScroll={::this.onInfinateScroll}/>}
+				{!globalLoading && !noItems &&
+				<ChequeList
+					listState={listState}
+					searchText={searchText}
+					onHeadSortClick={::this.onSortList}
+					onFilterChanged={::this.onFilterChanged}
+					onInfinateScroll={::this.onInfinateScroll}/>}
 
-					{!globalLoading && noItems &&
-					<div
-						className={`center_xy page_center_info page_center_info__orders0 ${listState.loading ? 'loading_block' : ''}`}>
-						<i className="icon icon_orders"/>
-						<div className="title">Чеки отсутствуют</div>
-					</div>}
-				</LoaderPanel>
+				{!globalLoading && noItems &&
+				<div
+					className={`center_xy page_center_info page_center_info__orders0 ${listState.loading ? 'loading_block' : ''}`}>
+					<i className="icon icon_orders"/>
+					<div className="title">Чеки отсутствуют</div>
+				</div>}
+
+				<LoaderPanel loading={globalLoading}/>
 			</div>
 		)
 	}
