@@ -31,7 +31,13 @@ export const actionHandlers = {
 		let props = {};
 
 		if (req.isFirst) {
-
+			props.sortField = initialState.get('sortField');
+			props.sortDirection = initialState.get('sortDirection');
+			props.filter = Map({
+				dateFrom: null,
+				dateTo: null,
+				docType: null
+			})
 		} else {
 			props.sortField = req.sortField || state.get('sortField');
 			props.sortDirection = req.sortDirection || state.get('sortDirection');
