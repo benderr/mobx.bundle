@@ -5,23 +5,29 @@ import PropTypes from 'prop-types';
 
 class RadLayerManager extends React.Component {
 	static propTypes = {
-		routes: PropTypes.array.isRequired,
+		routes: PropTypes.array.isRequired, //роуты слоев
 		layerId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 		location: PropTypes.object.isRequired,
 		onCloseLayer: PropTypes.func.isRequired
 	};
 
+	constructor(props) {
+		super(props);
+		this.state = {pages: []};
+	}
+
 
 	componentWillUnmount() {
-		//console.log('RadLayerManager Unmount');
+		console.log('RadLayerManager Unmount');
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		const {needUpdate}=nextProps;
-		return needUpdate;
+	shouldComponentUpdate(props) {
+		logger.log('RadLayerManager shouldComponentUpdate', this.props.layerId);
+		return !routeHelpers.equalLocations(props.location, this.props.location);
 	}
 
-	componentDidMount() {
+	componentWillMount() {
+		logger.log('RadLayerManager componentWillMount', this.props.layerId);
 		const {layerId, routes, onCloseLayer}=this.props;
 		const pages = routes.map(route => routeHelpers.generateRouteComponent({
 			props: {...route, layerId, onCloseLayer},
@@ -31,10 +37,12 @@ class RadLayerManager extends React.Component {
 	}
 
 	render() {
+		logger.log('RadLayerManager render', this.props.layerId);
 		const {location, layerId}=this.props;
-		const key = `layer_switch_` + layerId;
-		const {pages = []}=this.state || {};
-		return (<Switch key={key} location={location}>{pages}</Switch>);
+		//const key = `layer_switch_` + layerId;
+		const {pages}=this.state;
+		//return (<Switch key={key} location={location}>{pages}</Switch>);
+		return (<Switch location={location}>{pages}</Switch>);
 	}
 }
 
