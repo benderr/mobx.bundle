@@ -60,7 +60,6 @@ class RadRouteManager extends React.Component {
 			this.props.history.replace(layers[0].location);
 		}
 		else {
-			//this.props.history.goBack();
 			let loc = {...this.state.currentPage};
 			loc.state = {returnToPage: true};
 			this.props.history.replace(loc);
@@ -90,10 +89,6 @@ class RadRouteManager extends React.Component {
 		const layers = this.getLayers();
 		return layers.length > 0 ? layers[0] : null;
 	}
-
-	// getExistLayer(location) {
-	// 	return this.state.layers.filter(s => s.location.pathname == location.pathname)[0]
-	// }
 
 	isCurrentPage(location) {
 		return this.state.currentPage.pathname == location.pathname;
@@ -130,14 +125,12 @@ class RadRouteManager extends React.Component {
 				this.setCurrentPage({pathname: '/'});
 				logger.log('RadRouteManager setCurrentPage base');
 			}
-			//layers = layers.map(s => s.needUpdate = false);
-			//
+
 			if (layers.length >= this.props.layersLimit) {
 				layers.splice(0, 1, this.createLayer(location));
 				this.setLayers(layers);
 				logger.log('RadRouteManager setLayers = replace');
 			} else {
-				//this.state.layers.filter(s => s.location.pathname == location.pathname)[0]
 				const locationLayer = layers.filter(s => s.location.pathname == location.pathname)[0];
 				if (locationLayer) {
 					const lastLayer = this.getLastLayer();
@@ -156,15 +149,6 @@ class RadRouteManager extends React.Component {
 					logger.log('RadRouteManager setLayers = new');
 					this.setLayers(layers);
 				}
-
-
-				// if (!routeHelpers.equalLocations(locationLayer.location, location)) {
-				// 	locationLayer.location = location;
-				// 	//locationLayer.needUpdate = true;
-				// 	this.setLayers(layers)
-				// 	logger.log('RadRouteManager setLayers = refresh');
-				// }
-
 			}
 		} else {
 
@@ -172,97 +156,12 @@ class RadRouteManager extends React.Component {
 			setTimeout(() => self.setLayers([]), 500);
 			this.setCurrentPage(location)
 		}
-
-		//updateLayers && this.setState({layers: layers});
 	}
 
 	render() {
 		const {location, notFound, routes}=this.props;
 		const {currentPage, layers} =this.state;
 		logger.log('RadRouteManager render');
-		{/*const isLayer = routeHelpers.isLayerPage(routes.layerRoutes, location);*/
-		}
-
-		{/*let currentPageLocation;*/
-		}
-
-		{/*if (isLayer) {*/
-		}
-		{/*if (this.state.pageLocation.pathname == location.pathname) {*/
-		}
-		{/*currentPageLocation = {pathname: '/'};*/
-		}
-		{/*this.setState({pageLocation: currentPageLocation});*/
-		}
-
-		{/*} else {*/
-		}
-		{/*currentPageLocation = this.state.pageLocation;*/
-		}
-		{/*}*/
-		}
-		{/*} else {*/
-		}
-		{/*currentPageLocation = location;*/
-		}
-		{/*this.setState({pageLocation: currentPageLocation});*/
-		}
-		{/*}*/
-		}
-
-		{/*let layers = this.state.layers;*/
-		}
-		{/*let updateLayers = false;*/
-		}
-		{/*if (isLayer) {*/
-		}
-
-		{/*layers = this.state.layers.map(s => s.needUpdate = false);*/
-		}
-		{/*//*/
-		}
-		{/*if (layers.length >= 5) {*/
-		}
-		{/*layers.splice(0, 1, createLayer(location));*/
-		}
-		{/*updateLayers = true;*/
-		}
-		{/*} else {*/
-		}
-		{/*const locationLayer = this.getExistLayer(location);*/
-		}
-		{/*if (!locationLayer) {*/
-		}
-		{/*layers.unshift(createLayer(location));*/
-		}
-		{/*updateLayers = true;*/
-		}
-		{/*}*/
-		}
-		{/*else {*/
-		}
-		{/*if (!routeHelpers.equalLocations(locationLayer.location, location)) {*/
-		}
-		{/*locationLayer.location = location;*/
-		}
-		{/*locationLayer.needUpdate = true;*/
-		}
-		{/*}*/
-		}
-		{/*}*/
-		}
-		{/*}*/
-		}
-		{/*} else {*/
-		}
-		{/*layers = [];*/
-		}
-		{/*updateLayers = true;*/
-		}
-		// }
-		//
-		// updateLayers && this.setState({layers: layers});
-
 		return (
 			<div className="poss">
 				<RadPageManager

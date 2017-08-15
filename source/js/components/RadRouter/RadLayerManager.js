@@ -16,7 +16,6 @@ class RadLayerManager extends React.Component {
 		this.state = {pages: []};
 	}
 
-
 	componentWillUnmount() {
 		console.log('RadLayerManager Unmount');
 	}
@@ -38,10 +37,8 @@ class RadLayerManager extends React.Component {
 
 	render() {
 		logger.log('RadLayerManager render', this.props.layerId);
-		const {location, layerId}=this.props;
-		//const key = `layer_switch_` + layerId;
+		const {location}=this.props;
 		const {pages}=this.state;
-		//return (<Switch key={key} location={location}>{pages}</Switch>);
 		return (<Switch location={location}>{pages}</Switch>);
 	}
 }
