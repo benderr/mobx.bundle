@@ -1,14 +1,15 @@
 import React from 'react';
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
 
+
 class TestLayer1 extends DefaultLayerLayout {
 	componentDidMount() {
 		super.componentDidMount();
-		logger.log('TestLayer1 componentDidMount')
+		logger.log('TestLayer componentDidMount',this.props.location.pathname)
 	}
 
 	render() {
-		logger.log('TestLayer1 render')
+		logger.log('TestLayer render', this.props.location.pathname)
 		return (
 			<article class="page" {...this.layerOptions}>
 				<div class="page_header">
@@ -16,7 +17,7 @@ class TestLayer1 extends DefaultLayerLayout {
 					{this.getToggleButton()}
 					<h1>Title</h1>
 				</div>
-				<div>Test layer1 page {new Date().toTimeString()}</div>
+				<div>Test {this.props.location.pathname} page {new Date().toTimeString()}</div>
 			</article>)
 	}
 }

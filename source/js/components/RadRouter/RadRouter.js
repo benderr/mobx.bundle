@@ -19,12 +19,15 @@ class RadRouter extends React.Component {
 
 	constructor(props, context) {
 		super(props, context);
-		this.allRoutes = routeHelpers.transformRoutes(props.routes, props.defaultLayout, props.defaultLayerLayout);
+		this.state = {
+			allRoutes: routeHelpers.transformRoutes(props.routes, props.defaultLayout, props.defaultLayerLayout)
+		};
 	}
 
 	render() {
 		const {notFound, location, history} = this.props;
-		return (<RadRouteManager history={history} location={location} routes={this.allRoutes} notFound={notFound}/>);
+		return (
+			<RadRouteManager history={history} location={location} routes={this.state.allRoutes} notFound={notFound}/>);
 	}
 }
 

@@ -104,8 +104,10 @@ class RadRouteManager extends React.Component {
 				}
 			}
 		} else {
-			this.layers.forEach(layer => self.hideLayer(layer.layerId));
-			setTimeout(() => self.layers = [], 500);
+			const layers = this.layers;
+			if (layers.length > 0) {
+				layers.forEach(layer => self.closeLayer({layerId: layer.layerId}));
+			}
 			this.currentPage = location;
 		}
 	}
@@ -113,10 +115,8 @@ class RadRouteManager extends React.Component {
 	destroyLayer({layerId}) {
 		if (!this.layers.some(s => s.layerId == layerId))
 			return;
-
 		const layers = this.layers.filter(s => s.layerId != layerId);
 		this.layers = layers;
-
 		//если слоев не осталось, то не нужно переходить назад
 		if (layers.length != 0) {
 			this.props.history.replace(layers[0].location);
@@ -126,6 +126,13 @@ class RadRouteManager extends React.Component {
 			loc.state = {returnToPage: true};
 			this.props.history.replace(loc);
 		}
+
+	}
+
+	closeLayer({layerId}) {
+		this.hideLayer(layerId);
+		const self = this;
+		setTimeout(() => self.destroyLayer({layerId}), 400);
 	}
 
 	hideLayer(layerId) {
@@ -141,8 +148,7 @@ class RadRouteManager extends React.Component {
 		$(window).keyup(function (e) {
 			if (e.keyCode == 27) {
 				const lastLayer = self.getLastLayer();
-				lastLayer && self.hideLayer(lastLayer.layerId);
-				setTimeout(() => self.destroyLayer({layerId: lastLayer.layerId}), 400);
+				lastLayer && self.closeLayer({layerId: lastLayer.layerId});
 			}
 		})
 	}
@@ -179,7 +185,7 @@ class RadRouteManager extends React.Component {
 					<RadLayerManager key={layer.layerId}
 									 {...layer}
 									 routes={routes.layerRoutes}
-									 onCloseLayer={::this.destroyLayer}/>
+									 onCloseLayer={::this.closeLayer}/>
 
 				))}
 			</div>

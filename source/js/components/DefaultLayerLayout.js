@@ -8,6 +8,11 @@ class DefaultLayerLayout extends React.Component {
 		onCloseLayer: PropTypes.func.isRequired
 	};
 
+	layerOptions = {
+		ref: el => this.el = el,
+		'data-layer': this.props.layerId
+	};
+
 	addClass(el, className) {
 		el.classList.add(className);//todo возможно потребуется заменить методы если где то не поддерживается
 	}
@@ -21,12 +26,13 @@ class DefaultLayerLayout extends React.Component {
 	}
 
 	closeLayer() {
-		const el = this.el;
-		if (el) {
-			this.removeClass(el, 'open');
-			this.addClass(el, 'hide');
-		}
-		setTimeout(() => this.props.onCloseLayer({layerId: this.props.layerId}), 400);
+		// const el = this.el;
+		// if (el) {
+		// 	this.removeClass(el, 'open');
+		// 	this.addClass(el, 'hide');
+		// }
+		// setTimeout(() => this.props.onCloseLayer({layerId: this.props.layerId}), 400);
+		this.props.onCloseLayer({layerId: this.props.layerId})
 	}
 
 	toggleFullSize() {
@@ -69,11 +75,6 @@ class DefaultLayerLayout extends React.Component {
 			return ReactDOM.findDOMNode(this);
 		}
 		return this.el;
-	}
-
-	layerOptions = {
-		ref: el => this.el = el,
-		'data-layer': this.props.layerId
 	}
 
 	render() {
