@@ -175,6 +175,21 @@ export default {
 		}
 	},
 
+	getDateRange(date){
+		var start = this.setStartDate(new Date(date.getTime()));
+		var stop = this.setEndDate(new Date(date.getTime()));
+		return {
+			startDate: start,
+			stopDate: stop
+		}
+	},
+
+	getYesterday(){
+		let date = new Date();
+		date = this.setStartDate(date);
+		return new Date(date.getTime() - 1000 * 60 * 60 * 24);
+	},
+
 	getCurrentYearDates(date){
 		var now = date;
 		var start = new Date(now.getFullYear(), 0, 1);
@@ -220,6 +235,13 @@ export default {
 		else {
 			return false;
 		}
+	},
+
+	setStartDate(date){
+		date.setHours(0);
+		date.setMinutes(0);
+		date.setSeconds(0);
+		return date;
 	},
 
 	setEndDate(date){

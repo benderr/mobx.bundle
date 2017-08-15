@@ -16,8 +16,8 @@ function* salesReportSaga({beginDate, endDate, email}) {
 		const data = yield call(dataContext.salesReport, point, beginDateStr, endDateStr, email);
 		yield put(actions.salesReport.success(data));
 		yield put(notify.success('Отчет отправлен по адресу ' + email));
-		yield put(actions.resetForm());
-		yield put(reset('report_form'));
+		//yield put(actions.resetForm());
+		//yield put(reset('report_form'));
 	} catch (error) {
 		yield put(notify.error('Не удалось отправить отчет', 'Ошибка'));
 		yield put(actions.salesReport.failure({error: error && error.data ? error.data : error}));
