@@ -17,6 +17,10 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 		let query = [];
 		const {dateFrom, dateTo, docType, q} = propState.filter;
 
+		if (q && q.length) {
+			query.push(`:quickSearch="${q}"`);
+		}
+
 		if (dateFrom instanceof Date) {
 			query.push(`beginDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
 		}
@@ -28,10 +32,6 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 				[DOCUMENT_TYPE.RETURN, DOCUMENT_TYPE.RETURN_BY_SALE] : [DOCUMENT_TYPE.SALE];
 
 			query.push(`docType=in=(${docTypes.join(',')})`)
-		}
-
-		if (q && q.length) {
-			query.push(`:quickSearch="${propState.q}"`);
 		}
 
 		query.push('shift.id!=":external"');	// Для теста: 'shift.id==":external"'

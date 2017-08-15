@@ -10,7 +10,8 @@ export const initialState = Map({
 	filter: Map({			// параметры фильтра
 		dateFrom: null,		// дата От
 		dateTo: null,		// дата До
-		docType: null
+		docType: null,
+		q: ''
 	}),
 
 	noItems: null,			// изначально неизвестно есть ли элементы
@@ -36,11 +37,13 @@ export const actionHandlers = {
 			props.filter = Map({
 				dateFrom: null,
 				dateTo: null,
-				docType: null
-			})
+				docType: null,
+				q: ''
+			});
 		} else {
 			props.sortField = req.sortField || state.get('sortField');
 			props.sortDirection = req.sortDirection || state.get('sortDirection');
+			props.q = req.q || state.get('q');
 		}
 
 		return state.merge({
