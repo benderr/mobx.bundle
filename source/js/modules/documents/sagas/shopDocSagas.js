@@ -1,4 +1,4 @@
-import {call, put, select, fork, takeEvery, all} from 'redux-saga/effects'
+import {call, put, select, fork, takeEvery, takeLatest, all} from 'redux-saga/effects'
 import * as actions from '../actions/shopDocsActions'
 import * as selectors from '../selectors/shopDocsSelectors'
 import {getPointId} from 'modules/core/selectors'
@@ -8,7 +8,7 @@ import {debounceFor} from 'redux-saga-debounce-effect'
 import dateHelper from 'common/helpers/dateHelper'
 import {isServerError} from 'infrastructure/helpers/errorHelper'
 function* init() {
-	yield takeEvery(actions.GET_DOCUMENTS.REQUEST, getDocuments);
+	yield takeLatest(actions.GET_DOCUMENTS.REQUEST, getDocuments);
 	yield takeEvery(actions.GET_DOCUMENT_DETAILS.REQUEST, getDocumentsDetails);
 	yield takeEvery(actions.RESEND_DOCUMENT.REQUEST, resendDocument);
 	yield fork(debounceSearchDocuments);
@@ -32,7 +32,6 @@ function* getDocuments() {
 			statuses.length > 0 && q.push(`currentState=in=(${statuses.join(',')})`)
 			filter.dateFrom && q.push(`checkoutDateTime=ge="${dateHelper.dateFormat(filter.dateFrom, 'yyyy-mm-dd')}"`);
 			filter.dateTo && q.push(`checkoutDateTime=le="${dateHelper.dateFormat(filter.dateTo, 'yyyy-mm-dd')}"`);
-
 		}
 
 		q = q.join(';');

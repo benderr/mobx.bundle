@@ -43,7 +43,7 @@ class ShopDocsContainer extends React.Component {
 				query: ''
 			},
 			count: this.state.pageSize,
-			sortField: 'creationDateTime',
+			sortField: 'checkoutDateTime',
 			sortDirection: 'desc'
 		});
 		this.props.getDocuments();
@@ -121,14 +121,6 @@ class ShopDocsContainer extends React.Component {
 	}
 
 
-	renderFilterIsSet() {
-		const {docType, selectedStates, dateFrom, dateTo}=this.props;
-		if (docType || (selectedStates && selectedStates.length > 0) ||
-			dateFrom || dateTo)
-			return (<span class="filter_count"></span>);
-		return null;
-	}
-
 	isClosableFilter() {
 		if (!this.docFilter)
 			return true;
@@ -141,19 +133,15 @@ class ShopDocsContainer extends React.Component {
 			docType, selectedStates, dateFrom, dateTo
 		} = this.props;
 
+		const filterIsSet = docType || (selectedStates && selectedStates.length > 0) ||
+			dateFrom || dateTo;
+
 		return (
 			<div className="h100per">
 				<TitlePanel>
-					<TitleActions showFilter={false}>
-						<a class="button small light icon-filter show_filter_panel  right20"
-						   onClick={::this.handleOpenFilter}>
-							Фильтры
-							{this.renderFilterIsSet()}
-						</a>
-						<a class="button white icon-filter show_filter_panel float  right20"
-						   onClick={::this.handleOpenFilter}>
-							{this.renderFilterIsSet()}
-						</a>
+					<TitleActions showButtons={true}
+								  isFiltered={filterIsSet}
+								  onShowFilter={::this.handleOpenFilter}>
 					</TitleActions>
 				</TitlePanel>
 				<ListFilter setInstance={f => this.filter = f}

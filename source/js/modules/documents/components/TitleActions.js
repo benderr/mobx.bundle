@@ -9,8 +9,12 @@ class TitleActions extends React.Component {
 		isFiltered: false
 	};
 
+	componentWillUnmount() {
+		$('.section_content').off('scroll');
+	}
+
 	componentDidMount() {
-		$('.section_content').scroll(function () {
+		$('.section_content').on('scroll', function () {
 			const scroll = $(this).scrollTop();
 			if (scroll >= 150) {
 				$('.show_filter_panel.float').addClass("fixed");

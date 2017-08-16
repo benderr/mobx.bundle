@@ -49,6 +49,14 @@ export const actionHandlers = {
 		if (filter.count !== undefined)
 			oldFilter.count = filter.count;
 
+		if (filter.sortField !== undefined) {
+			oldFilter.sortField = filter.sortField;
+		}
+
+		if (filter.sortDirection !== undefined) {
+			oldFilter.sortDirection = filter.sortDirection;
+		}
+
 		if (filter.filter) {
 			Object.keys(filter.filter).forEach(key => {
 				oldFilter.filter[key] = filter.filter[key];
