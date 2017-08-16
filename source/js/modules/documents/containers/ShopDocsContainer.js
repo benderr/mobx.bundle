@@ -59,7 +59,7 @@ class ShopDocsContainer extends React.Component {
 
 	handleChangeFilter(event) {
 		let value = event.target.value;
-		if (value && value.length > 2) {
+		if (value && value.length >= 1) {
 			this.setFilter({restart: true, filter: {query: value}});
 			this.props.searchDocuments();
 		} else if (!value) {
@@ -129,12 +129,12 @@ class ShopDocsContainer extends React.Component {
 
 	render() {
 		const {
-			noItems, documents, loading, totalCount, sortField, sortDirection,
-			docType, selectedStates, dateFrom, dateTo
+			documents, loading, totalCount, sortField, sortDirection,
+			docType, selectedStates, dateFrom, dateTo, start, query
 		} = this.props;
 
-		const filterIsSet = docType || (selectedStates && selectedStates.length > 0) ||
-			dateFrom || dateTo;
+		const filterIsSet = docType != null || (selectedStates && selectedStates.length > 0) || !!dateFrom || !!dateTo;
+		const noItems = !filterIsSet && totalCount == 0 && !query;
 
 		return (
 			<div className="h100per">
@@ -154,8 +154,7 @@ class ShopDocsContainer extends React.Component {
 									 dateFrom={dateFrom}
 									 dateTo={dateTo}
 									 docType={docType}
-									 selectedState={selectedStates}
-					/>
+									 selectedState={selectedStates}/>
 				</ListFilter>
 
 				{noItems && !loading && <NoShopDocs />}
@@ -165,6 +164,7 @@ class ShopDocsContainer extends React.Component {
 									   totalCount={totalCount}
 									   sortField={sortField}
 									   sortDirection={sortDirection}
+									   start={start}
 									   onChangeFilter={::this.handleChangeFilter}
 									   onLoadNext={::this.handleLoadMore}
 									   onSort={::this.handleSortList}
@@ -178,17 +178,19 @@ class ShopDocsContainer extends React.Component {
 
 
 function mapStateToProps(state) {
+	const filter = shopDocsSelectors.getFilter(state);
 	return {
 		documents: shopDocsSelectors.getDocuments(state),
 		loading: shopDocsSelectors.getLoader(state),
-		noItems: shopDocsSelectors.getNoItems(state),
 		totalCount: shopDocsSelectors.getTotalCount(state),
-		sortField: shopDocsSelectors.getFilter(state).get('sortField'),
-		sortDirection: shopDocsSelectors.getFilter(state).get('sortDirection'),
-		docType: shopDocsSelectors.getFilter(state).getIn(['filter', 'docType']),
-		selectedStates: shopDocsSelectors.getFilter(state).getIn(['filter', 'selectedStates']),
-		dateFrom: shopDocsSelectors.getFilter(state).getIn(['filter', 'dateFrom']),
-		dateTo: shopDocsSelectors.getFilter(state).getIn(['filter', 'dateTo'])
+		start: filter.get('start'),
+		sortField: filter.get('sortField'),
+		sortDirection: filter.get('sortDirection'),
+		docType: filter.getIn(['filter', 'docType']),
+		selectedStates: filter.getIn(['filter', 'selectedStates']),
+		dateFrom: filter.getIn(['filter', 'dateFrom']),
+		dateTo: filter.getIn(['filter', 'dateTo']),
+		query: filter.getIn(['filter', 'query'])
 	};
 }
 

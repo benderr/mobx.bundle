@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
-const LoaderPanel = ({loading, children, className}) => {
+const LoaderPanel = ({loading, children, className, style}) => {
+	style = loading ? style : {};
 	const classNames = [className, loading ? 'loading_block' : ''].join(' ');
-	return (<div className={classNames}>{children}</div>)
+	return (<div className={classNames} style={style}>{children}</div>)
 };
 
 LoaderPanel.defaultProps = {
@@ -13,6 +14,7 @@ LoaderPanel.defaultProps = {
 
 LoaderPanel.propTypes = {
 	loading: PropTypes.bool,
-	className: PropTypes.string
+	className: PropTypes.string,
+	style: PropTypes.object
 };
 export default LoaderPanel;

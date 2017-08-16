@@ -18,7 +18,7 @@ class ExternalListContainer extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {pageSize: 15};
+		this.state = {pageSize: 50};
 	}
 
 	setFilter(filter) {
@@ -73,7 +73,9 @@ class ExternalListContainer extends React.Component {
 	}
 
 	render() {
-		const {noItems, orders, loading, totalCount, sortField, sortDirection} = this.props;
+		const {orders, loading, totalCount, sortField, sortDirection, filter, start} = this.props;
+
+		const noItems = totalCount == 0 && !filter;
 
 		return (
 			<div className="h100per">
@@ -89,6 +91,7 @@ class ExternalListContainer extends React.Component {
 										totalCount={totalCount}
 										sortField={sortField}
 										sortDirection={sortDirection}
+										start={start}
 										onChangeFilter={::this.handleChangeFilter}
 										onLoadNext={::this.handleLoadMore}
 										onSort={::this.handleSortList}
@@ -105,10 +108,11 @@ function mapStateToProps(state) {
 	return {
 		orders: orderSelectors.getOrders(state),
 		loading: orderSelectors.getLoader(state),
-		noItems: orderSelectors.getNoItems(state),
 		totalCount: orderSelectors.getOrdersTotalCount(state),
 		sortField: orderSelectors.getOrdersFilter(state).get('sortField'),
-		sortDirection: orderSelectors.getOrdersFilter(state).get('sortDirection')
+		sortDirection: orderSelectors.getOrdersFilter(state).get('sortDirection'),
+		filter: orderSelectors.getOrdersFilter(state).get('filter'),
+		start: orderSelectors.getOrdersFilter(state).get('start')
 	};
 }
 

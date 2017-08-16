@@ -6,7 +6,6 @@ import {create} from '../dataProvider/inventPositionFactory';
 export const initialState = Map({
 	loading: false,
 	totalCount: 0,
-	noItems: false,
 	pos: 0,
 	orders: List([]),
 	error: null,
@@ -53,7 +52,6 @@ export const actionHandlers = {
 		const filter = state.getIn(['ordersFilter', 'filter']);
 		return state.merge({
 			loading: false,
-			noItems: filter == null && totalCount == 0,
 			orders: pos > 0 ? state.get('orders').concat(fromJS(orders)) : fromJS(orders)
 		}).setIn(['ordersFilter', 'totalCount'], totalCount);
 	},

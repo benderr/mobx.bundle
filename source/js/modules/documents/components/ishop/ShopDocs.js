@@ -2,19 +2,22 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import DocumentShape from './DocumentShape'
 import {getDocStatusName, getDocTypeName} from '../../enums'
-import {DateFormat, AmountFormat, InfinateScroll, SortLink} from 'common/uiElements'
+import {DateFormat, AmountFormat, InfinateScroll, SortLink, LoaderPanel} from 'common/uiElements'
 
 class ShopDocs extends React.Component {
 
 	render() {
 		const {
-			loading, documents, totalCount, sortField, sortDirection,
+			loading, documents, totalCount, sortField, sortDirection, start,
 			onLoadNext, onOpenDocument, onChangeFilter, onSort
 		}=this.props;
 		const notFound = !loading && documents.length == 0 ?
 			(<div class="searching_results">
 				<div class="light_block">По вашему запросу ничего не найдено</div>
 			</div>) : null;
+
+		const loadingBottom = loading && start > 0;
+		const loadingFull = loading && start == 0;
 
 
 		const orderRows = documents.map(doc => (
@@ -60,12 +63,16 @@ class ShopDocs extends React.Component {
 						   placeholder="Номер документа или сумма"
 						   onChange={onChangeFilter}/>
 				</div>
-				{orderRows}
+				<LoaderPanel loading={loadingFull}
+							 style={{minHeight: '40px'}}
+							 className=''>
+					{orderRows}
+				</LoaderPanel>
 				{notFound}
 				<InfinateScroll loadNext={onLoadNext}
 								totalCount={totalCount}
 								listLength={documents.length}
-								loading={loading}/>
+								loading={loadingBottom}/>
 			</div>
 		</div>)
 	}
@@ -75,6 +82,7 @@ ShopDocs.propTypes = {
 	documents: PropTypes.arrayOf(DocumentShape).isRequired,
 	totalCount: PropTypes.number,
 	loading: PropTypes.bool.isRequired,
+	start: PropTypes.number,
 	sortField: PropTypes.string,
 	sortDirection: PropTypes.string,
 	onLoadNext: PropTypes.func.isRequired,

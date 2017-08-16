@@ -3,7 +3,6 @@ import * as actions from '../actions/shopDocsActions';
 
 export const initialState = Map({
 	loading: false,
-	noItems: false,
 	documents: List([]),
 	error: null,
 	docsFilter: Map({
@@ -31,7 +30,6 @@ export const actionHandlers = {
 		const filter = state.getIn(['docsFilter', 'filter']);
 		return state.merge({
 			loading: false,
-			noItems: (filter == null || !filter.get('query')) && totalCount == 0,
 			documents: pos > 0 ? state.get('documents').concat(fromJS(documents)) : fromJS(documents)
 		}).setIn(['docsFilter', 'totalCount'], totalCount);
 	},

@@ -13,10 +13,6 @@ export const getLoader = createSelector([getSection], (section) => {
 	return section ? section.get('loading') : false;
 });
 
-export const getNoItems = createSelector([getSection], (section) => {
-	return section ? section.get('noItems') : false;
-});
-
 export const getOrderFormSection = createSelector([getSection], (section) => {
 	return section.get('createOrder');
 });
