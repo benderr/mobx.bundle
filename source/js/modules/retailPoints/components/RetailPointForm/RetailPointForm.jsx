@@ -15,6 +15,7 @@ import NextPointSettings from './NextPointSettings';
 const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
 const validateKpp = (text) => (val) => !isCorrectKpp(val) ? text : undefined;
+const validateMinLength = (text) => (val) => val.length < 10 ? text : undefined;
 
 class RetailPointForm extends React.Component {
 
@@ -62,7 +63,10 @@ class RetailPointForm extends React.Component {
                         <div class="input_group">
                             <div class="input_group_addon f_normal">+7</div>
                             <PhoneField name="phone" class="w100"
-                                        validate={[isRequired('Укажите номер мобильного телефона')]}/>
+                                        validate={[
+                                            isRequired('Укажите номер мобильного телефона'),
+                                            validateMinLength('Укажите 10 цифр номера мобильного телефона')
+                                        ]}/>
                         </div>
                     </div>
                 </div>
