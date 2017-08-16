@@ -42,7 +42,7 @@ class ContragentEditComponent extends React.Component {
 										name={`${role}.selected`}
 										type="checkbox"
 										component="input"
-										autocomplete="off"
+										autoComplete="off"
 										id={`roleId_${indexRole}`}/>
 
 									<label htmlFor={`roleId_${indexRole}`} className="label_check">
@@ -58,7 +58,7 @@ class ContragentEditComponent extends React.Component {
 						<div className="property_label col three">Наименование</div>
 						<div className="property_value col nine">
 							<InputField name="name" className="w100"
-										autocomplete="off"
+										autoComplete="off"
 										required="Укажите наименование"/>
 						</div>
 					</div>
@@ -66,7 +66,7 @@ class ContragentEditComponent extends React.Component {
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Пароль</div>
 						<div className="property_value col property_value__w234">
-							<InputField name="password" className="w100" autocomplete="off"/>
+							<InputField name="password" className="w100" autoComplete="off"/>
 						</div>
 					</div>}
 					<div className="form_group form_horizontal">

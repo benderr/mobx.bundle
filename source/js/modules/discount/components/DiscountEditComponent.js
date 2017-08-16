@@ -36,7 +36,7 @@ class DiscountEditComponent extends React.Component {
 								className="w100"
 								name="name"
 								required="Укажите наименование"
-								autocomplete="off"/>
+								autoComplete="off"/>
 						</div>
 					</div>
 					<div className="form_group form_horizontal">
@@ -45,7 +45,7 @@ class DiscountEditComponent extends React.Component {
 							<NumberField
 								className="w100"
 								name="value"
-								autocomplete="off"
+								autoComplete="off"
 								required="Укажите размер скидки"
 								validate={[discountValueValidate('Допустима скидка от 0 до 100%')]}/>
 						</div>

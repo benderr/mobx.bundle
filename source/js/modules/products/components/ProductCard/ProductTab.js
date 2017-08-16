@@ -27,6 +27,7 @@ class ProductTab extends React.Component {
 					<div class="property_value col six">
 						<InputField name="name"
 									class="w100"
+									maxLength="128"
 									required="Укажите наименование"/>
 					</div>
 				</div>
