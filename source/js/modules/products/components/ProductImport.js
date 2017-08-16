@@ -35,7 +35,7 @@ class ProductImport extends React.Component {
 					<i class="icon_import"></i>
 					<h2>Импортируйте свои товары из файла</h2>
 					<p>Файл должен быть в формате csv, xls или xlsx.<br/> Если не знаете как сформировать файл<br/>
-						<a href="/static/catalog-demo-import.xls">скачайте наш пример</a></p>
+						<a href="/static/catalog-demo-import.xls" target="_blank">скачайте наш пример</a></p>
 					<div class="form_buttons  row">
 						{UploadFileButton('Выбрать файл', 'button button_file_upload wide')}
 					</div>
