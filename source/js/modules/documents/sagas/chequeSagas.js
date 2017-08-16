@@ -1,12 +1,14 @@
 import {call, put, select, throttle, all} from 'redux-saga/effects'
 import {getCurrentRetailPointId} from 'modules/retailPoints/selectors/retailPointSelectors'
 import {notify} from 'common/uiElements/Notify'
+import logger from 'infrastructure/utils/logger'
 
 import * as actEnums from '../actions/chequeActions'
 import * as dataContext from '../dataProvider/dataContext'
 import {getListPropsState} from '../selectors/chequeSelectors'
 import dateHelper from 'common/helpers/dateHelper'
 import {DOCUMENT_TYPE} from '../enums'
+
 
 function* getListChequeSaga({isFirst = false, step = false}) {
 	try {
@@ -20,7 +22,6 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 		if (q && q.length) {
 			query.push(`:quickSearch="${q}"`);
 		}
-
 		if (dateFrom instanceof Date) {
 			query.push(`beginDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
 		}
@@ -54,8 +55,8 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 			filter: propState.filter
 		}));
 	} catch (error) {
-		yield put(notify.error('При загрузке данных произошла ошибка', 'Ошибка'));
 		logger.log(error);
+		yield put(notify.error('При загрузке данных произошла ошибка', 'Ошибка'));
 		yield put(actEnums.getListCheque.failure());
 	}
 }

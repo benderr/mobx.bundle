@@ -43,7 +43,6 @@ export const actionHandlers = {
 		} else {
 			props.sortField = req.sortField || state.get('sortField');
 			props.sortDirection = req.sortDirection || state.get('sortDirection');
-			props.q = req.q || state.get('q');
 		}
 
 		return state.merge({

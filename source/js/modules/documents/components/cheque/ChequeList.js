@@ -8,10 +8,10 @@ class ChequeList extends React.Component {
 
 	render() {
 		const {
-			listState, searchText,
+			searchText,
+			listState: {list, sortField, sortDirection, loading, total_count},
 			onHeadSortClick, onFilterChanged, onInfinateScroll
 		} = this.props;
-		const {list, sortField, sortDirection, loading} = listState;
 
 		return (
 			<div className="widget_block">
@@ -57,7 +57,7 @@ class ChequeList extends React.Component {
 							   placeholder="Введите наименование"/>
 					</div>
 
-					<LoaderPanel loading={listState.loading} className=''>
+					<LoaderPanel loading={loading} className=''>
 						{list.map((Item, i) =>
 							<div className="table_row"
 								 key={`row_${Item.id}`}>
@@ -79,7 +79,7 @@ class ChequeList extends React.Component {
 
 					<InfinateScroll
 						loadNext={onInfinateScroll}
-						totalCount={listState.total_count}
+						totalCount={total_count}
 						listLength={list.length}/>
 				</div>
 			</div>

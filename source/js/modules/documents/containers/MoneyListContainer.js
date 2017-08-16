@@ -7,11 +7,12 @@ import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import TitlePanel from '../components/TitlePanel'
 import TitleActions from '../components/TitleActions'
 
-import MoneyList from '../components/money/MoneyList'
+import MoneyList from '../components/MoneyList'
 import * as selectors from '../selectors/moneySelectors'
 import * as actions from '../actions/moneyActions'
 import ListFilter from "../components/ListFilter"
 import ChequeMoneyFilter from "../components/ChequeMoneyFilter"
+import LoaderPanel from "../../../common/uiElements/LoaderPanel"
 
 
 @withRouter
@@ -20,158 +21,138 @@ import ChequeMoneyFilter from "../components/ChequeMoneyFilter"
 @retailPointHOC
 class MoneyListContainer extends React.Component {
 	componentDidMount() {
-		const {getListMoney, listState} = this.props;
-
-		getListMoney({
-			isFirst: true,
-			sortField: listState.sortField,
-			sortDirection: listState.sortDirection
-		});
+		this.props.getListMoney({isFirst: true});
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (nextProps.selectedPoint != this.props.selectedPoint) {
-			const {getListMoney, listState} = this.props;
-			getListMoney({
-				isFirst: true,
-				sortField: listState.sortField,
-				sortDirection: listState.sortDirection
-			});
+		if (this.props.selectedPoint !== nextProps.selectedPoint) {
+			this.props.getListMoney({isFirst: true});
 		}
 	}
 
-	onHeadSortClick(field, by) {
-		const {getListMoney, listState} = this.props;
-		getListMoney({sortField: field, sortDirection: by, q: listState.q});
-	}
-
-	onFilterChanged(e) {
-		let val = e.target.value;
-		const {getListMoney, listState} = this.props;
-
-		if (val && val.length > 0) {
-			getListMoney({
-				sortField: listState.sortField,
-				sortDirection: listState.sortDirection,
-				q: val
-			});
-		} else if (!val || val.length === 0) {
-			getListMoney({
-				sortField: listState.sortField,
-				sortDirection: listState.sortDirection
-			});
-		}
-	}
-
-	onInfinateScroll() {
-		const {getListMoney, listState} = this.props;
-		if ((listState.pos + listState.listStep) < listState.total_count) {
-			getListMoney({
-				sortField: listState.sortField,
-				sortDirection: listState.sortDirection,
-				pos: listState.pos + listState.listStep,
-				q: listState.q
-			});
-		}
-	}
-
-
-	// region Filtered
-
+	// открытие фильтра
 	handleOpenFilter() {
 		this.filter && this.filter.open();
 	}
 
+	// сортировка по столбцам
+	onSortList(sortField, sortDirection) {
+		this.props.getListMoney({sortField, sortDirection});
+	}
+
+	// поиск по названию
+	onFilterChanged(e) {
+		this.props.setFilterParams({q: e.target.value});
+		this.props.getListMoney();
+	}
+
+	// бесконечный скроллинг
+	onInfinateScroll() {
+		const {getListMoney, listState: {pos, countStep, total_count}} = this.props;
+		if ((pos + countStep) < total_count) {
+			getListMoney({step: true});
+		}
+	}
+
+	// region Filter options
 	isClosableFilter() {
 		if (!this.chequeFilter)
 			return true;
 		return this.chequeFilter.isClosable();
 	}
 
+	handleChangeFilterDocType(event, type) {
+		const {getListMoney, setFilterParams} = this.props;
+		setFilterParams({docType: event.target.checked ? type : null});
+		getListMoney();
+	}
+
 	handleChangeDate(date) {
-		const {setFilterProps, listState: {docsFilter}} = this.props;
-		setFilterProps({
+		const {getListMoney, setFilterParams} = this.props;
+		setFilterParams({
 			dateFrom: date.dateFrom,
-			dateTo: date.dateTo,
-			docType: docsFilter.docType
+			dateTo: date.dateTo
 		});
+		getListMoney();
 	}
 
-	handleChangeFilterDocType(e, type) {
-		const {setFilterProps, listState: {docsFilter}} = this.props;
+	onClearFilter() {
+		const {getListMoney, setFilterParams} = this.props;
 
-		let state = {
-			dateFrom: docsFilter.dateFrom,
-			dateTo: docsFilter.dateTo,
-			docType: docsFilter.docType
-		};
-		let pos = state.docType.indexOf(type);
-
-		if (pos >= 0) {
-			state.docType.splice(pos, 1);
-		} else {
-			state.docType.push(type);
-		}
-
-		setFilterProps(state);
+		setFilterParams({
+			dateFrom: null,
+			dateTo: null,
+			docType: null
+		});
+		getListMoney();
 	}
 
-	// endregion Filtered
+	// endregion
 
 	render() {
-		const {listState} = this.props;
-		const {dateFrom, dateTo, docType} = listState.docsFilter;
-		const noItems = listState.noItems;
+		const {listState, isFilter, searchText} = this.props;
+		const {noItems, filter} = listState;
 		const globalLoading = noItems === null;
 
 		return (
-			<div className={globalLoading ? "h100per loading_block" : "h100per"}>
+			<div className="h100per">
 				<TitlePanel>
-					<TitleActions showButtons={true}
-								  onShowFilter={::this.handleOpenFilter}/>
+					{!globalLoading && !noItems &&
+					<TitleActions
+						isFiltered={isFilter}
+						onShowFilter={::this.handleOpenFilter}
+						showButtons={true}/>}
 				</TitlePanel>
 
-				<ListFilter setInstance={f => this.filter = f}
-							isClosable={::this.isClosableFilter}
-							ignoreCloseSelect="no-close-date-selector">
-					<ChequeMoneyFilter ref={f => this.chequeFilter = f}
-									   onChangeDocType={::this.handleChangeFilterDocType}
-									   onChangeDate={::this.handleChangeDate}
-									   dateFrom={dateFrom}
-									   dateTo={dateTo}
-									   docType={docType}
-					/>
+				<ListFilter
+					setInstance={f => this.filter = f}
+					isClosable={::this.isClosableFilter}
+					ignoreCloseSelect="no-close-date-selector">
+					<ChequeMoneyFilter
+						ref={f => this.chequeFilter = f}
+						fromType="money"
+						onChangeDocType={::this.handleChangeFilterDocType}
+						onChangeDate={::this.handleChangeDate}
+						onClearFilter={::this.onClearFilter}
+						dateFrom={filter.dateFrom}
+						dateTo={filter.dateTo}
+						docType={filter.docType}/>
 				</ListFilter>
 
 				{!globalLoading && !noItems &&
-				<MoneyList listState={listState}
-						   onHeadSortClick={::this.onHeadSortClick}
-						   onFilterChanged={::this.onFilterChanged}
-
-						   onInfinateScroll={::this.onInfinateScroll}/>}
+				<MoneyList
+					listState={listState}
+					searchText={searchText}
+					onHeadSortClick={::this.onSortList}
+					onFilterChanged={::this.onFilterChanged}
+					onInfinateScroll={::this.onInfinateScroll}/>}
 
 				{!globalLoading && noItems &&
-				<div className="center_xy page_center_info page_center_info__orders0">
+				<div className={`center_xy page_center_info page_center_info__orders0 ${listState.loading ? 'loading_block' : ''}`}>
 					<i className="icon icon_orders"/>
 					<div className="title">Чеки отсутствуют</div>
 				</div>}
 
+				<LoaderPanel loading={globalLoading}/>
 			</div>
-		);
+		)
 	}
 }
 
-function mapStateToProps(state, ownProps) {
-	const listState = selectors.getMoney(state);
+function mapStateToProps(state) {
+	const listState = selectors.getMoneySection(state);
+	const filter = selectors.getFilter(state);
+	const isFilter = selectors.isFilteredList(state);
+	const searchText = filter.get('q');
 
-	return {listState};
+	return {listState, isFilter, filter, searchText};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			getListMoney: actions.getMoney.request,
-			setFilterProps: actions.setFilterProps
+			getListMoney: actions.getListMoney.request,
+			setFilterParams: actions.setFilterParams
 		}, dispatch)
 	};
 }
