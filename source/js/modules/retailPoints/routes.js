@@ -7,20 +7,21 @@ export function getRoutes() {
 		retailPoints:{
 			path:'/retail-points',
 			exact: true,
-			component: RetailPointsContainer
-		},
-		retailPointAdd: {
-			path: '/retail-points/:action/:id',
-			exact: true,
-			isLayer: true,
-			layout: AddEditRetailPointContainer
-		},
-		retailPointEdit: {
-			path: '/retail-points/:action/:id',
-			exact: true,
-			isLayer: true,
-			layout: AddEditRetailPointContainer
-		},
-
+			component: RetailPointsContainer,
+			nested: {
+				retailPointAdd: {
+					path: '/retail-points/:action/:id',
+					exact: true,
+					isLayer: true,
+					layout: AddEditRetailPointContainer
+				},
+				retailPointEdit: {
+					path: '/retail-points/:action/:id',
+					exact: true,
+					isLayer: true,
+					layout: AddEditRetailPointContainer
+				}
+			}
+		}
 	};
 }

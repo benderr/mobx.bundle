@@ -49,37 +49,39 @@ export function getRoutes() {
 		testLayers: {
 			path: '/testlayers',
 			exact: true,
-			component: TestLayers
+			component: TestLayers,
+			nested: {
+				testLayer1: {
+					path: '/layer1',
+					exact: true,
+					isLayer: true,
+					layout: TestLayer1
+				},
+				testLayer2: {
+					path: '/layer2',
+					exact: true,
+					isLayer: true,
+					layout: TestLayer2
+				},
+				testLayer3: {
+					path: '/layer3',
+					exact: true,
+					isLayer: true,
+					layout: TestLayer2
+				},
+				testLayer4: {
+					path: '/layer4',
+					exact: true,
+					isLayer: true,
+					layout: TestLayer2
+				},
+				testLayer5: {
+					path: '/layer5',
+					exact: true,
+					isLayer: true,
+					layout: TestLayer2
+				}
+			}
 		},
-		testLayer1: {
-			path: '/layer1',
-			exact: true,
-			isLayer: true,
-			layout: TestLayer1
-		},
-		testLayer2: {
-			path: '/layer2',
-			exact: true,
-			isLayer: true,
-			layout: TestLayer2
-		},
-		testLayer3: {
-			path: '/layer3',
-			exact: true,
-			isLayer: true,
-			layout: TestLayer2
-		},
-		testLayer4: {
-			path: '/layer4',
-			exact: true,
-			isLayer: true,
-			layout: TestLayer2
-		},
-		testLayer5: {
-			path: '/layer5',
-			exact: true,
-			isLayer: true,
-			layout: TestLayer2
-		}
 	}
 }

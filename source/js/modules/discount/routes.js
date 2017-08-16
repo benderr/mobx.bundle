@@ -7,19 +7,22 @@ export function getRoutes() {
 		discount: {
 			path: '/discount',
 			exact: true,
-			component: DiscountListContainer
-		},
-		discountEdit: {
-			path: '/discount/:action/:code',
-			exact: true,
-			isLayer: true,
-			layout: DiscountEditContainer
-		},
-		discountAdd: {
-			path: '/discount/:action',
-			exact: true,
-			isLayer: true,
-			layout: DiscountEditContainer
+			component: DiscountListContainer,
+			nested: {
+				discountEdit: {
+					path: '/discount/:action/:code',
+					exact: true,
+					isLayer: true,
+					layout: DiscountEditContainer
+				},
+				discountAdd: {
+					path: '/discount/:action',
+					exact: true,
+					isLayer: true,
+					layout: DiscountEditContainer
+				}
+			}
 		}
+
 	}
 }
