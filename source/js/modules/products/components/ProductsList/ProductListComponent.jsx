@@ -4,7 +4,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 const {arrayOf} = PropTypes;
-import {SortLink} from 'common/uiElements'
+import {SortLink, LoaderPanel} from 'common/uiElements'
 import ProductShape from './ProductShape';
 import ProductItem from './ProductItem';
 
@@ -15,7 +15,7 @@ class ProductListComponent extends React.Component {
 
     render() {
         const {
-            items, loading, onLoadNext, sortField, sortDirection, totalCount,
+            items, loading, onLoadNext, sortField, sortDirection, totalCount, start,
             onFilterChanged, onSortChanged, openProduct,
         } = this.props;
         const productItems = items.map(product => <ProductItem item={ product } key={product.inventCode}
@@ -25,6 +25,9 @@ class ProductListComponent extends React.Component {
             (<div class="searching_results">
                 <div class="light_block">По запросу ничего не найдено</div>
             </div>) : null;
+
+        const loadingBottom = loading && start > 0;
+        const loadingFull = loading && start == 0;
 
         return (
             <div class='widget_block' style={{minHeight: '100px'}}>
@@ -50,12 +53,16 @@ class ProductListComponent extends React.Component {
                             onChange={onFilterChanged}
                         />
                     </div>
-                    {productItems}
+                    <LoaderPanel loading={loadingFull}
+                                 style={{minHeight: '40px'}}
+                                 className=''>
+                        {productItems}
+                    </LoaderPanel>
                     {notFound}
                     <InfinateScroll loadNext={onLoadNext}
                                     totalCount={totalCount}
                                     listLength={items.length}
-                                    loading={loading}/>
+                                    loading={loadingBottom}/>
                 </div>
             </div>
         );
@@ -70,6 +77,7 @@ ProductListComponent.propTypes = {
     onLoadNext: PropTypes.func.isRequired,
     loading: PropTypes.bool,
     totalCount: PropTypes.number,
+    start: PropTypes.number,
     sortField: PropTypes.string,
     sortDirection: PropTypes.string,
 };

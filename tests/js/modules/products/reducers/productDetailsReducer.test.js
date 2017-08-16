@@ -12,7 +12,6 @@ describe('productsReducer', () => {
 			loading: true,
 			error: null,
 			productsList: [],
-			productListTotalCount: 0,
 			noProducts: false
 		});
 		let initialState = productsReducer.initialState;

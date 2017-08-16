@@ -9,9 +9,7 @@ import ProductList from '../components/ProductsList/ProductListComponent';
 import ProductActions from '../components/ProductsList/ProductActions';
 import {
     getProductsList,
-    getProductListTotalCount,
     getProductLoading,
-    getNoProductsState,
     getTotalCount,
     getFilter,
     getProductListError
@@ -94,7 +92,8 @@ class ProductListContainer extends React.Component {
 
 
     render() {
-        const {products, loading, noProducts, totalCount, sortField, sortDirection, error} = this.props;
+        const {products, loading, totalCount, sortField, sortDirection, error, filter, start} = this.props;
+        const noProducts = totalCount == 0 && !filter;
         const showPanel = !noProducts;
 
         return (
@@ -114,6 +113,7 @@ class ProductListContainer extends React.Component {
                              totalCount={totalCount}
                              sortField={sortField}
                              sortDirection={sortDirection}
+                             start={start}
                              openProduct={::this.openProduct}
                              onLoadNext={::this.handleLoadMore}
                              onFilterChanged={::this.handleChangeFilter}
@@ -142,13 +142,13 @@ function mapStateToProps(state, ownProps) {
     return {
         error: getProductListError(state),
         products: getProductsList(state),
-        noProducts: getNoProductsState(state),
-        productsTotalCount: getProductListTotalCount(state),
         loading: getProductLoading(state),
         token: getToken(state),
         totalCount: getTotalCount(state),
         sortField: getFilter(state).get('sortField'),
         sortDirection: getFilter(state).get('sortDirection'),
+        filter: getFilter(state).get('filter'),
+        start: getFilter(state).get('start')
     }
 }
 

@@ -8,8 +8,6 @@ export const initialState = Map({
 	loading: true,
 	error: null,
 	productsList: List([]),
-	productListTotalCount: 0,
-	noProducts: false,
 	productsFilter: Map({
 		start: 0,
 		totalCount: null,
@@ -55,25 +53,20 @@ export const actionHandlers = {
 			loading: false,
 			error: null,
 			productsList: pos > 0 ? state.get('productsList').concat(fromJS(productsList)) : fromJS(productsList),
-			noProducts: !filter && totalCount == 0,
-			productListTotalCount: totalCount
 		}).setIn(['productsFilter', 'totalCount'], totalCount);
 	},
 
 	[GET_PRODUCTS.FAILURE]: (state, action) => {
 		return state.merge({
 			loading: false,
-			noProducts: false,
 			error: fromJS(action.error),
 		});
 	},
 
 	[ADD_PRODUCT_TO_LIST]: (state, {product}) => {
 		return state.merge({
-			productsList: state.get('productsList').unshift(fromJS(product)),
-			productListTotalCount: state.get('productListTotalCount') + 1,
-			noProducts: false
-		});
+			productsList: state.get('productsList').unshift(fromJS(product))
+		}).updateIn(['productsFilter', 'totalCount'], t => t + 1);
 	},
 
 	[UPDATE_PRODUCT_IN_LIST]: (state, {product}) => {
@@ -90,11 +83,8 @@ export const actionHandlers = {
 		const entry = productsList.findEntry(s => s.get('inventCode') == inventCode);
 		if (entry) {
 			productsList = productsList.delete(entry[0]);
-			return state.merge({
-				noProducts: productsList.size == 0,
-				productsList: productsList,
-				productListTotalCount: state.get('productListTotalCount') - 1
-			})
+			return state.merge({productsList: productsList})
+				.updateIn(['productsFilter', 'totalCount'], t => t - 1);
 		}
 		return state;
 	}

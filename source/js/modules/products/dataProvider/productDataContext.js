@@ -16,7 +16,7 @@ import {
 export const getProducts = ({retailPointId, start, count, filter, groupId, sortField = 'name', sortDirection = 'asc'}) => {
 	let params = [];
 	if (filter)
-		params.push(`::quickSearch="${filter}"`);
+		params.push(`:quickSearch="${filter}"`);
 	if (groupId)
 		params.push(`groupId=="${groupId}"`);
 	let q = params.join(';');
