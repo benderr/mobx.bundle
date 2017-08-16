@@ -8,6 +8,7 @@ import InternalLayout from 'components/InternalLayout'
 import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import RadRouter from 'components/RadRouter/RadRouter';
 import {NotifyService} from 'common/uiElements/Notify/immutable';
+import {LoaderPanel} from 'common/uiElements'
 import {getAppReady} from 'modules/account/selectors/accountSelectors'
 import logger from 'infrastructure/utils/logger'
 
@@ -30,18 +31,17 @@ class AppContainer extends React.Component {
 	}
 
 	render() {
-		let className = 'poss';
-		if (!this.props.appReady) {
-			className += ' loading_block';
-		}
+		const {appReady, routes}=this.props;
 
 		return (
-			<div className={className}>
-				{this.props.appReady &&
-				<RadRouter defaultLayerLayout={DefaultLayerLayout} defaultLayout={InternalLayout}
-						   routes={this.props.routes} notFound={NotFoundLayout}/>}
+			<LoaderPanel loading={!appReady}>
+				{appReady &&
+				<RadRouter defaultLayerLayout={DefaultLayerLayout}
+						   defaultLayout={InternalLayout}
+						   routes={routes}
+						   notFound={NotFoundLayout}/>}
 				<NotifyService />
-			</div>
+			</LoaderPanel>
 		);
 	}
 }

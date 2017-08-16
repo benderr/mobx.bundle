@@ -31,26 +31,6 @@ class RadPageManager extends React.Component {
 	render() {
 		const {routes, pageLocation, notFound:NotFound}=this.props;
 
-		{/*const isLayer = isLayerPage(routes.layerRoutes, location);*/
-		}
-
-		{/*let currentPageLocation;*/
-		}
-		{/*if (isLayer) {*/
-		}
-		{/*if (pageLocation.pathname == location.pathname) {*/
-		}
-		{/*currentPageLocation = {pathname: '/'};*/
-		}
-		{/*} else {*/
-		}
-		{/*currentPageLocation = this.pageLocation;*/
-		}
-		// 	}
-		// } else {
-		// 	this.props.pageLocation = currentPageLocation = location;
-		// }
-
 		return (<Switch location={pageLocation}>
 			{routes.pageRoutes.map(route =>
 				generateRouteComponent({props: route, routeId: route.routeId}))}
