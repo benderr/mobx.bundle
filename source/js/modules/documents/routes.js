@@ -29,30 +29,34 @@ export function getRoutes() {
 		documentsExternal: {
 			path: '/documents/external',
 			exact: true,
-			component: ExternalListContainer
-		},
-		documentsExternalView: {
-			path: '/documents/external/view/:point/:id',
-			exact: true,
-			layout: OrderViewContainer,
-			isLayer: true
-		},
-		documentsExternalAdd: {
-			path: '/documents/external/add',
-			exact: true,
-			layout: OrderAddContainer,
-			isLayer: true
+			component: ExternalListContainer,
+			nested: {
+				documentsExternalView: {
+					path: '/documents/external/view/:point/:id',
+					exact: true,
+					layout: OrderViewContainer,
+					isLayer: true
+				},
+				documentsExternalAdd: {
+					path: '/documents/external/add',
+					exact: true,
+					layout: OrderAddContainer,
+					isLayer: true
+				}
+			}
 		},
 		documentsIShop: {
 			path: '/documents/ishop',
 			exact: true,
-			component: IShopDocsContainer
-		},
-		documentsIShopView: {
-			path: '/documents/ishop/view/:point/:id',
-			exact: true,
-			layout: ShopDocViewContainer,
-			isLayer: true
+			component: IShopDocsContainer,
+			nested: {
+				documentsIShopView: {
+					path: '/documents/ishop/view/:point/:id',
+					exact: true,
+					layout: ShopDocViewContainer,
+					isLayer: true
+				}
+			}
 		},
 		documentsReports: {
 			path: '/documents/reports',

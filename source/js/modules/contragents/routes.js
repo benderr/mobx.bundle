@@ -9,19 +9,21 @@ export function getRoutes() {
 		contragents: {
 			path: '/contragents',
 			exact: true,
-			component: ContragentListContainer
-		},
-		contragentsEdit: {
-			path: '/contragents/:action/:code',
-			exact: true,
-			isLayer: true,
-			layout: ContragentEditContainer
-		},
-		contragentsAdd: {
-			path: '/contragents/:action',
-			exact: true,
-			isLayer: true,
-			layout: ContragentEditContainer
+			component: ContragentListContainer,
+			nested: {
+				contragentsEdit: {
+					path: '/contragents/:action/:code',
+					exact: true,
+					isLayer: true,
+					layout: ContragentEditContainer
+				},
+				contragentsAdd: {
+					path: '/contragents/:action',
+					exact: true,
+					isLayer: true,
+					layout: ContragentEditContainer
+				}
+			}
 		}
 	}
 }

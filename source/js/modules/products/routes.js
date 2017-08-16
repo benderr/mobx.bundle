@@ -11,14 +11,35 @@ export function getRoutes() {
 		products: {
 			path: '/',
 			exact: true,
-			component: ProductListContainer
+			component: ProductListContainer,
+			nested: {
+				product: {
+					path: '/product/:action/point/:point/code/:inventCode',
+					exact: true,
+					isLayer: true,
+					layout: EditProductContainer
+				},
+				addProduct: {
+					path: '/product/:action/point/:point/code/:inventCode',
+					exact: true,
+					isLayer: true,
+					layout: EditProductContainer
+				},
+				productModifierGroup: {
+					path: '/product/group',
+					exact: true,
+					isLayer: true,
+					layout: ProductModifierGroupContainer
+				},
+				productModifier: {
+					path: '/product/modifier',
+					exact: true,
+					isLayer: true,
+					layout: ProductModifierContainer
+				}
+			}
 		},
-		product: {
-			path: '/product/:action/point/:point/code/:inventCode',
-			exact: true,
-			isLayer: true,
-			layout: EditProductContainer
-		},
+
 		exportProduct: {
 			path: '/products/export',
 			exact: true,
@@ -30,24 +51,6 @@ export function getRoutes() {
 			exact: true,
 			isLayer: true,
 			layout: ProductImportContainer
-		},
-		addProduct: {
-			path: '/product/:action/point/:point/code/:inventCode',
-			exact: true,
-			isLayer: true,
-			layout: EditProductContainer
-		},
-		productModifierGroup: {
-			path: '/product/group',
-			exact: true,
-			isLayer: true,
-			layout: ProductModifierGroupContainer
-		},
-		productModifier: {
-			path: '/product/modifier',
-			exact: true,
-			isLayer: true,
-			layout: ProductModifierContainer
 		}
 	};
 }

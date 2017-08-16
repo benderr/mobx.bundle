@@ -7,7 +7,10 @@ import logger from 'infrastructure/utils/logger'
 
 class RadRouteManager extends React.Component {
 	static propTypes = {
-		routes: PropTypes.object.isRequired,
+		routes: PropTypes.shape({
+			pageRoutes: PropTypes.array.isRequired,
+			layerRoutes: PropTypes.array.isRequired,
+		}).isRequired,
 		notFound: PropTypes.func,
 		location: PropTypes.object.isRequired,
 		history: PropTypes.object.isRequired,
@@ -61,6 +64,10 @@ class RadRouteManager extends React.Component {
 		return this.layers.length > 0 ? this.layers[0] : null;
 	}
 
+	getPageRouteById(id) {
+		return this.props.routes.pageRoutes.filter(s => s.routeId === id)[0];
+	}
+
 	resolveLocation(location) {
 		logger.log('RadRouteManager componentWillReceiveProps');
 		const self = this;
@@ -68,13 +75,13 @@ class RadRouteManager extends React.Component {
 
 		const routes = this.props.routes;
 		let layers = this.layers;
-		const isLayer = routeHelpers.isLayerPage(routes.layerRoutes, location);
+		const currentLayerRoute = routeHelpers.getLayerPage(routes.layerRoutes, location);
 
-
-		if (isLayer) {
+		if (currentLayerRoute) {
+			//если слой это первая загружаемая страница, то устанавливаем задний фон дефолтную страницу
 			if (this.isCurrentLocation(location)) {
-				//если слой это первая загружаемая страница, то устанавливаем задний фон дефолтную страницу
-				this.currentPage = {pathname: '/'};
+				const backPageRoute = this.getPageRouteById(currentLayerRoute.parentId);
+				this.currentPage = backPageRoute ? {pathname: backPageRoute.path} : {pathname: '/'};
 				//logger.log('RadRouteManager setCurrentPage base');
 			}
 

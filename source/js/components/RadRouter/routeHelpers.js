@@ -6,11 +6,16 @@ import LayoutRoute from './customRoutes/LayoutRoute'
 import PrivateRoute from './customRoutes/PrivateRoute'
 
 export const isLayerPage = (routes, location) => {
-	return routes.some(s => {
+	return getLayerPage(routes, location) != null;
+};
+
+export const getLayerPage = (routes, location) => {
+	return routes.filter(s => {
 		const re = pathToRegexp(s.path, []);
 		return re.exec(location.pathname) != null;
-	});
+	})[0];
 };
+
 
 export const equalLocations = (a, b) => {
 	return a.pathname == b.pathname
@@ -73,27 +78,40 @@ export const getRouteComponent = (key, props) => {
 };
 
 export const transformRoutes = (routes, defaultLayout, defaultLayerLayout) => {
+	return transformSectionRoutes(routes, defaultLayout, defaultLayerLayout);
+};
+
+function transformSectionRoutes(routes, defaultLayout, defaultLayerLayout, parent = null) {
 	return routes.reduce((r, rule) => {
+		const route = createRoute(rule, defaultLayout, defaultLayerLayout, parent);
 		if (rule.isLayer) {
-			const layout = rule.layout === undefined ? defaultLayerLayout : rule.layout;
-			r.layerRoutes = [...r.layerRoutes,
-				{
-					routeId: `${rule.name}_${getRandomKey()}`,
-					layout,
-					...rule
-				}
-			];
+			r.layerRoutes = [...r.layerRoutes, route];
 		} else {
-			const layout = rule.layout === undefined ? defaultLayout : rule.layout;
-			r.pageRoutes = [...r.pageRoutes,
-				{
-					routeId: `${rule.name}_${getRandomKey()}`,
-					layout,
-					...rule
-				}
-			];
+			r.pageRoutes = [...r.pageRoutes, route];
+		}
+
+		if (rule.nested) {
+			const sectionRoutes = transformSectionRoutes(rule.nested, defaultLayout, defaultLayerLayout, route)
+			r.layerRoutes = [...r.layerRoutes, ...sectionRoutes.layerRoutes];
+			r.pageRoutes = [...r.pageRoutes, ...sectionRoutes.pageRoutes];
 		}
 
 		return r;
 	}, {pageRoutes: [], layerRoutes: []});
-};
+}
+
+function createRoute(rule, defaultLayout, defaultLayerLayout, parent) {
+	const cleanRule = {...rule};
+	delete cleanRule.nested;
+	const route = {
+		routeId: `${rule.name}_${getRandomKey()}`,
+		...cleanRule,
+		parentId: parent ? parent.routeId : null
+	};
+	if (rule.isLayer) {
+		route.layout = rule.layout === undefined ? defaultLayerLayout : rule.layout;
+	} else {
+		route.layout = rule.layout === undefined ? defaultLayout : rule.layout;
+	}
+	return route;
+}
