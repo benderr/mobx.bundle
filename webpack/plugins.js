@@ -3,6 +3,7 @@ const config = require('../webpack/constants');
 const appConfig = require('../config/config');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
@@ -100,7 +101,10 @@ if (config.IS_PRODUCTION) {
 				comments: false,
 			},
 		}),
-		new ExtractTextPlugin('[name]-[hash].css')
+		new ExtractTextPlugin('[name]-[hash].css'),
+		new CopyWebpackPlugin([
+			{from: '../static/**/*', to: 'static'}
+		])
 	);
 } else {
 	// Development plugins
