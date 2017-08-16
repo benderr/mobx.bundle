@@ -8,7 +8,7 @@ import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import OrderProductForm from '../components/order/OrderProductForm'
 import OrderDetailForm from '../components/order/OrderDetailForm'
 import OrderProductTable from '../components/order/OrderProductTable'
-import {submit, reset} from 'redux-form/immutable'
+import {submit, reset, SubmissionError} from 'redux-form/immutable'
 import {Button, notify} from 'common/uiElements'
 import {getDefault} from '../dataProvider/inventPositionFactory'
 
@@ -46,8 +46,12 @@ class OrderAddContainer extends DefaultLayerLayout {
 	}
 
 	handleCreateOrder(props) {
-		const {products, dispatch, createOrder}=this.props;
-		createOrder({order: props.toJS(), products});
+		const {products, dispatch, createOrder, error}=this.props;
+		const order = props.toJS();
+		if (error && error.docNum == order.docNum)
+			throw new SubmissionError({docNum: 'Заказ с таким номером уже существует'});
+
+		createOrder({order, products});
 	}
 
 	handleOrderFormSubmit() {
@@ -62,7 +66,7 @@ class OrderAddContainer extends DefaultLayerLayout {
 	}
 
 	render() {
-		const {saving, products, productSearchState, searchProducts, totalSum} = this.props;
+		const {saving, products, productSearchState, totalSum, error} = this.props;
 
 		return (
 			<article className="page page__kassa_w900" {...this.layerOptions}>
@@ -75,7 +79,8 @@ class OrderAddContainer extends DefaultLayerLayout {
 				<div class="page_content  with_bottom_panel">
 					<OrderDetailForm onSave={::this.handleCreateOrder}
 									 className='order_number_commentary'
-									 onSubmit={::this.handleCreateOrder}/>
+									 onSubmit={::this.handleCreateOrder}
+									 formError={error}/>
 					<OrderProductForm className="light_block"
 									  productSearchState={productSearchState}
 									  initialValues={this.state.productFormState}
@@ -102,12 +107,12 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 
 function mapStateToProps(state, props) {
-	const {saving, saved} = orderSelectors.getFormFlags(state);
+	const {saving, saved, error} = orderSelectors.getFormFlags(state);
 	const products = orderSelectors.getFormProducts(state);
 	const productSearchState = orderSelectors.getFormSearchProducts(state);
 	const totalSum = orderSelectors.getFormTotalSum(state);
 
-	return {saving, saved, products, totalSum, productSearchState};
+	return {saving, saved, products, totalSum, productSearchState, error};
 }
 
 function mapDispatchToProps(dispatch) {

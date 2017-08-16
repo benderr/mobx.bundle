@@ -10,7 +10,7 @@
     "test-clear": "jest -u",
     "start": "webpack-dashboard -t 'React-Redux Boilerplate' -- webpack-dev-server --colors --no-info",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
-    "build-dev": "rm -rf ./build && NODE_ENV=\"dev\" webpack",
+    "build-dev": "rm -rf ./build && NODE_ENV=\"development\" webpack",
     "lint-break-on-errors": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx",
     "lint": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx || true",
     "preview": "NODE_ENV=\"production\" ./node_modules/webpack-dashboard/bin/webpack-dashboard.js -t 'Preview Mode - React-Redux Boilerplate' -- ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",

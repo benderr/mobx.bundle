@@ -2,8 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {reduxForm} from 'common/formElements'
 import {InputField, TextAreaField, Field} from 'common/formElements/fields'
-import OrderShape from './OrderShape'
-import {VAT_TAG_OPTIONS, MEASURE_OPTIONS} from 'modules/core/productEnums';
 import {initialize} from 'redux-form/immutable'
 
 class OrderDetailForm extends React.Component {
@@ -11,14 +9,14 @@ class OrderDetailForm extends React.Component {
 	componentDidMount() {
 		const {form, dispatch}=this.props;
 		dispatch(initialize(form, {
-			beginDateTime: new Date().toISOString(),
+			beginDateTime: new Date(),
 			docType: 'SALE',
 			status: 'OPENED'
 		}, false));
 	}
 
 	render() {
-		const {handleSubmit, onSave, className} = this.props;
+		const {handleSubmit, onSave, className, formError} = this.props;
 
 		return (
 			<form className={className} onSubmit={handleSubmit(onSave)}>
@@ -41,7 +39,8 @@ class OrderDetailForm extends React.Component {
 
 OrderDetailForm.propTypes = {
 	onSave: PropTypes.func.isRequired,
-	className: PropTypes.string
+	className: PropTypes.string,
+	formError: PropTypes.object
 };
 
 OrderDetailForm = reduxForm({

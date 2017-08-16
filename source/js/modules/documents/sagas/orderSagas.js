@@ -10,11 +10,11 @@ import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSag
 import {SHIFT_TYPE} from '../enums'
 import {uuid} from 'infrastructure/utils/uuidGenerator'
 import {debounce} from 'redux-saga-debounce-effect'
-import {isServerError} from 'infrastructure/helpers/errorHelper'
+import {isServerError, mapServerError} from 'infrastructure/helpers/errorHelper'
 
 function* init() {
 	yield takeLatest(actions.CREATE_ORDER.REQUEST, createOrder);
-	yield takeEvery(actions.GET_ORDERS.REQUEST, getOrders);
+	yield takeLatest(actions.GET_ORDERS.REQUEST, getOrders);
 	yield takeEvery(actions.GET_ORDER_DETAILS.REQUEST, getOrderDetails)
 	yield fork(debounceSearchOrders);
 }
@@ -46,9 +46,20 @@ function* createOrder({order, products}) {
 			yield call(dataContext.saveOrder, retailPointId, SHIFT_TYPE.EXTERNAL, document);
 			yield put(actions.createOrder.success({order: document}));
 		} catch (error) {
-			yield put(actions.createOrder.failure({error}));
 			if (!isServerError(error))
 				throw error;
+			else {
+				const serverError = mapServerError(error);
+				if (serverError.error === 'Conflict') {
+					serverError.docNum = order.docNum;
+					yield put(notify.error('Заказ с таким номером уже существует'));
+				}
+				else if (serverError.invalidContract)
+					yield put(notify.error('На форме имеются ошибки'));
+				else
+					yield put(notify.error('Не удалось сохранить заказ'));
+				yield put(actions.createOrder.failure({error: serverError}));
+			}
 		}
 	}
 }

@@ -33,8 +33,12 @@ export function getMoneyDocs(retailPointId, start, count, q, sortField, sortDire
 }
 
 export function saveOrder(retailPointId, shiftType, order) {
+	const doc = {
+		...order,
+		beginDateTime: order.beginDateTime.toISOString()
+	};
 	return api.v1().retailpoint(retailPointId).shift(shiftType).cashdoc()
-		.post(order);
+		.post(doc);
 }
 
 export function getShopDocuments(retailPointId, start, count, q, sortField, sortDirection) {

@@ -32,7 +32,8 @@ export const getFormProducts = createSelector([getOrderFormSection], (section) =
 export const getFormFlags = createSelector([getOrderFormSection], (section) => {
 	return {
 		saved: section.get('saved'),
-		saving: section.get('saving')
+		saving: section.get('saving'),
+		error: section.get('error')
 	}
 });
 
