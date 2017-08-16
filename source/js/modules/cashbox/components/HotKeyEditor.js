@@ -28,22 +28,24 @@ class HotKeyEditor extends React.Component {
 	componentWillReceiveProps(props) {
 		const {onSearchProducts, onSearchCategory, searchProduct, searchCategory, model}=props;
 		if (model.type === HOT_KEY_TYPE.CATEGORY) {
-			const list = searchCategory.categories || [];
+			const list = searchCategory.categories || null;
+			const loading = searchCategory.loading || false;
 			if (model.groupcode) {
 				if (!list.some(s => s.code == model.groupcode))
 					onSearchCategory(model.name);
 			} else {
-				if (list.length == 0)
+				if (list == null && !loading)
 					onSearchCategory('');
 			}
 		}
 		else if (model.type === HOT_KEY_TYPE.PRODUCT) {
-			const list2 = searchProduct.products || [];
+			const list2 = searchProduct.products || null;
+			const loading = searchProduct.loading || false;
 			if (model.barcode) {
 				if (!list2.some(s => s.barcode == model.barcode))
 					onSearchProducts(model.barcode);
 			} else {
-				if (list2.length == 0)
+				if (list2 == null && !loading)
 					onSearchProducts('');
 			}
 		}
@@ -132,13 +134,6 @@ class HotKeyEditor extends React.Component {
 							class="icon"></i><span>Категория</span></label>
 					</div>
 
-					<div class="form_group">
-						<div class="input_group_title  w100">
-							<div class="input_title">Введите название</div>
-							<InputField name="name" class="w100" required="Укажите название"/>
-						</div>
-					</div>
-
 					{model.type === HOT_KEY_TYPE.PRODUCT && <div class="form_group">
 						<div class="input_group_title  w100">
 							<div class="input_title">Выберите товар</div>
@@ -173,6 +168,13 @@ class HotKeyEditor extends React.Component {
 						</div>
 					</div>
 					}
+
+					<div class="form_group">
+						<div class="input_group_title  w100">
+							<div class="input_title">Введите название</div>
+							<InputField name="name" class="w100" required="Укажите название"/>
+						</div>
+					</div>
 
 					<div class="form_group">
 						<div class="input_group_title  w100">
