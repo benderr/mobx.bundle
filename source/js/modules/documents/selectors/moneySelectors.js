@@ -1,12 +1,26 @@
 import {createSelector} from 'reselect'
 
-export const getMoney = (state) => {
+export const getMoneySection = (state) => {
 	return state.get('money');
 };
 
-export const getSectionPos = createSelector([getMoney], money => money.get('pos'));
-export const getSectionStep = createSelector([getMoney], money => money.get('listStep'));
-
-export const getSectionState = createSelector([getMoney], money => {
-	return money;
+export const getFilter = createSelector([getMoneySection], state => {
+	return state.get('filter')
 });
+
+// export const getFilter = createSelector([getMoneySection], state =>
+// 	state.get('filter')
+// );
+
+export const isFilteredList = createSelector([getFilter], filter =>
+	filter.get('dateFrom') !== null || filter.get('dateFrom') !== null || filter.get('docType') !== null
+);
+
+export const getListPropsState = createSelector([getMoneySection], state => ({
+	sortField: state.get('sortField'),
+	sortDirection: state.get('sortDirection'),
+	countStep: state.get('countStep'),
+	pos: state.get('pos'),
+	filter: state.get('filter').toJS(),
+	noItems: state.get('noItems')
+}));

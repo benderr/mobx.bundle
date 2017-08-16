@@ -97,7 +97,7 @@ class ChequeListContainer extends React.Component {
 		return (
 			<div className="h100per">
 				<TitlePanel>
-					{!noItems &&
+					{!globalLoading && !noItems &&
 					<TitleActions isFiltered={isFilter}
 								  onShowFilter={::this.handleOpenFilter}
 								  showButtons={true}/>}
@@ -109,6 +109,7 @@ class ChequeListContainer extends React.Component {
 					ignoreCloseSelect="no-close-date-selector">
 					<ChequeMoneyFilter
 						ref={f => this.chequeFilter = f}
+						fromType="cheque"
 						onChangeDocType={::this.handleChangeFilterDocType}
 						onChangeDate={::this.handleChangeDate}
 						onClearFilter={::this.onClearFilter}

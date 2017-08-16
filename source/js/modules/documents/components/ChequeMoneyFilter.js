@@ -12,7 +12,7 @@ class ChequeMoneyFilter extends React.Component {
 	render() {
 		const {
 			ignoreCloseSelect,
-			dateFrom, dateTo, docType,
+			dateFrom, dateTo, docType, fromType,
 			onChangeDate, onChangeDocType, onClearFilter
 		} = this.props;
 
@@ -29,6 +29,7 @@ class ChequeMoneyFilter extends React.Component {
 
 				<div className="side_filter">
 					<div className="side_filter_name">Тип документа</div>
+					{fromType == 'cheque' &&
 					<ul>
 						<CheckBox checked={docType == DOCUMENT_TYPE.SALE}
 								  onChange={event => onChangeDocType(event, DOCUMENT_TYPE.SALE)}
@@ -38,7 +39,18 @@ class ChequeMoneyFilter extends React.Component {
 								  onChange={event => onChangeDocType(event, DOCUMENT_TYPE.RETURN)}
 								  id={`id_${DOCUMENT_TYPE.RETURN}`}
 								  label={getDocTypeName(DOCUMENT_TYPE.RETURN)}/>
-					</ul>
+					</ul>}
+					{fromType == 'money' &&
+					<ul>
+						<CheckBox checked={docType == DOCUMENT_TYPE.CASH_IN}
+								  onChange={event => onChangeDocType(event, DOCUMENT_TYPE.CASH_IN)}
+								  id={`id_${DOCUMENT_TYPE.CASH_IN}`}
+								  label={getDocTypeName(DOCUMENT_TYPE.CASH_IN)}/>
+						<CheckBox checked={docType == DOCUMENT_TYPE.CASH_OUT}
+								  onChange={event => onChangeDocType(event, DOCUMENT_TYPE.CASH_OUT)}
+								  id={`id_${DOCUMENT_TYPE.CASH_OUT}`}
+								  label={getDocTypeName(DOCUMENT_TYPE.CASH_OUT)}/>
+					</ul>}
 				</div>
 
 				<div className="side_filter">
