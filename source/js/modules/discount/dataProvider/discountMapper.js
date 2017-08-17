@@ -17,7 +17,7 @@ export const listDiscount = {
 			typeFrom: item.type,	// тип откуда была добавлена скидка (потом будут варианты)
 			code: item.code,
 			name: item.name,
-			value: item.value
+			value: item.value + ''
 		})),
 		pos: response.pos,
 		total_count: response.total_count

@@ -20,7 +20,7 @@ export const actionHandlers = {
 			success: null,
 
 			name: discount.name,
-			value: discount.value
+			value: discount.value + ''
 		}))
 	},
 
@@ -31,7 +31,7 @@ export const actionHandlers = {
 			success: null,
 
 			name: discount.name,
-			value: discount.value
+			value: discount.value + ''
 		}));
 	},
 	[actEnums.EDIT_DISCOUNT.SUCCESS]: (state, {code, ...discount}) => {
@@ -41,7 +41,7 @@ export const actionHandlers = {
 			success: true,
 
 			name: discount.name || '',
-			value: discount.value || ''
+			value: (discount.value || '') + ''
 		}));
 	},
 	[actEnums.EDIT_DISCOUNT.FAILURE]: (state, code) => {
