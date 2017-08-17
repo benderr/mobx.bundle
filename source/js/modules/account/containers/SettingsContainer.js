@@ -36,7 +36,7 @@ class SettingsContainer extends DefaultLayerLayout {
 	}
 
 	render() {
-		const {changePasswordState} = this.props;
+		const {changePasswordState, userData} = this.props;
 		const {tab: activeTab} = this.state || {};
 		const changePassTab = activeTab == 'changepassword';
 		const servicesTab = activeTab == 'services';
@@ -70,6 +70,10 @@ class SettingsContainer extends DefaultLayerLayout {
 						<div class="tabs_content">
 							{changePassTab &&
 							<div class="tab_password_change">
+								<div className="form_group">
+									<div className="column four property_label">Пользователь</div>
+									<div className="column eight property_value">{userData.name}</div>
+								</div>
 								<ChangePasswordComponent formState={changePasswordState}
 														 onChangePassword={::this.onChangePassword}/>
 							</div>}
@@ -94,7 +98,8 @@ export default SettingsContainer;
 function mapStateToProps(state, ownProps) {
 	const tab = (ownProps.location.hash || '').replace('#', '');
 	const changePasswordState = accountSelectors.getChangePasswordSection(state);
-	return {tab, changePasswordState};
+	const userData = accountSelectors.getUser(state);
+	return {tab, changePasswordState, userData};
 }
 
 function mapDispatchToProps(dispatch) {
