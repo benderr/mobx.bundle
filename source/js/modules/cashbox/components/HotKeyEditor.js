@@ -31,7 +31,7 @@ class HotKeyEditor extends React.Component {
 			const list = searchCategory.categories || null;
 			const loading = searchCategory.loading || false;
 			if (model.groupcode) {
-				if (!list.some(s => s.code == model.groupcode))
+				if (!(list && list.some(s => s.code == model.groupcode)))
 					onSearchCategory(model.name);
 			} else {
 				if (list == null && !loading)
@@ -42,7 +42,7 @@ class HotKeyEditor extends React.Component {
 			const list2 = searchProduct.products || null;
 			const loading = searchProduct.loading || false;
 			if (model.barcode) {
-				if (!list2.some(s => s.barcode == model.barcode))
+				if (!(list2 && list2.some(s => s.barcode == model.barcode)))
 					onSearchProducts(model.barcode);
 			} else {
 				if (list2 == null && !loading)

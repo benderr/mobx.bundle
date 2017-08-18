@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import {isEmpty} from '../validators'
 import accounting from 'accounting';
 
-const CURRENCY_LIST = {
-	'USD': '$',
-	'RUR': '₽'
+const CurrencySymbol = ({value}) => {
+	if (value == 'RUR')
+		return (<span class="cur ruble"><span>р.</span></span>);
+	if (value == 'USD')
+		return (<span class="cur dollar"><span>$</span></span>);
+	if (value == 'EUR')
+		return (<span class="cur euro"><span>€</span></span>);
+	return null;
 };
 
 const AmountFormat = ({value, currency = 'RUR', def = ''}) => {
@@ -13,8 +18,7 @@ const AmountFormat = ({value, currency = 'RUR', def = ''}) => {
 		return def ? (<span>{def}</span>) : null;
 	const val = parseFloat(cleanValue(value));
 	const formatted = !isNaN(val) ? accounting.formatNumber(val, 2, " ") : def;
-	const cur = currency ? CURRENCY_LIST[currency] : '';
-	return (<span>{formatted}&nbsp;{cur}</span>);
+	return (<span>{formatted}&nbsp;<CurrencySymbol value={currency}/></span>);
 };
 
 function cleanValue(val) {
@@ -23,7 +27,7 @@ function cleanValue(val) {
 
 AmountFormat.propTypes = {
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-	currency: PropTypes.oneOf(Object.keys(CURRENCY_LIST)),
+	currency: PropTypes.oneOf(['RUR', 'USD', 'EUR']),
 	def: PropTypes.string
 };
 
