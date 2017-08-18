@@ -15,6 +15,8 @@ import SortLink from './SortLink'
 import LoaderPanel from './LoaderPanel';
 import DatePickerRange from './DatePickerRange'
 import DatePicker from './DatePicker'
+import NumberInput from './NumberInput'
+import NumberFormat from './NumberFormat'
 
 export {
 	PrimaryButton,
@@ -33,5 +35,7 @@ export {
 	LoaderPanel,
 	DatePickerRange,
 	DatePicker,
-	ContentPopupService
+	ContentPopupService,
+	NumberInput,
+	NumberFormat
 }

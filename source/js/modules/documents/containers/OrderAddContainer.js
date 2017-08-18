@@ -8,7 +8,7 @@ import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import OrderProductForm from '../components/order/OrderProductForm'
 import OrderDetailForm from '../components/order/OrderDetailForm'
 import OrderProductTable from '../components/order/OrderProductTable'
-import {submit, reset, SubmissionError} from 'redux-form/immutable'
+import {submit, reset, SubmissionError, formValueSelector} from 'redux-form/immutable'
 import {Button, notify} from 'common/uiElements'
 import {getDefault} from '../dataProvider/inventPositionFactory'
 
@@ -105,6 +105,7 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 }
 
+//const formVal=formValueSelector('orderProductForm');
 
 function mapStateToProps(state, props) {
 	const {saving, saved, error} = orderSelectors.getFormFlags(state);

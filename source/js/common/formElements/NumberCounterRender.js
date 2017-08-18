@@ -1,5 +1,6 @@
 import React from 'react'
-import {radValidateHoc, InputFocusable} from './validationHelpers'
+import {radValidateHoc, CustomFocusable} from './validationHelpers'
+import {NumberInput} from 'common/uiElements';
 import {change} from 'redux-form/immutable'
 import {isEmpty} from 'common/validators';
 
@@ -8,7 +9,7 @@ class NumberCounterRender extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.focusator = new InputFocusable();
+		this.focusator = new CustomFocusable();
 	}
 
 	handleChangeByStep(direction) {
@@ -36,7 +37,7 @@ class NumberCounterRender extends React.Component {
 		return (
 			<div className={buttonsClassNames}>
 				<a className="count_ctrl" onClick={::this.handleDecrease}>&minus;</a>
-				<input {...input}
+				<NumberInput {...input}
 					   ref={input => this.focusator.init(input)}
 					   className={classNames}
 					   placeholder={label}

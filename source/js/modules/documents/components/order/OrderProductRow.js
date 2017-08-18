@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import ProductShape from './ProductShape'
-import {AmountFormat} from 'common/uiElements'
+import {AmountFormat, NumberFormat} from 'common/uiElements'
 import {getLabelByValue, VAT_TAG_OPTIONS, MEASURE_OPTIONS} from 'modules/core/productEnums'
 
 const OrderProductRow = ({row, onRemove, canEdit, isHeader, isFooter, total}) => {
@@ -34,7 +34,7 @@ const OrderProductRow = ({row, onRemove, canEdit, isHeader, isFooter, total}) =>
 			<div class="doc_name">{row.name}</div>
 			<div class="doc_comment">{row.description}</div>
 			<div class="doc_price"><AmountFormat value={row.price}/></div>
-			<div class="doc_сount">{row.quantity}{measureLabel.short}</div>
+			<div class="doc_сount"><NumberFormat value={row.quantity}/>&nbsp;{measureLabel.short}</div>
 			<div class="doc_amount"><AmountFormat value={row.posSum}/></div>
 			<div class="doc_nds">{vatTagLabel.short}</div>
 			{canEdit && <a class="doc_delete_icon  icon-trash-bin" onClick={onRemove}></a>}
