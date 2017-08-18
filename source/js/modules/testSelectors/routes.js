@@ -1,9 +1,8 @@
 import React from 'react';
-//import {Route} from 'react-router';
 import TestSelector from './components/TestSelector'
 import TestSelector2 from './components/TestSelector2'
 import TestDrag from './containers/TestDrag'
-//import DatePicker2 from './containers/DatePicker2'
+import TestNumber from './components/TestNumber'
 import TestSelectorDate from './components/TestSelectorDate'
 import TestAmount from './components/TestAmount'
 import TestLayers from './containers/TestLayers'
@@ -30,6 +29,12 @@ export function getRoutes() {
 			exact: true,
 			allowAnonymous: true,
 			component: TestDrag
+		},
+		testNumbers: {
+			path: '/testnumber',
+			exact: true,
+			allowAnonymous: true,
+			component: TestNumber
 		},
 		// testDatePicker2: {
 		// 	path: '/test-datepicker2',

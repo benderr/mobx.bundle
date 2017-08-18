@@ -70,6 +70,7 @@ class AmountInput extends React.Component {
 	}
 
 	componentDidMount() {
+		window.accounting=accounting;
 		const {viewValue, startPos}=this.parseValue(this.props.value);
 		this.setState({viewValue, startPos});
 	}

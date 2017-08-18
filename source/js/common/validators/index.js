@@ -80,6 +80,12 @@ export const isCorrectKpp = (val) => {
 	return val.length === 9;
 };
 
+export const isValidNumber = val => {
+	if (isEmpty(val))
+		return true;
+	return /^(0(\.|,)\d+|[1-9]+[0-9]*((\.|,)\d+)?|0)$/.test(val);
+};
+
 export const validator = (errorText, validateCondition) => (...props) => {
 	return !validateCondition(...props) ? errorText : undefined;
 };
