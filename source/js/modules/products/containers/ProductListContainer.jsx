@@ -18,6 +18,7 @@ import toJs from 'components/HOC/toJs'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC';
 import {getToken} from 'modules/account/selectors/accountSelectors';
 import {LoaderPanel} from 'common/uiElements'
+import * as tokenCrypt from 'infrastructure/utils/tokenCrypt'
 
 class ProductListContainer extends React.Component {
 
@@ -29,9 +30,8 @@ class ProductListContainer extends React.Component {
         const {token}=this.props;
         const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
         const downloadLink = document.createElement("a");
-        const values = atob(token).split(':');
-        const email = values[0];
-        const password = values[1];
+        const {email, password}=tokenCrypt.decrypt(token);
+
         downloadLink.href = `${protocol}//${email}:${password}@${host}/api/v1/download-catalog`;
         downloadLink.download = "catalog.xls";
         document.body.appendChild(downloadLink);

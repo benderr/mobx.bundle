@@ -66,6 +66,7 @@ class RegistrationForm extends React.Component {
 						<div class="input_group_title w100">
 							<InputField name="company"
 										class="w100"
+										tipPlace="bottom"
 										required="Укажите название компании"/>
 							<div class="input_title">Название компании</div>
 						</div>
