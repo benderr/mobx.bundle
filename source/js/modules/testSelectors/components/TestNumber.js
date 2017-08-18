@@ -1,5 +1,5 @@
 import React from 'react';
-import {NumberInput} from 'common/uiElements';
+import {NumberInput, NumberFormat} from 'common/uiElements';
 import {NumberField} from 'common/formElements/fields';
 import {reduxForm, NumberCounterRender} from 'common/formElements'
 import {connect} from 'react-redux';
@@ -80,11 +80,11 @@ class TestNumbers extends React.Component {
 				<div className="w100 m_top_20"></div>
 
 				<NumberInput placeholder="Integer" value={this.state.amount2} onChange={::this.handleChange2}/>
-				{this.state.amount2}
+				<NumberFormat value={this.state.amount2} className="m_left_5 info_label"/>
 				<div className="w100 m_top_20"></div>
 
 				<NumberInput placeholder="Float" float={true} value={this.state.amount} onChange={::this.handleChange}/>
-				{this.state.amount}
+				<NumberFormat value={this.state.amount} className="m_left_5 info_label"/>
 				<div className="w100 m_top_20"></div>
 
 				<div class="form-group">
