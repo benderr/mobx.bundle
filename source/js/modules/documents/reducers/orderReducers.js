@@ -15,6 +15,7 @@ export const initialState = Map({
 		count: null
 	}),
 	createOrder: Map({
+		orderNewNumber: undefined,
 		products: Map({}),
 		error: null,
 		saving: false,
@@ -75,6 +76,14 @@ export const actionHandlers = {
 	[actions.CREATE_ORDER.FAILURE]: (state, {error}) => {
 		return state.mergeIn(['createOrder'], {saving: false, error: fromJS(error)});
 	},
+
+	[actions.GET_ORDER_NEW_NUMBER.REQUEST]: (state) => {
+		return state.setIn(['createOrder', 'orderNewNumber'], undefined);
+	},
+	[actions.GET_ORDER_NEW_NUMBER.SUCCESS]: (state, {number}) => {
+		return state.setIn(['createOrder', 'orderNewNumber'], number);
+	},
+
 	[actions.RESET_ORDER]: (state) => {
 		return state.mergeIn(['createOrder'], initialState.get('createOrder'));
 	},

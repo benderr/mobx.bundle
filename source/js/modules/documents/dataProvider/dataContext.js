@@ -19,6 +19,10 @@ export function getOrder(retailPointId, shiftType, orderId) {
 		.then(response => mapper.toClientOrder(response.data));
 }
 
+export function getOrderNextNumber(retailPointId) {
+	return api.v1().retailpoint(retailPointId)
+		.nextExtdocDocnum().get().then(response => response.data);
+}
 
 export function getMoneyDocs(retailPointId, start, count, q, sortField, sortDirection) {
 	return api.v1().retailpoint(retailPointId).moneyDocs()

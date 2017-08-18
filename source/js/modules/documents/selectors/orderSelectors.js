@@ -33,7 +33,8 @@ export const getFormFlags = createSelector([getOrderFormSection], (section) => {
 	return {
 		saved: section.get('saved'),
 		saving: section.get('saving'),
-		error: section.get('error')
+		error: section.get('error'),
+		orderNewNumber: section.get('orderNewNumber')
 	}
 });
 

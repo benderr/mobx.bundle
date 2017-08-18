@@ -8,12 +8,16 @@ import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import OrderProductForm from '../components/order/OrderProductForm'
 import OrderDetailForm from '../components/order/OrderDetailForm'
 import OrderProductTable from '../components/order/OrderProductTable'
-import {submit, reset, SubmissionError, formValueSelector} from 'redux-form/immutable'
+import {submit, reset, SubmissionError, formValueSelector, change} from 'redux-form/immutable'
 import {Button, notify} from 'common/uiElements'
 import {getDefault} from '../dataProvider/inventPositionFactory'
+import retailPointHOC from 'components/HOC/retailPointRequiredHOC'
+
+const orderFormName = 'orderForm';
 
 @connect(mapStateToProps, mapDispatchToProps)
 @toJS
+@retailPointHOC
 class OrderAddContainer extends DefaultLayerLayout {
 
 	constructor(props) {
@@ -23,17 +27,25 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 	componentDidMount() {
 		super.componentDidMount();
-		const {resetForm, searchProducts, resetOrder}=this.props;
-		resetForm('orderForm');
+		const {resetForm, searchProducts, resetOrder, getOrderNewNumber}=this.props;
+		resetForm(orderFormName);
 		resetForm('orderProductForm');
+		getOrderNewNumber();
 		resetOrder();
 		searchProducts({query: ''});
 	}
 
 	componentWillReceiveProps(props) {
-		if (props.saved) {
-			this.props.resetOrder();
+
+		const {saved, resetOrder, orderNewNumber, currentOrderNumber, change} =props;
+
+		if (saved) {
+			resetOrder();
 			this.closeLayer();
+		}
+
+		if (orderNewNumber && !currentOrderNumber) {
+			change(orderFormName, 'docNum', orderNewNumber);
 		}
 	}
 
@@ -55,7 +67,7 @@ class OrderAddContainer extends DefaultLayerLayout {
 	}
 
 	handleOrderFormSubmit() {
-		this.props.submitForm('orderForm');
+		this.props.submitForm(orderFormName);
 	}
 
 	handleSearchProducts(val) {
@@ -105,15 +117,16 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 }
 
-//const formVal=formValueSelector('orderProductForm');
+const orderFormSelector = formValueSelector(orderFormName);
 
 function mapStateToProps(state, props) {
-	const {saving, saved, error} = orderSelectors.getFormFlags(state);
+	const {saving, saved, error, orderNewNumber} = orderSelectors.getFormFlags(state);
 	const products = orderSelectors.getFormProducts(state);
 	const productSearchState = orderSelectors.getFormSearchProducts(state);
 	const totalSum = orderSelectors.getFormTotalSum(state);
+	const currentOrderNumber = orderFormSelector(state, 'docNum');
 
-	return {saving, saved, products, totalSum, productSearchState, error};
+	return {saving, saved, products, totalSum, productSearchState, error, orderNewNumber, currentOrderNumber};
 }
 
 function mapDispatchToProps(dispatch) {
@@ -126,6 +139,8 @@ function mapDispatchToProps(dispatch) {
 			createOrder: actions.createOrder.request,
 			searchProducts: actions.searchProducts.request,
 			resetOrder: actions.resetOrder,
+			change: change,
+			getOrderNewNumber: actions.getOrderNewNumber.request,
 			dispatch
 		}, dispatch)
 	};

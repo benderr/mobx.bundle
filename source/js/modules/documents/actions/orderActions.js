@@ -12,6 +12,7 @@ export const CORRECT_FILTER = 'DOCUMENTS.CORRECT_FILTER';
 export const REMOVE_PRODUCT = 'DOCUMENTS.REMOVE_PRODUCT';
 export const SEARCH_PRODUCTS = createRequestTypes('DOCUMENTS.SEARCH_PRODUCTS');
 export const RESET_ORDER = 'DOCUMENTS.RESET_ORDER';
+export const GET_ORDER_NEW_NUMBER = createRequestTypes('DOCUMENTS.GET_ORDER_NEW_NUMBER'); //получение нового номера
 /**
  * Получение списка заказов
  */
@@ -52,5 +53,11 @@ export const searchProducts = {
 	request: ({query}) => createAction(SEARCH_PRODUCTS.REQUEST, {query}),
 	success: ({products}) => createAction(SEARCH_PRODUCTS.SUCCESS, {products}),
 	failure: ({error}) => createAction(SEARCH_PRODUCTS.FAILURE, {error})
+};
+
+export const getOrderNewNumber = {
+	request: () => createAction(GET_ORDER_NEW_NUMBER.REQUEST),
+	success: ({number}) => createAction(GET_ORDER_NEW_NUMBER.SUCCESS, {number}),
+	//failure: ({error}) => createAction(SEARCH_PRODUCTS.FAILURE, {error})
 };
 

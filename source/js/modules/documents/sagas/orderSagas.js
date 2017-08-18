@@ -15,7 +15,8 @@ import {isServerError, mapServerError} from 'infrastructure/helpers/errorHelper'
 function* init() {
 	yield takeLatest(actions.CREATE_ORDER.REQUEST, createOrder);
 	yield takeLatest(actions.GET_ORDERS.REQUEST, getOrders);
-	yield takeEvery(actions.GET_ORDER_DETAILS.REQUEST, getOrderDetails)
+	yield takeLatest(actions.GET_ORDER_NEW_NUMBER.REQUEST, getOrderNewNumber);
+	yield takeEvery(actions.GET_ORDER_DETAILS.REQUEST, getOrderDetails);
 	yield fork(debounceSearchOrders);
 }
 
@@ -26,7 +27,7 @@ function* debounceSearchOrders() {
 function* createOrder({order, products}) {
 	if (!products || products.length == 0) {
 		yield put(notify.error('Добавьте товары'));
-		yield put(actions.createOrder.failure({error: 'Добавьте товары'}));
+		yield put(actions.createOrder.failure({error: {message: 'Добавьте товары'}}));
 	} else {
 		try {
 			const document = {};
@@ -85,6 +86,18 @@ function* getOrders() {
 	catch (error) {
 		logger.log(error);
 		yield put(actions.getOrders.failure({error}));
+	}
+}
+
+function* getOrderNewNumber() {
+	try {
+		const retailPointId = yield select(getPointId);
+		const number = yield call(dataContext.getOrderNextNumber, retailPointId);
+		yield put(actions.getOrderNewNumber.success({number}));
+	}
+	catch (error) {
+		logger.log(error);
+		//yield put(actions.getOrders.failure({error}));
 	}
 }
 
