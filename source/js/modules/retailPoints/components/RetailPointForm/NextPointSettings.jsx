@@ -20,7 +20,8 @@ class NextPointSettings extends React.Component {
 
             <div class="selected_item  mb16">
                 <Field type="radio" component="input" name="productsSource" id="12" value={productSources.SHARE}/>
-                <label for="12" class="label_check"><i class="icon"></i><span>Использовать товары и данные другой точки</span></label>
+                <label for="12" class="label_check"><i
+                    class="icon"></i><span>Использовать товары и данные другой точки</span></label>
 
                 {productsSource === productSources.SHARE && <div class="inner_select  mt8">
                     <div class="form_group form_horizontal  mb8">
@@ -33,8 +34,8 @@ class NextPointSettings extends React.Component {
                                          required="Выберите точку продаж"/>
                         </div>
                     </div>
-                    <div class="info_text icon-info f_xsmall">Все изменения по товарам из выбранной точки
-                        будут отражены также в новой точке
+                    <div class="info_text icon-info f_xsmall">Все изменения по товарам, сделанные в одной из этих точек,
+                        будут отражены также в другой точке
                     </div>
                 </div>}
             </div>
