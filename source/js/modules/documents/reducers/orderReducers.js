@@ -70,8 +70,10 @@ export const actionHandlers = {
 		return state.updateIn(['createOrder', 'saving'], saving => true);
 	},
 	[actions.CREATE_ORDER.SUCCESS]: (state, {order}) => {
-		return state.mergeIn(['createOrder'], {saving: false, error: null, saved: true})
-			.updateIn(['orders'], orders => orders.unshift(fromJS(order)));
+		return state
+			.mergeIn(['createOrder'], {saving: false, error: null, saved: true})
+			.updateIn(['orders'], orders => orders.unshift(fromJS(order)))
+			.updateIn(['ordersFilter', 'totalCount'], count => (count || 0) + 1);
 	},
 	[actions.CREATE_ORDER.FAILURE]: (state, {error}) => {
 		return state.mergeIn(['createOrder'], {saving: false, error: fromJS(error)});
