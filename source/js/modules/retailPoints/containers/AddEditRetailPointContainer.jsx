@@ -52,6 +52,7 @@ class AddEditRetailPointContainer extends DefaultLayerLayout {
                 egaisSettings: {
                     kpp: props.getIn(['settings', 'egaisSettings', 'kpp']),
                 },
+                defaultVatTag: props.getIn(['settings', 'defaultVatTag']),
                 fiscalServiceEnabled: props.getIn(['settings', 'fiscalServiceEnabled'])
             }
         };

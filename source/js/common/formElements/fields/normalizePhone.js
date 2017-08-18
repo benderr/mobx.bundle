@@ -3,7 +3,7 @@
  */
 const normalizePhone = (value, previousValue) => {
 	if (!value) {
-		return value
+		return value == null ? '' : value;
 	}
 	const onlyNums = value.replace(/[^\d]/g, '')
 	if (!previousValue || value.length > previousValue.length) {

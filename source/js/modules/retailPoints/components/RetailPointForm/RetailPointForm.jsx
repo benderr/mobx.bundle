@@ -7,10 +7,11 @@ import {connect} from 'react-redux'
 import {Field, formValueSelector, change} from 'redux-form/immutable';
 import {reduxForm} from 'common/formElements';
 import {LoaderPanel} from 'common/uiElements';
-import {PhoneField, InputField, normalizeKpp, normalizeInn} from 'common/formElements/fields';
+import {PhoneField, InputField, normalizeKpp, normalizeInn, SelectField} from 'common/formElements/fields';
 import {isCorrectInn, isCorrectKpp, isEmpty, isRequired} from 'common/validators';
 import RetailPointShape from '../RetailPointShape';
 import NextPointSettings from './NextPointSettings';
+import {VAT_TAG_OPTIONS} from 'modules/core/productEnums';
 
 const isRequiredKpp = (text) => (val, isIP) => (!isIP && isEmpty(val)) ? text : undefined;
 const validateInn = (text) => (val) => !isCorrectInn(val) ? text : undefined;
@@ -32,6 +33,7 @@ class RetailPointForm extends React.Component {
     render() {
         const {onSave, onCancel, onDelete, points, loading} = this.props;
         const {handleSubmit, submitting, isIP, productsSource, showProductSources, showDelete} = this.props;
+        const vatTags = VAT_TAG_OPTIONS.filter(s => s.value != '0');
 
         return (<form onSubmit={handleSubmit(onSave)} className="poss">
             <LoaderPanel loading={loading} class="page_content  with_bottom_panel  content_padding">
@@ -91,9 +93,23 @@ class RetailPointForm extends React.Component {
                     </div>
                 </div>
 
+                <div class="form_group form_horizontal">
+                    <div class="property_label col three">Ставка НДС
+                        <div className="f_xsmall">по умолчанию</div>
+                    </div>
+                    <div class="property_value col w35">
+                        <SelectField class="w100"
+                                     name="settings.defaultVatTag"
+                                     clearable={false}
+                                     required="Укажите ставку НДС"
+                                     options={vatTags}/>
+                    </div>
+                </div>
+
                 <div class="form_group form_horizontal mt24">
                     <div class="property_value col nine">
-                        <Field id="fiscalServiceEnabled" name="settings.fiscalServiceEnabled" type="checkbox" component="input"/>
+                        <Field id="fiscalServiceEnabled" name="settings.fiscalServiceEnabled" type="checkbox"
+                               component="input"/>
                         <label for="fiscalServiceEnabled" className="label_check">
                             <i className="icon"></i>
                             <span className="f_small">Использовать для печати документов интернет-магазина</span>

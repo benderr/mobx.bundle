@@ -103,7 +103,7 @@ class ProductTab extends React.Component {
 						/>
 					</div>
 				</div>
-			</div >
+			</div>
 		);
 	}
 }
