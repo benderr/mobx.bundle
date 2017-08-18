@@ -77,13 +77,15 @@ export const toClientImportResult = data => {
 };
 
 export const toClientModifierGroup = group => {
-	group.modifiers = (group.modifiers || []).map((m) => {
-		m.code = uuid();
-		m.selected = m.base;
-		m.groupCode = group.code;
-		return m;
-	});
+	group.modifiers = (group.modifiers || []).map(m => toClientModifier(m, group.code));
 	return group;
+};
+
+export const toClientModifier = (m, groupCode) => {
+	m.code = uuid();
+	m.selected = m.base;
+	m.groupCode = groupCode;
+	return m;
 };
 
 export const toServerModifierGroup = group => {

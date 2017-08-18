@@ -4,7 +4,7 @@ import {InputField, SwitchField, SelectField} from 'common/formElements/fields'
 import PropTypes from 'prop-types';
 import {PrimaryButton, Button, LoaderPanel} from 'common/uiElements'
 import GROUP_TYPE from '../../enums/modifierGroupType';
-
+import {toClientModifier} from '../../dataProvider/productMapper'
 const VIEW_MODE = {
 	NEW: 'new',
 	COPY: 'copy'
@@ -24,7 +24,7 @@ class ModifierGroupForm extends React.Component {
 		}
 		else {
 			change('name', group.name);
-			change('modifiers', group.modifiers);
+			change('modifiers', group.modifiers.map(m => toClientModifier(m, group.code)));
 		}
 	}
 

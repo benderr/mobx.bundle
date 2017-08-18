@@ -14,7 +14,7 @@ import GROUP_TYPE from '../enums/modifierGroupType'
 export function* saveModifierGroup({group, point, meta}) {
 	try {
 		if (group.isNew) {
-			group.modifiers = [];
+			group.modifiers = group.modifiers || [];
 			yield call(dataContext.addModifierGroup, point, group);
 		} else {
 			yield call(dataContext.saveModifierGroup, point, group);

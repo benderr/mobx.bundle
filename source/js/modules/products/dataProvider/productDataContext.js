@@ -65,7 +65,9 @@ export const removeModifierGroup = (retailPointId, groupCode) => {
 export const getModifierGroups = (retailPointId, start, count) => {
 	return api.v1().retailpoint(retailPointId).catalog().modifierGroups()
 		.get({start, count})
-		.then(response => response.data);
+		.then(response => {
+			return { groupsList: response.data.data }
+		});
 };
 
 
