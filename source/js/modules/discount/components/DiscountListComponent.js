@@ -34,7 +34,7 @@ const TableSearch = (props) => {
 			<input type="search"
 				   className="small w100"
 				   onChange={props.onFilterChanged}
-				   placeholder="Введите наименование"/>
+				   placeholder="Введите номер смены или номер документа"/>
 		</div>
 	);
 };
