@@ -76,7 +76,9 @@ function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
 					event: 'focus',
 					eventOff: 'blur keydown',
 					place: this.props.tipPlace || 'right',
-					delayHide: 200
+					delayHide: 200,
+					effect: 'solid',
+					resizeHide: true
 				}
 			}
 
