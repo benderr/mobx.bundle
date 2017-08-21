@@ -27,13 +27,15 @@ class ProductListContainer extends React.Component {
     };
 
     exportProduct() {
-        const {token}=this.props;
+        const {token} = this.props;
         const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
         const downloadLink = document.createElement("a");
-        const {email, password}=tokenCrypt.decrypt(token);
+        const {email, password} = tokenCrypt.decrypt(token);
 
         downloadLink.href = `${protocol}//${email}:${password}@${host}/api/v1/download-catalog`;
         downloadLink.download = "catalog.xls";
+        downloadLink.innerHTML = downloadLink.href;
+        downloadLink.setAttribute('target', '_blank');
         document.body.appendChild(downloadLink);
         downloadLink.click();
         document.body.removeChild(downloadLink);
@@ -44,7 +46,7 @@ class ProductListContainer extends React.Component {
     }
 
     openProduct(code) {
-        const {push, selectedPoint}=this.props;
+        const {push, selectedPoint} = this.props;
         push({pathname: `/product/view/point/${selectedPoint}/code/${code}`});
     }
 
