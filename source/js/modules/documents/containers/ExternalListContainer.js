@@ -49,7 +49,7 @@ class ExternalListContainer extends React.Component {
 
 	handleChangeFilter(event) {
 		let value = event.target.value;
-		if (value && value.length >= 2) {
+		if (value && value.length >= 1) {
 			this.setFilter({restart: true, filter: value});
 			this.props.searchOrders();
 		} else if (!value) {
