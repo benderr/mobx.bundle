@@ -5,6 +5,19 @@ import {Button} from 'common/uiElements'
 import {InputField, DatePickerField, Field} from 'common/formElements/fields'
 import {focus} from 'redux-form/immutable'
 
+let dateMin = null,
+	dateMax = null;
+const minIntervalDate = (text) => (val) => {
+	dateMin = val;
+	return dateMin !== null && dateMax !== null
+		? (dateMin > dateMax ? text : undefined) : undefined;
+};
+const maxIntervalDate = (text) => (val) => {
+	dateMax = val;
+	return dateMin !== null && dateMax !== null
+		? (dateMin > dateMax ? text : undefined) : undefined;
+};
+
 class ReportFormComponent extends React.Component {
 
 	render() {
@@ -19,12 +32,14 @@ class ReportFormComponent extends React.Component {
 									 required="Укажите период"
 									 className="small date_from"
 									 tipPlace="top"
+									 validate={[minIntervalDate('Не верно выбран период формирования отчета')]}
 									 name="beginDate"/>
 					по
 					<DatePickerField wrapperClassName="from-to"
 									 required="Укажите период"
 									 className="small date_to"
 									 tipPlace="top"
+									 validate={[maxIntervalDate('Не верно выбран период формирования отчета')]}
 									 name="endDate"/>
 				</div>
 

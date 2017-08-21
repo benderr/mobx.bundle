@@ -10,6 +10,8 @@ import {Link} from 'react-router-dom';
 import ChangePasswordComponent from '../components/ChangePasswordComponent';
 import toJS from 'components/HOC/toJs';
 import ServiceSettingsContainer from './ServiceSettingsContainer';
+import {getToken} from 'modules/account/selectors/accountSelectors'
+import * as tokenCrypt from 'infrastructure/utils/tokenCrypt'
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
@@ -36,10 +38,11 @@ class SettingsContainer extends DefaultLayerLayout {
 	}
 
 	render() {
-		const {changePasswordState, userData} = this.props;
+		const {changePasswordState, userData, token} = this.props;
 		const {tab: activeTab} = this.state || {};
 		const changePassTab = activeTab == 'changepassword';
 		const servicesTab = activeTab == 'services';
+		const {email} = tokenCrypt.decrypt(token);
 
 		return (
 			<article className="page" {...this.layerOptions}>
@@ -72,7 +75,7 @@ class SettingsContainer extends DefaultLayerLayout {
 							<div class="tab_password_change">
 								<div className="form_group">
 									<div className="column four property_label">Пользователь</div>
-									<div className="column eight property_value">{userData.name}</div>
+									<div className="column eight property_value">{userData.name} <span className="property_label">{email}</span></div>
 								</div>
 								<ChangePasswordComponent formState={changePasswordState}
 														 onChangePassword={::this.onChangePassword}/>
@@ -99,7 +102,8 @@ function mapStateToProps(state, ownProps) {
 	const tab = (ownProps.location.hash || '').replace('#', '');
 	const changePasswordState = accountSelectors.getChangePasswordSection(state);
 	const userData = accountSelectors.getUser(state);
-	return {tab, changePasswordState, userData};
+	const token = getToken(state);
+	return {tab, changePasswordState, userData, token};
 }
 
 function mapDispatchToProps(dispatch) {
