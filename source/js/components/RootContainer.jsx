@@ -22,7 +22,6 @@ export default class RootContainer extends React.Component {
                     </ConnectedRouter>
                     {this.renderDevTools()}
                     {this.renderServices()}
-                    {this.renderHotFix()}
                 </div>
             </Provider>
         );
@@ -44,13 +43,20 @@ export default class RootContainer extends React.Component {
 
     renderHotFix() {
 
-        try {
-            if (detectIE() >= 9) {
-                const css = `article.page.open { transform: none;}`;
-                return (<style>{css}</style>)
-            }
-        } catch (ex) {
-            return null
-        }
+        // try {
+        //     if (detectIE() >= 9) {
+        //         const css = `article.page.open {
+        //         transform: none!important;
+        //         -webkit-transform: none!important;
+        //         -moz-transform: none!important;
+        //         -o-transform: none!important;
+        //         -ms-transform: none!important;
+        //         }`;
+        //         return (<style>{css}</style>)
+        //     }
+        // } catch (ex) {
+        //     return null
+        // }
+        return null;
     }
 }

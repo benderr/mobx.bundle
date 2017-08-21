@@ -37,15 +37,16 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 	componentWillReceiveProps(props) {
 
-		const {saved, resetOrder, orderNewNumber, currentOrderNumber, change} =props;
+		const {saved, resetOrder, orderNewNumber, docNumChanged, change} =props;
 
 		if (saved) {
 			resetOrder();
 			this.closeLayer();
 		}
 
-		if (orderNewNumber && !currentOrderNumber) {
+		if (orderNewNumber && !docNumChanged) {
 			change(orderFormName, 'docNum', orderNewNumber);
+			change(orderFormName, 'docNumChanged', true);
 		}
 	}
 
@@ -125,8 +126,9 @@ function mapStateToProps(state, props) {
 	const productSearchState = orderSelectors.getFormSearchProducts(state);
 	const totalSum = orderSelectors.getFormTotalSum(state);
 	const currentOrderNumber = orderFormSelector(state, 'docNum');
-
-	return {saving, saved, products, totalSum, productSearchState, error, orderNewNumber, currentOrderNumber};
+	const docNumChanged = orderFormSelector(state, 'docNumChanged');
+	return {saving, saved, products, totalSum, productSearchState, error,
+		orderNewNumber, currentOrderNumber, docNumChanged};
 }
 
 function mapDispatchToProps(dispatch) {
