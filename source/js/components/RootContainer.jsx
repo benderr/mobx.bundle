@@ -4,6 +4,7 @@ import ReactTooltip from 'react-tooltip'
 import PropTypes from 'prop-types';
 import {ConnectedRouter} from 'connected-react-router/immutable'
 import AppContainer from './AppContainer'
+import detectIE  from '../infrastructure/helpers/detectIE'
 
 export default class RootContainer extends React.Component {
     static propTypes = {
@@ -13,7 +14,6 @@ export default class RootContainer extends React.Component {
     };
 
     render() {
-
         return (
             <Provider store={this.props.store}>
                 <div className="poss">
@@ -22,13 +22,14 @@ export default class RootContainer extends React.Component {
                     </ConnectedRouter>
                     {this.renderDevTools()}
                     {this.renderServices()}
+                    {this.renderHotFix()}
                 </div>
             </Provider>
         );
     }
 
     renderServices() {
-        return (<ReactTooltip id="globalTooltip" />);
+        return (<ReactTooltip id="globalTooltip"/>);
     }
 
     renderDevTools() {
@@ -39,5 +40,17 @@ export default class RootContainer extends React.Component {
         }
 
         return devTools;
+    }
+
+    renderHotFix() {
+
+        try {
+            if (detectIE() >= 9) {
+                const css = `article.page.open { transform: none;}`;
+                return (<style>{css}</style>)
+            }
+        } catch (ex) {
+            return null
+        }
     }
 }
