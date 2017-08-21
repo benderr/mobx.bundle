@@ -36,22 +36,8 @@ class ProductListContainer extends React.Component {
         downloadLink.download = "catalog.xls";
         downloadLink.innerHTML = downloadLink.href;
         downloadLink.setAttribute('target', '_blank');
-
         document.body.appendChild(downloadLink);
-
-        if (document.createEvent) {
-            var event = document.createEvent("MouseEvents");
-            event.initMouseEvent("click", true, true, window,
-                0, 0, 0, 0, 0,
-                false, false, false, false,
-                0, null);
-            downloadLink.dispatchEvent(event);
-        }
-        else if (downloadLink.fireEvent) {
-            downloadLink.fireEvent("onclick");
-        }
-
-        // downloadLink.click();
+        downloadLink.click();
         document.body.removeChild(downloadLink);
     }
 
