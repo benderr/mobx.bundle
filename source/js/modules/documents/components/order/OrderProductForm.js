@@ -10,13 +10,19 @@ class OrderProductForm extends React.Component {
 	handleSelectProduct(product) {
 		const {change}=this.props;
 		change('isNew', product && product.isNew);
-		change('name', product ? product.name : '');
+
 		if (product) {
-			product.measure && change('measure', product.measure);
-			product.vatTag && change('vatTag', product.vatTag);
+			change('name', product.name);
+			change('measure', product.measure);
+			change('vatTag', product.vatTag);
 			change('price', product.price);
 			change('minPrice', product.minPrice);
 			change('barcode', product.barcode);
+		} else {
+			change('name', '');
+			change('price', null);
+			change('minPrice', null);
+			change('barcode', null);
 		}
 	}
 
@@ -26,6 +32,10 @@ class OrderProductForm extends React.Component {
 		option[labelKey] = label;
 		option.isNew = true;
 		return option;
+	}
+
+	handleChangePrice(price) {
+		logger.log(price);
 	}
 
 	handleSave(props) {
@@ -78,6 +88,7 @@ class OrderProductForm extends React.Component {
 						<AmountField required="Укажите цену товара"
 									 name="price"
 									 tipPlace="top"
+									 onChange={::this.handleChangePrice}
 									 class="small"/>
 					</div>
 
@@ -90,6 +101,7 @@ class OrderProductForm extends React.Component {
 						<div class="input_title">Ед. изм.</div>
 						<SelectField name="measure"
 									 clearable={false}
+									 required="Выберите ед. изм."
 									 className="small"
 									 options={MEASURE_OPTIONS}/>
 					</div>
@@ -97,6 +109,7 @@ class OrderProductForm extends React.Component {
 						<div class="input_title">НДС</div>
 						<SelectField name="vatTag"
 									 clearable={false}
+									 required="Выберите НДС"
 									 className="small"
 									 options={VAT_TAG_OPTIONS}/>
 					</div>

@@ -12,11 +12,12 @@ export const getDefault = () => {
 		baseSum: 0,
 		posSum: 0,
 		measure: 'pcs',
-		basePrice: 0,
+		//basePrice: 0,
 		description: '',
-		baseGoodPrice: null,
-		baseGoodMinPrice: null,
-		vatTag: '0'
+		//baseGoodPrice: null,
+		//baseGoodMinPrice: null,
+		vatTag: '0',
+		type: "MAIN"
 	};
 };
 
@@ -27,8 +28,10 @@ export const create = ({inventCode, isNew, barcode, minPrice, name, price, quant
 	inventPosition.barcode = !isNew ? barcode : null;
 	inventPosition.name = name;
 	inventPosition.measure = measure;
-	inventPosition.price = inventPosition.basePrice = inventPosition.baseGoodPrice = price;
-	inventPosition.baseGoodMinPrice = minPrice || price;
+	//inventPosition.price = inventPosition.basePrice = inventPosition.baseGoodPrice = price;
+	//inventPosition.baseGoodMinPrice = minPrice || price;
+	inventPosition.price = price;
+	inventPosition.minPrice = minPrice;
 	inventPosition.quantity = quantity || 1;
 	inventPosition.posSum = inventPosition.baseSum = inventPosition.quantity * inventPosition.price;
 	inventPosition.vatTag = vatTag;

@@ -86,13 +86,6 @@ class AmountInput extends React.Component {
 			this.setSelectionRange(this.state.startPos);
 	}
 
-	// componentWillReceiveProps(props) {
-	// 	if (props && props.value != this.props.value) {
-	// 		const {viewValue, startPos}=this.parseValue(props.value);
-	// 		this.setState({viewValue, startPos});
-	// 	}
-	// }
-
 	isEqualValues(oldValue, newValue) {
 		const parseOld = parseNumber(oldValue);
 		const parseNew = parseNumber(newValue);
@@ -142,8 +135,6 @@ class AmountInput extends React.Component {
 
 		if (!val.replace)
 			val = val.toString();
-
-		// val = trimValidLength(cleanNumber(val, true), ',');
 
 		const clean = trimValidLength(cleanValue(val, false), '.');
 		const value = parseFloatOrNull(clean);
@@ -196,31 +187,6 @@ class AmountInput extends React.Component {
 					viewValue = '0,00';
 					startPos = calculateStart(el.selectionStart, clean, viewValue);
 				}
-				//if (isDeleting) {
-				// if (val === '0' || val === '00')
-				// 	viewValue = '';
-				// else if (val === '0,') {
-				// 	viewValue = '0';
-				// 	startPos = 1;
-				// }
-				//viewValue = val;
-				//}
-				//else {
-				// if (!val || val === '0') {
-				// 	viewValue = '0';
-				// 	startPos = 1;
-				// } else if (val === '0,') {
-				// 	viewValue = '0,';
-				// 	startPos = 2;
-				// }
-				// else if (val === '0,0') {
-				// 	viewValue = '0,0';
-				// 	startPos = 3;
-				// } else {
-				// 	viewValue = '';
-				// }
-				//viewValue = val;
-				//}
 			}
 		}
 

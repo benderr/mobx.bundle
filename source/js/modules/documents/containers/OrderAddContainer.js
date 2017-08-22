@@ -86,7 +86,7 @@ class OrderAddContainer extends DefaultLayerLayout {
 
 		if (measure == MEASURE_TYPE.PCS) {
 			const str = quantity ? quantity.toString() : '';
-			if (!/^\d$/.test(str))
+			if (!/^\d*$/.test(str))
 				return {quantity: 'Укажите целое число'};
 		}
 		return {};

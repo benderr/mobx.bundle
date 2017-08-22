@@ -61,6 +61,8 @@ export const actionHandlers = {
 	},
 	[actions.ADD_PRODUCT]: (state, {product}) => {
 		const inventPosition = create(product);
+		const positions = state.getIn(['createOrder', 'products']);
+		inventPosition.posNum = positions.size;
 		return state.updateIn(['createOrder', 'products'], products => products.setIn([inventPosition.id], fromJS(inventPosition)));
 	},
 	[actions.REMOVE_PRODUCT]: (state, {id}) => {
