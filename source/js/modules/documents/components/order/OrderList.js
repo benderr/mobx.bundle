@@ -54,7 +54,7 @@ class OrderList extends React.Component {
 				</div>
 				<div class="table_row  row_link_search">
 					<input type="search" class="small  w100"
-						   placeholder="Номер документа или сумма"
+						   placeholder="Номер документа, комментарий или сумма"
 						   onChange={onChangeFilter}/>
 				</div>
 				<LoaderPanel loading={loadingFull}
