@@ -101,6 +101,7 @@ class OrderProductForm extends React.Component {
 						<div class="input_title">Ед. изм.</div>
 						<SelectField name="measure"
 									 clearable={false}
+									 tipPlace="top"
 									 required="Выберите ед. изм."
 									 className="small"
 									 options={MEASURE_OPTIONS}/>
@@ -109,6 +110,7 @@ class OrderProductForm extends React.Component {
 						<div class="input_title">НДС</div>
 						<SelectField name="vatTag"
 									 clearable={false}
+									 tipPlace="top"
 									 required="Выберите НДС"
 									 className="small"
 									 options={VAT_TAG_OPTIONS}/>
