@@ -17,7 +17,7 @@ function* authorize(email, pass, redirectUrl) {
 
 		try {	// TODO btoa - не поддерживает кириллические символы
 			token = encrypt(email, pass);
-		} catch (err) { throw {status: 701}; }
+		} catch (err) { throw {status: 401}; }
 
 		const profile = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
