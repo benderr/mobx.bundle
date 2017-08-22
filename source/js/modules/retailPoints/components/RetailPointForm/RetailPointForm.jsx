@@ -31,7 +31,7 @@ class RetailPointForm extends React.Component {
     }
 
     render() {
-        const {onSave, onCancel, onDelete, points, loading} = this.props;
+        const {onSave, onCancel, onDelete, points, loading, id} = this.props;
         const {handleSubmit, submitting, isIP, productsSource, showProductSources, showDelete} = this.props;
         const vatTags = VAT_TAG_OPTIONS.filter(s => s.value != '0');
 
@@ -40,6 +40,15 @@ class RetailPointForm extends React.Component {
 
                 {showProductSources &&
                 <NextPointSettings points={points} productsSource={productsSource}/>}
+
+                {id &&
+                <div class="form_group form_horizontal">
+                    <div class="property_label col three">Идентификатор</div>
+                    <div class="property_value col nine">
+                        <div className="c_grey36 m_top_15 f_small">{id}</div>
+                    </div>
+                </div>
+                }
 
                 <div class="form_group form_horizontal">
                     <div class="property_label col three">Название</div>
@@ -154,12 +163,14 @@ RetailPointForm = connect(
         const points = props.points;
         const showProductSources = points && points.length > 0 && (initialValues && initialValues.isNew);
         const showDelete = initialValues && !initialValues.isNew;
+        const id = showDelete && initialValues && initialValues.id;
         return {
             isIP,
             productsSource,
             showProductSources,
             showDelete,
-            initialValues
+            initialValues,
+            id
         }
     }
 )(RetailPointForm);
