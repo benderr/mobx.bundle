@@ -6,7 +6,6 @@ build
 _nogit
 .idea/
 Denis
-coverage
 
 *.codekit
 markup/html
