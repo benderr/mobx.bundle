@@ -13,12 +13,12 @@ const CurrencySymbol = ({value}) => {
 	return null;
 };
 
-const AmountFormat = ({value, currency = 'RUR', def = ''}) => {
+const AmountFormat = ({value, currency = 'RUR', def = '', className = ''}) => {
 	if (isEmpty(value))
 		return def ? (<span>{def}</span>) : null;
 	const val = parseFloat(cleanValue(value));
 	const formatted = !isNaN(val) ? accounting.formatNumber(val, 2, " ") : def;
-	return (<span>{formatted}&nbsp;<CurrencySymbol value={currency}/></span>);
+	return (<span className={className}>{formatted}&nbsp;<CurrencySymbol value={currency}/></span>);
 };
 
 function cleanValue(val) {
@@ -28,7 +28,8 @@ function cleanValue(val) {
 AmountFormat.propTypes = {
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 	currency: PropTypes.oneOf(['RUR', 'USD', 'EUR']),
-	def: PropTypes.string
+	def: PropTypes.string,
+	className: PropTypes.string
 };
 
 export  default AmountFormat;

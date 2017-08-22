@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types'
-import {parseNumber, cleanValue} from '../helpers/numberHelper'
+import {parseNumber, cleanValue, noZero} from '../helpers/numberHelper'
 
 class NumberInput extends React.Component {
 
@@ -36,11 +36,7 @@ class NumberInput extends React.Component {
 		const parseOld = parseNumber(oldValue);
 		const parseNew = parseNumber(newValue);
 		return parseNew == parseOld ||
-			(parseOld && this.noZero(parseOld) && parseNew == 0);
-	}
-
-	noZero(str) {
-		return str && str.replace ? str.replace(/0*/g, '').replace(/,*/, '').length == 0 : false;
+			(parseOld && noZero(parseOld) && parseNew == 0);
 	}
 
 	parseValue(val) {

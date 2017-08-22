@@ -1,5 +1,5 @@
 import React from 'react';
-import {AmountInput} from 'common/uiElements';
+import {AmountInput, AmountFormat} from 'common/uiElements';
 import {AmountField} from 'common/formElements/fields';
 import {reduxForm} from 'common/formElements'
 import {connect} from 'react-redux';
@@ -22,14 +22,17 @@ class Form extends React.Component {
 			console.log('submit testform', props);
 			this.setState({ff: 1});
 		};
-		const {handleSubmit}=this.props;
+		const {handleSubmit, formState}=this.props;
+
+		const price = formState && formState.get('price');
 
 		return (<form onSubmit={handleSubmit(save)}>
 
 
 			<div className="w100 m_top_10"></div>
 			<AmountField name="price" required="test"/>
-
+			<AmountFormat value={price} className="m_left_5 info_label"/>
+			<div className="w100 m_top_20"></div>
 			<button type="submit" className="button middle wide">отправить</button>
 			<button type="button" onClick={::this.handleReset} className="button middle wide clean">сбросить</button>
 		</form>)
@@ -64,21 +67,19 @@ class TestSelector extends React.Component {
 	}
 
 	render() {
-
 		const {formData}=this.props;
-
-		console.log(formData);
 
 		return (
 			<div class="widget_block">
 				{/*<AmountInput value={this.state.amount} onChange={::this.handleChange}/>*/}
 				<div className="w100 m_top_20"></div>
 				<AmountInput value={this.state.amount2} onChange={::this.handleChange2}/>
+				<AmountFormat value={this.state.amount2} className="m_left_5 info_label"/>
 				<div className="w100 m_top_20"></div>
 
 				<div class="form-group">
 					<h2>Форма 2</h2>
-					<TestAmountForm initialValues={{price: 12}}/>
+					<TestAmountForm formState={formData} initialValues={{price: 12}}/>
 				</div>
 			</div>
 		);
@@ -87,7 +88,7 @@ class TestSelector extends React.Component {
 
 
 function mapStateProps(state) {
-	const formData = getFormValues('testForm')(state);
+	const formData = getFormValues('testForm1')(state);
 	return {formData};
 }
 

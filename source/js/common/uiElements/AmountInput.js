@@ -1,6 +1,7 @@
 import React from 'react';
 import accounting from 'accounting';
 import PropTypes from 'prop-types'
+import {parseNumber, noZero, cleanValue as cleanNumber} from '../helpers/numberHelper'
 
 accounting.settings = {
 	number: {
@@ -30,7 +31,13 @@ function trimValidLength(str, char) {
 
 function cleanValue(val, ignoreSpace = true) {
 	let res = ignoreSpace ? val.replace(/[^0-9\.,]+/g, '') : val.replace(/[^0-9\., ]+/g, '');
-	return res.replace(',', '.').replace('-', '');
+	res = res.replace(/,/g, '.').replace('-', '');
+	const dotPos = res.indexOf('.');
+	if (dotPos > -1) {
+		const output = res.split('.');
+		res = output.shift() + '.' + output.join('');
+	}
+	return res;
 }
 
 
@@ -79,8 +86,22 @@ class AmountInput extends React.Component {
 			this.setSelectionRange(this.state.startPos);
 	}
 
+	// componentWillReceiveProps(props) {
+	// 	if (props && props.value != this.props.value) {
+	// 		const {viewValue, startPos}=this.parseValue(props.value);
+	// 		this.setState({viewValue, startPos});
+	// 	}
+	// }
+
+	isEqualValues(oldValue, newValue) {
+		const parseOld = parseNumber(oldValue);
+		const parseNew = parseNumber(newValue);
+		return parseNew == parseOld ||
+			(parseOld && noZero(parseOld) && parseNew == 0);
+	}
+
 	componentWillReceiveProps(props) {
-		if (props && props.value != this.props.value) {
+		if (props && !this.isEqualValues(this.state.viewValue, props.value)) {
 			const {viewValue, startPos}=this.parseValue(props.value);
 			this.setState({viewValue, startPos});
 		}
@@ -122,6 +143,8 @@ class AmountInput extends React.Component {
 		if (!val.replace)
 			val = val.toString();
 
+		// val = trimValidLength(cleanNumber(val, true), ',');
+
 		const clean = trimValidLength(cleanValue(val, false), '.');
 		const value = parseFloatOrNull(clean);
 		const formattedValue = value ? accounting.formatNumber(value, 2, " ") : '';
@@ -134,25 +157,70 @@ class AmountInput extends React.Component {
 
 		let viewValue = formattedValue;
 
+		// if (!value) {
+		// 	if (!(/^0[,.]?0*/.test(val))) {
+		// 		viewValue = '';
+		// 	} else {
+		// 		if (isDeleting) {
+		// 			if (val === '0' || val === '00')
+		// 				viewValue = '';
+		// 			else if (val === '0,') {
+		// 				viewValue = '0';
+		// 				startPos = 1;
+		// 			}
+		// 		}
+		// 		else {
+		// 			if (!val || val === '0') {
+		// 				viewValue = '0';
+		// 				startPos = 1;
+		// 			} else if (val === '0,') {
+		// 				viewValue = '0,';
+		// 				startPos = 2;
+		// 			}
+		// 			else if (val === '0,0') {
+		// 				viewValue = '0,0';
+		// 				startPos = 3;
+		// 			} else {
+		// 				viewValue = '';
+		// 			}
+		// 		}
+		// 	}
+		// }
+
 		if (!value) {
-			if (!(/^0[,.]?0*/.test(val))) {
+			if (!(/^0[,.]?0*/.test(clean))) {
 				viewValue = '';
 			} else {
-				if (isDeleting) {
-					if (val === '0' || val === '00')
-						viewValue = '';
+				viewValue = clean.replace('.', ',');
+				if (viewValue == '0' || viewValue == '0,' || viewValue == '0,0') {
+					viewValue = '0,00';
+					startPos = calculateStart(el.selectionStart, clean, viewValue);
 				}
-				else {
-					if (!val || val === '0' || val === '0,') {
-						viewValue = '0,';
-						startPos = 2;
-					} else if (!val || val === '0,0') {
-						viewValue = '0,0';
-						startPos = 3;
-					} else {
-						viewValue = '';
-					}
-				}
+				//if (isDeleting) {
+				// if (val === '0' || val === '00')
+				// 	viewValue = '';
+				// else if (val === '0,') {
+				// 	viewValue = '0';
+				// 	startPos = 1;
+				// }
+				//viewValue = val;
+				//}
+				//else {
+				// if (!val || val === '0') {
+				// 	viewValue = '0';
+				// 	startPos = 1;
+				// } else if (val === '0,') {
+				// 	viewValue = '0,';
+				// 	startPos = 2;
+				// }
+				// else if (val === '0,0') {
+				// 	viewValue = '0,0';
+				// 	startPos = 3;
+				// } else {
+				// 	viewValue = '';
+				// }
+				//viewValue = val;
+				//}
 			}
 		}
 
@@ -160,12 +228,12 @@ class AmountInput extends React.Component {
 	}
 
 	handleChange(event) {
-		//event.preventDefault();
 		let val = event.target.value;
 		const {viewValue, startPos}=this.parseValue(val);
-		this.setSelectionRange(startPos);
-		this.setState({viewValue, startPos});
-		this.props.onChange(viewValue, event);
+		this.setState({viewValue, startPos}, () => {
+			this.setSelectionRange(startPos);
+			this.props.onChange(viewValue, event);
+		});
 	}
 
 	setSelectionRange(startPos) {
