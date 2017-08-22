@@ -51,7 +51,7 @@ const ChangePasswordComponent = props => {
 								type="password"
 								validate={[
 									isValidPasswordLength('Минимальная длина пароля – 8 символов'),
-									isValidPassword('Пароль должен содержать заглавные<br/>и строчные буквы, цифры и знаки<br/>!?.,@#$^&*()_+<>"№%:;()_+[]{}'),
+									isValidPassword('Пароль должен содержать заглавные и строчные<br/>буквы латинского алфавита, цифры и знаки<br/>!?.,@#$^&*()_+<>"№%:;()_+[]{}'),
 								]}
 								required="Укажите новый пароль"/>
 				</div>
@@ -64,7 +64,7 @@ const ChangePasswordComponent = props => {
 								type="password"
 								validate={[
 									isValidPasswordLength('Минимальная длина пароля – 8 символов'),
-									isValidPassword('Пароль должен содержать заглавные<br/>и строчные буквы и цифры'),
+									isValidPassword('Пароль должен содержать заглавные и строчные<br/>буквы латинского алфавита, цифры и знаки<br/>!?.,@#$^&*()_+<>"№%:;()_+[]{}'),
 									isValidRepeatPassword('Пароли не совпадают'),
 								]}
 								required="Укажите новый пароль"/>

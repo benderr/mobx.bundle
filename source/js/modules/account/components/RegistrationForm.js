@@ -135,7 +135,7 @@ class RegistrationForm extends React.Component {
 										tipPlace="bottom"
 										validate={[
 											validator('Минимальная длина пароля – 8 символов', validPasswordLength),
-											validator('Пароль должен содержать заглавные<br/>и строчные буквы, цифры и знаки<br/>!?.,@#$^&*()_+<>"№%:;()_+[]{}', validPassword)
+											validator('Пароль должен содержать заглавные и строчные<br/>буквы латинского алфавита, цифры и знаки<br/>!?.,@#$^&*()_+<>"№%:;()_+[]{}', validPassword)
 										]}
 										class="w100"/>
 							<div class="input_title">Придумайте пароль для входа, не менее 8 символов</div>
