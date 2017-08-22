@@ -3,16 +3,21 @@ import {LOGIN, LOGOUT} from '../enums/actions'
 import {login, checkingAccessStart, checkingAccessStop, clearApp} from '../actions/loginActions'
 import localStorage from 'core/storage/localStorage'
 import {isServerError} from 'infrastructure/helpers/errorHelper'
-import * as dataContext  from '../dataProvider/accountDataContext'
+import * as dataContext from '../dataProvider/accountDataContext'
 import * as accountSelectors from '../selectors/accountSelectors'
 import * as retailPointsSaga from '../../retailPoints/sagas/retailPointsSaga'
 import {encrypt} from 'infrastructure/utils/tokenCrypt'
+
 const xToken = 'X-TOKEN';
 const signInLocation = {pathname: '/signin'};
 
 function* authorize(email, pass, redirectUrl) {
 	try {
-		const token = encrypt(email, pass);
+		let token;
+		try {	// TODO btoa - не поддерживает кириллические символы
+			token = encrypt(email, pass);
+		} catch (err) { throw {status: 401}; }
+
 		const profile = yield call(dataContext.profile, token);
 		yield call(localStorage.setItem, xToken, token);
 		yield put(login.success({profile, token}));
@@ -86,7 +91,7 @@ function* initApp() {
 }
 
 
-export default function*() {
+export default function* () {
 	try {
 		yield all([
 			fork(initApp),
