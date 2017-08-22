@@ -58,7 +58,6 @@ class NumberInput extends React.Component {
 		this.setState({viewValue}, () => {
 			this.props.onChange(viewValue, event);
 		});
-
 	}
 
 	render() {

@@ -12,6 +12,7 @@ import {submit, reset, SubmissionError, formValueSelector, change} from 'redux-f
 import {Button, notify} from 'common/uiElements'
 import {getDefault} from '../dataProvider/inventPositionFactory'
 import retailPointHOC from 'components/HOC/retailPointRequiredHOC'
+import {MEASURE_TYPE} from 'modules/core/productEnums';
 
 const orderFormName = 'orderForm';
 
@@ -78,6 +79,19 @@ class OrderAddContainer extends DefaultLayerLayout {
 		}
 	}
 
+	validateProductForm(allValues) {
+		//если выбрали шт., то нужно проверять на целочисленность
+		const measure = allValues.get('measure');
+		const quantity = allValues.get('quantity');
+
+		if (measure == MEASURE_TYPE.PCS) {
+			const str = quantity ? quantity.toString() : '';
+			if (!/^\d$/.test(str))
+				return {quantity: 'Укажите целое число'};
+		}
+		return {};
+	}
+
 	render() {
 		const {saving, products, productSearchState, totalSum, error} = this.props;
 
@@ -98,7 +112,8 @@ class OrderAddContainer extends DefaultLayerLayout {
 									  productSearchState={productSearchState}
 									  initialValues={this.state.productFormState}
 									  onSearchProducts={::this.handleSearchProducts}
-									  onSave={::this.handleAddProduct}/>
+									  onSave={::this.handleAddProduct}
+									  validate={::this.validateProductForm}/>
 					<OrderProductTable canEdit={true}
 									   totalSum={totalSum}
 									   onRemove={::this.handleRemoveProduct}
@@ -127,8 +142,10 @@ function mapStateToProps(state, props) {
 	const totalSum = orderSelectors.getFormTotalSum(state);
 	const currentOrderNumber = orderFormSelector(state, 'docNum');
 	const docNumChanged = orderFormSelector(state, 'docNumChanged');
-	return {saving, saved, products, totalSum, productSearchState, error,
-		orderNewNumber, currentOrderNumber, docNumChanged};
+	return {
+		saving, saved, products, totalSum, productSearchState, error,
+		orderNewNumber, currentOrderNumber, docNumChanged
+	};
 }
 
 function mapDispatchToProps(dispatch) {

@@ -84,7 +84,7 @@ class OrderProductForm extends React.Component {
 					<div class="add_order_form__amount input_group_title">
 						<div class="input_title">Кол-во</div>
 						<NumberField name="quantity" float={true}
-									 class="small" />
+									 class="small"/>
 					</div>
 					<div class="add_order_form__units input_group_title">
 						<div class="input_title">Ед. изм.</div>

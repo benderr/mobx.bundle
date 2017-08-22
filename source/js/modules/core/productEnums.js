@@ -1,7 +1,13 @@
+export const MEASURE_TYPE = {
+	PCS: 'pcs',
+	KG: 'kg',
+	LTR: 'ltr'
+};
+
 export const MEASURE_OPTIONS = [
-	{label: 'Штука', value: 'pcs', short: 'шт'},
-	{label: 'Килограмм', value: 'kg', short: 'кг'},
-	{label: 'Литр', value: 'ltr', short: 'л'}];
+	{label: 'Штука', value: MEASURE_TYPE.PCS, short: 'шт'},
+	{label: 'Килограмм', value: MEASURE_TYPE.KG, short: 'кг'},
+	{label: 'Литр', value: MEASURE_TYPE.LTR, short: 'л'}];
 
 export const ALCOHOL_OPTIONS = [
 	{label: 'Обычный', value: 'NO_ALCOHOL'},
