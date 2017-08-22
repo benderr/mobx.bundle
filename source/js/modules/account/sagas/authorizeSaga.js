@@ -14,7 +14,6 @@ const signInLocation = {pathname: '/signin'};
 function* authorize(email, pass, redirectUrl) {
 	try {
 		let token;
-
 		try {	// TODO btoa - не поддерживает кириллические символы
 			token = encrypt(email, pass);
 		} catch (err) { throw {status: 401}; }

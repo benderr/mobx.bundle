@@ -17,7 +17,7 @@ export const firstSymbolCyr = str => {
 };
 
 export const validPassword = (password) => {
-	return !isEmpty(password) && /(?=.*\d)(?=.*\D)(?=.*[А-ЯЁ,A-Z])(?=.*[а-яё,a-z])/.test(password); //должны быть буквы и цифры, заглавные и маленькие
+	return !isEmpty(password) && /^[A-Za-z0-9!"№%:;@#$%^&*(){}?_+=<>\~`§.\[\],\\\/|]+$/g.test(password); //должны быть буквы и цифры, заглавные и маленькие
 };
 
 export const validPasswordLength = (password) => {
