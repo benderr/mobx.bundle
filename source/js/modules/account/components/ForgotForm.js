@@ -78,10 +78,6 @@ class ForgotForm extends React.Component {
 	}
 }
 
-const ForgotForm1 = props => {
-
-};
-
 ForgotForm.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	onSendEmail: PropTypes.func.isRequired,
