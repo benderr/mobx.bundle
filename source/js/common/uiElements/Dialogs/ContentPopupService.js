@@ -38,8 +38,8 @@ class ContentPopupService extends React.Component {
 					{!disableClose && <a class="popup_close icon-close" onClick={::this.handleCloseClick}></a>}
 					<div>
 						{children}
-						{closeName && <div class="popup_panel">
-							<button class="button" onClick={::this.handleCloseClick}>{closeName}</button>
+						{closeName && <div class="popup_panel center_xy">
+							<button class="button small light" onClick={::this.handleCloseClick}>{closeName}</button>
 						</div>}
 					</div>
 				</div>
