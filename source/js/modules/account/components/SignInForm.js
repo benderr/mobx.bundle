@@ -14,6 +14,8 @@ const SignInForm = props => {
 			return '';
 		if (error.status == 401)
 			return 'Неверная электронная почта или пароль!';
+		if (error.status == 701)
+			return 'Пароль может состоять только из латинских символов';
 		return 'Произошла неизвестная ошибка.'
 	};
 
