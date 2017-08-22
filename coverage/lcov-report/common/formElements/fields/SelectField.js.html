@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for common/formElements/fields/SelectField.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">common/formElements/fields</a> SelectField.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/2</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/4</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import {Field} from 'redux-form/immutable';
+import SelectRender from '../SelectRender';
+import PropTypes from 'prop-types';
+import {getRequiredValidator} from '../validationHelpers/formFieldHelpers'
+&nbsp;
+const stringOrNode = PropTypes.oneOfType([
+	PropTypes.string,
+	PropTypes.node
+]);
+&nbsp;
+class SelectField extends React.Component {
+	static propTypes = {
+		validate: PropTypes.oneOfType([PropTypes.func, PropTypes.arrayOf(PropTypes.func)]),
+		addLabelText: PropTypes.string,       // placeholder displayed when you want to add a label on a multi-value input
+		'aria-describedby': PropTypes.string,	// HTML ID(s) of element(s) that should be used to describe this input (for assistive tech)
+		'aria-label': PropTypes.string,       // Aria label (for assistive tech)
+		'aria-labelledby': PropTypes.string,	// HTML ID of an element that should be used as the label (for assistive tech)
+		arrowRenderer: PropTypes.func,				// Create drop-down caret element
+		autoBlur: PropTypes.bool,             // automatically blur the component when an option is selected
+		autofocus: PropTypes.bool,            // autofocus the component on mount
+		autosize: PropTypes.bool,             // whether to enable autosizing or not
+		backspaceRemoves: PropTypes.bool,     // whether backspace removes an item if there is no text input
+		backspaceToRemoveMessage: PropTypes.string,  // Message to use for screenreaders to press backspace to remove the current item - {label} is replaced with the item label
+		className: PropTypes.string,          // className for the outer element
+		clearAllText: stringOrNode,                 // title for the "clear" control when multi: true
+		clearRenderer: PropTypes.func,        // create clearable x element
+		clearValueText: stringOrNode,               // title for the "clear" control
+		clearable: PropTypes.bool,            // should it be possible to reset value
+		deleteRemoves: PropTypes.bool,        // whether backspace removes an item if there is no text input
+		delimiter: PropTypes.string,          // delimiter to use to join multiple values for the hidden field value
+		disabled: PropTypes.bool,             // whether the Select is disabled or not
+		escapeClearsValue: PropTypes.bool,    // whether escape clears the value when the menu is closed
+		filterOption: PropTypes.func,         // method to filter a single option (option, filterString)
+		filterOptions: PropTypes.any,         // boolean to enable default filtering or function to filter the options array ([options], filterString, [values])
+		ignoreAccents: PropTypes.bool,        // whether to strip diacritics when filtering
+		ignoreCase: PropTypes.bool,           // whether to perform case-insensitive filtering
+		inputProps: PropTypes.object,         // custom attributes for the Input
+		inputRenderer: PropTypes.func,        // returns a custom input component
+		instanceId: PropTypes.string,         // set the components instanceId
+		isLoading: PropTypes.bool,            // whether the Select is loading externally or not (such as options being loaded)
+		joinValues: PropTypes.bool,           // joins multiple values into a single form field with the delimiter (legacy mode)
+		labelKey: PropTypes.string,           // path of the label value in option objects
+		matchPos: PropTypes.string,           // (any|start) match the start or entire string when filtering
+		matchProp: PropTypes.string,          // (any|label|value) which option property to filter on
+		menuBuffer: PropTypes.number,         // optional buffer (in px) between the bottom of the viewport and the bottom of the menu
+		menuContainerStyle: PropTypes.object, // optional style to apply to the menu container
+		menuRenderer: PropTypes.func,         // renders a custom menu with options
+		menuStyle: PropTypes.object,          // optional style to apply to the menu
+		multi: PropTypes.bool,                // multi-value input
+		name: PropTypes.string,               // generates a hidden &lt;input /&gt; tag with this field name for html forms
+		noResultsText: stringOrNode,                // placeholder displayed when there are no matching search results
+		onBlur: PropTypes.func,               // onBlur handler: function (event) {}
+		onBlurResetsInput: PropTypes.bool,    // whether input is cleared on blur
+		onChange: PropTypes.func,             // onChange handler: function (newValue) {}
+		onClose: PropTypes.func,              // fires when the menu is closed
+		onCloseResetsInput: PropTypes.bool,		// whether input is cleared when menu is closed through the arrow
+		onFocus: PropTypes.func,              // onFocus handler: function (event) {}
+		onInputChange: PropTypes.func,        // onInputChange handler: function (inputValue) {}
+		onInputKeyDown: PropTypes.func,       // input keyDown handler: function (event) {}
+		onMenuScrollToBottom: PropTypes.func, // fires when the menu is scrolled to the bottom; can be used to paginate options
+		onOpen: PropTypes.func,               // fires when the menu is opened
+		onValueClick: PropTypes.func,         // onClick handler for value labels: function (value, event) {}
+		openAfterFocus: PropTypes.bool,       // boolean to enable opening dropdown when focused
+		openOnFocus: PropTypes.bool,          // always open options menu on focus
+		optionClassName: PropTypes.string,    // additional class(es) to apply to the &lt;Option /&gt; elements
+		optionComponent: PropTypes.func,      // option component to render in dropdown
+		optionRenderer: PropTypes.func,       // optionRenderer: function (option) {}
+		options: PropTypes.array,             // array of options
+		pageSize: PropTypes.number,           // number of entries to page when using page up/down keys
+		placeholder: stringOrNode,                  // field placeholder, displayed when there's no value
+		resetValue: PropTypes.any,            // value to use when you clear the control
+		scrollMenuIntoView: PropTypes.bool,   // boolean to enable the viewport to shift so that the full menu fully visible when engaged
+		searchable: PropTypes.bool,           // whether to enable searching feature or not
+		simpleValue: PropTypes.bool,          // pass the value to onChange as a simple value (legacy pre 1.0 mode), defaults to false
+		style: PropTypes.object,              // optional style to apply to the control
+		tabIndex: PropTypes.string,           // optional tab index of the control
+		tabSelectsValue: PropTypes.bool,      // whether to treat tabbing out while focused to be value selection
+		value: PropTypes.any,                 // initial field value
+		valueComponent: PropTypes.func,       // value component to render
+		valueKey: PropTypes.string,           // path of the label value in option objects
+		valueRenderer: PropTypes.func,        // valueRenderer: function (option) {}
+		wrapperStyle: PropTypes.object,       // optional style to apply to the component wrapper
+		creatable: PropTypes.bool, 			  // если можно вводить свой вариант (текст)
+		wrapperClassName: PropTypes.string,    // стили для дива в который будет завернуть компонент при натягивании валидации
+		required: PropTypes.string,
+		requiredDisable: PropTypes.bool
+	};
+&nbsp;
+<span class="fstat-no" title="function not covered" >	re</span>nder() {
+		const {onChange, onBlur, required, requiredDisable, validate = <span class="branch-0 cbranch-no" title="branch not covered" >[],</span> placeholder = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span> ...props} = <span class="cstat-no" title="statement not covered" >this.props;</span>
+		const validators = <span class="cstat-no" title="statement not covered" >[...getRequiredValidator({required, requiredDisable}), ...validate];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return ( &lt;Field component={SelectRender}</span>
+						onSelectChange={onChange}
+						onSelectBlur={onBlur}
+						placeholder={placeholder}
+						validate={validators}
+						{...props} /&gt;);
+	}
+}
+&nbsp;
+export default SelectField;
+&nbsp;
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 17:38:13 GMT+0500 (+05)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

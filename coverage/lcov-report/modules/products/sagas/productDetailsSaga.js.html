@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for modules/products/sagas/productDetailsSaga.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">modules/products/sagas</a> productDetailsSaga.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.71% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/35</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>2/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">16.67% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25.71% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/35</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {call, put, takeEvery, select, all} from 'redux-saga/effects'
+import {debounce} from 'redux-saga-debounce-effect'
+import * as actions from '../enums/actions'
+import * as productActions from '../actions/productActions'
+import * as modifierActions from '../actions/modifierActions'
+import * as dataContext from '../dataProvider/productDataContext'
+import {getPointId} from 'modules/core/selectors'
+import {generateNumber} from 'infrastructure/utils/uuidGenerator'
+import {push} from 'connected-react-router'
+import {notify} from 'common/uiElements/Notify'
+import createSearchProductsSaga from 'modules/core/sagas/createSearchProductsSaga'
+import logger from 'infrastructure/utils/logger'
+import CATALOG_TYPE from '../enums/catalogType'
+import {isServerError} from 'infrastructure/helpers/errorHelper'
+&nbsp;
+function* <span class="fstat-no" title="function not covered" >createProduct(</span>) {
+	const inventCode = <span class="cstat-no" title="statement not covered" >generateNumber().toString();</span>
+<span class="cstat-no" title="statement not covered" >	yield setProductToLayer({inventCode});</span>
+	const retailPointId = <span class="cstat-no" title="statement not covered" >yield select(getPointId);</span>
+<span class="cstat-no" title="statement not covered" >	yield put(push({pathname: `/product/add/point/${retailPointId}/code/${inventCode}`}));</span>
+}
+&nbsp;
+function* <span class="fstat-no" title="function not covered" >setProductToLayer(</span>{inventCode}) {
+	const product = <span class="cstat-no" title="statement not covered" >{</span>
+		inventCode: inventCode,
+		price: null,
+		alcoholType: 'NO_ALCOHOL',
+		barcode: inventCode,
+		minPrice: null,
+		measure: 'pcs',
+		vatTag: "0",
+		catalogType: CATALOG_TYPE.INVENTORY,
+		modifiers: [],
+		isNew: true
+	};
+<span class="cstat-no" title="statement not covered" >	yield put(productActions.addProduct({product}));</span>
+}
+&nbsp;
+function* <span class="fstat-no" title="function not covered" >getProductDetails(</span>{point, inventCode}) {
+<span class="cstat-no" title="statement not covered" >	try {</span>
+		const product = <span class="cstat-no" title="statement not covered" >yield call(dataContext.getProduct, point, inventCode);</span>
+		const modifierGroups = <span class="cstat-no" title="statement not covered" >yield call(dataContext.getModifierGroupsByProduct, point, inventCode);</span>
+<span class="cstat-no" title="statement not covered" >		yield put(modifierActions.setProductModifierGroups({groups: modifierGroups}));</span>
+<span class="cstat-no" title="statement not covered" >		yield put(productActions.getProductDetails.success({product}));</span>
+	}
+	catch (error) {
+<span class="cstat-no" title="statement not covered" >		yield put(productActions.getProductDetails.failure({inventCode, error: error.data}));</span>
+<span class="cstat-no" title="statement not covered" >		if (!isServerError(error))</span>
+<span class="cstat-no" title="statement not covered" >			throw error;</span>
+	}
+}
+&nbsp;
+export function* saveProductDetailsProcess({product, point}) {
+	try {
+		product.separateModifiers = true;
+		const saveProduct = product.isNew ? dataContext.addProduct : <span class="branch-1 cbranch-no" title="branch not covered" >dataContext.saveProduct;</span>
+		const updatedProduct = yield call(saveProduct, point, product);
+		yield put(productActions.saveProductDetails.success({product: updatedProduct}));
+		<span class="missing-if-branch" title="else path not taken" >E</span>if (product.isNew) {
+			yield put(productActions.addProductToList({product: updatedProduct}));
+		}
+		else {
+<span class="cstat-no" title="statement not covered" >			yield put(productActions.updateProductInList({product: updatedProduct}));</span>
+		}
+		yield put(notify.success('Данные успешно сохранены'));
+	}
+	catch (error) {
+<span class="cstat-no" title="statement not covered" >		yield put(notify.error('Не удалось сохранить товар'));</span>
+<span class="cstat-no" title="statement not covered" >		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));</span>
+<span class="cstat-no" title="statement not covered" >		if (!isServerError(error))</span>
+<span class="cstat-no" title="statement not covered" >			throw error;</span>
+	}
+}
+&nbsp;
+function* <span class="fstat-no" title="function not covered" >removeProduct(</span>{point, inventCode}) {
+<span class="cstat-no" title="statement not covered" >	try {</span>
+<span class="cstat-no" title="statement not covered" >		yield call(dataContext.removeProduct, point, inventCode);</span>
+<span class="cstat-no" title="statement not covered" >		yield put(productActions.removeProduct.success({inventCode}));</span>
+	}
+	catch (error) {
+<span class="cstat-no" title="statement not covered" >		yield put(productActions.removeProduct.failure({inventCode, error}));</span>
+<span class="cstat-no" title="statement not covered" >		if (!isServerError(error))</span>
+<span class="cstat-no" title="statement not covered" >			throw error;</span>
+	}
+}
+&nbsp;
+const searchProduct = createSearchProductsSaga(actions.SEARCH_PRODUCTS);
+&nbsp;
+export default <span class="fstat-no" title="function not covered" >fu</span>nction*() {
+<span class="cstat-no" title="statement not covered" >	yield all([</span>
+		takeEvery(actions.GET_PRODUCT_DETAIL.REQUEST, getProductDetails),
+		takeEvery(actions.SAVE_PRODUCT_DETAIL.REQUEST, saveProductDetailsProcess),
+		takeEvery(actions.CREATE_PRODUCT, createProduct),
+		takeEvery(actions.SET_NEW_PRODUCT, setProductToLayer),
+		searchProduct,
+		takeEvery(actions.REMOVE_PRODUCT.REQUEST, removeProduct),
+	])
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 17:38:13 GMT+0500 (+05)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for modules/products/dataProvider/productMapper.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">modules/products/dataProvider</a> productMapper.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.03% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>9/29</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">7.69% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.62% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>9/26</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import {uuid} from 'infrastructure/utils/uuidGenerator'
+import CATALOG_TYPE from '../enums/catalogType'
+&nbsp;
+export const toClientProduct = <span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	return {</span>
+		accountingQuantity: item.accountingQuantity,
+		additionalPrices: item.additionalPrices,
+		alcVolume: item.alcVolume,
+		alcoholType: item.alcoholType,
+		articul: item.articul,
+		barcode: item.barcode || item.inventCode,
+		barcodes: item.barcodes,
+		defaultQuantity: item.defaultQuantity,
+		deptCode: item.deptCode,
+		extendedOptions: item.extendedOptions,
+		groupId: item.groupId,
+		inventCode: item.inventCode,
+		inventGroup: item.inventGroup,
+		isService: item.isService,
+		measure: item.measure,
+		minPrice: item.minPrice,
+		name: item.name,
+		//optionalModifiers: item.optionalModifiers,
+		//optionalNoModifiers: item.optionalNoModifiers,
+		options: item.options,
+		packCapacity: item.packCapacity,
+		packingMode: item.packingMode,
+		price: item.price,
+		printText: item.printText,
+		productVCode: item.productVCode,
+		remainDate: item.remainDate,
+		remainInStock: item.remainInStock,
+		//requiredModifiers: item.requiredModifiers,
+		//modifiers: mapModifiers(item.requiredModifiers),//todo выпилить
+		sellRestrictPeriods: item.sellRestrictPeriods,
+		shortName: item.shortName,
+		vatTag: item.vatTag,
+		volume: item.volume,
+		catalogType: item.catalogType || ''
+	}
+};
+&nbsp;
+export const toClient = (data) =&gt; {
+	let productsList = data.data.map(toClientProduct);
+	return {pos: data.pos, totalCount: data.total_count, productsList};
+};
+&nbsp;
+export const toClientItemGroups = <span class="fstat-no" title="function not covered" >da</span>ta =&gt; {
+	const categoryList = <span class="cstat-no" title="statement not covered" >data.data.map(<span class="fstat-no" title="function not covered" >g </span>=&gt; (<span class="cstat-no" title="statement not covered" >{code: g.code, name: g.name})</span>);</span>
+<span class="cstat-no" title="statement not covered" >	return {pos: data.pos, totalCount: data.total_count, categoryList};</span>
+};
+&nbsp;
+export const toClientImportResult = <span class="fstat-no" title="function not covered" >da</span>ta =&gt; {
+	const mapProduct = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >it</span>em =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
+		barcode: item.inventItem.barcode,
+		name: item.inventItem.name,
+		rowNumber: item.rowNumber
+	});
+<span class="cstat-no" title="statement not covered" >	return {</span>
+		successCount: data.successfullyImportedCnt || 0,
+		failedCount: data.failedToImportCnt || 0,
+		ignoredSheets: data.ignoredSheets || [],
+		importResults: data.importResults.map(<span class="fstat-no" title="function not covered" >sh</span>eet =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+				name: sheet.sheetName,
+				points: sheet.retailPointNames || [],
+				duplicates: (sheet.rowImportDuplicateResults || []).map(mapProduct),
+				errors: (sheet.rowImportErrorResults || []).map(<span class="fstat-no" title="function not covered" >s </span>=&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+					error: s.importError,
+					rowNumber: s.rowNumber,
+					duplicate: s.duplicate
+				})),
+				success: (sheet.rowImportSuccessResults || []).map(mapProduct)
+			}
+		))
+	}
+};
+&nbsp;
+export const toClientModifierGroup = <span class="fstat-no" title="function not covered" >gr</span>oup =&gt; {
+<span class="cstat-no" title="statement not covered" >	group.modifiers = (group.modifiers || []).map(<span class="fstat-no" title="function not covered" >m </span>=&gt; <span class="cstat-no" title="statement not covered" >toClientModifier(m, group.code))</span>;</span>
+<span class="cstat-no" title="statement not covered" >	return group;</span>
+};
+&nbsp;
+export const toClientModifier = <span class="fstat-no" title="function not covered" >(m</span>, groupCode) =&gt; {
+<span class="cstat-no" title="statement not covered" >	m.code = uuid();</span>
+<span class="cstat-no" title="statement not covered" >	m.selected = m.base;</span>
+<span class="cstat-no" title="statement not covered" >	m.groupCode = groupCode;</span>
+<span class="cstat-no" title="statement not covered" >	return m;</span>
+};
+&nbsp;
+export const toServerModifierGroup = <span class="fstat-no" title="function not covered" >gr</span>oup =&gt; {
+	const serverGroup = <span class="cstat-no" title="statement not covered" >{...group, catalogType: CATALOG_TYPE.MODIFIER_GROUP};</span>
+<span class="cstat-no" title="statement not covered" >	serverGroup.modifiers = (group.modifiers || []).map(<span class="fstat-no" title="function not covered" >m </span>=&gt;</span>
+		(<span class="cstat-no" title="statement not covered" >{</span>
+			name: m.name,
+			goodsName: m.goodsName,
+			barcode: m.barcode,
+			qty: m.qty,
+			price: m.price,
+			base: m.selected || false
+		}));
+&nbsp;
+<span class="cstat-no" title="statement not covered" >	return serverGroup;</span>
+};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 17:38:13 GMT+0500 (+05)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

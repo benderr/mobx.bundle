@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for core/http/api.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">core/http</a> api.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.45% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>27/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/14</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">55.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>10/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>27/45</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">78x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">546x</span>
+<span class="cline-any cline-yes">546x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">79x</span>
+<span class="cline-any cline-yes">79x</span>
+<span class="cline-any cline-yes">79x</span>
+<span class="cline-any cline-yes">79x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">33x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/* global XMLHttpRequest, ActiveXObject */
+&nbsp;
+//import Q from 'q'
+//import config from 'config'
+//import {Http} from './http'
+&nbsp;
+function createApi(http) {
+	//let beacon = sendBeacon;
+	// if (__CLIENT__ &amp;&amp; 'sendBeacon' in navigator) {
+	//     beacon = navigator.sendBeacon;
+	// }
+&nbsp;
+&nbsp;
+	let httpMixin = {
+		http(method, url, params, options) {
+<span class="cstat-no" title="statement not covered" >			return http.http(normalizeHttpOptions(method, url, params, options));</span>
+		},
+		// beacon(url, params) {
+		//     var blob = new Blob([JSON.stringify(params)], {
+		//         type: 'application/json; charset=UTF-8'
+		//     });
+		//     return Q(beacon(url, blob)).then(
+		//         function (result) {
+		//             return Q.resolve(result);
+		//         },
+		//         function (error) {
+		//             return Q.reject(error);
+		//         }
+		//     );
+		// }
+	};
+&nbsp;
+	httpMixin = ['get', 'post', 'put', 'patch', 'delete', 'options'].reduce(bindHttpShortCut, httpMixin);
+&nbsp;
+	const api = createResourse(getResourceProto());
+	api.generatePath = <span class="fstat-no" title="function not covered" >fu</span>nction () {
+<span class="cstat-no" title="statement not covered" >		return __API_URL__;</span>
+	};
+&nbsp;
+	return api;
+&nbsp;
+	function getResourceProto() {
+		return {
+			http: httpMixin,
+&nbsp;
+			getResource(resourseName){
+<span class="cstat-no" title="statement not covered" >				return function <span class="fstat-no" title="function not covered" >resourseFactory(</span>id) {</span>
+<span class="cstat-no" title="statement not covered" >					return this[normalizeResourceName(resourseName)](id);</span>
+				}.bind(this);
+			},
+&nbsp;
+			addResource: addResource
+		};
+	}
+&nbsp;
+	function addResource(name, alias) {
+		var parentResource = this;
+		var methodName = normalizeResourceName(name);
+&nbsp;
+		parentResource['$$prto'][methodName] = resource;
+&nbsp;
+		var resourceProto = getResourceProto();
+&nbsp;
+		return resource();
+&nbsp;
+		function resource(id) {
+			var parentResource = this;
+			var res = createResourse(resourceProto);
+			res.generatePath = createGeneratePathFunc(parentResource, res, id);
+			createRestApiFor(res);
+			return res;
+		}
+&nbsp;
+		function createGeneratePathFunc(parentResource, curentResource, id) {
+			return function <span class="fstat-no" title="function not covered" >generatePath(</span>endPoint) {
+				var path = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (parentResource.generatePath) {</span>
+<span class="cstat-no" title="statement not covered" >					path.push(parentResource.generatePath());</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				path.push(alias || name);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (id) {</span>
+<span class="cstat-no" title="statement not covered" >					if (Array.isArray(id))</span>
+<span class="cstat-no" title="statement not covered" >						id.forEach(<span class="fstat-no" title="function not covered" >s </span>=&gt; <span class="cstat-no" title="statement not covered" >path.push(s))</span>;</span>
+					else
+<span class="cstat-no" title="statement not covered" >						path.push(id);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (endPoint) {</span>
+<span class="cstat-no" title="statement not covered" >					path.push(endPoint);</span>
+				}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				return path.join('/');</span>
+			}.bind(curentResource);
+		}
+&nbsp;
+		/**
+		 * Добавляет к объекту resource методы 'get', 'post', 'put', 'patch'
+		 * @param resource - расширяемый объект
+		 */
+		function createRestApiFor(resource) {
+			//  создаем в resource методы .get, .post и т.п.
+			['get', 'post', 'put', 'patch', 'delete', 'options', 'beacon'].reduce(bindApiRestResourceShortCut, resource);
+&nbsp;
+			function bindApiRestResourceShortCut(api, method) {
+				api[method] = apiRestResourceShortCut;
+				return api;
+&nbsp;
+				function <span class="fstat-no" title="function not covered" >apiRestResourceShortCut(</span>params, options) {
+<span class="cstat-no" title="statement not covered" >					return resource.http[method](resource.generatePath(), params, options);</span>
+				}
+			}
+		}
+	}
+&nbsp;
+	// function sendBeacon(url, params) {
+	//     httpMixin.http('POST', url, params, {});
+	//     return true;
+	// }
+}
+&nbsp;
+function createResourse(resourseProto) {
+	var resourse = Object.create(resourseProto);
+	resourse['$$prto'] = resourseProto;
+	resourse.addResource = resourse.addResource.bind(resourse);
+	return resourse;
+}
+&nbsp;
+function normalizeResourceName(name) {
+	return name.replace(/-([a-zA-Z])/ig, <span class="fstat-no" title="function not covered" >(s</span>tr, p1) =&gt; <span class="cstat-no" title="statement not covered" >p1.toUpperCase())</span>;
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >normalizeHttpOptions(</span>method, url, params, options) {
+<span class="cstat-no" title="statement not covered" >	return {url: url, data: params, method: method, ...options};</span>
+}
+&nbsp;
+function bindHttpShortCut(httpMixin, method) {
+	httpMixin[method] = httpShortCut;
+	return httpMixin;
+&nbsp;
+	function <span class="fstat-no" title="function not covered" >httpShortCut(</span>url, params, options) {
+<span class="cstat-no" title="statement not covered" >		return httpMixin.http(method, url, params || null, options || null);</span>
+	}
+}
+&nbsp;
+export {createApi};
+&nbsp;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 17:38:13 GMT+0500 (+05)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

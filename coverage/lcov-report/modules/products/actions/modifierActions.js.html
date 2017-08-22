@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for modules/products/actions/modifierActions.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">modules/products/actions</a> modifierActions.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">40% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>12/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/18</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>12/21</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import * as actions from '../enums/actions';
+import {createAction} from 'infrastructure/helpers/actionHelpers';
+&nbsp;
+export const saveGroup = {
+	request: <span class="fstat-no" title="function not covered" >({</span>group, point, meta}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SAVE_MODIFIER_GROUP.REQUEST, {group, point, meta}),</span>
+	success: <span class="fstat-no" title="function not covered" >({</span>group}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SAVE_MODIFIER_GROUP.SUCCESS, {group}),</span>
+	failure: <span class="fstat-no" title="function not covered" >({</span>groupCode, error}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SAVE_MODIFIER_GROUP.FAILURE, {groupCode, error})</span>
+};
+&nbsp;
+export const setProductModifierGroups = <span class="fstat-no" title="function not covered" >({</span>groups}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SET_PRODUCT_MODIFIER_GROUPS, {groups});</span>
+&nbsp;
+export const removeGroup = {
+	request: <span class="fstat-no" title="function not covered" >({</span>groupCode, point}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.REMOVE_MODIFIER_GROUP.REQUEST, {groupCode, point}),</span>
+	success: <span class="fstat-no" title="function not covered" >({</span>groupCode}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.REMOVE_MODIFIER_GROUP.SUCCESS, {groupCode}),</span>
+	failure: <span class="fstat-no" title="function not covered" >({</span>groupCode, error}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.REMOVE_MODIFIER_GROUP.FAILURE, {groupCode, error})</span>
+};
+&nbsp;
+export const updateGroup = <span class="fstat-no" title="function not covered" >({</span>groupCode, point, meta, layerId}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.UPDATE_GROUP, {</span>
+	groupCode, point, meta, layerId
+});
+export const updateGroupDebounce = <span class="fstat-no" title="function not covered" >({</span>groupCode, point, meta, layerId}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.UPDATE_GROUP_DEBOUNCE, {</span>
+	groupCode, point, meta, layerId
+});
+&nbsp;
+export const addNewGroup = <span class="fstat-no" title="function not covered" >({</span>group}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.ADD_PRODUCT_MODIFIER_GROUP, {group});</span>
+export const openGroup = <span class="fstat-no" title="function not covered" >({</span>groupCode, point, inventCode}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.OPEN_GROUP, {</span>
+	groupCode, point, inventCode
+});
+export const groupReady = <span class="fstat-no" title="function not covered" >({</span>groupCode}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.GROUP_READY, {groupCode});</span>
+&nbsp;
+export const saveModifier = <span class="fstat-no" title="function not covered" >({</span>groupCode, modifier}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SAVE_MODIFIER, {</span>
+	groupCode,
+	modifier
+});
+&nbsp;
+export const removeModifier = <span class="fstat-no" title="function not covered" >({</span>groupCode, modifierCode}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.REMOVE_MODIFIER, {</span>
+	groupCode, modifierCode
+});
+&nbsp;
+export const toggleModifier = <span class="fstat-no" title="function not covered" >({</span>groupCode, modifierCode}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.TOGGLE_MODIFIER, {</span>
+	groupCode, modifierCode
+});
+&nbsp;
+&nbsp;
+export const searchGroups = {
+	request: <span class="fstat-no" title="function not covered" >({</span>formKey, query}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SEARCH_GROUPS.REQUEST, {formKey, query}),</span>
+	success: <span class="fstat-no" title="function not covered" >({</span>formKey, groups}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SEARCH_GROUPS.SUCCESS, {formKey, groups}),</span>
+	failure: <span class="fstat-no" title="function not covered" >({</span>formKey, error}) =&gt; <span class="cstat-no" title="statement not covered" >createAction(actions.SEARCH_GROUPS.FAILURE, {formKey, error})</span>
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 17:38:13 GMT+0500 (+05)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

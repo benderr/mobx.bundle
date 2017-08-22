@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for common/uiElements/Dialogs/ConfirmPopupService.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../../prettify.css" />
+    <link rel="stylesheet" href="../../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../../index.html">All files</a> / <a href="index.html">common/uiElements/Dialogs</a> ConfirmPopupService.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.11% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>8/19</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">59.26% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>16/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.57% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>2/7</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">42.11% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>8/19</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import PropTypes from 'prop-types';
+import ModalPopup from './ModalPopup';
+import q from 'q';
+/**
+ * Попап для подтверждения операции
+ */
+class ConfirmPopupService extends React.Component {
+&nbsp;
+<span class="fstat-no" title="function not covered" >	op</span>en({title, text}=<span class="branch-0 cbranch-no" title="branch not covered" >{})</span> {
+<span class="cstat-no" title="statement not covered" >		this.setState({</span>
+			title, text
+		});
+<span class="cstat-no" title="statement not covered" >		this.dialog._open();</span>
+<span class="cstat-no" title="statement not covered" >		this.defer = q.defer();</span>
+<span class="cstat-no" title="statement not covered" >		return this.defer.promise;</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	is</span>Open() {
+<span class="cstat-no" title="statement not covered" >		return this.dialog &amp;&amp; this.dialog.isOpen();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	ha</span>ndleOkClick() {
+<span class="cstat-no" title="statement not covered" >		this.dialog._close();</span>
+<span class="cstat-no" title="statement not covered" >		this.defer &amp;&amp; this.defer.resolve();</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	ha</span>ndleCancelClick() {
+<span class="cstat-no" title="statement not covered" >		this.dialog._close();</span>
+<span class="cstat-no" title="statement not covered" >		this.defer &amp;&amp; this.defer.reject({close: false});</span>
+	}
+&nbsp;
+<span class="fstat-no" title="function not covered" >	ha</span>ndleCloseClick() {
+<span class="cstat-no" title="statement not covered" >		this.dialog._close();</span>
+<span class="cstat-no" title="statement not covered" >		this.defer &amp;&amp; this.defer.reject({close: true});</span>
+	}
+&nbsp;
+	render() {
+		const {
+			title: stateTitle,
+			text:stateText
+		}=this.state || {};
+		const {
+			parentSelector,
+			onAfterOpen,
+			shouldCloseOnOverlayClick = false,
+			title:propTitle,
+			okName = <span class="branch-0 cbranch-no" title="branch not covered" >'Подтвердить',</span>
+			cancelName,
+			disableClose = false,
+			text:propText,
+			className = ''
+		}=this.props;
+&nbsp;
+		const title = stateTitle || propTitle;
+		const text = stateText || propText;
+&nbsp;
+		const classNames = ['popup_layer small', className].join(' ');
+		return (
+			&lt;ModalPopup parentSelector={parentSelector}
+						onAfterOpen={onAfterOpen}
+						shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+						onRequestClose={::this.handleCloseClick}
+						ref={dialog =&gt; this.dialog = dialog}&gt;
+				&lt;div class={classNames}&gt;
+					{!disableClose &amp;&amp; &lt;a class="popup_close icon-close" onClick={::this.handleCloseClick}&gt;&lt;/a&gt;}
+					&lt;div&gt;
+						{title &amp;&amp; &lt;h1&gt;{title}&lt;/h1&gt;}
+						{text &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;p&gt;{text}&lt;/p&gt;}</span>
+						&lt;div class="popup_panel"&gt;
+							&lt;button class="button" onClick={::this.handleOkClick}&gt;{okName}&lt;/button&gt;
+							{cancelName &amp;&amp; &lt;a class="button_clean" onClick={::this.handleCancelClick}&gt;{cancelName}&lt;/a&gt;}
+						&lt;/div&gt;
+					&lt;/div&gt;
+				&lt;/div&gt;
+			&lt;/ModalPopup&gt;);
+	}
+}
+&nbsp;
+ConfirmPopupService.propTypes = {
+	parentSelector: PropTypes.func,
+	shouldCloseOnOverlayClick: PropTypes.bool,
+	title: PropTypes.string,
+	okName: PropTypes.string,
+	cancelName: PropTypes.string,
+	disableClose: PropTypes.bool,
+	text: PropTypes.string,
+	className: PropTypes.string,
+};
+&nbsp;
+export default ConfirmPopupService;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 22 2017 17:38:13 GMT+0500 (+05)
+</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
