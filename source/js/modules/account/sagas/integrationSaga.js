@@ -51,6 +51,8 @@ function* disable() {
 		yield put(disableIntegration.success());
 	} catch (error) {
 		yield put(disableIntegration.failure(error));
+		if (!isServerError(error))
+			throw error;
 	}
 }
 
