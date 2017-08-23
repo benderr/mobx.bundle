@@ -14,42 +14,13 @@ class ForgotContainer extends React.Component {
 		super(props);
 
 		this.state = {
-			countError: 0,
-			showCaptcha: false,
 			captcha: null,
 			captchaReady: false
 		};
 	}
 
-	componentWillReceiveProps(props) {
-		const {errors} = props;
-
-		let stateUpdate = {
-			countError: this.state.countError,
-			showCaptcha: this.state.showCaptcha
-		};
-
-		if (errors && errors.status && errors.status === 415) {
-			stateUpdate.countError++;
-			if (stateUpdate.countError > 3) {
-				stateUpdate.showCaptcha = true;
-				stateUpdate.captchaReady = false;
-				stateUpdate.countError = 0;
-			} else {
-				stateUpdate.showCaptcha = false;
-			}
-		}
-
-		this.setState(stateUpdate);
-	}
-
 	handleSendEmail(form) {
-		if (this.state.showCaptcha) {
-			if (!this.state.captcha)
-				return false;
-		}
-
-		this.props.sendMail(form.get('email'));
+		this.props.sendMail(form.get('email'), this.state.captcha);
 	}
 
 	componentWillUnmount() {
@@ -81,7 +52,6 @@ class ForgotContainer extends React.Component {
 									isSent={success}
 									errors={errors}
 
-									showCaptcha={this.state.showCaptcha}
 									captcha={this.state.captcha}
 									captchaReady={this.state.captchaReady}
 									onCaptchaChange={::this.onCaptchaChange}
