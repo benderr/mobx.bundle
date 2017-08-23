@@ -1,10 +1,8 @@
 import React from 'react';
-import {NumberInput, NumberFormat} from 'common/uiElements';
 import {PhoneField} from 'common/formElements/fields';
 import {reduxForm, NumberCounterRender} from 'common/formElements'
 import {connect} from 'react-redux';
 import {Field, focus, change, getFormValues} from 'redux-form/immutable';
-import {isRequired} from 'common/validators'
 import {withRouter} from 'react-router';
 
 class Form extends React.Component {

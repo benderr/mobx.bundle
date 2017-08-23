@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field} from 'redux-form/immutable';
-import InputRender from '../InputRender'
-import normalizePhone from './normalizePhone'
+import PhoneRender from '../PhoneRender'
+//import normalizePhone from './normalizePhone'
 import inputFieldShape from './inputFieldShape';
 import {getRequiredValidator} from '../validationHelpers/formFieldHelpers'
 import {validator, isValidPhone, getPlainNumber} from '../../validators'
@@ -21,9 +21,7 @@ class PhoneField extends React.Component {
         const validPhone = validator(invalidPhoneError, isValidPhone);
         const validators = [...getRequiredValidator({required, requiredDisable}), validPhone, ...validate];
 
-        return ( <Field type="tel" maxLength="13"
-                        component={InputRender}
-                        format={normalizePhone}
+        return ( <Field type="tel" component={PhoneRender}
                         validate={validators}
                         parse={phoneParser} {...props}/>);
     }
