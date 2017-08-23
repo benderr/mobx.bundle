@@ -32,14 +32,17 @@ class ChangeServiceComponent extends React.Component {
 	}
 
 	renderError() {
-		const {formState:{disableStateErrors, connectErrors, stateErrors}} =this.props;
+		const {formState:{msLogin, disableStateErrors, connectErrors, stateErrors}} =this.props;
+
 		let errorText = '';
 		if (stateErrors) {
 			errorText = 'Ошибка при получении состояния интеграции'
 		} else if (disableStateErrors) {
 			errorText = 'Ошибка при выполнении операции'
 		} else if (connectErrors) {
-			errorText = 'Не удалось установить соединение';
+			errorText = connectErrors.status == 409
+				? `Аккаунт МойСклад ${msLogin} уже используется другим пользователем МодульКасс`
+				: 'Не удалось установить соединение';
 		}
 
 		if (errorText)
@@ -50,7 +53,7 @@ class ChangeServiceComponent extends React.Component {
 	render() {
 		const {
 			handleSubmit, onChangeService, onCheckIntegration,
-			formState: {loading, success, errors, stateIntegration, msLogin, msPassword}
+			formState: {loading, success, stateIntegration}
 		} = this.props;
 
 		return (
