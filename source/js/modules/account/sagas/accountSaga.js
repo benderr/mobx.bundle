@@ -19,9 +19,9 @@ const getError = (error) => {
 	return 'Произошла неизвестная ошибка.'
 };
 
-function* forgotPassword({email}) {
+function* forgotPassword({email, captcha}) {
 	try {
-		yield call(registerDataContext.forgotPass, email);
+		yield call(registerDataContext.forgotPass, email, captcha);
 		yield put(forgot.success());
 	} catch (error) {
 		yield put(forgot.failure({

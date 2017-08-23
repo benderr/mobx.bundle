@@ -20,18 +20,15 @@ class ForgotForm extends React.Component {
 	getError(error) {
 		if (error.status == 404)
 			return 'Мы не можем вам отправить ссылку для восстановления пароля. Пожалуйста, проверьте введенный адрес электронной почты.'
-		if (error.status == 415)
-			return 'Нет аккаунта с таким логином.';
 		return 'Произошла неизвестная ошибка.'
 	}
 
 	render() {
 		const {
 			handleSubmit, loading, isSent, onSendEmail, errors,
-
-			onCaptchaChange, onCaptchaLoad, captchaReady, captcha, showCaptcha
+			onCaptchaChange, onCaptchaLoad, captchaReady, captcha
 		} = this.props;
-		const isEnableRegistration = !loading && (showCaptcha ? captchaReady && captcha : true);
+		const isEnableRegistration = !loading && (captchaReady && captcha);
 
 		return (
 			<form onSubmit={handleSubmit(onSendEmail)}>
@@ -51,8 +48,7 @@ class ForgotForm extends React.Component {
 						</div>
 					</div>}
 
-					{showCaptcha &&
-					<div className="form_group">
+					{!isSent && <div className="form_group">
 						<Recaptcha
 							ref={r => this.rec = r}
 							sitekey="6LeJNhcUAAAAAEqqVK2197rndTkLHRDyh429W7rw"

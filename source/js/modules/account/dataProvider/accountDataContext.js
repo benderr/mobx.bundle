@@ -14,8 +14,8 @@ export function logout() {
 	return api.v1().logout().get();
 }
 
-export const forgotPass = (email) => {
-	return api.v1().user(email).tempPassword().post();
+export const forgotPass = (email, captcha) => {
+	return api.v1().user(email).tempPassword().post({captcha});
 };
 
 /**

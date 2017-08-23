@@ -8,7 +8,7 @@ export const register = {
 };
 
 export const forgot = {
-	request: (email) => createAction(actions.FORGOT.REQUEST, {email}),
+	request: (email, captcha) => createAction(actions.FORGOT.REQUEST, {email, captcha}),
 	success: (response) => createAction(actions.FORGOT.SUCCESS, {response}),
 	failure: (error) => createAction(actions.FORGOT.FAILURE, {error})
 };
