@@ -48,7 +48,7 @@ class ForgotForm extends React.Component {
 						</div>
 					</div>}
 
-					<div className="form_group">
+					{!isSent && <div className="form_group">
 						<Recaptcha
 							ref={r => this.rec = r}
 							sitekey="6LeJNhcUAAAAAEqqVK2197rndTkLHRDyh429W7rw"
@@ -56,7 +56,7 @@ class ForgotForm extends React.Component {
 							verifyCallback={onCaptchaChange}
 							expiredCallback={onCaptchaChange}
 							onloadCallback={onCaptchaLoad}/>
-					</div>
+					</div>}
 
 					{errors && <div className="form_error">{this.getError(errors)}</div>}
 
