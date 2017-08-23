@@ -32,14 +32,14 @@ class ReportFormComponent extends React.Component {
 									 required="Укажите период"
 									 className="small date_from"
 									 tipPlace="top"
-									 validate={[minIntervalDate('Не верно выбран период формирования отчета')]}
+									 validate={[minIntervalDate('Неверно выбран период формирования отчета')]}
 									 name="beginDate"/>
 					по
 					<DatePickerField wrapperClassName="from-to"
 									 required="Укажите период"
 									 className="small date_to"
 									 tipPlace="top"
-									 validate={[maxIntervalDate('Не верно выбран период формирования отчета')]}
+									 validate={[maxIntervalDate('Неверно выбран период формирования отчета')]}
 									 name="endDate"/>
 				</div>
 
