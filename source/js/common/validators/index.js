@@ -86,7 +86,25 @@ export const isValidNumber = val => {
 	return /^(0(\.|,)\d+|[1-9]+[0-9]*((\.|,)\d+)?|0)$/.test(val);
 };
 
+
+const CELLPHONE_REGEXP = /^[0-9]{10}$/;
+export const getPlainNumber = (value) => {
+	const tempNumber = value.replace ? value : value.toString();
+	return tempNumber.replace(/[^0-9]+/g, '').substring(0, 10);
+};
+
+export const isValidPhone = phone => {
+	if (isEmpty(phone))
+		return true;
+	phone = getPlainNumber(phone);
+	if (phone.length <= 10)
+		return CELLPHONE_REGEXP.test(phone);
+	return false;
+};
+
 export const validator = (errorText, validateCondition) => (...props) => {
 	return !validateCondition(...props) ? errorText : undefined;
 };
+
+
 

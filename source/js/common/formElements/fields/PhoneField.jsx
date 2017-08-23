@@ -1,25 +1,29 @@
 import React from 'react';
 import {Field} from 'redux-form/immutable';
-import InputRender from '../InputRender'
-import normalizePhone from './normalizePhone'
+import PhoneRender from '../PhoneRender'
+//import normalizePhone from './normalizePhone'
 import inputFieldShape from './inputFieldShape';
 import {getRequiredValidator} from '../validationHelpers/formFieldHelpers'
+import {validator, isValidPhone, getPlainNumber} from '../../validators'
 
 const phoneParser = (value) => {
     return value.replace(/[^\d]/g, '');
 };
 
 class PhoneField extends React.Component {
-    render() {
-        const {required, requiredDisable, validate = [], ...props} =this.props;
-        const validators = [...getRequiredValidator({required, requiredDisable}), ...validate];
+    static defaultProps = {
+        validate: [],
+        invalidPhoneError: 'Укажите 10 цифр номера мобильного телефона'
+    };
 
-        return ( <Field type="tel" maxLength="13"
-                        component={InputRender} //todo добавить валидатор для правильного формата телефона
-                        format={normalizePhone}
+    render() {
+        const {required, requiredDisable, validate = [], invalidPhoneError, ...props} =this.props;
+        const validPhone = validator(invalidPhoneError, isValidPhone);
+        const validators = [...getRequiredValidator({required, requiredDisable}), validPhone, ...validate];
+
+        return ( <Field type="tel" component={PhoneRender}
                         validate={validators}
-                        parse={phoneParser} {...props}
-        />)
+                        parse={phoneParser} {...props}/>);
     }
 }
 
