@@ -48,7 +48,7 @@ class ForgotForm extends React.Component {
 						</div>
 					</div>}
 
-					{!isSent && <div className="form_group">
+					{!isSent && <div className="form_group captcha_flex">
 						<Recaptcha
 							ref={r => this.rec = r}
 							sitekey="6LeJNhcUAAAAAEqqVK2197rndTkLHRDyh429W7rw"
