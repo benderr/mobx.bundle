@@ -5,6 +5,7 @@ import TestDrag from './containers/TestDrag'
 import TestNumber from './components/TestNumber'
 import TestSelectorDate from './components/TestSelectorDate'
 import TestAmount from './components/TestAmount'
+import TestPhone from './components/TestPhone'
 import TestLayers from './containers/TestLayers'
 import TestLayer1 from './components/TestLayer1'
 import TestLayer2 from './components/TestLayer2'
@@ -44,12 +45,20 @@ export function getRoutes() {
 		testDate: {
 			path: '/testdate',
 			exact: true,
+			allowAnonymous: true,
 			component: TestSelectorDate
 		},
 		testAmount: {
 			path: '/testamount',
 			exact: true,
+			allowAnonymous: true,
 			component: TestAmount
+		},
+		testPhone: {
+			path: '/testphone',
+			exact: true,
+			allowAnonymous: true,
+			component: TestPhone
 		},
 		testLayers: {
 			path: '/testlayers',

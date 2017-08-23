@@ -4,22 +4,28 @@ import InputRender from '../InputRender'
 import normalizePhone from './normalizePhone'
 import inputFieldShape from './inputFieldShape';
 import {getRequiredValidator} from '../validationHelpers/formFieldHelpers'
+import {validator, isValidPhone, getPlainNumber} from '../../validators'
 
 const phoneParser = (value) => {
     return value.replace(/[^\d]/g, '');
 };
 
 class PhoneField extends React.Component {
+    static defaultProps = {
+        validate: [],
+        invalidPhoneError: 'Укажите 10 цифр номера мобильного телефона'
+    };
+
     render() {
-        const {required, requiredDisable, validate = [], ...props} =this.props;
-        const validators = [...getRequiredValidator({required, requiredDisable}), ...validate];
+        const {required, requiredDisable, validate = [], invalidPhoneError, ...props} =this.props;
+        const validPhone = validator(invalidPhoneError, isValidPhone);
+        const validators = [...getRequiredValidator({required, requiredDisable}), validPhone, ...validate];
 
         return ( <Field type="tel" maxLength="13"
-                        component={InputRender} //todo добавить валидатор для правильного формата телефона
+                        component={InputRender}
                         format={normalizePhone}
                         validate={validators}
-                        parse={phoneParser} {...props}
-        />)
+                        parse={phoneParser} {...props}/>);
     }
 }
 
