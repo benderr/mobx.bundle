@@ -39,17 +39,20 @@ export class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	onSaveProduct(productProps) {
-		const {productView:{product}, saveProduct} = this.props;
+		const {productView:{product}, saveProduct, inventCode} = this.props;
 		let editProduct = Object.assign({}, product);
+
 		editProduct.name = productProps.get('name');
 		editProduct.barcode = productProps.get('barcode');
+		editProduct.inventCode = productProps.get('inventCode');
 		editProduct.price = productProps.get('price');
 		editProduct.minPrice = productProps.get('minPrice');
 		editProduct.measure = productProps.get('measure');
 		editProduct.alcoholType = productProps.get('alcoholType');
 		editProduct.vatTag = productProps.get('vatTag');
 		editProduct.requiredModifiers = product.modifiers;
-		saveProduct({point: this.props.point, product: editProduct});
+
+		saveProduct({point: this.props.point, product: editProduct, inventCode});
 	}
 
 	onRemoveProduct() {

@@ -26,11 +26,12 @@ export const getProductDetails = {
 
 
 export const saveProductDetails = {
-	request: ({point, product}) => createAction(actions.SAVE_PRODUCT_DETAIL.REQUEST, {
+	request: ({point, product, inventCode}) => createAction(actions.SAVE_PRODUCT_DETAIL.REQUEST, {
 		point,
-		product
+		product,
+		inventCode
 	}),
-	success: ({product}) => createAction(actions.SAVE_PRODUCT_DETAIL.SUCCESS, {product}),
+	success: ({product, inventCode}) => createAction(actions.SAVE_PRODUCT_DETAIL.SUCCESS, {inventCode}),
 	failure: ({inventCode, error}) => createAction(actions.SAVE_PRODUCT_DETAIL.FAILURE, {inventCode, error})
 };
 
