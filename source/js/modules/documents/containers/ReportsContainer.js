@@ -32,10 +32,18 @@ class ReportsContainer extends React.Component {
 	}
 
 	onSubmitForm(props) {
-		const {salesReportAction, sending, selectedPoint, token, reset} = this.props;
+		const {salesReportAction, sending, selectedPoint, token, resetForm, errorValidDate} = this.props;
 		if (sending)
 			return;
 		const form = props.toJS();
+
+		if (form.beginDate > form.endDate) {
+			errorValidDate();
+			return;
+		}
+
+		let d = new Date(form.endDate);
+		form.endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 59); // полные сутки
 
 		if (form.sendToEmail) {	// скачать отчет
 			salesReportAction({
@@ -59,6 +67,8 @@ class ReportsContainer extends React.Component {
 			document.body.appendChild(downloadLink);
 			downloadLink.click();
 			document.body.removeChild(downloadLink);
+
+			resetForm();
 		}
 	}
 
@@ -70,7 +80,7 @@ class ReportsContainer extends React.Component {
 				<TitlePanel/>
 				<ReportForm sendToEmail={sendToEmail}
 							sending={sending}
-							error={formErrors}
+							formErrors={formErrors}
 							className="widget_block  report_request_form"
 							onSubmitForm={::this.onSubmitForm}/>
 			</div>
@@ -101,6 +111,7 @@ function mapDispatchToProps(dispatch) {
 		...bindActionCreators({
 			salesReportAction: actions.salesReport.request,
 			resetForm: actions.resetForm,
+			errorValidDate: actions.errorValidDate,
 			reset: reset
 		}, dispatch)
 	};
