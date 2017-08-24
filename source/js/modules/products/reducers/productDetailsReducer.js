@@ -57,12 +57,12 @@ export const actionHandlers = {
 			}));
 	},
 
-	[SAVE_PRODUCT_DETAIL.REQUEST]: (state, {product}) => {
-		return state.setIn(['productView', product.inventCode, 'saving'], true);
+	[SAVE_PRODUCT_DETAIL.REQUEST]: (state, {inventCode}) => {
+		return state.setIn(['productView', inventCode, 'saving'], true);
 	},
 
-	[SAVE_PRODUCT_DETAIL.SUCCESS]: (state, {product}) => {
-		return state.updateIn(['productView', product.inventCode],
+	[SAVE_PRODUCT_DETAIL.SUCCESS]: (state, {inventCode}) => {
+		return state.updateIn(['productView', inventCode],
 			view => view.merge(fromJS({
 				saving: false,
 				saved: true

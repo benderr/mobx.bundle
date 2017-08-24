@@ -50,12 +50,12 @@ function* getProductDetails({point, inventCode}) {
 	}
 }
 
-export function* saveProductDetailsProcess({product, point}) {
+export function* saveProductDetailsProcess({product, point, inventCode}) {
 	try {
 		product.separateModifiers = true;
 		const saveProduct = product.isNew ? dataContext.addProduct : dataContext.saveProduct;
 		const updatedProduct = yield call(saveProduct, point, product);
-		yield put(productActions.saveProductDetails.success({product: updatedProduct}));
+		yield put(productActions.saveProductDetails.success({inventCode, product: updatedProduct}));
 		if (product.isNew) {
 			yield put(productActions.addProductToList({product: updatedProduct}));
 		}
@@ -66,7 +66,7 @@ export function* saveProductDetailsProcess({product, point}) {
 	}
 	catch (error) {
 		yield put(notify.error('Не удалось сохранить товар'));
-		yield put(productActions.saveProductDetails.failure({inventCode: product.inventCode, error}));
+		yield put(productActions.saveProductDetails.failure({inventCode, error}));
 		if (!isServerError(error))
 			throw error;
 	}
