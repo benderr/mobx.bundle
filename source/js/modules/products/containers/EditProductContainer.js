@@ -105,6 +105,8 @@ export class EditProductContainer extends DefaultLayerLayout {
 	}
 
 	handleChangeTab(tab) {
+		if (this.props.productView.product.isNew)
+			return;
 		this.setState({activeTab: tab});
 	}
 
