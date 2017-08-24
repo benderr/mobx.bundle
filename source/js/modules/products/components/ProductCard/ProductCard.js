@@ -22,7 +22,7 @@ class ProductCard extends React.Component {
 		const isActiveInfo = activeTab == 'info';
 		const isEdit = product && !product.isNew;
 		const tabInfoClasses = ['tab', isActiveInfo ? 'tab__active' : ''].join(' ');
-		const tabModClasses = ['tab', !isActiveInfo ? 'tab__active' : ''].join(' ');
+		const tabModClasses = ['tab', (isEdit ? '' : 'disabled'), !isActiveInfo ? 'tab__active' : ''].join(' ');
 		return (
 			<LoaderPanel loading={removing}>
 				<form onSubmit={handleSubmit(onSave)} className="poss">
