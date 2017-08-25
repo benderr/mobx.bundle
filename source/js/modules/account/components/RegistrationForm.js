@@ -131,6 +131,7 @@ class RegistrationForm extends React.Component {
 					<div class="form_group">
 						<div class="input_group_title w100">
 							<InputField name="password"
+										autoComplete="off"
 										required="Укажите пароль"
 										tipPlace="bottom"
 										validate={[
