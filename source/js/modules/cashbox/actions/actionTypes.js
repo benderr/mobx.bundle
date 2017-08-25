@@ -60,7 +60,7 @@ export const addKey = ({cords, tabCode}) => createAction(actions.ADD_KEY, {cords
 export const selectKey = ({id}) => createAction(actions.SELECT_KEY, {id});
 export const saveKey = ({key}) => createAction(actions.SAVE_KEY, {key});
 export const cancelKey = () => createAction(actions.CANCEL_KEY);
-export const removeKey = ({key}) => createAction(actions.REMOVE_KEY, {key});
+export const removeKey = ({key, tabCode}) => createAction(actions.REMOVE_KEY, {key, tabCode});
 export const updateSelectedKey = ({key}) => createAction(actions.UPDATE_SELECTED_KEY, {key});
 export const dragEndKey = ({id, row, col, gridSize}) => createAction(actions.DRAG_END_KEY, {id, row, col, gridSize});
 
