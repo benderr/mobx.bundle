@@ -13,6 +13,11 @@ export function getOrders(retailPointId, start, count, q, sortField, sortDirecti
 		});
 }
 
+export function deleteOrder({retailPointId, external, cashdocId}) {
+	return api.v1().retailpoint(retailPointId).shift(external).cashdoc(cashdocId)
+		.delete();
+}
+
 export function getOrder(retailPointId, shiftType, orderId) {
 	return api.v1().retailpoint(retailPointId)
 		.shift(shiftType).cashdoc(orderId).get()

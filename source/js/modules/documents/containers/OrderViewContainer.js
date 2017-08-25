@@ -8,6 +8,7 @@ import DefaultLayerLayout from 'components/DefaultLayerLayout'
 import {withRouter} from 'react-router'
 import {LoaderBlock, DateFormat} from 'common/uiElements'
 import OrderProductTable from '../components/order/OrderProductTable'
+import {ConfirmPopupService} from 'common/uiElements'
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
@@ -18,6 +19,18 @@ class OrderViewContainer extends DefaultLayerLayout {
 		super.componentDidMount();
 		const {point, id, getOrder}=this.props;
 		getOrder({point, id});
+	}
+
+	componentWillReceiveProps(newProps) {
+		if (newProps.orderView && newProps.orderView.close) {
+			this.closeLayer();
+		}
+	}
+
+	onDeleteOrder() {
+		const {id, deleteOrder} = this.props;
+		this.deletePopup.open()
+			.then(() => deleteOrder({id}));
 	}
 
 	render() {
@@ -31,7 +44,7 @@ class OrderViewContainer extends DefaultLayerLayout {
 					{order &&
 					<h1>№{order.docNum} от <DateFormat value={order.beginDateTime} format="dd.mm.yyyy HH:MM:ss"/></h1>}
 				</div>
-				< div className='page_content  with_bottom_panel'>
+				<div className='page_content  with_bottom_panel'>
 					{order &&
 					<OrderProductTable canEdit={false}
 									   totalSum={order.actualSum}
@@ -40,6 +53,16 @@ class OrderViewContainer extends DefaultLayerLayout {
 					{error && <div className="info info_error">{error}</div>}
 					<LoaderBlock loading={loading}/>
 				</div>
+
+				<div className="page_bottom_panel">
+					<a className="button middle wide clean mr44 f_right"
+					   onClick={::this.onDeleteOrder}>Удалить</a>
+				</div>
+				<ConfirmPopupService
+					ref={p => this.deletePopup = p}
+					title="Вы хотите удалить заказ?"
+					okName="Подтвердить"
+					cancelName="Отмена"/>
 			</article>
 		);
 	}
@@ -52,14 +75,15 @@ function mapStateToProps(state, props) {
 		order: orderView ? orderView.get('order') : null,
 		loading: orderView ? orderView.get('loading') : false,
 		error: orderView ? orderView.get('error') : null,
-		id, point
+		id, point, orderView
 	};
 }
 
 function mapDispatchToProps(dispatch) {
 	return {
 		...bindActionCreators({
-			getOrder: actions.getOrderDetails.request
+			getOrder: actions.getOrderDetails.request,
+			deleteOrder: actions.deleteOrder
 		}, dispatch)
 	};
 }
