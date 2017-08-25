@@ -114,31 +114,31 @@ class HotKeyEditor extends React.Component {
 
 		return (
 			<form onSubmit={handleSubmit(onSave)}>
-				<div class="gk_cell_properties_popup"
+				<div className="gk_cell_properties_popup"
 					 style={{left: `${position.left}%`}}>
-					<div class="form_group  mb24">
+					<div className="form_group  mb24">
 						<input type="radio" onChange={::this.handleChangeViewMode}
 							   id="viewModeProduct"
 							   name="type"
 							   checked={model.type === HOT_KEY_TYPE.PRODUCT}
 							   value={HOT_KEY_TYPE.PRODUCT}/>
-						<label for="viewModeProduct" class="label_check  mr24"><i
-							class="icon"></i><span>Товар</span></label>
+						<label htmlFor="viewModeProduct" className="label_check  mr24">
+							<i className="icon"/><span>Товар</span></label>
 
 						<input type="radio" onChange={::this.handleChangeViewMode}
 							   id="viewModeCategory"
 							   name="type"
 							   checked={model.type === HOT_KEY_TYPE.CATEGORY}
 							   value={HOT_KEY_TYPE.CATEGORY}/>
-						<label for="viewModeCategory" class="label_check"><i
-							class="icon"></i><span>Категория</span></label>
+						<label for="viewModeCategory" className="label_check">
+							<i className="icon"/><span>Категория</span></label>
 					</div>
 
-					{model.type === HOT_KEY_TYPE.PRODUCT && <div class="form_group">
-						<div class="input_group_title  w100">
-							<div class="input_title">Выберите товар</div>
+					{model.type === HOT_KEY_TYPE.PRODUCT && <div className="form_group">
+						<div className="input_group_title  w100">
+							<div className="input_title">Выберите товар</div>
 							<SelectField searchable={true}
-										 class="w100"
+										 className="w100"
 										 name="barcode"
 										 required="Укажите товар"
 										 isLoading={searchProduct.loading}
@@ -151,11 +151,11 @@ class HotKeyEditor extends React.Component {
 						</div>
 					</div>}
 
-					{model.type === HOT_KEY_TYPE.CATEGORY && <div class="form_group">
-						<div class="input_group_title  w100">
-							<div class="input_title">Выберите категорию</div>
+					{model.type === HOT_KEY_TYPE.CATEGORY && <div className="form_group">
+						<div className="input_group_title  w100">
+							<div className="input_title">Выберите категорию</div>
 							<SelectField searchable={true}
-										 class="w100"
+										 className="w100"
 										 name="groupcode"
 										 required="Укажите категорию"
 										 isLoading={searchCategory.loading}
@@ -169,28 +169,28 @@ class HotKeyEditor extends React.Component {
 					</div>
 					}
 
-					<div class="form_group">
-						<div class="input_group_title  w100">
-							<div class="input_title">Введите название</div>
-							<InputField name="name" class="w100" required="Укажите название"/>
+					<div className="form_group">
+						<div className="input_group_title  w100">
+							<div className="input_title">Введите название</div>
+							<InputField name="name" className="w100" required="Укажите название"/>
 						</div>
 					</div>
 
-					<div class="form_group">
-						<div class="input_group_title  w100">
-							<div class="input_title">Цвет</div>
+					<div className="form_group">
+						<div className="input_group_title  w100">
+							<div className="input_title">Цвет</div>
 							<Field name="color" colors={colorSet} className="color_select"
 								   component={ColorPickerRender}/>
 						</div>
 					</div>
 
 
-					<div class="form_group" onMouseLeave={onChangePosition}>
-						<div class="cell_size  input_group_title  col  half">
-							<div class="input_title">Размер</div>
+					<div className="form_group" onMouseLeave={onChangePosition}>
+						<div className="cell_size  input_group_title  col  half">
+							<div className="input_title">Размер</div>
 
-							<div class="cell_props">
-								<div class="label">Ширина</div>
+							<div className="cell_props">
+								<div className="label">Ширина</div>
 								<NumberField name="width"
 											 maxValue={this.validator.maxWidth(model)}
 											 minValue={1}
@@ -199,8 +199,8 @@ class HotKeyEditor extends React.Component {
 											 component={NumberCounterRender}/>
 							</div>
 
-							<div class="cell_props">
-								<div class="label">Высота</div>
+							<div className="cell_props">
+								<div className="label">Высота</div>
 								<NumberField name="height"
 											 maxValue={this.validator.maxHeight(model)}
 											 minValue={1}
@@ -209,11 +209,11 @@ class HotKeyEditor extends React.Component {
 							</div>
 						</div>
 
-						<div class="cell_position  input_group_title  col  half">
-							<div class="input_title  ml8">Положение</div>
+						<div className="cell_position  input_group_title  col  half">
+							<div className="input_title  ml8">Положение</div>
 
-							<div class="cell_props">
-								<div class="label">Строка</div>
+							<div className="cell_props">
+								<div className="label">Строка</div>
 								<NumberField name="row"
 											 component={NumberCounterRender}
 											 validate={[rowValid()]}
@@ -221,8 +221,8 @@ class HotKeyEditor extends React.Component {
 											 minValue={0}/>
 							</div>
 
-							<div class="cell_props">
-								<div class="label">Столбец</div>
+							<div className="cell_props">
+								<div className="label">Столбец</div>
 								<NumberField name="col"
 											 component={NumberCounterRender}
 											 validate={[colValid()]}
@@ -232,11 +232,11 @@ class HotKeyEditor extends React.Component {
 						</div>
 					</div>
 
-					<div class="form_buttons  mt12">
-						<button class="button  small">Сохранить</button>
-						<button class="button  small  clean" type="button" onClick={onCancel}>Отмена</button>
+					<div className="form_buttons  mt12">
+						<button className="button  small">Сохранить</button>
+						<button className="button  small  clean" type="button" onClick={onCancel}>Отмена</button>
 						{model && model.id &&
-						<button class="button  small  clean f_right" type="button" onClick={::this.handleRemove}>
+						<button className="button  small  clean f_right" type="button" onClick={::this.handleRemove}>
 							Удалить</button>}
 					</div>
 
