@@ -41,7 +41,7 @@ class HotKeyEditor extends React.Component {
 		else if (model.type === HOT_KEY_TYPE.PRODUCT) {
 			const list2 = searchProduct.products || null;
 			const loading = searchProduct.loading || false;
-			if (model.barcode) {
+			if (searchProduct.query == model.barcode && !searchProduct.loading) {
 				if (!(list2 && list2.some(s => s.barcode == model.barcode)))
 					onSearchProducts(model.barcode);
 			} else {
