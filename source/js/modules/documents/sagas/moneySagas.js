@@ -22,10 +22,10 @@ function* getListMoneySaga({isFirst = false, step = false}) {
 			query.push(`docNum==${q}`);
 		}
 		if (dateFrom instanceof Date) {
-			query.push(`dateCreated=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
+			query.push(`dateCreated=ge="${dateHelper.dateFormat(dateHelper.setStartDate(dateFrom), 'serverDateTime')}"`);
 		}
 		if (dateTo instanceof Date) {
-			query.push(`dateCreated=le="${dateHelper.dateFormat(dateTo, 'isoUtcDateTime')}"`);
+			query.push(`dateCreated=le="${dateHelper.dateFormat(dateHelper.setEndDate(dateTo), 'serverDateTime')}"`);
 		}
 		if (docType) {
 			query.push(`type=="${docType}"`)

@@ -30,7 +30,7 @@ function* getDocuments() {
 			filter.query && q.push(`:quickSearch="${filter.query}"`); //переделать на quickSearch
 			filter.docType && q.push(`docType=="${filter.docType}"`);
 			statuses.length > 0 && q.push(`currentState=in=(${statuses.join(',')})`);
-			filter.dateFrom && q.push(`checkoutDateTime=ge="${dateHelper.dateFormat(filter.dateFrom, 'serverDateTime')}"`);
+			filter.dateFrom && q.push(`checkoutDateTime=ge="${dateHelper.dateFormat(dateHelper.setStartDate(filter.dateFrom), 'serverDateTime')}"`);
 			filter.dateTo && q.push(`checkoutDateTime=le="${dateHelper.dateFormat(dateHelper.setEndDate(filter.dateTo), 'serverDateTime')}"`);
 		}
 

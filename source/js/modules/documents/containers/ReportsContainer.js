@@ -42,8 +42,8 @@ class ReportsContainer extends React.Component {
 			return;
 		}
 
-		let d = new Date(form.endDate);
-		form.endDate = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 59); // полные сутки
+		form.beginDate = dateHelper.setStartDate(form.beginDate);
+		form.endDate = dateHelper.setEndDate(form.endDate);
 
 		if (form.sendToEmail) {	// скачать отчет
 			salesReportAction({
@@ -54,7 +54,7 @@ class ReportsContainer extends React.Component {
 		} else {
 			const downloadLink = document.createElement("a");
 			const beginDateStr = dateHelper.dateFormat(form.beginDate, 'serverDateTime');
-			const endDateStr = dateHelper.dateFormat(dateHelper.setEndDate(form.endDate), 'serverDateTime');
+			const endDateStr = dateHelper.dateFormat(form.endDate, 'serverDateTime');
 
 			const [protocol, _, host] = window.location.href.split("/").slice(0, 3);
 			const {email, password}=decrypt(token);
@@ -67,6 +67,8 @@ class ReportsContainer extends React.Component {
 			document.body.appendChild(downloadLink);
 			downloadLink.click();
 			document.body.removeChild(downloadLink);
+
+			console.log(downloadLink.href);
 
 			resetForm();
 		}
