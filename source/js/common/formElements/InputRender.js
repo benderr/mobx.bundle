@@ -19,12 +19,13 @@ class InputRender extends React.Component {
 	};
 
 	render() {
-		const {input, label, className, type, validator, disabled, readOnly, maxLength}=this.props;
+		const {input, label, className, type, validator, disabled, readOnly, maxLength, autoComplete}=this.props;
 		const {tooltip, addClassName}=validator;
 		const classNames = [className, addClassName].join(' ');
 		return (
 			<input {...input}
 				   ref={input => this.focusator.init(input)}
+				   autoComplete={autoComplete}
 				   className={classNames}
 				   placeholder={label}
 				   type={type}
