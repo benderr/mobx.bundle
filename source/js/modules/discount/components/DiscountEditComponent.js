@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {reduxForm} from 'common/formElements'
-import {InputField, NumberField} from 'common/formElements/fields'
+import {InputField, AmountField} from 'common/formElements/fields'
 import {PrimaryButton} from 'common/uiElements'
 import {initialize} from 'redux-form/immutable'
 
@@ -42,7 +42,7 @@ class DiscountEditComponent extends React.Component {
 					<div className="form_group form_horizontal">
 						<div className="property_label col three">Размер, %</div>
 						<div className="property_value col four">
-							<NumberField
+							<AmountField
 								className="w100"
 								name="value"
 								autoComplete="off"
