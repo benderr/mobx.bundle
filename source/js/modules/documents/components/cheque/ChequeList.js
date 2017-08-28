@@ -54,7 +54,7 @@ class ChequeList extends React.Component {
 					<div className="table_row  row_link_search">
 						<input type="search" className="small w100"
 							   onChange={onFilterChanged} value={searchText}
-							   placeholder="Введите наименование"/>
+							   placeholder="Введите номер смены или номер документа"/>
 					</div>
 
 					<LoaderPanel loading={loading} className=''>
