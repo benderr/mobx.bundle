@@ -4,6 +4,7 @@ import {createRequestTypes} from 'infrastructure/helpers/actionHelpers'
 
 export const GET_ORDERS = createRequestTypes('DOCUMENTS.GET_ORDERS');
 export const GET_ORDER_DETAILS = createRequestTypes('DOCUMENTS.GET_ORDER_DETAILS');
+export const DELETE_ORDER = 'DOCUMENTS.DELETE_ORDER';
 export const CREATE_ORDER = createRequestTypes('DOCUMENTS.CREATE_ORDER');
 export const ADD_PRODUCT = 'DOCUMENTS.ADD_PRODUCT';
 export const SET_ORDERS_FILTER = 'DOCUMENTS.SET_ORDERS_FILTER';
@@ -37,6 +38,8 @@ export const getOrderDetails = {
 	success: ({order}) => createAction(GET_ORDER_DETAILS.SUCCESS, {order}),
 	failure: ({id, error}) => createAction(GET_ORDER_DETAILS.FAILURE, {id, error})
 };
+
+export const deleteOrder = ({id}) => createAction(DELETE_ORDER, {id});
 
 export const createOrder = {
 	request: ({order, products}) => createAction(CREATE_ORDER.REQUEST, {order, products}),

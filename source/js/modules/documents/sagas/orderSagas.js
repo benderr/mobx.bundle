@@ -17,7 +17,25 @@ function* init() {
 	yield takeLatest(actions.GET_ORDERS.REQUEST, getOrders);
 	yield takeLatest(actions.GET_ORDER_NEW_NUMBER.REQUEST, getOrderNewNumber);
 	yield takeEvery(actions.GET_ORDER_DETAILS.REQUEST, getOrderDetails);
+	yield takeEvery(actions.DELETE_ORDER, deleteOrderSaga);
 	yield fork(debounceSearchOrders);
+}
+
+function* deleteOrderSaga({id}) {
+	try {
+		const retailPointId = yield select(getPointId);
+
+		yield call(dataContext.deleteOrder, {
+			retailPointId,
+			external: SHIFT_TYPE.EXTERNAL,
+			cashdocId: id
+		});
+		yield put(actions.getOrders.request());
+	} catch (error) {
+		yield put(actions.getOrders.failure({error}));
+		if (!isServerError(error))
+			throw error;
+	}
 }
 
 function* debounceSearchOrders() {

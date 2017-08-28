@@ -81,6 +81,12 @@ export const actionHandlers = {
 		return state.mergeIn(['createOrder'], {saving: false, error: fromJS(error)});
 	},
 
+	[actions.DELETE_ORDER]: (state, {id}) => {
+		return state
+			.setIn(['orderViews', id], fromJS({close: true}))
+			.updateIn(['orders'], orders => orders.filter((e) => e.get('id') !== id));
+	},
+
 	[actions.GET_ORDER_NEW_NUMBER.REQUEST]: (state) => {
 		return state.setIn(['createOrder', 'orderNewNumber'], undefined);
 	},
