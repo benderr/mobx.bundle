@@ -29,7 +29,15 @@ export const actionHandlers = {
 			error: fromJS(error)
 		});
 	},
-	[enums.RESET]: () => initialState
+	[enums.RESET]: () => initialState,
+	[enums.ERROR_VALID_DATE]: (state) => {
+		console.log(enums.ERROR_VALID_DATE);
+		return state.merge({
+			error: {
+				validDate: true
+			}
+		})
+	}
 };
 
 

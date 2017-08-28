@@ -4,6 +4,7 @@ import {createRequestTypes} from "infrastructure/helpers/actionHelpers";
 // ENUMS
 export const SALES_REPORT = createRequestTypes('REPORT.SALES_REPORT');
 export const RESET = 'REPORT.RESET';
+export const ERROR_VALID_DATE = 'REPORT.ERROR_VALID_DATE';
 
 // ACTIONS
 export const salesReport = {
@@ -13,3 +14,5 @@ export const salesReport = {
 };
 
 export const resetForm = () => createAction(RESET);
+
+export const errorValidDate = () => createAction(ERROR_VALID_DATE);
