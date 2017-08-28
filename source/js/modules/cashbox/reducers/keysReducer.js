@@ -5,7 +5,7 @@ import {uuid} from 'infrastructure/utils/uuidGenerator'
 import createRequestReducer from 'modules/core/reducers/createRequestReducer'
 
 const searchProductReducer = createRequestReducer(actions.SEARCH_PRODUCT, ['searchProductsResult'])
-	.setRequest((data) => data.merge({loading: true}))
+	.setRequest((data, {query}) => data.merge({loading: true, query}))
 	.setFailure((data, {error}) => data.merge({
 		loading: false,
 		error: fromJS(error)
