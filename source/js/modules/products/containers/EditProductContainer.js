@@ -131,7 +131,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 		const {loading, error, saving, removing, product}= productView || {loading: true};
 		const ProductCard = this.productCard;
 		const {activeTab}=this.state;
-		let title = product && !product.isNew ? 'Редактирование товара' : 'Добавление товара';
+		let title = product && !product.isNew ? product.name : 'Добавление товара';
 		const errorModel = this.getErrorMessage();
 		if (errorModel && errorModel.title) {
 			title = errorModel.title;
@@ -142,7 +142,7 @@ export class EditProductContainer extends DefaultLayerLayout {
 				<div className="page_header">
 					{this.getCloseButton()}
 					{this.getToggleButton()}
-					<h1>{!loading && title}</h1>
+					<h1 className="cutted">{!loading && title}</h1>
 				</div>
 				{product &&
 				<ProductCard onSave={::this.onSaveProduct}
