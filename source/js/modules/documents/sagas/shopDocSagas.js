@@ -27,11 +27,20 @@ function* getDocuments() {
 		let q = [];
 		let statuses = filter.selectedStates || [];
 		if (filter) {
+			if (filter.dateFrom) {
+				let d = new Date(filter.dateFrom);
+				filter.dateFrom = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0); // полные сутки
+			}
+			if (filter.dateTo) {
+				let d = new Date(filter.dateTo);
+				filter.dateTo = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 23, 59, 59, 0); // полные сутки
+			}
+
 			filter.query && q.push(`:quickSearch="${filter.query}"`); //переделать на quickSearch
 			filter.docType && q.push(`docType=="${filter.docType}"`);
-			statuses.length > 0 && q.push(`currentState=in=(${statuses.join(',')})`)
-			filter.dateFrom && q.push(`checkoutDateTime=ge="${dateHelper.dateFormat(filter.dateFrom, 'yyyy-mm-dd')}"`);
-			filter.dateTo && q.push(`checkoutDateTime=le="${dateHelper.dateFormat(filter.dateTo, 'yyyy-mm-dd')}"`);
+			statuses.length > 0 && q.push(`currentState=in=(${statuses.join(',')})`);
+			filter.dateFrom && q.push(`checkoutDateTime=ge="${dateHelper.dateFormat(filter.dateFrom, 'serverDateTime')}"`);
+			filter.dateTo && q.push(`checkoutDateTime=le="${dateHelper.dateFormat(filter.dateTo, 'serverDateTime')}"`);
 		}
 
 		q = q.join(';');
