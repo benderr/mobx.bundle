@@ -115,7 +115,7 @@ class CashBoxContainer extends React.Component {
 
     handleRemoveEditKey(key) {
         this.handleClosePopup();
-        this.props.removeKey({key});
+        this.props.removeKey({key, tabCode: this.props.activeTab.code});
     }
 
     handleClosePopup() {

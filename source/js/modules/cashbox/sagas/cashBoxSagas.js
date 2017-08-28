@@ -213,6 +213,10 @@ function* backFromCategory({tabCode}) {
 	yield put(actions.selectTab({code: tabCode}));
 }
 
+function* removeHotKey({tabCode}) {
+	yield call(saveTabAndHotKeys, tabCode);
+}
+
 export default function*() {
 	yield all([
 		//fork(subscribeToUrl, '/hotkeys', init)
@@ -226,6 +230,7 @@ export default function*() {
 		fork(debounceSearchProduct),
 		takeEvery(actionEnum.OPEN_CATEGORY, openCategory),
 		takeEvery(actionEnum.BACK_FROM_CATEGORY, backFromCategory),
-		takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey)
+		takeEvery(actionEnum.DRAG_END_KEY, checkDraggedKey),
+		takeEvery(actionEnum.REMOVE_KEY, removeHotKey)
 	])
 }
