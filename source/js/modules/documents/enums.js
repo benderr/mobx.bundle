@@ -22,6 +22,7 @@ export const DOCUMENT_STATUS_NAMES = {
 
 export const DOCUMENT_TYPE = {
 	SALE: 'SALE',
+	SALE_BY_SOFT: 'SALE_BY_SOFT',
 	RETURN: 'RETURN',
 	RETURN_BY_SALE: 'RETURN_BY_SALE',
 	CASH_IN: 'CASH_IN',
@@ -30,6 +31,7 @@ export const DOCUMENT_TYPE = {
 
 export const DOCUMENT_TYPE_NAMES = {
 	[DOCUMENT_TYPE.SALE]: 'Продажа',
+	[DOCUMENT_TYPE.SALE_BY_SOFT]: 'Продажа',
 	[DOCUMENT_TYPE.RETURN]: 'Возврат',
 	[DOCUMENT_TYPE.RETURN_BY_SALE]: 'Возврат',
 	[DOCUMENT_TYPE.CASH_IN]: 'Внесение',
