@@ -13,7 +13,7 @@ class DocumentsFilter extends React.Component {
 	render() {
 		const {
 			docType, selectedState, dateFrom, dateTo, ignoreCloseSelect,
-			onChangeStatus, onChangeDocType, onChangeDate
+			onChangeStatus, onChangeDocType, onChangeDate, onClearFilter
 		}=this.props;
 
 		const states = selectedState || [];
@@ -55,6 +55,9 @@ class DocumentsFilter extends React.Component {
 										  label={getDocStatusName(key)}/>);
 					})}
 				</ul>
+			</div>
+			<div className="side_filter">
+				<a className="link_dashed" onClick={onClearFilter}><span>Очистить</span></a>
 			</div>
 		</div>)
 	}

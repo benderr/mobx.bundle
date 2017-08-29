@@ -120,6 +120,19 @@ class ShopDocsContainer extends React.Component {
 		push(`/documents/ishop/view/${selectedPoint}/${id}`);
 	}
 
+	handleClearFilter() {
+		this.setFilter({
+			restart: true,
+			filter: {
+				docType: null,
+				selectedStates: null,
+				dateFrom: null,
+				dateTo: null
+			}
+		});
+		this.props.getDocuments();
+	}
+
 
 	isClosableFilter() {
 		if (!this.docFilter)
@@ -151,6 +164,7 @@ class ShopDocsContainer extends React.Component {
 									 onChangeDocType={::this.handleChangeFilterDocType}
 									 onChangeStatus={::this.handleChangeFilterStatus}
 									 onChangeDate={::this.handleChangeDate}
+									 onClearFilter={::this.handleClearFilter}
 									 dateFrom={dateFrom}
 									 dateTo={dateTo}
 									 docType={docType}
