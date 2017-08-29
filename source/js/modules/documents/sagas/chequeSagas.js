@@ -30,7 +30,7 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 		}
 		if (docType) {
 			const docTypes = docType == DOCUMENT_TYPE.RETURN ?
-				[DOCUMENT_TYPE.RETURN, DOCUMENT_TYPE.RETURN_BY_SALE] : [DOCUMENT_TYPE.SALE];
+				[DOCUMENT_TYPE.RETURN, DOCUMENT_TYPE.RETURN_BY_SALE] : [DOCUMENT_TYPE.SALE, DOCUMENT_TYPE.SALE_BY_SOFT];
 
 			query.push(`docType=in=(${docTypes.join(',')})`)
 		}
