@@ -42,6 +42,7 @@ class ReportFormComponent extends React.Component {
 					</label>
 					{sendToEmail && <div class="send_to_address">
 						<InputField className="small"
+									autoComplete="off"
 									name="email"
 									type="email"
 									label="Ваш электронный адрес"
