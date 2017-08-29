@@ -13,26 +13,7 @@ function* getListMoneySaga({isFirst = false, step = false}) {
 	try {
 		const token = yield select(getCurrentRetailPointId);
 		const propState = yield select(getListPropsState);
-
-		// region: query params
-		let query = [];
-		const {dateFrom, dateTo, docType, q} = propState.filter;
-
-		if (q && q.length) {
-			query.push(`docNum==${q}`);
-		}
-		if (dateFrom instanceof Date) {
-			query.push(`dateCreated=ge="${dateHelper.dateFormat(dateHelper.setStartDate(dateFrom), 'serverDateTime')}"`);
-		}
-		if (dateTo instanceof Date) {
-			query.push(`dateCreated=le="${dateHelper.dateFormat(dateHelper.setEndDate(dateTo), 'serverDateTime')}"`);
-		}
-		if (docType) {
-			query.push(`type=="${docType}"`)
-		}
-
-		query = query.join(';');
-		// endregion
+		const query = yield call(getValidQueryParams, propState.filter);
 
 		const response = yield call(dataContext.getMoneyDocs,
 			token,
@@ -53,6 +34,25 @@ function* getListMoneySaga({isFirst = false, step = false}) {
 		yield put(notify.error('При загрузке данных произошла ошибка', 'Ошибка'));
 		yield put(actEnums.getListMoney.failure());
 	}
+}
+
+export function* getValidQueryParams({dateFrom, dateTo, docType, q}) {
+	let query = [];
+
+	if (q && q.length) {
+		query.push(`docNum==${q}`);
+	}
+	if (dateFrom instanceof Date) {
+		query.push(`dateCreated=ge="${dateHelper.dateFormat(dateHelper.setStartDate(dateFrom), 'serverDateTime')}"`);
+	}
+	if (dateTo instanceof Date) {
+		query.push(`dateCreated=le="${dateHelper.dateFormat(dateHelper.setEndDate(dateTo), 'serverDateTime')}"`);
+	}
+	if (docType) {
+		query.push(`type=="${docType}"`)
+	}
+
+	return query.join(';');
 }
 
 
