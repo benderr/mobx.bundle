@@ -23,10 +23,10 @@ function* getListChequeSaga({isFirst = false, step = false}) {
 			query.push(`:quickSearch="${q}"`);
 		}
 		if (dateFrom instanceof Date) {
-			query.push(`beginDateTime=ge="${dateHelper.dateFormat(dateFrom, 'isoUtcDateTime')}"`);
+			query.push(`beginDateTime=ge="${dateHelper.dateFormat(dateHelper.setStartDate(dateFrom), 'serverDateTime')}"`);
 		}
 		if (dateTo instanceof Date) {
-			query.push(`beginDateTime=le="${dateHelper.dateFormat(dateTo, 'isoUtcDateTime')}"`);
+			query.push(`beginDateTime=le="${dateHelper.dateFormat(dateHelper.setEndDate(dateTo), 'serverDateTime')}"`);
 		}
 		if (docType) {
 			const docTypes = docType == DOCUMENT_TYPE.RETURN ?
