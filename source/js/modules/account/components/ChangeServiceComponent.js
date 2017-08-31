@@ -75,7 +75,7 @@ class ChangeServiceComponent extends React.Component {
 							<div className="property_value col">
 								<InputField name="msLogin" type="text"
 											required="Укажите логин"
-											validate={[validateLogin('Не верный логин')]}/>
+											validate={[validateLogin('Неверный логин')]}/>
 							</div>
 						</div>
 						<div className="form_group form_horizontal">
