@@ -1,5 +1,4 @@
 import React from 'react'
-import {Field} from 'redux-form/immutable'
 import PropTypes from 'prop-types'
 import {isEmpty} from 'common/validators'
 

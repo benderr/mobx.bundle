@@ -1,16 +1,13 @@
 import 'babel-polyfill';
-import '../../../Markup.Kassa/markup/stylus/kassa_page_login.styl';
+import '../../../../Markup.Kassa/markup/stylus/kassa_page_login.styl';
 import {render} from 'react-dom'
 import React from 'react'
 import RootContainer from 'components/RootContainer'
-import signInModules from 'modules/signInModules'
-import configureRedux from 'redux/configureRedux.js'
-import {Map} from 'immutable';
+import modules from 'modules/modules'
+import configureApp from 'mobx/configure.js'
 const mountNode = document.getElementById('root');
 
-const initialState = Map();
+const {store, routes, history}= configureApp(modules);
 
-const {store, routes, history}= configureRedux(signInModules, initialState);
-
-render(<RootContainer store={store} routes={routes} history={history}/>, mountNode);
+render(<RootContainer routes={routes} history={history} />, mountNode);
 

@@ -1,7 +1,6 @@
 import {showErrorBorder, showSuccessBorder, getErrorMessage, ifCondition, getRandomKey} from './formFieldHelpers'
 import React from 'react'
 import ReactTooltip from 'react-tooltip'
-import {focus} from 'redux-form/immutable'
 
 /**
  * HOC для обертки над инпутами, чтобы получить необходимые методы подсветки ошибок и т.д.

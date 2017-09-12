@@ -1,6 +1,5 @@
 import * as AccountModule from './account/accountModule'
-import * as RetailPointsModule from './retailPoints/retailsPointModule'
-import * as CoreModule from './core/coreModule'
 
+const modules = [AccountModule];
 
-export default [AccountModule, RetailPointsModule, CoreModule];
+export default modules;

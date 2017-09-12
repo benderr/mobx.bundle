@@ -1,7 +1,4 @@
 import SignInContainer from './containers/SignInContainer';
-import RegistrationContainer from './containers/RegistrationContainer';
-import ForgotContainer from './containers/ForgotContainer';
-import SettingsContainer from './containers/SettingsContainer';
 import React from 'react';
 
 export function getRoutes() {
@@ -13,31 +10,17 @@ export function getRoutes() {
 			component: SignInContainer,
 			layout: null
 		},
-		registration: {
-			path: '/registration',
+		home: {
+			path: '/',
 			exact: true,
 			allowAnonymous: true,
-			component: RegistrationContainer,
-			layout: null
+			component: () => (<div>Home page</div>),
 		},
-		forgot: {
-			path: '/forgot',
+		documents: {
+			path: '/documents',
 			exact: true,
 			allowAnonymous: true,
-			component: ForgotContainer,
-			layout: null
-		},
-		settings: {
-			path: '/settings/:tab',
-			exact: false,
-			isLayer: true,
-			layout: SettingsContainer
-		},
-		settings2: {
-			path: '/settings',
-			exact: true,
-			isLayer: true,
-			layout: SettingsContainer
+			component: () => (<div>Documents page</div>),
 		}
 	};
 }
