@@ -1,5 +1,5 @@
-# ModulBank.Kassa
-Boilerplate для проектов с использованием React+Redux+Webpack 2
+# Mobx.bundle
+Boilerplate для проектов с использованием React+Mobx+Webpack 2
 
 Требования к проекту:
 
