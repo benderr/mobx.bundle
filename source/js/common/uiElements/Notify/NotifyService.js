@@ -8,7 +8,7 @@ class NotifyService extends React.Component {
 	componentWillReceiveProps(nextProps) {
 		if (!this.notify)
 			return;
-		const {notifications, dispatch} = nextProps;
+		const {notifications=[], dispatch} = nextProps;
 
 		const notificationIds = notifications.map(notification => notification.uid);
 		const systemNotifications = this.notify.state.notifications || [];

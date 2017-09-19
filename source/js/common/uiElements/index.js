@@ -16,7 +16,7 @@ import LoaderPanel from './LoaderPanel';
 import DatePickerRange from './DatePickerRange'
 import DatePicker from './DatePicker'
 import NumberInput from './NumberInput'
-import PhoneInput from  './PhoneInput'
+//import PhoneInput from  './PhoneInput'
 import NumberFormat from './NumberFormat'
 
 export {
@@ -39,5 +39,5 @@ export {
 	ContentPopupService,
 	NumberInput,
 	NumberFormat,
-	PhoneInput
+	//PhoneInput
 }
