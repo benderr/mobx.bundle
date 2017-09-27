@@ -1,0 +1,10 @@
+{
+  "api": {
+    "url": "http://react.modulbank.ru",
+    "apiUrl": "/api"
+  },
+  "host": "react.modulbank.ru",
+  "port": 3000,
+  "markupKassa": "../../../Markup.Kassa/markup/stylus/style_kassa.styl",
+  "markupCommon404": "../../../Markup.Common/markup/stylus/404.styl"
+}

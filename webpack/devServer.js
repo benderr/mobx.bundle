@@ -1,5 +1,4 @@
 const config = require('../webpack/constants');
-const appConfig = require('../config/config');
 
 const devServer = {
 	contentBase: config.IS_PRODUCTION ? config.buildPath : config.sourcePath,
@@ -16,7 +15,7 @@ const devServer = {
 	compress: config.IS_PRODUCTION,
 	inline: !config.IS_PRODUCTION,
 	hot: !config.IS_PRODUCTION,
-	host: appConfig.host,
+	host: config.app.host,
 	stats: {
 		assets: true,
 		children: false,

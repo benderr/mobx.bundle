@@ -1,6 +1,5 @@
 const webpack = require('webpack');
 const config = require('../webpack/constants');
-const appConfig = require('../config/config');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -12,6 +11,7 @@ const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CommonsChunkPlugin = require("../node_modules/webpack/lib/optimize/CommonsChunkPlugin");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 const plugins = [
 
@@ -38,10 +38,12 @@ const plugins = [
 		'process.env': {
 			NODE_ENV: JSON.stringify(config.NODE_ENV),
 		},
-		__API_URL__: JSON.stringify(appConfig.apiConfig.apiUrl),
+		__API_URL__: JSON.stringify(config.app.api.apiUrl),
 		__DEV__: config.IS_DEVELOPMENT,
 		__DEV_TOOLS__: false,
-		__CLIENT__: true
+		__CLIENT__: true,
+		__MARKUP_KASSA__: JSON.stringify(config.app.markupKassa),
+		__MARKUP_COMMON_404__: JSON.stringify(config.app.markupCommon404)
 	}),
 	new HtmlWebpackPlugin({
 		template: path.join(config.sourcePath, 'index.html'),
@@ -73,7 +75,7 @@ const plugins = [
 			context: config.sourcePath,
 		}
 	}),
-	new OpenBrowserPlugin({url: appConfig.apiConfig.url})
+	new OpenBrowserPlugin({url: config.app.api.url})
 ];
 
 

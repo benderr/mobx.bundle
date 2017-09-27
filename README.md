@@ -38,7 +38,7 @@ $ npm run build
 
 If your app is not running on the server root you should change `publicPath` at two places.
 
-In `webpack.config.js` (ATM line 147):
+In `webpack.index.js` (ATM line 147):
 
 ```
 output: {
