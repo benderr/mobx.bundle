@@ -1,6 +1,8 @@
+// require(__MARKUP_COMMON_404__);
+
 import React from 'react';
-import '../../../../../Markup.Common/markup/stylus/404.styl';
 import {withRouter} from 'react-router';
+
 
 const NotFoundLayout = () => {
     return (

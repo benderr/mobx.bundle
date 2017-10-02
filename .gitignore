@@ -15,3 +15,5 @@ markup/js
 markup/*.js
 markup/**/*.js
 
+package-lock.json
+config/config.dev.json

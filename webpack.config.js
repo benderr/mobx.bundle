@@ -4,12 +4,11 @@ const vendor = require('./webpack/vendors');
 const plugins = require('./webpack/plugins');
 const rules = require('./webpack/rules');
 const devServer = require('./webpack/devServer');
-const appConfig = require('./config/config');
 
 const buildEntryPoint = (point) => {
 	if (config.IS_PRODUCTION)
 		return point;
-	return [point, 'webpack/hot/only-dev-server', `webpack-dev-server/client?http://${appConfig.host}:${appConfig.port}`];
+	return [point, 'webpack/hot/only-dev-server', `webpack-dev-server/client?http://${config.app.host}:${config.app.port}`];
 }
 
 module.exports = {

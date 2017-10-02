@@ -1,5 +1,6 @@
+require(__MARKUP_KASSA__);
+
 import 'babel-polyfill';
-import '../../../../Markup.Kassa/markup/stylus/style_kassa.styl';
 import {render} from 'react-dom'
 import React from 'react'
 import RootContainer from 'components/RootContainer'
