@@ -1,29 +1,37 @@
 import React from 'react';
 import ModulHeader from 'components/ModulHeader';
+import SignInForm from './../components/SignInForm2';
 import {observable} from 'mobx'
-import {observer} from 'mobx-react'
+import {observer, inject} from 'mobx-react'
 
+@inject('account.authStore')
 @observer
 class SignInContainer extends React.Component {
-
-    @observable count = 0;
-
-    handleDec() {
-        this.count++
-    }
+    //
+    // @observable count = 0;
+    // handleEmailChange = e => this.props.account.authStore.setEmail(e.target.value);
+    // handlePasswordChange = e => this.props.account.authStore.setPassword(e.target.value);
+    // handleSubmitForm = (e) => {
+    //     e.preventDefault();
+    //     this.props.account.authStore.login()
+    //         // .then(() => this.props.history.replace('/'));
+    // };
 
     render() {
+        console.log(this.props)
+        const {values: {email, password}, inProgress} = this.props.account.authStore
+
         return (
             <div class="login">
-                <ModulHeader/>
-                <div className="login_section">
-                    <div className="login_section_center">
-                        <div className="login_content">
-                            Counter: {this.count}
-                            <button onClick={::this.handleDec} className="button">Test</button>
-                        </div>
-                    </div>
-                </div>
+                {/*<ModulHeader/>*/}
+                {/*<SignInForm*/}
+                    {/*inProgress={inProgress}*/}
+                    {/*email={email}*/}
+                    {/*password={password}*/}
+                    {/*handleEmailChange={this.handleEmailChange}*/}
+                    {/*handlePasswordChange={this.handlePasswordChange}*/}
+                    {/*handleSubmitForm={this.handleSubmitForm}*/}
+                {/*/>*/}
             </div>
         );
     }

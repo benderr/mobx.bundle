@@ -7,8 +7,12 @@ import RootContainer from 'components/RootContainer'
 import modules from 'modules/modules'
 import configureApp from 'mobx/configure.js'
 const mountNode = document.getElementById('root');
+import { Provider } from 'mobx-react';
 
-const {store, routes, history}= configureApp(modules);
+const {stores, routes, history} = configureApp(modules);
 
-render(<RootContainer routes={routes} history={history} />, mountNode);
+render(
+	<Provider {...stores}>
+		<RootContainer routes={routes} history={history} />
+	</Provider>, mountNode);
 
