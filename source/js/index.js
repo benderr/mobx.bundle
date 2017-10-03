@@ -10,5 +10,12 @@ const mountNode = document.getElementById('root');
 
 const {store, routes, history}= configureApp(modules);
 
+
+import indexModules from './modules/indexModule'
+const inxStore = indexModules.reduce((max, item) => ({...max, ...item.stores}), {});
+
+console.log('inxStore', inxStore);
+
+
 render(<RootContainer routes={routes} history={history} />, mountNode);
 
