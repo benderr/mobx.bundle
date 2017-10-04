@@ -8,8 +8,6 @@ export function getRoutes() {
 
 export function getStores() {
 	return {
-		account: {
-			authStore
-		}
+		authStore,
 	}
 }

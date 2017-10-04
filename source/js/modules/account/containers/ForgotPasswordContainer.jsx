@@ -6,7 +6,7 @@ import {observer, inject} from 'mobx-react'
 
 @inject('authStore')
 @observer
-class SignInContainer extends React.Component {
+class ForgotPasswordContainer extends React.Component {
     @observable count = 0;
     handleEmailChange = e => this.props.authStore.setEmail(e.target.value);
     handlePasswordChange = e => this.props.authStore.setPassword(e.target.value);
@@ -22,7 +22,7 @@ class SignInContainer extends React.Component {
 
         return (
             <div class="login">
-
+                {/*<ModulHeader/>*/}
                 <SignInForm
                     inProgress={inProgress}
                     email={email}
@@ -36,4 +36,4 @@ class SignInContainer extends React.Component {
     }
 }
 
-export default SignInContainer;
+export default ForgotPasswordContainer;

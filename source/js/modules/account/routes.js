@@ -1,4 +1,5 @@
 import SignInContainer from './containers/SignInContainer';
+import ForgotPasswordContainer from './containers/ForgotPasswordContainer';
 import React from 'react';
 
 export function getRoutes() {
@@ -8,6 +9,13 @@ export function getRoutes() {
 			exact: true,
 			allowAnonymous: true,
 			component: SignInContainer,
+			layout: null
+		},
+		forgot: {
+			path: '/forgot',
+			exact: true,
+			allowAnonymous: true,
+			component: ForgotPasswordContainer,
 			layout: null
 		},
 		home: {
