@@ -1,3 +1,5 @@
+import React from 'react';
+
 // Components
 import SignInContainer from './containers/SignInContainer';
 import ForgotPasswordContainer from './containers/ForgotPasswordContainer';

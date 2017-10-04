@@ -1,4 +1,4 @@
-import {createBrowserHistory} from 'history'
+import { createBrowserHistory } from 'history';
 // import logger from 'infrastructure/utils/logger'
 
 /**
@@ -15,7 +15,7 @@ import {createBrowserHistory} from 'history'
  */
 
 function getRoutes(modules) {
-	return modules
+    return modules
 		.filter((m) => m.routes)
 		.reduce((routes, module) => {
 			const routesObject = module.routes;
@@ -38,7 +38,7 @@ function getStores(modules) {
 	return modules.filter((m) => m.stores)
 		.reduce((stores, m) => {
 			const moduleStores = m.stores;
-			return {...stores, ...moduleStores}
+			return { ...stores, ...moduleStores };
 		}, {});
 }
 
@@ -48,5 +48,5 @@ export default function configure(modules) {
 	const routes = getRoutes(modules);
 	const stores = getStores(modules);
 
-	return {stores, routes, history};
+	return { stores, routes, history };
 }

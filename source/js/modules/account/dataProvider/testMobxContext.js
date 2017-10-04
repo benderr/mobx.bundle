@@ -20,7 +20,7 @@ export function logout() {
 
 export function login(email, password) {
 	return new Promise((resolve, reject) =>
-		setTimeout(1000, resolve({...testUser, email, password}))
+		setTimeout(() => resolve({...testUser, email, password}), 1000)
 	);
 }
 

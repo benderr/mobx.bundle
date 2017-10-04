@@ -1,5 +1,5 @@
-import * as AccountModule from './account'
+import * as AccountModule from './account';
 
 export default [
-	AccountModule
+    AccountModule,
 ];

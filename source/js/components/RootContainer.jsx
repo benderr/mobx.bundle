@@ -5,7 +5,9 @@ import AppContainer from './AppContainer'
 import {BrowserRouter} from 'react-router-dom'
 import DevTools from 'mobx-react-devtools'
 import { Provider } from 'mobx-react';
+import { useStrict } from 'mobx';
 
+useStrict(true);
 
 class RootContainer extends React.Component {
     static propTypes = {
