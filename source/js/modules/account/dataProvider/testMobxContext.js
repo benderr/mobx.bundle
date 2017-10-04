@@ -1,6 +1,10 @@
 import * as mapper from './accountMapper'
 import api from 'infrastructure/api/api'
 
+const testUser = {
+	token: Math.random().toString(36).substring(7)
+}
+
 /**
  * Авторизация
  * @returns {*|axios.Promise}
@@ -14,6 +18,12 @@ export function logout() {
 	return api.v1().logout().get();
 }
 
+export function login(email, password) {
+	return new Promise((resolve, reject) =>
+		setTimeout(1000, resolve({...testUser, email, password}))
+	);
+}
+
 export const forgotPass = (email, captcha) => {
 	return api.v1().user(email).tempPassword().post({captcha});
 };
@@ -23,7 +33,7 @@ export const forgotPass = (email, captcha) => {
  * @param email
  * @returns {axios.Promise|*}
  */
- export const changePass = (oldPassword, newPassword) => {
+export const changePass = (oldPassword, newPassword) => {
 	const queryString = `currentPassword=${oldPassword}&newPassword=${newPassword}`;
 	return api.v1().user().password().put({
 		currentPassword: oldPassword,
