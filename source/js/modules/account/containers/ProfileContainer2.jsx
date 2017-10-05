@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import Profile from '../components/Profile';
+import Profile from '../components/Profile2';
 
 @inject('authStore')
 @observer
@@ -18,15 +18,13 @@ class ProfileContainer extends React.Component {
   };
 
   render() {
-    const { user, inProgress } = this.props.authStore;
+    const { user: { name, email } } = this.props.authStore;
     console.log('ProfileContainer render!');
-    // Если компонент тупой и не observer
-    // const ObserverProfile = observer(Profile)
     return (
       <div>
         <Profile
-          inProgress={ inProgress }
-          user={ user }
+          name={ name }
+          email={ email }
           handleEmailChange={ this.handleEmailChange }
           logout={ this.logout } />
       </div>

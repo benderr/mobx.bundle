@@ -1,18 +1,18 @@
 import React from 'react';
-import { observer } from 'mobx-react';
 
-export default observer((props) => {
-  const { logout, user, handleEmailChange } = props;
+export default (props) => {
+  console.log('Profile2 render!');
+  const { name, email, handleEmailChange, logout } = props;
   return (
     <div >
       <ul>
-        <li>Name: {user.name}</li>
-        <li>Email: {user.email}</li>
+        <li>Name: {name}</li>
+        <li>Email: {email}</li>
       </ul>
       <div>
         <label>
           Email:
-          <input value={ user.email } onChange={ handleEmailChange } />
+          <input value={ email } onChange={ handleEmailChange } />
         </label>
       </div>
       <div>
@@ -20,10 +20,10 @@ export default observer((props) => {
           className='btn btn-lg btn-primary pull-xs-right'
           onClick={ logout }
           type='submit'>
-          Logout
+                    Logout
         </button>
       </div>
     </div>
   );
-});
+};
 

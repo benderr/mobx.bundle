@@ -2,7 +2,9 @@ import React from 'react';
 
 // Components
 import SignInContainer from './containers/SignInContainer';
-import Profile from './containers/ProfileContainer';
+import ProfileContainer from './containers/ProfileContainer';
+import ProfileContainer2 from './containers/ProfileContainer2';
+import RegistrationContainer from './containers/RegistrationContainer';
 
 // Stores
 import authStore from './stores/authStore';
@@ -19,11 +21,18 @@ export const routes = {
     component: SignInContainer,
     layout: null,
   },
-  forgot: {
+  profile: {
     path: '/profile',
     exact: true,
     allowAnonymous: true,
-    component: Profile,
+    component: ProfileContainer,
+    layout: null,
+  },
+  profile2: {
+    path: '/profile2',
+    exact: true,
+    allowAnonymous: true,
+    component: ProfileContainer2,
     layout: null,
   },
   home: {
@@ -32,11 +41,12 @@ export const routes = {
     allowAnonymous: true,
     component: () => (<div>Home page</div>),
   },
-  documents: {
-    path: '/documents',
+  registration: {
+    path: '/registration',
     exact: true,
     allowAnonymous: true,
-    component: () => (<div>Documents page</div>),
+    layout: null,
+    component: RegistrationContainer,
   },
 };
 

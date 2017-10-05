@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { observer } from 'mobx-react';
 
-// @observer
-export default (props) => {
-  const { email, password, inProgress, handleSubmitForm, handleEmailChange, handlePasswordChange } = props;
+
+export default observer((props) => {
+  const { user, inProgress, buttonName, handleSubmitForm, handleEmailChange, handlePasswordChange, authError } = props;
   return (
     <form onSubmit={ handleSubmitForm }>
       <div className='login_content'>
@@ -11,11 +11,11 @@ export default (props) => {
           <div class='form_group'>
             <label>
               Email:
-              <input value={ email } onChange={ handleEmailChange } />
+              <input value={ user.email } onChange={ handleEmailChange } />
             </label>
             <label>
-              Password:
-              <input value={ password } onChange={ handlePasswordChange } />
+              Пароль:
+              <input value={ user.password } onChange={ handlePasswordChange } />
             </label>
             <div>
               <label>
@@ -29,25 +29,18 @@ export default (props) => {
               className='btn btn-lg btn-primary pull-xs-right'
               type='submit'
               disabled={ inProgress }>
-              Sign in
+              {buttonName}
             </button>
           </div>
-          {/* Блок ошибок*/}
-          {/* <div className="form_error">{getError(errors)}</div>*/}
 
-          {/* <div className="form_buttons">*/}
-          {/* {!inProgress && <button className="button" type="submit">Войти</button>}*/}
-          {/* {inProgress && <button className="button loading_block" type="button"></button>}*/}
-          {/* </div>*/}
+          <h3 style={ { color: 'red' } } >
+            {authError}
+          </h3>
         </div>
-      </div>
-      <div className='login_links'>
-        <Link to='/forgot'>Забыли пароль?</Link>
-        <Link to='/registration'>Зарегистрироваться</Link>
       </div>
     </form>
   );
-};
+});
 
 // SignInForm.propTypes = {
 // 	loading: PropTypes.bool.isRequired,
