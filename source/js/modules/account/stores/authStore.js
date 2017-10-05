@@ -1,124 +1,58 @@
-import { observable, action, runInAction } from 'mobx';
-import { logout, login } from './../dataProvider/testMobxContext';
+import { observable, action } from 'mobx';
+import { logout, login } from '../dataProvider';
 
 class AuthStore {
-	@observable inProgress = false;
-	@observable authError = undefined;
-	@observable token = undefined;
+  @observable inProgress = false;
+  @observable authError = undefined;
+  @observable token = undefined;
 
-	@observable
-	values = {
-		username: '123',
-		email: '123',
-		password: '123',
-	};
+  @observable
+  user = {
+    email: 'example@exmpl.ru',
+    password: '123123',
+    name: '',
+  };
 
-	@observable
-	user = {
-		username: '',
-		email: '',
-		password: '',
-	};
+  @action
+  setEmail(email) {
+    this.user.email = email;
+  }
+
+  @action
+  setPassword(password) {
+    this.user.password = password;
+  }
 
 
-	@action
-	setUsername(username) {
-		this.values.username = username;
-	}
+  @action
+  login() {
+    this.inProgress = true;
+    return login(this.user.email, this.user.password)
+      .then((u) => {
+        this.inProgress = false;
+        this.user.name = u.name;
+        this.token = u.token;
+        this.user.password = '';
+      });
+  }
 
-	@action
-	setEmail(email) {
-		this.values.email = email;
-	}
+  /*
+    TODO: Пока это не работает, требуется настроить .babelrc
+    Подробнее: https://github.com/mobxjs/babel-plugin-mobx-deep-action#-usage-for-async-and-generator-functions
+    */
+  // @action
+  // login = async () => {
+  // 	this.inProgress = true;
+  // 	this.authError = undefined;
+  // 	await login(this.user.email, this.user.password)
+  // 	this.inProgress = false;
+  // }
 
-	@action
-	setPassword(password) {
-		this.values.password = password;
-	}
-
-	@action
-	reset() {
-		this.values.username = '';
-		this.values.email = '';
-		this.values.password = '';
-	}
-
-	// @action
-	// login() {
-	// 	this.inProgress = true;
-	// 	login(this.values.email, this.values.password)
-	// 		.then(() => {
-	// 			this.inProgress = false;
-	// 		});
-	// }
-
-	@action
-	login = async () => {
-		this.inProgress = true;
-		this.authError = undefined;
-		// try {
-			await login(this.values.email, this.values.password)
-			// console.log(user);
-			// runInAction(() => {
-			this.inProgress = false;
-			// })
-		// } catch (error) {
-			// runInAction(() => {
-			// 	this.authError = "error"
-			// })
-		// }
-	}
-
-	@action
-	register() {
-		this.inProgress = true;
-		this.errors = undefined;
-		// return agent.Auth
-		//   .register(this.values.username, this.values.email, this.values.password)
-		//   .then(({ user }) => commonStore.setToken(user.token))
-		//   .then(() => userStore.pullUser())
-		//   .catch(
-		//     action(err => {
-		//       this.errors =
-		//         err.response && err.response.body && err.response.body.errors;
-		//       throw err;
-		//     })
-		//   )
-		//   .finally(
-		//     action(() => {
-		//       this.inProgress = false;
-		//     })
-		//   );
-	}
-
-	@action
-	forgot() {
-		this.inProgress = true;
-		this.errors = undefined;
-		// return agent.Auth
-		//   .register(this.values.username, this.values.email, this.values.password)
-		//   .then(({ user }) => commonStore.setToken(user.token))
-		//   .then(() => userStore.pullUser())
-		//   .catch(
-		//     action(err => {
-		//       this.errors =
-		//         err.response && err.response.body && err.response.body.errors;
-		//       throw err;
-		//     })
-		//   )
-		//   .finally(
-		//     action(() => {
-		//       this.inProgress = false;
-		//     })
-		//   );
-	}
-
-	@action
-	logout() {
-		// commonStore.setToken(undefined);
-		// userStore.forgetUser();
-		// return new Promise(res => res());
-	}
+  @action
+  logout() {
+    this.token = undefined;
+    return logout();
+  }
 }
 
 export default new AuthStore();

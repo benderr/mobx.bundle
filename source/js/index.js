@@ -4,7 +4,7 @@ import 'babel-polyfill';
 import { render } from 'react-dom';
 import React from 'react';
 import RootContainer from 'components/RootContainer';
-import configureApp from 'configure.js';
+import configureApp from 'configureApp';
 import indexModules from './modules/indexModules';
 
 const mountNode = document.getElementById('root');
