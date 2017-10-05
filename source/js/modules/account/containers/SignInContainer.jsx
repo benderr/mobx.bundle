@@ -1,32 +1,39 @@
 import React from 'react';
-import ModulHeader from 'components/ModulHeader';
-import {observable} from 'mobx'
-import {observer} from 'mobx-react'
+import SignInForm from '../components/SignInForm';
+import { observer, inject } from 'mobx-react';
 
+@inject('authStore')
 @observer
 class SignInContainer extends React.Component {
+  handleEmailChange = e => {
+    this.props.authStore.setEmail(e.target.value);
+  };
 
-    @observable count = 0;
+  handlePasswordChange = e => {
+    this.props.authStore.setPassword(e.target.value);
+  };
 
-    handleDec() {
-        this.count++
-    }
+  handleSubmitForm = (e) => {
+    const { authStore, history } = this.props;
+    e.preventDefault();
+    authStore.login()
+      .then(() => history.replace('/profile'));
+  };
 
-    render() {
-        return (
-            <div class="login">
-                <ModulHeader/>
-                <div className="login_section">
-                    <div className="login_section_center">
-                        <div className="login_content">
-                            Counter: {this.count}
-                            <button onClick={::this.handleDec} className="button">Test</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
-    }
+  render() {
+    const { user: { email, password }, inProgress } = this.props.authStore;
+    return (
+      <div class='login'>
+        <SignInForm
+          inProgress={ inProgress }
+          email={ email }
+          password={ password }
+          handleEmailChange={ this.handleEmailChange }
+          handlePasswordChange={ this.handlePasswordChange }
+          handleSubmitForm={ this.handleSubmitForm } />
+      </div>
+    );
+  }
 }
 
 export default SignInContainer;

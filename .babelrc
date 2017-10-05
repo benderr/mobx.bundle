@@ -2,6 +2,7 @@
   "plugins": [
     "syntax-decorators",
     "transform-decorators-legacy",
+    "mobx-deep-action",
     "transform-class-properties",
     "react-html-attrs"
   ],

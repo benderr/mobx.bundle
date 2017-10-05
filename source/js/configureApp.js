@@ -1,4 +1,5 @@
-import React from 'react';
+import { createBrowserHistory } from 'history';
+// import logger from 'infrastructure/utils/logger'
 
 /**
  * Разбор флагов роута
@@ -13,10 +14,11 @@ import React from 'react';
  *                если layout: null, то рендерится без мастера
  */
 
-export default function getRoutes(modules) {
-	return modules.filter((m) => isFunc(m.getRoutes))
+function getRoutes(modules) {
+    return modules
+		.filter((m) => m.routes)
 		.reduce((routes, module) => {
-			const routesObject = module.getRoutes();
+			const routesObject = module.routes;
 			const routesArray = getRouteFromSection(routesObject);
 			return [...routes, ...routesArray];
 		}, []);
@@ -32,6 +34,19 @@ function getRouteFromSection(routesObject) {
 	}, []);
 }
 
-function isFunc(f) {
-	return typeof f === 'function';
+function getStores(modules) {
+	return modules.filter((m) => m.stores)
+		.reduce((stores, m) => {
+			const moduleStores = m.stores;
+			return { ...stores, ...moduleStores };
+		}, {});
+}
+
+
+export default function configure(modules) {
+	const history = createBrowserHistory();
+	const routes = getRoutes(modules);
+	const stores = getStores(modules);
+
+	return { stores, routes, history };
 }
