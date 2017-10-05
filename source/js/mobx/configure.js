@@ -7,6 +7,6 @@ export default function configure(modules) {
 
 	const history = createBrowserHistory();
 	const routes = getRoutes(modules);
-
-	return {store: {}, routes, history};
+	const stores = modules.map(s => s.getStores && s.getStores());
+	return {store: stores, routes, history};
 }
