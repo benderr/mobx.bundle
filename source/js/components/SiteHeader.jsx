@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {Route} from 'react-router'
-import {Drop} from 'common/uiElements';
-import {ConfirmPopupService} from 'common/uiElements'
 
 const SiteMenuLink = ({label, to, exact}) => (
     <Route path={to} exact={exact} children={({match}) => (

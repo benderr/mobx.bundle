@@ -5,7 +5,6 @@ import NotFoundLayout from 'components/NotFoundLayout';
 import InternalLayout from 'components/InternalLayout';
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
 import RadRouter from 'components/RadRouter/RadRouter';
-import { NotifyService } from 'common/uiElements/Notify';
 
 @withRouter
 class AppContainer extends React.Component {
@@ -23,7 +22,6 @@ class AppContainer extends React.Component {
           defaultLayout={ InternalLayout }
           routes={ routes }
           notFound={ NotFoundLayout } />
-        <NotifyService />
       </div>
     );
   }
