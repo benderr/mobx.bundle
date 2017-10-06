@@ -18,7 +18,10 @@ class SignInContainer extends React.Component {
     const { authStore, history } = this.props;
     e.preventDefault();
     authStore.login()
-      .then(() => history.replace('/profile'));
+      .then(() => {
+        console.log(authStore.token);
+      });
+      // .then(() => history.replace('/profile'));
   };
 
   render() {

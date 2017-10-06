@@ -1,5 +1,6 @@
 import { observable, action } from 'mobx';
 import { logout, login, register } from '../dataProvider';
+import { asyncAction } from 'mobx-utils';
 
 class AuthStore {
   @observable inProgress = false;
@@ -23,57 +24,38 @@ class AuthStore {
     this.user.password = password;
   }
 
-
-  @action
-  login() {
+  login = asyncAction(function* () {
     this.inProgress = true;
     this.authError = undefined;
-    return login(this.user.email, this.user.password)
-      .then((u) => {
-        this.inProgress = false;
-        this.user.name = u.name;
-        this.token = u.token;
-        this.user.password = '';
-      }).catch((err) => {
-        // this.authError = err.msg;
-        console.log(err);
-        throw err;
-      })
-      .finally(() => { this.inProgress = false; });
-  }
+    try {
+      const user = yield login(this.user.email, this.user.password);
+      this.token = user.token;
+      this.user.name = user.name;
+      this.inProgress = false;
+    } catch (error) {
+      throw error;
+    }
+  })
 
-  /*
-    TODO: Пока это не работает, требуется настроить .babelrc
-    Подробнее: https://github.com/mobxjs/babel-plugin-mobx-deep-action#-usage-for-async-and-generator-functions
-    */
-  // @action
-  // login = async () => {
-  // 	this.inProgress = true;
-  // 	this.authError = undefined;
-  // 	await login(this.user.email, this.user.password)
-  // 	this.inProgress = false;
-  // }
-
-  @action
-  register() {
+  register = asyncAction(function* () {
     this.inProgress = true;
     this.authError = undefined;
-    return register(this.user.email, this.user.password)
-      .catch((err) => {
-        this.authError = err.toString();
-        throw err;
-      })
-      .finally(() => {
-        this.inProgress = false;
-        this.user.password = '';
-      });
-  }
+    try {
+      yield register(this.user.email, this.user.password);
+      this.inProgress = false;
+    } catch (err) {
+      this.authError = err.toString();
+      throw err;
+    } finally {
+      this.inProgress = false;
+      this.user.password = '';
+    }
+  })
 
-  @action
-  logout() {
+  logout = asyncAction(function* () {
+    yield logout();
     this.token = undefined;
-    return logout();
-  }
+  })
 }
 
 export default new AuthStore();
