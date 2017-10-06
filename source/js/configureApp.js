@@ -15,38 +15,38 @@ import { createBrowserHistory } from 'history';
  */
 
 function getRoutes(modules) {
-    return modules
-		.filter((m) => m.routes)
-		.reduce((routes, module) => {
-			const routesObject = module.routes;
-			const routesArray = getRouteFromSection(routesObject);
-			return [...routes, ...routesArray];
-		}, []);
+  return modules
+    .filter((m) => m.routes)
+    .reduce((routes, module) => {
+      const routesObject = module.routes;
+      const routesArray = getRouteFromSection(routesObject);
+      return [...routes, ...routesArray];
+    }, []);
 }
 
 function getRouteFromSection(routesObject) {
-	return Object.keys(routesObject).reduce((prev, key) => {
-		const route = routesObject[key];
-		if (route.nested) {
-			route.nested = getRouteFromSection(route.nested);
-		}
-		return [...prev, route];
-	}, []);
+  return Object.keys(routesObject).reduce((prev, key) => {
+    const route = routesObject[key];
+    if (route.nested) {
+      route.nested = getRouteFromSection(route.nested);
+    }
+    return [...prev, route];
+  }, []);
 }
 
 function getStores(modules) {
-	return modules.filter((m) => m.stores)
-		.reduce((stores, m) => {
-			const moduleStores = m.stores;
-			return { ...stores, ...moduleStores };
-		}, {});
+  return modules.filter((m) => m.stores)
+    .reduce((stores, m) => {
+      const moduleStores = m.stores;
+      return { ...stores, ...moduleStores };
+    }, {});
 }
 
 
 export default function configure(modules) {
-	const history = createBrowserHistory();
-	const routes = getRoutes(modules);
-	const stores = getStores(modules);
+  const history = createBrowserHistory();
+  const routes = getRoutes(modules);
+  const stores = getStores(modules);
 
-	return { stores, routes, history };
+  return { stores, routes, history };
 }

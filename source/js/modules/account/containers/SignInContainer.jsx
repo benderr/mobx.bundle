@@ -1,6 +1,7 @@
 import React from 'react';
-import SignInForm from '../components/SignInForm';
 import { observer, inject } from 'mobx-react';
+import { Link } from 'react-router-dom';
+import SignInForm from '../components/SignInForm';
 
 @inject('authStore')
 @observer
@@ -21,16 +22,25 @@ class SignInContainer extends React.Component {
   };
 
   render() {
-    const { user: { email, password }, inProgress } = this.props.authStore;
+    const { user, inProgress } = this.props.authStore;
     return (
       <div class='login'>
+        <h1>
+          Вход
+        </h1>
         <SignInForm
           inProgress={ inProgress }
-          email={ email }
-          password={ password }
+          user={ user }
           handleEmailChange={ this.handleEmailChange }
           handlePasswordChange={ this.handlePasswordChange }
-          handleSubmitForm={ this.handleSubmitForm } />
+          handleSubmitForm={ this.handleSubmitForm }
+          buttonName={ 'Войти' } />
+        <div className='login_links'>
+          <ui>
+            <li><Link to='/forgot'>Забыли пароль?</Link></li>
+            <li><Link to='/registration'>Зарегистрироваться</Link></li>
+          </ui>
+        </div>
       </div>
     );
   }

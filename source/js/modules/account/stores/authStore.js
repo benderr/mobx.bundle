@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import { logout, login } from '../dataProvider';
+import { logout, login, register } from '../dataProvider';
 
 class AuthStore {
   @observable inProgress = false;
@@ -27,13 +27,19 @@ class AuthStore {
   @action
   login() {
     this.inProgress = true;
+    this.authError = undefined;
     return login(this.user.email, this.user.password)
       .then((u) => {
         this.inProgress = false;
         this.user.name = u.name;
         this.token = u.token;
         this.user.password = '';
-      });
+      }).catch((err) => {
+        // this.authError = err.msg;
+        console.log(err);
+        throw err;
+      })
+      .finally(() => { this.inProgress = false; });
   }
 
   /*
@@ -47,6 +53,21 @@ class AuthStore {
   // 	await login(this.user.email, this.user.password)
   // 	this.inProgress = false;
   // }
+
+  @action
+  register() {
+    this.inProgress = true;
+    this.authError = undefined;
+    return register(this.user.email, this.user.password)
+      .catch((err) => {
+        this.authError = err.toString();
+        throw err;
+      })
+      .finally(() => {
+        this.inProgress = false;
+        this.user.password = '';
+      });
+  }
 
   @action
   logout() {
