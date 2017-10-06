@@ -59,7 +59,6 @@
     "prepush": "^3.1.11",
     "react-addons-test-utils": "^15.6.0",
     "react-test-renderer": "^15.6.1",
-    "react-tooltip": "^3.3.0",
     "style-loader": "^0.13.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
@@ -72,11 +71,9 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
-    "accounting": "^0.4.1",
     "axios": "^0.9.1",
     "babel-polyfill": "^6.16.0",
     "es6-promise": "^3.1.2",
-    "jquery-datetimepicker": "^2.5.4",
     "mobx": "^3.0.0",
     "mobx-react": "^4.1.0",
     "mobx-react-devtools": "^4.2.11",
@@ -87,14 +84,11 @@
     "react": "^15.6.1",
     "react-click-outside": "^2.3.1",
     "react-dom": "^15.4.2",
-    "react-modal": "^1.9.3",
-    "react-notification-system": "^0.2.14",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "react-select": "^1.0.0-rc.5",
-    "react-tooltip": "git://github.com/benderr/react-tooltip.git#v3.3.5",
     "react-waypoint": "^7.0.3",
-    "tether-drop": "^1.4.2"
+    "modul-components": "^0.0.9",
+    "modul-helpers": "^0.1.9"
   },
   "description": "Starter boilerplate for React and Redux, using Webpack 2",
   "repository": {
