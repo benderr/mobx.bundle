@@ -1,15 +1,34 @@
 {
+  "passPerPreset": true,
   "plugins": [
-    "syntax-decorators",
+    "transform-regenerator",
     "transform-decorators-legacy",
-    "mobx-deep-action",
     "transform-class-properties",
+    "transform-object-rest-spread",
+    "transform-function-bind",
+    "syntax-decorators",
     "react-html-attrs"
   ],
   "presets": [
-    ["es2015", { "modules": false }],
-    "react",
-    "stage-0"  //ES7
+    {
+      "plugins": [
+        "transform-regenerator"
+      ]
+    },
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "safari >= 7"
+          ]
+        },
+        "modules": false,
+        "loose": true
+      }
+    ],
+    "react"
   ],
   "env": {
     "development": {
@@ -18,7 +37,9 @@
       ]
     },
     "test": {
-      "plugins": ["transform-es2015-modules-commonjs"]
+      "plugins": [
+        "transform-es2015-modules-commonjs"
+      ]
     }
   }
 }
