@@ -42,6 +42,7 @@ rules:
   react/jsx-curly-spacing: [2, "always"]
   react/jsx-filename-extension: 0
   react/jsx-boolean-value: 0
+  react/jsx-no-bind: 0
   react/jsx-closing-bracket-location: [1, 'after-props']
   react/prefer-stateless-function: 0
   import/extensions: 0

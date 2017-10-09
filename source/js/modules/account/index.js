@@ -1,5 +1,4 @@
-import React from 'react';
-import routes1 from './routes'
+import routes1 from './routes';
 import authStore from './stores/authStore';
 
 export const stores = {

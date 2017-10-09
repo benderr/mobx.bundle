@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 
 
 export default observer((props) => {
-  const { user, inProgress, buttonName, handleSubmitForm, handleEmailChange, handlePasswordChange, authError } = props;
+  const { authStore: { user, inProgress, authError }, buttonName, handleSubmitForm, handleEmailChange, handlePasswordChange } = props;
   return (
     <form onSubmit={ handleSubmitForm }>
       <div className='login_content'>

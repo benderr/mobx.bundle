@@ -1,35 +1,35 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
+import PropTypes from 'prop-types';
 import Profile from '../components/Profile';
 
 @inject('authStore')
 @observer
 class ProfileContainer extends React.Component {
 
-  handleEmailChange = e => {
-    this.props.authStore.setEmail(e.target.value);
+  static propTypes = {
+    authStore: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
   };
 
-  logout = (e) => {
+  handleEmailChange(e) {
+    this.props.authStore.setEmail(e.target.value);
+  }
+
+  logout(e) {
     const { authStore, history } = this.props;
     e.preventDefault();
-    authStore.logout()
+    this.props.authStore.logout()
       .then(() => history.replace('/signin'));
-  };
+  }
 
   render() {
-    const { user, inProgress } = this.props.authStore;
     console.log('ProfileContainer render!');
-    // Если компонент тупой и не observer
-    // const ObserverProfile = observer(Profile)
     return (
-      <div>
-        <Profile
-          inProgress={ inProgress }
-          user={ user }
-          handleEmailChange={ this.handleEmailChange }
-          logout={ this.logout } />
-      </div>
+      <Profile
+        authStore={ this.props.authStore }
+        handleEmailChange={ ::this.handleEmailChange }
+        logout={ ::this.logout } />
     );
   }
 }

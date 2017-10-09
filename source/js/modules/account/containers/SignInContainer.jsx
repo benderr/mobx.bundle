@@ -1,13 +1,20 @@
 import React from 'react';
-import {observer, inject} from 'mobx-react';
-import {Link} from 'react-router-dom';
+import { observer, inject } from 'mobx-react';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
-import {withRouter} from 'react-router'
 
 @inject('authStore')
 @withRouter
 @observer
 class SignInContainer extends React.Component {
+
+  static propTypes = {
+    authStore: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+  };
+
   handleEmailChange = e => {
     this.props.authStore.setEmail(e.target.value);
   };
@@ -17,27 +24,24 @@ class SignInContainer extends React.Component {
   };
 
   handleSubmitForm(e) {
-    const {authStore, history} = this.props;
+    const { authStore, history } = this.props;
     e.preventDefault();
-    const promis = authStore.login()
-    console.log(promis);
-    //.then(() => history.replace('/profile'));
-  };
+    authStore.login()
+      .then(() => history.replace('/profile'));
+  }
 
   render() {
-    const {user, inProgress} = this.props.authStore;
     return (
       <div class='login'>
         <h1>
           Вход
         </h1>
         <SignInForm
-          inProgress={ inProgress }
-          user={ user }
+          authStore={ this.props.authStore }
           handleEmailChange={ this.handleEmailChange }
           handlePasswordChange={ this.handlePasswordChange }
           handleSubmitForm={ ::this.handleSubmitForm }
-          buttonName={ 'Войти' }/>
+          buttonName={ 'Войти' } />
         <div className='login_links'>
           <ui>
             <li><Link to='/forgot'>Забыли пароль?</Link></li>
