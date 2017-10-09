@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import RadRouteManager from './RadRouteManager'
 import * as routeHelpers from './routeHelpers'
 import logger from 'infrastructure/utils/logger'
+
 @withRouter
 class RadRouter extends React.Component {
 	static propTypes = {

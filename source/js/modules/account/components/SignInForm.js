@@ -26,7 +26,7 @@ export default observer((props) => {
           </div>
           <div>
             <button
-              className='btn btn-lg btn-primary pull-xs-right'
+              className='button second'
               type='submit'
               disabled={ inProgress }>
               {buttonName}

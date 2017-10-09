@@ -2,8 +2,10 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
+import { withRouter } from 'react-router';
 
 @inject('authStore')
+@withRouter
 @observer
 class SignInContainer extends React.Component {
   handleEmailChange = e => {
@@ -14,15 +16,12 @@ class SignInContainer extends React.Component {
     this.props.authStore.setPassword(e.target.value);
   };
 
-  handleSubmitForm = (e) => {
+  handleSubmitForm(e) {
     const { authStore, history } = this.props;
     e.preventDefault();
     authStore.login()
-      .then(() => {
-        console.log(authStore.token);
-      });
-      // .then(() => history.replace('/profile'));
-  };
+      .then(() => history.replace('/profile'));
+  }
 
   render() {
     const { user, inProgress } = this.props.authStore;
@@ -36,7 +35,7 @@ class SignInContainer extends React.Component {
           user={ user }
           handleEmailChange={ this.handleEmailChange }
           handlePasswordChange={ this.handlePasswordChange }
-          handleSubmitForm={ this.handleSubmitForm }
+          handleSubmitForm={ ::this.handleSubmitForm }
           buttonName={ 'Войти' } />
         <div className='login_links'>
           <ui>
