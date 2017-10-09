@@ -1,4 +1,4 @@
-import * as formFieldHelpers  from './formFieldHelpers';
+import * as formFieldHelpers from './formFieldHelpers';
 import radValidateHoc from './radValidateHoc';
 import CustomFocusable from './CustomFocusable';
 import IFocusableElement from './IFocusableElement';
@@ -9,5 +9,5 @@ export {
 	radValidateHoc,
 	IFocusableElement,
 	InputFocusable,
-	CustomFocusable
+	CustomFocusable,
 };

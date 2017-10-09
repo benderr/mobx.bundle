@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
 
-@inject('authStore')
+@inject('authStore', 'profileStore')
 @withRouter
 @observer
 class SignInContainer extends React.Component {
@@ -15,19 +15,19 @@ class SignInContainer extends React.Component {
     history: PropTypes.object.isRequired,
   };
 
-  handleEmailChange = e => {
+  handleEmailChange(e) {
     this.props.authStore.setEmail(e.target.value);
-  };
+  }
 
-  handlePasswordChange = e => {
+  handlePasswordChange(e) {
     this.props.authStore.setPassword(e.target.value);
-  };
+  }
 
   handleSubmitForm(e) {
     const { authStore, history } = this.props;
     e.preventDefault();
     authStore.login()
-      .then(() => history.replace('/profile'));
+      .then(() => { history.replace('/profile'); });
   }
 
   render() {
@@ -38,8 +38,8 @@ class SignInContainer extends React.Component {
         </h1>
         <SignInForm
           authStore={ this.props.authStore }
-          handleEmailChange={ this.handleEmailChange }
-          handlePasswordChange={ this.handlePasswordChange }
+          handleEmailChange={ ::this.handleEmailChange }
+          handlePasswordChange={ ::this.handlePasswordChange }
           handleSubmitForm={ ::this.handleSubmitForm }
           buttonName={ 'Войти' } />
         <div className='login_links'>
