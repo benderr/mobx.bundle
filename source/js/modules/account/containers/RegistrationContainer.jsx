@@ -1,20 +1,28 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router';
 import SignInForm from '../components/SignInForm';
 
 @inject('authStore')
+@withRouter
 @observer
-class SignInContainer extends React.Component {
-  handleEmailChange = e => {
+class RegistrationContainer extends React.Component {
+
+  static propTypes = {
+    authStore: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired,
+  };
+
+  handleEmailChange(e) {
     this.props.authStore.setEmail(e.target.value);
-  };
+  }
 
-  handlePasswordChange = e => {
+  handlePasswordChange(e) {
     this.props.authStore.setPassword(e.target.value);
-  };
+  }
 
-  handleSubmitForm = (e) => {
+  handleSubmitForm(e) {
     const { authStore, history } = this.props;
     e.preventDefault();
     authStore.register()
@@ -22,24 +30,23 @@ class SignInContainer extends React.Component {
         history.replace('/signIn');
         alert(msg);
       });
-  };
+  }
 
   render() {
-    const { user, inProgress } = this.props.authStore;
     return (
       <div class='login'>
         <h1>
           Регистрация
         </h1>
         <SignInForm
-          { ...this.props.authStore }
-          handleEmailChange={ this.handleEmailChange }
-          handlePasswordChange={ this.handlePasswordChange }
-          handleSubmitForm={ this.handleSubmitForm }
+          authStore={ this.props.authStore }
+          handleEmailChange={ ::this.handleEmailChange }
+          handlePasswordChange={ ::this.handlePasswordChange }
+          handleSubmitForm={ ::this.handleSubmitForm }
           buttonName={ 'Зарегестрироваться' } />
       </div>
     );
   }
 }
 
-export default SignInContainer;
+export default RegistrationContainer;

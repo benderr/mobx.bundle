@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 
 export default observer((props) => {
-  const { logout, user, handleEmailChange } = props;
+  const { authStore: { user }, handleEmailChange, logout } = props;
   return (
     <div >
       <ul>
@@ -17,7 +17,7 @@ export default observer((props) => {
       </div>
       <div>
         <button
-          className='btn btn-lg btn-primary pull-xs-right'
+          className=''
           onClick={ logout }
           type='submit'>
           Logout

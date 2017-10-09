@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
-import { logout, login, register } from '../dataProvider';
 import { asyncAction } from 'mobx-utils';
+import { logout, login, register } from '../dataProvider';
 
 class AuthStore {
   @observable inProgress = false;
@@ -43,6 +43,7 @@ class AuthStore {
     try {
       yield register(this.user.email, this.user.password);
       this.inProgress = false;
+      return 'success';
     } catch (err) {
       this.authError = err.toString();
       throw err;
@@ -53,8 +54,17 @@ class AuthStore {
   })
 
   logout = asyncAction(function* () {
-    yield logout();
-    this.token = undefined;
+    try {
+      yield logout();
+      this.token = undefined;
+      return 'success';
+    } catch (err) {
+      this.authError = err.toString();
+      throw err;
+    } finally {
+      this.inProgress = false;
+      this.user.password = '';
+    }
   })
 }
 
