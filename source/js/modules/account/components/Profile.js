@@ -1,28 +1,19 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import { Button } from 'modul-components';
 
 export default observer((props) => {
-  const { authStore: { user }, handleEmailChange, logout } = props;
+  const { profileStore: { inProgress }, logout } = props;
   return (
     <div >
-      <ul>
-        <li>Name: {user.name}</li>
-        <li>Email: {user.email}</li>
-      </ul>
-      <div>
-        <label>
-          Email:
-          <input value={ user.email } onChange={ handleEmailChange } />
-        </label>
-      </div>
-      <div>
-        <button
-          className=''
-          onClick={ logout }
-          type='submit'>
-          Logout
-        </button>
-      </div>
+      <Button
+        className='button second'
+        type='submit'
+        onClick={ logout }
+        disabled={ inProgress }
+        loading={ inProgress }>
+              Logout
+      </Button>
     </div>
   );
 });

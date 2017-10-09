@@ -1,17 +1,16 @@
 import { observable, action } from 'mobx';
 import { asyncAction } from 'mobx-utils';
-import { logout, login, register } from '../dataProvider';
+import * as dataContext from '../dataProvider/accountDataContext';
 
 class AuthStore {
   @observable inProgress = false;
-  @observable authError = undefined;
+  @observable error = undefined;
   @observable token = undefined;
 
   @observable
   user = {
-    email: 'example@exmpl.ru',
-    password: '123123',
-    name: '',
+    email: '',
+    password: '',
   };
 
   @action
@@ -24,46 +23,55 @@ class AuthStore {
     this.user.password = password;
   }
 
+  @action
+  reset() {
+    this.email = '';
+    this.password = '';
+  }
+
   login = asyncAction(function* () {
     this.inProgress = true;
-    this.authError = undefined;
+    this.error = undefined;
     try {
-      const user = yield login(this.user.email, this.user.password);
-      this.token = user.token;
+      const user = yield dataContext.login({ email: this.user.email, password: this.user.password });
       this.user.name = user.name;
       this.inProgress = false;
     } catch (error) {
       throw error;
+    } finally {
+      this.inProgress = false;
+      this.reset();
     }
   })
 
   register = asyncAction(function* () {
     this.inProgress = true;
-    this.authError = undefined;
+    this.error = undefined;
     try {
       yield register(this.user.email, this.user.password);
       this.inProgress = false;
       return 'success';
     } catch (err) {
-      this.authError = err.toString();
+      this.error = err.toString();
       throw err;
     } finally {
       this.inProgress = false;
-      this.user.password = '';
+      this.reset();
     }
   })
 
-  logout = asyncAction(function* () {
+  forgotPass = asyncAction(function* () {
+    this.inProgress = true;
+    this.error = undefined;
     try {
-      yield logout();
-      this.token = undefined;
+      yield dataContext.forgotPass({ email: this.user.email });
       return 'success';
     } catch (err) {
-      this.authError = err.toString();
+      this.error = err.toString();
       throw err;
     } finally {
       this.inProgress = false;
-      this.user.password = '';
+      this.reset();
     }
   })
 }

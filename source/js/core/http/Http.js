@@ -1,13 +1,13 @@
-import axios from 'axios'
+import axios from 'axios';
 
 class Http {
-	constructor(interceptors) {
-		this.interceptors = interceptors;
-	}
+  constructor(interceptors) {
+    this.interceptors = interceptors;
+  }
 
-	http(params) {
-		return this.interceptors.apply(Promise.resolve(normalizeHttpOptions(params)), serverRequest);
-	}
+  http(params) {
+    return this.interceptors.apply(Promise.resolve(normalizeHttpOptions(params)), serverRequest);
+  }
 }
 
 function serverRequest(params) {
@@ -15,21 +15,21 @@ function serverRequest(params) {
 	// 	axios(params)
 	// 		.then(resolve, reject, notify);
 	// });
-	return new Promise(function (resolve, reject) {
-		axios(params).then(resolve, reject);
-	})
+  return new Promise((resolve, reject) => {
+    axios(params).then(resolve, reject);
+  });
 }
 
 function normalizeHttpOptions(params) {
-	params.headers = params.headers || {};
-	if (params.method.toUpperCase() === 'GET' && params.data) {
-		params.params = params.data;
-		delete params.data;
-	}
-	if (params.querystring) {
-		params.url += '?' + params.querystring;
-	}
-	return params;
+  params.headers = params.headers || {};
+  if (params.method.toUpperCase() === 'GET' && params.data) {
+    params.params = params.data;
+    delete params.data;
+  }
+  if (params.querystring) {
+    params.url += `?${ params.querystring }`;
+  }
+  return params;
 }
 
-export {Http}
+export { Http };
