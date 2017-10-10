@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 import { Button, LoaderPanel } from 'modul-components';
 
 export default observer((props) => {
-  const { authStore: { user, inProgress, authError }, buttonName, handleSubmitForm, handleEmailChange, handlePasswordChange } = props;
+  const { authStore: { user, inProgress }, buttonName, handleSubmitForm, handleEmailChange, handlePasswordChange } = props;
   return (
     <LoaderPanel loading={ inProgress }>
       <form onSubmit={ handleSubmitForm }>

@@ -1,6 +1,5 @@
-import {showErrorBorder, showSuccessBorder, getErrorMessage, ifCondition, getRandomKey} from './formFieldHelpers'
-import React from 'react'
-import ReactTooltip from 'react-tooltip'
+import { ReactTooltip } from 'modul-components';
+import React from 'react';
 
 /**
  * HOC для обертки над инпутами, чтобы получить необходимые методы подсветки ошибок и т.д.
@@ -11,116 +10,112 @@ import ReactTooltip from 'react-tooltip'
  * tooltip: tooltip - конфиг для тултипа, который внедреятся в <input/>
  *
  * tips - включены ли подскажи тултипа
- * dataOnWrapper - данные для фокусировки и отображению тултипа внедряются в оборачивающий элемент
  */
-function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
-	return (WrappedComponent) => {
-		class radValidateTooltip extends React.Component {
+function radValidate({ tips } = { tips: true }) {
+  return (WrappedComponent) => {
+    class radValidateTooltip extends React.Component {
 
-			constructor(props, context) {
-				super(props, context);
-				this.validatorId = getRandomKey();
-				this.tooltipId = `tooltip_${this.validatorId}`;
-			}
+      constructor(props, context) {
+        super(props, context);
+        this.validatorId = Math.floor(Math.random() * (999999999 - 100000000)) + 100000000;
+        this.tooltipId = `tooltip_${ this.validatorId }`;
+      }
 
-			getTooltipConfig({id, error}) {
-				return {
-					'data-for': id,
-					'data-tip': ''
-				};
-			}
+      componentDidUpdate(prevProps) {
+        const submitFailed = false;
+        const {focused, hasError} = this.props.field;
 
-			componentDidUpdate(prevProps) {
-				const {meta: {submitFailed, active, error}} = this.props;
-				const {meta: {active: wasActive}} = prevProps;
+        if (submitFailed && hasError && !wasActive && focused) {
+          setTimeout(() => {
+            if (this.wrappedEl) {
+              if (!this.wrappedEl.focusator) {
+                throw 'Component does not contain @focusator:IFocusableElement';
+              }
+              this.wrappedEl.focusator.setFocus();
+            }
+          }, 0);
+        }
+      }
 
-				if (submitFailed && error && !wasActive && active) {
-					setTimeout(() => {
-						if (this.wrappedEl) {
-							if (!this.wrappedEl.focusator)
-								throw 'Component does not contain @focusator:IFocusableElement';
-							this.wrappedEl.focusator.setFocus();
-						}
-					}, 0);
-				}
-			}
+      // inFocus() {
+      //   const { meta: { active } } = this.props;
+      //   return active
+      //     ||
+      //     (this.wrappedEl
+      //       && this.wrappedEl.inFocus
+      //       && this.wrappedEl.inFocus());
+      // }
 
+      getError() {
+        return this.props.field.error;
+      }
 
-			inFocus() {
-				const {meta: {active}}=this.props;
-				return active
-					||
-					(this.wrappedEl
-					&& this.wrappedEl.inFocus
-					&& this.wrappedEl.inFocus());
-			}
+      showTooltipError() {
+        const { field: { hasError, touched } } = this.props;
+        const submitFailed = false;
+        return hasError && (submitFailed || touched);
+      }
 
-			getError() {
-				const {meta: {error}}=this.props;
-				return error;
-			}
+      getTooltipProps() {
+        const self = this;
+        return {
+          html: true,
+          multiline: true,
+          getContent: [::self.getError, 400],
+          type: 'error',
+          event: 'focus',
+          eventOff: 'blur keydown',
+          place: this.props.tipPlace || 'right',
+          delayHide: 200,
+          effect: 'solid',
+          resizeHide: true,
+        };
+      }
 
-			showTooltipError() {
-				const {meta: {touched, error, submitFailed}}=this.props;
-				return error && (submitFailed || touched);
-			}
+      getTooltipConfig({ id }) {
+        return {
+          'data-for': id,
+          'data-tip': '',
+        };
+      }
 
-			getTooltipProps() {
-				const self = this;
-				return {
-					html: true,
-					multiline: true,
-					getContent: [::self.getError, 400],
-					type: 'error',
-					event: 'focus',
-					eventOff: 'blur keydown',
-					place: this.props.tipPlace || 'right',
-					delayHide: 200,
-					effect: 'solid',
-					resizeHide: true
-				}
-			}
+      render() {
+        const { field: { isValid, hasError, focused, touched }, hideTips = false, wrapperClassName = '' } = this.props;
 
-			render() {
-				const {
-					meta:{touched, error, warning, active, dirty, valid, visited, submitFailed}, hideTips, wrapperClassName = ''
-				}=this.props;
+        const tooltip = this.getTooltipConfig({ id: this.tooltipId });
+        const submitFailed = false;
+        const highlightError = (!isValid || hasError) && (touched || submitFailed) && !focused;
+        const highlightSuccess = (isValid || !hasError) && touched && !focused;
+        const addClassName = `${ highlightError && 'error' } ${ highlightSuccess && 'success' }`;
 
-				const tooltip = this.getTooltipConfig({id: this.tooltipId, error});
+        const validator = {
+          error: hasError,
+          isError: highlightError,
+          isSuccess: highlightSuccess,
+          addClassName,
+          tooltip,
+        };
 
-				const highlightError = showErrorBorder({valid, error, active, visited, submitFailed});
-				const highlightSuccess = showSuccessBorder({valid, visited, error, active});
-				const additionalClassName = ifCondition(highlightError, ' error ') + ifCondition(highlightSuccess, ' success ');
+        if (tips && !hideTips) {
+          const showErrorMessage = this.showTooltipError();
+          return (
+            <div className={ wrapperClassName }>
+              <WrappedComponent
+                ref={ wrappedEl => this.wrappedEl = wrappedEl } { ...this.props }
+                validator={ validator } />
+              {showErrorMessage &&
+              <ReactTooltip id={ this.tooltipId } { ...this.getTooltipProps() } />}
+            </div>
+          );
+        }
+        return (<WrappedComponent
+          ref={ wrappedEl => this.wrappedEl = wrappedEl } { ...this.props }
+          validator={ validator } />);
+      }
+    }
 
-				const validator = {
-					error: error,
-					isError: highlightError,
-					isSuccess: highlightSuccess,
-					addClassName: additionalClassName,
-					tooltip: tooltip
-				};
-
-				if (tips && !hideTips) {
-					const showErrorMessage = this.showTooltipError();
-					return (
-						<div className={wrapperClassName}>
-							<WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
-											  validator={validator}/>
-							{showErrorMessage &&
-							<ReactTooltip id={this.tooltipId} {...this.getTooltipProps()}/>}
-						</div>
-					)
-				} else {
-					return <WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
-											 validator={validator}/>
-				}
-
-			}
-		}
-
-		return radValidateTooltip;
-	}
+    return radValidateTooltip;
+  };
 }
-
 
 export default radValidate;

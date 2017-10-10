@@ -7,40 +7,15 @@ class AuthStore {
   @observable error = undefined;
   @observable token = undefined;
 
-  @observable
-  user = {
-    email: '',
-    password: '',
-  };
-
-  @action
-  setEmail(email) {
-    this.user.email = email;
-  }
-
-  @action
-  setPassword(password) {
-    this.user.password = password;
-  }
-
-  @action
-  reset() {
-    this.email = '';
-    this.password = '';
-  }
-
-  login = asyncAction(function* () {
+  login = asyncAction(function* (email, password) {
     this.inProgress = true;
     this.error = undefined;
     try {
-      const user = yield dataContext.login({ email: this.user.email, password: this.user.password });
-      this.user.name = user.name;
-      this.inProgress = false;
+      yield dataContext.login({ email, password });
     } catch (error) {
       throw error;
     } finally {
       this.inProgress = false;
-      this.reset();
     }
   })
 
@@ -60,18 +35,17 @@ class AuthStore {
     }
   })
 
-  forgotPass = asyncAction(function* () {
+  forgotPass = asyncAction(function* (email) {
     this.inProgress = true;
     this.error = undefined;
     try {
-      yield dataContext.forgotPass({ email: this.user.email });
+      yield dataContext.forgotPass({ email });
       return 'success';
     } catch (err) {
       this.error = err.toString();
       throw err;
     } finally {
       this.inProgress = false;
-      this.reset();
     }
   })
 }

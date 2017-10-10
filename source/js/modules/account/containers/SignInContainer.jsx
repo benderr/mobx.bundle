@@ -3,30 +3,45 @@ import { observer, inject } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import SignInForm from '../components/SignInForm';
+import SignInForm from '../components/SignInForm/SignInForm';
+import AuthForm from '../components/SignInForm/AuthForm';
+// import authForm from 'common/form/mobxValidationHelpers/AuthForm';
 
 @inject('authStore', 'profileStore')
 @withRouter
 @observer
 class SignInContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmitForm = this.handleSubmitForm.bind(this);
+    const hooks = {
+      onSuccess({ email, password }) {
+        this.handleSubmitForm(email, password);
+        alert('Form is valid! Send the request here.');
+        // get field values
+        console.log('Form Values!', form.values());
+      },
+      onError(form) {
+        alert('Form has errors!');
+        // get all form errors
+        console.log('All form errors', form.errors());
+      },
+    };
+    this.state = {
+      form: AuthForm({
+        hooks,
+      }),
+    };
+  }
 
   static propTypes = {
     authStore: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
   };
 
-  handleEmailChange(e) {
-    this.props.authStore.setEmail(e.target.value);
-  }
-
-  handlePasswordChange(e) {
-    this.props.authStore.setPassword(e.target.value);
-  }
-
-  handleSubmitForm(e) {
+  handleSubmitForm(email, password) {
     const { authStore, history } = this.props;
-    e.preventDefault();
-    authStore.login()
+    authStore.login(email, password)
       .then(() => { history.replace('/profile'); });
   }
 
@@ -38,9 +53,7 @@ class SignInContainer extends React.Component {
         </h1>
         <SignInForm
           authStore={ this.props.authStore }
-          handleEmailChange={ ::this.handleEmailChange }
-          handlePasswordChange={ ::this.handlePasswordChange }
-          handleSubmitForm={ ::this.handleSubmitForm }
+          form={ this.state.form }
           buttonName={ 'Войти' } />
         <div className='login_links'>
           <ui>
