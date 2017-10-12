@@ -1,9 +1,7 @@
 import radValidateHoc from './radValidateHoc';
-import CustomFocusable from './CustomFocusable';
-import IFocusableElement from './IFocusableElement';
+import inputFieldHoc from './inputFieldHoc';
 
 export {
 	radValidateHoc,
-	IFocusableElement,
-	CustomFocusable,
+  inputFieldHoc,
 };
