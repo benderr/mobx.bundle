@@ -16,7 +16,7 @@ module.exports = {
 	context: config.jsSourcePath,
 	entry: {
 		vendor: vendor,
-		app: buildEntryPoint('./index.js'),
+		app: buildEntryPoint('./index'),
 		signin: buildEntryPoint('./signin'),
 	},
 	output: {
