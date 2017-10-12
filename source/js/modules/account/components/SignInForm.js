@@ -1,51 +1,31 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-
+import { Button, LoaderPanel } from 'modul-components';
 
 export default observer((props) => {
   const { authStore: { user, inProgress, authError }, buttonName, handleSubmitForm, handleEmailChange, handlePasswordChange } = props;
   return (
-    <form onSubmit={ handleSubmitForm }>
-      <div className='login_content'>
-        <div className='login_auth_block'>
-          <div class='form_group'>
-            <label>
-              Email:
+    <LoaderPanel loading={ inProgress }>
+      <form onSubmit={ handleSubmitForm }>
+        <div className='login_content'>
+          <div>
+            Email:
               <input value={ user.email } onChange={ handleEmailChange } />
-            </label>
-            <label>
-              Пароль:
-              <input value={ user.password } onChange={ handlePasswordChange } />
-            </label>
-            <div>
-              <label>
-                InProgress: {`${ inProgress }`}
-              </label>
-            </div>
-            <div />
           </div>
           <div>
-            <button
-              className='button second'
-              type='submit'
-              disabled={ inProgress }>
-              {buttonName}
-            </button>
+            Пароль:
+              <input value={ user.password } onChange={ handlePasswordChange } />
           </div>
-
-          <h3 style={ { color: 'red' } } >
-            {authError}
-          </h3>
+          <Button
+            loading={ inProgress }
+            className='button second'
+            type='submit'
+            disabled={ inProgress }>
+            {buttonName}
+          </Button>
         </div>
-      </div>
-    </form>
+      </form>
+    </LoaderPanel>
+
   );
 });
-
-// SignInForm.propTypes = {
-// 	loading: PropTypes.bool.isRequired,
-// 	onLogin: PropTypes.func.isRequired,
-// 	redirectUrl: PropTypes.string,
-// 	errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-// };
-

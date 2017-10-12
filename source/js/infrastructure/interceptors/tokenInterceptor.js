@@ -8,25 +8,27 @@ export default {
     return { request, response, responseError };
 
     function request(config) {
-      if (config.Authorization) {
-        config.headers[AuthorizationKey] = config.Authorization;
-      }
+      // if (config.Authorization) {
+      //   config.headers[AuthorizationKey] = config.Authorization;
+      // }
 
 			// это нужно чтобы при получении 401, в барузере не появлялся стандартный попап для авторизации
-      config.headers['X-Requested-With'] = 'XMLHttpRequest';
+      // config.headers['X-Requested-With'] = 'XMLHttpRequest';
 
       const token = getToken();
       if (token) {
-        config.headers[AuthorizationKey] = `Basic ${ token }`;
+        config.headers['x-token'] = token;
       }
       return config;
     }
 
     function response(resp) {
-			// let token = resp.headers[xTokenKey] || resp.headers[xRegistrationTokenKey];
-			// if (token) {
-			// 	setToken(token);
-			// }
+      console.log(resp);
+      const token = resp.headers['x-token'];
+      // || resp.headers[xRegistrationTokenKey];
+      if (token) {
+        setToken(token);
+      }
       return resp;
     }
 
