@@ -3,7 +3,7 @@ import { createBrowserHistory } from 'history';
 
 /**
  * Разбор флагов роута
- * - index - главная страница
+ * - index.js - главная страница
  * - path - v4-docs
  * - exact - v4-docs
  * - strict - v4-docs

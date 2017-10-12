@@ -1,9 +1,5 @@
-import {
-  observable,
-} from 'mobx';
-import {
-  asyncAction,
-} from 'mobx-utils';
+import { observable } from 'mobx';
+import { asyncAction } from 'mobx-utils';
 import * as dataContext from '../dataProvider/accountDataContext';
 
 class ProfileStore {

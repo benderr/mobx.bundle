@@ -21,31 +21,6 @@ function radValidate({ tips } = { tips: true }) {
         this.tooltipId = `tooltip_${ this.validatorId }`;
       }
 
-      componentDidUpdate(prevProps) {
-        const submitFailed = false;
-        const {focused, hasError} = this.props.field;
-
-        if (submitFailed && hasError && !wasActive && focused) {
-          setTimeout(() => {
-            if (this.wrappedEl) {
-              if (!this.wrappedEl.focusator) {
-                throw 'Component does not contain @focusator:IFocusableElement';
-              }
-              this.wrappedEl.focusator.setFocus();
-            }
-          }, 0);
-        }
-      }
-
-      // inFocus() {
-      //   const { meta: { active } } = this.props;
-      //   return active
-      //     ||
-      //     (this.wrappedEl
-      //       && this.wrappedEl.inFocus
-      //       && this.wrappedEl.inFocus());
-      // }
-
       getError() {
         return this.props.field.error;
       }
@@ -81,9 +56,9 @@ function radValidate({ tips } = { tips: true }) {
 
       render() {
         const { field: { isValid, hasError, focused, touched }, hideTips = false, wrapperClassName = '' } = this.props;
-
         const tooltip = this.getTooltipConfig({ id: this.tooltipId });
-        const submitFailed = false;
+        const submitFailed = this.props.field.getForm().submitFailed;
+
         const highlightError = (!isValid || hasError) && (touched || submitFailed) && !focused;
         const highlightSuccess = (isValid || !hasError) && touched && !focused;
         const addClassName = `${ highlightError && 'error' } ${ highlightSuccess && 'success' }`;

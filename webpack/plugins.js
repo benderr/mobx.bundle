@@ -69,7 +69,7 @@ const plugins = [
 			],
 			stylus: {
 				use: [require('nib')()],
-				import: ['~nib/lib/nib/index.styl'],
+				import: ['~nib/lib/nib/index.js.styl'],
 				preferPathResolver: 'webpack',
 			},
 			context: config.sourcePath,

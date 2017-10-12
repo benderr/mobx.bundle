@@ -4,11 +4,11 @@ const devServer = {
 	contentBase: config.IS_PRODUCTION ? config.buildPath : config.sourcePath,
 	historyApiFallback: {
 		rewrites: [
-			//{ from: /^\/$/, to: '/index.html' },
+			//{ from: /^\/$/, to: '/index.js.html' },
 			{ from: /^\/signin/, to: '/signin.html' },
 			{ from: /^\/registration/, to: '/signin.html' },
 			{ from: /^\/forgot/, to: '/signin.html' },
-			{ from: /./, to: '/index.html' }
+			{ from: /./, to: '/index.js.html' }
 		]
 	},
 	port: 3000,

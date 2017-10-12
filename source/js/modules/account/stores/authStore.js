@@ -5,8 +5,8 @@ import * as dataContext from '../dataProvider/accountDataContext';
 class AuthStore {
   @observable inProgress = false;
   @observable error = undefined;
-  @observable token = undefined;
 
+  @action.bound
   login = asyncAction(function* (email, password) {
     this.inProgress = true;
     this.error = undefined;
@@ -19,6 +19,7 @@ class AuthStore {
     }
   })
 
+  @action.bound
   register = asyncAction(function* () {
     this.inProgress = true;
     this.error = undefined;
@@ -35,6 +36,7 @@ class AuthStore {
     }
   })
 
+  @action.bound
   forgotPass = asyncAction(function* (email) {
     this.inProgress = true;
     this.error = undefined;

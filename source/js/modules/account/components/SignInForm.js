@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, LoaderPanel } from 'modul-components';
-import InputField from 'common/form/fields/InputField';
+import {InputField, PhoneField} from 'common/form/fields';
 
 export default observer((props) => {
   const { inProgress, form, buttonName } = props;
@@ -10,6 +10,7 @@ export default observer((props) => {
       <form onSubmit={ form.onSubmit }>
         <div className='login_content'>
           <InputField field={ form.$('email') } />
+          <PhoneField field={ form.$('phone') } />
           <InputField field={ form.$('password') } type='password' />
           <Button
             loading={ inProgress }

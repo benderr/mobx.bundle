@@ -1,4 +1,4 @@
-import SignInContainer from './containers/SignInContainer';
+import SignInContainer from './containers/SignInContainer/SignInContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import RegistrationContainer from './containers/RegistrationContainer';
 import IndexContainer from './containers/IndexContainer';

@@ -1,4 +1,4 @@
-import routes1 from './routes';
+import routes from './routes';
 import authStore from './stores/authStore';
 import profileStore from './stores/profileStore';
 
@@ -7,4 +7,4 @@ export const stores = {
   profileStore,
 };
 
-export const routes = routes1;
+export { routes };
