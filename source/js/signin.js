@@ -5,7 +5,7 @@ import RootContainer from 'components/RootContainer';
 import configureApp from 'configureApp';
 import signinModules from './modules/signinModules';
 
-require(__MARKUP_KASSA__);
+require(__MARKUP_LOGIN__);
 
 const mountNode = document.getElementById('root');
 const { stores, routes, history } = configureApp(signinModules);

@@ -9,6 +9,7 @@ export default {
     exact: true,
     allowAnonymous: true,
     component: SignInContainer,
+    layout: null
   },
   profile: {
     path: '/profile',

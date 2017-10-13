@@ -1,4 +1,4 @@
-import { ReactTooltip } from 'modul-components';
+import {ReactTooltip} from 'modul-components';
 import React from 'react';
 
 /**
@@ -11,7 +11,7 @@ import React from 'react';
  *
  * tips - включены ли подскажи тултипа
  */
-function radValidate({ tips } = { tips: true }) {
+function radValidate({tips} = {tips: true}) {
   return (WrappedComponent) => {
     class radValidateTooltip extends React.Component {
 
@@ -26,7 +26,7 @@ function radValidate({ tips } = { tips: true }) {
       }
 
       showTooltipError() {
-        const { field: { hasError, touched } } = this.props;
+        const {field: {hasError, touched}} = this.props;
         const submitFailed = false;
         return hasError && (submitFailed || touched);
       }
@@ -47,17 +47,20 @@ function radValidate({ tips } = { tips: true }) {
         };
       }
 
-      getTooltipConfig({ id }) {
+      getTooltipConfig({id}) {
         return {
           'data-for': id,
           'data-tip': '',
         };
       }
 
+
       render() {
-        const { field: { isValid, hasError, focused, touched }, hideTips = false, wrapperClassName = '' } = this.props;
-        const tooltip = this.getTooltipConfig({ id: this.tooltipId });
-        const submitFailed = this.props.field.getForm().submitFailed;
+        const {field, hideTips = false, wrapperClassName = ''} = this.props;
+        const {isValid, hasError, focused, touched}=field;
+
+        const tooltip = this.getTooltipConfig({id: this.tooltipId});
+        const submitFailed = false;//this.props.field.getForm().submitFailed;
 
         const highlightError = (!isValid || hasError) && (touched || submitFailed) && !focused;
         const highlightSuccess = (isValid || !hasError) && touched && !focused;
@@ -77,7 +80,7 @@ function radValidate({ tips } = { tips: true }) {
             <div className={ wrapperClassName }>
               <WrappedComponent
                 ref={ wrappedEl => this.wrappedEl = wrappedEl } { ...this.props }
-                validator={ validator } />
+                validator={ validator }/>
               {showErrorMessage &&
               <ReactTooltip id={ this.tooltipId } { ...this.getTooltipProps() } />}
             </div>
@@ -85,7 +88,7 @@ function radValidate({ tips } = { tips: true }) {
         }
         return (<WrappedComponent
           ref={ wrappedEl => this.wrappedEl = wrappedEl } { ...this.props }
-          validator={ validator } />);
+          validator={ validator }/>);
       }
     }
 

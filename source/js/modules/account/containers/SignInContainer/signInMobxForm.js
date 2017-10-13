@@ -1,6 +1,6 @@
-import { validateHelper } from 'modul-helpers';
-import { observable, action } from 'mobx';
-import Form, { Field } from 'mobx-react-form';
+import {validateHelper} from 'modul-helpers';
+import {observable, action} from 'mobx';
+import Form, {Field} from 'mobx-react-form';
 import validator from 'validator';
 
 class RefField extends Field {
@@ -18,28 +18,31 @@ class RefField extends Field {
 class MyForm extends Form {
 
   @observable submitFailed = false;
+
   @action afterFailedSubmit() {
     this.submitFailed = true;
   }
+
   @action afterSuccessSubmit() {
     this.submitFailed = false;
   }
+
   @observable submitFailed = false;
-  makeField(props) {
-    return new RefField({ ...props, form: this });
-  }
+  // makeField(props) {
+  //   return new RefField({ ...props, form: this });
+  // }
 }
 
 const plugins = {
   vjf: validator,
 };
 
-function isEmail({ field }) {
+function isEmail({field}) {
   const isValid = validateHelper.validEmail(field.value);
   return [isValid, 'Email not valid!'];
 }
 
-function isRequired({ field }) {
+function isRequired({field}) {
   const isValid = !validateHelper.isEmpty(field.value);
   return [isValid, 'Is required'];
 }
@@ -58,15 +61,15 @@ const fields = [
     placeholder: 'Пароль',
     initial: 'Qq123456',
   },
-  {
-    name: 'phone',
-    label: 'phone',
-    placeholder: 'phone',
-    validators: [isEmail, isRequired],
-  },
+  // {
+  //   name: 'phone',
+  //   label: 'phone',
+  //   placeholder: 'phone',
+  //   validators: [isEmail, isRequired],
+  // },
 ];
 
-export default function ({ onSuccess: success, onError: error }) {
+export default function ({onSuccess: success, onError: error}) {
   const hooks = {
     onSuccess(form) {
       form.afterSuccessSubmit();
@@ -77,13 +80,14 @@ export default function ({ onSuccess: success, onError: error }) {
       const errors = form.errors();
       const keys = form.fields.keys();
       const firstErrorName = keys.find(name => !!errors[name]);
-      const ref = form.fields.get(firstErrorName).ref;
-      if (typeof ref.setFocus === 'function') {
-        ref.setFocus();
+      const field = form.fields.get(firstErrorName);
+      if (field) {
+        console.log(field.name);
+        field.focus();
       }
       error(form);
     },
   };
-  return new MyForm({ fields }, { plugins, hooks });
+  return new MyForm({fields}, {plugins, hooks});
 }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import SiteHeader from 'components/SiteHeader';
 
-
 class InternalLayout extends React.Component {
   render() {
     return (

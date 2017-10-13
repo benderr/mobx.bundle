@@ -8,7 +8,7 @@ const devServer = {
 			{ from: /^\/signin/, to: '/signin.html' },
 			{ from: /^\/registration/, to: '/signin.html' },
 			{ from: /^\/forgot/, to: '/signin.html' },
-			{ from: /./, to: '/index.js.html' }
+			{ from: /./, to: '/index.html' }
 		]
 	},
 	port: 3000,
