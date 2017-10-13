@@ -60,7 +60,7 @@ function radValidate({tips} = {tips: true}) {
         const {isValid, hasError, focused, touched}=field;
 
         const tooltip = this.getTooltipConfig({id: this.tooltipId});
-        const submitFailed = false;//this.props.field.getForm().submitFailed;
+        const submitFailed = this.props.field.getForm().submitFailed;
 
         const highlightError = (!isValid || hasError) && (touched || submitFailed) && !focused;
         const highlightSuccess = (isValid || !hasError) && touched && !focused;

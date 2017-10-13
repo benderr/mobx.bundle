@@ -10,9 +10,9 @@ class RefField extends Field {
     this.getForm = function () {
       return props.form;
     };
-    // this.submitFailed = function () {
-    //   return props.form.submitFailed;
-    // };
+    this.submitFailed = function () {
+      return props.form.submitFailed;
+    };
   }
 }
 class MyForm extends Form {
@@ -28,9 +28,9 @@ class MyForm extends Form {
   }
 
   @observable submitFailed = false;
-  // makeField(props) {
-  //   return new RefField({ ...props, form: this });
-  // }
+  makeField(props) {
+    return new RefField({ ...props, form: this });
+  }
 }
 
 const plugins = {
@@ -80,10 +80,9 @@ export default function ({onSuccess: success, onError: error}) {
       const errors = form.errors();
       const keys = form.fields.keys();
       const firstErrorName = keys.find(name => !!errors[name]);
-      const field = form.fields.get(firstErrorName);
-      if (field) {
-        console.log(field.name);
-        field.focus();
+      const ref = form.fields.get(firstErrorName).ref;
+      if (typeof ref.setFocus === 'function') {
+        ref.setFocus();
       }
       error(form);
     },

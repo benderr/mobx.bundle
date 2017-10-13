@@ -1,21 +1,21 @@
-
-import PhoneField from './PhoneField';
-// import AmountField from './AmountField';
-// import NumberField from './NumberField';
+import { observer } from 'mobx-react';
+import { PhoneInput, AmountInput, NumberInput  } from 'modul-components';
+import {inputFieldHoc, radValidateHoc} from '../validationHelpers';
+import InputField from './InputField';
 // import SelectField from './SelectField';
 // import TextAreaField from './TextAreaField';
-import InputField from './InputField';
 // import SwitchField from './SwitchField';
 // import DatePickerField from './DatePickerField';
 // import normalizeKpp from './normalizeKpp';
 // import normalizeInn from './normalizeInn';
-// import { Field, FieldArray } from 'redux-form/immutable'; // чтобы не импортить каждый раз филды из разныз мест
 
+const PhoneField = observer(radValidateHoc()(inputFieldHoc()(PhoneInput)));
+const AmountField = observer(radValidateHoc()(inputFieldHoc()(AmountInput)));
+const NumberField = observer(radValidateHoc()(inputFieldHoc()(NumberInput)));
 export {
     PhoneField,
-    // AmountField,
-    // NumberField,
-    // SelectField,
+    AmountField,
+    NumberField,
     InputField,
     // SwitchField,
     // Field,
