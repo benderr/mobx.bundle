@@ -1,5 +1,5 @@
-import {Field} from 'mobx-react-form';
-import {computed} from 'mobx';
+import { Field } from 'mobx-react-form';
+import { computed } from 'mobx';
 
 class BaseField extends Field {
   constructor(props) {
@@ -11,4 +11,4 @@ class BaseField extends Field {
   }
 }
 
-export default BaseField
+export default BaseField;
