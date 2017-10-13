@@ -1,13 +1,13 @@
+import {Field} from 'mobx-react-form';
+import {computed} from 'mobx';
+
 class BaseField extends Field {
-  constructor (props) {
-    super(props)
-    this.ref = null
-    this.getForm = function () {
-      return props.form
-    }
-    this.submitFailed = function () {
-      return props.form.submitFailed
-    }
+  constructor(props) {
+    super(props);
+  }
+
+  @computed get submitFailed() {
+    return this.state.form.submitFailed;
   }
 }
 

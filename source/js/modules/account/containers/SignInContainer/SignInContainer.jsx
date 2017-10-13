@@ -5,16 +5,17 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import SignInForm from '../../components/SignInForm';
-import signInMobxForm from '../../../../common/form/BaseForm';
+import BaseForm from 'common/form/BaseForm';
 
-import { validateHelper } from 'modul-helpers';
 
-function isEmail({ field }) {
+import {validateHelper} from 'modul-helpers';
+
+function isEmail({field}) {
   const isValid = validateHelper.validEmail(field.value);
   return [isValid, 'Email not valid!'];
 }
 
-function isRequired({ field }) {
+function isRequired({field}) {
   const isValid = !validateHelper.isEmpty(field.value);
   return [isValid, 'Is required'];
 }
@@ -60,15 +61,18 @@ class SignInContainer extends React.Component {
       });
   }
 
-  @observable form = signInMobxForm({
-    onSuccess: ::this.onSuccess,
-    onError(form) {
-      // form.fields.get('email').focus();
-      // console.log(form.fields.get('phone').options.setFocus())
-      // f.focus();
-      // React.findDOMNode(component).focus();
+  @observable form = new BaseForm({fields}, {
+    hooks: {
+      onSuccess: ::this.onSuccess,
+      onError(form) {
+        console.log('ERRORS');
+        // form.fields.get('email').focus();
+        // console.log(form.fields.get('phone').options.setFocus())
+        // f.focus();
+        // React.findDOMNode(component).focus();
+      }
     }
-  })
+  });
 
   render() {
     return (
