@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import {Select} from 'modul-components';
+import { Select } from 'modul-components';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
 
 @observer
@@ -16,7 +16,7 @@ class InputField extends React.Component {
   }
 
   setFocus() {
-    this.input.focus();
+    this.input.setFocus();
   }
 
   componentDidMount() {
@@ -36,8 +36,8 @@ class InputField extends React.Component {
         disabled={ disabled }
         readOnly={ readOnly }
         { ...tooltip }
-        {...field.bind()}
-        options={field.extra}/>
+        { ...field.bind() }
+        options={ field.extra } />
     );
   }
 }

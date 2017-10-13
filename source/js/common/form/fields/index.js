@@ -1,28 +1,15 @@
-import { observer } from 'mobx-react';
-import { PhoneInput, AmountInput, NumberInput  } from 'modul-components';
-import {inputFieldHoc, radValidateHoc} from '../validationHelpers';
 import InputField from './InputField';
-// import SelectField from './SelectField';
-// import TextAreaField from './TextAreaField';
-// import SwitchField from './SwitchField';
-// import DatePickerField from './DatePickerField';
-// import normalizeKpp from './normalizeKpp';
-// import normalizeInn from './normalizeInn';
+import SelectField from './SelectField';
+import PhoneField from './PhoneField';
+import AmountField from './AmountField';
+import NumberField from './NumberField';
+import DatePickerField from './DatePickerField';
 
-const PhoneField = observer(radValidateHoc()(inputFieldHoc()(PhoneInput)));
-const AmountField = observer(radValidateHoc()(inputFieldHoc()(AmountInput)));
-const NumberField = observer(radValidateHoc()(inputFieldHoc()(NumberInput)));
 export {
-    PhoneField,
-    AmountField,
-    NumberField,
-    InputField,
-    // SwitchField,
-    // Field,
-    // FieldArray,
-    // TextAreaField,
-    // DatePickerField,
-
-    // normalizeKpp,
-    // normalizeInn,
+  PhoneField,
+  AmountField,
+  NumberField,
+  InputField,
+  SelectField,
+  DatePickerField,
 };

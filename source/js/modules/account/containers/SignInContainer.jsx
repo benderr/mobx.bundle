@@ -6,8 +6,6 @@ import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 import BaseForm from 'common/form/BaseForm';
 import SignInForm from '../components/SignInForm';
-
-
 import { validateHelper } from 'modul-helpers';
 
 function isEmail({ field }) {

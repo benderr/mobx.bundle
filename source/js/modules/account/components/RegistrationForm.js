@@ -1,29 +1,41 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, LoaderPanel } from 'modul-components';
+import { InputField, PhoneField, SelectField } from 'common/form/fields';
 
 export default observer((props) => {
-  const { authStore: { user, inProgress }, buttonName, handleSubmitForm, handleEmailChange, handlePasswordChange } = props;
+  const { form, buttonName } = props;
   return (
-    <LoaderPanel loading={ inProgress }>
-      <form onSubmit={ handleSubmitForm }>
-        <div className='login_content'>
-          <div>
-            Email:
-              <input value={ user.email } onChange={ handleEmailChange } />
+    <LoaderPanel>
+      <form onSubmit={ form.onSubmit }>
+        <div class='login_auth_block '>
+          <div class='form_group'>
+            <div class='input_group light w100'>
+              <InputField field={ form.$('email') }  />
+              <div class='input_group_addon icon-mail' />
+              <div class='input_light_border_bottom' />
+            </div>
           </div>
-          <div>
-            Пароль:
-              <input value={ user.password } onChange={ handlePasswordChange } />
+
+          <div class='form_group'>
+            <div class='input_group light w100'>
+              <InputField field={ form.$('password') } type='password'  />
+              <div class='input_group_addon icon-password' />
+              <div class='input_light_border_bottom' />
+            </div>
           </div>
-          <Button
-            loading={ inProgress }
-            className='button second'
-            type='submit'
-            disabled={ inProgress }>
-            {buttonName}
-          </Button>
+
+          <SelectField field={ form.$('role') } type='password' />
+
+          <div class='form_buttons'>
+            <Button
+              className='button'
+              type='submit'>
+              { buttonName }
+            </Button>
+          </div>
         </div>
+
       </form>
     </LoaderPanel>
 

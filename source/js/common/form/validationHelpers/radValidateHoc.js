@@ -79,7 +79,7 @@ function radValidate({tips} = {tips: true}) {
           return (
             <div className={ wrapperClassName }>
               <WrappedComponent
-                ref={ wrappedEl => this.wrappedEl = wrappedEl } { ...this.props }
+                { ...this.props }
                 validator={ validator }/>
               {showErrorMessage &&
               <ReactTooltip id={ this.tooltipId } { ...this.getTooltipProps() } />}
@@ -87,7 +87,7 @@ function radValidate({tips} = {tips: true}) {
           );
         }
         return (<WrappedComponent
-          ref={ wrappedEl => this.wrappedEl = wrappedEl } { ...this.props }
+          { ...this.props }
           validator={ validator }/>);
       }
     }

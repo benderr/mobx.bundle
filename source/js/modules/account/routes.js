@@ -2,6 +2,7 @@ import SignInContainer from './containers/SignInContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import RegistrationContainer from './containers/RegistrationContainer';
 import IndexContainer from './containers/IndexContainer';
+import DemoFieldsContainer from './containers/DemoFieldsContainer';
 
 export default {
   signin: {
@@ -36,5 +37,11 @@ export default {
     allowAnonymous: true,
     layout: null,
     component: RegistrationContainer,
+  },
+  demo: {
+    path: '/demo',
+    exact: true,
+    allowAnonymous: true,
+    component: DemoFieldsContainer,
   },
 };

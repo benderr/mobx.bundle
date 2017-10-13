@@ -2,7 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import RegistrationForm from '../components/RegistrationForm';
+import SignInForm from '../components/RegistrationForm';
 
 @inject('authStore')
 @withRouter
@@ -38,7 +38,7 @@ class RegistrationContainer extends React.Component {
         <h1>
           Регистрация
         </h1>
-        <RegistrationForm
+        <SignInForm
           authStore={ this.props.authStore }
           handleEmailChange={ ::this.handleEmailChange }
           handlePasswordChange={ ::this.handlePasswordChange }
@@ -49,4 +49,4 @@ class RegistrationContainer extends React.Component {
   }
 }
 
-export default RegistrationContainer;
+export default RegistrationContainer
