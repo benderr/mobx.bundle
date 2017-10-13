@@ -5,7 +5,35 @@ import PropTypes from 'prop-types';
 import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import SignInForm from '../../components/SignInForm';
-import signInMobxForm from './signInMobxForm';
+import signInMobxForm from '../../../../common/form/BaseForm';
+
+import { validateHelper } from 'modul-helpers';
+
+function isEmail({ field }) {
+  const isValid = validateHelper.validEmail(field.value);
+  return [isValid, 'Email not valid!'];
+}
+
+function isRequired({ field }) {
+  const isValid = !validateHelper.isEmpty(field.value);
+  return [isValid, 'Is required'];
+}
+
+const fields = [
+  {
+    name: 'email',
+    label: 'Email',
+    placeholder: 'Email',
+    validators: [isEmail],
+    initial: 'test001@test.ru',
+  },
+  {
+    name: 'password',
+    label: 'Пароль',
+    placeholder: 'Пароль',
+    initial: 'Qq123456',
+  },
+];
 
 @inject(({authStore}) => ({
   inProgress: authStore.inProgress,
