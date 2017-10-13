@@ -9,6 +9,7 @@ class ProfileStore {
   @observable
   profile = new Map();
 
+  @action.bound
   getProfile = asyncAction(function* () {
     this.inProgress = true;
     try {
@@ -24,6 +25,7 @@ class ProfileStore {
     }
   })
 
+  @action.bound
   logout = asyncAction(function* () {
     this.inProgress = true;
     this.error = undefined;

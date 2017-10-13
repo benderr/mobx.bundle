@@ -1,9 +1,21 @@
 import React from 'react';
-import {observer} from 'mobx-react';
+import { observer } from 'mobx-react';
+import PropTypes from 'prop-types';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
 
 @observer
 class InputField extends React.Component {
+  static propTypes = {
+    disabled: PropTypes.bool,
+    readOnly: PropTypes.bool,
+    className: PropTypes.string,
+    addClassName: PropTypes.string,
+    maxLength: PropTypes.number,
+    type: PropTypes.string,
+    placeholder: PropTypes.string,
+    field: PropTypes.object,
+    validator: PropTypes.object,
+  };
 
   static defaultProps = {
     disabled: false,
@@ -18,36 +30,18 @@ class InputField extends React.Component {
     this.input.focus();
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('TEST', nextProps.field.name, nextProps.field.autoFocus);
-  //   if (!this.props.field.autoFocus && nextProps.field.autoFocus && this.input) {
-  //     setTimeout(() => this.input.focus(), 0);
-  //   }
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (this.props.field.autoFocus == false
-  //     && nextProps.field.autoFocus == true) {
-  //     this.input.focus();
-  //   }
-  // }
-
   componentDidMount() {
     this.props.field.ref = this;
   }
 
   render() {
-
-    const {type, placeholder, field, validator: {tooltip, addClassName}, className, disabled, readOnly, autoFocus} = this.props;
-    const classNames = [className, addClassName].join(' ');
-
-    // if (!this.props.field.autoFocus && nextProps.field.autoFocus && this.input) {
-    //   setTimeout(() => this.input.focus(), 0);
-    // }
+    const { type, placeholder, field, className, disabled, readOnly } = this.props;
+    const { tooltip, addClassName } = this.props.validator;
+    const classNames = `${ className } ${ addClassName }`;
 
     return (
       <input
-        { ...field.bind({type, placeholder}) }
+        { ...field.bind({ type, placeholder }) }
         ref={ input => this.input = input }
         className={ classNames }
         placeholder={ placeholder }

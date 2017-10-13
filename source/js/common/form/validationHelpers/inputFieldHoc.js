@@ -1,13 +1,22 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { PhoneInput } from 'modul-components';
-import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
-
+import PropTypes from 'prop-types';
 
 function inputFieldHoc({ tips } = { tips: true }) {
   return (FieldComponent) => {
     @observer
     class FieldComponentWrapper extends React.Component {
+      static propTypes = {
+        disabled: PropTypes.bool,
+        readOnly: PropTypes.bool,
+        className: PropTypes.string,
+        addClassName: PropTypes.string,
+        maxLength: PropTypes.number,
+        type: PropTypes.string,
+        placeholder: PropTypes.string,
+        field: PropTypes.object,
+        validator: PropTypes.object,
+      };
       static defaultProps = {
         disabled: false,
         readOnly: false,
@@ -26,8 +35,9 @@ function inputFieldHoc({ tips } = { tips: true }) {
       }
 
       render() {
-        const { type, placeholder, field, validator: { tooltip, addClassName }, className, disabled, readOnly } = this.props;
-        const classNames = [className, addClassName].join(' ');
+        const { type, placeholder, field, className, disabled, readOnly } = this.props;
+        const { tooltip, addClassName } = this.props.validator;
+        const classNames = `${ className } ${ addClassName }`;
         return (
           <FieldComponent
             { ...field.bind({ type, placeholder }) }

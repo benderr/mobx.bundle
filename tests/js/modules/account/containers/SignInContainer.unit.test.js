@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import React from 'react';
 
-import SignInContainer from '../../../../../source/js/modules/account/containers/SignInContainer/SignInContainer';
+import SignInContainer from '../../../../../source/js/modules/account/containers/SignInContainer';
 import authStore from '../../../../../source/js/modules/account/stores/authStore';
 
 describe('SignInContainer', () => {
