@@ -26,8 +26,7 @@ function radValidate({tips} = {tips: true}) {
       }
 
       showTooltipError() {
-        const {field: {hasError, touched}} = this.props;
-        const submitFailed = false;
+        const {field: {hasError, touched, submitFailed}} = this.props;
         return hasError && (submitFailed || touched);
       }
 
@@ -41,7 +40,7 @@ function radValidate({tips} = {tips: true}) {
           event: 'focus',
           eventOff: 'blur keydown',
           place: this.props.tipPlace || 'right',
-          delayHide: 200,
+          delayHide: 0,
           effect: 'solid',
           resizeHide: true,
         };
@@ -57,10 +56,9 @@ function radValidate({tips} = {tips: true}) {
 
       render() {
         const {field, hideTips = false, wrapperClassName = ''} = this.props;
-        const {isValid, hasError, focused, touched}=field;
+        const {isValid, hasError, focused, touched, submitFailed}=field;
 
         const tooltip = this.getTooltipConfig({id: this.tooltipId});
-        const submitFailed = this.props.field.submitFailed;
 
         const highlightError = (!isValid || hasError) && (touched || submitFailed) && !focused;
         const highlightSuccess = (isValid || !hasError) && touched && !focused;
@@ -81,8 +79,8 @@ function radValidate({tips} = {tips: true}) {
               <WrappedComponent
                 { ...this.props }
                 validator={ validator }/>
-              {showErrorMessage &&
-              <ReactTooltip id={ this.tooltipId } { ...this.getTooltipProps() } />}
+              <ReactTooltip className={showErrorMessage ? '' : 'hidden'}
+                            id={ this.tooltipId } { ...this.getTooltipProps() } />
             </div>
           );
         }
