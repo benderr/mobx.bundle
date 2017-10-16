@@ -2,7 +2,7 @@ import React from 'react';
 import { observer, inject } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
-import SignInForm from '../components/RegistrationForm';
+import SignInForm from '../forms/RegistrationForm';
 
 @inject('authStore')
 @withRouter

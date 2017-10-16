@@ -21,7 +21,6 @@ class AmountField extends React.Component {
     disabled: false,
     readOnly: false,
     className: '',
-    addClassName: '',
     maxLength: 255,
     type: 'text',
   }
@@ -42,8 +41,6 @@ class AmountField extends React.Component {
       <AmountInput
         { ...field.bind({ type, placeholder }) }
         ref={ input => this.input = input }
-        className={ classNames }
-        placeholder={ placeholder }
         type={ type }
         disabled={ disabled }
         readOnly={ readOnly }

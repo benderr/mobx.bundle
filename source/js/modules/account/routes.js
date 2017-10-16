@@ -1,4 +1,4 @@
-import SignInContainer from './pages/SignInContainer';
+import SignInContainer from './pages/SignIn';
 import ProfileContainer from './pages/ProfileContainer';
 import AddUserPage from './pages/AddUserPage';
 import RegistrationContainer from './pages/RegistrationContainer';

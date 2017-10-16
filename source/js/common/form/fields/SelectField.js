@@ -1,12 +1,12 @@
 import React from 'react';
-import {observer} from 'mobx-react';
-import {Select} from 'modul-components';
+import { observer } from 'mobx-react';
+import { Select } from 'modul-components';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const stringOrNode = PropTypes.oneOfType([
   PropTypes.string,
-  PropTypes.node
+  PropTypes.node,
 ]);
 
 @observer
@@ -16,7 +16,6 @@ class SelectField extends React.Component {
     disabled: false,
     readOnly: false,
     className: '',
-    addClassName: '',
     maxLength: 255,
     type: 'text',
   };
@@ -26,7 +25,7 @@ class SelectField extends React.Component {
     'aria-describedby': PropTypes.string,	// HTML ID(s) of element(s) that should be used to describe this input (for assistive tech)
     'aria-label': PropTypes.string,       // Aria label (for assistive tech)
     'aria-labelledby': PropTypes.string,	// HTML ID of an element that should be used as the label (for assistive tech)
-    arrowRenderer: PropTypes.func,				// Create drop-down caret element
+    arrowRenderer: PropTypes.func,        // Create drop-down caret element
     autoBlur: PropTypes.bool,             // automatically blur the component when an option is selected
     autofocus: PropTypes.bool,            // autofocus the component on mount
     autosize: PropTypes.bool,             // whether to enable autosizing or not
@@ -47,7 +46,7 @@ class SelectField extends React.Component {
     ignoreCase: PropTypes.bool,           // whether to perform case-insensitive filtering
     inputProps: PropTypes.object,         // custom attributes for the Input
     inputRenderer: PropTypes.func,        // returns a custom input component
-    instanceId: PropTypes.string,         // set the components instanceId
+    instanceId: PropTypes.string,         // set the forms instanceId
     isLoading: PropTypes.bool,            // whether the Select is loading externally or not (such as options being loaded)
     joinValues: PropTypes.bool,           // joins multiple values into a single form field with the delimiter (legacy mode)
     labelKey: PropTypes.string,           // path of the label value in option objects
@@ -91,7 +90,7 @@ class SelectField extends React.Component {
     valueKey: PropTypes.string,           // path of the label value in option objects
     valueRenderer: PropTypes.func,        // valueRenderer: function (option) {}
     wrapperStyle: PropTypes.object,       // optional style to apply to the component wrapper
-    creatable: PropTypes.bool, 			  // если можно вводить свой вариант (текст)
+    creatable: PropTypes.bool,            // если можно вводить свой вариант (текст)
   };
 
   
@@ -100,16 +99,16 @@ class SelectField extends React.Component {
   }
 
   render() {
-    const {type, placeholder, field, validator: {tooltip, addClassName}, className, options, ...props} = this.props;
-    const classNames = [className, addClassName].join(' ');
+    const { type, placeholder, field, validator: { tooltip, addClassName }, className, ...props } = this.props;
+    const classNames = `${ className } ${ addClassName }`;
+
     return (
       <Select
-        { ...field.bind({type, placeholder, options}) }
+        { ...field.bind({ type, placeholder }) }
         ref={ input => this.input = input }
         className={ classNames }
-        placeholder={ placeholder }
         type={ type }
-        {...props}
+        { ...props }
         { ...tooltip } />
     );
   }

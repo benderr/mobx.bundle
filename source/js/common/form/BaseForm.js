@@ -1,56 +1,53 @@
-import {observable, action} from 'mobx'
-import Form from 'mobx-react-form'
-import BaseField from './BaseField'
+import { observable, action } from 'mobx';
+import Form from 'mobx-react-form';
+import validator from 'validator';
+import BaseField from './BaseField';
 
 export default class BaseForm extends Form {
-  constructor(arg1, {hooks, ...args2}) {
-    let customOnSuccess = function () {
-    }
-    let customOnError = function () {
-    }
-    //const hooks = props[1] && props[1].hooks
+  constructor(fieldsObj, { hooks, plugins }) {
+    let customOnSuccess = function () {};
+    let customOnError = function () {};
     if (hooks) {
       if (hooks.onSuccess instanceof Function) {
         customOnSuccess = hooks.onSuccess;
-        hooks.onSuccess = undefined
+        hooks.onSuccess = undefined;
       }
 
       if (hooks.onError instanceof Function) {
         customOnError = hooks.onError;
-        hooks.onError = undefined
+        hooks.onError = undefined;
       }
     }
-    //const props =
-    super(arg1, {hooks, ...args2});
+
+    super(fieldsObj, { hooks, plugins });
     // До super(...props) вызывать this нельзя
     this.customOnSuccess = customOnSuccess;
-    this.customOnError = customOnError
+    this.customOnError = customOnError;
   }
 
-  @observable submitFailed = false;
+  @observable submitFailed = false
 
   @action
   afterFailedSubmit() {
-    this.submitFailed = true
+    this.submitFailed = true;
   }
 
   @action
-  afterSuccessSubmit() {
+  afterSuccessSubmit () {
     this.submitFailed = false
   }
 
   makeField(props) {
-    return new BaseField({...props})
+    return new BaseField({ ...props });
   }
 
   hooks() {
     return {
-      onSuccess (form) {
+      onSuccess(form) {
         form.afterSuccessSubmit();
-        this.customOnSuccess(form)
+        this.customOnSuccess(form);
       },
-      onError (form) {
-        console.log('error')
+      onError(form) {
         form.afterFailedSubmit();
         const errors = form.errors();
         const keys = form.fields.keys();
@@ -62,9 +59,9 @@ export default class BaseForm extends Form {
           field.setFocus();
           console.log('focus')
         }
-        this.customOnError(form)
+        this.customOnError(form);
       },
-    }
+    };
   }
 
   bindings() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer, inject } from 'mobx-react';
 import PropTypes from 'prop-types';
-import Profile from '../components/Profile';
+import Profile from '../forms/Profile';
 
 @inject('profileStore')
 @observer
