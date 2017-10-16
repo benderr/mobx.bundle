@@ -16,7 +16,6 @@ class SelectField extends React.Component {
     disabled: false,
     readOnly: false,
     className: '',
-    addClassName: '',
     maxLength: 255,
     type: 'text',
   };
@@ -47,7 +46,7 @@ class SelectField extends React.Component {
     ignoreCase: PropTypes.bool,           // whether to perform case-insensitive filtering
     inputProps: PropTypes.object,         // custom attributes for the Input
     inputRenderer: PropTypes.func,        // returns a custom input component
-    instanceId: PropTypes.string,         // set the components instanceId
+    instanceId: PropTypes.string,         // set the forms instanceId
     isLoading: PropTypes.bool,            // whether the Select is loading externally or not (such as options being loaded)
     joinValues: PropTypes.bool,           // joins multiple values into a single form field with the delimiter (legacy mode)
     labelKey: PropTypes.string,           // path of the label value in option objects
@@ -104,13 +103,13 @@ class SelectField extends React.Component {
 
   render() {
     const { type, placeholder, field, validator: { tooltip, addClassName }, className, ...props } = this.props;
-    const classNames = [className, addClassName].join(' ');
+    const classNames = `${ className } ${ addClassName }`;
+
     return (
       <Select
         { ...field.bind({ type, placeholder }) }
         ref={ input => this.input = input }
         className={ classNames }
-        placeholder={ placeholder }
         type={ type }
         { ...props }
         { ...tooltip } />

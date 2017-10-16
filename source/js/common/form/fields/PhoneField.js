@@ -41,7 +41,6 @@ class PhoneField extends React.Component {
         { ...field.bind({ type, placeholder }) }
         ref={ input => this.input = input }
         className={ classNames }
-        placeholder={ placeholder }
         type={ type }
         disabled={ disabled }
         readOnly={ readOnly }

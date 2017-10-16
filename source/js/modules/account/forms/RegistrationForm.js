@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, LoaderPanel } from 'modul-components';
-import { InputField, PhoneField, SelectField } from 'common/form/fields';
+import { InputField, SelectField } from 'common/form/fields';
 
 export default observer((props) => {
   const { form, buttonName } = props;

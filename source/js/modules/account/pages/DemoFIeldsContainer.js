@@ -64,7 +64,6 @@ class IndexContainer extends React.Component {
     hooks: {
       onSuccess(form) {
         console.log('ВСЁ НОРМ', form.values());
-        //alert(form.values())
       },
       onError(form) {
         console.log('ЧТО-ТО НЕ ТАК');
@@ -77,7 +76,7 @@ class IndexContainer extends React.Component {
       this.form.update({
         phone: '1234567890',
         email: 'fff@mail.com',
-        date: new Date()
+        // date: new Date()
       });
     }, 2000);
 

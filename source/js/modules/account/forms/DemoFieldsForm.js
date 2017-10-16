@@ -2,7 +2,6 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, LoaderPanel } from 'modul-components';
 import { InputField, PhoneField, SelectField, NumberField, AmountField, DatePickerField } from 'common/form/fields';
-import { DatePicker } from 'modul-components';
 
 export default observer((props) => {
   const { form, buttonName, options, changePhone,
@@ -25,7 +24,6 @@ export default observer((props) => {
         <NumberField field={ form.$('NumberField') } />
         <AmountField field={ form.$('AmountField') } />
         <DatePickerField field={ form.$('date') } />
-        <DatePicker />
         <button type='button' className='button' onClick={ changePhone }>Change</button>
         <Button
           className='button'

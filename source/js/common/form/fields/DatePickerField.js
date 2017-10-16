@@ -21,7 +21,6 @@ class DatePickerField extends React.Component {
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     className: PropTypes.string,
-    addClassName: PropTypes.string,
     placeholder: PropTypes.string,
     name: PropTypes.string,
     lang: PropTypes.string,
@@ -52,7 +51,6 @@ class DatePickerField extends React.Component {
     disabled: false,
     readOnly: false,
     className: '',
-    addClassName: '',
     maxLength: 255,
     type: 'text',
     defaultDate: new Date(),
@@ -74,8 +72,8 @@ class DatePickerField extends React.Component {
       <DatePicker
         { ...other }
         { ...field.bind({readOnly}) }
+        className={classNames}
         ref={ input => this.input = input }
-        className={ classNames }
         disabled={ disabled }
         readOnly={ readOnly }
         { ...tooltip } />
