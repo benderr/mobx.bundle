@@ -35,7 +35,7 @@ function radValidate({tips} = {tips: true}) {
         return {
           html: true,
           multiline: true,
-          getContent: [::self.getError, 400],
+          getContent: [::self.getError, 200],
           type: 'error',
           event: 'focus',
           eventOff: 'blur keydown',
