@@ -56,6 +56,9 @@ class SiteHeader extends React.Component {
           <div class='header_profile_name'>
             <a>User name</a>
           </div>
+                    <div class="header_profile_name">
+                        <Link to="/add-user">User name</Link>
+                    </div>
 
           <div class='header_profile_settigs'>
             {/* <Link to='/settings' class='icon-settings' />*/}

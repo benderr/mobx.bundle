@@ -53,9 +53,11 @@ export default class BaseForm extends Form {
         const keys = form.fields.keys();
         const firstErrorName = keys.find(
           name => typeof errors[name] === 'string');
-        const ref = form.fields.get(firstErrorName).ref;
-        if (ref.setFocus instanceof Function) {
-          ref.setFocus();
+        const field = form.fields.get(firstErrorName)
+        //field.focus();
+        if (field && field.setFocus instanceof Function) {
+          field.setFocus();
+          console.log('focus')
         }
         this.customOnError(form);
       },

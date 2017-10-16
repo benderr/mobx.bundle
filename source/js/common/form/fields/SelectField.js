@@ -93,12 +93,9 @@ class SelectField extends React.Component {
     creatable: PropTypes.bool,            // если можно вводить свой вариант (текст)
   };
 
-  setFocus() {
-    this.input.setFocus();
-  }
-
+  
   componentDidMount() {
-    this.props.field.ref = this;
+    this.props.field.setFocus = ::this.input.setFocus;
   }
 
   render() {
