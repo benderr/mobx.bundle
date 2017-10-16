@@ -103,11 +103,11 @@ class SelectField extends React.Component {
   }
 
   render() {
-    const {type, placeholder, field, validator: {tooltip, addClassName}, className, ...props} = this.props;
+    const {type, placeholder, field, validator: {tooltip, addClassName}, className, options, ...props} = this.props;
     const classNames = [className, addClassName].join(' ');
     return (
       <Select
-        { ...field.bind({type, placeholder}) }
+        { ...field.bind({type, placeholder, options}) }
         ref={ input => this.input = input }
         className={ classNames }
         placeholder={ placeholder }

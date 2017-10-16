@@ -17,13 +17,15 @@ const fields = [
     name: 'phone',
     label: 'PhoneField',
     placeholder: 'PhoneField',
-    validators: [isRequired('Введите телефон')],
+    validators: [isRequired('Введите телефон')]
   },
   {
     name: 'select',
     label: 'SelectField',
     placeholder: 'SelectField',
-    validators: [isRequired('Выберите вариант')]
+    validators: [isRequired('Выберите вариант')],
+    options: [],
+    bindings: 'SelectField'
   },
   {
     name: 'NumberField',
@@ -114,7 +116,7 @@ class IndexContainer extends React.Component {
           changePhone={::this.handleChangePhone}
           searchOptions={::this.handleSearchOptions}
           searchLoading={this.searchLoading}
-          options={this.options}
+          options={this.options.slice()}
           form={ this.form }
           buttonName={ 'check' }/>
       </div>

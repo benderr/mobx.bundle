@@ -1,8 +1,8 @@
-import SignInContainer from './containers/SignInContainer';
-import ProfileContainer from './containers/ProfileContainer';
-import RegistrationContainer from './containers/RegistrationContainer';
-import IndexContainer from './containers/IndexContainer';
-import DemoFieldsContainer from './containers/DemoFieldsContainer';
+import SignInContainer from './pages/SignInContainer';
+import ProfileContainer from './pages/ProfileContainer';
+import RegistrationContainer from './pages/RegistrationContainer';
+import IndexContainer from './pages/IndexContainer';
+import DemoFieldsContainer from './pages/DemoFieldsContainer';
 
 export default {
   signin: {
