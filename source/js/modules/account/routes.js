@@ -1,5 +1,5 @@
-import SignInContainer from './pages/SignIn';
-import ProfileContainer from './pages/ProfileContainer';
+import SignInContainer from './pages/SignInPage';
+import ProfileContainer from './pages/ProfilePage';
 import RegistrationContainer from './pages/RegistrationContainer';
 import IndexContainer from './pages/IndexContainer';
 import DemoFieldsContainer from './pages/DemoFieldsContainer';
@@ -17,7 +17,6 @@ export default {
     exact: true,
     allowAnonymous: true,
     component: ProfileContainer,
-    layout: null,
   },
   settings: {
     path: '/settings',
