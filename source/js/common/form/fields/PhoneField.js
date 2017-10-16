@@ -11,28 +11,24 @@ class PhoneField extends React.Component {
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     className: PropTypes.string,
-    addClassName: PropTypes.string,
-    maxLength: PropTypes.number,
     type: PropTypes.string,
     placeholder: PropTypes.string,
-    field: PropTypes.object,
     validator: PropTypes.object,
+    field: PropTypes.object,
   };
   static defaultProps = {
     disabled: false,
     readOnly: false,
     className: '',
-    addClassName: '',
-    maxLength: 255,
     type: 'text',
+  };
+
+  componentDidMount() {
+    this.props.field.ref = this;
   }
 
   setFocus() {
     this.input.setFocus();
-  }
-
-  componentDidMount() {
-    this.props.field.ref = this;
   }
 
   render() {
@@ -49,7 +45,7 @@ class PhoneField extends React.Component {
         type={ type }
         disabled={ disabled }
         readOnly={ readOnly }
-        { ...tooltip }/>
+        { ...tooltip } />
     );
   }
 }

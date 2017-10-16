@@ -1,73 +1,67 @@
 import React from 'react';
-import { observer } from 'mobx-react';
-import { observable } from 'mobx';
+import {observer} from 'mobx-react';
+import {observable, action, runInAction} from 'mobx';
+import {inAction} from 'mobx-utils';
 import DemoFieldsForm from '../components/DemoFieldsForm';
 import BaseForm from 'common/form/BaseForm';
-import { validateHelper } from 'modul-helpers';
-
-function isEmail({ field }) {
-  const isValid = validateHelper.validEmail(field.value);
-  return [isValid, 'Email not valid!'];
-}
-
-function isRequired({ field }) {
-  const isValid = !validateHelper.isEmpty(field.value);
-  return [isValid, 'Is required'];
-}
+import {isEmail, isRequired} from 'common/form/validationHelpers/validation'
 
 const fields = [
   {
-    name: 'InputField',
+    name: 'email',
     label: 'InputField',
     placeholder: 'InputField',
-    validators: [isEmail, isRequired],
+    validators: [isEmail('Введите корректный Email'), isRequired('Введите email')],
   },
   {
-    name: 'PhoneField',
+    name: 'phone',
     label: 'PhoneField',
     placeholder: 'PhoneField',
-    validators: [isRequired],
+    validators: [isRequired('Введите телефон')],
   },
   {
-    name: 'SelectField',
+    name: 'select',
     label: 'SelectField',
     placeholder: 'SelectField',
-    validators: [isRequired],
-    extra: [{ value: '0', label: 'по умолчанию (из настроек)', short: 'из настроек' },
-      { value: 1104, label: 'НДС 0%', short: '0%' },
-      { value: 1103, label: 'НДС 10%', short: '10%' },
-      { value: 1102, label: 'НДС 18%', short: '18%' },
-      { value: 1105, label: 'НДС не облагается', short: 'не облагается' },
-      { value: 1107, label: 'НДС с рассч. ставкой 10%', short: 'с рассч. ставкой 10%' },
-      { value: 1106, label: 'НДС с рассч. ставкой 18%', short: 'с рассч. ставкой 18%' }],
+    validators: [isRequired('Выберите вариант')]
   },
   {
     name: 'NumberField',
     label: 'NumberField',
     placeholder: 'NumberField',
-    validators: [isRequired],
+    validators: [isRequired('Введите число')],
   },
   {
     name: 'AmountField',
     label: 'AmountField',
     placeholder: 'AmountField',
-    validators: [isRequired],
+    validators: [isRequired('Введите сумму')],
   },
   {
-    name: 'DatePickerField',
+    name: 'date',
     label: 'DatePickerField',
-    placeholder: 'DatePickerField',
-    validators: [isRequired],
+    validators: [isRequired('Выбериту дату')]
   },
 ];
+
 
 @observer
 class IndexContainer extends React.Component {
 
-  @observable form = new BaseForm({ fields }, {
+  @observable options = [{value: '0', label: 'по умолчанию (из настроек)', short: 'из настроек'},
+    {value: 1104, label: 'НДС 0%', short: '0%'},
+    {value: 1103, label: 'НДС 10%', short: '10%'},
+    {value: 1102, label: 'НДС 18%', short: '18%'},
+    {value: 1105, label: 'НДС не облагается', short: 'не облагается'},
+    {value: 1107, label: 'НДС с рассч. ставкой 10%', short: 'с рассч. ставкой 10%'},
+    {value: 1106, label: 'НДС с рассч. ставкой 18%', short: 'с рассч. ставкой 18%'}];
+  @observable searchLoading = false;
+
+  @observable form = new BaseForm({fields}, {
     hooks: {
       onSuccess(form) {
-        console.log('ВСЁ НОРМ');
+        console.log('ВСЁ НОРМ', form.values());
+        //alert(form.values())
       },
       onError(form) {
         console.log('ЧТО-ТО НЕ ТАК');
@@ -75,12 +69,51 @@ class IndexContainer extends React.Component {
     },
   });
 
+  @action loadData() {
+    setTimeout(() => {
+      this.form.update({
+        phone: '1234567890',
+        email: 'fff@mail.com',
+        // date: new Date()
+      });
+    }, 2000);
+
+    setTimeout(() => {
+      runInAction(() => {
+        // this.options = this.options;
+      });
+    }, 0);
+  }
+
+  componentDidMount() {
+    this.loadData();
+  }
+
+  @action handleChangePhone() {
+    this.form.fields.get('phone').set('0987654321');
+  }
+
+  @action handleSearchOptions(text) {
+    this.searchLoading = true;
+    setTimeout(() => {
+      runInAction(() => {
+        this.options = this.options.filter(s => s.label.indexOf(text) > -1);
+        this.searchLoading = false;
+      });
+    }, 1000);
+  }
+
   render() {
+
     return (
       <div>
         <DemoFieldsForm
+          changePhone={::this.handleChangePhone}
+          searchOptions={::this.handleSearchOptions}
+          searchLoading={this.searchLoading}
+          options={this.options.toJS()}
           form={ this.form }
-          buttonName={ 'check' } />
+          buttonName={ 'check' }/>
       </div>
     );
   }

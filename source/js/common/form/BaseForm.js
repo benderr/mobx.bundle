@@ -33,8 +33,8 @@ export default class BaseForm extends Form {
   }
 
   @action
-  afterSuccessSubmit() {
-    this.submitFailed = false;
+  afterSuccessSubmit () {
+    this.submitFailed = false
   }
 
   makeField(props) {

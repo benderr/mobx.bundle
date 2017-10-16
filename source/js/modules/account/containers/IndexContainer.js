@@ -9,7 +9,7 @@ class IndexContainer extends React.Component {
   render() {
     return (
       <div>
-        <PhoneInput />
+        <PhoneIut />
       </div>
     );
   }

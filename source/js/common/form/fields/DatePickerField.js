@@ -14,15 +14,39 @@ const parseDate = date => {
 @observer
 class DatePickerField extends React.Component {
   static propTypes = {
+    field: PropTypes.object.isRequired,
+    format: PropTypes.string,
+    validator: PropTypes.object,
+    value: PropTypes.any,
     disabled: PropTypes.bool,
     readOnly: PropTypes.bool,
     className: PropTypes.string,
     addClassName: PropTypes.string,
-    maxLength: PropTypes.number,
-    type: PropTypes.string,
     placeholder: PropTypes.string,
-    field: PropTypes.object,
-    validator: PropTypes.object,
+    name: PropTypes.string,
+    lang: PropTypes.string,
+    formatDate: PropTypes.string,
+    formatTime: PropTypes.string,
+    step: PropTypes.number,
+    closeOnDateSelect: PropTypes.func,
+    timepicker: PropTypes.bool,
+    datepicker: PropTypes.bool,
+    weeks: PropTypes.string,
+    minDate: PropTypes.any,
+    maxDate: PropTypes.any,
+    startDate: PropTypes.any,
+    defaultDate: PropTypes.any,
+    defaultTime: PropTypes.any,
+    todayButton: PropTypes.bool,
+    defaultSelect: PropTypes.bool,
+    yearStart: PropTypes.number,
+    yearEnd: PropTypes.number,
+    disabledDates: PropTypes.array,
+    allowDates: PropTypes.array,
+    allowDateRe: PropTypes.string,
+    disabledWeekDays: PropTypes.bool,
+    id: PropTypes.string,
+    inline: PropTypes.bool,
   };
   static defaultProps = {
     disabled: false,
@@ -31,6 +55,7 @@ class DatePickerField extends React.Component {
     addClassName: '',
     maxLength: 255,
     type: 'text',
+    defaultDate: new Date(),
   }
 
   setFocus() {
@@ -42,16 +67,15 @@ class DatePickerField extends React.Component {
   }
 
   render() {
-    const { type, placeholder, field, className, disabled, readOnly } = this.props;
-    const { tooltip, addClassName } = this.props.validator;
+    const { field, className, disabled, readOnly, validator, ...other } = this.props;
+    const { tooltip, addClassName } = validator;
     const classNames = `${ className } ${ addClassName }`;
     return (
       <DatePicker
-        { ...field.bind({ type, placeholder }) }
+        { ...other }
+        { ...field.bind({readOnly}) }
         ref={ input => this.input = input }
         className={ classNames }
-        placeholder={ placeholder }
-        type={ type }
         disabled={ disabled }
         readOnly={ readOnly }
         { ...tooltip } />
