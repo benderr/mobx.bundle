@@ -38,7 +38,7 @@ class SiteHeader extends React.Component {
                 <div class="header_profile">
 
                     <div class="header_profile_name">
-                        <a>User name</a>
+                        <Link to="/add-user">User name</Link>
                     </div>
 
                     <div class="header_profile_settigs">

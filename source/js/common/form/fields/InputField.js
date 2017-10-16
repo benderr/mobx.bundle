@@ -1,5 +1,5 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
 
@@ -31,17 +31,23 @@ class InputField extends React.Component {
   }
 
   componentDidMount() {
-    this.props.field.ref = this;
+    this.props.field.setFocus = ::this.setFocus;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('NEXTPROPS', nextProps);
+    if (!nextProps.field.focused && nextProps.field.autoFocus)
+      this.input.focus();
   }
 
   render() {
-    const { type, placeholder, field, className, disabled, readOnly } = this.props;
-    const { tooltip, addClassName } = this.props.validator;
+    const {type, placeholder, field, className, disabled, readOnly} = this.props;
+    const {tooltip, addClassName} = this.props.validator;
     const classNames = `${ className } ${ addClassName }`;
 
     return (
       <input
-        { ...field.bind({ type, placeholder }) }
+        { ...field.bind({type, placeholder}) }
         ref={ input => this.input = input }
         className={ classNames }
         placeholder={ placeholder }

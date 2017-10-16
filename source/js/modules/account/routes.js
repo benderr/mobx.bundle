@@ -1,5 +1,6 @@
 import SignInContainer from './pages/SignInContainer';
 import ProfileContainer from './pages/ProfileContainer';
+import AddUserPage from './pages/AddUserPage';
 import RegistrationContainer from './pages/RegistrationContainer';
 import IndexContainer from './pages/IndexContainer';
 import DemoFieldsContainer from './pages/DemoFieldsContainer';
@@ -23,7 +24,13 @@ export default {
     path: '/settings',
     exact: true,
     component: ProfileContainer,
+    isLayer: true
+  },
+  addUser: {
+    path: '/add-user',
+    exact: true,
     isLayer: true,
+    layout: AddUserPage
   },
   home: {
     path: '/',
