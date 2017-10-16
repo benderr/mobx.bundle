@@ -2,7 +2,7 @@ import React from 'react';
 import {observer} from 'mobx-react';
 import {observable, action, runInAction} from 'mobx';
 import {inAction} from 'mobx-utils';
-import DemoFieldsForm from '../components/DemoFieldsForm';
+import DemoFieldsForm from '../forms/DemoFieldsForm';
 import BaseForm from 'common/form/BaseForm';
 import {isEmail, isRequired} from 'common/form/validationHelpers/validation'
 
@@ -17,13 +17,15 @@ const fields = [
     name: 'phone',
     label: 'PhoneField',
     placeholder: 'PhoneField',
-    validators: [isRequired('Введите телефон')],
+    validators: [isRequired('Введите телефон')]
   },
   {
     name: 'select',
     label: 'SelectField',
     placeholder: 'SelectField',
-    validators: [isRequired('Выберите вариант')]
+    validators: [isRequired('Выберите вариант')],
+    options: [],
+    bindings: 'SelectField'
   },
   {
     name: 'NumberField',
@@ -40,6 +42,7 @@ const fields = [
   {
     name: 'date',
     label: 'DatePickerField',
+    placeholder: 'DatePickerField',
     validators: [isRequired('Выбериту дату')]
   },
 ];
@@ -74,13 +77,13 @@ class IndexContainer extends React.Component {
       this.form.update({
         phone: '1234567890',
         email: 'fff@mail.com',
-        // date: new Date()
+        date: new Date()
       });
     }, 2000);
 
     setTimeout(() => {
       runInAction(() => {
-        // this.options = this.options;
+        this.options = options;
       });
     }, 0);
   }
@@ -90,14 +93,15 @@ class IndexContainer extends React.Component {
   }
 
   @action handleChangePhone() {
-    this.form.fields.get('phone').set('0987654321');
+    this.form.fields.get('phone').set('0987654321')
   }
 
   @action handleSearchOptions(text) {
+    //this.form.fields.get('phone').set('0987654321');
     this.searchLoading = true;
     setTimeout(() => {
       runInAction(() => {
-        this.options = this.options.filter(s => s.label.indexOf(text) > -1);
+        this.options = options.filter(s => s.label.indexOf(text) > -1);
         this.searchLoading = false;
       });
     }, 1000);
@@ -111,7 +115,7 @@ class IndexContainer extends React.Component {
           changePhone={::this.handleChangePhone}
           searchOptions={::this.handleSearchOptions}
           searchLoading={this.searchLoading}
-          options={this.options.toJS()}
+          options={this.options}
           form={ this.form }
           buttonName={ 'check' }/>
       </div>

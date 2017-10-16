@@ -4,36 +4,7 @@ import { observer, inject } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
-import BaseForm from 'common/form/BaseForm';
-import SignInForm from '../components/SignInForm';
-import { validateHelper } from 'modul-helpers';
-
-function isEmail({ field }) {
-  const isValid = validateHelper.validEmail(field.value);
-  return [isValid, 'Email not valid!'];
-}
-
-function isRequired({ field }) {
-  const isValid = !validateHelper.isEmpty(field.value);
-  return [isValid, 'Is required'];
-}
-
-const fields = [
-  {
-    name: 'email',
-    label: 'Email',
-    placeholder: 'Email',
-    validators: [isEmail, isRequired],
-    initial: 'test001@test.ru',
-  },
-  {
-    name: 'password',
-    label: 'Пароль',
-    placeholder: 'Пароль',
-    validators: [isRequired],
-    initial: 'Qq123456',
-  },
-];
+import SignInForm from '../forms/SignInForm';
 
 @inject(({ authStore }) => ({
   inProgress: authStore.inProgress,
@@ -60,14 +31,9 @@ class SignInContainer extends React.Component {
       });
   }
 
-  @observable form = new BaseForm({ fields }, {
-    hooks: {
-      onSuccess: ::this.onSuccess,
-      onError(form) {
-        console.log('ERRORS');
-      },
-    },
-  });
+  onError(form) {
+    console.log(form);
+  }
 
   render() {
     return (
@@ -80,8 +46,14 @@ class SignInContainer extends React.Component {
             <div class='login_content'>
               <SignInForm
                 inProgress={ this.props.inProgress }
-                form={ this.form }
+                onSuccess={ ::this.onSuccess }
+                onError={ ::this.onError }
                 buttonName={ 'Войти' } />
+              <SignInForm
+                inProgress={ this.props.inProgress }
+                onSuccess={ ::this.onSuccess }
+                onError={ ::this.onError }
+                buttonName={ 'Войти ещё раз' } />
             </div>
             <div className='login_links'>
               <Link to='/forgot'>Забыли пароль?</Link>

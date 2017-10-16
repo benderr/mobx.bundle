@@ -61,4 +61,26 @@ export default class BaseForm extends Form {
       },
     };
   }
+
+  bindings() {
+    return {
+      // we can choose a name as key
+      SelectField: {
+        id: 'id',
+        name: 'name',
+        value: 'value',
+        label: 'floatingLabelText',
+        placeholder: 'hintText',
+        disabled: 'disabled',
+        error: 'errorText',
+        onChange: 'onChange',
+        onBlur: 'onBlur',
+        onFocus: 'onFocus',
+        onInputChange: 'autoFocus',
+        options: 'options',
+        creatable: 'creatable',
+        searchable: 'searchable'
+      },
+    };
+  }
 }
