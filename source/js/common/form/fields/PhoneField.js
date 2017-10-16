@@ -39,11 +39,7 @@ class PhoneField extends React.Component {
     const { type, placeholder, field, className, disabled, readOnly } = this.props;
     const { tooltip, addClassName } = this.props.validator;
     const classNames = `${ className } ${ addClassName }`;
-    // console.log(this.props.field)
-    // function onChange(e){
-    //   e.persist();
-    //   this.props.field.onChange(e);
-    // }
+
     return (
       <PhoneInput
         { ...field.bind({ type, placeholder }) }

@@ -24,8 +24,10 @@ class InputField extends React.Component {
   }
 
   render() {
-    const { type, placeholder, field, validator: { tooltip, addClassName }, className, disabled, readOnly } = this.props;
-    const classNames = [className, addClassName].join(' ');
+    const { type, placeholder, field, className, disabled, readOnly } = this.props;
+    const { tooltip, addClassName } = this.props.validator;
+    const classNames = `${ className } ${ addClassName }`;
+
     return (
       <Select
         { ...field.bind({ type, placeholder }) }
