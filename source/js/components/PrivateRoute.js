@@ -1,5 +1,5 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
+
 //import {LoaderPanel} from 'common/uiElements'
 
 export default (RouteComponent) => {
