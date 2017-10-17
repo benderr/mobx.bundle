@@ -13,6 +13,7 @@ class AuthStore {
     try {
       yield dataContext.login({ email, password });
     } catch (error) {
+      this.error = error;
       throw error;
     } finally {
       this.inProgress = false;
@@ -28,13 +29,18 @@ class AuthStore {
       this.inProgress = false;
       return 'success';
     } catch (err) {
-      this.error = err.toString();
+      this.error = error;
       throw err;
     } finally {
       this.inProgress = false;
       this.reset();
     }
   })
+
+  @action.bound
+  errorReset() {
+    this.error = undefined;
+  }
 
   @action.bound
   forgotPass = asyncAction(function* (email) {
@@ -44,7 +50,7 @@ class AuthStore {
       yield dataContext.forgotPass({ email });
       return 'success';
     } catch (err) {
-      this.error = err.toString();
+      this.error = error;
       throw err;
     } finally {
       this.inProgress = false;

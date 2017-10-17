@@ -1,8 +1,8 @@
-import SignInContainer from './pages/SignIn';
-import ProfileContainer from './pages/ProfileContainer';
-import AddUserPage from './pages/AddUserPage';
+import SignInPage from './pages/SignInPage';
+import ProfilePage from './pages/ProfilePage';
 import RegistrationContainer from './pages/RegistrationContainer';
 import IndexContainer from './pages/IndexContainer';
+import AddUserPage from './pages/AddUserPage';
 import DemoFieldsContainer from './pages/DemoFieldsContainer';
 
 export default {
@@ -10,20 +10,19 @@ export default {
     path: '/signin',
     exact: true,
     allowAnonymous: true,
-    component: SignInContainer,
+    component: SignInPage,
     layout: null
   },
   profile: {
     path: '/profile',
     exact: true,
     allowAnonymous: true,
-    component: ProfileContainer,
-    layout: null,
+    component: ProfilePage,
   },
   settings: {
     path: '/settings',
     exact: true,
-    component: ProfileContainer,
+    component: ProfilePage,
     isLayer: true
   },
   addUser: {
