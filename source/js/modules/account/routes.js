@@ -4,6 +4,7 @@ import RegistrationContainer from './pages/RegistrationContainer';
 import IndexContainer from './pages/IndexContainer';
 import AddUserPage from './pages/AddUserPage';
 import DemoFieldsContainer from './pages/DemoFieldsContainer';
+import PasswordRecoveryPage from './pages/PasswordRecoveryPage';
 
 export default {
   signin: {
@@ -11,6 +12,13 @@ export default {
     exact: true,
     allowAnonymous: true,
     component: SignInPage,
+    layout: null
+  },
+  forgot: {
+    path: '/forgot',
+    exact: true,
+    allowAnonymous: true,
+    component: PasswordRecoveryPage,
     layout: null
   },
   profile: {

@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, isObservable } from 'mobx';
 import { asyncAction } from 'mobx-utils';
 import * as dataContext from '../dataProvider/accountDataContext';
 
@@ -7,15 +7,23 @@ class ProfileStore {
   @observable error = undefined;
 
   @observable
-  profile = new Map();
+  profile = {
+    avatarId: '',
+    email: '',
+    firstName: '',
+    gender: '',
+    lastName: '',
+    middleName: '',
+    notifications: [],
+    groups: [],
+  };
 
   @action.bound
   getProfile = asyncAction(function* () {
     this.inProgress = true;
     try {
-      const profile = yield dataContext.getAccount();
-      this.profile.clear();
-      this.profile.merge(profile.data);
+      const json = yield dataContext.getAccount();
+      this.profile = json;
       return 'success';
     } catch (err) {
       this.error = err.toString();

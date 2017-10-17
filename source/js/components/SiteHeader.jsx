@@ -3,7 +3,6 @@ import { observable } from 'mobx';
 import { observer, inject } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router';
-import { withRouter } from 'react-router';
 import { Link } from 'react-router-dom';
 
 const SiteMenuLink = ({ label, to, exact }) => (
@@ -16,26 +15,37 @@ const SiteMenuLink = ({ label, to, exact }) => (
 );
 
 @inject(({ profileStore }) => ({
-  getProfile: profileStore.getProfile,
   logout: profileStore.logout,
+  profile: profileStore.profile,
 }))
-@withRouter
 @observer
 class SiteHeader extends React.Component {
   static propTypes = {
-    getProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired,
   };
 
   handleLogOut() {
-    const { logout, history } = this.props;
+    const { logout } = this.props;
     logout().then(() => {
-      history.replace('/signin');
+      window.location.href = '/signin';
     });
   }
 
+  getMenu(groups) {
+    let menu = [{ to: '/', exact: true, label: 'Задачи' }];
+    if (groups.includes('admin') || groups.includes('teamLeader')) {
+      menu = menu.concat([
+        { to: '/', exact: true, label: 'Отчеты' },
+        { to: '/', exact: true, label: 'Управление' },
+      ]);
+    }
+    return menu.map((props, key) => <SiteMenuLink { ...props } key={ key } />);
+  }
+
   render() {
+    const { profile: { lastName, firstName, groups } } = this.props;
+    const menu = this.getMenu(groups);
     return (
       <header>
         <div class='header_logo'>
@@ -45,23 +55,18 @@ class SiteHeader extends React.Component {
         <div class='header_menu free_items'>
           <div class='header_menu_inner'>
             <ul>
-              {/* <SiteMenuLink to='/' exact={ true } label='Главная' />*/}
-              {/* <SiteMenuLink to='/documents' label='Документы' />*/}
+              {menu}
             </ul>
           </div>
         </div>
 
         <div class='header_profile'>
-
           <div class='header_profile_name'>
-            <a>User name</a>
+            <Link to='/profile'>{`${ lastName } ${ firstName }`}</Link>
           </div>
-                    <div class="header_profile_name">
-                        <Link to="/add-user">User name</Link>
-                    </div>
 
           <div class='header_profile_settigs'>
-            {/* <Link to='/settings' class='icon-settings' />*/}
+            <Link to='/settings' class='icon-settings' />
           </div>
           <div class='header_profile_logout'>
             <a onClick={ ::this.handleLogOut } class='icon-logout' />

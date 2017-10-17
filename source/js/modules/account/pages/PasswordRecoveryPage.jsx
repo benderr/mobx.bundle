@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SignIn from '../components/SignIn/SignIn';
+import PasswordRecovery from '../components/PasswordRecovery/PasswordRecovery';
 
-class SignInPage extends React.Component {
+export default class PasswordRecoveryPage extends React.Component {
 
   render() {
     return (
@@ -13,10 +13,10 @@ class SignInPage extends React.Component {
         <div class='login_section'>
           <div class='login_section_center'>
             <div class='login_content'>
-              <SignIn />
+              <PasswordRecovery />
             </div>
             <div className='login_links'>
-              <Link to='/forgot'>Забыли пароль?</Link>
+              <Link to='/signin'>Войти</Link>
             </div>
           </div>
         </div>
@@ -24,5 +24,3 @@ class SignInPage extends React.Component {
     );
   }
 }
-
-export default SignInPage;

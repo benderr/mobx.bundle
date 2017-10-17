@@ -1,4 +1,6 @@
-import {createBrowserHistory} from 'history';
+import { createBrowserHistory } from 'history';
+import HistoryStore from 'core/routeStore';
+
 // import logger from 'infrastructure/utils/logger'
 
 /**
@@ -15,13 +17,11 @@ import {createBrowserHistory} from 'history';
  */
 
 function getRoutes(modules) {
-  return modules
-    .filter((m) => m.routes)
-    .reduce((routes, module) => {
-      const routesObject = module.routes;
-      const routesArray = getRouteFromSection(routesObject);
-      return [...routes, ...routesArray];
-    }, []);
+  return modules.filter((m) => m.routes).reduce((routes, module) => {
+    const routesObject = module.routes;
+    const routesArray = getRouteFromSection(routesObject);
+    return [...routes, ...routesArray];
+  }, []);
 }
 
 function getRouteFromSection(routesObject) {
@@ -35,19 +35,17 @@ function getRouteFromSection(routesObject) {
   }, []);
 }
 
-function getStores(modules) {
-  return modules.filter((m) => m.stores)
-    .reduce((stores, m) => {
-      const moduleStores = m.stores;
-      return {...stores, ...moduleStores};
-    }, {});
+function getStores(modules, ...middleWareStores) {
+  return modules.filter((m) => m.stores).reduce((stores, m) => {
+    const moduleStores = m.stores;
+    return { ...stores, ...moduleStores };
+  }, { ...middleWareStores });
 }
-
 
 export default function configure(modules) {
   const history = createBrowserHistory();
+  const historyStore = HistoryStore.setHistory(history);
   const routes = getRoutes(modules);
-  const stores = getStores(modules);
-
-  return {stores, routes, history};
+  const stores = getStores(modules, historyStore);
+  return { stores, routes, history };
 }

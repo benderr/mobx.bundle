@@ -5,23 +5,23 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import { Button, LoaderPanel } from 'modul-components';
 import { InputField } from 'common/form/fields/index';
-import SignInController from './SignInController';
+import PasswordRecoveryController from './PasswordRecoveryController';
 
 @inject(({ authStore }) => ({
   inProgress: authStore.inProgress,
   error: authStore.error,
-  login: authStore.login,
-  errorReset: authStore.errorReset,
+  forgotPass: authStore.forgotPass,
+  passwordRecoveryStatus: authStore.passwordRecoveryStatus,
 }))
 @withRouter
 @observer
-class SignInContainer extends React.Component {
+class PasswordRecovery extends React.Component {
 
   static propTypes = {
     inProgress: PropTypes.bool.isRequired,
     error: PropTypes.object,
-    login: PropTypes.func.isRequired,
-    errorReset: PropTypes.func.isRequired,
+    forgotPass: PropTypes.func.isRequired,
+    passwordRecoveryStatus: PropTypes.string.isRequired,
   };
 
   @observable
@@ -29,16 +29,16 @@ class SignInContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    const { login, errorReset } = this.props;
-    this.form = new SignInController({ store: { login, errorReset } });
+    const { forgotPass } = this.props;
+    this.form = new PasswordRecoveryController({ store: { forgotPass } });
   }
 
   render() {
     const { inProgress, error } = this.props;
-    let errorMsg;
+    let msg;
     if (error) {
       if (error.data && error.data.message) {
-        errorMsg = 'Неверный адрес электронной почты или пароль!';
+        errorMsg = 'На ваш e-mail отправлено письмо для смены пароля. Пожалуйста, перейдите по ссылке в письме. Ссылка действительна 24 часа.';
       } else {
         errorMsg = 'Неизвестная ошибка';
       }
@@ -55,21 +55,13 @@ class SignInContainer extends React.Component {
               </div>
             </div>
 
-            <div class='form_group'>
-              <div class='input_group light w100'>
-                <InputField field={ this.form.$('password') } type='password' hideTips={ true } />
-                <div class='input_group_addon icon-password' />
-                <div class='input_light_border_bottom' />
-              </div>
-            </div>
-
             <div class='form_buttons'>
               <Button
                 loading={ inProgress } className='button'
                 type='submit'
-                disabled={ inProgress }>Войти</Button>
+                disabled={ inProgress }>Далее</Button>
             </div>
-            <div class='form_errors'>
+            <div>
               {errorMsg}
             </div>
           </div>
@@ -79,4 +71,4 @@ class SignInContainer extends React.Component {
   }
 }
 
-export default SignInContainer;
+export default PasswordRecovery;
