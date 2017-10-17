@@ -1,23 +1,27 @@
 import {observable, action} from 'mobx';
 import {asyncAction} from 'mobx-utils';
-import authStore from 'authStore'
+import authStore from './authStore'
+import localStorage from 'core/storage/localStorage'
+const xToken = 'X-TOKEN';
 
 class AppStore {
   @observable appReady = false;
+  @observable profile;
+
+  getToken() {
+    return localStorage.getItem(xToken);
+  }
 
   startApplication() {
     try {
       if (this.appReady)
         return;
       this.appReady = false;
-      let authData = yield select(accountSelectors.getAuthData);
       let setCheckingStop = true;
-      if (authData == null) {
-        const token = yield call(localStorage.getItem, xToken);
+      if (this.profile == null) {
+        const token = this.getToken();
         if (token) {
-          yield put(login.request());
           const profile = yield call(dataContext.profile, token);
-          yield put(login.success({profile, token}));
 
           const location = yield  select(accountSelectors.getCurrentLocation);
           if (location.get('pathname') == '/signin') {
