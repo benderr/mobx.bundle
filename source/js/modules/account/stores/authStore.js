@@ -54,6 +54,8 @@ class AuthStore {
     try {
       yield dataContext.forgotPass({ email });
       this.passwordRecoveryStatus = 'success';
+      // console.log(data);
+      // historyStore.history.replace('/profile');
       return 'success';
     } catch (error) {
       this.error = error;
