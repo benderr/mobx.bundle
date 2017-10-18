@@ -33,8 +33,8 @@ class PasswordRecovery extends React.Component {
     this.form = new PasswordRecoveryController({ store: { forgotPass } });
   }
 
-  render() {
-    const { inProgress, error, status } = this.props;
+  getMsg() {
+    const { error, status } = this.props;
     let isSuccess = status === 'success';
     let msg = '';
     if (isSuccess) {
@@ -54,7 +54,12 @@ class PasswordRecovery extends React.Component {
         msg = 'Неизвестная ошибка';
       }
     }
+    return { msg, isSuccess };
+  }
 
+  render() {
+    const { inProgress } = this.props;
+    const { msg, isSuccess } = this.getMsg();
     return (
       <LoaderPanel >
         {isSuccess ?
@@ -77,7 +82,7 @@ class PasswordRecovery extends React.Component {
                   type='submit'
                   disabled={ inProgress }>Далее</Button>
               </div>
-              <div className={'error'}>
+              <div className={ 'error' }>
                 {msg}
               </div>
             </div>

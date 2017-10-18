@@ -27,9 +27,11 @@ class SiteHeader extends React.Component {
 
   handleLogOut() {
     const { logout } = this.props;
-    logout().then(() => {
+    try {
+      logout();
+    } finally {
       window.location.href = '/signin';
-    });
+    }
   }
 
   getMenu(groups) {
