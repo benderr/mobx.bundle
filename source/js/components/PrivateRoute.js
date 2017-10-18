@@ -1,23 +1,25 @@
 import React from 'react'
-
-//import {LoaderPanel} from 'common/uiElements'
+import {observer, inject} from 'mobx-react';
+import {LoaderPanel} from 'modul-components'
 
 export default (RouteComponent) => {
 
-	class PrivateRoute extends React.Component {
-		render() {
-			const {authData, ...props}=this.props;
+  @inject("profileStore")
+  @observer
+  class PrivateRoute extends React.Component {
+    render() {
+      const {profileStore, ...props}=this.props;
 
-			// if (authData != null)
-			// 	return (<RouteComponent {...props}/>);
-			// else {
-			// 	setTimeout(() => window.location.href = '/signin', 500);
-			// 	return (<LoaderPanel loading={true}/>)
-			// }
+      if (profileStore.profile != null)
+        return (<RouteComponent {...props}/>);
+      else {
+        setTimeout(() => window.location.href = '/signin', 500);
+        return (<LoaderPanel loading={true}/>)
+      }
 
-			return (<RouteComponent {...props}/>);
-		}
-	}
+      //return (<RouteComponent {...props}/>);
+    }
+  }
 
-	return PrivateRoute;
+  return PrivateRoute;
 };

@@ -1,10 +1,13 @@
 import { observable, action } from 'mobx';
 import { asyncAction } from 'mobx-utils';
+import historyStore from 'core/routeStore';
+import profileStore from './profileStore';
 import * as dataContext from '../dataProvider/accountDataContext';
 
 class AuthStore {
   @observable inProgress = false;
   @observable error = undefined;
+  @observable passwordRecoveryStatus = 'initial'
 
   @action.bound
   login = asyncAction(function* (email, password) {
@@ -12,13 +15,15 @@ class AuthStore {
     this.error = undefined;
     try {
       yield dataContext.login({ email, password });
+      //yield profileStore.getProfile();
+      historyStore.history.replace('/profile');
     } catch (error) {
       this.error = error;
       throw error;
     } finally {
       this.inProgress = false;
     }
-  })
+  });
 
   @action.bound
   register = asyncAction(function* () {
@@ -28,12 +33,11 @@ class AuthStore {
       yield register(this.user.email, this.user.password);
       this.inProgress = false;
       return 'success';
-    } catch (err) {
+    } catch (error) {
       this.error = error;
       throw err;
     } finally {
       this.inProgress = false;
-      this.reset();
     }
   })
 
@@ -44,14 +48,16 @@ class AuthStore {
 
   @action.bound
   forgotPass = asyncAction(function* (email) {
+    this.passwordRecoveryStatus = 'initial';
     this.inProgress = true;
     this.error = undefined;
     try {
       yield dataContext.forgotPass({ email });
+      this.passwordRecoveryStatus = 'success';
       return 'success';
-    } catch (err) {
+    } catch (error) {
       this.error = error;
-      throw err;
+      throw error;
     } finally {
       this.inProgress = false;
     }

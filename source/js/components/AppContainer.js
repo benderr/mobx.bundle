@@ -6,6 +6,8 @@ import InternalLayout from 'components/InternalLayout';
 import DefaultLayerLayout from 'components/DefaultLayerLayout';
 import ModulRouter from 'modul-ui-router';
 import PrivateRoute from './PrivateRoute'
+import {observer, inject} from 'mobx-react';
+import {LoaderPanel} from 'modul-components'
 
 const routeWrappers = [(route, props) => {
   if (!props.allowAnonymous)
@@ -13,24 +15,32 @@ const routeWrappers = [(route, props) => {
   return route;
 }];
 
+const Router=observer(ModulRouter);
+
+@inject("appStore")
 @withRouter
+@observer
 class AppContainer extends React.Component {
   static propTypes = {
     routes: PropTypes.array.isRequired,
   };
 
+  componentWillMount() {
+    this.props.appStore.startApplication();
+  }
+
   render() {
-    const {routes} = this.props;
+    const {routes, appStore} = this.props;
 
     return (
-      <div class="poss">
-        <ModulRouter
-          routeWrappers={routeWrappers}
-          defaultLayerLayout={ DefaultLayerLayout }
-          defaultLayout={ InternalLayout }
-          routes={ routes }
-          notFound={ NotFoundLayout }/>
-      </div>
+      <LoaderPanel loading={!appStore.appReady}>
+        {appStore.appReady &&
+        <Router defaultLayerLayout={DefaultLayerLayout}
+                     defaultLayout={InternalLayout}
+                     routes={routes}
+                     routeWrappers={routeWrappers}
+                     notFound={NotFoundLayout}/>}
+      </LoaderPanel>
     );
   }
 }

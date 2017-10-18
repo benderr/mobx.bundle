@@ -1,47 +1,53 @@
 import {observable, action} from 'mobx';
 import {asyncAction} from 'mobx-utils';
-import authStore from './authStore'
+import profileStore from './profileStore'
+import routeStore from 'core/routeStore'
 import localStorage from 'core/storage/localStorage'
+
 const xToken = 'X-TOKEN';
 
 class AppStore {
   @observable appReady = false;
-  @observable profile;
 
   getToken() {
     return localStorage.getItem(xToken);
   }
 
-  startApplication() {
+  applicationStarted() {
+    //запускаем забор каких то данных
+  }
+
+  startApplication = asyncAction(function*() {
     try {
       if (this.appReady)
         return;
       this.appReady = false;
-      let setCheckingStop = true;
-      if (this.profile == null) {
+    let setCheckingStop = true;
+      if (profileStore.profile == null) {
         const token = this.getToken();
         if (token) {
-          const profile = yield call(dataContext.profile, token);
+          yield profileStore.getProfile();
 
-          const location = yield  select(accountSelectors.getCurrentLocation);
-          if (location.get('pathname') == '/signin') {
+          const location = routeStore.history.location;
+          if (location.pathname == '/signin') {
             setCheckingStop = false;
             window.location.href = '/';
           } else {
-            yield fork(retailPointsSaga.runRetailPoints);
+            this.applicationStarted();
           }
         }
       } else {
-        yield fork(retailPointsSaga.runRetailPoints);
+        this.applicationStarted();
       }
       if (setCheckingStop)
-        yield put(checkingAccessStop());
+        this.appReady = true;
 
     } catch (err) {
-      yield put(checkingAccessStop());
-      yield put(login.failure(err));
-      window.location.href = signInLocation.pathname;
-      yield call(localStorage.removeItem, xToken);
+      this.appReady = true;
+      window.location.href = '/signin';
+      localStorage.removeItem(xToken);
     }
-  }
+  })
 }
+
+export default new AppStore();
