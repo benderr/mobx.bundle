@@ -3,13 +3,6 @@ import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import { DatePicker } from 'modul-components';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
-import dateHelper from './../dateHelper';
-
-const parseDate = date => {
-  if (!date) { return date; }
-  if (date.replace) { return dateHelper.parseDate(date, 'd.m.Y'); }
-  return date;
-};
 
 @observer
 class DatePickerField extends React.Component {

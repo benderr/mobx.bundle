@@ -1,7 +1,3 @@
-import {createBrowserHistory} from 'history';
-import HistoryStore from 'core/routeStore';
-
-// import logger from 'infrastructure/utils/logger'
 
 /**
  * Разбор флагов роута
@@ -35,18 +31,16 @@ function getRouteFromSection(routesObject) {
   }, []);
 }
 
-function getStores(modules, ...middleWareStores) {
+function getStores(modules, otherStores) {
   return modules.filter((m) => m.stores).reduce((stores, m) => {
     const moduleStores = m.stores;
     return {...stores, ...moduleStores};
-  }, {...middleWareStores});
+  }, {...otherStores});
 }
 
 export default function configure(modules) {
-  const history = createBrowserHistory();
   const routes = getRoutes(modules);
-
-  const historyStore = HistoryStore.setHistory(history);
-  const stores = getStores(modules, historyStore);
+  const stores = getStores(modules, {});
+  //аттеншн костыль
   return {stores, routes, history};
 }

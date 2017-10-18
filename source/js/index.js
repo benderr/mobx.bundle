@@ -8,7 +8,7 @@ import indexModules from './modules/indexModules';
 require(__MARKUP_KASSA__);
 
 const mountNode = document.getElementById('root');
-const { stores, routes, history } = configureApp(indexModules);
+const { stores, routes } = configureApp(indexModules);
 
-render(<RootContainer stores={ stores } routes={ routes } history={ history } />, mountNode);
+render(<RootContainer stores={ stores } routes={ routes }/>, mountNode);
 

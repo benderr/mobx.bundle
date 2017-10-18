@@ -1,17 +1,16 @@
 import React from 'react';
 import {observer, inject} from 'mobx-react';
 
-@inject('authStore')
 @observer
-class IndexContainer extends React.Component {
+class ReportsPage extends React.Component {
 
   render() {
     return (
       <div>
-        Tasks
+        Reports
       </div>
     );
   }
 }
 
-export default IndexContainer;
+export default ReportsPage;

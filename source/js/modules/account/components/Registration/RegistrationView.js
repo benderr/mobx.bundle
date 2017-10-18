@@ -1,7 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, LoaderPanel } from 'modul-components';
-import { InputField, SelectField } from 'common/form/fields';
+import { InputField } from 'common/form/fields/index';
 
 export default observer((props) => {
   const { form, buttonName } = props;
@@ -24,8 +24,6 @@ export default observer((props) => {
               <div class='input_light_border_bottom' />
             </div>
           </div>
-
-          <SelectField field={ form.$('role') } type='password' />
 
           <div class='form_buttons'>
             <Button

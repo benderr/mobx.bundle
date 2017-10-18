@@ -4,16 +4,16 @@ import {LoaderPanel} from 'modul-components'
 
 export default (RouteComponent) => {
 
-  @inject("profileStore")
+  @inject("profileStore", "historyStore")
   @observer
   class PrivateRoute extends React.Component {
     render() {
-      const {profileStore, ...props}=this.props;
+      const {profileStore, historyStore, ...props}=this.props;
 
       if (profileStore.profile != null)
         return (<RouteComponent {...props}/>);
       else {
-        setTimeout(() => window.location.href = '/signin', 500);
+        setTimeout(() => historyStore.fullReload('/signin'), 500);
         return (<LoaderPanel loading={true}/>)
       }
 

@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 import { asyncAction } from 'mobx-utils';
-import historyStore from 'core/routeStore';
+import historyStore from 'modules/core/stores/historyStore';
 import profileStore from './profileStore';
 import * as dataContext from '../dataProvider/accountDataContext';
 
@@ -16,7 +16,7 @@ class AuthStore {
     try {
       yield dataContext.login({ email, password });
       yield profileStore.getProfile();
-      historyStore.history.replace('/profile');
+      historyStore.fullReload('/profile');
     } catch (error) {
       this.error = error;
       throw error;

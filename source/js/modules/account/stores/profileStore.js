@@ -1,6 +1,8 @@
 import {observable, action, isObservable} from 'mobx';
 import {asyncAction} from 'mobx-utils';
 import * as dataContext from '../dataProvider/accountDataContext';
+import appStore from 'modules/core/stores/appStore'
+import historyStore from 'modules/core/stores/historyStore';
 
 class ProfileStore {
   @observable inProgress = false;
@@ -41,11 +43,11 @@ class ProfileStore {
     this.error = undefined;
     try {
       yield dataContext.logout();
-      return 'success';
     } catch (err) {
-      this.error = err.toString();
       throw err;
     } finally {
+      appStore.removeToken();
+      historyStore.fullReload('/signin');
       this.inProgress = false;
     }
   })

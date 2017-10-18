@@ -21,10 +21,7 @@ export default class PasswordRecoveryController extends BaseForm {
       onSuccess(form) {
         const { email } = form.values();
         forgotPass(email);
-      },
-      onError(form) {
-        console.log('Ошибка');
-      },
+      }
     };
     super({ fields }, { hooks });
   }

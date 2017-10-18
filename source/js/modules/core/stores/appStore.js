@@ -1,7 +1,7 @@
 import {observable, action} from 'mobx';
 import {asyncAction} from 'mobx-utils';
-import profileStore from './profileStore'
-import routeStore from 'core/routeStore'
+import profileStore from 'modules/account/stores/profileStore'
+import historyStore from './historyStore'
 import localStorage from 'core/storage/localStorage'
 
 const xToken = 'X-TOKEN';
@@ -13,6 +13,10 @@ class AppStore {
     return localStorage.getItem(xToken);
   }
 
+  removeToken() {
+    localStorage.removeItem(xToken)
+  }
+
   applicationStarted() {
     //запускаем забор каких то данных
   }
@@ -22,16 +26,16 @@ class AppStore {
       if (this.appReady)
         return;
       this.appReady = false;
-    let setCheckingStop = true;
+      let setCheckingStop = true;
       if (profileStore.profile == null) {
         const token = this.getToken();
         if (token) {
           yield profileStore.getProfile();
 
-          const location = routeStore.history.location;
+          const location = historyStore.history.location;
           if (location.pathname == '/signin') {
             setCheckingStop = false;
-            window.location.href = '/';
+            historyStore.fullReload('/');
           } else {
             this.applicationStarted();
           }
@@ -44,7 +48,7 @@ class AppStore {
 
     } catch (err) {
       this.appReady = true;
-      window.location.href = '/signin';
+      historyStore.fullReload('/signin');
       localStorage.removeItem(xToken);
     }
   })

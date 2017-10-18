@@ -7,7 +7,7 @@ _nogit
 .idea/
 Denis
 coverage
-
+yarn.lock
 *.codekit
 markup/html
 markup/html_email

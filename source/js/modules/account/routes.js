@@ -1,9 +1,8 @@
 import SignInPage from './pages/SignInPage';
 import ProfilePage from './pages/ProfilePage';
-import RegistrationContainer from './pages/RegistrationContainer';
+import RegistrationPage from './pages/RegistrationPage';
 import IndexContainer from './pages/IndexContainer';
 import AddUserPage from './pages/AddUserPage';
-import DemoFieldsContainer from './pages/DemoFieldsContainer';
 import PasswordRecoveryPage from './pages/PasswordRecoveryPage';
 
 export default {
@@ -12,14 +11,14 @@ export default {
     exact: true,
     allowAnonymous: true,
     component: SignInPage,
-    layout: null
+    layout: null,
   },
   forgot: {
     path: '/forgot',
     exact: true,
     allowAnonymous: true,
     component: PasswordRecoveryPage,
-    layout: null
+    layout: null,
   },
   profile: {
     path: '/profile',
@@ -30,13 +29,13 @@ export default {
     path: '/settings',
     exact: true,
     component: ProfilePage,
-    isLayer: true
+    isLayer: true,
   },
   addUser: {
     path: '/add-user',
     exact: true,
     isLayer: true,
-    layout: AddUserPage
+    layout: AddUserPage,
   },
   home: {
     path: '/',
@@ -48,12 +47,6 @@ export default {
     exact: true,
     allowAnonymous: true,
     layout: null,
-    component: RegistrationContainer,
-  },
-  demo: {
-    path: '/demo',
-    exact: true,
-    allowAnonymous: true,
-    component: DemoFieldsContainer,
+    component: RegistrationPage,
   },
 };
