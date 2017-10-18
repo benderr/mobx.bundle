@@ -1,10 +1,10 @@
 {
   "api": {
-    "url": "http://react.modulbank.ru",
+    "url": "http://buhadmin.modulbank.ru",
     "apiUrl": "/api"
   },
-  "host": "react.modulbank.ru",
-  "port": 3000,
+  "host": "buhadmin.modulbank.ru",
+  "port": 3005,
   "markupKassa": "../../../Markup.Kassa/markup/stylus/style_kassa.styl",
   "markupCommon404": "../../../Markup.Common/markup/stylus/404.styl",
   "markupLogin": "../../../Markup.Kassa/markup/stylus/kassa_page_login.styl"

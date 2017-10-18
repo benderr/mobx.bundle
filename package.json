@@ -11,7 +11,7 @@
     "test": "jest",
     "test-coverage": "jest --coverage",
     "test-clear": "jest -u",
-    "start": "webpack-dashboard -t 'React-Redux Boilerplate' -- webpack-dev-server --colors --no-info",
+    "start": "webpack-dashboard -t 'React-Redux Boilerplate' -p 3005 -- webpack-dev-server --colors --no-info",
     "build": "rm -rf ./build && NODE_ENV=\"production\" webpack",
     "build-dev": "rm -rf ./build && NODE_ENV=\"development\" webpack",
     "lint-break-on-errors": "eslint ./source/js ./webpack.config.js -f table --ext .js --ext .jsx",

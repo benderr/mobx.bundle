@@ -15,7 +15,7 @@ class AuthStore {
     this.error = undefined;
     try {
       yield dataContext.login({ email, password });
-      //yield profileStore.getProfile();
+      yield profileStore.getProfile();
       historyStore.history.replace('/profile');
     } catch (error) {
       this.error = error;

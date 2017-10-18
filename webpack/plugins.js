@@ -113,7 +113,7 @@ if (config.IS_PRODUCTION) {
 	// Development plugins
 	plugins.push(
 		new webpack.HotModuleReplacementPlugin(),
-		new DashboardPlugin(),
+		new DashboardPlugin({port:config.app.port}),
 		new webpack.NamedModulesPlugin()
 	);
 }

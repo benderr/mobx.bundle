@@ -35,7 +35,7 @@ class AppContainer extends React.Component {
     return (
       <LoaderPanel loading={!appStore.appReady}>
         {appStore.appReady &&
-        <Router defaultLayerLayout={DefaultLayerLayout}
+        <ModulRouter defaultLayerLayout={DefaultLayerLayout}
                      defaultLayout={InternalLayout}
                      routes={routes}
                      routeWrappers={routeWrappers}
