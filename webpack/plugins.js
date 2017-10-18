@@ -43,6 +43,7 @@ const plugins = [
 		__DEV_TOOLS__: false,
 		__CLIENT__: true,
 		__MARKUP_KASSA__: JSON.stringify(config.app.markupKassa),
+    __MARKUP_LOGIN__: JSON.stringify(config.app.markupLogin),
 		__MARKUP_COMMON_404__: JSON.stringify(config.app.markupCommon404)
 	}),
 	new HtmlWebpackPlugin({

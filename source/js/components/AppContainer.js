@@ -16,7 +16,7 @@ class AppContainer extends React.Component {
     const { routes } = this.props;
 
     return (
-      <div>
+      <div class="poss">
         <RadRouter
           defaultLayerLayout={ DefaultLayerLayout }
           defaultLayout={ InternalLayout }

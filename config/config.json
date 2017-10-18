@@ -6,5 +6,6 @@
   "host": "react.modulbank.ru",
   "port": 3000,
   "markupKassa": "../../../Markup.Kassa/markup/stylus/style_kassa.styl",
-  "markupCommon404": "../../../Markup.Common/markup/stylus/404.styl"
+  "markupCommon404": "../../../Markup.Common/markup/stylus/404.styl",
+  "markupLogin": "../../../Markup.Kassa/markup/stylus/kassa_page_login.styl"
 }

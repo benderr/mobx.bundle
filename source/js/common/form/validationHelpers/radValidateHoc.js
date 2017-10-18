@@ -1,6 +1,5 @@
-import {showErrorBorder, showSuccessBorder, getErrorMessage, ifCondition, getRandomKey} from './formFieldHelpers'
-import React from 'react'
-import ReactTooltip from 'react-tooltip'
+import {ReactTooltip} from 'modul-components';
+import React from 'react';
 
 /**
  * HOC для обертки над инпутами, чтобы получить необходимые методы подсветки ошибок и т.д.
@@ -11,116 +10,88 @@ import ReactTooltip from 'react-tooltip'
  * tooltip: tooltip - конфиг для тултипа, который внедреятся в <input/>
  *
  * tips - включены ли подскажи тултипа
- * dataOnWrapper - данные для фокусировки и отображению тултипа внедряются в оборачивающий элемент
  */
-function radValidate({tips, dataOnWrapper}={tips: true, dataOnWrapper: false}) {
-	return (WrappedComponent) => {
-		class radValidateTooltip extends React.Component {
+function radValidate({tips} = {tips: true}) {
+  return (WrappedComponent) => {
+    class radValidateTooltip extends React.Component {
 
-			constructor(props, context) {
-				super(props, context);
-				this.validatorId = getRandomKey();
-				this.tooltipId = `tooltip_${this.validatorId}`;
-			}
+      constructor(props, context) {
+        super(props, context);
+        this.validatorId = Math.floor(Math.random() * (999999999 - 100000000)) + 100000000;
+        this.tooltipId = `tooltip_${ this.validatorId }`;
+      }
 
-			getTooltipConfig({id, error}) {
-				return {
-					'data-for': id,
-					'data-tip': ''
-				};
-			}
+      getError() {
+        return this.props.field.error;
+      }
 
-			componentDidUpdate(prevProps) {
-				const {meta: {submitFailed, active, error}} = this.props;
-				const {meta: {active: wasActive}} = prevProps;
+      showTooltipError() {
+        const {field: {hasError, touched, submitFailed}} = this.props;
+        return hasError && (submitFailed || touched);
+      }
 
-				if (submitFailed && error && !wasActive && active) {
-					setTimeout(() => {
-						if (this.wrappedEl) {
-							if (!this.wrappedEl.focusator)
-								throw 'Component does not contain @focusator:IFocusableElement';
-							this.wrappedEl.focusator.setFocus();
-						}
-					}, 0);
-				}
-			}
+      getTooltipProps() {
+        const self = this;
+        return {
+          html: true,
+          multiline: true,
+          getContent: [::self.getError, 200],
+          type: 'error',
+          event: 'focus',
+          eventOff: 'blur keydown',
+          place: this.props.tipPlace || 'right',
+          delayHide: 0,
+          effect: 'solid',
+          resizeHide: true,
+        };
+      }
+
+      getTooltipConfig({id}) {
+        return {
+          'data-for': id,
+          'data-tip': '',
+        };
+      }
 
 
-			inFocus() {
-				const {meta: {active}}=this.props;
-				return active
-					||
-					(this.wrappedEl
-					&& this.wrappedEl.inFocus
-					&& this.wrappedEl.inFocus());
-			}
+      render() {
+        const {field, hideTips = false, wrapperClassName = ''} = this.props;
+        const {isValid, hasError, focused, touched, submitFailed}=field;
 
-			getError() {
-				const {meta: {error}}=this.props;
-				return error;
-			}
+        const tooltip = this.getTooltipConfig({id: this.tooltipId});
 
-			showTooltipError() {
-				const {meta: {touched, error, submitFailed}}=this.props;
-				return error && (submitFailed || touched);
-			}
+        const highlightError = (!isValid || hasError) && (touched || submitFailed) && !focused;
+        const highlightSuccess = (isValid || !hasError) && touched && !focused;
+        const addClassName = `${ highlightError && 'error' } ${ highlightSuccess && 'success' }`;
 
-			getTooltipProps() {
-				const self = this;
-				return {
-					html: true,
-					multiline: true,
-					getContent: [::self.getError, 400],
-					type: 'error',
-					event: 'focus',
-					eventOff: 'blur keydown',
-					place: this.props.tipPlace || 'right',
-					delayHide: 200,
-					effect: 'solid',
-					resizeHide: true
-				}
-			}
+        const validator = {
+          error: hasError,
+          isError: highlightError,
+          isSuccess: highlightSuccess,
+          addClassName,
+          tooltip,
+        };
 
-			render() {
-				const {
-					meta:{touched, error, warning, active, dirty, valid, visited, submitFailed}, hideTips, wrapperClassName = ''
-				}=this.props;
+        if (tips && !hideTips) {
+          const showErrorMessage = this.showTooltipError();
+          return (
+            <div className={ wrapperClassName }>
+              <WrappedComponent
+                { ...this.props }
+                validator={ validator }/>
+              <ReactTooltip className={showErrorMessage ? '' : 'hidden'}
+                            id={ this.tooltipId } { ...this.getTooltipProps() } />
+            </div>
+          );
+        }
+        return (<WrappedComponent
+          { ...this.props }
+          validator={ validator }/>);
+      }
+    }
 
-				const tooltip = this.getTooltipConfig({id: this.tooltipId, error});
-
-				const highlightError = showErrorBorder({valid, error, active, visited, submitFailed});
-				const highlightSuccess = showSuccessBorder({valid, visited, error, active});
-				const additionalClassName = ifCondition(highlightError, ' error ') + ifCondition(highlightSuccess, ' success ');
-
-				const validator = {
-					error: error,
-					isError: highlightError,
-					isSuccess: highlightSuccess,
-					addClassName: additionalClassName,
-					tooltip: tooltip
-				};
-
-				if (tips && !hideTips) {
-					const showErrorMessage = this.showTooltipError();
-					return (
-						<div className={wrapperClassName}>
-							<WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
-											  validator={validator}/>
-							{showErrorMessage &&
-							<ReactTooltip id={this.tooltipId} {...this.getTooltipProps()}/>}
-						</div>
-					)
-				} else {
-					return <WrappedComponent ref={wrappedEl => this.wrappedEl = wrappedEl} {...this.props}
-											 validator={validator}/>
-				}
-
-			}
-		}
-
-		return radValidateTooltip;
-	}
+    return radValidateTooltip;
+  };
 }
-
 
 export default radValidate;

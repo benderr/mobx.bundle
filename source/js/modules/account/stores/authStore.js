@@ -1,49 +1,31 @@
 import { observable, action } from 'mobx';
 import { asyncAction } from 'mobx-utils';
+import historyStore from 'core/routeStore';
+import profileStore from './profileStore';
 import * as dataContext from '../dataProvider/accountDataContext';
 
 class AuthStore {
   @observable inProgress = false;
   @observable error = undefined;
-  @observable token = undefined;
+  @observable passwordRecoveryStatus = 'initial'
 
-  @observable
-  user = {
-    email: '',
-    password: '',
-  };
-
-  @action
-  setEmail(email) {
-    this.user.email = email;
-  }
-
-  @action
-  setPassword(password) {
-    this.user.password = password;
-  }
-
-  @action
-  reset() {
-    this.email = '';
-    this.password = '';
-  }
-
-  login = asyncAction(function* () {
+  @action.bound
+  login = asyncAction(function* (email, password) {
     this.inProgress = true;
     this.error = undefined;
     try {
-      const user = yield dataContext.login({ email: this.user.email, password: this.user.password });
-      this.user.name = user.name;
-      this.inProgress = false;
+      yield dataContext.login({ email, password });
+      yield profileStore.getProfile();
+      historyStore.history.replace('/profile');
     } catch (error) {
+      this.error = error;
       throw error;
     } finally {
       this.inProgress = false;
-      this.reset();
     }
   })
 
+  @action.bound
   register = asyncAction(function* () {
     this.inProgress = true;
     this.error = undefined;
@@ -51,27 +33,35 @@ class AuthStore {
       yield register(this.user.email, this.user.password);
       this.inProgress = false;
       return 'success';
-    } catch (err) {
-      this.error = err.toString();
+    } catch (error) {
+      this.error = error;
       throw err;
     } finally {
       this.inProgress = false;
-      this.reset();
     }
   })
 
-  forgotPass = asyncAction(function* () {
+  @action.bound
+  errorReset() {
+    this.error = undefined;
+  }
+
+  @action.bound
+  forgotPass = asyncAction(function* (email) {
+    this.passwordRecoveryStatus = 'initial';
     this.inProgress = true;
     this.error = undefined;
     try {
-      yield dataContext.forgotPass({ email: this.user.email });
+      yield dataContext.forgotPass({ email });
+      this.passwordRecoveryStatus = 'success';
+      // console.log(data);
+      // historyStore.history.replace('/profile');
       return 'success';
-    } catch (err) {
-      this.error = err.toString();
-      throw err;
+    } catch (error) {
+      this.error = error;
+      throw error;
     } finally {
       this.inProgress = false;
-      this.reset();
     }
   })
 }

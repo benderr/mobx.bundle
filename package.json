@@ -92,7 +92,8 @@
     "react-dom": "^15.4.2",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
-    "react-waypoint": "^7.0.3"
+    "react-waypoint": "^7.0.3",
+    "validator": "^9.0.0"
   },
   "description": "Starter boilerplate for React and Redux, using Webpack 2",
   "repository": {

@@ -1,4 +1,5 @@
 import api from 'infrastructure/api/api';
+import { profileMapper } from './accountMapper';
 
 export function logout() {
   return api.auth().killtoken().post({});
@@ -11,9 +12,12 @@ export function login({ password, email }) {
 }
 
 export const forgotPass = ({ email }) => {
-  return api.auth().killtoken().post({ email });
+  return api.auth().passwordrecover().post({ email });
 };
 
 export const getAccount = () => {
-  return api.account().get();
+  return api
+  .account()
+  .get()
+  .then((res) => profileMapper(res));
 };

@@ -25,6 +25,36 @@ $ npm install
 $ npm start
 ```
 
+## ESlint
+
+eslint от [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb).  
+Документация по [eslint от airbnb](https://github.com/leonidlebedev/javascript-airbnb).  
+
+```
+$ npm run lint
+```
+
+### Настройки для webstorm:
+
+Включить eslint
+
+* Перейти в WebStorm > Preferences > Languages and Frameworks > JavaScript > Code Quality Tools > ESLint  
+* Включить eslint (поставить галку)
+* в пути к eslint прописать `~/путь_к_проекту/mobx.bundle/node_modules/eslint`
+
+Далее 
+* Перейти в WebStorm > Preferences >Editor > Code Style > JavaScript 
+* Кликнуть на  Set from в правом верхнем углу, затем Predefined Style > JavaScript Standard Style
+* Убедиться что стоит 2 пробела на таб
+
+Далее 
+
+* Перейти в WebStorm > Keymap  
+* Найти Fix ESLint Problems 
+* Поставить незанятую комбинацию (например ⌥ + s)
+
+ 
+
 ## Build (production)
 
 Build will be placed in the `build` folder.
@@ -64,15 +94,6 @@ Hot reload will not work, so you need to refresh the page manually after changin
 
 ```
 npm run preview
-```
-
-## Linting
-
-For linting I'm using [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb),
-but some options are overridden to my personal preferences.
-
-```
-$ npm run lint
 ```
 
 ## Git hooks
