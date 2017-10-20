@@ -8,7 +8,7 @@ export default class PasswordRecoveryPage extends React.Component {
     return (
       <div class='login'>
         <header class='login_header'>
-          <a href='#'><strong>Модуль</strong>Бухгалтерия</a>
+          <Link to="/"><strong>Модуль</strong>Бухгалтерия</Link>
         </header>
         <div class='login_section'>
           <div class='login_section_center'>

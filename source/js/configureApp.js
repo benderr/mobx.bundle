@@ -1,8 +1,3 @@
-import { createBrowserHistory } from 'history';
-import HistoryStore from 'core/routeStore';
-
-// import logger from 'infrastructure/utils/logger'
-
 /**
  * Разбор флагов роута
  * - index.js - главная страница
@@ -35,17 +30,15 @@ function getRouteFromSection(routesObject) {
   }, []);
 }
 
-function getStores(modules, ...middleWareStores) {
+function getStores(modules, otherStores) {
   return modules.filter((m) => m.stores).reduce((stores, m) => {
     const moduleStores = m.stores;
-    return { ...stores, ...moduleStores };
-  }, { ...middleWareStores });
+    return {...stores, ...moduleStores};
+  }, {...otherStores});
 }
 
 export default function configure(modules) {
-  const history = createBrowserHistory();
-  const historyStore = HistoryStore.setHistory(history);
   const routes = getRoutes(modules);
-  const stores = getStores(modules, historyStore);
-  return { stores, routes, history };
+  const stores = getStores(modules, {});
+  return {stores, routes, history};
 }

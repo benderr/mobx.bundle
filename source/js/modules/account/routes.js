@@ -23,7 +23,6 @@ export default {
   profile: {
     path: '/profile',
     exact: true,
-    allowAnonymous: true,
     component: ProfilePage,
   },
   settings: {
@@ -41,7 +40,6 @@ export default {
   home: {
     path: '/',
     exact: true,
-    allowAnonymous: true,
     component: IndexContainer,
   },
   registration: {

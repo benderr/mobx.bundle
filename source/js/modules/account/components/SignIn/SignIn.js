@@ -1,17 +1,18 @@
 import React from 'react';
-import { observable } from 'mobx';
-import { observer, inject } from 'mobx-react';
+import {observable} from 'mobx';
+import {observer, inject} from 'mobx-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import { Button, LoaderPanel } from 'modul-components';
-import { InputField } from 'common/form/fields/index';
+import {withRouter} from 'react-router';
+import {Button, LoaderPanel} from 'modul-components';
+import {InputField} from 'common/form/fields/index';
 import SignInController from './SignInController';
+import qs from 'qs';
 
-@inject(({ authStore }) => ({
+@inject(({authStore}) => ({
   inProgress: authStore.inProgress,
   error: authStore.error,
   login: authStore.login,
-  errorReset: authStore.errorReset,
+  errorReset: authStore.errorReset
 }))
 @withRouter
 @observer
@@ -29,12 +30,14 @@ class SignInContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    const { login, errorReset } = this.props;
-    this.form = new SignInController({ store: { login, errorReset } });
+    const {login, errorReset, location} = this.props;
+    const searchObj = qs.parse(location.search ? location.search.substr(1) : '');
+    const redirectUrl = searchObj && searchObj.redirectUrl || '';
+    this.form = new SignInController({login, errorReset, redirectUrl});
   }
 
   render() {
-    const { inProgress, error } = this.props;
+    const {inProgress, error} = this.props;
     let errorMsg;
     if (error) {
       if (error.data && error.data.message) {
@@ -49,17 +52,17 @@ class SignInContainer extends React.Component {
           <div class='login_auth_block '>
             <div class='form_group'>
               <div class='input_group light w100'>
-                <InputField field={ this.form.$('email') } hideTips={ true } />
-                <div class='input_group_addon icon-mail' />
-                <div class='input_light_border_bottom' />
+                <InputField field={ this.form.$('email') } hideTips={ true }/>
+                <div class='input_group_addon icon-mail'/>
+                <div class='input_light_border_bottom'/>
               </div>
             </div>
 
             <div class='form_group'>
               <div class='input_group light w100'>
-                <InputField field={ this.form.$('password') } type='password' hideTips={ true } />
-                <div class='input_group_addon icon-password' />
-                <div class='input_light_border_bottom' />
+                <InputField field={ this.form.$('password') } type='password' hideTips={ true }/>
+                <div class='input_group_addon icon-password'/>
+                <div class='input_light_border_bottom'/>
               </div>
             </div>
 

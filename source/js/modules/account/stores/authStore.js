@@ -1,6 +1,6 @@
-import { observable, action } from 'mobx';
-import { asyncAction } from 'mobx-utils';
-import historyStore from 'core/routeStore';
+import {observable, action} from 'mobx';
+import {asyncAction} from 'mobx-utils';
+import historyStore from 'modules/core/stores/historyStore';
 import profileStore from './profileStore';
 import * as dataContext from '../dataProvider/accountDataContext';
 
@@ -10,23 +10,23 @@ class AuthStore {
   @observable passwordRecoveryStatus = 'initial'
 
   @action.bound
-  login = asyncAction(function* (email, password) {
+  login = asyncAction(function*(email, password, redirectUrl) {
     this.inProgress = true;
     this.error = undefined;
     try {
-      yield dataContext.login({ email, password });
-      yield profileStore.getProfile();
-      historyStore.history.replace('/profile');
+      yield dataContext.login({email, password, redirectUrl});
+      //yield profileStore.getProfile();
+      historyStore.fullReload(redirectUrl || '/');
     } catch (error) {
       this.error = error;
       throw error;
     } finally {
       this.inProgress = false;
     }
-  })
+  });
 
   @action.bound
-  register = asyncAction(function* () {
+  register = asyncAction(function*() {
     this.inProgress = true;
     this.error = undefined;
     try {
@@ -47,15 +47,13 @@ class AuthStore {
   }
 
   @action.bound
-  forgotPass = asyncAction(function* (email) {
+  forgotPass = asyncAction(function*(email) {
     this.passwordRecoveryStatus = 'initial';
     this.inProgress = true;
     this.error = undefined;
     try {
-      yield dataContext.forgotPass({ email });
+      yield dataContext.forgotPass({email});
       this.passwordRecoveryStatus = 'success';
-      // console.log(data);
-      // historyStore.history.replace('/profile');
       return 'success';
     } catch (error) {
       this.error = error;

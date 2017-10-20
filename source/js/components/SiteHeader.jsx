@@ -1,20 +1,20 @@
 import React from 'react';
-import { observable } from 'mobx';
-import { observer, inject } from 'mobx-react';
+import {observable} from 'mobx';
+import {observer, inject} from 'mobx-react';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router';
-import { Link } from 'react-router-dom';
+import {Route} from 'react-router';
+import {Link} from 'react-router-dom';
 
-const SiteMenuLink = ({ label, to, exact }) => (
+const SiteMenuLink = ({label, to, exact}) => (
   <Route
-    path={ to } exact={ exact } children={ ({ match }) => (
-      <li className={ match ? 'active' : '' }>
-        <Link to={ to }><span>{label}</span></Link>
-      </li>
-    ) } />
+    path={ to } exact={ exact } children={ ({match}) => (
+    <li className={ match ? 'active' : '' }>
+      <Link to={ to }><span>{label}</span></Link>
+    </li>
+  ) }/>
 );
 
-@inject(({ profileStore }) => ({
+@inject(({profileStore}) => ({
   logout: profileStore.logout,
   profile: profileStore.profile,
 }))
@@ -26,27 +26,22 @@ class SiteHeader extends React.Component {
   };
 
   handleLogOut() {
-    const { logout } = this.props;
-    try {
-      logout();
-    } finally {
-      window.location.href = '/signin';
-    }
+    this.props.logout();
   }
 
   getMenu(groups) {
-    let menu = [{ to: '/', exact: true, label: 'Задачи' }];
+    let menu = [{to: '/', exact: true, label: 'Задачи'}];
     if (groups.includes('admin') || groups.includes('teamLeader')) {
       menu = menu.concat([
-        { to: '/', exact: true, label: 'Отчеты' },
-        { to: '/', exact: true, label: 'Управление' },
+        {to: '/reports', exact: true, label: 'Отчеты'},
+        {to: '/users', exact: true, label: 'Управление'},
       ]);
     }
-    return menu.map((props, key) => <SiteMenuLink { ...props } key={ key } />);
+    return menu.map((props, key) => <SiteMenuLink { ...props } key={ key }/>);
   }
 
   render() {
-    const { profile: { lastName, firstName, groups } } = this.props;
+    const {profile: {lastName, firstName, groups}} = this.props;
     const menu = this.getMenu(groups);
     return (
       <header>
@@ -68,10 +63,10 @@ class SiteHeader extends React.Component {
           </div>
 
           <div class='header_profile_settigs'>
-            <Link to='/settings' class='icon-settings' />
+            <Link to='/settings' class='icon-settings'/>
           </div>
           <div class='header_profile_logout'>
-            <a onClick={ ::this.handleLogOut } class='icon-logout' />
+            <a onClick={ ::this.handleLogOut } class='icon-logout'/>
           </div>
         </div>
       </header>

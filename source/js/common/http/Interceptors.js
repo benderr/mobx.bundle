@@ -33,5 +33,4 @@ class Interceptors {
   }
 }
 
-export { Interceptors }
-;
+export default Interceptors

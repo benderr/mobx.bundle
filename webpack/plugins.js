@@ -32,7 +32,7 @@ const plugins = [
 	new webpack.NoEmitOnErrorsPlugin(),
 	new webpack.ProvidePlugin({
 		$: 'jquery',
-		logger: ['infrastructure/utils/logger', 'default']
+		logger: ['common/utils/logger', 'default']
 	}),
 	new webpack.DefinePlugin({
 		'process.env': {
@@ -113,7 +113,7 @@ if (config.IS_PRODUCTION) {
 	// Development plugins
 	plugins.push(
 		new webpack.HotModuleReplacementPlugin(),
-		new DashboardPlugin(),
+		new DashboardPlugin({port:config.app.port}),
 		new webpack.NamedModulesPlugin()
 	);
 }

@@ -1,4 +1,4 @@
-const profileMapper = (res) => ({
+export const profileMapper = res => ({
   avatarId: res.data.AvatarId,
   email: res.data.Email,
   firstName: res.data.FirstName,
@@ -8,7 +8,3 @@ const profileMapper = (res) => ({
   notifications: res.data.Notifications,
   groups: ['admin'],
 });
-
-export {
-  profileMapper,
-};
