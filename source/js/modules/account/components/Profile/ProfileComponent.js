@@ -1,12 +1,12 @@
 import React from 'react';
-import { observable } from 'mobx';
-import { observer, inject } from 'mobx-react';
+import {observable} from 'mobx';
+import {observer, inject} from 'mobx-react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import { LoaderPanel } from 'modul-components';
+import {withRouter} from 'react-router';
+import {LoaderPanel} from 'modul-components';
 import createBrowserHistory from 'history/createBrowserHistory';
 
-@inject(({ profileStore }) => ({
+@inject(({profileStore}) => ({
   getProfile: profileStore.getProfile,
   inProgress: profileStore.inProgress,
   profile: profileStore.profile,
@@ -21,8 +21,12 @@ class SignInContainer extends React.Component {
     getProfile: PropTypes.func.isRequired,
   };
 
+  componentDidMount() {
+    this.props.getProfile();
+  }
+
   render() {
-    const { profile, inProgress } = this.props;
+    const {profile, inProgress} = this.props;
     return (
       <LoaderPanel loading={ inProgress }>
         <ul>

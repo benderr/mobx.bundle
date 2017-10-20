@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useStrict} from 'mobx';
-import {Router} from 'react-router-dom';
-import DevTools from 'mobx-react-devtools';
 import {Provider} from 'mobx-react';
-import AppContainer from './AppContainer';
-import {observer, inject} from 'mobx-react';
+import AppRouter from './AppRouter';
+
+/**
+ * Монтируем сторы мобкс
+ */
+
 useStrict(true);
 
 class RootContainer extends React.Component {
@@ -20,29 +22,20 @@ class RootContainer extends React.Component {
       <Provider { ...stores } >
         <div className="poss">
           <AppRouter routes={routes}/>
-          <DevTools />
+          {this.renderDevTools()}
         </div>
       </Provider>
     );
   }
-}
 
+  renderDevTools() {
+    let devTools = false;
+    if (__DEV_TOOLS__) {
+      const DevTools = require('mobx-react-devtools').default;
+      devTools = (<DevTools />)
+    }
 
-
-@inject("historyStore")
-@observer
-class AppRouter extends React.Component {
-  static propTypes = {
-    routes: PropTypes.array.isRequired
-  };
-
-  render() {
-    const {routes, historyStore} = this.props;
-    return (
-      <Router history={ historyStore.history }>
-        <AppContainer routes={ routes }/>
-      </Router>
-    );
+    return devTools;
   }
 }
 

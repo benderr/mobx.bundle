@@ -1,4 +1,3 @@
-
 /**
  * Разбор флагов роута
  * - index.js - главная страница
@@ -41,6 +40,5 @@ function getStores(modules, otherStores) {
 export default function configure(modules) {
   const routes = getRoutes(modules);
   const stores = getStores(modules, {});
-  //аттеншн костыль
   return {stores, routes, history};
 }

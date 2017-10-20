@@ -32,4 +32,4 @@ function normalizeHttpOptions(params) {
   return params;
 }
 
-export { Http };
+export default Http;

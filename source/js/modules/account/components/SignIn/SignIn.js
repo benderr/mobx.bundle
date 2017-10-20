@@ -6,12 +6,13 @@ import {withRouter} from 'react-router';
 import {Button, LoaderPanel} from 'modul-components';
 import {InputField} from 'common/form/fields/index';
 import SignInController from './SignInController';
+import qs from 'qs';
 
 @inject(({authStore}) => ({
   inProgress: authStore.inProgress,
   error: authStore.error,
   login: authStore.login,
-  errorReset: authStore.errorReset,
+  errorReset: authStore.errorReset
 }))
 @withRouter
 @observer
@@ -29,8 +30,10 @@ class SignInContainer extends React.Component {
 
   constructor(props) {
     super(props);
-    const {login, errorReset} = this.props;
-    this.form = new SignInController({store: {login, errorReset}});
+    const {login, errorReset, location} = this.props;
+    const searchObj = qs.parse(location.search ? location.search.substr(1) : '');
+    const redirectUrl = searchObj && searchObj.redirectUrl || '';
+    this.form = new SignInController({login, errorReset, redirectUrl});
   }
 
   render() {

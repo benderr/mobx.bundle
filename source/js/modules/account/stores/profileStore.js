@@ -1,12 +1,29 @@
 import {observable, action, isObservable} from 'mobx';
 import {asyncAction} from 'mobx-utils';
 import * as dataContext from '../dataProvider/accountDataContext';
-import appStore from 'modules/core/stores/appStore'
-import historyStore from 'modules/core/stores/historyStore';
+import bus, {events} from 'core/bus'
 
 class ProfileStore {
   @observable inProgress = false;
   @observable error = undefined;
+  @observable profileReady = false;
+
+  constructor() {
+    bus.subscribe(events.APP_READY, authorized => this.onAppReady(authorized));
+  }
+
+  @action.bound
+  onAppReady = asyncAction(function*(authorized) {
+    try {
+      this.profileReady = false;
+      if (authorized)
+        yield this.getProfile();
+    } catch (err) {
+    } finally {
+      this.profileReady = true;
+    }
+  });
+
 
   // @observable
   // profile = {
@@ -46,8 +63,7 @@ class ProfileStore {
     } catch (err) {
       throw err;
     } finally {
-      appStore.removeToken();
-      historyStore.fullReload('/signin');
+      bus.publish(events.LOGOUT);
       this.inProgress = false;
     }
   })

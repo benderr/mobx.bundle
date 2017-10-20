@@ -1,9 +1,9 @@
-import { createApi } from 'core/http/api';
-import { Http } from 'core/http/Http';
-import { Interceptors } from 'core/http/Interceptors';
-import tokenInterceptorCreator from '../interceptors/tokenInterceptor';
-import localStorage from 'core/storage/localStorage';
-import account from './account'
+import {createApi} from 'common/http/api';
+import Http from 'common/http/Http';
+import Interceptors from 'common/http/Interceptors';
+import tokenInterceptorCreator from './interceptors/tokenInterceptor';
+import localStorage from 'common/storage/localStorage';
+import account from './resources/account'
 
 function initApi() {
   const _interceptors = new Interceptors();

@@ -1,57 +1,67 @@
 import {observable, action} from 'mobx';
 import {asyncAction} from 'mobx-utils';
-import profileStore from 'modules/account/stores/profileStore'
 import historyStore from './historyStore'
-import localStorage from 'core/storage/localStorage'
+import localStorage from 'common/storage/localStorage'
+import bus, {events} from 'core/bus'
+import * as dataContext from '../dataProvider/dataContext'
+import qs from 'qs';
 
 const xToken = 'X-TOKEN';
 
 class AppStore {
   @observable appReady = false;
 
-  getToken() {
-    return localStorage.getItem(xToken);
-  }
+  startApplication = asyncAction(function*({routes}) {
+    const location = historyStore.history.location;
+    const isAnonymousLocation = historyStore.isAnonymousLocation(location, routes);
 
-  removeToken() {
-    localStorage.removeItem(xToken)
-  }
+    this.appReady = false;
+    const validToken = yield this.checkToken();
 
-  applicationStarted() {
-    //запускаем забор каких то данных
-  }
-
-  startApplication = asyncAction(function*() {
-    try {
-      if (this.appReady)
-        return;
-      this.appReady = false;
-      let setCheckingStop = true;
-      if (profileStore.profile == null) {
-        const token = this.getToken();
-        if (token) {
-          yield profileStore.getProfile();
-
-          const location = historyStore.history.location;
-          if (location.pathname == '/signin') {
-            setCheckingStop = false;
-            historyStore.fullReload('/');
-          } else {
-            this.applicationStarted();
-          }
-        }
+    if (validToken) {
+      if (location.pathname == '/signin') {
+        historyStore.fullReload('/');
       } else {
-        this.applicationStarted();
-      }
-      if (setCheckingStop)
         this.appReady = true;
-
-    } catch (err) {
-      this.appReady = true;
-      historyStore.fullReload('/signin');
-      localStorage.removeItem(xToken);
+        this.applicationStarted(validToken);
+      }
+    } else {
+      if (!isAnonymousLocation) {
+        const url = qs.stringify({redirectUrl: location.pathname});
+        historyStore.fullReload(`/signin?${url}`);
+      } else {
+        this.appReady = true;
+        this.applicationStarted(validToken);
+      }
     }
-  })
+  });
+
+  checkToken = asyncAction(function*() {
+    const token = localStorage.getItem(xToken); //todo подумать, переписать
+    if (token) {
+      try {
+        yield dataContext.checkToken();
+        return true;
+      }
+      catch (err) {
+        return false;
+      }
+    }
+    return false;
+  });
+
+  applicationStarted(validToken) {
+    bus.publish(events.APP_READY, validToken);
+
+    bus.subscribe(events.ACCESS_DENIED, () => {
+      historyStore.fullReload('/signin');
+    });
+    bus.subscribe(events.LOGOUT, () => {
+      localStorage.removeItem(xToken);
+      historyStore.fullReload('/signin');
+    });
+
+  }
 }
 
 export default new AppStore();

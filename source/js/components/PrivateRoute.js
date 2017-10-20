@@ -10,14 +10,14 @@ export default (RouteComponent) => {
     render() {
       const {profileStore, historyStore, ...props}=this.props;
 
-      if (profileStore.profile != null)
+      if (profileStore.profileReady && profileStore.profile != null) {
         return (<RouteComponent {...props}/>);
-      else {
+      } else if (!profileStore.profileReady) {
+        return (<LoaderPanel loading={true}/>)
+      } else {
         setTimeout(() => historyStore.fullReload('/signin'), 500);
         return (<LoaderPanel loading={true}/>)
       }
-
-      //return (<RouteComponent {...props}/>);
     }
   }
 

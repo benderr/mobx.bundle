@@ -1,5 +1,5 @@
-import { isEmail, isRequired } from 'common/form/validationHelpers/validation';
-import { observable, action, runInAction } from 'mobx';
+import {isEmail, isRequired} from 'common/form/validationHelpers/validation';
+import {observable, action, runInAction} from 'mobx';
 import BaseForm from 'common/form/BaseForm';
 
 const fields = [
@@ -25,18 +25,18 @@ const fields = [
 ];
 
 export default class SignInController extends BaseForm {
-  constructor({ store: { login, errorReset } }) {
+  constructor({login, errorReset, redirectUrl}) {
     const hooks = {
       onSuccess(form) {
-        const { email, password } = form.values();
-        login(email, password);
+        const {email, password} = form.values();
+        login(email, password, redirectUrl);
       },
       onError(form) {
         console.log('Ошибка');
         errorReset();
       },
     };
-    super({ fields }, { hooks });
+    super({fields}, {hooks});
   }
 
   @action.bound
