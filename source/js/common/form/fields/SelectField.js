@@ -1,6 +1,6 @@
 import React from 'react';
-import { observer } from 'mobx-react';
-import { Select } from 'modul-components';
+import {observer} from 'mobx-react';
+import {Select} from 'modul-components';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
 import PropTypes from 'prop-types';
 
@@ -93,18 +93,20 @@ class SelectField extends React.Component {
     creatable: PropTypes.bool,            // если можно вводить свой вариант (текст)
   };
 
-  
+
   componentDidMount() {
     this.props.field.setFocus = ::this.input.setFocus;
   }
 
   render() {
-    const { type, placeholder, field, validator: { tooltip, addClassName }, className, ...props } = this.props;
+    const {type, placeholder, field, validator: {tooltip, addClassName}, className, ...props} = this.props;
     const classNames = `${ className } ${ addClassName }`;
 
+    const fieldBinds = {...field.bind({type, placeholder})};
+    fieldBinds.value = fieldBinds.value || null;
     return (
       <Select
-        { ...field.bind({ type, placeholder }) }
+        {...fieldBinds}
         ref={ input => this.input = input }
         className={ classNames }
         type={ type }

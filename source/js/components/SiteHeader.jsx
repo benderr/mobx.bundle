@@ -4,6 +4,8 @@ import {observer, inject} from 'mobx-react';
 import PropTypes from 'prop-types';
 import {Route} from 'react-router';
 import {Link} from 'react-router-dom';
+import {Drop} from 'modul-components';
+import {withRouter} from 'react-router';
 
 const SiteMenuLink = ({label, to, exact}) => (
   <Route
@@ -14,10 +16,47 @@ const SiteMenuLink = ({label, to, exact}) => (
   ) }/>
 );
 
+const SiteMenuDrop = ({label, to, children}) => (
+  <Route
+    path={ to } exact={ false } children={ ({match}) => (
+    <li className={ match ? 'active' : '' }>
+      <Drop drop={{position: 'bottom left'}}>
+        <a className="icon-submenu drop-target">{label}</a>
+        <div class="drop-content">
+          <div class="drop-content-inner">
+            {children}
+          </div>
+        </div>
+      </Drop>
+    </li>
+  ) }/>
+);
+
+class OutSiteLink extends React.Component {
+  static propTypes = {
+    label: PropTypes.string.isRequired,
+    to: PropTypes.string,
+    history: PropTypes.object.isRequired
+  };
+
+  handleClick(e) {
+    const {to, history}=this.props;
+    history.push(to);
+    e.preventDefault();
+  }
+
+  render() {
+    const {to, label}=this.props;
+    return <a onClick={e => this.handleClick(e)} href={to}>{label}</a>
+  }
+}
+
+
 @inject(({profileStore}) => ({
   logout: profileStore.logout,
   profile: profileStore.profile,
 }))
+@withRouter
 @observer
 class SiteHeader extends React.Component {
   static propTypes = {
@@ -29,20 +68,25 @@ class SiteHeader extends React.Component {
     this.props.logout();
   }
 
-  getMenu(groups) {
-    let menu = [{to: '/', exact: true, label: 'Задачи'}];
-    if (groups.includes('admin') || groups.includes('teamLeader')) {
-      menu = menu.concat([
-        {to: '/reports', exact: true, label: 'Отчеты'},
-        {to: '/users', exact: true, label: 'Управление'},
-      ]);
-    }
-    return menu.map((props, key) => <SiteMenuLink { ...props } key={ key }/>);
+  isShowMenu(route, groups) {
+    if (['reports', 'manage'].indexOf(route) > -1)
+      return groups.includes('admin') || groups.includes('teamLeader');
+    return true;
   }
+
+  // getMenu(groups) {
+  //   let menu = [{to: '/', exact: true, label: 'Задачи'}];
+  //   if (groups.includes('admin') || groups.includes('teamLeader')) {
+  //     menu = menu.concat([
+  //       {to: '/reports', exact: true, label: 'Отчеты'},
+  //       {to: '/users', exact: true, label: 'Управление'},
+  //     ]);
+  //   }
+  //   return menu.map((props, key) => <SiteMenuLink { ...props } key={ key }/>);
+  // }
 
   render() {
     const {profile: {lastName, firstName, groups}} = this.props;
-    const menu = this.getMenu(groups);
     return (
       <header>
         <div class='header_logo'>
@@ -52,7 +96,13 @@ class SiteHeader extends React.Component {
         <div class='header_menu free_items'>
           <div class='header_menu_inner'>
             <ul>
-              {menu}
+              <SiteMenuLink to="/" exact={true} label="Задачи"/>
+              {this.isShowMenu('reports', groups) && <SiteMenuLink to="/reports" exact={true} label="Отчеты"/>}
+              {this.isShowMenu('manage', groups) && <SiteMenuDrop to="/manage" label="Управление">
+                <ul class="drop-menu">
+                  <li><OutSiteLink history={this.props.history} to="/manage/employees" label="Сотрудники"/></li>
+                </ul>
+              </SiteMenuDrop>}
             </ul>
           </div>
         </div>

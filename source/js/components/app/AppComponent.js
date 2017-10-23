@@ -7,8 +7,8 @@ import DefaultLayerLayout from 'components/DefaultLayerLayout';
 import ModulRouter from 'modul-ui-router';
 import PrivateRoute from 'components/PrivateRoute'
 import {observer, inject} from 'mobx-react';
-import {LoaderPanel} from 'modul-components'
-
+import {LoaderPanel} from 'modul-components';
+import Notify from 'components/Notify';
 /**
  * Стартуем приложение
  */
@@ -43,6 +43,7 @@ class AppContainer extends React.Component {
                      routes={routes}
                      routeWrappers={routeWrappers}
                      notFound={NotFoundLayout}/>}
+        <Notify/>
       </LoaderPanel>
     );
   }

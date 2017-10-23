@@ -56,6 +56,11 @@ class AppStore {
     bus.subscribe(events.ACCESS_DENIED, () => {
       historyStore.fullReload('/signin');
     });
+
+    bus.subscribe(events.ACCESS_FORBIDDEN, () => {
+      //
+    });
+
     bus.subscribe(events.LOGOUT, () => {
       localStorage.removeItem(xToken);
       historyStore.fullReload('/signin');
