@@ -8,10 +8,10 @@ import {Link} from 'react-router-dom';
 const SiteMenuLink = ({label, to, exact}) => (
   <Route
     path={ to } exact={ exact } children={ ({match}) => (
-    <li className={ match ? 'active' : '' }>
-      <Link to={ to }><span>{label}</span></Link>
-    </li>
-  ) }/>
+      <li className={ match ? 'active' : '' }>
+        <Link to={ to }><span>{label}</span></Link>
+      </li>
+  ) } />
 );
 
 @inject(({profileStore}) => ({
@@ -35,9 +35,10 @@ class SiteHeader extends React.Component {
       menu = menu.concat([
         {to: '/reports', exact: true, label: 'Отчеты'},
         {to: '/users', exact: true, label: 'Управление'},
+        {to: '/clients', exact: true, label: 'Клиенты'},
       ]);
     }
-    return menu.map((props, key) => <SiteMenuLink { ...props } key={ key }/>);
+    return menu.map((props, key) => <SiteMenuLink { ...props } key={ key } />);
   }
 
   render() {
@@ -63,10 +64,10 @@ class SiteHeader extends React.Component {
           </div>
 
           <div class='header_profile_settigs'>
-            <Link to='/settings' class='icon-settings'/>
+            <Link to='/settings' class='icon-settings' />
           </div>
           <div class='header_profile_logout'>
-            <a onClick={ ::this.handleLogOut } class='icon-logout'/>
+            <a onClick={ ::this.handleLogOut } class='icon-logout' />
           </div>
         </div>
       </header>

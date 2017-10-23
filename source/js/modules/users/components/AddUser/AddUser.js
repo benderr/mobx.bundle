@@ -1,5 +1,5 @@
 import React from 'react';
-import {observer, inject} from 'mobx-react';
+import {observer} from 'mobx-react';
 import {observable, action, runInAction} from 'mobx';
 import {inAction} from 'mobx-utils';
 import AddUserView from './AddUserView';

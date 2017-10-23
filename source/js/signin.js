@@ -7,6 +7,7 @@ import signinModules from './modules/signinModules';
 
 require(__MARKUP_LOGIN__);
 
+
 const mountNode = document.getElementById('root');
 const { stores, routes, history } = configureApp(signinModules);
 
