@@ -31,7 +31,7 @@ export default {
     }
 
     function responseError(resp) {
-      if (resp.status == 401) {
+      if (resp && resp.status == 401) {
         setToken(null);
         bus.publish(events.ACCESS_DENIED, resp);
       }

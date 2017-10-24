@@ -9,20 +9,9 @@ class ProfileStore {
   @observable profileReady = false;
 
   constructor() {
-    bus.subscribe(events.APP_READY, authorized => this.onAppReady(authorized));
+
   }
 
-  @action.bound
-  onAppReady = asyncAction(function*(authorized) {
-    try {
-      this.profileReady = false;
-      if (authorized)
-        yield this.getProfile();
-    } catch (err) {
-    } finally {
-      this.profileReady = true;
-    }
-  });
 
 
   // @observable

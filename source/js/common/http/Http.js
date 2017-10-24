@@ -1,35 +1,34 @@
-import axios from 'axios';
-
 class Http {
-  constructor(interceptors) {
+  constructor(axios, interceptors) {
     this.interceptors = interceptors;
+    this.axios = axios;
   }
 
   http(params) {
-    return this.interceptors.apply(Promise.resolve(normalizeHttpOptions(params)), serverRequest);
+    const self = this;
+    return this.interceptors
+      .apply(Promise.resolve(self._normalizeHttpOptions(params)), ::self._serverRequest);
+  }
+
+  _normalizeHttpOptions(params) {
+    params.headers = params.headers || {};
+    if (params.method.toUpperCase() === 'GET' && params.data) {
+      params.params = params.data;
+      delete params.data;
+    }
+    if (params.querystring) {
+      params.url += `?${ params.querystring }`;
+    }
+    return params;
+  }
+
+  _serverRequest(params) {
+    const self = this;
+    return new Promise((resolve, reject) => {
+      self.axios(params).then(resolve, reject);
+    });
   }
 }
 
-function serverRequest(params) {
-	// return Q.Promise(function (resolve, reject, notify) {
-	// 	axios(params)
-	// 		.then(resolve, reject, notify);
-	// });
-  return new Promise((resolve, reject) => {
-    axios(params).then(resolve, reject);
-  });
-}
-
-function normalizeHttpOptions(params) {
-  params.headers = params.headers || {};
-  if (params.method.toUpperCase() === 'GET' && params.data) {
-    params.params = params.data;
-    delete params.data;
-  }
-  if (params.querystring) {
-    params.url += `?${ params.querystring }`;
-  }
-  return params;
-}
 
 export default Http;
