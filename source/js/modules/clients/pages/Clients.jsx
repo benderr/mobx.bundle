@@ -1,5 +1,5 @@
 import React from 'react';
-import Client from '../components/Client/Client';
+import Client from '../components/Client/ClientList';
 
 class Clients extends React.Component {
 

@@ -1,8 +1,8 @@
 import routes from './routes';
-import ClientsStore from './stores/ClientsStore';
+import clientsStore from './stores/clientsStore';
 
 export const stores = {
-  ClientsStore,
+  clientsStore,
 };
 
 export {routes};

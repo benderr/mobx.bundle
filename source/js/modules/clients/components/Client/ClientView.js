@@ -5,14 +5,13 @@ import {InputField, DatePickerField} from 'common/form/fields';
 
 export default observer((props) => {
   const {form} = props;
-
   return (
     <div>
       <h1>Добавление клиента</h1>
       <form onSubmit={ form.onSubmit } style={ {maxWidth: '500px'} }>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField field={ form.$('name') } className={'w300'}/>
+            <InputField field={ form.$('name') } className={ 'w300' } />
             <span class='input_title'>{form.$('name').placeholder}</span>
           </div>
         </div>
@@ -63,17 +62,19 @@ export default observer((props) => {
         </div>
         <div className='form_group'>
           <div>
-            <input type='checkbox' field={ form.$('is1cBaseCreated') } />
+            <InputField type='checkbox' field={ form.$('is1cBaseCreated') } />
             <span class='input_title'>{form.$('is1cBaseCreated').placeholder}</span>
           </div>
         </div>
         <div className='form_group'>
           <div>
-            <input type='checkbox' field={ form.$('is1cConnectStatus') } />
+            <InputField type='checkbox' field={ form.$('is1cConnectStatus') } />
             <span class='input_title'>{form.$('is1cConnectStatus').placeholder}</span>
           </div>
         </div>
-        <button class='button second' type='submit'>Добавить клиента</button>
+        <button class='button second' type='submit'>
+          Добавить клиента
+        </button>
       </form>
     </div>
   );

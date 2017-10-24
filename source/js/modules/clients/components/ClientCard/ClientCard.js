@@ -32,7 +32,7 @@ class SignInContainer extends React.Component {
   }
 
   handleOpenContentPopup() {
-    this.content.open();
+    this.newContent.open();
   }
 
   render() {
@@ -42,7 +42,7 @@ class SignInContainer extends React.Component {
           class='button second'
           onClick={ ::this.handleOpenContentPopup }>Content dialog
         </button>
-        <ContentPopup ref={ p => this.content = p } closeName={ 'Закрыть' }>
+        <ContentPopup ref={ p => this.newContent = p } closeName={ 'Закрыть' }>
           <ClientCardView/>
         </ContentPopup>
 

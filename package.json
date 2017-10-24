@@ -51,14 +51,12 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.7.1",
     "extract-text-webpack-plugin": "^2.0.0",
-    "fetch-mock": "^5.13.1",
     "file-loader": "^0.9.0",
     "html-webpack-plugin": "^2.30.1",
     "jest": "^20.0.4",
     "mobx-react-devtools": "^4.2.15",
     "mobx-utils": "^3.2.1",
     "nib": "^1.1.2",
-    "nock": "^9.0.24",
     "open-browser-webpack-plugin": "0.0.5",
     "postcss-loader": "^1.1.1",
     "prepush": "^3.1.11",
@@ -73,8 +71,7 @@
     "webpack-chunk-hash": "^0.4.0",
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-server": "^2.7.1",
-    "webpack-merge": "^4.1.0",
-    "xhr-mock": "^1.9.1"
+    "webpack-merge": "^4.1.0"
   },
   "dependencies": {
     "axios": "^0.17.0",
@@ -86,7 +83,7 @@
     "mobx-react-form": "^1.32.2",
     "mobx-react-form-devtools": "^1.7.2",
     "mobx-utils": "^3.2.1",
-    "modul-components": "^0.0.9",
+    "modul-components": "^0.0.93",
     "modul-helpers": "^0.1.9",
     "modul-ui-router": "^0.0.6",
     "node-uuid": "^1.4.8",

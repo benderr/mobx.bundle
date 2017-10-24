@@ -10,5 +10,5 @@ require(__MARKUP_KASSA__);
 const mountNode = document.getElementById('root');
 const {stores, routes} = configureApp(indexModules);
 
-render(<RootContainer stores={ stores } routes={ routes } />, mountNode);
+render(<RootContainer stores={stores} routes={routes} />, mountNode);
 

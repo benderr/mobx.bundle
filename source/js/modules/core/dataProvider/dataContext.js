@@ -1,3 +1,5 @@
 import api from 'core/api';
 
-export const checkToken = () => api.account().get();
+export const checkToken = () => {
+  return api.account().get()
+};
