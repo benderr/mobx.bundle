@@ -1,7 +1,7 @@
 import React from 'react';
 import {observer} from 'mobx-react';
 // import {} from 'modul-components';
-import {InputField} from 'common/form/fields';
+import {InputField, DatePickerField} from 'common/form/fields';
 
 export default observer((props) => {
   const {form} = props;
@@ -12,7 +12,7 @@ export default observer((props) => {
       <form onSubmit={ form.onSubmit } style={ {maxWidth: '500px'} }>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField field={ form.$('name') } />
+            <InputField field={ form.$('name') } className={'w300'}/>
             <span class='input_title'>{form.$('name').placeholder}</span>
           </div>
         </div>
@@ -24,19 +24,19 @@ export default observer((props) => {
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField field={ form.$('registrationDate') } />
+            <DatePickerField field={ form.$('registrationDate') } />
             <span class='input_title'>{form.$('registrationDate').placeholder}</span>
           </div>
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField field={ form.$('connectDate') } />
+            <DatePickerField field={ form.$('connectDate') } />
             <span class='input_title'>{form.$('connectDate').placeholder}</span>
           </div>
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField field={ form.$('accountingStartDate') } />
+            <DatePickerField field={ form.$('accountingStartDate') } />
             <span class='input_title'>{form.$('accountingStartDate').placeholder}</span>
           </div>
         </div>
@@ -55,7 +55,10 @@ export default observer((props) => {
         <div className='form_group'>
           <div className='input_group_title'>
             <InputField type='checkbox' field={ form.$('is1cBase') } />
-            <span class='input_title'>{form.$('is1cBase').placeholder}</span>
+            <label for='id_stateIntegration' class='label_check switcher small'>
+              <i class='icon' />
+              <span class='input_title'>{form.$('is1cBase').placeholder}</span>
+            </label>
           </div>
         </div>
         <div className='form_group'>

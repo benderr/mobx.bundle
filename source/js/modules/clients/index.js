@@ -1,12 +1,8 @@
 import routes from './routes';
-import authStore from './stores/ClientsStore';
-import profileStore from './stores/profileStore';
-import passwordRecoveryStore from './stores/passwordRecoveryStore';
+import ClientsStore from './stores/ClientsStore';
 
 export const stores = {
-  // authStore,
-  // profileStore,
-  // passwordRecoveryStore
+  ClientsStore,
 };
 
 export {routes};
