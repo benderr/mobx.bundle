@@ -1,5 +1,5 @@
 import routes from './routes';
-import authStore from './stores/authStore';
+import authStore from './stores/ClientsStore';
 import profileStore from './stores/profileStore';
 import passwordRecoveryStore from './stores/passwordRecoveryStore';
 

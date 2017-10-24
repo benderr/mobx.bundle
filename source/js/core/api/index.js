@@ -4,9 +4,8 @@ import Interceptors from 'common/http/Interceptors';
 import tokenInterceptorCreator from './interceptors/tokenInterceptor';
 import localStorage from 'common/storage/localStorage';
 import account from './resources/account';
-import accountMock from './mocks/accountMock';
-import mock from 'core/api/mocks'
 import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
 function initApi() {
   const _interceptors = new Interceptors();
@@ -18,13 +17,42 @@ function initApi() {
   const _http = new Http(_interceptors);
   const api = createApi(_http);
   account(api);
-  let mock1=accountMock(mock);
-  mock1.onAny().reply((params)=>{
 
-    return new Promise((resolve, reject) => {
-      axios(params).then(resolve, reject);
-    });
-  });
+  const mockAdapter = new MockAdapter(axios);
+  mockAdapter
+  .onGet('api/account')
+    .reply(200, {
+      'FirstName': '123',
+      'LastName': 'Админ',
+      'MiddleName': '',
+      'Title': '',
+      'Gender': 'Male',
+      'Email': 'test002@test.ru',
+      'AvatarId': null,
+      'Notifications': [
+        {
+          'NotificationType': 'TaskAssignedToGroup',
+          'IsActive': false,
+          'Title': 'Оповещать о диалогах группы',
+        },
+        {
+          'NotificationType': 'TaskAssignedOrResumedToAgent',
+          'IsActive': false,
+          'Title': 'Оповещать о моих диалогах',
+        }],
+    }, {'x-token': 'bc2bd2dc612e491da6e5ed62ca8f0222'})
+  .onAny().passThrough();
+    // .reply(function(params) {
+    //   console.log(params);
+    //   return new Promise(props => {
+    //       axios(params)
+    //     });
+      // return new Promise((resolve, reject) => {
+      //   axios(params).then(resolve, reject);
+      // });
+    // return Promise.resolve(axios(params))
+  // });
+
   return api;
 }
 
