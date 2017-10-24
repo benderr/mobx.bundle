@@ -28,26 +28,9 @@ function initApi() {
   // });
 
   if (__DEV__) {
-    debugger
-    const clearAxios = axios.create(axios.defaults);
+    //const clearAxios = axios.create(axios.defaults);
     const mocker = mocks({account: true}, axios);
-
-    mocker.onAny().reply(config => {
-      return new Promise((resolve, reject) => {
-        clearAxios.request({
-          data: config.data ? JSON.parse(config.data) : {},
-          headers: {},
-          method: config.method,
-          url: config.url
-        }).then(resolve, reject);
-      });
-      // return clearAxios.request({
-      //   data: config.data ? JSON.parse(config.data) : {},
-      //   headers: {},
-      //   method: config.method,
-      //   url: config.url
-      // });
-    });
+    mocker.onAny().passThrough()
   }
 
   return api;

@@ -21,11 +21,9 @@ export default {
     }
 
     function response(resp) {
-      const token = resp.headers[xTokenKey];
+      const token = (resp.headers || {})[xTokenKey];
       if (token) {
         setToken(token);
-        //xToken = token;
-        //bus.publish(events.SET_TOKEN, {token});
       }
       return resp;
     }

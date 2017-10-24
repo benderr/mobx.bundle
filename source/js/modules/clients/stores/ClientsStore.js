@@ -1,21 +1,19 @@
 import {observable, action} from 'mobx';
 import {asyncAction} from 'mobx-utils';
 import historyStore from 'modules/core/stores/historyStore';
-import profileStore from './profileStore';
 import * as dataContext from '../dataProvider/accountDataContext';
 
-class AuthStore {
-  @observable inProgress = false;
+class ClientsStore {
+  @observable clients = false;
   @observable error = undefined;
-  @observable passwordRecoveryStatus = 'initial'
 
   @action.bound
-  login = asyncAction(function*(email, password, redirectUrl) {
+  create = asyncAction(function* () {
     this.inProgress = true;
     this.error = undefined;
     try {
       yield dataContext.login({email, password, redirectUrl});
-      //yield profileStore.getProfile();
+      // yield profileStore.getProfile();
       historyStore.fullReload(redirectUrl || '/');
     } catch (error) {
       this.error = error;
@@ -26,7 +24,7 @@ class AuthStore {
   });
 
   @action.bound
-  register = asyncAction(function*() {
+  update = asyncAction(function* () {
     this.inProgress = true;
     this.error = undefined;
     try {
@@ -47,7 +45,7 @@ class AuthStore {
   }
 
   @action.bound
-  forgotPass = asyncAction(function*(email) {
+  forgotPass = asyncAction(function* (email) {
     this.passwordRecoveryStatus = 'initial';
     this.inProgress = true;
     this.error = undefined;
@@ -64,4 +62,4 @@ class AuthStore {
   })
 }
 
-export default new AuthStore();
+export default new ClientsStore();
