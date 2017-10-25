@@ -6,15 +6,17 @@ const fields = {
   name: {
     label: 'Полное название',
     placeholder: 'Полное название',
-    validators: [isRequired('Поле обязательно для заполнения!')],
+    validators: [isRequired('Укажите полное наименование')],
   },
   abbreviation: {
     label: 'Сокращенное название',
     placeholder: 'Сокращенное название',
+    validators: [isRequired('Укажите сокращенное наименование')],
   },
   registrationDate: {
     label: 'Дата регистрации',
     placeholder: 'Дата регистрации',
+    validators: [isRequired('Укажите дату регистрации компании')],
   },
   connectDate: {
     label: 'Дата подключения',
@@ -27,6 +29,7 @@ const fields = {
   opf: {
     label: 'Организационно-правовая форма',
     placeholder: 'Организационно-правовая форма',
+    validators: [isRequired('Укажите организационно-правовую форму')],
   },
   connectStatus: {
     label: 'Статус подключения',
