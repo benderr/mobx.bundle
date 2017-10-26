@@ -4,7 +4,6 @@ import {observer, inject} from 'mobx-react';
 import PropTypes from 'prop-types';
 import {Route} from 'react-router';
 import {Link} from 'react-router-dom';
-import {Drop} from 'modul-components';
 import {withRouter} from 'react-router';
 
 const SiteMenuLink = ({label, to, exact}) => (
@@ -16,40 +15,40 @@ const SiteMenuLink = ({label, to, exact}) => (
   ) }/>
 );
 
-const SiteMenuDrop = ({label, to, children}) => (
-  <Route
-    path={ to } exact={ false } children={ ({match}) => (
-    <li className={ match ? 'active' : '' }>
-      <Drop drop={{position: 'bottom left'}}>
-        <a className="icon-submenu drop-target">{label}</a>
-        <div class="drop-content">
-          <div class="drop-content-inner">
-            {children}
-          </div>
-        </div>
-      </Drop>
-    </li>
-  ) }/>
-);
+// const SiteMenuDrop = ({label, to, children}) => (
+//   <Route
+//     path={ to } exact={ false } children={ ({match}) => (
+//     <li className={ match ? 'active' : '' }>
+//       <Drop drop={{position: 'bottom left'}}>
+//         <a className="icon-submenu drop-target">{label}</a>
+//         <div class="drop-content">
+//           <div class="drop-content-inner">
+//             {children}
+//           </div>
+//         </div>
+//       </Drop>
+//     </li>
+//   ) }/>
+// );
 
-class OutSiteLink extends React.Component {
-  static propTypes = {
-    label: PropTypes.string.isRequired,
-    to: PropTypes.string,
-    history: PropTypes.object.isRequired
-  };
-
-  handleClick(e) {
-    const {to, history}=this.props;
-    history.push(to);
-    e.preventDefault();
-  }
-
-  render() {
-    const {to, label}=this.props;
-    return <a onClick={e => this.handleClick(e)} href={to}>{label}</a>
-  }
-}
+// class OutSiteLink extends React.Component {
+//   static propTypes = {
+//     label: PropTypes.string.isRequired,
+//     to: PropTypes.string,
+//     history: PropTypes.object.isRequired
+//   };
+//
+//   handleClick(e) {
+//     const {to, history}=this.props;
+//     history.push(to);
+//     e.preventDefault();
+//   }
+//
+//   render() {
+//     const {to, label}=this.props;
+//     return <a onClick={e => this.handleClick(e)} href={to}>{label}</a>
+//   }
+// }
 
 
 @inject(({profileStore}) => ({
@@ -98,11 +97,12 @@ class SiteHeader extends React.Component {
             <ul>
               <SiteMenuLink to="/" exact={true} label="Задачи"/>
               {this.isShowMenu('reports', groups) && <SiteMenuLink to="/reports" exact={true} label="Отчеты"/>}
-              {this.isShowMenu('manage', groups) && <SiteMenuDrop to="/manage" label="Управление">
-                <ul class="drop-menu">
-                  <li><OutSiteLink history={this.props.history} to="/manage/employees" label="Сотрудники"/></li>
-                </ul>
-              </SiteMenuDrop>}
+              {this.isShowMenu('manage', groups) && <SiteMenuLink to="/manage" exact={false} label="Управление"/>}
+              {/*{this.isShowMenu('manage', groups) && <SiteMenuDrop to="/manage" label="Управление">*/}
+                {/*<ul class="drop-menu">*/}
+                  {/*<li><OutSiteLink history={this.props.history} to="/manage/employees" label="Сотрудники"/></li>*/}
+                {/*</ul>*/}
+              {/*</SiteMenuDrop>}*/}
             </ul>
           </div>
         </div>
