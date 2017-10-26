@@ -44,6 +44,7 @@ class AppStore {
         return true;
       }
       catch (err) {
+        logger.log(err);
         return false;
       }
     }

@@ -33,7 +33,6 @@ class InputField extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('NEXTPROPS', nextProps);
     if (!nextProps.field.focused && nextProps.field.autoFocus)
       this.input.focus();
   }
