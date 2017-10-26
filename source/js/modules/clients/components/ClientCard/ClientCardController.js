@@ -282,8 +282,6 @@ const fields = [
       isEmail('Укажите корректную электронную почту'),
     ],
   },
-
-
 ];
 
 export default class ClientCardController extends BaseForm {

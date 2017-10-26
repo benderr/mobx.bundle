@@ -10,10 +10,11 @@ class InputField extends React.Component {
     readOnly: PropTypes.bool,
     className: PropTypes.string,
     maxLength: PropTypes.number,
-    type: PropTypes.string,
     placeholder: PropTypes.string,
     field: PropTypes.object,
     validator: PropTypes.object,
+    id: PropTypes.string,
+    type: PropTypes.string,
   };
 
   static defaultProps = {
@@ -21,7 +22,6 @@ class InputField extends React.Component {
     readOnly: false,
     className: '',
     maxLength: 255,
-    type: 'text',
   };
 
   setFocus() {
@@ -33,24 +33,22 @@ class InputField extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.field.focused && nextProps.field.autoFocus)
-      this.input.focus();
+    if (!nextProps.field.focused && nextProps.field.autoFocus) { this.input.focus(); }
   }
 
   render() {
-    const {type, placeholder, field, className, disabled, readOnly} = this.props;
+    const {placeholder, field, className, disabled, readOnly, id, maxLength, type} = this.props;
     const {tooltip, addClassName} = this.props.validator;
     const classNames = `${ className } ${ addClassName }`;
-
     return (
-      <input
-        { ...field.bind({type, placeholder}) }
-        ref={ input => this.input = input }
-        className={ classNames }
-        type={ type }
-        disabled={ disabled }
-        readOnly={ readOnly }
-        { ...tooltip } />
+      <input {...field.bind({placeholder, type})}
+        id={id}
+        maxLength={maxLength}
+        ref={input => this.input = input}
+        className={classNames}
+        disabled={disabled}
+        readOnly={readOnly}
+        {...tooltip} />
     );
   }
 }

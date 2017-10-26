@@ -1,10 +1,9 @@
-import { observable, action } from 'mobx';
+import {observable, action} from 'mobx';
 import Form from 'mobx-react-form';
-import validator from 'validator';
 import BaseField from './BaseField';
 
 export default class BaseForm extends Form {
-  constructor(fieldsObj, { hooks, plugins }) {
+  constructor(fieldsObj, {hooks, plugins}) {
     let customOnSuccess = function () {};
     let customOnError = function () {};
     if (hooks) {
@@ -18,8 +17,7 @@ export default class BaseForm extends Form {
         hooks.onError = undefined;
       }
     }
-
-    super(fieldsObj, { hooks, plugins });
+    super(fieldsObj, {hooks, plugins});
     // До super(...props) вызывать this нельзя
     this.customOnSuccess = customOnSuccess;
     this.customOnError = customOnError;
@@ -33,12 +31,12 @@ export default class BaseForm extends Form {
   }
 
   @action
-  afterSuccessSubmit () {
-    this.submitFailed = false
+  afterSuccessSubmit() {
+    this.submitFailed = false;
   }
 
   makeField(props) {
-    return new BaseField({ ...props });
+    return new BaseField({...props});
   }
 
   hooks() {
@@ -53,11 +51,11 @@ export default class BaseForm extends Form {
         const keys = form.fields.keys();
         const firstErrorName = keys.find(
           name => typeof errors[name] === 'string');
-        const field = form.fields.get(firstErrorName)
-        //field.focus();
+        const field = form.fields.get(firstErrorName);
+        // field.focus();
         if (field && field.setFocus instanceof Function) {
           field.setFocus();
-          console.log('focus')
+          console.log('focus');
         }
         this.customOnError(form);
       },
@@ -66,7 +64,6 @@ export default class BaseForm extends Form {
 
   bindings() {
     return {
-      // we can choose a name as key
       SelectField: {
         id: 'id',
         name: 'name',
@@ -81,7 +78,7 @@ export default class BaseForm extends Form {
         onInputChange: 'autoFocus',
         options: 'options',
         creatable: 'creatable',
-        searchable: 'searchable'
+        searchable: 'searchable',
       },
     };
   }

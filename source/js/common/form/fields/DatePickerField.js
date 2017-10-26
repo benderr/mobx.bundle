@@ -1,7 +1,7 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
-import { DatePicker } from 'modul-components';
+import {DatePicker} from 'modul-components';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
 
 @observer
@@ -58,18 +58,17 @@ class DatePickerField extends React.Component {
   }
 
   render() {
-    const { field, className, disabled, readOnly, validator, ...other } = this.props;
-    const { tooltip, addClassName } = validator;
+    const {field, className, disabled, readOnly, validator, ...other} = this.props;
+    const {tooltip, addClassName} = validator;
     const classNames = `${ className } ${ addClassName }`;
     return (
-      <DatePicker
-        { ...other }
-        { ...field.bind({readOnly}) }
+      <DatePicker {...other}
+        {...field.bind({readOnly})}
         className={classNames}
-        ref={ input => this.input = input }
-        disabled={ disabled }
-        readOnly={ readOnly }
-        { ...tooltip } />
+        ref={input => this.input = input}
+        disabled={disabled}
+        readOnly={readOnly}
+        {...tooltip} />
     );
   }
 }

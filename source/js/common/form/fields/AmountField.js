@@ -1,7 +1,7 @@
 import React from 'react';
-import { observer } from 'mobx-react';
+import {observer} from 'mobx-react';
 import PropTypes from 'prop-types';
-import { AmountInput } from 'modul-components';
+import {AmountInput} from 'modul-components';
 import radValidateHoc from 'common/form/validationHelpers/radValidateHoc';
 
 @observer
@@ -34,17 +34,17 @@ class AmountField extends React.Component {
   }
 
   render() {
-    const { type, placeholder, field, className, disabled, readOnly } = this.props;
-    const { tooltip, addClassName } = this.props.validator;
+    const {type, placeholder, field, className, disabled, readOnly, maxLength} = this.props;
+    const {tooltip, addClassName} = this.props.validator;
     const classNames = `${ className } ${ addClassName }`;
     return (
-      <AmountInput
-        { ...field.bind({ type, placeholder }) }
-        ref={ input => this.input = input }
-        type={ type }
-        disabled={ disabled }
-        readOnly={ readOnly }
-        { ...tooltip } />
+      <AmountInput {...field.bind({type, placeholder})}
+        ref={input => this.input = input}
+        type={type}
+        maxLength={maxLength}
+        disabled={disabled}
+        readOnly={readOnly}
+        {...tooltip} />
     );
   }
 }

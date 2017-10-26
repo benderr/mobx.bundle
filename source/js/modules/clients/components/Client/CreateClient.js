@@ -19,7 +19,7 @@ class CreateClient extends React.Component {
     create: PropTypes.func.isRequired,
   };
 
-  @observable form;
+  @observable form = new ClientController(::this.createClient);
 
   createClient(props) {
     this.props.create(props);
@@ -34,11 +34,13 @@ class CreateClient extends React.Component {
 
   render() {
     return (
-      <ContentPopup ref={p => this.content = p}>
-        <ClientView form={this.form} />
-      </ContentPopup>
+      <ClientView form={this.form} />
     );
   }
 }
+
+//   <ContentPopup ref={p => this.content = p}>
+//     <ClientView form={this.form} />
+//   </ContentPopup>
 
 export default CreateClient;
