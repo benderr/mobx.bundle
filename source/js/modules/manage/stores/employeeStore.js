@@ -9,20 +9,20 @@ class EmployeeStore {
   employees = [];
 
 
-  @action.bound
-  fetchEmployees = asyncAction(function*({query}) {
-    this.loading = true;
-    try {
-      const {agents, next} = yield dataContext.getAgents({query});
-      //this.profile = json;
-
-    } catch (err) {
-      this.error = err.toString();
-      throw err;
-    } finally {
-      this.loading = false;
-    }
-  });
+  // @action.bound
+  // fetchEmployees = asyncAction(function*({query}) {
+  //   this.loading = true;
+  //   try {
+  //     const {agents, next} = yield dataContext.getAgents({query});
+  //     //this.profile = json;
+  //
+  //   } catch (err) {
+  //     this.error = err.toString();
+  //     throw err;
+  //   } finally {
+  //     this.loading = false;
+  //   }
+  // });
 }
 
 export default new EmployeeStore();
