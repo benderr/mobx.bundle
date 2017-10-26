@@ -1,8 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import SignIn from '../components/SignIn/SignIn';
+import {observer, inject} from 'mobx-react';
 
+@inject('historyStore')
+@observer
 class SignInPage extends React.Component {
+
+  handleGoToSearch() {
+    this.props.historyStore.fullReload('/companies');
+  }
 
   render() {
     return (
@@ -17,6 +24,7 @@ class SignInPage extends React.Component {
             </div>
             <div className='login_links'>
               <Link to='/forgot'>Забыли пароль?</Link>
+              <a onClick={::this.handleGoToSearch}>Поиск компании</a>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import accessForbiddenInterceptorCreator from './interceptors/accessForbiddenInt
 import localStorage from 'common/storage/localStorage';
 import account from './resources/account'
 import agents from './resources/agents'
+import company from './resources/company'
 
 function initApi() {
   const _interceptors = new Interceptors();
@@ -22,6 +23,7 @@ function initApi() {
 
   agents(api);
   account(api);
+  company(api);
 
   return api;
 }
