@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {ContentPopup} from 'modul-components/lib/dialogs';
 
 import ClientController from './ClientController';
-import ClientView from './ClientView';
+import ClientView from './ClientViews/ClientView';
 
 @inject(({clientsStore}) => ({
   inProgress: clientsStore.inProgress,

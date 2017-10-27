@@ -46,6 +46,13 @@ const fields = {
       isCorrectInn('Некорректный номер ИНН. Проверьте, что ввели правильный номер'),
     ],
   },
+  // todo: custom validators
+  kpp: {
+    label: 'КПП',
+    validators: [
+    ],
+  },
+  // todo: custom validators
   // Todo: validators
   orgn: {
     label: 'ОГРН',
@@ -75,6 +82,28 @@ const fields = {
       isCyrillicAndSpaseOnly('ФИО могут содержать только буквы на кириллице, пробел или дефис'),
     ],
   },
+  // todo: custom validators
+  contacts: {
+    label: 'Контакты',
+    fields: {
+      directorFullName: {
+        label: 'ФИО директора (индивидуального предпринимателя)',
+        value: '',
+      },
+      post: {
+        value: '',
+      },
+      email: {
+        value: '',
+      },
+      phone: {
+        value: '',
+      },
+      description: {
+        value: '',
+      },
+    },
+  },
   // Todo: validators, component
   okved: {
     label: 'Основной ОКВЭД',
@@ -85,6 +114,12 @@ const fields = {
   // Todo: validators, component
   taxSystem: {
     label: 'Система налогообложения',
+    fields: {
+      taxSystem: {},
+      usnRate: {},
+      envd: {},
+      psn: {},
+    },
     validators: [
       isRequired('Укажите систему налогообложения компании'),
     ],
@@ -126,53 +161,107 @@ const fields = {
   // Todo: validators, component
   checkingAccount: {
     label: 'Расчетный счет',
-    validators: [
-
-    ],
+    fields: {
+      bik: {},
+      checkingAccount: {},
+      correspondentAccount: {},
+      description: {},
+    },
+  },
+  employees: {
+    fields: {
+      employeesCount: {
+        label: 'Количество сотрудников',
+        validators: [
+          isOnlyNumbers('Недопустимые символы'),
+        ],
+        hooks: {
+          onChange(field) {
+            const payDate = field.state.form.fields.get('payDate');
+            const advanceDate = field.state.form.fields.get('advanceDate');
+            if (field.value) {
+              runInAction(() => {
+                payDate.$validators = [isRequired('Укажите дату выплаты зарплаты')];
+                payDate.$extra.containerClassName = '';
+                advanceDate.$validators = [isRequired('Укажите дату выплаты аванса по зарплате')];
+                advanceDate.$extra.containerClassName = '';
+              });
+            } else {
+              runInAction(() => {
+                payDate.$validators = [];
+                payDate.resetValidation();
+                payDate.$extra.containerClassName = 'hidden';
+                advanceDate.$validators = [];
+                advanceDate.resetValidation();
+                advanceDate.$extra.containerClassName = 'hidden';
+              });
+            }
+          },
+        },
+      },
+      payDate: {
+        label: 'Дата выплаты заработной платы',
+        extra: {
+          containerClassName: 'hidden',
+        },
+      },
+      advanceDate: {
+        label: 'Дата выплаты аванса по зарплате',
+        extra: {
+          containerClassName: 'hidden',
+        },
+      },
+    },
   },
   // Todo: validators, component
-  employeesCount: {
-    label: 'Количество сотрудников',
-    validators: [
-      isOnlyNumbers('Недопустимые символы'),
-    ],
-  },
-  payDate: {
-    label: 'Дата выплаты заработной платы',
-    validators: [
-      isRequired('Укажите дату выплаты зарплаты'),
-    ],
-  },
-  advanceDate: {
-    label: 'Дата выплаты аванса по зарплате',
-    validators: [
-      isRequired('Укажите дату выплаты аванса по зарплате'),
-    ],
-  },
   cashRegistersCount: {
     label: 'Количество кассовых аппаратов (БСО)',
-    validators: [
-      isOnlyNumbers('Недопустимые символы'),
-    ],
+    fields: {
+      value: {
+        validators: [
+          isOnlyNumbers('Недопустимые символы'),
+        ],
+      },
+      description: {},
+    },
   },
   // Todo: validators, component
   acquiring: {
     label: 'Эквайринг',
-    validators: [],
+    fields: {
+      value: {
+        validators: [
+          isOnlyNumbers('Недопустимые символы'),
+        ],
+      },
+      description: {},
+    },
   },
   internetAcquiring: {
     label: 'Интернет-эквайринг',
-    validators: [],
+    fields: {
+      value: {
+        validators: [
+          isOnlyNumbers('Недопустимые символы'),
+        ],
+      },
+      description: {},
+    },
   },
   isAgencySchemes: {
     label: 'Агентские схемы',
-    validators: [],
+    fields: {
+      value: {
+        validators: [
+          isOnlyNumbers('Недопустимые символы'),
+        ],
+      },
+      description: {},
+    },
   },
   otherAccountingSystems: {
     label: 'Другие системы Бухучета',
-    validators: [
-      isIncludeValidSymbols('Недопустимые символы'),
-    ],
+    hint: 'Если клиент использует другие системы бухучета, запросите ссылку, а также логин и пароль.',
   },
   insuranceBuyOrder: {
     label: 'Порядок уплаты страховых взносов',
@@ -180,6 +269,7 @@ const fields = {
     value: '2',
     validators: [],
   },
+  // Todo: validators, component
   snils: {
     label: 'СНИЛС',
     validators: [],
@@ -187,24 +277,33 @@ const fields = {
   disconnectDate: {
     label: 'Дата отключения',
     validators: [],
-    hooks: {
-      onChange(field) {
-        const disconnectCause = field.state.form.fields.get('disconnectCause');
-        if (field.value) {
-          runInAction(() => {
-            disconnectCause.$validators = [isRequired('')];
-          });
-        } else {
-          disconnectCause.$validators = [];
-          disconnectCause.resetValidation();
-        }
+    fields: {
+      value: {
+        validators: [
+          isOnlyNumbers('Недопустимые символы'),
+        ],
+      },
+      description: {
+        label: 'Причина отключения'
       },
     },
-  },
-  disconnectCause: {
-    label: 'Причина отключения',
-    validators: [],
-    className: 'hidden',
+    // hooks: {
+    //   onChange(field) {
+    //     const disconnectCause = field.state.form.fields.get('disconnectCause');
+    //     if (field.value) {
+    //       runInAction(() => {
+    //         disconnectCause.$validators = [isRequired('')];
+    //         disconnectCause.$extra.containerClassName = '';
+    //       });
+    //     } else {
+    //       runInAction(() => {
+    //         disconnectCause.$validators = [];
+    //         disconnectCause.resetValidation();
+    //         disconnectCause.$extra.containerClassName = 'hidden';
+    //       });
+    //     }
+    //   },
+    // },
   },
 };
 

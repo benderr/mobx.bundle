@@ -1,13 +1,13 @@
 import React from 'react';
 import {observer} from 'mobx-react';
-import {InputField, DatePickerField, NumberField, SelectField} from 'common/form/fields';
+import {InputField, DatePickerField, NumberField, SelectField, CheckboxField} from 'common/form/fields/index';
 
 export default observer((props) => {
   const {form} = props;
   return (
     <div>
       <h1>Добавление клиента</h1>
-      <form onSubmit={form.onSubmit}>
+      <form onSubmit={form.onSubmit} >
         <div className='form_group'>
           <div className='input_group_title'>
             <InputField field={form.$('abbreviation')} maxLength={255} />
@@ -34,6 +34,12 @@ export default observer((props) => {
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
+            <NumberField field={form.$('kpp')} />
+            <span class=''>КПП</span>
+          </div>
+        </div>
+        <div className='form_group'>
+          <div className='input_group_title'>
             <InputField field={form.$('orgn')} />
             <span class=''>ОГРН</span>
           </div>
@@ -56,25 +62,76 @@ export default observer((props) => {
             <span class=''>ФИО директора (индивидуального предпринимателя)</span>
           </div>
         </div>
+        <div className={'light_block'}>
+          <h3>{form.$('contacts').label}</h3>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <InputField field={form.$('contacts').fields.get('directorFullName')} />
+              <span class=''>ФИО</span>
+            </div>
+          </div>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <InputField field={form.$('contacts').fields.get('post')} />
+              <span class=''>Должность</span>
+            </div>
+          </div>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <InputField field={form.$('contacts').fields.get('email')} />
+              <span class=''>Email</span>
+            </div>
+          </div>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <NumberField field={form.$('contacts').fields.get('phone')} />
+              <span class=''>Телефон</span>
+            </div>
+          </div>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <InputField field={form.$('contacts').fields.get('description')} />
+              <span class=''>Примечание</span>
+            </div>
+          </div>
+        </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField field={form.$('okved')} />
+            <SelectField field={form.$('okved')} />
             <span class=''>Основной ОКВЭД</span>
           </div>
         </div>
-        <div className='form_group'>
-          <div className='input_group_title'>
-            <InputField field={form.$('taxSystem')} />
-            <span class=''>Система налогообложения</span>
+        <div className={'light_block'}>
+          <h3>{form.$('taxSystem').label}</h3>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <SelectField field={form.$('taxSystem').fields.get('taxSystem')} />
+              <span class=''>Система налогообложения</span>
+            </div>
+          </div>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <NumberField field={form.$('taxSystem').fields.get('usnRate')} maxLength={60} />
+              <span class=''>Ставка УСН</span>
+            </div>
+          </div>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <CheckboxField field={form.$('taxSystem').fields.get('envd')}
+                placeholder={'Единый налог на вмененный доход'} />
+            </div>
+          </div>
+          <div className='form_group'>
+            <div className='input_group_title'>
+              <CheckboxField field={form.$('taxSystem').fields.get('psn')}
+                             placeholder={'Патентная система налогообложения'} />
+            </div>
           </div>
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField type='checkbox' field={form.$('is1cBase')} id='is1cBase' hideTips={true} />
-            <label for='is1cBase' className='label_check'>
-              <i className='icon' />
-              <span class='f_small'>Наличие своей базы 1С</span>
-            </label>
+            <CheckboxField field={form.$('is1cBase')}
+                           placeholder={'Наличие своей базы 1С'} />
           </div>
         </div>
         <div className='form_group'>
@@ -105,20 +162,14 @@ export default observer((props) => {
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField hideTips={true} id='isChargedForTariff' type='checkbox' field={form.$('isChargedForTariff')} />
-            <label for='isChargedForTariff' className='label_check'>
-              <i className='icon' />
-              <span className='f_small'>Списано за тариф</span>
-            </label>
+            <CheckboxField field={form.$('isChargedForTariff')}
+                           placeholder={'Списано за тариф'} />
           </div>
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField hideTips={true} id='is1cBaseCreated' type='checkbox' field={form.$('is1cBaseCreated')} />
-            <label for='is1cBaseCreated' className='label_check'>
-              <i className='icon' />
-              <span class='f_small'>Наличие созданной базы 1С</span>
-            </label>
+            <CheckboxField field={form.$('is1cBaseCreated')}
+                           placeholder={'Наличие созданной базы 1С'} />
           </div>
         </div>
         <div className='form_group'>
@@ -129,17 +180,23 @@ export default observer((props) => {
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
+            <InputField field={form.$('is1cConnectStatus')} />
+            <span class=''>	Статус подключения к 1С Отчетности</span>
+          </div>
+        </div>
+        <div className='form_group'>
+          <div className='input_group_title'>
             <NumberField field={form.$('employeesCount')} maxLength={60} />
             <span class=''>Количество сотрудников</span>
           </div>
         </div>
-        <div className='form_group'>
+        <div className={`form_group ${ form.$('payDate').extra.containerClassName }`}>
           <div className='input_group_title'>
             <NumberField field={form.$('payDate')} maxLength={2} />
             <span class=''>Дата выплаты заработной платы</span>
           </div>
         </div>
-        <div className='form_group'>
+        <div className={`form_group ${ form.$('advanceDate').extra.containerClassName }`}>
           <div className='input_group_title'>
             <NumberField field={form.$('advanceDate')} maxLength={2} />
             <span class=''>Дата выплаты аванса по зарплате</span>
@@ -171,15 +228,15 @@ export default observer((props) => {
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
-            <InputField field={form.$('otherAccountingSystems')} maxLength={1000}/>
+            <InputField field={form.$('otherAccountingSystems')} maxLength={1000} />
             <span class=''>Другие системы Бухучета</span>
           </div>
         </div>
         <div className='form_group'>
           <div className='input_group_title'>
             <SelectField field={form.$('insuranceBuyOrder')}
-                         options={form.$('insuranceBuyOrder').extra}
-                         searchable={false} />
+              options={form.$('insuranceBuyOrder').extra}
+              searchable={false} />
             <span class=''>Порядок уплаты страховых взносов</span>
           </div>
         </div>
@@ -195,9 +252,9 @@ export default observer((props) => {
             <span class=''>Дата отключения</span>
           </div>
         </div>
-        <div className='form_group'>
+        <div className={`form_group ${ form.$('disconnectCause').extra.containerClassName }`}>
           <div className='input_group_title'>
-            <InputField field={form.$('disconnectCause')} maxLength={255}/>
+            <InputField field={form.$('disconnectCause')} maxLength={255} />
             <span class=''>Причина отключения</span>
           </div>
         </div>
