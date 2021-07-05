@@ -21,17 +21,15 @@ export default {
     }
 
     function response(resp) {
-      const token = resp.headers[xTokenKey];
+      const token = (resp.headers || {})[xTokenKey];
       if (token) {
         setToken(token);
-        //xToken = token;
-        //bus.publish(events.SET_TOKEN, {token});
       }
       return resp;
     }
 
     function responseError(resp) {
-      if (resp.status == 401) {
+      if (resp && resp.status == 401) {
         setToken(null);
         bus.publish(events.ACCESS_DENIED, resp);
       }

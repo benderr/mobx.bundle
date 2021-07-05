@@ -5,8 +5,8 @@ import BaseForm from 'common/form/BaseForm';
 const fields = [
   {
     name: 'email',
-    label: 'InputField',
-    placeholder: 'InputField',
+    label: 'CheckboxField',
+    placeholder: 'CheckboxField',
     validators: [isEmail('Введите корректный Email'), isRequired('Введите email')],
   },
   {

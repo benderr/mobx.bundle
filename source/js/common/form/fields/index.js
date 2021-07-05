@@ -1,4 +1,5 @@
 import InputField from './InputField';
+import CheckboxField from './CheckboxField';
 import SelectField from './SelectField';
 import PhoneField from './PhoneField';
 import AmountField from './AmountField';
@@ -10,6 +11,7 @@ export {
   AmountField,
   NumberField,
   InputField,
+  CheckboxField,
   SelectField,
   DatePickerField,
 };

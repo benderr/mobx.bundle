@@ -32,7 +32,7 @@ class DefaultLayerLayout extends React.Component {
 		// 	this.addClass(el, 'hide');
 		// }
 		// setTimeout(() => this.props.onCloseLayer({layerId: this.props.layerId}), 400);
-    this.props.onCloseLayer({ layerId: this.props.layerId });
+    this.props.onCloseLayer({layerId: this.props.layerId});
   }
 
   toggleFullSize() {

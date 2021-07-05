@@ -1,12 +1,22 @@
-import { Field } from 'mobx-react-form';
-import { computed } from 'mobx';
+import {Field} from 'mobx-react-form';
+import {computed, observable, toJS} from 'mobx';
 
 class BaseField extends Field {
   constructor(props) {
     super(props);
+    // this.hint = props.hint;
+    this.$hint = props.data.hint;
   }
 
-  @computed get submitFailed() {
+  @observable $hint
+
+  @computed
+  get hint() {
+    return toJS(this.$hint);
+  }
+
+  @computed
+  get submitFailed() {
     return this.state.form.submitFailed;
   }
 }
